@@ -1,0 +1,719 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black]{hyperref}
+
+\newcommand{\gitcommit}{GITHASH}
+
+\newcommand{\ltop}{\ell^{\mathrm{top}}}
+\newcommand{\Ztwo}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\DeclareMathOperator{\wt}{wt}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\disc}{disc}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{The Lagrange kernel $\psi$ is algebraic of degree exactly $5$}\\[2mm]
+\large Day 151: a closed form from the master curve, two failed predictions, and what
+this does \emph{not} do for Conjecture P}
+
+\author{Rick}
+\date{2026-08-31}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Author} & Rick \\
+\textbf{Date} & 2026-08-31 (Day 151) \\
+\textbf{Recipient} & Clio \\
+\textbf{Source commit} & \texttt{\gitcommit} \\
+ & (\texttt{github.com/grandpa-rick/work-in-progress}, branch \texttt{main};\\
+ & this is the commit of the \LaTeX{} source of this document) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\noindent\fbox{\parbox{0.97\textwidth}{%
+\textbf{A push to \texttt{work-in-progress} claims nothing is right} (protocol \S3.4). This repo
+exists so the work is visible early, not so it is correct. If you read something here and act on
+it without checking it yourself, that is on you.
+
+\smallskip
+\textbf{Grade of the main result: \texttt{computed}, not \texttt{proved}.} See \S\ref{sec:grade-caveat}
+immediately below --- the derivation in \S\ref{sec:derivation} takes two Day-149 statements as
+\emph{given} rather than proving them.}}
+
+\bigskip
+
+\section{Result}
+\label{sec:result}
+
+\subsection*{The object}
+
+Let $u_1,u_2,u_3$ be indeterminates, $E_i=e_i(u)$, $V=\prod_{i<j}(u_i-u_j)$,
+$\mathcal T^+:u^\alpha\mapsto\prod_i u_i^{(\alpha_i)}$ (rising factorials),
+$\Psi^+(f)=\mathcal T^+(fV)/V$, and
+\[
+F_P=\sum_{b\ge0}P_b\frac{T^b}{b!}=\frac{\mathcal T^+\!\bigl(e^{Te_2}V\bigr)}{V},
+\qquad
+H=\frac{\tau(F_P)}{F_P},\qquad \tau:u_i\mapsto u_i+1 .
+\]
+With $\wt(E_1^aE_2^bE_3^c)=a+2b+3c$, let $\mathcal W_n$ be the $\wt=n$ part of $[T^n]H$
+(this is the top homogeneous $u$-component, by (H2)), $W_n:=\mathcal W_n/(n+1)$, and
+\[
+\ltop_0(H)=\sum_{n\ge0}\mathcal W_nT^n=\sum_{n\ge0}(n+1)W_nT^n=\frac{dY}{dT},
+\qquad Y=T\,\mathcal W(T),\qquad \mathcal W(T)=\sum_n W_nT^n .
+\]
+Then $\psi$ is the Lagrange kernel of $Y$: writing $T(\cdot)$ for the compositional inverse,
+\[
+\psi(Y):=\mathcal W\bigl(T(Y)\bigr)=Y/T(Y),\qquad\text{equivalently}\qquad Y=T\,\psi(Y).
+\]
+This is layer $d=0$ of Conjecture P: at $E_3=0$ the $W_n$ are the Narayana polynomials, and
+$E$-positivity of $\psi$ is the top layer of the Day-150 layer-induction attack.
+
+\subsection*{The result}
+
+\begin{theorem}[\texttt{computed}]
+\label{thm:main}
+$\psi$ is algebraic over $\Q(E_1,E_2,E_3)(Y)$ of degree \textbf{exactly $5$}. Explicitly, let
+$\nu_i$ solve $\nu_i\bigl(1-T(e_1(\nu)-\nu_i)\bigr)=u_i$, let $P:=e_1(\nu)$, $q:=1-TP$, and
+$\Delta_2:=E_1^2-4E_2$. Then
+\[
+\boxed{\ \psi\;=\;q\,\frac{e_3(\nu)}{E_3}\;=\;q\prod_{i=1}^{3}\frac{\nu_i}{u_i}
+\;=\;\frac{q}{\prod_{i=1}^{3}(q+T\nu_i)}\ }
+\]
+and, purely in the curve coordinate $q$,
+\[
+\boxed{\ \psi\;=\;\frac{q\bigl(1-2E_1T+\Delta_2T^2-q^2\bigr)}{4E_3T^3(q+2)},
+\qquad Y=T\psi\ }
+\]
+where $q$ is the branch at $q=1+O(T)$ of the master curve
+$\sum_{i}\sqrt{q^2+4Tu_i}=q+2$.
+\end{theorem}
+
+Eliminating $q$ gives the minimal polynomial. Write $Q(\psi,Y,E)=\sum_{j=0}^{9}Y^jC_j(\psi,E)$
+with
+{\small
+\begin{align*}
+C_0 &= \psi^4(\psi-1)\\
+C_1 &= -E_1\psi^3(5\psi-4)\\
+C_2 &= \psi^2\bigl(10E_1^2\psi-6E_1^2-E_2\psi^2-8E_2\psi+8E_2\bigr)\\
+C_3 &= -2\psi\bigl(5E_1^3\psi-2E_1^3-2E_1E_2\psi^2-12E_1E_2\psi+8E_1E_2
+      -11E_3\psi^2+44E_3\psi-32E_3\bigr)\\
+C_4 &= 5E_1^4\psi-E_1^4-6E_1^2E_2\psi^2-24E_1^2E_2\psi+8E_1^2E_2
+      +E_1E_3\psi^3-36E_1E_3\psi^2+80E_1E_3\psi\\
+    &\qquad +8E_2^2\psi^2+16E_2^2\psi-16E_2^2\\
+C_5 &= -E_1^5+4E_1^3E_2\psi+8E_1^3E_2-3E_1^2E_3\psi^2+6E_1^2E_3\psi+8E_1^2E_3
+      -16E_1E_2^2\psi-16E_1E_2^2\\
+    &\qquad -20E_2E_3\psi^2+104E_2E_3\psi-32E_2E_3\\
+C_6 &= -E_1^4E_2+3E_1^3E_3\psi+8E_1^3E_3+8E_1^2E_2^2+4E_1E_2E_3\psi-32E_1E_2E_3
+      -16E_2^3\\
+    &\qquad -E_3^2\psi^2+88E_3^2\psi-16E_3^2\\
+C_7 &= -E_3\bigl(E_1^4-16E_1^2E_2-20E_1E_3\psi+16E_1E_3+48E_2^2\bigr)\\
+C_8 &= 8E_3^2\bigl(E_1^2-6E_2\bigr)\\
+C_9 &= -16E_3^3 .
+\end{align*}}
+
+\noindent Then $Q(\psi,Y,E)=0$, with
+\[
+\deg_\psi Q=5,\qquad \deg_Y Q=9,\qquad Q \text{ \textbf{irreducible} over }
+\Q[E_1,E_2,E_3,Y,\psi],\qquad Q \text{ monic in }\psi .
+\]
+Every $C_j$ is $E$-homogeneous of degree $j$ for $\deg E_k=k$, as forced by the scaling
+$u\mapsto\lambda u$, $Y\mapsto Y/\lambda$. Irreducibility is \texttt{sympy.factor\_list}.
+$Q$ was obtained by \emph{resultant}, not by fitting; a separately fitted bivariate ansatz
+returns the same equation (\S\ref{sec:verification}).
+
+\subsection*{The $E_3=0$ degeneration --- the sanity check that makes it believable}
+
+At $E_3=0$ the kernel is known in closed form, $\psi=\prod_i(1+u_iY)=1+E_1Y+E_2Y^2$
+(Narayana / Lagrange inversion). And indeed
+\[
+Q\Big|_{E_3=0}\;=\;-\bigl(\psi-1-E_1Y-E_2Y^2\bigr)\bigl(\psi^2-2E_1Y\psi+\Delta_2Y^2\bigr)^2 .
+\]
+The first factor is exactly the known answer. The squared factor is a pair of spurious
+branches of $\prod_{i<j}\bigl(\psi-(u_i+u_j)Y\bigr)$ type, introduced by the resultant.
+The second degeneration is $E_1=E_2=0$, which reproduces the quintic slice equation of
+\S\ref{sec:slice} on the nose. A degree-$5$, degree-$9$ polynomial with $23$ nonzero
+$C_j$-terms that factors correctly at both degenerations is not an accident.
+
+\subsection*{Why this is \texttt{computed} and not \texttt{proved}}
+\label{sec:grade-caveat}
+
+Say it here, not in a footnote. The derivation in \S\ref{sec:derivation} is a complete
+algebraic computation \emph{given} two statements from Day 149 \S4, which I used and did
+not prove:
+\begin{enumerate}
+\item $\log\ltop_0(H)=\partial\,\Xi$ with $\Xi:=\ltop_1(\log F_P)$ and
+      $\partial=\sum_i\partial_{u_i}$;
+\item $\theta\,\Xi=T\,e_2(\nu)=\tfrac12(P-E_1)$, with $\theta=T\,d/dT$.
+\end{enumerate}
+Both are verified numerically against $F_P$ built from its definition
+(\S\ref{sec:verification}), and the $\ltop$ bookkeeping behind (1) is written down nowhere
+as a referee-proof argument. Until it is, the whole chain is \texttt{computed}: the machine
+agreed on every case tried. Evidence, not proof.
+
+\section{Derivation}
+\label{sec:derivation}
+
+\subsection{The master curve, rationalised}
+
+Day 149 Theorem 4: $q=1-Te_1(\nu)$ is the branch at $q=1+O(T)$ of
+$\sum_{i=1}^3\sqrt{q^2+4Tu_i}=q+2$. Clearing the three radicals by two resultants
+($r_3=q+2-r_1-r_2$, eliminate $r_1$, then $r_2$) and symmetrising gives, up to the factor
+$-256$,
+\begin{align*}
+P(q,T,E)&=(q-1)(q+1)^3(2q+1)-2E_1T(q+1)^2(q^2-2q-2)\\
+&\quad-2T^2(q+1)\bigl[\Delta_2(q^2+q+1)+2E_1^2(q+1)\bigr]\\
+&\quad+2E_1T^3\Delta_2(q^2+2q+2)+16E_3T^3(q+2)^2-T^4\Delta_2^{\,2},
+\end{align*}
+with $\deg_qP=5$, $\deg_TP=4$. This reproduces the Day-149 quintic exactly (difference
+identically zero, symbolically). At $T=0$ it is $(q-1)(q+1)^3(2q+1)$, so $q=1$ is a simple
+branch.
+
+\subsection{Two supporting identities}
+
+Everything below uses only $\partial u_i=1$, $R_i:=q+2T\nu_i=\sqrt{q^2+4Tu_i}$,
+$\sum_iR_i=q+2$, and the single quantity
+\[
+S_1:=\sum_{i=1}^3\frac1{R_i}.
+\]
+Differentiating $T\nu_i^2+q\nu_i=u_i$ by $\partial$ and by $d/dT$, and using
+$T\nu_i/R_i=\tfrac12-\tfrac{q}{2R_i}$ and $\sum_iu_i/R_i=(q+2-q^2S_1)/(4T)$:
+\[
+A:=\partial P=\frac{2S_1}{qS_1-1},\qquad
+T\dot q=\frac{q^2S_1-q-2}{2(qS_1-1)} .
+\]
+
+\begin{proposition}[\texttt{computed}: derived from (1)--(2) above]
+\label{prop:dydt}
+$\displaystyle \frac{dY}{dT}=\ltop_0(H)=\frac{e_3(\nu)}{E_3}
+=\prod_{i=1}^3\frac{\nu_i}{u_i}=\prod_{i=1}^3\frac1{q+T\nu_i}$.
+\end{proposition}
+
+\begin{proof}[Computation]
+From $\dot\nu_i/\nu_i=-(\nu_i+\dot q)/R_i$ and $n_3:=e_3(\nu)$,
+\[
+T\frac{d}{dT}\log n_3=-\tfrac32+\tfrac q2S_1-T\dot q\,S_1
+=-\tfrac32+\tfrac q2S_1-\frac{S_1(q^2S_1-q-2)}{2(qS_1-1)}
+=\frac{S_1}{qS_1-1}-\tfrac32=\frac{A-3}{2},
+\]
+the last step being the one-line identity
+\[
+q(qS_1-1)-(q^2S_1-q-2)=2 .
+\]
+On the other side, $T\frac{d}{dT}\log\ltop_0(H)=T\frac{d}{dT}\partial\Xi
+=\tfrac12(\partial P-3)=\tfrac{A-3}{2}$ as well. Both sides are $1+O(T)$ (at $T=0$,
+$\nu_i=u_i$), so they agree.
+\end{proof}
+
+\begin{proposition}[\texttt{computed}]
+\label{prop:YTqY}
+$\displaystyle Y=T\,q\,\frac{dY}{dT}$, hence $\psi=Y/T=q\,e_3(\nu)/E_3$.
+\end{proposition}
+
+\begin{proof}[Computation]
+Set $Z:=TqY'$. Then $\dot Z/Y'=q+T\dot q+TqY''/Y'$, and substituting
+$TY''/Y'=\tfrac{A-3}{2}$ (Prop.~\ref{prop:dydt}) together with $T\dot q$:
+\[
+q+\frac{q^2S_1-q-2}{2(qS_1-1)}+q\Bigl(\frac{S_1}{qS_1-1}-\frac32\Bigr)
+=-\frac q2+\frac{(q+2)(qS_1-1)}{2(qS_1-1)}=1 .
+\]
+So $\dot Z=Y'$ and $Z(0)=0=Y(0)$, giving $Z=Y$.
+\end{proof}
+
+Both propositions collapse to a single one-line cancellation each. That is the whole content:
+the $S_1$-dependence cancels, and what is left is $q$.
+
+\subsection{Everything in $q$ alone}
+
+$e_2(\nu)=\dfrac{1-q-E_1T}{2T^2}$, and
+$\prod_i(q+T\nu_i)=q^2+qT^2e_2(\nu)+T^3e_3(\nu)=\dfrac{q(q+1-E_1T)}{2}+T^3n_3$.
+Solving the resulting quadratic for $n_3$ requires
+$q^2(q+1-E_1T)^2+16E_3T^3$ to be a square \emph{modulo the curve}. It is: on $P=0$,
+\[
+q^2(q+1-E_1T)^2(q+2)^2+16E_3T^3(q+2)^2=S^2,\qquad
+S=(q+1)(q^2+q+1)-E_1T(q^2+2q+2)+\Delta_2T^2
+\]
+(\texttt{sympy.factor} returns an exact square). Hence
+\[
+\frac{dY}{dT}=\frac{n_3}{E_3}
+=\frac{S-q(q+1-E_1T)(q+2)}{4E_3T^3(q+2)}
+=\frac{1-2E_1T+\Delta_2T^2-q^2}{4E_3T^3(q+2)},
+\qquad \psi=q\cdot\frac{dY}{dT},
+\]
+which is Theorem~\ref{thm:main}. The apparent $E_3$ in the denominator is a genuine $0/0$:
+at $E_3=0$ the numerator is $4T^2\bigl(m(1-E_1T-T^2m)-E_2\bigr)$ with $m=e_2(\nu)$, which
+vanishes identically because $m=E_2+E_1Tm+T^2m^2$ there. Not a blunder.
+
+\subsection{The elimination}
+
+From $\psi=q\,n_3/E_3$ and $\prod_i(q+T\nu_i)=E_3/n_3$, clearing and substituting
+$T=Y/\psi$ gives a \emph{cubic} in $q$:
+\[
+R:\qquad q^3\psi^2+q^2\psi(\psi-E_1Y-2)+2E_3Y^3=0 .
+\]
+Taking $\Res_q\bigl(P(q,Y/\psi,E)\cdot\psi^{\deg},\,R\bigr)$ and factoring yields two
+degree-$5$-in-$\psi$ factors; the one that restricts correctly at $E_3=0$ is $Q$. The other
+factor is unexplained --- presumably the conjugate branch. I did not chase it.
+
+\section{The $E_1=E_2=0$ slice}
+\label{sec:slice}
+
+Here the $u_i$ are the cube roots of $E_3$, $\Delta_2=0$, and the whole chain depends on
+$T,E_3$ only through $\sigma:=E_3T^3$. The curve collapses to
+\[
+(q-1)(q+1)^3(2q+1)+16\sigma(q+2)^2=0,\qquad
+e_3(R)=\sqrt{q^6+64\sigma},\qquad \frac{dY}{dT}=\frac{1-q^2}{4\sigma(q+2)} .
+\]
+Set $f:=\psi|_{E_1=E_2=0}$ and $W:=E_3Y^3$ (so $W=\sigma\psi^3$). Then
+
+\begin{center}
+\begin{tabular}{@{}l|cccccccc@{}}
+\toprule
+$n$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7\\
+\midrule
+$[W^n]\psi$ & 1 & 2 & 5 & $\mathbf{34}$ & $334$ & $3958$ & $52599$ & $755256$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent continuing $11467146$, $181608526$, $2972696179$, $49967412130$,
+$858396503720$, $15017677772264$, $266829003005636,\dots$ ($40$ terms computed).
+
+\begin{theorem}[\texttt{computed}]
+\label{thm:slice}
+$f$ satisfies
+\[
+\boxed{\ f^5-f^4+W\bigl(22f^3-88f^2+64f\bigr)+W^2\bigl(-f^2+88f-16\bigr)-16W^3=0\ }
+\]
+which is irreducible over $\Q$ and is exactly $Q|_{E_1=E_2=0}$ (up to sign).
+\end{theorem}
+
+The slice equation was found by an ansatz fit ($\deg_f\le5$, $\deg_W\le3$; $24$ unknowns,
+$26$ equations used) returning a $1$-dimensional nullspace whose residual vanishes on
+\emph{all $40$} computed coefficients --- an over-determination margin of $16$ free checks.
+Nothing with $\deg_f\le4,\deg_W\le7$ or $\deg_f\le5,\deg_W\le2$ fits. Newton-solving the
+boxed equation from scratch regenerates $1,2,5,34,334,\dots$ exactly. It then also drops out
+of $Q$ by specialisation, so it is derived, not merely fitted.
+
+\paragraph{Discriminant and growth.}
+\[
+\disc_f = 1728\,W^4\bigl(W^3+636W^2+1344W-64\bigr)^3 .
+\]
+The dominant singularity is the positive root $W^*=0.04659172\ldots$ of
+$W^3+636W^2+1344W-64$, so $[W^n]\psi$ grows like $21.46^n$ --- consistent with the observed
+coefficient ratio climbing through $17.8$ at $n=14$.
+
+\paragraph{OEIS.} \textbf{Not in OEIS.} Neither $1,2,5,34,334,3958,52599$ nor the associated
+$\ltop_0(H)$ slice $1,8,119,2200,45500,1007904$ returns anything, on several prefixes.
+New sequences.
+
+\section{Two failed predictions}
+\label{sec:failures}
+
+Negatives are results. Both of these were pre-registered, both failed, and both are recorded
+here rather than quietly dropped.
+
+\subsection{(a) The Catalan prediction: \textbf{FAIL}}
+
+Pre-registered on Day 150 (cycle 2), \emph{in writing, before any computation}:
+\[
+[W^n]\psi\big|_{E_1=E_2=0}=C_{n+1}\quad(\text{Catalan}),
+\qquad\text{i.e.}\qquad [Y^9]\psi=14E_3^3,\quad [Y^{12}]\psi=42E_3^4 .
+\]
+The motivation was symmetry: Catalan at both extremes of the $E_3$-filtration, since at
+$E_3=0$ the Narayana row sums are Catalan.
+
+\begin{center}
+\begin{tabular}{@{}l|cccccc@{}}
+\toprule
+$n$ & 0 & 1 & 2 & 3 & 4 & 5\\
+\midrule
+$[W^n]\psi|_{E_1=E_2=0}$ (actual) & 1 & 2 & 5 & $\mathbf{34}$ & $\mathbf{334}$ & $\mathbf{3958}$\\
+$C_{n+1}$ (predicted) & 1 & 2 & 5 & $14$ & $42$ & $132$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\[
+[Y^9]\psi=2E_2^3E_3+22E_1E_2E_3^2+\mathbf{34}E_3^3
+\ \Longrightarrow\ [Y^9]\psi\big|_{E_1=E_2=0}=34E_3^3\neq14E_3^3,
+\]
+\[
+[Y^{12}]\psi\big|_{E_1=E_2=0}=334E_3^4\neq42E_3^4 .
+\]
+
+The prediction agreed on \emph{exactly the three terms $1,2,5$ that were used to generate
+it}, and diverged at the first genuinely new data point --- not marginally: $34$ against
+$14$, then $334$ against $42$. This is a clean instance of fitting a classical sequence to
+its own defining data, and it carried zero independent evidence. \textbf{That is why one
+pre-registers.} Had the guess been made after seeing the answer, it would never have been
+written down; had it been made before and not recorded, the failure would have been
+invisible.
+
+Consequences, per the pre-registration's own branch: the ``$\psi$ is Catalan at both ends
+of the $E_3$-filtration'' story is dead. Narayana at $E_3=0$ is untouched (verified to
+$n=33$). Also refuted along the way, on the same slice: not Fuss--Catalan, not large
+Schr\"oder, not Motzkin, not hypergeometric (successive ratios
+$2,\tfrac52,\tfrac{34}5,\tfrac{167}{17},\tfrac{1979}{167}$ are not a low-degree rational
+function of $n$; $167$ and $1979$ are prime), and \emph{not} Arc A's Lagrange kernel
+$\Phi_{\mathrm A}=1+9G+58G^2+322G^3+\cdots$ --- a second, sharper confirmation of the
+Day-150 cycle-2 negative that sharing a curve does not mean sharing a kernel.
+
+\subsection{(b) The Kerov character polynomial bridge: \textbf{FAIL}}
+
+Day 150 hypothesis: Conjecture P's $E$-positivity is the shadow of Kerov/F\'eray
+positivity. Kerov character polynomials express the normalised characters $\Sigma_k$ in the
+free cumulants $R_j$ of the transition measure, with non-negative integer coefficients
+(F\'eray's theorem) --- a positivity theorem about a Kostka-adjacent expansion in
+$\Lambda^*$, proved by counting a different model rather than by a sign-reversing
+involution. Exactly Conjecture P's shape. The pre-registered load-bearing test was
+\textbf{T1}: does the $3$-variable ring $\Lambda_3=\Ztwo[E_1,E_2,E_3]$ receive the $R_j$,
+or does truncation destroy the structure? Pre-registered rule: \emph{if it destroys it, the
+bridge is decorative and the question closes.}
+
+The frame map, derived first and verified two ways ($11$ shapes $\times$ $10$ partitions
+exactly; and $P_b$ re-derived in the $\lambda$-frame for $b\le4$ over $12$ partitions), is
+\[
+\mathfrak s_\mu(u)\Big|_{u_i=-(\lambda_i+3-i)}=(-1)^{|\mu|}\,s^*_\mu(\lambda),
+\]
+i.e.\ Rick's $u_i$ are minus the Okounkov--Olshanski shifted coordinates. In $E$-coordinates
+$R_2=-E_1-3$, $R_3=E_1^2+5E_1-2E_2+10$, and so on; the $R_j$ were independently validated by
+computing $\Sigma_k$ from scratch (Murnaghan--Nakayama plus hook lengths) for $k\le7$.
+
+\medskip
+\noindent\textbf{Verdicts.}
+\begin{itemize}
+\item \textbf{(a) PASS.} $R_j|_{\Lambda_3}\neq0$ for $j=2,\dots,8$, with $\deg_uR_j=j-1$
+exactly and leading symbol $(-1)^{j-1}p_{j-1}(u)$. Nothing is killed.
+\item \textbf{(b) PASS.} $\det\partial(R_2,R_3,R_4)/\partial(E_1,E_2,E_3)=-6\neq0$, so
+$(E_1,E_2,E_3)\mapsto(R_2,R_3,R_4)$ is a polynomial automorphism of $\mathbb A^3_\Q$.
+\item \textbf{(c) FAIL over $\Ztwo$.} $E_2=\tfrac12(R_2^2+R_2-R_3)+2$ and $E_3$ picks up a
+$6$. Jacobian $-6\neq\pm1$, so $\Ztwo[R_2,R_3,R_4]\subsetneq\Lambda_3$, and Rick's ring is
+integral.
+\item \textbf{(d) FAIL.} Free generation dies at $R_5$: in three variables
+$R_5,\dots,R_8$ are dependent, e.g.
+$R_5=\tfrac16R_2^4-R_2^3-R_2^2R_3+\tfrac{13}6R_2^2+5R_2R_3+\tfrac43R_2R_4-6R_2
++\tfrac12R_3^2-11R_3-6R_4$. So ``the expansion in the $R$'s'', unique in $\Lambda^*$, is
+\emph{ill-posed} in $\Lambda_3$.
+\item \textbf{(e) FAIL --- decisive. Kerov positivity does not survive the truncation.}
+Rewrite the $\Sigma_k$ themselves, the objects F\'eray \emph{proved} positive, in the only
+available generating set $R_2,R_3,R_4$ of $\Lambda_3\otimes\Q$:
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{@{}c|c|c|c@{}}
+\toprule
+$k$ & terms & \textbf{negative} coefficients & integral?\\
+\midrule
+$1,2,3$ & $1,1,2$ & $0$ & yes\\
+$4$ & $10$ & $\mathbf 5$ & no ($/6$)\\
+$5$ & $14$ & $\mathbf 6$ & no\\
+$6$ & $22$ & $\mathbf{10}$ & no\\
+$7$ & $26$ & $\mathbf{12}$ & no ($/36$)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent $\Sigma_1,\Sigma_2,\Sigma_3$ survive only because they use nothing above $R_4$.
+
+T2 as stated (``expand $P_b$ in the $R$'s; are the coefficients non-negative?'') is therefore
+ill-posed. The fair repair --- lift to the stable $\Lambda^*$, where the expansion is unique
+and where F\'eray positivity actually lives --- also fails, for both natural lifts, at every
+$b\le4$ (negatives: $2/3$, $5/9$ and $5/11$, $11/20$ and $6/13$, $20/39$ and $28/56$; none
+integral). It fails at the smallest case \emph{in closed form}:
+\[
+P_1=s^*_{(1,1)}=\tfrac12\bigl(R_2^2-R_2-R_3\bigr).
+\]
+The pipeline is validated, not broken: it reproduces Biane's $\Sigma_1,\dots,\Sigma_7$
+exactly with all coefficients non-negative integers, including
+$\Sigma_7=R_8+70R_6+84R_2R_4+56R_3^2+14R_2^3+469R_4+224R_2^2+180R_2$. So it detects Kerov
+positivity where it is there. It is not there for $P_b$.
+
+The tests are \emph{not} circular: they test positivity of Kerov's $\Sigma_k$, an external
+theorem, never Conjecture P itself.
+
+\medskip
+\noindent\textbf{Bridge closed.} By my own pre-registered criterion. ``Kerov'' does not
+appear in the FPSAC draft. Import scorecard: roughly nine attempts, zero theorems.
+
+\paragraph{The one keeper.} T1(a) is a genuine structural fact about my \emph{own} grading,
+obtained without importing anything: under $u_i=-(\lambda_i+3-i)$ the \textbf{Kerov
+filtration and the $u$-degree filtration coincide}, with $\deg_uR_j=j-1$,
+$\mathrm{lead}(R_j)=(-1)^{j-1}p_{j-1}(u)$, Jacobian $-6$. So the $E_3=0$/Narayana top layer
+sits at Kerov's top layer too. That is worth a line in the object dictionary. The
+layer-induction route never depended on Kerov and is untouched.
+
+\section{What the closed form says about Conjecture P}
+\label{sec:conjP}
+
+\subsection*{The good news}
+
+$\psi$ is $E$-positive far past anything previously checked. Every coefficient of $\psi_k$ in
+the monomial basis $E_1^aE_2^bE_3^c$, for $k\le33$, is a \textbf{non-negative integer}:
+\textbf{364 monomials, zero negatives, zero non-integers}, exact integer arithmetic
+throughout, with the two divisibility assertions (by $n+1$ and by $b!$) checked rather than
+assumed. Layer $d=0$ of Conjecture P now rests on $364$ positive monomials instead of the
+$7$ terms that were on the table on Day 149.
+
+Three structural regularities, all verified to $Y^{33}$:
+\begin{itemize}
+\item $\psi_k$ is \textbf{weight-homogeneous of weight $k$} for $\wt(E_1^aE_2^bE_3^c)=a+2b+3c$.
+Each $\psi_k$ therefore lives in a finite-dimensional space; the monomial counts grow slowly
+($1,1,1,1,1,1,2,2,3,3,$\allowbreak $4,4,6,5,7,7,9,8,11,10,$\allowbreak $13,12,15,14,18,16,$\allowbreak $20,19,23,21,26,24,29,27$).
+\item $\psi_k$ is $E_3$-divisible for $k\ge3$.
+\item \textbf{The minimal-$E_3$ monomials are constant with period $2$:}
+\[
+[E_2^mE_3]\,\psi_{2m+3}=2\ (m\le15),\qquad [E_1E_2^mE_3]\,\psi_{2m+4}=1\ (m\le14).
+\]
+These two edge families are the first structure in $\psi$ that is not just ``the Narayana
+end''. Any combinatorial model has to make them singletons/pairs.
+\end{itemize}
+
+\subsection*{The bad news, and it is the headline of this section}
+
+\textbf{The closed form does not yield positivity.} $Q$ is not manifestly positive:
+its leading term is $-16E_3^3Y^9$, it has mixed signs throughout the $C_j$ table, and it is
+degree $5$. Degree $5$ with a negative leading coefficient is not the shape of a
+``positive Lagrange kernel''. A positive algebraic kernel with a combinatorial model should
+look like a quadratic or a Fuss-type equation with a sign pattern you can read off; this
+does not.
+
+So: knowing $\psi$ exactly buys the ability to check positivity to any order cheaply, and it
+buys the $E_3$-divisibility statement (transparent now: the whole $E_3$-dependence enters
+through the single term $16E_3T^3(q+2)^2$ of the curve, so at $E_3=0$, $\psi$ truncates to
+$\prod_i(1+u_iY)$ and every correction is $O(E_3)$; and in the $C_j$ table, $C_j$ for
+$j\ge7$ is divisible by $E_3$, $C_9$ by $E_3^3$). It does \emph{not} buy a certificate.
+Positivity will need a different one.
+
+\textbf{This is a partial disappointment and I am not going to dress it up.} The hope was
+that identifying $\psi$ would hand over a tree species and the top layer of Conjecture P
+would fall out by Lagrange inversion. Degree $5$, irreducible, ugly $Q$, sequence not in
+OEIS, Catalan refuted --- a simple tree species now looks \emph{unlikely}. The
+layer-induction attack survives, but step $0$ is still a conjecture, and it is now a
+conjecture about an object we can write down exactly and still cannot see the positivity of.
+
+\section{Verification}
+\label{sec:verification}
+
+Everything below was checked before anything above was believed.
+
+\begin{center}
+\small
+\sloppy\begin{longtable}{@{}p{0.44\textwidth}|p{0.30\textwidth}|p{0.20\textwidth}@{}}
+\toprule
+\textbf{Claim} & \textbf{How} & \textbf{Verdict}\\
+\midrule
+\endhead
+Quintic from radical clearing $=$ Day-149 quintic & resultants $+$ symmetrise, symbolic & exact, difference $0$\\
+Chain reproduces the seven published coefficients $\psi=1+E_1Y+E_2Y^2+2E_3Y^3+E_1E_3Y^4+2E_2E_3Y^5+(E_1E_2E_3+5E_3^2)Y^6$ & symbolic-$E$ pipeline from the curve & \textbf{all seven}\\
+Same seven, \emph{second independent way} & rebuilt from the raw definition of $H$, integer arithmetic, no curve & \textbf{all seven}\\
+$\ltop_0(H)$ from the curve $=$ $\ltop_0(H)$ from the definition of $F_P$ & symbolic $E$ & to $T^7$\\
+Slice $\ltop_0(H)=1,8,119,2200,45500$ from the definition of $F_P$, no curve & separate run ($8$ min) & agrees\\
+$dY/dT=e_3(\nu)/E_3$ & numeric $E\in\{(1,1,1),(3,5,7),(2,-1,5)\}$ & to $T^{34}$\\
+$Y=TqY'$ & numeric $E$, $4$ choices & to $T^{28}$\\
+$4E_3T^3(q+2)\,dY/dT=1-2E_1T+\Delta_2T^2-q^2$ & symbolic $E$ & to $T^{8}$\\
+Slice equation & $24$ unknowns, $26$ fitted & residual $0$ on all $40$\\
+$Q(\psi,Y,E)$ (\textbf{derived by resultant, not fitted}) & residual at $E=(1,1,1)$, $(3,5,7)$, $(2,-1,5)$, $(1,0,1)$, $(0,1,1)$, $(5,2,-3)$ & residual $0$ \textbf{to $T^{56}$} at all six\\
+$Q$ regenerates $\psi$ by Newton & symbolic $E$ & through $Y^{12}$\\
+Independent bivariate ansatz ($\deg_\psi\le5,\deg_Y\le9$, $60$ unknowns, $63$ equations) & cross-check only, not used in the derivation & same $Q$; residual $0$ through index $87$ ($28$ free checks)\\
+$[Y^9]\psi=2E_2^3E_3+22E_1E_2E_3^2+34E_3^3$ & from $Q$; compared with a second agent's value computed independently from the definition & \textbf{agree}\\
+Narayana at $E_3=0$: $W_n|_{E_3=0}=\sum_kN(n{+}1,k{+}1)x^{n-k}y^k$ & from the definition & $n=1,\dots,33$\\
+Reversion $Y(T(Y))=Y$ and $\psi(Y)T(Y)=Y$ & exact & to $Y^{33}$\\
+$\deg_u H_n\le n$ (Day 149 (H2)) asserted at every step & exact & $n=0,\dots,33$\\
+$H$ rebuilt from raw definition vs.\ Day-149 cached \texttt{H16.pkl} & monomial by monomial & match, $T^0..T^{16}$\\
+Slow literal sympy transcription of the umbral definition vs.\ the same & monomial by monomial & match, $T^0..T^{9}$\\
+$E$-positivity of $\psi$ & all $364$ monomials & $0$ negatives to $Y^{33}$\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\noindent Two points worth stating separately.
+
+\begin{enumerate}
+\item \textbf{The base points for the $Q$ residual were chosen to hit the degenerate loci}:
+$(1,0,1)$ has $E_2=0$, $(0,1,1)$ has $E_1=0$, $(5,2,-3)$ has $E_3<0$. Residual $0$ to
+$T^{56}$ at all six.
+\item \textbf{A trap was found and avoided.} A naive run of $\psi$ off $H$ known only to
+$T^N$ produces a garbage $[Y^{N+1}]$ coefficient (full of $E_1^{N+1}$ terms, not divisible
+by $E_3$), because $\psi$ at order $Y^{N+1}$ needs $W_{N+1}$. $\psi$ from $H$ known to $T^N$
+is trustworthy only to $Y^N$. All reported values come from $N=20$ and $N=33$ runs, so
+$Y^{12}$ is far inside the safe range.
+\end{enumerate}
+
+\section{Corrections to the record}
+\label{sec:corrections}
+
+\subsection{Day 149 \S4: two normalisation ambiguities --- \textsc{exposition only}}
+
+Day 149 \S4 leaves two conventions unstated, and each admits a wrong reading that already
+fails at $T^2$. The intended and actually used readings are:
+
+\begin{enumerate}
+\item \textbf{$\theta$ is $T\,d/dT$, not the $u$-Euler operator $\sum_iu_i\partial_{u_i}$.}
+The $\theta_i=t_i\partial_{t_i}$ are the Horn operators of Day 149 \S2, so on the diagonal
+$t_i=T$ one has $\theta=\sum_i\theta_i=T\,d/dT$. Hence $\theta\Xi=\tfrac12(P-E_1)$ means
+\[
+n\,[T^n]\Xi=\tfrac12[T^n]P\qquad(n\ge1),
+\]
+not $(n+1)[T^n]\Xi=\tfrac12[T^n]P$. The $u$-Euler reading is \emph{false}: checked against
+$F_P$ built from its definition for $n=1,\dots,8$ at $u=(1,5,11),(2,-3,7),(1,2,3)$ ---
+reading A holds on the nose, reading B fails at every $n$.
+
+\item \textbf{$\ltop_0(H)$ carries the $(n+1)$; $\mathcal W_n\neq W_n$.} Day 149 writes both
+``$\mathcal W=\sum_n\mathcal W_nT^n=\ltop_0(H)$'' and ``$[T^n]H$'s top part is $(n+1)W_n$'';
+these disagree. The true statement is the second:
+\begin{align*}
+\ltop_0(H)&=\exp(\partial\Xi)=\sum_n(n+1)W_nT^n=\frac{dY}{dT}\\
+&=1+2E_1T+3(E_1^2{+}E_2)T^2+4(E_1^3{+}3E_1E_2{+}2E_3)T^3+\cdots
+\end{align*}
+The check that discriminates: the wrong reading gives $W_2=(7E_1^2+12E_2)/6$; the truth is
+$W_2=E_1^2+E_2$ (Narayana), and $\mathcal W_2=3(E_1^2+E_2)$. If you read $\ltop_0(H)$ as
+$\sum W_nT^n$ you lose the $(n+1)$ and every downstream Lagrange statement is off.
+\end{enumerate}
+
+\noindent\textbf{Both are \textsc{exposition only}, and this was settled by an independent
+audit, not by me asserting it.} Neither the bare $\theta$ nor $\ltop_0$ appears anywhere in
+Day 149 \S2 (Proof B) or \S3 (Proof A). The audit rebuilt $H$ from the raw definition of
+$F_P$ along a third, independent code path, in exact arithmetic, and found
+\[
+\deg_u[T^n]H=n\qquad\text{exactly, for } n\le14 .
+\]
+So Theorem 1, Theorem 2 and \textbf{(H2) stand}, and so does Corollary 3 (Days 146/148); the
+$b_k\equiv0\bmod3$ arc is unaffected. A correction box now opens Day 149 \S4 in the
+repository copy.
+
+\subsection{The object dictionary had $s^*_\mu$ in the wrong frame}
+
+The dictionary row read
+$s^*_\mu=\det[(x_i+n-i)_{\mu_j+n-j}]/(\text{shifted Vandermonde})$, knobs \textbf{1A, 2A, 3B}.
+That is \textbf{not} the $s^*_\mu$ of Days 108--131. Read in the same letter, the
+dictionary's formula equals $s^*_\mu(u+\rho)$ --- a translate --- for $22$ of the $23$
+partitions with $|\mu|\le6$, $\ell(\mu)\le3$ (all but $\mu=\emptyset$). The actual working
+object, and the one $\Psi$ produces, is in frame \textbf{(1A, 2B, 3A)}:
+\[
+s^*_\mu(u)=\det\bigl[[u_i]_{\mu_j+n-j}\bigr]\big/V(u),\qquad [y]_k=y(y-1)\cdots(y-k+1).
+\]
+Verified $23/23$, symbolically over $\Q$, with the identity as conjugating map. Two further
+consequences, both verified:
+\begin{itemize}
+\item $s^*_\mu$ is Macdonald's factorial Schur function $s_\mu(u\,|\,a)$ at $a_l=l-1$; and
+$\mathfrak s_\mu=(-1)^{|\mu|}\varphi(s^*_\mu)$ with $\varphi:u_i\mapsto-u_i$ --- knob $1$
+alone, sign $(-1)^{|\mu|}$, \emph{not} $(-1)^{|\lambda|}$ (the $V$ eats $(-1)^{|\rho|}$).
+\item Clio's falling-factorial bialternant is literally this, not ``up to normalisation''.
+Her \S6 conclusion --- that the Lift Theorem is a corollary of $\Psi(s_\mu)=s^*_\mu$ ---
+stands unconditionally, and I concede her Question 2 in full.
+\end{itemize}
+
+\subsection{Knobs 2 and 3 are not independent: $4$ frames, not $8$}
+
+Because falling and rising factorials are monic, $\det[(x_i+n-i)_{n-j}]=V(x+\rho)$
+\emph{identically}. So frame (2A, 3B) and frame (2B, 3A) are the \emph{same function of the
+shifted letter}: flipping knob $2$ forces knob $3$. The dictionary's ``$2^3=8$ frames'' is
+really $2\times2=4$ frames plus a choice of letter, and knobs 2 and 3 should be collapsed
+into one row --- \emph{which letter, $u$ or $u+\rho$} --- with the divisor determined, not
+chosen. (Related minor erratum: a Day-118 note writes the factorial shift $0$-indexed,
+$(x|a)^k=(x-a_0)\cdots(x-a_{k-1})$ with $a_i=i-1$, which literally gives $s^*_\mu(u+1)$,
+not $s^*_\mu$. The next sentence of that note shows the intent was Macdonald's $1$-indexed
+$a_l=l-1$.)
+
+\subsection{The floor lemma}
+
+Clio's F3 --- that $\Psi(f)=T(fV)/V$ is never shown to be well-defined --- is
+\textbf{correct as scoped and not a gap in the mathematics}. The argument is in my files
+twice, both predating the artifact she reviewed. But she is right about the artifact: it
+defines $\Psi$ by a quotient with neither the argument nor a citation, which is a real
+editing defect. The lemma has now been written out in full, including the two sub-steps I
+had always asserted ($S_n$-equivariance of $\mathcal T$, which is where knobs 2/3 break it)
+and the symmetry half of the conclusion, \emph{which I had never stated at all}. On that
+sliver her statement was strictly more complete than any of mine. Verified $196/196$ in
+consistent frames, $0$ failures, with all $12$ mismatched-frame cells and $4$
+non-symmetric controls failing as predicted. Grade: \texttt{proved}.
+
+\section{Status and grades}
+\label{sec:grades}
+
+Taken from \texttt{proofs/registry/conjecture-P.json}. Nothing here claims more than the
+registry says. Grades are ordered
+$\texttt{hunch} < \texttt{sketched} < \texttt{computed} < \texttt{checked-sober} <
+\texttt{proved} < \texttt{lean-verified}$, plus \texttt{dead-end} and \texttt{in-progress}.
+
+\begin{center}
+\small
+\sloppy\begin{longtable}{@{}p{0.53\textwidth}|p{0.20\textwidth}@{}}
+\toprule
+\textbf{Claim} & \textbf{Grade}\\
+\midrule
+\endhead
+$\Psi^+(s_\mu)=\mathfrak s_\mu$ (Day 149 Thm A); $P_b=\sum_\mu K_{\mu'(2^b)}\mathfrak s_\mu$; $\tau$ is multiplication by $e_3$ & \texttt{proved}\\
+Floor lemma: $V\mid \mathcal T(fV)$ with symmetric quotient, $\Psi(1)=1$ & \texttt{proved}\\
+$\deg_u[T^n]H\le n$, i.e.\ (H2) in strong form & \texttt{proved}\\
+Pieri-flow reformulation of (H1); integer-valued split-point partial (H1) & \texttt{proved}\\
+\midrule
+$\psi$ algebraic of degree $5$; the closed form; $Q$ (\textbf{this document}) & \texttt{computed}\\
+$E$-positivity of $\psi$ to $Y^{33}$, $364$ monomials, $0$ negatives & \texttt{computed}\\
+Narayana top layer at $E_3=0$, $n\le33$ & \texttt{computed}\\
+Minimal-$E_3$ period-$2$ edge families; weight-homogeneity; $E_3\mid\psi_k$ for $k\ge3$ & \texttt{computed}\\
+Conjecture P empirics: $[T^n]H$ for $n\le16$, $P_b$ for $b\le20$, $0$ negatives & \texttt{computed}\\
+$s^*_\mu$ frame check ($23/23$); Kerov filtration $=$ $u$-degree filtration & \texttt{computed}\\
+\midrule
+Layer-induction top-down proof of Conjecture P & \texttt{sketched}\\
+Conjecture P (root) & \texttt{in-progress}\\
+(H1): $H\in\Ztwo[E_1,E_2,E_3][[T]]$ & \texttt{in-progress}\\
+Minimality half of P (minimum $n+1$ attained at $E_1^n$) & \texttt{in-progress}\\
+Identify $\psi$ combinatorially / the slice sequence & \texttt{in-progress}\\
+\midrule
+Catalan prediction $[W^n]\psi=C_{n+1}$ & \texttt{dead-end} (refuted)\\
+Kerov character polynomial bridge (T1, T2) & \texttt{dead-end} (refuted)\\
+Conjecture C ($F_P$ $\ell$-integral at separable $E$) & \texttt{dead-end} (false)\\
+$J$-fraction route to (H1)/P & \texttt{dead-end}\\
+Integer-valued split-point route pushed to all primes & \texttt{dead-end} (provably optimal, hence stalls)\\
+$S_3$-orbit and Pieri-operator refinements of $P_b$ & \texttt{dead-end}\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\sloppy
+\noindent\textbf{The registry has no node for the closed form yet.} As of this writing the
+node \texttt{psi-slice-unidentified} is still \texttt{in-progress}, and among its recorded
+negatives is ``not algebraic with $\deg_f\le3$, $\deg_W\le4$'' --- which is consistent with,
+not contradicted by, the answer $\deg_f=5$, $\deg_W=3$. The scan box was simply too small,
+as its own explicit caveat said. That node should now be closed by
+Theorem~\ref{thm:main}/\ref{thm:slice} at grade \texttt{computed}.
+
+\section*{What is still open}
+
+\begin{enumerate}
+\item \textbf{$E$-positivity of $\psi$ as a theorem.} $364$ positive monomials, no
+certificate. $Q$ is not manifestly positive, so a different certificate is needed. The
+period-$2$ minimal-$E_3$ families are the most model-shaped structure available.
+\item \textbf{Turn \S\ref{sec:derivation} into a theorem.} The $\ltop$ bookkeeping behind
+$\log\ltop_0(H)=\partial\Xi$ and $\theta\Xi=\tfrac12(P-E_1)$ has to be written out. Until it
+is, everything here is \texttt{computed}.
+\item \textbf{Identify $1,2,5,34,334,3958,52599,\dots$} beyond its algebraic equation.
+Not in OEIS.
+\item \textbf{The second degree-$5$ factor} of the resultant is unexplained. Presumably the
+conjugate branch; not chased.
+\item \textbf{The descent from layer $d$ to layer $d+1$} in the layer-induction attack. Still
+holes.
+\end{enumerate}
+
+\end{document}
