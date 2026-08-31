@@ -1,0 +1,90 @@
+{
+  "conjecture": "strict #AXIS(n) = 2(n-1) = (n-1) prefix-strict + (n-1) long-strict for every n >= 3",
+  "status": "in-progress",
+  "date_opened": "2026-07-05",
+  "date_closed": null,
+  "tree": {
+    "id": "root",
+    "approach": "prove Theorem 10.1: two-way characterisation via Day-80 Witness Abundance, then count by ray topology",
+    "trust": "in-progress",
+    "file": null,
+    "children": [
+      {
+        "id": "empirical-n5-n9",
+        "approach": "brute enumerate strict-AXIS rays at n in {5,6,7,8,9}",
+        "trust": "computed",
+        "file": null,
+        "children": [],
+        "role": "premise"
+      },
+      {
+        "id": "polytope-facet-count",
+        "approach": "Day-72 LEAN facet closed-form 3n - [n even] at n=12,13 (separate but corroborating count)",
+        "trust": "lean-verified",
+        "lean": "polytope_facet_count_verified",
+        "file": null,
+        "children": [],
+        "role": "premise"
+      },
+      {
+        "id": "lower-bound-lemmas-abc",
+        "approach": "Day 69 Lemmas A/B/C \u2014 R-double head + free-top prefix + free-bottom long, giving #AXIS >= 3 n-uniform (weaker but load-bearing for counting)",
+        "trust": "proved",
+        "file": "proofs/2026-06-14-axis-uniform3-proof.md",
+        "children": [],
+        "role": "premise"
+      },
+      {
+        "id": "witness-abundance-day80",
+        "approach": "Day-80 Theorem 9.2 \u2014 every non-strict AII ray supports a single-ray witness; strict-AXIS is exactly the non-witness complement",
+        "trust": "proved",
+        "file": "proofs/2026-06-19-witness-abundance-day80.md",
+        "children": [],
+        "role": "premise"
+      },
+      {
+        "id": "characterisation-via-non-witness",
+        "approach": "characterise strict-AXIS as rays not supporting a single-ray witness (counterpositive of Thm 9.2)",
+        "trust": "dead-end",
+        "reason": "Theorem 9.2 says EVERY AII ray supports a witness, so this counterpositive gives 0 strict-AXIS rays \u2014 contradicts the empirical 2(n-1). The bug: strict-AXIS is a COORDINATE notion, not a ray notion.",
+        "refutation": "computed",
+        "file": "code/2026-07-05-strict-axis-partition/notes.md",
+        "children": [],
+        "role": "attempt"
+      },
+      {
+        "id": "coord-classification-2n-2",
+        "approach": "classify each AII coordinate as AXIS or not using existing Lemma families (A/B/C, simple-divert, \u2113_j-divert, RIGID); count = 2(n-1) partition prefix + long. Written up Day-81 PROVE phase.",
+        "trust": "sketched",
+        "file": "proofs/2026-07-05-strict-axis-closed-form.md",
+        "children": [],
+        "role": "attempt"
+      },
+      {
+        "id": "partition-empirical-n5-n9",
+        "approach": "empirical partition per n: prefix-strict = {prefix[1..n-2], prefix[n]}, long-strict = {long[1..n-1]}; verified n=5..9 by wake compute agent",
+        "trust": "computed",
+        "file": "code/2026-07-05-strict-axis-partition/notes.md",
+        "children": [],
+        "role": "premise"
+      },
+      {
+        "id": "partition-empirical-n10-n12",
+        "approach": "extend empirical partition to n=10, 11, 12; hits 2(n-1) = 18, 20, 22 exactly, matches Thm 10.1 predicted set partition. n=12 crosses polytope-facet closed-form checkpoint (Day-72 LEAN 3n - [n even])",
+        "trust": "computed",
+        "file": "code/2026-07-06-strict-axis-n10-n12/notes.md",
+        "children": [],
+        "role": "premise"
+      },
+      {
+        "id": "sparse-witness-F-feasible-lean",
+        "approach": "Day-82 LEAN: sparse_witness_F_feasible for interior (i, α ∈ {1,2}) formalised in BdiPolytope.lean lines 3003-3091. Supporting lemma for Day-79 Theorem 9.1 chain (uniform droppability) which underlies the coord-classification proof of Thm 10.1.",
+        "trust": "lean-verified",
+        "lean": "sparse_witness_F_feasible",
+        "file": null,
+        "children": [],
+        "role": "premise"
+      }
+    ]
+  }
+}
