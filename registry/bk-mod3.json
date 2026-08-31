@@ -1,0 +1,220 @@
+{
+  "conjecture": "b_k ≡ 0 (mod 3) for every k ≥ 1, where b_k = (3k-1) n_k, n_k = N_k[T^{3k-1}], N_k the E_3^k-coefficient of log(F_P/f) (Day 143); equivalently κ_n(1-2F) ∈ 6Z, equivalently F(ϑ) = Σ b_k ϑ^k ≡ 0 mod 3. PROVED Day 148 via the quintic F(1-F)^3(3-4F) = ϑ(3-2F)^2 and Lagrange inversion.",
+  "status": "proved",
+  "date_opened": "2026-08-28",
+  "date_closed": "2026-08-30",
+  "tree": {
+    "id": "root",
+    "approach": "Prove 3 | b_k. The winning route (Day 148, after four sessions of p-adic machinery failed) was Rule 11: unfold the defining umbral operator T before decorating it. T(g)(u) = [g(∂_x) x^u]_{x=1}, which gives a Horn-hypergeometric closed form for F_P, a leading-order Riccati system, an algebraic curve of degree 5 for F, and then integrality by Lagrange inversion. Day 149 removed the last conditional statement in the arc.",
+    "trust": "proved",
+    "file": "proofs/2026-08-30-day148-bk-mod3-SOLVED.md",
+    "children": [
+      {
+        "id": "closed-form-FP",
+        "approach": "Day 148 Lemma 2.1 (umbral determinant collapse: T(u^m V(u)) = prod_i (u_i)_{m_i} * V(u-m), by row-factoring (x)_{m+k} = (x)_m (x-m)_k) and Theorem 2.2, the closed form F_P = sum_{a,b,c} T^{a+b+c}/(a!b!c!) * u_1^{(a+b)} u_2^{(a+c)} u_3^{(b+c)} * V(u+m)/V(u), plus Corollary 2.3 (the Horn system (H) and F_P = V(M) M / V(u) at t_i = T). This is the discovery that collapsed the whole arc. Verified against the Psi-recursion of core.py for all b<=9 at u=(1/2,1/3,1/5) and used to reproduce b_1..b_15 exactly at two base points.",
+        "trust": "proved",
+        "file": "proofs/2026-08-30-day148-bk-mod3-SOLVED.md",
+        "role": "premise",
+        "children": [
+          {
+            "id": "floor-lemma-well-definedness-stub",
+            "approach": "Well-definedness of Psi(f) = T(fV)/V (V divides T(fV), quotient symmetric) underlies every object in this arc. Canonical node lives in conjecture-P.json.",
+            "trust": "proved",
+            "shared": "conjecture-P#floor-lemma-well-definedness",
+            "file": null,
+            "role": "premise",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "vanishing-lemma-thm41",
+        "approach": "Day 148 Theorem 4.1 (the vanishing lemma), UNCONDITIONAL and at every base point: with S = log M and lambda_i = theta_i S, the Riccati system (R) plus induction on t-degree gives ord(lambda_i) >= -1, hence ord(log F_P) >= -1, i.e. [E_3^k T^b] log F_P = 0 for all b < 3k-1. Uses only that ord(u_i) >= -1, that t_i raises order by one, and that S has positive t-degree. This is the first unconditional proof of the Day 143 'leading-T vanishing' lemma and of Day 146 Prop 1. Independently confirmed: zero violations for all k<=22 at two base points.",
+        "trust": "proved",
+        "file": "proofs/2026-08-30-day148-bk-mod3-SOLVED.md",
+        "role": "premise",
+        "children": [
+          {
+            "id": "day143-vanishing-empirical",
+            "approach": "Day 143's original version of the same lemma (N_k[T^b] = 0 for 2k <= b <= 3k-2), which at the time was only 'strong evidence': verified as a polynomial in (U,V) at four points (0,0), (1,1), (2,3), (-1,2) for k=1..5, and the companion complete-vanishing statement [E_3^k T^b]X = 0 for b < 3k-1 at (0,0) for k=1..6. Day 143 said explicitly 'a cleaner proof from the E_3-degree structure of P_b is expected but not written out here'. Superseded by Theorem 4.1.",
+            "trust": "computed",
+            "file": "proofs/2026-08-28-day143-invariant-quadratic-identity.md",
+            "role": "attempt",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "leading-order-system-and-quintic",
+        "approach": "Day 148 §5-§6: applying ell_{-1} to (R) gives the leading-order system nu_i(1 - e_1(nu) + nu_i) = omega^{i-1} z with a unique power-series solution (Jacobian = identity), Proposition 5.1 F = e_2(nu), and Corollary 5.2 -- the (E_1,E_2)-freeness that Day 143 had to assume is now a theorem, since (*) has coefficients 1, omega, omega^2, z only. Elimination via R_i = 2 nu_i - A then yields F(F-1)^3(4F-3) = ϑ(2F-3)^2, so F is algebraic of degree 5. Cube roots of unity are the entire mod-3 mechanism (steps 2, 4, 6 use 1+omega+omega^2 = 0; step 5 needs 3-2F invertible). Independently verified: solving (*) exactly in Q(omega)[[z]] to z^39 gives e_1(nu) = 2F, matching 2b_1..2b_13.",
+        "trust": "proved",
+        "file": "proofs/2026-08-30-day148-bk-mod3-SOLVED.md",
+        "role": "premise",
+        "children": [
+          {
+            "id": "step3-prefactor-repair",
+            "approach": "Audit repair. Day 148 §5 Step 3 argued that the correction terms in R = e^{-S} V(M) e^S 'are Delta-derivatives of already-produced factors, hence of order >= -1 instead of -2', concluding ell_{-3}(R) = V(nu) exactly. Day 149 §7 found the parenthetical WRONG (the produced factors themselves have order >= -1, so their Delta-derivatives do too, and corrections do reach order -3). The conclusion survives by a different argument: a correction replaces one factor by Delta_{kl} Delta_{ij} S whose ell_{-1} is O(z^2) while the two surviving factors are O(z) each, so every correction is O(z^4) against V(nu) = D z^3 (1+O(z)); hence ell_0(R/V(u)) is a unit congruent to 1 mod z, which is all Step 3 is used for.",
+            "trust": "proved",
+            "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+            "role": "premise",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "lagrange-inversion-3-divides-bk",
+        "approach": "Day 148 §7, the theorem. Substituting F = 3G into the quintic, the factor 9 cancels on both sides, leaving G(1-3G)^3(1-4G) = ϑ(1-2G)^2, i.e. G = ϑ φ(G) with kernel φ(G) = (1-2G)^2 / ((1-3G)^3 (1-4G)) ∈ Z[[G]], φ(0)=1. Lagrange inversion gives b_k/3 = [ϑ^k]G = (1/k)[G^{k-1}] φ(G)^k ∈ Z, hence 3 | b_k for every k >= 1. Expanding also gives the closed form for b_k open since Day 143: b_k = (3/k) sum_{i+j+l=k-1} binom(2k,i)(-2)^i binom(3k+j-1,j) 3^j binom(k+l-1,l).",
+        "trust": "proved",
+        "file": "proofs/2026-08-30-day148-bk-mod3-SOLVED.md",
+        "role": "premise",
+        "children": []
+      },
+      {
+        "id": "day143-quadratic-identity",
+        "approach": "Day 143 Theorem 3.7: a_k = -b_k + sum_{i+j=k} b_i b_j, equivalently A = F^2 - F and (1-2F)^2 = 1 + 4A, so 1+4A is a perfect square in Q[[tau]]; plus (i) [E_3^k T^b]X = 0 for all b < 3k-1, so T^{3k-1} is the first possibly-nonzero power in the E_3^k-slice of X and it hits the universal invariant a_k. The derivation is complete GIVEN the leading-T vanishing lemma, which on Day 143 was only computed evidence and is now node 'vanishing-lemma-thm41' (Day 148 Theorem 4.1). Verified k=1..6 by hand from the data, and predictively at k=7: the identity predicts b_7 = 85384566 and an independent computation of N_7[T^20] = 42692283/10 at (0,0) confirms it exactly.",
+        "trust": "proved",
+        "file": "proofs/2026-08-28-day143-invariant-quadratic-identity.md",
+        "role": "premise",
+        "children": []
+      },
+      {
+        "id": "day145-free-cumulant-reduction",
+        "approach": "Day 145 Theorem 1 (proved by Speicher Moebius inversion in one direction and induction on the direct moment-cumulant formula in the other): for any M ∈ Z[[tau]] with M(0)=1 and any d, all moments m_n ∈ dZ iff all free cumulants kappa_n ∈ dZ. Applied to M = 1-2F with m_n = -2b_n and d = 6 this gives kappa_n(1-2F) ∈ 6Z for all n IFF b_n ∈ 3Z for all n. Lemma 3 adds the equivalences to a_n ≡ 0, F ≡ 0, A ≡ 0 and M ≡ 1 mod 3. Since Day 148 proved 3 | b_k, kappa_n(1-2F) ∈ 6Z is now itself a theorem; the sanity check kappa_8 = -6*19154577537 stands.",
+        "trust": "proved",
+        "file": "proofs/2026-08-29-day145-free-cumulant-integrality.md",
+        "role": "premise",
+        "children": [
+          {
+            "id": "day145-attacks-ABCD",
+            "approach": "Day 145's four attacks on b_n ≡ 0 mod 3 from the cumulant side: (A) Fermat F(tau)^3 ≡ F(tau^3) combined with F^3 = F + A(1+F); (B) M mod 9 from A mod 3; (C) the Frobenius Moebius formula for kappa; (D) Rick's mod-3 Psi-recursion at (U,V)=(0,0).",
+            "trust": "dead-end",
+            "reason": "All four either reduce back to the conjecture or stall. (A) carries no new information: substituting A = F^2-F makes A(1+F) = F^3-F, so the identity IS Fermat. (B) assumes A ≡ 0 mod 3, which is the content of the conjecture. (C) yields kappa_n ≡ 2a_n mod 6, i.e. the conjecture again. (D) stalls on the 1/b! obstruction: at (U,V)=(0,0) the coefficients of F_P carry 1/b! denominators, and [T^b]X mod 3 does not vanish uniformly near b = 3k-1 (e.g. [T^3]X_1 = -2, [T^7]X_2 ≡ 2), so the vanishing is peculiar to the exact diagonal and no clean mod-3 reduction of F_P is available. Superseded: the real route was not mod-3 at all.",
+            "refutation": "computed",
+            "file": "proofs/2026-08-29-day145-free-cumulant-integrality.md",
+            "role": "attempt",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "day146-master-equation",
+        "approach": "Day 146 Theorem 1 (the master equation), a superseded but structurally important route: L F_P = E_3 T^2 [-3 + T(E_1 + 6 + 2 theta)] tau(F_P), equivalently P_{b+1} = φ_{b+1} P_b + 3b E_3 tau(P_{b-1}) - b(b-1)(E_1+2b+2) E_3 tau(P_{b-2}). PROVED in the write-up as the image of the Psi-recursion under φ, summed against T^b/b! (the derivation is written out, not merely asserted), and verified identically in Z[E_1,E_2,E_3] for b+1 <= 16. Also Lemma A (deg_{E_3} Psi_B <= floor(B/2)) and Lemma B (v_3([E_3^k]Psi_B) >= max(0, 3k-B)), both proved by the path/composition reading of the recursion. NOT a premise of the main theorem -- Day 148 §§3-6 do not use it -- but it is what introduced H and cal-H and hence (H1)/(H2).",
+        "trust": "proved",
+        "file": "proofs/2026-08-29-day146-bk-mod3-master-equation.md",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "day146-theorem2-H-identity",
+            "approach": "Day 146 Theorem 2 / Theorem 3.10: F^2 - F = ϑ * cal-H * (2F-3) with cal-H = ell_0(H) the diagonal of H = tau(F_P)/F_P; and since the constant term of 2F-3 is -3, b_k ≡ 0 mod 3 for all k IFF cal-H ∈ Z_3[[ϑ]]. Stated on Day 146 WITHOUT its hypothesis; Day 147's audit restored 'Assume (H2)'; Day 149 Corollary 3 made it UNCONDITIONAL by proving (H2). Also unconditional now: Day 148's corollary cal-H = (2F-3)/((F-1)^2 (4F-3)) = (2G-1)/((3G-1)^2(4G-1)) ∈ Z[[ϑ]] at EVERY prime, which is Day 147's 'exact realizability' as a theorem with no hypotheses (Day 148 §9.2 should be deleted, not repaired). Verified against the tabulated h_0..h_15: exact match.",
+            "trust": "proved",
+            "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+            "role": "premise",
+            "children": [
+              {
+                "id": "h2-udegree-bound",
+                "approach": "(H2), proved twice on Day 149. Official Proof B, the strong form: Theorem 1, deg_u([T^n] log F_P) <= n+1 (wt(log F_P) <= 1), by a wt-graded induction on the Riccati system (R) plus a prefactor bound wt(R/V(u)) <= 0; then Theorem 2, since tau(E_i) = E_i + (lower u-degree), (tau-1) strictly lowers u-degree, so wt(log H) <= 0 and wt(H) <= 0, i.e. deg_u([T^n]H) <= n, of which (H2) deg_{E_3}([T^n]H) <= floor(n/3) is the E_3-shadow. This is exactly the factor-of-two cancellation Day 146 §9 named and could not get: deg_u [T^n] F_P = 2n but deg_u [T^n] log F_P = n+1 -- the degree collapses under log. Reusable idea (Rule 12): take a filtration in which tau cannot move the extreme layer; then log H = (tau-1) log F_P loses that layer for free. Verified n<=16 with equality throughout.",
+                "trust": "proved",
+                "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+                "role": "premise",
+                "children": [
+                  {
+                    "id": "h2-proof-A-E3-order-filtration",
+                    "approach": "Proof A, kept because it is a different mechanism and shows why the bound is sharp: in the E_3-order filtration, tau preserves order and ell_d(tau X) = tau'(ell_d X); by Day 148 Thm 4.1 ord(log F_P) >= -1 and by Day 148 Cor 5.2 ell_{-1}(log F_P) has constant coefficients, so tau' fixes it and ell_{-1}(log H) = 0. Strictly weaker than Proof B (gives only the E_3-shadow) and needs two Day 148 theorems as input, but it exhibits the sharpness: ell_{-1}(log F_P) is E-free and dies, while ell_0(log F_P) is not E-free (8E_1/3 - 8 at k=1), so no further cancellation is available.",
+                    "trust": "proved",
+                    "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+                    "role": "attempt",
+                    "children": []
+                  },
+                  {
+                    "id": "day146-weak-degree-bound",
+                    "approach": "Day 146 §9 Proposition 2 (exponential normal form, verified d<=5, k<=8) gives only the weak bound deg_{E_3}[T^n]H <= floor(2n/3), and the write-up correctly identified that (H2) 'asks for a further factor-of-two cancellation'. Superseded by Theorem 2; recorded because the diagnosis was right and named the missing mechanism.",
+                    "trust": "computed",
+                    "file": "proofs/2026-08-29-day146-bk-mod3-master-equation.md",
+                    "role": "attempt",
+                    "children": []
+                  },
+                  {
+                    "id": "h2-independent-audit-2026-08-31",
+                    "approach": "INDEPENDENT SOBER RE-DERIVATION of (H2) and of Theorem 2, Day 151, on a fresh code path with NO cache: H rebuilt from its raw definition H = tau(F_P)/F_P with F_P = T^+(e^{Te_2}V)/V, exact Fraction arithmetic throughout, full MULTIVARIATE exact division by V (no numeric base points in the multivariate run). RESULTS. (a) deg_u [T^n]H = n EXACTLY for n <= 14 -- it MEETS Theorem 2's bound and never exceeds it, so the bound is sharp and not merely valid. (b) deg_{E_3} [T^n]H = floor(n/3) EXACTLY over the same range, i.e. (H2) holds with equality. (c) Every coefficient of [T^n]H is a POSITIVE INTEGER over that range -- an independent corroboration of the Conjecture P empirics (see conjecture-P#empirics-H-n16-Pb-b20), obtained without touching the Day-149 cache. (d) A cheaper line-restriction u = lambda*a pushes the degree check to n <= 20 at six base points a = (1,5,11), (1,2,3), (2,-3,7), (1,-1,4), (3,5,-2), (1,0,7), with zero remainder in every exact division and measured degrees [0,1,...,20] in every case. THE AUDIT ALSO FOUND TWO NORMALISATION AMBIGUITIES IN SECTION 4 of proofs/2026-08-30-day149-H2-PROVED.md, and CLASSIFIES BOTH AS EXPOSITION ONLY: (i) the bare theta is never defined there and must be read as sum_i theta_i = T d/dT, not as a u-Euler operator; (ii) section 4 writes both 'script-W = sum_n script-W_n T^n = ell_0^top(H)' and '[T^n]H's top part is (n+1)W_n', which disagree -- the true statement is ell_0^top(H) = sum_n (n+1)W_n T^n = dY/dT. DISCRIMINATING TEST: reading theta = T d/dT gives n*Xi_n = (1/2)[T^n]P EXACTLY in every case tested (n = 1..8 at three base points, 24/24); the u-Euler reading gives (n+1)*Xi_n and FAILS at every single n, frequently producing non-integers. NEITHER AMBIGUITY TOUCHES THE THEOREM: section 4 is DOWNSTREAM of Theorem 2, is cited by nothing, and the Theorem 1 -> Theorem 2 -> Corollary 3 chain runs through sections 1-2 only. (H2) THEREFORE STANDS AT `proved` and this node is corroboration, NOT a downgrade; the section-4 defect is a write-up repair for the next revision. DAYS 146 AND 148 ARE UNAFFECTED, AND THIS WAS CHECKED RATHER THAN ASSUMED: grep over proofs/2026-08-29-day146-bk-mod3-master-equation.md and proofs/2026-08-30-day148-bk-mod3-SOLVED.md finds NO occurrence of ell^top, script-W / W_n, 'leading symbol', 'Narayana' or 'master curve' in either document, and both define theta correctly and independently (theta_i := t_i partial_{t_i} in the Horn coordinates). The Day-151 psi closed form (conjecture-P#psi-closed-form-degree5) is the consumer that forced these two conventions to be pinned down.",
+                    "trust": "checked-sober",
+                    "recheck": "2026-08-31 — scratch/day151_audit/ (audit_h2.py line-restriction to n<=20, audit_multivar.py full multivariate exact division to n<=14, audit_theta.py the theta discriminating test; outputs line20.txt, multivar14.txt, theta.txt). H rebuilt from its raw definition on a fresh code path with no cache, exact Fraction arithmetic.",
+                    "file": "scratch/day151_audit/multivar14.txt",
+                    "role": "attempt",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mod3-attacks-structurally-impossible",
+            "approach": "The whole family of 'reduce P_b mod 3, take log, extract a_k' attacks (Days 144-146 Attack A/B, the Psi-recursion mod 3 route).",
+            "trust": "dead-end",
+            "reason": "Provably doomed, Day 146 §8: b_k is extracted from F_P by dividing by (3k-1)!, whose 3-adic valuation grows like 3k/2, so a_k mod 3 is NOT a function of {P_b mod 3} -- it depends on P_b modulo 3^N with N ~ 3k/2. Concretely, F_P, LF_P, F_P^{-1} and X all live in the divided-power ring Gamma_{Z[E]}[[T]] and reduction mod 3 makes sense in Gamma_{F_3}, but Gamma_{F_3} has no division by (3k-1)!, so the mod-3 reduction of X simply does not see a_k mod 3. This also explains why the true and sharp Lemma B cannot be pushed through log or F_P^{-1}, and why the mod-3 collapse of the convolution destroys all information about eta_n for n >= 4.",
+            "refutation": "proved",
+            "file": "proofs/2026-08-29-day146-bk-mod3-master-equation.md",
+            "role": "attempt",
+            "children": []
+          },
+          {
+            "id": "dwork-frobenius-route",
+            "approach": "Days 145-147: reformulate integrality of H via the Dieudonne-Dwork criterion, H^3 / varsigma(H)(T^3) ∈ 1 + 3T Z[E][[T]], with a Frobenius lift varsigma; three sessions of numerics at three base points to T^22.",
+            "trust": "dead-end",
+            "reason": "TAUTOLOGICAL, with zero evidential value, and additionally broken in detail. (1) Dieudonne-Dwork is an IFF, so passing the criterion with any lift is exactly as strong as verifying H ∈ 1 + T Z_3[E][[T]] directly -- which symH.py/bigdata.py already did. An iff criterion is never evidence for its own hypothesis. (2) The Day 146 recorded claim that 'without the E_3 -> E_3^3 twist the criterion fails numerically at T^9, so the twist is essential' was an ARTEFACT of scripts (dwork.py, dwork2.py) that implemented varsigma = id, which is not a Frobenius lift at all -- RETRACTED on Day 147. (3) The tau(K)/K rewriting is invalid: varsigma and tau do not commute on the locus φ_1 = 0 (explicitly at (E_1,E_2)=(-2,1): tau varsigma gives (-5,-12), varsigma tau gives (1,0)); they agree only mod 3, which is a triviality holding for any lift and any endomorphism, and no Frobenius lift of Z_3[E_1,E_2,E_3] commutes with tau exactly (no_commute_thm.py). The correct object would be K(tau F_P)/K(F_P). Lemma C (K ∈ 1 + 3 Gamma_{Z_3}) survives; the reformulation as a mechanism does not.",
+            "refutation": "proved",
+            "file": "proofs/2026-08-29-day146-bk-mod3-master-equation.md",
+            "role": "attempt",
+            "children": [
+              {
+                "id": "lambda-ring-adams-psi3",
+                "approach": "Day 146 dream 'crown jewel': Sym_3 is a lambda-ring, so the Dwork Frobenius lift ought to be the Adams operation psi^3 rather than the naive E_i -> E_i^3, and psi^3 should commute with tau mod 3.",
+                "trust": "dead-end",
+                "reason": "Nothing. Done properly and symbolically (dwork_symbolic.py) the criterion passes for BOTH the naive lift and psi^3 -- it is lift-independent -- and with identical sharpness: min v_3 = 1 for both, 284 coefficients at the critical valuation v_3 = 1 for each. The choice of lift is not load-bearing. Any real gain would have had to come from controlling varsigma(F_P) via the master equation, not from the lift. (Related Day 147 negative: 'Dabrowski' turned out to be the wrong theorem -- formal congruences are not Dieudonne-Dwork -- and the paper as remembered does not exist.)",
+                "refutation": "computed",
+                "file": "proofs/2026-08-29-day146-bk-mod3-master-equation.md",
+                "role": "attempt",
+                "children": []
+              },
+              {
+                "id": "hj-table-circular",
+                "approach": "Use the tabulated h_j (the diagonal coefficients of cal-H) as numerical evidence for 3 | b_k.",
+                "trust": "dead-end",
+                "reason": "Circular. Verified Day 147 (identity.py): h_0..h_11 are reconstructible from b_1..b_12 alone, invertibly, with only 3-power denominators. The tabulated h_j are therefore zero independent evidence for the target. Only the 165 off-diagonal coefficients of H (offdiag.py) are non-circular and should be quoted instead.",
+                "refutation": "computed",
+                "file": "proofs/2026-08-29-day146-bk-mod3-master-equation.md",
+                "role": "attempt",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "exact-realizability-m_n",
+            "approach": "Day 147's one surviving lead: cal-H = prod_n (1 - ϑ^n)^{-m_n} with m_n = (1/n) sum_{d|n} mu(n/d) s_d non-negative integers to n=15 -- 'exact realizability', claimed to be strictly stronger than integrality and therefore non-circular.",
+            "trust": "dead-end",
+            "reason": "m_n >= 0 is automatic, hence not evidence. If s_d >= 0 for all d and s_n exceeds the sum of its proper-divisor terms, then n*m_n > 0 trivially -- and the measured ratios s_n / sum_{d|n, d<n} s_d for n = 2..15 are 21.8, 532, 602, 3.6e5, 1.8e4, 2.7e8, 5.4e5, 3.9e8, 1.6e7, 1.6e14, 4.7e8, 1.3e17, 1.4e10, 2.9e14: s_n beats the whole sum by 10^2 to 10^17. So exact realizability is EQUIVALENT to cal-H ∈ Z[[ϑ]], i.e. to the target -- circular like everything else. Rule 6 v2 firing #10. Cost: ten minutes; should have been run on Day 147. Companion negative: zeta(t) = cal-H(t) is not rational of low degree (Hankel determinants det[h_{i+j+m}] nonzero for all r<=8, m=0,1) -- correct, since cal-H is algebraic but irrational. Standing lesson: an empirical 'non-circular signal' must be checked against the null hypothesis.",
+            "refutation": "computed",
+            "file": "proofs/2026-08-30-day148-bk-mod3-SOLVED.md",
+            "role": "attempt",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "predictive-verification-k16-22",
+        "approach": "Independent predictive test of the quintic, not a premise of the proof. The relation was fitted to b_1..b_15 using 12 unknowns and 16 equations (over-determined by 4, nullspace exactly 1-dimensional), then tested on NEW data: fast.py computes b_k from the closed form along an entirely independent code path modulo p = 2^61-1 at two base points (E_1,E_2) = (3,2) and (4,3). Seven 21-to-33-digit predictions for k = 16..22, all exact at both base points; b_1..b_15 also reproduced exactly, matching the Psi-recursion. Plus zero violations of the vanishing lemma for all k<=22 at both base points, and cal-H reproducing h_0..h_15 exactly.",
+        "trust": "computed",
+        "file": "proofs/2026-08-30-day148-bk-mod3-SOLVED.md",
+        "role": "attempt",
+        "children": []
+      },
+      {
+        "id": "master-curve-unification",
+        "approach": "Day 149 §4 Theorem 4: the leading symbol of H is governed by the master curve, the branch at q = 1+O(T) of sum_{i=1}^3 sqrt(q^2 + 4Tu_i) = q+2, equivalently an explicit quintic in q with coefficients in E_1, E_2, E_3, T. Under E_1 = E_2 = 0, T = 1, u_i = omega^{i-1} z, q = 1-2F it specialises EXACTLY to the Day 148 quintic F(1-F)^3(3-4F) = ϑ(3-2F)^2 (checked in sympy: the specialisation equals 256 times the quintic). So the b_k curve and the leading symbol of H are two specialisations of one algebraic curve, and the Day 148 elimination is the general elimination. Corollary recorded on Day 148 and demoted here: Day 148 §6 step 2 'F = E/2', billed as 'the mod-3 mechanism', is just the case E_1 = 0 of a general identity. CAVEAT (Day 150 cycle 2): sharing a curve does NOT mean sharing a Lagrange kernel -- Arc A's kernel Phi_A = (1-2G)^2/((1-3G)^3(1-4G)) = 1 + 9G + ... and Arc B's psi|_{E_1=E_2=0} = 1 + 2W + 5W^2 + ... are different (9 versus 2).",
+        "trust": "proved",
+        "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+        "role": "attempt",
+        "children": []
+      }
+    ]
+  }
+}
