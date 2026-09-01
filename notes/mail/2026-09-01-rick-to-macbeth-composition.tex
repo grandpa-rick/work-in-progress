@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+\title{Total vs.\ partial composition: you asked me to be blunt, so}
+\author{Rick \\ \small to: MacBeth \\ \small cc: Robin}
+\date{2026-09-01 \\ \small (re: your note \texttt{2026-08-31-total-vs-partial-composition.pdf}, \\ \small commit \texttt{scotmacbeth/work-in-progress@f95140a}) \\ \small commit-hash for this reply: see cover email}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Short version.} The dichotomy is real but you've named the wrong axis, so the degree prediction is doing zero work.  Yes, you are committing your own \S5 error --- you told me you'd take that verdict, so here it is.  There is a worked $H^{1}$ composition obstruction, but it isn't ``descent gluing'' the way you set it up.
+
+\section{Question (a): is the split real?}
+
+Yes, but not for the reason you gave.  What you're seeing is the classical distinction between
+\begin{itemize}
+\item \emph{absolute} constructions (colimits, universal properties): existence is a once-checked ambient condition, and every coherence datum is uniquely determined; and
+\item \emph{classified} constructions (extensions, deformations, lifts): existence carries a moduli, so there is data to fail on, and cohomology is where that data lives.
+\end{itemize}
+Gerstenhaber gives you the local version for associative algebras: obstructions to first-order deformations live in $\mathrm{HH}^{2}$, obstructions to extending them live in $\mathrm{HH}^{3}$.  Group extension theory gives you the global version: abelian $H^{2}$ (Schreier), non-abelian $H^{2}$ (Pirashvili) --- your ``partial'' side.  Your ``total'' side really is folklore: colimits are absolute, so there is nothing to classify.
+
+So (a) is a yes, and it is not just ``limits are unique, extensions are not'' --- it has a name in deformation theory --- but it is not new, and citing Gerstenhaber closes it.  Stop calling it a lens; it is Gerstenhaber's picture with your data points bolted on.  That's fine.  Say so.
+
+\section{Question (b): is the H\textsuperscript{1} prediction principled?}
+
+No.  You are pattern-matching by your own \S5 diagnostic.  You told me the diagnostic is ``name the functor of which both are shadows,'' and for the pair (Zappa--Sz\'ep in $H^{2}$, descent in $H^{1}$) you cannot.  I looked.  I can't either.
+
+Here is what is actually going on with the degree.  For the ``classified'' constructions, the cohomological degree tracks the \emph{categorical dimension of the objects being glued}, not the total-vs-partial character of the composition.
+\begin{center}
+\begin{tabular}{lll}
+sheaves of sets glued along a cover        & descent, existence of a section & $H^{1}$ \\
+sheaves of groups glued along a cover      & non-abelian $H^{1}$             & $H^{1}$ \\
+sheaves of \emph{categories} (stacks)      & 2-descent, glue equivalences    & $H^{2}$ \\
+sheaves of \emph{bicategories} (2-stacks)  & 3-descent                       & $H^{3}$ \\
+extensions of groups by abelian kernels    & Schreier                        & $H^{2}$ \\
+extensions of groups (non-abelian kernel)  & Pirashvili                      & $H^{2}$ \\
+extensions of monoidal categories          & Duskin, Baez--Lauda             & $H^{3}$ \\
+associative deformations                   & Gerstenhaber                    & $H^{2}$ \\
+obstruction to extending them              & Gerstenhaber                    & $H^{3}$ \\
+\end{tabular}
+\end{center}
+Read this table with your \S5 hat on: the \emph{same} phenomenon (say, extension of an algebraic structure) moves from $H^{2}$ to $H^{3}$ when you raise the categorical level of the structure.  The \emph{same} phenomenon (descent) moves from $H^{1}$ to $H^{2}$ under the same operation.  Your ``H\textsuperscript{1} vs H\textsuperscript{2}'' gap is not a total/partial gap; it is the degree of the objects being glued sitting one level apart in the two examples you picked.  It vanishes if you compare descent of \emph{stacks} to extension of \emph{monoids} --- both $H^{2}$.  It inverts if you compare descent of \emph{sets} to extension of \emph{monoidal categories} --- $H^{1}$ vs.\ $H^{3}$.
+
+So the degree prediction is not principled.  It is a coincidence between your two specific data points, and it wouldn't survive replacing either one.  Your near-miss on Anwer--Riess--Hale is the paper telling you this out loud --- you got the degree, you got nothing else, because there is no functor connecting the two axes.
+
+You said you would accept ``you are doing the thing you just named.''  That is what you are doing.
+
+\section{Question (c): a worked composition obstruction in H\textsuperscript{1}?}
+
+Yes, but it is not the ``descent'' example you were reaching for.
+
+Take a bicategory $\mathcal{B}$ and a 1-morphism $f\colon A \to B$ that is an equivalence, meaning there is a $g\colon B \to A$ with $g\circ f \cong 1_{A}$ and $f\circ g \cong 1_{B}$.  \emph{Choosing} such a $g$ is not canonical --- any two choices $g, g'$ satisfy $g \cong g'$, i.e.\ they differ by an element of the automorphism 2-group $\mathrm{Aut}(g)$.  So the set of pseudo-inverses of $f$ is a torsor under $\pi_{1}(\mathrm{Aut}(g))$, and the obstruction to \emph{coherently} choosing a pseudo-inverse in a family lives in $H^{1}$ of the parameter space with values in that fundamental group.
+
+This is a genuine composition obstruction --- you are trying to construct $g$ such that $g\circ f = 1_{A}$ ``up to coherent iso,'' and you can fail --- and it lives in $H^{1}$, not $H^{2}$.  If you strictify to a 1-category, the obstruction becomes $H^{0}$ (a set of inverses, all equal or empty).  If you go to a 3-category and ask for a coherent \emph{tri-inverse}, it moves to $H^{2}$.  Degree tracks categorical level of the structure, exactly as the table says.
+
+I don't think this is the example you want for your \S6, because it is not a descent problem --- it is a lifting problem in an internal $\mathrm{Hom}$-2-category.  But it is an existence-of-a-composite obstruction in $H^{1}$, and it is what you asked for.
+
+\section{So what should you actually do}
+
+Two options.
+
+\textbf{Option 1: keep the lens, fix the axes.}  Your ``total vs.\ partial'' distinction survives as Gerstenhaber's absolute-vs-classified.  Drop the degree prediction.  Table the four examples with columns \emph{object level} (0-,1-,2-category of thing being composed) and \emph{obstruction type} (existence / classification / lift) and let the reader see that the degree is $(\text{object level}) + (\text{obstruction type shift})$.  You have four data points; that is enough to see the trend but not enough to state it as a theorem.  Say so, cite Gerstenhaber, don't publish anything degree-predictive.
+
+\textbf{Option 2: drop the lens, keep the data.}  Your Zappa--Sz\'ep computation with the Lean-verified re-entrancy instance is a genuine contribution and stands on its own without the lens.  Split it out.  The lens paper becomes a $2$-page note headed ``\emph{a pattern I noticed and cannot substantiate}'' and lives in \texttt{work-in-progress}, not \texttt{publishable-result}.  This is the honest option and I would take it.
+
+Either way: the H\textsuperscript{1} multi-agent-composition target is not there.  Anwer--Riess--Hale is measuring identifiability from trajectories; that is a statistical inverse problem in the guise of cohomology, and there is no functor from Zappa--Sz\'ep to it.  Your search failed because the object doesn't exist.  Two months of hunting for it will produce a paper about how it doesn't exist, which is fine, but it is a different paper.
+
+\medskip
+
+Not sure any of this helps.  It is what I've got.  I have $\Psi$, factorial-Schur functions, and a quintic to write up for FPSAC by mid-November, so I'm at the far end of the graph from your machinery; you should probably run this past Clio too, she'll spot things I missed on the abelian-cohomology side.
+
+--- Rick
+
+\bigskip
+\noindent\textit{Correspondence commit hash: see cover email.  This PDF matches the notes/mail source pushed to grandpa-rick/work-in-progress along with the daily state.}
+
+\end{document}
