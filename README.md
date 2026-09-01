@@ -22,10 +22,12 @@ notes/     object-dictionary.md, aka §1 of the FPSAC paper
 
 ### `proofs/`
 
-One arc, five days of it. The object is a sequence $b_k = 3, 27, 417, 7851, 164124,
-3661389, 85384566, 2056373739, \dots$ that falls out of an interior series $F_P$ attached
-to a $\Psi$-recursion on three variables. It's not in OEIS. It was not P-recursive at low
-order. It took five sessions to find out what it was.
+One arc, seven days of it — b_k mod 3 (Days 143–148), then the (H2) cleanup and $\Psi$
+identification (Day 149), then $\psi$ closed form (Day 152) and its audit (Day 152b).
+The entry point was a sequence $b_k = 3, 27, 417, 7851, 164124, 3661389, 85384566,
+2056373739, \dots$ that fell out of an interior series $F_P$ attached to a $\Psi$-recursion
+on three variables. Not in OEIS. Not P-recursive at low order. Five sessions to find out
+what it was; two more to move up the chain to the leading symbol of $H$.
 
 - **`2026-08-28-day143-invariant-quadratic-identity.md`** — the entry point.
   $a_k = -b_k + \sum_{i+j=k} b_i b_j$, equivalently $(1-2F)^2 = 1+4A$. So $1+4A$ is a
@@ -53,6 +55,24 @@ order. It took five sessions to find out what it was.
   corollary are now **unconditional**. Plus the thing I should have known forty days ago:
   $\Psi$ is the map $s_\mu \mapsto \mathfrak{s}_\mu$ from Schur to **factorial Schur**
   functions, and $\tau$ is multiplication by $e_3$ through it.
+- **`2026-08-31-day152-psi-closed-form-PROVED.md`** — $\psi$, the Lagrange kernel of the
+  leading symbol, is algebraic of degree exactly $5$ over $\mathbb{Q}(E)(Y)$, and its minimal
+  polynomial $Q(\psi, Y)$ is now a **theorem**. The two Day-149 §4 statements that Day 151
+  had taken on faith — $\log \ell_0^{\rm top}(H) = \partial \Xi$ and $\theta \Xi = (P-E_1)/2$ —
+  are both proved in six-line arguments each from the weight grading. Better closed form
+  drops out ($\psi = 4q(q+2) / [(q+1)^2(2q+1-2E_1 T) + \Delta_2 T^2]$, regular at $E_3 = 0$,
+  no $T^3$ in the denominator); the master quintic falls out of the identity $\prod_i (R_i^2 - q^2)
+  = 64 T^3 E_3$ in two lines instead of a resultant chain; irreducibility of $Q$ needs no
+  polynomial-factorisation black box. Rule 11 scorecard for the day: unfolding $3$–$0$,
+  importing $0$–$9$. No papers opened.
+- **`2026-08-31-day152b-audit-of-psi-closed-form.md`** — adversarial audit of the Day 152
+  proof, second session same day. **No error found.** Every step re-derived by hand from
+  the raw definition $F_P = \mathcal{T}^+(e^{T e_2} V)/V$, including both imports (Day 148
+  Lemma 2.1 / Theorem 2.2 / (H) / (R), and Day 149 Theorem 1 (a),(b)). Frame check passed —
+  Day 152 §5 and Day 149 §4 are the same $\psi$, same normalisation. New symbolic-in-$E$
+  pipeline (strictly stronger than Day 152's `check5.py`, which was numeric only) verifies
+  $Q(\psi, Y) = 0$ through $Y^{12}$ and reproduces the pre-registered $[Y^9]\psi$. Theorem D
+  now depends on no polynomial-factorisation algorithm at all.
 
 ### What is still open
 
@@ -62,9 +82,13 @@ order. It took five sessions to find out what it was.
 2. **Conjecture P**: $[T^n]H$ is coefficientwise non-negative, minimum $n+1$. Verified to
    $n \le 16$, zero negatives. Strictly stronger than (H1) and implies it. The mechanism has
    to be cancellation *between* factorial Schur functions, since the individual ones aren't
-   positive. Find the basis where it's obvious.
-3. **The Lagrange kernel $\psi$** of the leading symbol, in closed form. Narayana numbers show
-   up in there and I want to know why.
+   positive. Find the basis where it's obvious. The $\psi$ closed form does **not** deliver
+   $E$-positivity by itself: $Q$ has leading term $-16 E_3^3 Y^9$, not manifestly positive.
+3. **The slice $1,2,5,34,334,3958,\dots$**: this is $[Y^n]\psi|_{E_1=E_2=0} / E_3^{\lceil ? \rceil}$
+   (see the Day 152 proof for the exact statement); it satisfies an explicit quintic in
+   $W = E_3 Y^3$, is **not** in OEIS, is **not** P-recursive of order $\le 4$, and is not
+   $\Phi_{\rm A}$. Wanted: identify it, or prove it can't be identified with a standard
+   family. The pre-registered Catalan prediction from Day 150b died at coefficient 4.
 
 Dead ends worth knowing about, so nobody wastes a week: Conjecture C ($F_P$ $\ell$-integral at
 separable $E$) is **FALSE**, 38108 violations out of 14835 tested pairs. The $J$-fraction of
@@ -87,10 +111,13 @@ is at least `checked-sober`. **A proof standing on a hunch is a hunch with paper
 Dead ends carry their own evidence level too — a `reason` is a claim, and a wrong one silently
 prunes a live branch, which is the most expensive error in a search.
 
-`registry/README.md` has the full format. Note what is and isn't covered: the two JSON trees
-here (`beta-prime-mod8.json`, 116 nodes; `strict-axis-closed-form.json`, 10 nodes) are from
-**earlier arcs**, both still `in-progress`. The $b_k$ arc above is **not yet registered**.
-Don't read its absence as a grade.
+`registry/README.md` has the full format. Four JSON trees currently:
+`beta-prime-mod8.json` (116 nodes) and `strict-axis-closed-form.json` (10 nodes) are from
+**earlier arcs**, both still `in-progress`. `bk-mod3.json` (24 nodes) is the b_k arc,
+status `proved` since Day 148. `conjecture-P.json` (29 nodes) is the live one covering the
+$\psi$/master-curve/Conjecture-P arc; status `in-progress`. As of Day 152 the sub-node
+`psi-closed-form-degree5` is `proved`, with an independent audit at `checked-sober`;
+`kerov-character-polynomial-bridge` and `psi-catalan-prediction` are `dead-end`.
 
 ### `notes/object-dictionary.md`
 
