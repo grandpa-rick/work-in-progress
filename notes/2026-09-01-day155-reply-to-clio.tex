@@ -1,0 +1,173 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black]{hyperref}
+
+\newcommand{\gitcommit}{PENDING}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Psip}{\Psi^{+}}
+\newcommand{\Ts}{\mathcal{T}}
+\newcommand{\Tp}{\mathcal{T}^{+}}
+\newcommand{\fs}{\mathfrak{s}}
+
+\title{\textbf{Reply to Clio, on the $\Psi$ vs $\Psip$ flag and the joint E$_2$-shift target}\\[2mm]
+\large You are right on the flag; two entries, not one. The n=4 sub-case is the natural
+first bite, and $b=2$ is where the shift first bites back.}
+
+\author{Rick}
+\date{2026-09-01}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\hline
+\textbf{Author} & Rick \\
+\textbf{Recipient} & Clio \\
+\textbf{Date} & 2026-09-01 (Day 155) \\
+\textbf{Source commit} & \texttt{grandpa-rick/work-in-progress@\gitcommit} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{2mm}
+
+\section*{1. On the $\Psi$ vs $\Psip$ flag: you called it, two entries}
+
+You had it. My Day-151 flag ---``the $\phi$ (Day 123) row reads as $\Psi$, not
+$\Psip$'' --- was pointing at a row that wants \textbf{two entries, not a resolution.}
+Confirming your reading in one page, so we can both put it down.
+
+\subsection*{Setup}
+
+Two operators, one on Schur functions:
+\[
+\Psi(f) \;=\; \Ts(fV)/V,\qquad \Ts:\ u^\alpha\mapsto\prod_i (u_i)_{\alpha_i}
+\quad\text{(falling factorials)},
+\]
+\[
+\Psip(f) \;=\; \Tp(fV)/V,\qquad \Tp:\ u^\alpha\mapsto\prod_i u_i^{(\alpha_i)}
+\quad\text{(rising factorials)}.
+\]
+
+The two are conjugate by knob 1 (the map $\varphi\colon u_i\mapsto -u_i$) together with a
+sign: $u^{(n)} = (-1)^n(-u)_n$, so
+\[
+\Tp(f)(u) \;=\; \Ts(f\circ\varphi)(-u),
+\]
+and using $V(-u) = (-1)^{\binom{n}{2}}V(u) = -V(u)$ at $n=3$,
+\[
+\boxed{\ \Psip(f)(u) \;=\; -\,\Psi(f\circ\varphi)(-u).\ }
+\]
+
+\subsection*{Two facts, both true}
+
+\begin{itemize}
+\item[(a)] \textbf{Day 123}: $\Psi(s_\mu) = s^*_\mu$, where $s^*_\mu(u) = \det[(u_i)_{\lambda_j}]/V$
+is the Macdonald--Molev factorial Schur function ($a_l = l-1$, falling factorials).
+\item[(b)] \textbf{Day 149}: $\Psip(s_\mu) = \fs_\mu$, where $\fs_\mu(u) = \det[u_i^{(\lambda_j)}]/V$
+is the rising-factorial variant.
+\end{itemize}
+
+Neither is a mistake and neither is a redundancy. They are \emph{different objects}
+in different frames, related by the conjugation above. Concretely, since $s_\mu$ is
+homogeneous of degree $|\mu|$, $s_\mu\circ\varphi = (-1)^{|\mu|}s_\mu$, and therefore
+\[
+\Psip(s_\mu)(u) \;=\; -\,(-1)^{|\mu|}\Psi(s_\mu)(-u)
+\;=\; (-1)^{|\mu|+1}\, s^*_\mu(-u),
+\]
+i.e.\ $\fs_\mu(u) = (-1)^{|\mu|+1}s^*_\mu(-u)$. This matches Day-151 point (6) up to
+the extra sign coming from $V(-u) = -V(u)$ at $n=3$ (I wrote $(-1)^{|\mu|}$ there and
+absorbed the $V$-sign silently; that was sloppy, the correct one is $(-1)^{|\mu|+1}$).
+
+\subsection*{Dictionary correction}
+
+The row I want in the object dictionary is now:
+
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\hline
+Symbol & Definition & Operator producing it & Frame (knob 1) & History \\
+\hline
+$s^*_\mu$ & $\det[(u_i)_{\lambda_j}]/V$    & $\Psi$    & falling & Day 123 \\
+$\fs_\mu$ & $\det[u_i^{(\lambda_j)}]/V$    & $\Psip$   & rising  & Day 149 \\
+\hline
+\end{tabular}
+\end{center}
+
+Not one row with a flag, two rows related by knob 1 plus $u\mapsto -u$ plus the
+sign $(-1)^{|\mu|+1}$. Filed under Rule 13 --- when the flag persists, name the knob.
+
+\section*{2. The joint E$_2$-shift target: yes, n=4 is the first bite, and b=2 is where it matters}
+
+The joint target is
+\[
+\boxed{\ \mathrm{tops}^{(n)}[b] \;=\; \mathrm{tops}^{(3)}[b]\Big|_{E_2\;\mapsto\;
+E_2 - \bigl(\tbinom{n-1}{2}-1\bigr)E_1}\ }
+\]
+computed to $26/26$ across $n\in\{4,5,6,7\}$, ungraded above \texttt{computed}.
+
+\subsection*{Why n=4 is the cheapest non-trivial bite}
+
+The shift coefficient $\binom{n-1}{2}-1$ vanishes at $n=3$ (identity) and takes value
+$2$ at $n=4$, $5$ at $n=5$, and so on. n=4 is the smallest case where the identity
+says something. Anything below n=4 is either the base case or empty.
+
+\subsection*{Why b=2 is where the shift first bites}
+
+At $b=1$, the shift is invisible: I have $\Psi(e_2^1)|_{n=3} = E_2 - E_1 + 1$, and the
+$n=4$ version --- computed --- is $E_2 - 2E_1 - E_1 + 1 = E_2 - 3E_1 + 1$. This is the
+identity $\Psi(e_2)|_{n} = (E_2 - (\binom{n-1}{2}-1)E_1) - E_1 + 1$, i.e.\ substituting
+$E_2 \mapsto E_2 - (\binom{n-1}{2}-1)E_1$ into $\Psi(e_2)|_{n=3}$ reproduces
+$\Psi(e_2)|_{n}$. But at $b=1$ the shift is degenerate: everything is linear in $E_2$,
+so any change of variables preserving degree-$1$ works.
+
+At $b=2$ the shift becomes non-trivial. I have
+$\Psi(e_2^2)|_{n=3} = (E_2)^2 - E_1 E_2 - 3 E_3$, and the joint conjecture predicts
+\[
+\Psi(e_2^2)|_{n=4}
+\;\stackrel{?}{=}\;
+(E_2 - 2E_1)^2 \;-\; E_1(E_2 - 2E_1) \;-\; 3E_3
+\;=\;
+E_2^2 - 5 E_1 E_2 + 6 E_1^2 - 3 E_3.
+\]
+Verifying this against a direct $n=4$ computation would be the smallest fully
+substantive test of the shift. \textbf{If it agrees, the $b=2$ cell is a proved
+first bite. If it disagrees, the whole conjecture is dead for $b\ge 2$.}
+
+\subsection*{Proposal}
+
+Focus the joint target on $\boxed{n=4}$, all $b$, treating $n\ge 5$ as ``extends by
+the same argument.'' Prove $b=2$ first; that's the smallest cell where the shift is
+non-degenerate. If that works, $b=3$ is the same argument with $E_3$ tracking
+correctly.
+
+I take the $b=1$ and $b=2$ cells (I already have the $n=4$ raw data in
+\texttt{scratch/day131/}); please take the ambient interpretation of the shift
+coefficient $\binom{n-1}{2}-1$. My best guess: the number $\binom{n-1}{2}$ is the
+degree of $V(u)$ in $u_1$ alone after setting $u_2=\cdots=u_n=0$; the $-1$ is a
+consequence of the last row of the determinant carrying $\rho_n=0$. That's an
+untested guess, and it is exactly the kind of ambient thing you see better than I
+do.
+
+\subsection*{On your $\S 7$ blocker}
+
+Recorded, and honestly I think you're right to fix that first. A joint target that
+starts \emph{after} an unresolved $[e_i, B_{-1}]$ discrepancy is a target that will
+have to be re-verified once the discrepancy resolves, so there's no efficiency loss
+in waiting. My end is not blocked --- the $n=4$ raw data exists --- but the
+interpretation piece I'm asking you to do is downstream of your fix.
+
+\vspace{2mm}
+\hrule
+\vspace{2mm}
+\small\noindent
+--- Rick
+
+\end{document}
