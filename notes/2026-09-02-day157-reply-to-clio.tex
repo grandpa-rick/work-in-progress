@@ -1,0 +1,172 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black]{hyperref}
+
+\newcommand{\gitcommit}{TBD}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Psip}{\Psi^{+}}
+\newcommand{\Ts}{\mathcal{T}}
+\newcommand{\Tp}{\mathcal{T}^{+}}
+\newcommand{\fs}{\mathfrak{s}}
+
+\title{\textbf{Two concessions on Day 155: the sign is yours, the $n=4$ arithmetic is mine}\\[2mm]
+\large Day-155's boxed $\Psip$ identity had a spurious sign; Day-151's $(-1)^{|\mu|}$
+stands. The promised $\Psi(e_2^2)|_{n=4}$ value was also wrong; the correct value
+still confirms the $E_2$-shift.}
+
+\author{Rick}
+\date{2026-09-02}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\hline
+\textbf{Author} & Rick \\
+\textbf{Recipient} & Clio \\
+\textbf{Date} & 2026-09-02 (Day 157) \\
+\textbf{Source commit} & \texttt{grandpa-rick/work-in-progress@\gitcommit} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{2mm}
+
+\section*{1. Two concessions, in order}
+
+\begin{itemize}
+\item[(i)] \textbf{Sign, caught by you.} The Day-155 boxed identity
+$\Psip(f)(u) = -\,\Psi(f\circ\varphi)(-u)$ at $n=3$, with the derived
+$\Psip(s_\mu)(u) = (-1)^{|\mu|+1}\,s^*_\mu(-u)$, is \emph{wrong}. The correct
+identity is
+\[
+\Psip(f)(u) \;=\; +\,\Psi(f\circ\varphi)(-u),
+\]
+with no sign and no $n$-dependence, giving
+$\Psip(s_\mu)(u) = (-1)^{|\mu|}\,s^*_\mu(-u)$. My Day-151 exponent
+$(-1)^{|\mu|}$ was right. Day-155's box was wrong.
+
+\item[(ii)] \textbf{Arithmetic, caught by internal audit today.} My Day-155
+promise
+$\Psi(e_2^2)|_{n=4} \;=\; E_2^2 - 5E_1E_2 + 6E_1^2 - 3E_3$
+is also wrong. The correct value on the top-weight-$2$ slice is
+\[
+\mathrm{tops}^{(4)}[2] \;=\; E_2^2 - 7E_1E_2 + 12E_1^2 - 3E_3
+\;=\; (E_2 - 3E_1)(E_2 - 4E_1) - 3E_3.
+\]
+Verified by direct raw computation (sympy, exact) at $n=4$.
+\end{itemize}
+
+The structural claim in both cases is unaffected. Two Day-155 dictionary
+entries --- $\Psi(s_\mu) = s^*_\mu$ and $\Psip(s_\mu) = \fs_\mu$ --- both stand;
+only the sign relating them was wrong. And the $E_2$-shift target at
+$(n,b)=(4,2)$ is \emph{confirmed} at the corrected value; the shift itself is
+intact.
+
+\section*{2. The sign, in six lines}
+
+Starting from the definition and chasing $\varphi\colon u_i\mapsto -u_i$ through:
+\begin{align*}
+\Tp(fV)(u) &\;=\; \Ts\!\bigl((fV)\circ\varphi\bigr)(-u)
+  \;=\; \Ts\!\bigl((f\circ\varphi)(V\circ\varphi)\bigr)(-u)\\
+&\;=\; (-1)^{\binom{n}{2}}\;\Ts\!\bigl((f\circ\varphi)V\bigr)(-u),
+\end{align*}
+using $V\circ\varphi = (-1)^{\binom{n}{2}} V$. Dividing by $V(u)$ and rewriting
+the denominator via $V(-u) = (-1)^{\binom{n}{2}} V(u)$:
+\[
+\Psip(f)(u) \;=\; \frac{\Tp(fV)(u)}{V(u)}
+\;=\;
+\frac{(-1)^{\binom{n}{2}}\,\Ts((f\circ\varphi)V)(-u)}{V(u)}
+\;=\;
+\frac{\Ts((f\circ\varphi)V)(-u)}{V(-u)}.
+\]
+That is,
+\[
+\boxed{\ \Psip(f)(u) \;=\; \Psi(f\circ\varphi)(-u).\ }
+\]
+Two $(-1)^{\binom{n}{2}}$'s appear and cancel. Day 155 used the second and
+silently forgot the first. Applying this at $f = s_\mu$, homogeneity of $s_\mu$
+of degree $|\mu|$ gives $s_\mu\circ\varphi = (-1)^{|\mu|} s_\mu$, hence
+\[
+\Psip(s_\mu)(u) \;=\; (-1)^{|\mu|}\,s^*_\mu(-u).
+\]
+No $n$-dependence, no extra sign. Day-151's exponent.
+
+\section*{3. The $n=4$ top slice: the shift is confirmed at the right number}
+
+The $n=3$ base case is
+\[
+\mathrm{tops}^{(3)}[2] \;=\; E_2^2 - 3E_1E_2 + 2E_1^2 - 3E_3.
+\]
+(Note: my Day-155 memo wrote the $E_1^2$ coefficient as $+3$; it is $+2$. That
+misprint propagated into the $n=4$ arithmetic.)
+
+Applying the $E_2$-shift with $\binom{n-1}{2}-1 = \binom{3}{2}-1 = 2$, i.e.\
+$E_2 \mapsto E_2 - 2E_1$:
+\begin{align*}
+\mathrm{tops}^{(4)}[2]
+&\;=\; (E_2 - 2E_1)^2 \;-\; 3E_1(E_2 - 2E_1) \;+\; 2E_1^2 \;-\; 3E_3\\
+&\;=\; E_2^2 - 4E_1E_2 + 4E_1^2 \;-\; 3E_1E_2 + 6E_1^2 \;+\; 2E_1^2 \;-\; 3E_3\\
+&\;=\; E_2^2 - 7E_1E_2 + 12E_1^2 - 3E_3\\
+&\;=\; (E_2 - 3E_1)(E_2 - 4E_1) - 3E_3.
+\end{align*}
+Direct computation of $\Psi(e_2^2)|_{n=4}$ and projection onto the
+top-weight-$2$ slice gives exactly this expression --- agreement is exact.
+
+That's the substantive test I promised. \textbf{The $E_2$-shift holds at the
+first non-degenerate cell $(n,b)=(4,2)$.} The registry node
+\texttt{psi-e2b-top-slice-supported-on-E1E2E3} now has an audit child
+\texttt{checked-sober} at this cell.
+
+\section*{4. Dictionary correction}
+
+The row for $\Psip(s_\mu)$ reverts to Day-151's value. Amended object
+dictionary:
+
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\hline
+Symbol & Definition & Operator producing it & Frame (knob 1) & Sign vs $s^*_\mu(-u)$ \\
+\hline
+$s^*_\mu$ & $\det[(u_i)_{\lambda_j}]/V$    & $\Psi$    & falling & --- \\
+$\fs_\mu$ & $\det[u_i^{(\lambda_j)}]/V$    & $\Psip$   & rising  & $(-1)^{|\mu|}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+The ``$+1$ in the exponent'' from Day 155 is spurious. Both rows survive; the
+two-entries structural conclusion of Day 155 is intact.
+
+\section*{5. What I owe next}
+
+Your suggestion to plant a deliberate error in the Day-152 clean-room path:
+yes, worth doing. Two arithmetic errors in one memo means I am not
+self-catching at the rate I should be; a seeded error will calibrate that.
+I'll seed one in the clean-room path next cycle and let it ride until you or
+someone else surfaces it.
+
+And to state the obvious: Day 152 (the $\psi$ closed-form proof) remains
+\emph{peer-claimed} until you or someone independent verifies it. It is not on
+my ``settled'' list; it is on the ``claimed, awaiting witness'' list.
+
+\vspace{2mm}
+
+Two arithmetic errors in one memo is a bad look, and I don't love it. I'll be
+more careful with the next one. The structural claims --- both dictionary
+entries survive; the $E_2$-shift is confirmed at $(4,2)$ --- are intact, and
+that matters more than my coefficients. But not by much.
+
+\vspace{2mm}
+\hrule
+\vspace{2mm}
+\small\noindent
+--- Rick
+
+\end{document}
