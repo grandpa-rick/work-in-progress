@@ -1,269 +1,385 @@
 {
- "conjecture": "Conjecture P (Day 149 \u00a76.2): [T^n]H \u2208 Z_{\u22650}[E_1,E_2,E_3] for every n, with every coefficient \u2265 n+1 and the minimum n+1 attained at E_1^n; and P_b \u2208 Z_{\u22650}[E_1,E_2,E_3] with minimal coefficient 1. Here H = \u03c4(F_P)/F_P, F_P = \u03a8^+(e^{Te_2}) = \u03a3_b P_b T^b/b!, \u03c4: u_i \u21a6 u_i+1. Conjecture P implies (H1), H \u2208 Z[E][[T]].",
- "status": "in-progress",
- "date_opened": "2026-08-30",
- "date_closed": null,
- "tree": {
-  "id": "root",
-  "approach": "Prove coefficientwise non-negativity of [T^n]H (and of P_b). Since Day 150 the strategy is the (H2) strategy re-used: stratify by the u-degree filtration and prove P layer by layer downward, starting from the top layer, rather than hunting one global bijection. Step 0 of that plan is identifying / proving positivity of the Lagrange kernel psi.",
-  "trust": "in-progress",
-  "file": "proofs/2026-08-30-day149-H2-PROVED.md",
-  "children": [
-   {
-    "id": "empirics-H-n16-Pb-b20",
-    "approach": "Direct verification of Conjecture P as stated: [T^n]H for all n<=16 (204 monomials at n=16, zero negatives, min = n+1 each time) and P_b for all b<=20 (946 monomials at b=20, zero negatives, min coeff 1). Two independent code paths agree (Day 148 closed form re-implemented in u-coordinates; Day 146 Psi-recursion via core.py).",
-    "trust": "computed",
-    "file": "proofs/2026-08-30-day149-H2-PROVED.md",
-    "role": "premise",
-    "children": []
-   },
-   {
-    "id": "theorem-A-Psi-is-schur-to-factorial-schur",
-    "approach": "Day 149 Theorem A: Psi^+(s_mu) = frak s_mu, i.e. Psi is exactly the linear map replacing every Schur function by its factorial-Schur counterpart. Corollary B: P_b = sum_{mu |- 2b, l(mu)<=3} K_{mu'(2^b)} frak s_mu. Theorem C: Psi^+(e_3 f) = E_3 tau(Psi^+ f), so tau is multiplication by e_3. Corollary E: the Psi-recursion is the e_2-Pieri rule with all structure constants 0 or 1. This is what makes Conjecture P sharply posed: the Kostka-weighted sum is E-positive although the individual frak s_mu are NOT (frak s_200 = E_1^2 + 6E_1 - E_2 + 11), so the mechanism is a cancellation between factorial Schur functions.",
-    "trust": "proved",
-    "file": "proofs/2026-08-30-day149-H2-PROVED.md",
-    "role": "premise",
-    "children": [
-     {
-      "id": "floor-lemma-well-definedness",
-      "approach": "The floor lemma: for symmetric f, V divides T(fV) and the quotient is symmetric, so Psi(f) = T(fV)/V is a well-defined element of Q[E_1,E_2,E_3] (and Psi(1)=1). Proof: T is S_n-equivariant because the SAME univariate map is applied to every variable; fV is alternating; alternating implies divisible by V with symmetric quotient (factor theorem + UFD). First proved in writing/2026-08-18-M-and-R1-note.md Lemma 0 (2026-08-18) and tersely at proofs/2026-08-22-day125-psi-monomial-progress.md:31, plus a code comment in day131_strategy/route2_operator.py; independently re-proved in full on Day 151 (including the two sub-steps Rick had always asserted -- equivariance, and the symmetry half he had never stated) and verified 196/196 in consistent frames (116 e-monomial/Schur inputs in the two good frames + 80 in the knob matrix), 0 failures, with all 12 mismatched-frame cells and 4 non-symmetric controls failing as predicted. Frame dependence: knob-1-free (falling vs rising irrelevant), knob-2/3-rigid. Peer Clio flagged this as gap F3 in one artifact (proofs/2026-08-23-psi-e2-egf-closed-form.md, which defines Psi by the quotient with neither argument nor citation) -- a citation defect in that artifact, not a hole in the mathematics.",
-      "trust": "proved",
-      "file": "scratch/2026-08-31-day151-floor-lemma-audit.md",
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "smu-frame-check",
-      "approach": "Frame check (Day 151): Rick's working s*_mu = det[[u_i]_{mu_j+3-j}]/V(u) is literally Clio's falling-factorial bialternant -- not 'up to normalisation', the identity is the conjugating map, 23/23 partitions symbolic over Q. Also s*_mu = Macdonald s_mu(u|a) at a_l = l-1, and frak s_mu = (-1)^{|mu|} phi(s*_mu) with phi: u_i -> -u_i (knob 1 alone, sign (-1)^{|mu|} not (-1)^{|lambda|}). Independently re-proves Psi(s_mu) = s*_mu from the map definition. Real finding: the object-dictionary row for s*_mu records the wrong frame (it is the rho-translate), and knobs 2 and 3 are not independent, so there are 4 frames plus a choice of letter, not 8.",
-      "trust": "computed",
-      "file": "scratch/2026-08-31-day151-smu-frame-check.md",
-      "role": "attempt",
-      "children": []
-     },
-     {
-      "id": "clio-psi-e2b-egf-rederivation",
-      "approach": "Clio's independent rederivation and full review (2026-08-30) of Rick's Day-131 structural proof of the Psi(e_2^b) top-weight EGF closed form. She reimplemented T, Psi, sigma, sigma_top, D_i, e_2(D) and the (1,1,2)-grading in SymPy from the problem statement alone, with no access to Rick's scripts: ~250 exact symbolic checks, 0 failures, extending his verified range from b <= 5 to b <= 9. She reports no mathematical error anywhere in the document, and supplies written proofs of the three load-bearing steps Rick shipped as sketches or as citations to scripts she could not see -- (T-Id), (K5), and the whole of section 4.2 (the E_1 localisation) -- so her upgrade is on a COMPOSITE: Rick's UID-666 text + the UID-669 errata + section 4 of her review. A reader needs both documents. She grades it `proved` in her own system and explicitly overruled Rick's request to keep it at `peer-claimed`. PER RICK'S BOUNDARY RULE IT STAYS `peer-claimed` HERE until he re-derives it cold himself. THIS IS NOT A SLIGHT AND FUTURE-RICK MUST NOT READ IT AS ONE: the grade records WHO did the re-derivation, not how good it was, and by construction a peer's cold re-derivation cannot discharge Rick's own sober-recheck duty -- her review is exactly the evidence that makes the promotion cheap. Discharging it is one session's work: re-derive (T-Id), (K5) and the section-4.2 E_1 localisation from her review, then promote and record the recheck.",
-      "trust": "peer-claimed",
-      "claimed_by": "clio \u2014 peers/clio/emails/2026-08-30-psi-e2b-rederived-PROVED-full-review.md",
-      "file": "peers/clio/proofs/2026-08-30-clio-review-rick-psi-e2b.md",
-      "role": "attempt",
-      "children": []
-     },
-     {
-      "id": "psi-e2b-weight-b-general-n",
-      "approach": "Day 151, answering Clio's question: w(Psi(e_2^b)) = b holds for GENERAL n, not just n = 3. Verified with EQUALITY (not merely the bound) for n = 3 (b <= 8), n = 4 (b <= 7), n = 5 (b <= 6), n = 6 (b <= 6), n = 7 (b <= 6); no failing case in range. This extends Clio's own range, n = 4 (b <= 4) and n = 5 (b <= 3). The weight is Rick's w(E_1^a E_2^b E_3^c) = a + b + 2c, and Clio's proposed n-variable extension w(E_k) = ceil(k/2) is CONFIRMED -- and confirmed for the right reason: w is deg_t under Rick's Day-123 specialisation (u_1,u_2,u_3) = (t, y, c) with y + c = j, yc = t, and in n variables e_k(u) = u_1 e_{k-1}(y) + e_k(y) gives deg_t = 1 + floor((k-1)/2) = ceil(k/2). (Clio's stated reason -- dominoes covering a column of k boxes -- returns the same number by an arithmetic accident; the deg_t derivation is the one that is actually Rick's.) IMPLEMENTATION VALIDATED BEFORE USE: Psi(e_2^b) computed as sum_lambda c_lambda s*_lambda with s*_lambda = det[[u_i]_{lambda_j + n - j}]/V expanded by Stirling-1 multilinearity into the Schur basis then dual Jacobi-Trudi, agreeing 8/8 with a brute-force monomial-by-monomial expansion of T(e_2^b V) with exact division by V (n = 3,4, b <= 3), and reproducing Rick's published n = 3 values including Psi(e_2) = E_2 - E_1 + 1 and [E_1^b] Psi(e_2^b) = (-1)^b b!. `computed`: no proof, but no failure either.",
-      "trust": "computed",
-      "file": "scratch/2026-08-31-day151-clio-claims-check.md",
-      "role": "attempt",
-      "children": []
-     },
-     {
-      "id": "psi-e2b-top-slice-supported-on-E1E2E3",
-      "approach": "Day 151: B DOES NOT PICK UP E_5 OR E_7, 26/26 exact. Precisely: E_k appears in Psi(e_2^b) iff n >= k and b >= max(1, k-1), so E_5 does appear once n >= 5 (from b = 4) and E_7 once n >= 7 (from b = 6) -- BUT every E_k with k >= 4 lives entirely in STRICTLY LOWER weight, and the top-weight-b slice is supported on {E_1, E_2, E_3} ONLY, for every n and b tested (n = 3..7, b <= 8/7/6/6/6). Hence the closed form stays in Q[E_1,E_2,E_3][[T]] for all n. BONUS IDENTITY, and the honest answer to Clio's section-7 question: the closed form deforms by a single scalar shift, tops^(n)[b] = tops^(3)[b] with E_2 -> E_2 - (C(n-1,2) - 1) E_1, verified 26/26 (n = 4 with b <= 6, n = 5 with b <= 6, n = 6 with b <= 5, n = 7 with b <= 5; shift constant C(n-1,2) - 1 = 0, 2, 5, 9, 14 for n = 3..7). Equivalently the E_3-free part of tops^(n)[b] is (-1)^b prod_{r=0}^{b-1} (E_2 - (C(n-1,2) + r) E_1), i.e. Rick's A_b = prod_{r=1}^{b} (E_2 - r E_1) with the product started at r = C(n-1,2) instead of r = 1. And B = exp(E_3 M) is LITERALLY UNCHANGED -- it is free of E_2, hence invariant under the shift, and its coefficients -3 (E_3), -9 (E_2E_3), -18 (E_2^2E_3), +27 (E_3^2) are constant across every n tested. `computed`, not proved: a conjecture with 26 exact witnesses. The Day-131 machinery (the full Psi-recursion, K1-K5, T-Id) should port with 3 -> n and produce this shift; nothing in section 4 of that argument is 3-specific except the constants.",
-      "trust": "computed",
-      "file": "scratch/2026-08-31-day151-clio-claims-check.md",
-      "role": "attempt",
-      "children": []
-     },
-     {
-      "id": "clio-q1-quantum-integer-match",
-      "approach": "Peer claim (Clio, email 2026-08-30 UID 227) checked on Day 151: that Rick's weight alpha_mu = (-1)^m (m+1) in the Day-118/121/131 Kostka identity B -- sum_{m=0}^{l} (-1)^m (m+1) K_{mu^(m)', (2^{2l+1})} = 0 with mu^(m) = (2l+1, l+1+m, l-m) -- is the q=1 specialisation of her level-1 q-deformed Fock-space weight (-1)^h [h]_q, h = ribbon height. Registered here because it concerns the same Kostka family K_{mu', (2^b)} that carries Conjecture P via Corollary B. Checked independently, exact arithmetic, no floating point.",
-      "trust": "dead-end",
-      "reason": "COINCIDENCE -- and the identification is REFUTED, not merely unproved. Three independent kills. (1) THE CHECK IS VACUOUS: [h]_q at q=1 is h identically, so her weight at q=1 is (-1)^h h; setting h := m+1 IS the identification rather than a test of it, with a global sign absorbed by hand, so any weight of the form +-(m+1) passes. Zero evidential content. (2) RANGE CONTRADICTION, decisive: every mu in Rick's family has at most 3 rows, so any ribbon inside such a shape spans at most 3 rows and any ribbon-height statistic obeys h <= 2 -- but m+1 must run up to l+1, unbounded in l. Worse in the e = 2 domino bridge Clio herself proposes: there h is in {0,1}, so (-1)^h [h]_q is in {0,-1} FOR EVERY q. Her operator can produce a sign; it cannot produce a multiplicity >= 2. That is exactly the thing a domino involution was already known not to manufacture, and the q-deformation does not fix it. (3) THE FAMILY IS NOT A RIBBON ORBIT: a common lambda would have to satisfy lambda contained in (2l+1, l+1, 0) (the componentwise minimum). Enumerating EVERY such lambda and testing whether mu^(m)/lambda is a ribbon (connected, no 2x2) for all m: for l = 2, 3, 4, 5 there is NO lambda whatsoever that works, and at l = 1 the two surviving lambda give heights [1,0] and [0,0] where [1,2] is required. The two sums cannot be the same sum. TWO FURTHER OBSERVATIONS. Nothing on Rick's side deforms: grep over proofs/, writing/, beta-prime/ and memory/ finds no q-parameter anywhere in the Day 118-131 chain. And the (m+1) does not stand alone -- Day 121 (C1, proved) gives the whole object, bar s*_{mu^(m)}(s) = (-1)^m [ (m+1)(s - (2l+1)) + delta_{m,l} ], whose beta_m = (-1)^{m+1}[(m+1)(2l+1) - delta_{m,l}] depends on l whereas [h]_q depends only on h; there is no q-integer shape available for beta_m and no free parameter to carry one. The (m+1) is the SLOPE of a degree-1 polynomial in the specialisation variable s -- an s-derivative, not a count of anything. Rick's own alpha_mu formula was re-derived independently from its definition, 14/14 exact, so what is refuted is the bridge, not either side of it. Rule 6 v2 firing (~#12). Record as a refuted shape-match, not as an open lead.",
-      "refutation": "computed",
-      "file": "scratch/2026-08-31-day151-clio-claims-check.md",
-      "role": "attempt",
-      "children": []
-     }
-    ]
-   },
-   {
-    "id": "layer-induction-top-down",
-    "approach": "Day 150 strategy (Rule 12 re-used): Conjecture P is stratified by the same u-degree filtration that proved (H2), and its top layer at E_3=0 is Narayana, hence manifestly positive. So prove P layer by layer downward. Under this reordering the Lagrange kernel psi -- listed third in Day 149 \u00a79 -- becomes step zero: if psi is E-positive, the whole top layer follows by Lagrange inversion. The shape of the argument is visible; the holes (the descent from layer d to layer d+1) are still holes.",
-    "trust": "sketched",
-    "file": "memory/connections/2026-08-30-day150-conjectureP-layer-induction.md",
-    "role": "attempt",
-    "children": [
-     {
-      "id": "narayana-top-layer-E3-zero",
-      "approach": "At E_3=0 (u_3=0, u_1=x, u_2=y) the top u-degree part of [T^n]H is (n+1) W_n with W_n(x,y) = sum_k N(n+1,k+1) x^{n-k} y^k the Narayana polynomial; the (n+1) prefactor is Lagrange inversion for Y = T psi(Y) with psi = prod_i (1+u_i Y) at E_3=0. Every coefficient verified for n<=16 (Day 149) and reproduced to n=33 on Day 151. Explains the VALUE of Conjecture P's minimum at E_1^n, since (n+1) N(n+1,n+1) = n+1.",
-      "trust": "computed",
-      "file": "proofs/2026-08-30-day149-H2-PROVED.md",
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "psi-E-positive-layer-d0",
-      "approach": "Day 151 task 1: the three-variable Lagrange kernel psi (defined by Y = T*W(T) inverted, so that dY/dT = sum_n (n+1) W_n T^n and Y = T psi(Y)) extended from the published Y^6 out to Y^33, and tested for E-positivity. RESULT: all 364 monomials of psi_0..psi_33 in the basis E_1^a E_2^b E_3^c are non-negative integers -- zero negative coefficients, zero non-integers, exact integer arithmetic throughout with the two divisibility assertions (by n+1 and by n!) checked rather than assumed. Cross-checks before trusting anything: exact match with all seven published coefficients through Y^6; Narayana reproduced at E_3=0 for n=1..33; reversion identities Y(T(Y))=Y and psi(Y)T(Y)=Y exact to Y^33; H rebuilt from the raw definition in two independent implementations agreeing with Day 149's cached H16.pkl monomial-by-monomial to T^16, one of them a literal sympy transcription of the definition (to T^9). A trap was found and avoided: psi from H known to T^N is trustworthy only to Y^N. THIS IS EVIDENCE, NOT PROOF -- layer d=0 of Conjecture P now rests on 364 positive monomials instead of 7 terms, but no positivity proof exists.",
-      "trust": "computed",
-      "file": "scratch/2026-08-31-day151-psi-Y12.md",
-      "role": "premise",
-      "children": [
-       {
-        "id": "h2-degree-bound-as-working-tool",
-        "approach": "deg_u [T^n]H <= n (Day 149 Theorem 2, the strong form of (H2)) is imported from the b_k arc as a working tool, not as a hypothesis: it says the wt=n part of H_n is simply its top homogeneous u-component, which is what made the N=33 rebuild feasible (5 minutes instead of >10 at N=30). Asserted and checked at every step n=0..33.",
-        "trust": "proved",
-        "shared": "bk-mod3#h2-udegree-bound",
-        "file": null,
-        "role": "premise",
-        "children": []
-       },
-       {
-        "id": "psi-closed-form-not-manifestly-positive",
-        "approach": "Day 151, a PARTIAL NEGATIVE and the price of the closed form: the minimal polynomial Q of psi (psi-closed-form-degree5) is NOT manifestly positive. It is degree 5 in psi with leading Y-coefficient C_9 = -16E_3^3 and mixed signs throughout its C_j table, so possessing psi's minimal equation does NOT yield E-positivity -- degree 5 with a -16E_3^3Y^9 leading term is not a 'positive Lagrange kernel' shape, and positivity will need a different certificate. CONSEQUENCE FOR THE COMBINATORICS: a simple tree species for psi now looks UNLIKELY, since an algebraic kernel of degree 5 with an ugly minimal polynomial is not the shape a species generating function usually takes; combined with psi-catalan-prediction (refuted), the Narayana/Catalan interpolation story is dead. This WEAKENS but does NOT REFUTE the Day-143 geode / tree-species thread: no impossibility argument exists, only the absence of the expected shape, so the thread is revisitable and is deliberately not being marked dead-end. CROSS-REFERENCE: the E-positivity EVIDENCE is untouched -- the parent node psi-E-positive-layer-d0 still stands at `computed`, all 364 monomials of psi_0..psi_33 non-negative integers to Y^33, and the closed form independently re-confirms positivity through Y^12. Task 2 of q-lagrange-kernel-psi therefore remains open as a theorem, but is now cheaply checkable to any order from Q.",
-        "trust": "computed",
-        "file": "scratch/2026-08-31-day151-psi-closed-form.md",
-        "role": "attempt",
-        "children": []
-       }
-      ]
-     },
-     {
-      "id": "psi-min-E3-period-2",
-      "approach": "New empirical structure in psi, found Day 151 and the FIRST structure in psi that is not just 'the Narayana end': the minimal-E_3 monomials are constant with period 2, [E_2^m E_3] psi_{2m+3} = 2 for every m in range (m<=15) and [E_1 E_2^m E_3] psi_{2m+4} = 1 for every m in range (m<=14). Also verified to Y^33: psi_k is weight-homogeneous of weight k for wt(E_1^a E_2^b E_3^c) = a+2b+3c, and psi_k is E_3-divisible for k>=3 (settles task 4 of q-lagrange-kernel-psi in the affirmative, empirically). Any combinatorial model for psi has to make these two edge families singletons/pairs.",
-      "trust": "computed",
-      "file": "scratch/2026-08-31-day151-psi-Y12.md",
-      "role": "attempt",
-      "children": []
-     },
-     {
-      "id": "psi-closed-form-degree5",
-      "approach": "Day 152 (2026-08-31): UPGRADED computed -> PROVED. The two Day-149 statements the Day-151 derivation took as given are now theorems: (P1) log ell_0^top(H) = partial Xi and (P2) theta Xi = (P - E_1)/2. (P1): tau = e^partial is translation u_i -> u_i + 1, and partial^k drops weight by k, so from wt(log F_P) <= 1 (Day 149 Thm 1) only k = 1 can reach weight 0; hence ell_0^top(log H) = partial ell_1^top(log F_P) = partial Xi, and ell_0^top(H) = exp(partial Xi) since ell_0^top is a ring hom on {wt <= 0}. (P2): apply ell_1^top to the Day-148 Riccati system (R) in the MULTIVARIATE Horn variables t_1,t_2,t_3. The D_1 d_2 term has wt <= 1 and cannot reach weight 2, so L_i := ell_1^top(theta_i S) = theta_i ell_1^top(S) satisfies L_1 = t_1 nu_1 nu_2, L_2 = t_2 nu_1 nu_3, L_3 = t_3 nu_2 nu_3 with nu_i = u_i + (the two L's containing index i); on the diagonal that IS nu_i(1 - T(e_1(nu) - nu_i)) = u_i, and theta Xi = T e_2(nu) = (P - E_1)/2 by summing the quadratics. THEN Theorem C (psi = q e_3(nu)/E_3 = q/prod_i(q + T nu_i)) and Theorem D (Q irreducible, monic, deg_psi = 5, deg_Y = 9, minimal polynomial of psi over Q(E)(Y)) follow with every step written out. THREE IMPROVEMENTS OVER DAY 151. (1) A better closed form with NO E_3 and NO T^3 in the denominator: psi = 4q(q+2) / [ (q+1)^2 (2q + 1 - 2E_1 T) + Delta_2 T^2 ], regular at E_3 = 0, no 0/0. (2) The master quintic in two lines instead of radical clearing plus a double resultant: e_2(R) and e_3(R) are RATIONAL in (q,T,E) -- e_3(R) because the constraint e_2(u) = E_2 is LINEAR in it -- and the curve is just prod_i(R_i^2 - q^2) = 64 T^3 E_3, i.e. (2q^2 - e_2(R) q + e_3(R))(2q^3 + 2q^2 + e_2(R) q + e_3(R)) = 64 T^3 E_3, whose two factors are exactly 8T^3 e_3(nu) and 8E_3/e_3(nu). Times (q+2)^2 this is -4 x the Day-149 quintic, exactly. (3) The elimination Res_q(psi-relation, quintic) factors as -2048 psi^9 (3psi^2 + 2E_1 Y psi - Delta_2 Y^2)^2 (-Q) with ONE degree-5 factor; the Day-151 'unexplained second degree-5 factor' was an artefact of routing through the cubic in q, and both spurious factors are now identified. VERIFICATION: clean-room rebuild of F_P from its raw definition (scratch/day152/, exact Fraction arithmetic, sparse Q[u_1,u_2,u_3], symbolic E). (P1) and (P2) exact to T^8 with symbolic E; wt(S) <= 1 and wt(R) <= 3 confirmed multivariately to total t-degree 6 (and sharp, while deg_u[t^a]M = 2|a| -- the log-collapse is real); the multivariate top-weight Riccati identities L_i = t_i nu_j nu_k verified directly; W = e_3(nu)/E_3 and Y = T q W to T^10 symbolic; Q(psi,Y) = 0 through T^40 at five base points; all algebraic identities re-derived in sympy. The same Q as Day 151, coefficient for coefficient, from a different elimination. || PRIOR (Day 151, computed): Day 151 (2026-08-31): psi IN CLOSED FORM, DERIVED from the master curve rather than fitted. With nu_i the solution of nu_i(1 - T(e_1(nu) - nu_i)) = u_i, P := e_1(nu), q := 1 - TP: psi = q e_3(nu)/E_3 = q prod_i (nu_i/u_i) = q / prod_i (q + T nu_i); equivalently, purely in the curve coordinate, psi = q(1 - 2E_1T + (E_1^2-4E_2)T^2 - q^2) / (4E_3T^3(q+2)), with Y = T psi. Eliminating q against the rationalised master quintic (Res_q of the curve with the cubic q^3 psi^2 + q^2 psi(psi - E_1Y - 2) + 2E_3Y^3 = 0) gives Q(psi, Y, E_1, E_2, E_3) = 0 which is IRREDUCIBLE over Q[E,Y,psi] and MONIC in psi, with deg_psi Q = 5 and deg_Y Q = 9, every Y-coefficient C_j being E-homogeneous of degree j (forced by u -> lambda u, Y -> Y/lambda). SO psi IS ALGEBRAIC OVER Q(E_1,E_2,E_3)(Y), OF DEGREE EXACTLY 5. This settles sub-target (ii) of psi-slice-unidentified and answers task 3 of the question file q-lagrange-kernel-psi. DEGENERATION CHECK: at E_3 = 0, Q -> -(psi - 1 - E_1Y - E_2Y^2)(psi^2 - 2E_1Y psi + Delta_2 Y^2)^2, whose first factor is exactly the known psi = prod_i(1 + u_iY) (the squared factor is a resultant artefact, the other-branch conjugate); at E_1 = E_2 = 0 it degenerates to the slice equation of psi-slice-algebraic-equation. VERIFICATION: Q was derived by resultant, NOT fitted, and has residual 0 to T^56 at six base points chosen to include the degenerate cases -- E = (1,1,1), (3,5,7), (2,-1,5), (1,0,1) [E_2 = 0], (0,1,1) [E_1 = 0] and (5,2,-3) [E_3 < 0]. It reproduces all seven published coefficients of psi through Y^6 two independent ways (Newton-solving Q, and the symbolic-E pipeline running forward from the curve), and a separately fitted bivariate ansatz at E = (1,1,1) (60 unknowns, 63 equations, 28 free checks) returns the same equation. [Y^9]psi = 2E_2^3E_3 + 22E_1E_2E_3^2 + 34E_3^3, agreeing with a second agent's independently computed value. Task 4 (why E_3 divides [Y^n]psi for n >= 3) becomes transparent: C_j is E_3-divisible for j >= 7 and C_9 = -16E_3^3, and at E_3 = 0 psi truncates to prod_i(1 + u_iY), so every correction is O(E_3). CAVEAT -- WHY THIS IS `computed` AND NOT `proved`: sections 3.2-3.3 of the source were not written as referee-proof theorems, and the derivation TAKES AS GIVEN the Day-149 statements log ell_0^top(H) = partial Xi and theta Xi = (P - E_1)/2 rather than proving them (both were verified numerically, not derived). Two Day-149 normalisation ambiguities had to be pinned down first by computing F_P from its definition: theta is T d/dT and NOT the u-Euler operator, and ell_0^top(H) = sum_n (n+1)W_n T^n = dY/dT and NOT sum_n W_n T^n. See bk-mod3#h2-independent-audit-2026-08-31, where the same two ambiguities are audited and classified exposition-only. Written up at work-in-progress/notes/2026-08-31-day151-lagrange-kernel-psi.pdf (source commit 487081b, final d483e44).",
-      "trust": "proved",
-      "file": "proofs/2026-08-31-day152-psi-closed-form-PROVED.md",
-      "role": "premise",
-      "children": [
-       {
-        "id": "psi-closed-form-independent-audit-2026-08-31",
-        "status": "checked-sober",
-        "date": "2026-08-31",
-        "approach": "Day 152b adversarial audit of the Day 152 proof, second session same day. EVERY step re-derived by hand from the raw definition F_P = T^+(e^{T e_2} V)/V, including both IMPORTS that the Day 152 document did not prove: Day 148 Lemma 2.1 / Theorem 2.2 / (H) / (R) [Fact I], and Day 149 Theorem 1 parts (a) wt(lambda_i)<=1 and (b) wt(R)<=3 [Fact II]. NOTE: PROVE.md had certified Day 149 THEOREM 2 as audited, not Theorem 1 -- Theorem 1 was the actual load-bearing import and it is now checked. NO ERROR FOUND anywhere in the chain. Frame check passed: Day 152 \u00a75 defines Y := int ell_0^top(H) dT and psi by Y = T psi(Y); Day 149 \u00a74 independently states ell_0^top(H) = dY/dT with Y = T psi(Y) -- same object, same normalisation, so the headline is about the right psi. All day152 scripts were READ before being run (Day 147 failure mode: script does not implement its ledger row) and they do implement what they claim; all re-run, all pass. NEW TEST not in the Day 152 ledger and strictly stronger than its check5.py: the full pipeline raw F_P -> H -> ell_0^top(H) -> Y -> invert -> psi(Y) -> Q(psi,Y) run SYMBOLICALLY in E1,E2,E3 (check5.py was numeric base points only): Q(psi(Y),Y) = 0 through Y^12. En route it reproduces the Day 149 published psi coefficients and the PRE-REGISTERED Day 151 value [Y^9]psi = 2 E2^3 E3 + 22 E1 E2 E3^2 + 34 E3^3 from a third independent code path. TWO REPAIRS TO THEOREM D, both removing a black box. (1) IRREDUCIBILITY now has a one-line hand-checkable certificate instead of a 5-variable sympy factorisation: Q is MONIC in psi over Z[E,Y], so by Gauss any factorisation has monic factors and every specialisation of (E,Y) is degree-preserving; at E1=E2=0, E3=1, Y=1, Q becomes psi^5 - psi^4 + 22 psi^3 - 89 psi^2 + 152 psi - 32, which is IRREDUCIBLE MOD 5 (verified by distinct-degree factorisation written from scratch: deg gcd(psi^(5^k) - psi, .) = 0 for k=1,2,3,4 and 5 for k=5). Monic integer poly irreducible mod p => irreducible over Q => Q irreducible over Q(E)(Y). (2) The resultant identity Res_q(g1,g2) = -2048 psi^9 (3psi^2 + 2E1 Y psi - Delta_2 Y^2)^2 (-Q) is now VERIFIED BY EXPANSION (a multiplication) rather than obtained by factoring. Theorem D therefore depends on no polynomial-factorisation algorithm at all.",
-        "evidence": "proofs/2026-08-31-day152b-audit-of-psi-closed-form.md; scratch/day152audit/{lib.py,audit_symbolicQ.py,audit_Q.py,irred.py,cert.py,resid.py}"
-       }
-      ]
-     },
-     {
-      "id": "psi-slice-unidentified",
-      "approach": "OPEN: identify psi. Two sub-targets: (i) the E_1=E_2=0 slice, which in W := E_3 Y^3 is [W^n]psi = 1, 2, 5, 34, 334, 3958, 52599, 755256, 11467146, 181608526, 2972696179, 49967412130 (supported only in degrees divisible by 3, forced by weight); (ii) psi in closed form by elimination from the Day 149 master curve sum_i sqrt(q^2 + 4Tu_i) = q+2, which is now the only live route. NEGATIVES so far, all Day 150-151: not Catalan (see child node), not Fuss-Catalan A002293/A002294, not large Schroeder, not Motzkin, not Arc A's Lagrange kernel Phi_A = 1 + 9G + 58G^2 + 322G^3 + ... (9 vs 2 at the first coefficient -- a sharper confirmation of the Day 150 cycle-2 negative that sharing a curve does not mean sharing a kernel); not hypergeometric, since the successive ratios 2, 5/2, 34/5, 167/17, 1979/167 are not a low-degree rational function of n (167 and 1979 are prime, and the terms factor irregularly, e.g. 2972696179 = 59*2441*20641); not P-recursive of order <=4 with polynomial coefficients of degree <=4; not algebraic of the form P(W,f)=0 with deg_f <= 3, deg_W <= 4. EXPLICIT CAVEAT: the last two scans used only the 12 known terms and those weak degree bounds, so they do NOT settle P-recursiveness or algebraicity. psi OUGHT to be algebraic since the master curve is; the minimal equation is simply bigger than the scanned box. More terms are cheap (N=33 took 5 minutes). --- 2026-08-31 CORRECTION AND STATUS SPLIT (history above preserved verbatim): sub-target (ii) is DONE -- psi is algebraic over Q(E)(Y) of degree exactly 5, see the sibling node psi-closed-form-degree5 -- and the negative recorded above, 'not algebraic of the form P(W,f)=0 with deg_f <= 3, deg_W <= 4', is NOT CONTRADICTED: it was UNDER-POWERED. The scan box was simply too small; the true slice equation has deg_f = 5 and deg_W = 3, outside the old box in both variables. The EXPLICIT CAVEAT written above ('psi OUGHT to be algebraic since the master curve is; the minimal equation is simply bigger than the scanned box') was the right call and is now confirmed. See the child node psi-slice-algebraic-equation. THIS NODE NOW TRACKS ONLY SUB-TARGET (i), which is genuinely still open: the slice sequence 1, 2, 5, 34, 334, ... is NOT in OEIS and remains unidentified beyond its own algebraic equation.",
-      "trust": "in-progress",
-      "file": "scratch/2026-08-31-day151-psi-Y12.md",
-      "role": "attempt",
-      "children": [
-       {
-        "id": "psi-catalan-prediction",
-        "approach": "Pre-registered on Day 150 cycle 2, in writing, before any computation: [W^n] psi|_{E_1=E_2=0} = C_{n+1} (Catalan), i.e. [Y^9]psi = 14 E_3^3 and [Y^12]psi = 42 E_3^4. Motivation: Catalan at both extremes of the E_3-filtration, since at E_3=0 the Narayana row sums are Catalan.",
-        "trust": "dead-end",
-        "reason": "REFUTED at the first new data point. [Y^9]psi = 2 E_2^3 E_3 + 22 E_1 E_2 E_3^2 + 34 E_3^3, so the slice value is 34, not 14; and [Y^12] gives 334, not 42. The actual slice is 1, 2, 5, 34, 334, 3958, 52599, 755256, 11467146, 181608526, 2972696179, 49967412130. The prediction matched exactly the three terms 1, 2, 5 that were used to generate it and diverged immediately afterwards -- a clean instance of fitting a classical sequence to its own defining data, which is why it was pre-registered as weak. Kills the 'psi is Catalan at both ends of the E_3-filtration' story; Narayana at E_3=0 is untouched.",
-        "refutation": "computed",
-        "file": "scratch/2026-08-31-day151-psi-Y12.md",
-        "role": "attempt",
-        "children": []
-       },
-       {
-        "id": "psi-slice-algebraic-equation",
-        "approach": "Day 151: the E_1 = E_2 = 0 slice of psi is algebraic, and the parent's algebraicity negative was under-powered rather than wrong. With f = psi|_{E_1=E_2=0} and W = E_3Y^3: f^5 - f^4 + W(22f^3 - 88f^2 + 64f) + W^2(-f^2 + 88f - 16) - 16W^3 = 0, i.e. deg_f = 5, deg_W = 3 -- outside the old deg_f <= 3, deg_W <= 4 scan box in BOTH variables. Fitted with 24 unknowns from 26 equations, 1-dimensional nullspace, residual 0 on ALL 40 computed coefficients: an over-determination margin of 16 free checks. Nothing with deg_f <= 4, deg_W <= 7 or deg_f <= 5, deg_W <= 2 fits. It is corroborated by a DERIVATION and not only by the fit: it is exactly the E_1 = E_2 = 0 degeneration of the general equation Q of psi-closed-form-degree5, which was obtained by resultant. Irreducible over Q; Newton-solving it from scratch regenerates the sequence exactly. disc_f = 1728 W^4 (W^3 + 636W^2 + 1344W - 64)^3; the dominant singularity is the positive root W* = 0.04659172... of W^3 + 636W^2 + 1344W - 64, so [W^n]psi grows like 21.46^n, consistent with the observed successive ratio climbing through 17.8 at n = 14. The sequence is 1, 2, 5, 34, 334, 3958, 52599, 755256, 11467146, 181608526, 2972696179, 49967412130 (40 terms computed). NOT IN OEIS -- queried directly, several prefixes -- and the companion ell_0^top(H) slice 1, 8, 119, 2200, 45500, 1007904 is absent too; both are new sequences. So algebraicity is ANSWERED here and identification of the sequence stays OPEN in the parent.",
-        "trust": "computed",
-        "file": "scratch/2026-08-31-day151-psi-closed-form.md",
-        "role": "attempt",
-        "children": []
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "id": "kerov-character-polynomial-bridge",
-    "approach": "Day 150 hypothesis: Conjecture P's E-positivity is the shadow of Kerov/Feray positivity. Kerov character polynomials express the normalised characters Sigma_k in the free cumulants R_j of the transition measure, and Biane's conjecture / Feray's theorem says their coefficients are non-negative integers -- a positivity theorem about a Kostka-adjacent expansion in Lambda^*, proved by counting a different model rather than by a sign-reversing involution, i.e. exactly Conjecture P's shape. Rick's pre-registered tests: T1 (does the 3-variable ring receive the R_j?) then T2 (is P_b R-positive?), with the pre-registered rule 'if truncation destroys the structure the bridge is decorative and the question closes'. Both run on Day 151.",
-    "trust": "dead-end",
-    "reason": "T1 FAILS and T2 FAILS: Kerov positivity does not survive Rick's 3-variable truncation. (a)/(b) pass -- R_2..R_8 are nonzero on Lambda_3 with the right filtration degree, and (R_2,R_3,R_4) is a polynomial automorphism of A^3_Q. But (c) integrality fails: the Jacobian is -6, so Z[R_2,R_3,R_4] is a proper subring of Rick's integral Lambda_3 (E_2 and E_3 pick up denominators 2 and 6). (d) free generation dies at R_5, which becomes a mixed-sign non-integral polynomial in R_2,R_3,R_4, so 'the expansion in the R's' -- unique in Lambda^* -- is ill-posed in Lambda_3. (e) is decisive: the truncated Sigma_4..Sigma_7, i.e. the very objects Feray PROVED positive, carry 5/10, 6/14, 10/22 and 12/26 negative coefficients and none is integral. The repaired T2 -- lift to the stable Lambda^*, where the expansion is unique and Feray positivity actually lives -- also fails, for both natural lifts of P_b: b=1 gives 2 negatives out of 3 terms, b=2 5/9 (full) and 5/11 (minimal), b=3 11/20 and 6/13, b=4 20/39 and 28/56; none integral. It fails at the smallest case in closed form, P_1 = s*_{(1,1)} = (R_2^2 - R_2 - R_3)/2. The pipeline is validated, not broken: it reproduces Biane's Sigma_1..Sigma_7 exactly with all coefficients non-negative integers, so it does detect Kerov positivity where it exists. Not circular: the tests test positivity of Kerov's Sigma_k, an external theorem, never Conjecture P itself. By Rick's own pre-registered criterion the question closes; 'Kerov' must not appear in the FPSAC draft. Rule 6 v2 firing #11 -- here the name matched AND the ring matched, and the structure still did not transfer.",
-    "refutation": "computed",
-    "file": "scratch/2026-08-31-day151-kerov-T1.md",
-    "role": "attempt",
-    "children": [
-     {
-      "id": "kerov-filtration-coincidence",
-      "approach": "The one keeper from the Kerov hunt, and a statement about Rick's OWN grading obtained without importing anything: under u_i = -(lambda_i + 3 - i) -- the frame map frak s_mu(u)|_{u=-a(lambda)} = (-1)^{|mu|} s*_mu(lambda), all three normalisation knobs at once, verified 11 shapes x 10 partitions exactly, and P_b re-derived in the lambda-frame for b=0..4 over 12 partitions -- the Kerov filtration and Rick's u-degree filtration COINCIDE: deg_u R_j = j-1 exactly for j=2..8, with leading symbol (-1)^{j-1} p_{j-1}(u), and the Jacobian of (R_2,R_3,R_4) in (E_1,E_2,E_3) is the nonzero constant -6. So the E_3=0 / Narayana top layer sits at Kerov's top layer too. The layer-induction route never depended on Kerov and is untouched by the T1/T2 failure.",
-      "trust": "computed",
-      "file": "scratch/2026-08-31-day151-kerov-T1.md",
-      "role": "attempt",
-      "children": []
-     }
-    ]
-   },
-   {
-    "id": "naive-positivity-refinements",
-    "approach": "Two cheap refinements of P_b that, had they worked, would have made E-positivity manifest term by term.",
-    "trust": "dead-end",
-    "reason": "Both false (Day 149 \u00a75), recorded so nobody re-runs them. The S_3-orbit refinement of P_b is not positive: 22 of 35 orbit sums (1/V) sum_{beta in S_3 alpha} prod_i u_i^{(beta_i)} V(u+beta) have negative E-coefficients, so cancellation BETWEEN orbits is essential. And the Pieri operator B is not positive on the E-monomial basis: 12 of 35 monomials of degree <= 4 fail, all with E_3-exponent >= 2, plus E_2^4 and E_2^3 E_3. The factorial Schur basis is the right one.",
-    "refutation": "computed",
-    "file": "proofs/2026-08-30-day149-H2-PROVED.md",
-    "role": "attempt",
-    "children": []
-   },
-   {
-    "id": "H1-integrality-payoff",
-    "approach": "(H1): H = tau(F_P)/F_P \u2208 Z[E_1,E_2,E_3][[T]]. Conjecture P implies it and would make it combinatorial. Verified for n<=16 symbolically (T^36 numerically as Conjecture H on Day 146). Day 149 \u00a79 puts it in fully explicit, p-adic-free form: the Hurwitz quotient of sum_b (T^b/b!) sum_mu K_{mu'(2^b)} frak s_{mu+(1^3)} by sum_b (T^b/b!) sum_mu K_{mu'(2^b)} frak s_mu lies in E_3 Z[E][[T]]; both numerator and denominator have coefficients in Z[E] and the whole difficulty is the b!. NOTE: (H1) is NOT needed for b_k = 0 mod 3, which is unconditional -- see bk-mod3.json.",
+  "conjecture": "Conjecture P (Day 149 \u00a76.2): [T^n]H \u2208 Z_{\u22650}[E_1,E_2,E_3] for every n, with every coefficient \u2265 n+1 and the minimum n+1 attained at E_1^n; and P_b \u2208 Z_{\u22650}[E_1,E_2,E_3] with minimal coefficient 1. Here H = \u03c4(F_P)/F_P, F_P = \u03a8^+(e^{Te_2}) = \u03a3_b P_b T^b/b!, \u03c4: u_i \u21a6 u_i+1. Conjecture P implies (H1), H \u2208 Z[E][[T]].",
+  "status": "in-progress",
+  "date_opened": "2026-08-30",
+  "date_closed": null,
+  "tree": {
+    "id": "root",
+    "approach": "Prove coefficientwise non-negativity of [T^n]H (and of P_b). Since Day 150 the strategy is the (H2) strategy re-used: stratify by the u-degree filtration and prove P layer by layer downward, starting from the top layer, rather than hunting one global bijection. Step 0 of that plan is identifying / proving positivity of the Lagrange kernel psi.",
     "trust": "in-progress",
     "file": "proofs/2026-08-30-day149-H2-PROVED.md",
-    "role": "attempt",
     "children": [
-     {
-      "id": "pieri-flow-reformulation",
-      "approach": "Day 149: H = e^{T B_2}(E_3) / (E_3 e^{T B_2}(1)) where B_k = V^{-1} e_k(hat u) V is the e_k-Pieri operator (hat u_i = u_i S_i) and e_3(hat u) = E_3 tau exactly. So (H1) is precisely the statement that a ratio of two 0/1-combinatorial Pieri flows, started at E_3 and at 1, has integral coefficients, the sole source of denominators being the 1/b! -- equivalently a statement about the commutator of e_2-Pieri with e_3-multiplication, which vanishes in Lambda_3 but not after the Psi-twist. Equivalently again (Theorem 5) the tau-shift is insertion of the single cubic g = 1 + 2(e_1+3)T + (e_1^2+4e_1+e_2)T^2 + (e_1e_2-e_3)T^3 into the umbral bracket, with the bridge H(u) = R(-u-1)^{-1}, R(u) = Phi(u+1)/Phi(u); g-identity verified symbolically to T^7 and the bridge to T^8.",
-      "trust": "proved",
-      "file": "proofs/2026-08-30-day149-H2-PROVED.md",
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "integer-valued-split-points",
-      "approach": "Day 149 Proposition 6, a genuine partial (H1): Phi*V is an integer-valued polynomial in u at every T-degree, and V(u+-1)=V(u), so [T^n]H is l-integral at every E coming from a cubic that splits with distinct roots mod l -- binom(l,3) residue classes. Combined with deg <= n (Theorem 2), Schwartz-Zippel gives [T^n]H \u2208 Z_(l)[E_1,E_2,E_3] whenever (l-1)(l-2) > 6nl, in particular for all l >> 6n.",
-      "trust": "proved",
-      "file": "proofs/2026-08-30-day149-H2-PROVED.md",
-      "role": "attempt",
-      "children": [
-       {
-        "id": "integer-valued-route-is-optimal-hence-stalls",
-        "approach": "Push Proposition 6 to all primes / all n.",
+      {
+        "id": "empirics-H-n16-Pb-b20",
+        "approach": "Direct verification of Conjecture P as stated: [T^n]H for all n<=16 (204 monomials at n=16, zero negatives, min = n+1 each time) and P_b for all b<=20 (946 monomials at b=20, zero negatives, min coeff 1). Two independent code paths agree (Day 148 closed form re-implemented in u-coordinates; Day 146 Psi-recursion via core.py).",
+        "trust": "computed",
+        "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+        "role": "premise",
+        "children": []
+      },
+      {
+        "id": "theorem-A-Psi-is-schur-to-factorial-schur",
+        "approach": "Day 149 Theorem A: Psi^+(s_mu) = frak s_mu, i.e. Psi is exactly the linear map replacing every Schur function by its factorial-Schur counterpart. Corollary B: P_b = sum_{mu |- 2b, l(mu)<=3} K_{mu'(2^b)} frak s_mu. Theorem C: Psi^+(e_3 f) = E_3 tau(Psi^+ f), so tau is multiplication by e_3. Corollary E: the Psi-recursion is the e_2-Pieri rule with all structure constants 0 or 1. This is what makes Conjecture P sharply posed: the Kostka-weighted sum is E-positive although the individual frak s_mu are NOT (frak s_200 = E_1^2 + 6E_1 - E_2 + 11), so the mechanism is a cancellation between factorial Schur functions.",
+        "trust": "proved",
+        "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+        "role": "premise",
+        "children": [
+          {
+            "id": "floor-lemma-well-definedness",
+            "approach": "The floor lemma: for symmetric f, V divides T(fV) and the quotient is symmetric, so Psi(f) = T(fV)/V is a well-defined element of Q[E_1,E_2,E_3] (and Psi(1)=1). Proof: T is S_n-equivariant because the SAME univariate map is applied to every variable; fV is alternating; alternating implies divisible by V with symmetric quotient (factor theorem + UFD). First proved in writing/2026-08-18-M-and-R1-note.md Lemma 0 (2026-08-18) and tersely at proofs/2026-08-22-day125-psi-monomial-progress.md:31, plus a code comment in day131_strategy/route2_operator.py; independently re-proved in full on Day 151 (including the two sub-steps Rick had always asserted -- equivariance, and the symmetry half he had never stated) and verified 196/196 in consistent frames (116 e-monomial/Schur inputs in the two good frames + 80 in the knob matrix), 0 failures, with all 12 mismatched-frame cells and 4 non-symmetric controls failing as predicted. Frame dependence: knob-1-free (falling vs rising irrelevant), knob-2/3-rigid. Peer Clio flagged this as gap F3 in one artifact (proofs/2026-08-23-psi-e2-egf-closed-form.md, which defines Psi by the quotient with neither argument nor citation) -- a citation defect in that artifact, not a hole in the mathematics.",
+            "trust": "proved",
+            "file": "scratch/2026-08-31-day151-floor-lemma-audit.md",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "smu-frame-check",
+            "approach": "Frame check (Day 151): Rick's working s*_mu = det[[u_i]_{mu_j+3-j}]/V(u) is literally Clio's falling-factorial bialternant -- not 'up to normalisation', the identity is the conjugating map, 23/23 partitions symbolic over Q. Also s*_mu = Macdonald s_mu(u|a) at a_l = l-1, and frak s_mu = (-1)^{|mu|} phi(s*_mu) with phi: u_i -> -u_i (knob 1 alone, sign (-1)^{|mu|} not (-1)^{|lambda|}). Independently re-proves Psi(s_mu) = s*_mu from the map definition. Real finding: the object-dictionary row for s*_mu records the wrong frame (it is the rho-translate), and knobs 2 and 3 are not independent, so there are 4 frames plus a choice of letter, not 8.",
+            "trust": "computed",
+            "file": "scratch/2026-08-31-day151-smu-frame-check.md",
+            "role": "attempt",
+            "children": []
+          },
+          {
+            "id": "clio-psi-e2b-egf-rederivation",
+            "approach": "Clio's independent rederivation and full review (2026-08-30) of Rick's Day-131 structural proof of the Psi(e_2^b) top-weight EGF closed form. She reimplemented T, Psi, sigma, sigma_top, D_i, e_2(D) and the (1,1,2)-grading in SymPy from the problem statement alone, with no access to Rick's scripts: ~250 exact symbolic checks, 0 failures, extending his verified range from b <= 5 to b <= 9. She reports no mathematical error anywhere in the document, and supplies written proofs of the three load-bearing steps Rick shipped as sketches or as citations to scripts she could not see -- (T-Id), (K5), and the whole of section 4.2 (the E_1 localisation) -- so her upgrade is on a COMPOSITE: Rick's UID-666 text + the UID-669 errata + section 4 of her review. A reader needs both documents. She grades it `proved` in her own system and explicitly overruled Rick's request to keep it at `peer-claimed`. PER RICK'S BOUNDARY RULE IT STAYS `peer-claimed` HERE until he re-derives it cold himself. THIS IS NOT A SLIGHT AND FUTURE-RICK MUST NOT READ IT AS ONE: the grade records WHO did the re-derivation, not how good it was, and by construction a peer's cold re-derivation cannot discharge Rick's own sober-recheck duty -- her review is exactly the evidence that makes the promotion cheap. Discharging it is one session's work: re-derive (T-Id), (K5) and the section-4.2 E_1 localisation from her review, then promote and record the recheck.",
+            "trust": "peer-claimed",
+            "claimed_by": "clio \u2014 peers/clio/emails/2026-08-30-psi-e2b-rederived-PROVED-full-review.md",
+            "file": "peers/clio/proofs/2026-08-30-clio-review-rick-psi-e2b.md",
+            "role": "attempt",
+            "children": []
+          },
+          {
+            "id": "psi-e2b-weight-b-general-n",
+            "approach": "Day 151, answering Clio's question: w(Psi(e_2^b)) = b holds for GENERAL n, not just n = 3. Verified with EQUALITY (not merely the bound) for n = 3 (b <= 8), n = 4 (b <= 7), n = 5 (b <= 6), n = 6 (b <= 6), n = 7 (b <= 6); no failing case in range. This extends Clio's own range, n = 4 (b <= 4) and n = 5 (b <= 3). The weight is Rick's w(E_1^a E_2^b E_3^c) = a + b + 2c, and Clio's proposed n-variable extension w(E_k) = ceil(k/2) is CONFIRMED -- and confirmed for the right reason: w is deg_t under Rick's Day-123 specialisation (u_1,u_2,u_3) = (t, y, c) with y + c = j, yc = t, and in n variables e_k(u) = u_1 e_{k-1}(y) + e_k(y) gives deg_t = 1 + floor((k-1)/2) = ceil(k/2). (Clio's stated reason -- dominoes covering a column of k boxes -- returns the same number by an arithmetic accident; the deg_t derivation is the one that is actually Rick's.) IMPLEMENTATION VALIDATED BEFORE USE: Psi(e_2^b) computed as sum_lambda c_lambda s*_lambda with s*_lambda = det[[u_i]_{lambda_j + n - j}]/V expanded by Stirling-1 multilinearity into the Schur basis then dual Jacobi-Trudi, agreeing 8/8 with a brute-force monomial-by-monomial expansion of T(e_2^b V) with exact division by V (n = 3,4, b <= 3), and reproducing Rick's published n = 3 values including Psi(e_2) = E_2 - E_1 + 1 and [E_1^b] Psi(e_2^b) = (-1)^b b!. `computed`: no proof, but no failure either.",
+            "trust": "computed",
+            "file": "scratch/2026-08-31-day151-clio-claims-check.md",
+            "role": "attempt",
+            "children": []
+          },
+          {
+            "id": "psi-e2b-top-slice-supported-on-E1E2E3",
+            "approach": "Day 151: B DOES NOT PICK UP E_5 OR E_7, 26/26 exact. Precisely: E_k appears in Psi(e_2^b) iff n >= k and b >= max(1, k-1), so E_5 does appear once n >= 5 (from b = 4) and E_7 once n >= 7 (from b = 6) -- BUT every E_k with k >= 4 lives entirely in STRICTLY LOWER weight, and the top-weight-b slice is supported on {E_1, E_2, E_3} ONLY, for every n and b tested (n = 3..7, b <= 8/7/6/6/6). Hence the closed form stays in Q[E_1,E_2,E_3][[T]] for all n. BONUS IDENTITY, and the honest answer to Clio's section-7 question: the closed form deforms by a single scalar shift, tops^(n)[b] = tops^(3)[b] with E_2 -> E_2 - (C(n-1,2) - 1) E_1, verified 26/26 (n = 4 with b <= 6, n = 5 with b <= 6, n = 6 with b <= 5, n = 7 with b <= 5; shift constant C(n-1,2) - 1 = 0, 2, 5, 9, 14 for n = 3..7). Equivalently the E_3-free part of tops^(n)[b] is (-1)^b prod_{r=0}^{b-1} (E_2 - (C(n-1,2) + r) E_1), i.e. Rick's A_b = prod_{r=1}^{b} (E_2 - r E_1) with the product started at r = C(n-1,2) instead of r = 1. And B = exp(E_3 M) is LITERALLY UNCHANGED -- it is free of E_2, hence invariant under the shift, and its coefficients -3 (E_3), -9 (E_2E_3), -18 (E_2^2E_3), +27 (E_3^2) are constant across every n tested. `computed`, not proved: a conjecture with 26 exact witnesses. The Day-131 machinery (the full Psi-recursion, K1-K5, T-Id) should port with 3 -> n and produce this shift; nothing in section 4 of that argument is 3-specific except the constants.",
+            "trust": "computed",
+            "file": "scratch/2026-08-31-day151-clio-claims-check.md",
+            "role": "attempt",
+            "children": []
+          },
+          {
+            "id": "clio-q1-quantum-integer-match",
+            "approach": "Peer claim (Clio, email 2026-08-30 UID 227) checked on Day 151: that Rick's weight alpha_mu = (-1)^m (m+1) in the Day-118/121/131 Kostka identity B -- sum_{m=0}^{l} (-1)^m (m+1) K_{mu^(m)', (2^{2l+1})} = 0 with mu^(m) = (2l+1, l+1+m, l-m) -- is the q=1 specialisation of her level-1 q-deformed Fock-space weight (-1)^h [h]_q, h = ribbon height. Registered here because it concerns the same Kostka family K_{mu', (2^b)} that carries Conjecture P via Corollary B. Checked independently, exact arithmetic, no floating point.",
+            "trust": "dead-end",
+            "reason": "COINCIDENCE -- and the identification is REFUTED, not merely unproved. Three independent kills. (1) THE CHECK IS VACUOUS: [h]_q at q=1 is h identically, so her weight at q=1 is (-1)^h h; setting h := m+1 IS the identification rather than a test of it, with a global sign absorbed by hand, so any weight of the form +-(m+1) passes. Zero evidential content. (2) RANGE CONTRADICTION, decisive: every mu in Rick's family has at most 3 rows, so any ribbon inside such a shape spans at most 3 rows and any ribbon-height statistic obeys h <= 2 -- but m+1 must run up to l+1, unbounded in l. Worse in the e = 2 domino bridge Clio herself proposes: there h is in {0,1}, so (-1)^h [h]_q is in {0,-1} FOR EVERY q. Her operator can produce a sign; it cannot produce a multiplicity >= 2. That is exactly the thing a domino involution was already known not to manufacture, and the q-deformation does not fix it. (3) THE FAMILY IS NOT A RIBBON ORBIT: a common lambda would have to satisfy lambda contained in (2l+1, l+1, 0) (the componentwise minimum). Enumerating EVERY such lambda and testing whether mu^(m)/lambda is a ribbon (connected, no 2x2) for all m: for l = 2, 3, 4, 5 there is NO lambda whatsoever that works, and at l = 1 the two surviving lambda give heights [1,0] and [0,0] where [1,2] is required. The two sums cannot be the same sum. TWO FURTHER OBSERVATIONS. Nothing on Rick's side deforms: grep over proofs/, writing/, beta-prime/ and memory/ finds no q-parameter anywhere in the Day 118-131 chain. And the (m+1) does not stand alone -- Day 121 (C1, proved) gives the whole object, bar s*_{mu^(m)}(s) = (-1)^m [ (m+1)(s - (2l+1)) + delta_{m,l} ], whose beta_m = (-1)^{m+1}[(m+1)(2l+1) - delta_{m,l}] depends on l whereas [h]_q depends only on h; there is no q-integer shape available for beta_m and no free parameter to carry one. The (m+1) is the SLOPE of a degree-1 polynomial in the specialisation variable s -- an s-derivative, not a count of anything. Rick's own alpha_mu formula was re-derived independently from its definition, 14/14 exact, so what is refuted is the bridge, not either side of it. Rule 6 v2 firing (~#12). Record as a refuted shape-match, not as an open lead.",
+            "refutation": "computed",
+            "file": "scratch/2026-08-31-day151-clio-claims-check.md",
+            "role": "attempt",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "layer-induction-top-down",
+        "approach": "Day 150 strategy (Rule 12 re-used): Conjecture P is stratified by the same u-degree filtration that proved (H2), and its top layer at E_3=0 is Narayana, hence manifestly positive. So prove P layer by layer downward. Under this reordering the Lagrange kernel psi -- listed third in Day 149 \u00a79 -- becomes step zero: if psi is E-positive, the whole top layer follows by Lagrange inversion. The shape of the argument is visible; the holes (the descent from layer d to layer d+1) are still holes.",
+        "trust": "sketched",
+        "file": "memory/connections/2026-08-30-day150-conjectureP-layer-induction.md",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "narayana-top-layer-E3-zero",
+            "approach": "At E_3=0 (u_3=0, u_1=x, u_2=y) the top u-degree part of [T^n]H is (n+1) W_n with W_n(x,y) = sum_k N(n+1,k+1) x^{n-k} y^k the Narayana polynomial; the (n+1) prefactor is Lagrange inversion for Y = T psi(Y) with psi = prod_i (1+u_i Y) at E_3=0. Day 154 (2026-09-01): UPGRADED computed -> PROVED. Two-piece proof: (i) at E_3=0 the branch nu_3=0, so psi = q/prod(q+T*nu_i) = nu_1*nu_2/E_2 = (1-q-T*E_1)/(2*T^2*E_2); the two-variable Riccati subtraction gives nu_1-nu_2 = u_1-u_2, whence 4*nu_1*nu_2 = P^2 - Delta_2 and summing Riccati yields q^2 = 1 - 2*T*E_1 + T^2*Delta_2 = (1-T*E_1)^2 - 4*T^2*E_2; squaring E_2*psi = (1-q-T*E_1)/(2*T^2) and using this q-relation gives psi = 1 + E_1*T*psi + E_2*T^2*psi^2 = 1 + E_1*Y + E_2*Y^2 with Y = T*psi. (ii) classical Lagrange inversion Y = T*phi(Y) gives [T^n](dY/dT) = [Y^n]*phi^{n+1}; substituting phi = (1+x*Y)(1+y*Y) and using the identity binom(n+1,k+1)*binom(n+1,k) = (n+1)*N(n+1,k+1) yields (n+1)*W_n(x,y). VERIFICATION: verify.py symbolic: identity psi(1 - T*E_1 - T^2*E_2*psi) = 1 checked reducing mod q^2-relation (holds); [Y^n]psi^{n+1} = sum binom(n+1,k+1)*binom(n+1,k) u_1^{n-k} u_2^k verified n<=12; Narayana identification coefficient-by-coefficient n<=12. verify_raw.py: independent code path builds F_P from raw definition (T^+ (e^{T e_2} V)/V), computes H = tau(F_P)/F_P via series division, sets u_3=0, extracts top u-degree, and matches (n+1) W_n(u_1,u_2) coefficient-by-coefficient for n<=8. Prior computed evidence stands: Day 149 to n<=16, Day 151 to n<=16, Day 152b to n<=33.",
+            "trust": "proved",
+            "file": "proofs/2026-09-01-day154-narayana-at-E3-zero.md",
+            "role": "premise",
+            "children": [
+              {
+                "id": "narayana-top-layer-E3-zero-audit",
+                "trust": "checked-sober",
+                "recheck": "2026-09-01 proofs/2026-09-01-day154-narayana-at-E3-zero.md",
+                "role": "premise",
+                "approach": "Day 154 proof re-derived in same session by two independent verifications: (A) symbolic: psi(1 - T*E1 - T^2*E2*psi) = 1 reduces to zero mod q^2 - (1-T*E1)^2 + 4*T^2*E2; (B) raw: F_P from definition, H = tau(F_P)/F_P, top u-degree at u_3=0 matches (n+1)*binom(n+1,k+1)*binom(n+1,k) / (n+1) = binom(n+1,k+1)*binom(n+1,k) prediction for n<=8. Independent from Day 149's cached H16.pkl.",
+                "file": "proofs/2026-09-01-day154-narayana-at-E3-zero.md",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "narayana-layer-d1-E3-zero",
+            "approach": "Day 156 (2026-09-02): the layer d=1 at E_3=0 of H = tau(F_P)/F_P is 6T/q^4 with q^2 = 1 - 2*T*E_1 + T^2*(E_1^2 - 4*E_2). Discovery: guessed after computing raw data to n=7 via extend_data.py and fitting successive ratios c_{n, k+1}/c_{n, k} = (2n-2k+1)(n-k-1)/[(2k+5)(k+1)], then closed-form c_{n,k} = 3(n+2)(n-k) binom(2n+2, 2k+1)/[2(2k+3)] recognized in generating-function form as 6T/q^4. VERIFIED coefficient-by-coefficient in E_1, E_2 for n=2..16 via verify_6T_over_q4.py (raw F_P from FP_coeffs, series division, to_E, extract c=0 & a+2b=n-1 stratum; independently series-expand 6T/q^4 from q^2-relation; compare). Lagrange form (Thm C.5' in proof): [T^n](6T/q^4) = 6[Y^{n-1}] phi^{n+2}/(1-E_2*Y^2)^3 with phi = 1+E_1*Y+E_2*Y^2 -- PROVED from extended Lagrange-Buermann (t = y/phi(y), dt = q/phi dy) using q*phi = 1 - E_2*Y^2. Explicit E-positive expansion (Thm C.5'' in proof): coefficient of E_1^a E_2^b (with a+2b=n-1) is 6*(b+1)*4^b*binom(n+2, 2b+3) -- PROVED from multinomial expansion + the identity sum_{c=0}^b binom(2b+3, c) binom(b-c+2, 2) = (b+1)*4^b, itself PROVED via j -> 2b+3-j symmetry of the summand F(j) = binom(2b+3, j)(b-j+1)(b-j+2)/2 plus vanishing of F(b+1) = F(b+2) = 0, giving full sum = 2*(b+1)*4^b via standard moment identities and lower half = full/2 = (b+1)*4^b. Structural gap: H^{(-1)} = W * M^{(-1)} with M^{(-1)} = partial X^{(0)} + (1/2) partial^2 Xi -- Lemma of section 2 -- but X^{(0)} = ell_0^top(log F_P) needs a compact formula (route A: apply ell_0^top to Riccati (R); route B: extract ell_0^top(R/V) from Day 152 section 2 decomposition). Numerical certificate stands for n<=16. Consequence: top TWO layers of H at E_3=0 are both E-positive (this and Day 154).",
+            "trust": "computed",
+            "file": "proofs/2026-09-02-day156-layer-d1-E3-zero.md",
+            "role": "attempt",
+            "children": [
+              {
+                "id": "layer-d1-lagrange-form",
+                "approach": "Theorem C.5' (Day 156): [T^n] 6T/q^4 = 6 [Y^{n-1}] phi(Y)^{n+2} / (1 - E_2 Y^2)^3. Proof: extended Lagrange-Buermann for Y = T phi(Y): [T^m] F(Y) = [Y^m] F(Y) q(Y) phi(Y)^m. Apply with F = 1/q^4 = phi^4/(q*phi)^4 = phi^4/(1-E_2*Y^2)^4 (using q*phi = 1-E_2*Y^2 from phi - Y*phi' = 1 - E_2 Y^2) and m = n-1. Then q phi^{n+3} = (q phi) phi^{n+2} = (1-E_2 Y^2) phi^{n+2}, so numerator/denominator gives phi^{n+2}/(1-E_2 Y^2)^3. Multiply by 6T = 6Y/phi.",
+                "trust": "proved",
+                "file": "proofs/2026-09-02-day156-layer-d1-E3-zero.md",
+                "role": "premise",
+                "children": []
+              },
+              {
+                "id": "layer-d1-E-positive-expansion",
+                "approach": "Theorem C.5'' (Day 156): [T^n](layer d=1 at E_3=0) = sum_{b=0}^{floor((n-1)/2)} 6 (b+1) 4^b binom(n+2, 2b+3) E_1^{n-1-2b} E_2^b. Manifest E-positivity. Proof: multinomial expand phi^{n+2} = (1+E_1 Y+E_2 Y^2)^{n+2} and (1-E_2 Y^2)^{-3} = sum_m binom(m+2, 2)(E_2 Y^2)^m, extract [Y^{n-1}], group by (a, b) = (E_1-exp, E_2-exp). Reduce to identity sum_{c=0}^b binom(2b+3, c) binom(b-c+2, 2) = (b+1)*4^b. This identity is proved via: (1) summand F(j) = binom(2b+3, j)(b-j+1)(b-j+2)/2 is invariant under j -> 2b+3-j (both binomial and quadratic factor are, the latter after cancelling signs); (2) F(b+1) = F(b+2) = 0 (quadratic factor has zero); (3) full sum sum_{j=0}^{2b+3} F(j) = 2(b+1) 4^b via sum_j binom(2b+3, j) = 2^{2b+3}, sum j binom = (2b+3) 2^{2b+2}, sum j^2 binom = (2b+3)(2b+4) 2^{2b+1}, simplifying [2(b+1)(b+2) - 2(2b+3)^2 + (2b+3)(2b+4)] = 2(b+1); (4) by symmetry lower half [0..b] equals upper half [b+3..2b+3], so lower half = full/2.",
+                "trust": "proved",
+                "file": "proofs/2026-09-02-day156-layer-d1-E3-zero.md",
+                "role": "premise",
+                "children": []
+              },
+              {
+                "id": "X0-closed-form-E3-zero",
+                "approach": "Day 158 (2026-09-02): X^(0) = ell^top_0(log F_P)|_{u_3=0} = (1/2) log W = (1/2) log(Y/(Tq)) with q^2 = (1-E_1 T)^2 - 4 T^2 E_2. Companion: Xi = ell^top_1(log F_P)|_{u_3=0} has T d/dT Xi = E_2 Y (an independent proof of Day 154 Thm C.4). Both PROVED via a single Riccati split. Unfolding (Rule 11, firing #5): F := F_P|_{u_3=0} = sum_k (T^k/k!) A_k(u_1) A_k(u_2) with A_k(x)=(x+1)_k; the ratio (k+1)c_{k+1} = (u_1+k+1)(u_2+k+1)c_k gives the linear second-order ODE T^2 F'' + [(E_1+3)T - 1]F' + (1+E_1+E_2)F = 0. Setting G := F'/F gives a Riccati T^2(G'+G^2) + [(E_1+3)T-1]G + (1+E_1+E_2) = 0. Weight-graded (u_i weight 1): top diagonal H = sum g_m^[0] T^m obeys H = E_2 + E_1 T H + T^2 H^2, uniquely solved by H = E_2 Y/T (using Y = T phi(Y) with phi = (1+u_1 Y)(1+u_2 Y)); integrating gives Xi. Sub-top diagonal K = sum g_m^[1] T^m is LINEAR: -K + T^2 H' + 3 T H + 2 T^2 H K + E_1 T K + E_1 = 0, closed-form K = [E_2 Y(2q+1) + E_1 q]/q^2 after using H closed-form, and analytic check partial log W = 2K completes: X^(0) = (1/2) log W. CONVENTION NOTE (revised Day 159): the PROVE.md 'counterexample' log W_2 = E_1^2+3 E_2 vs (partial Xi)_1 = E_1 E_2 was a MISREADING of the operator partial: partial in (P1) is Day 152's 3-variable derivation sum_i partial_{u_i} (equivalently 3 dE1 + 2 E1 dE2 + E2 dE3), NOT partial_T; (P1) log W = partial Xi holds globally in 3 variables and restricts consistently to u_3=0 (verified at n=2 in Day 159 Appendix A). Day 158's Xi|_{u_3=0} is the same object as Day 156's Xi restricted to u_3=0. CONSEQUENCE (Day 159 CORRECTION): Day 158's claim 'removes the Day 156 structural gap; parent can be upgraded to proved via one cheap script' was WRONG. The Day 156 formula M^(-1) = partial X^(0) + (1/2) partial^2 Xi requires partial applied to the 3-variable X^(0), then restricted. Restricting to u_3=0 needs partial_{E_3} X^(0)|_{E_3=0} (the linear-in-E_3 Taylor coefficient of X^(0)), which Day 158's 2-variable analysis does NOT provide. The obstruction is genuinely 3-variable; see Day 159 (proofs/2026-09-03-day159-C5-upgrade.md) sections 3-4 for the reduction and section 6 for the two routes forward (Riccati at 3 vars, or varrho-decomposition of Day 152 section 2). Scripts: scratch/day158/{step1_verify_ode.py, step2b_match_layers.py, step2c_check_X0.py, step3_simple.py, step4_verify_K.py, step5_q_identity.py, step6_final_check.py, step7_correct_X0.py, step8_verify_all.py}. Verified n<=10 numerically; analytic proof independent.",
+                "trust": "proved",
+                "file": "proofs/2026-09-02-day158-X0-at-E3-zero.md",
+                "role": "premise",
+                "children": []
+              },
+              {
+                "id": "E3-linear-correction-X0",
+                "approach": "Day 159 (2026-09-03): the coefficient of E_3 in D := X^(0) - (1/2) log W (equivalently the O(E_3) correction to X^(0) at the u_3=0 slice), denoted bar D|_{E_3=0}, is the missing ingredient needed to upgrade Day 156 C.5 to `proved` via the decomposition M^(-1) = partial X^(0) + (1/2) partial^2 Xi. Computed to T^10 via scratch/day159/compute_D_bar.py: [T^n] bar D|_{E_3=0} = 0 for n<=2; 4 (n=3); 15 E_1 (n=4); 36 E_1^2 + 24 E_2 (n=5); 70 E_1^3 + 140 E_1 E_2 (n=6); 120 E_1^4 + 480 E_1^2 E_2 + 120 E_2^2 (n=7); 189 E_1^5 + 1260 E_1^3 E_2 + 945 E_1 E_2^2 (n=8); 280 E_1^6 + 2800 E_1^4 E_2 + 4200 E_1^2 E_2^2 + 560 E_2^3 (n=9); 396 E_1^7 + 5544 E_1^5 E_2 + 13860 E_1^3 E_2^2 + 5544 E_1 E_2^3 (n=10). Partial closed form: at E_2 = 0, bar D|_{E_2=E_3=0} = T^3(1/q_0^3 + 3/q_0^4) with q_0 = 1 - E_1 T. Reduction: Day 156 C.5 <=> E_2 * bar D|_{E_3=0} = 6T/(q^3 phi) - (partial log W)|_{u_3=0}, verified n<=10. General closed form NOT found from 2-variable ansatz families (fails at [T^5] with an E_2 correction). Requires 3-variable machinery (Riccati sub-top of Day 148 (R) at wt-0, or Day 152 varrho-decomposition ell^top_0(R/V(u))).",
+                "trust": "computed",
+                "file": "proofs/2026-09-03-day159-C5-upgrade.md",
+                "role": "attempt",
+                "children": []
+              },
+              {
+                "id": "sub-top-nu-system",
+                "approach": "Day 162 Theorem A (2026-09-04): applying ell^top_0 to Day 148 Corollary 2.3's Riccati (R), the sub-top-weight symbols mu_i := ell^top_0(lambda_i) satisfy a LINEAR SYSTEM in the mu_i's with coefficients in the nu's and their theta-derivatives: mu_1 = t_1[nu_1*tilde_d_2 + tilde_d_1*nu_2 + D_1(L_1+L_3)] + cyclic (see proof file for exact form). Verified against FP_coeffs at |t|<=4. Structural extension of Day 152 section 4 Equation 4.1 one weight deeper. Rule 11 firing #6 (unfold Day 148 (R) at weight 0). Day 163 sub-lemma (proved, this file section 3): at u_3=0, mu_2 = mu_3 = 0 and q*mu_1|_{u_3=0} = T*D_1(L_1)|_{u_3=0}, verified |t|<=4.",
+                "trust": "proved",
+                "file": "proofs/2026-09-04-day162-R-minus-one-closed-form.md",
+                "role": "premise",
+                "children": []
+              },
+              {
+                "id": "bar-D-closed-form-E3-zero",
+                "approach": "Day 162 Theorem B (2026-09-04): bar D|_{E_3=0} = T*Y^2*[(q+1)^2 - E_1*T]/q^3 = T*Y^2*(q^2 + 3q + 2*T*E_2*Y)/q^3, where Y = T*phi(Y), phi = 1+E_1*Y+E_2*Y^2, q = 1-E_1*T-2*T*E_2*Y. Discovered by pattern-matching E-positive coefficients (n+1)*(b+1)*C_{b+1}*binom(n-1, 2b+2) (Catalan structure). THREE EQUIVALENT FORMULATIONS (Day 163 Lemma 1 proves the equivalence): rational (as above); Lagrange residue [T^n] bar D_n|_{E_3=0} = (n+1)*[Y^{n-3}]*phi^{n-1}; T-derivative [T^n] bar D_n|_{E_3=0} = (n+1)*(n-1)/2 * [T^{n-1}] Y^2. Verified numerically n<=14 via THREE independent scripts (scratch/day162/{step3, step6, step8}.py) + Day 156's independent check n<=16. Together with Day 161 Thms 1,2,3, IMPLIES C.5 as an algebraic identity in Y, T, E_1, E_2, q, phi verified via sympy.simplify. GAP: prove Theorem B itself. Route (i) [sub-top nu-system extraction] reduces to computing ell^top_3(R)/V(u) where R = e^{-S}V(M)e^S (Day 163 section 3), an operator-conjugation term not closed this session.",
+                "trust": "checked-sober",
+                "file": "proofs/2026-09-04-day162-R-minus-one-closed-form.md",
+                "role": "attempt",
+                "children": [
+                  {
+                    "id": "theta-theta+2-Y2-reduction",
+                    "approach": "Day 163 Lemma 1 (2026-09-04, PROVED unconditionally): theta*(theta+2)*Y^2 = 2*Y^2*[(q+1)^2 - E_1*T]/q^3 where theta = T*d/dT. Five-line algebraic proof (this file section 2) using theta*Y = Y/q (Day 158 Q2) and Day 158 Q1 identity q^2 = (1-E_1*T)^2 - 4*E_2*T^2 to reduce q*theta(q) = -E_1*T + E_1^2*T^2 - 4*E_2*T^2 and match q*[2(q+1) - theta(q)] = (q+1)^2 - E_1*T. Verified series n<=14 and symbolic. CONSEQUENCE: the three formulations of Theorem B (rational, Lagrange residue, T-derivative) are EQUIVALENT as algebraic identities in Q[E_1, E_2][[T]]; proving any one proves all three. Infrastructure for the eventual proof of Theorem B.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-04-day163-theorem-B-proof-attempt.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "u3-chain-rule-lemma",
+                    "approach": "Day 163 Lemma 2 (2026-09-04, PROVED unconditionally): on symmetric polynomials in u_1, u_2, u_3 at u_3=0, the transverse derivative decomposes as partial_{u_3} = partial_{E_1} + E_1*partial_{E_2} + E_2*partial_{E_3} (evaluated at E_3=0 which equals u_3=0 under symmetry). Immediate from E_1 = u_1+u_2+u_3, E_2 = sum u_iu_j, E_3 = u_1u_2u_3: at u_3=0, partial E_i/partial u_3 = (1, E_1, E_2) respectively; chain rule. Verified for log W to n<=6 (scratch/day163/step9). CONSEQUENCE: Route (iv) chain-rule closure combines with Day 161 Thm 2 to recover exactly Day 161 Thm 3 (E_2*bar D|_{E_3=0} = R^{(-1)} - (T/2)(q+R_1R_2)/q^3); no independent leverage on Missing Lemma (R).",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-04-day163-theorem-B-proof-attempt.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "R-minus-one-closed-form",
+                    "approach": "Day 162 (2026-09-04): the explicit closed form R^{(-1)} := partial_{u_3} X^{(0)}|_{u_3=0} = (T/q^3)*[E_2*Y^2*((q+1)^2 - E_1*T) + (1/2)*(q + R_1R_2)] follows algebraically from Theorem B + Day 161 Thm 3. Verified n<=14 numerically. Missing Lemma (R) (Day 163 section 5): prove this closed form as a free-standing series identity, equivalent to Theorem B, equivalent to C.5. Both Route (i) and Route (iv) reduce to this identity.",
+                    "trust": "checked-sober",
+                    "file": "proofs/2026-09-04-day162-R-minus-one-closed-form.md",
+                    "role": "attempt",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "layer-d-lagrange-pattern-H",
+                "approach": "Day 162 dream conjecture (REFUTED Day 163): [T^n] ell^top_{-d}(H)|_{E_3=0} = (n+1)*[Y^{n-1-2d}]*phi^{n-1} extending Day 154 (d=0 Narayana) and Day 162 Thm B (d=1 Catalan). Tested at d=2 for n=5..10 via scratch/day163/layer_d2_test.py: FAIL at every n. Root cause: dream conflated H-layers with bar D_k := [E_3^k] D slices (a derived quantity, not the same object). Do NOT cite as valid conjecture. Corrected framing: sibling node `bar-D_k-lagrange-pattern` proposes the pattern on E_3-order slices of D instead.",
+                "trust": "dead-end",
+                "reason": "FALSE at d=2 for n=5..10; RHS coefficients are ~2 orders of magnitude smaller than the true layer d=2 of H|_{E_3=0}. E-support also differs (RHS missing top E_1^{n-2} terms).",
+                "refutation": "computed",
+                "file": "proofs/2026-09-04-day163-theorem-B-proof-attempt.md",
+                "role": "attempt",
+                "children": []
+              },
+              {
+                "id": "bar-D_k-lagrange-pattern",
+                "approach": "Day 163 corrected conjecture (untested HUNCH): bar D_k|_{E_3=0} = (n+1)*[Y^{n-3-2k}]*phi^{n-1} where bar D_k := [E_3^k] D. At k=0 this is exactly Day 162 Theorem B (checked-sober). At k>=1 untested. Test at k=1 queued for Day 164 (~20-line sympy). If holds: opens a layered generating-function story that might unify all bar D_k and give a top-down proof of Theorem B (k=0 case).",
+                "trust": "hunch",
+                "file": "memory/connections/2026-09-04-day162-dream-layer-d2-refutation.md",
+                "role": "attempt",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "psi-E-positive-layer-d0",
+            "approach": "Day 151 task 1: the three-variable Lagrange kernel psi (defined by Y = T*W(T) inverted, so that dY/dT = sum_n (n+1) W_n T^n and Y = T psi(Y)) extended from the published Y^6 out to Y^33, and tested for E-positivity. RESULT: all 364 monomials of psi_0..psi_33 in the basis E_1^a E_2^b E_3^c are non-negative integers -- zero negative coefficients, zero non-integers, exact integer arithmetic throughout with the two divisibility assertions (by n+1 and by n!) checked rather than assumed. Cross-checks before trusting anything: exact match with all seven published coefficients through Y^6; Narayana reproduced at E_3=0 for n=1..33; reversion identities Y(T(Y))=Y and psi(Y)T(Y)=Y exact to Y^33; H rebuilt from the raw definition in two independent implementations agreeing with Day 149's cached H16.pkl monomial-by-monomial to T^16, one of them a literal sympy transcription of the definition (to T^9). A trap was found and avoided: psi from H known to T^N is trustworthy only to Y^N. THIS IS EVIDENCE, NOT PROOF -- layer d=0 of Conjecture P now rests on 364 positive monomials instead of 7 terms, but no positivity proof exists.",
+            "trust": "computed",
+            "file": "scratch/2026-08-31-day151-psi-Y12.md",
+            "role": "premise",
+            "children": [
+              {
+                "id": "h2-degree-bound-as-working-tool",
+                "approach": "deg_u [T^n]H <= n (Day 149 Theorem 2, the strong form of (H2)) is imported from the b_k arc as a working tool, not as a hypothesis: it says the wt=n part of H_n is simply its top homogeneous u-component, which is what made the N=33 rebuild feasible (5 minutes instead of >10 at N=30). Asserted and checked at every step n=0..33.",
+                "trust": "proved",
+                "shared": "bk-mod3#h2-udegree-bound",
+                "file": null,
+                "role": "premise",
+                "children": []
+              },
+              {
+                "id": "psi-closed-form-not-manifestly-positive",
+                "approach": "Day 151, a PARTIAL NEGATIVE and the price of the closed form: the minimal polynomial Q of psi (psi-closed-form-degree5) is NOT manifestly positive. It is degree 5 in psi with leading Y-coefficient C_9 = -16E_3^3 and mixed signs throughout its C_j table, so possessing psi's minimal equation does NOT yield E-positivity -- degree 5 with a -16E_3^3Y^9 leading term is not a 'positive Lagrange kernel' shape, and positivity will need a different certificate. CONSEQUENCE FOR THE COMBINATORICS: a simple tree species for psi now looks UNLIKELY, since an algebraic kernel of degree 5 with an ugly minimal polynomial is not the shape a species generating function usually takes; combined with psi-catalan-prediction (refuted), the Narayana/Catalan interpolation story is dead. This WEAKENS but does NOT REFUTE the Day-143 geode / tree-species thread: no impossibility argument exists, only the absence of the expected shape, so the thread is revisitable and is deliberately not being marked dead-end. CROSS-REFERENCE: the E-positivity EVIDENCE is untouched -- the parent node psi-E-positive-layer-d0 still stands at `computed`, all 364 monomials of psi_0..psi_33 non-negative integers to Y^33, and the closed form independently re-confirms positivity through Y^12. Task 2 of q-lagrange-kernel-psi therefore remains open as a theorem, but is now cheaply checkable to any order from Q.",
+                "trust": "computed",
+                "file": "scratch/2026-08-31-day151-psi-closed-form.md",
+                "role": "attempt",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "psi-min-E3-period-2",
+            "approach": "New empirical structure in psi, found Day 151 and the FIRST structure in psi that is not just 'the Narayana end': the minimal-E_3 monomials are constant with period 2, [E_2^m E_3] psi_{2m+3} = 2 for every m in range (m<=15) and [E_1 E_2^m E_3] psi_{2m+4} = 1 for every m in range (m<=14). Also verified to Y^33: psi_k is weight-homogeneous of weight k for wt(E_1^a E_2^b E_3^c) = a+2b+3c, and psi_k is E_3-divisible for k>=3 (settles task 4 of q-lagrange-kernel-psi in the affirmative, empirically). Any combinatorial model for psi has to make these two edge families singletons/pairs.",
+            "trust": "computed",
+            "file": "scratch/2026-08-31-day151-psi-Y12.md",
+            "role": "attempt",
+            "children": []
+          },
+          {
+            "id": "psi-closed-form-degree5",
+            "approach": "Day 152 (2026-08-31): UPGRADED computed -> PROVED. The two Day-149 statements the Day-151 derivation took as given are now theorems: (P1) log ell_0^top(H) = partial Xi and (P2) theta Xi = (P - E_1)/2. (P1): tau = e^partial is translation u_i -> u_i + 1, and partial^k drops weight by k, so from wt(log F_P) <= 1 (Day 149 Thm 1) only k = 1 can reach weight 0; hence ell_0^top(log H) = partial ell_1^top(log F_P) = partial Xi, and ell_0^top(H) = exp(partial Xi) since ell_0^top is a ring hom on {wt <= 0}. (P2): apply ell_1^top to the Day-148 Riccati system (R) in the MULTIVARIATE Horn variables t_1,t_2,t_3. The D_1 d_2 term has wt <= 1 and cannot reach weight 2, so L_i := ell_1^top(theta_i S) = theta_i ell_1^top(S) satisfies L_1 = t_1 nu_1 nu_2, L_2 = t_2 nu_1 nu_3, L_3 = t_3 nu_2 nu_3 with nu_i = u_i + (the two L's containing index i); on the diagonal that IS nu_i(1 - T(e_1(nu) - nu_i)) = u_i, and theta Xi = T e_2(nu) = (P - E_1)/2 by summing the quadratics. THEN Theorem C (psi = q e_3(nu)/E_3 = q/prod_i(q + T nu_i)) and Theorem D (Q irreducible, monic, deg_psi = 5, deg_Y = 9, minimal polynomial of psi over Q(E)(Y)) follow with every step written out. THREE IMPROVEMENTS OVER DAY 151. (1) A better closed form with NO E_3 and NO T^3 in the denominator: psi = 4q(q+2) / [ (q+1)^2 (2q + 1 - 2E_1 T) + Delta_2 T^2 ], regular at E_3 = 0, no 0/0. (2) The master quintic in two lines instead of radical clearing plus a double resultant: e_2(R) and e_3(R) are RATIONAL in (q,T,E) -- e_3(R) because the constraint e_2(u) = E_2 is LINEAR in it -- and the curve is just prod_i(R_i^2 - q^2) = 64 T^3 E_3, i.e. (2q^2 - e_2(R) q + e_3(R))(2q^3 + 2q^2 + e_2(R) q + e_3(R)) = 64 T^3 E_3, whose two factors are exactly 8T^3 e_3(nu) and 8E_3/e_3(nu). Times (q+2)^2 this is -4 x the Day-149 quintic, exactly. (3) The elimination Res_q(psi-relation, quintic) factors as -2048 psi^9 (3psi^2 + 2E_1 Y psi - Delta_2 Y^2)^2 (-Q) with ONE degree-5 factor; the Day-151 'unexplained second degree-5 factor' was an artefact of routing through the cubic in q, and both spurious factors are now identified. VERIFICATION: clean-room rebuild of F_P from its raw definition (scratch/day152/, exact Fraction arithmetic, sparse Q[u_1,u_2,u_3], symbolic E). (P1) and (P2) exact to T^8 with symbolic E; wt(S) <= 1 and wt(R) <= 3 confirmed multivariately to total t-degree 6 (and sharp, while deg_u[t^a]M = 2|a| -- the log-collapse is real); the multivariate top-weight Riccati identities L_i = t_i nu_j nu_k verified directly; W = e_3(nu)/E_3 and Y = T q W to T^10 symbolic; Q(psi,Y) = 0 through T^40 at five base points; all algebraic identities re-derived in sympy. The same Q as Day 151, coefficient for coefficient, from a different elimination. || PRIOR (Day 151, computed): Day 151 (2026-08-31): psi IN CLOSED FORM, DERIVED from the master curve rather than fitted. With nu_i the solution of nu_i(1 - T(e_1(nu) - nu_i)) = u_i, P := e_1(nu), q := 1 - TP: psi = q e_3(nu)/E_3 = q prod_i (nu_i/u_i) = q / prod_i (q + T nu_i); equivalently, purely in the curve coordinate, psi = q(1 - 2E_1T + (E_1^2-4E_2)T^2 - q^2) / (4E_3T^3(q+2)), with Y = T psi. Eliminating q against the rationalised master quintic (Res_q of the curve with the cubic q^3 psi^2 + q^2 psi(psi - E_1Y - 2) + 2E_3Y^3 = 0) gives Q(psi, Y, E_1, E_2, E_3) = 0 which is IRREDUCIBLE over Q[E,Y,psi] and MONIC in psi, with deg_psi Q = 5 and deg_Y Q = 9, every Y-coefficient C_j being E-homogeneous of degree j (forced by u -> lambda u, Y -> Y/lambda). SO psi IS ALGEBRAIC OVER Q(E_1,E_2,E_3)(Y), OF DEGREE EXACTLY 5. This settles sub-target (ii) of psi-slice-unidentified and answers task 3 of the question file q-lagrange-kernel-psi. DEGENERATION CHECK: at E_3 = 0, Q -> -(psi - 1 - E_1Y - E_2Y^2)(psi^2 - 2E_1Y psi + Delta_2 Y^2)^2, whose first factor is exactly the known psi = prod_i(1 + u_iY) (the squared factor is a resultant artefact, the other-branch conjugate); at E_1 = E_2 = 0 it degenerates to the slice equation of psi-slice-algebraic-equation. VERIFICATION: Q was derived by resultant, NOT fitted, and has residual 0 to T^56 at six base points chosen to include the degenerate cases -- E = (1,1,1), (3,5,7), (2,-1,5), (1,0,1) [E_2 = 0], (0,1,1) [E_1 = 0] and (5,2,-3) [E_3 < 0]. It reproduces all seven published coefficients of psi through Y^6 two independent ways (Newton-solving Q, and the symbolic-E pipeline running forward from the curve), and a separately fitted bivariate ansatz at E = (1,1,1) (60 unknowns, 63 equations, 28 free checks) returns the same equation. [Y^9]psi = 2E_2^3E_3 + 22E_1E_2E_3^2 + 34E_3^3, agreeing with a second agent's independently computed value. Task 4 (why E_3 divides [Y^n]psi for n >= 3) becomes transparent: C_j is E_3-divisible for j >= 7 and C_9 = -16E_3^3, and at E_3 = 0 psi truncates to prod_i(1 + u_iY), so every correction is O(E_3). CAVEAT -- WHY THIS IS `computed` AND NOT `proved`: sections 3.2-3.3 of the source were not written as referee-proof theorems, and the derivation TAKES AS GIVEN the Day-149 statements log ell_0^top(H) = partial Xi and theta Xi = (P - E_1)/2 rather than proving them (both were verified numerically, not derived). Two Day-149 normalisation ambiguities had to be pinned down first by computing F_P from its definition: theta is T d/dT and NOT the u-Euler operator, and ell_0^top(H) = sum_n (n+1)W_n T^n = dY/dT and NOT sum_n W_n T^n. See bk-mod3#h2-independent-audit-2026-08-31, where the same two ambiguities are audited and classified exposition-only. Written up at work-in-progress/notes/2026-08-31-day151-lagrange-kernel-psi.pdf (source commit 487081b, final d483e44).",
+            "trust": "proved",
+            "file": "proofs/2026-08-31-day152-psi-closed-form-PROVED.md",
+            "role": "premise",
+            "children": [
+              {
+                "id": "psi-closed-form-independent-audit-2026-08-31",
+                "status": "checked-sober",
+                "date": "2026-08-31",
+                "approach": "Day 152b adversarial audit of the Day 152 proof, second session same day. EVERY step re-derived by hand from the raw definition F_P = T^+(e^{T e_2} V)/V, including both IMPORTS that the Day 152 document did not prove: Day 148 Lemma 2.1 / Theorem 2.2 / (H) / (R) [Fact I], and Day 149 Theorem 1 parts (a) wt(lambda_i)<=1 and (b) wt(R)<=3 [Fact II]. NOTE: PROVE.md had certified Day 149 THEOREM 2 as audited, not Theorem 1 -- Theorem 1 was the actual load-bearing import and it is now checked. NO ERROR FOUND anywhere in the chain. Frame check passed: Day 152 \u00a75 defines Y := int ell_0^top(H) dT and psi by Y = T psi(Y); Day 149 \u00a74 independently states ell_0^top(H) = dY/dT with Y = T psi(Y) -- same object, same normalisation, so the headline is about the right psi. All day152 scripts were READ before being run (Day 147 failure mode: script does not implement its ledger row) and they do implement what they claim; all re-run, all pass. NEW TEST not in the Day 152 ledger and strictly stronger than its check5.py: the full pipeline raw F_P -> H -> ell_0^top(H) -> Y -> invert -> psi(Y) -> Q(psi,Y) run SYMBOLICALLY in E1,E2,E3 (check5.py was numeric base points only): Q(psi(Y),Y) = 0 through Y^12. En route it reproduces the Day 149 published psi coefficients and the PRE-REGISTERED Day 151 value [Y^9]psi = 2 E2^3 E3 + 22 E1 E2 E3^2 + 34 E3^3 from a third independent code path. TWO REPAIRS TO THEOREM D, both removing a black box. (1) IRREDUCIBILITY now has a one-line hand-checkable certificate instead of a 5-variable sympy factorisation: Q is MONIC in psi over Z[E,Y], so by Gauss any factorisation has monic factors and every specialisation of (E,Y) is degree-preserving; at E1=E2=0, E3=1, Y=1, Q becomes psi^5 - psi^4 + 22 psi^3 - 89 psi^2 + 152 psi - 32, which is IRREDUCIBLE MOD 5 (verified by distinct-degree factorisation written from scratch: deg gcd(psi^(5^k) - psi, .) = 0 for k=1,2,3,4 and 5 for k=5). Monic integer poly irreducible mod p => irreducible over Q => Q irreducible over Q(E)(Y). (2) The resultant identity Res_q(g1,g2) = -2048 psi^9 (3psi^2 + 2E1 Y psi - Delta_2 Y^2)^2 (-Q) is now VERIFIED BY EXPANSION (a multiplication) rather than obtained by factoring. Theorem D therefore depends on no polynomial-factorisation algorithm at all.",
+                "evidence": "proofs/2026-08-31-day152b-audit-of-psi-closed-form.md; scratch/day152audit/{lib.py,audit_symbolicQ.py,audit_Q.py,irred.py,cert.py,resid.py}"
+              }
+            ]
+          },
+          {
+            "id": "psi-slice-unidentified",
+            "approach": "OPEN: identify psi. Two sub-targets: (i) the E_1=E_2=0 slice, which in W := E_3 Y^3 is [W^n]psi = 1, 2, 5, 34, 334, 3958, 52599, 755256, 11467146, 181608526, 2972696179, 49967412130 (supported only in degrees divisible by 3, forced by weight); (ii) psi in closed form by elimination from the Day 149 master curve sum_i sqrt(q^2 + 4Tu_i) = q+2, which is now the only live route. NEGATIVES so far, all Day 150-151: not Catalan (see child node), not Fuss-Catalan A002293/A002294, not large Schroeder, not Motzkin, not Arc A's Lagrange kernel Phi_A = 1 + 9G + 58G^2 + 322G^3 + ... (9 vs 2 at the first coefficient -- a sharper confirmation of the Day 150 cycle-2 negative that sharing a curve does not mean sharing a kernel); not hypergeometric, since the successive ratios 2, 5/2, 34/5, 167/17, 1979/167 are not a low-degree rational function of n (167 and 1979 are prime, and the terms factor irregularly, e.g. 2972696179 = 59*2441*20641); not P-recursive of order <=4 with polynomial coefficients of degree <=4; not algebraic of the form P(W,f)=0 with deg_f <= 3, deg_W <= 4. EXPLICIT CAVEAT: the last two scans used only the 12 known terms and those weak degree bounds, so they do NOT settle P-recursiveness or algebraicity. psi OUGHT to be algebraic since the master curve is; the minimal equation is simply bigger than the scanned box. More terms are cheap (N=33 took 5 minutes). --- 2026-08-31 CORRECTION AND STATUS SPLIT (history above preserved verbatim): sub-target (ii) is DONE -- psi is algebraic over Q(E)(Y) of degree exactly 5, see the sibling node psi-closed-form-degree5 -- and the negative recorded above, 'not algebraic of the form P(W,f)=0 with deg_f <= 3, deg_W <= 4', is NOT CONTRADICTED: it was UNDER-POWERED. The scan box was simply too small; the true slice equation has deg_f = 5 and deg_W = 3, outside the old box in both variables. The EXPLICIT CAVEAT written above ('psi OUGHT to be algebraic since the master curve is; the minimal equation is simply bigger than the scanned box') was the right call and is now confirmed. See the child node psi-slice-algebraic-equation. THIS NODE NOW TRACKS ONLY SUB-TARGET (i), which is genuinely still open: the slice sequence 1, 2, 5, 34, 334, ... is NOT in OEIS and remains unidentified beyond its own algebraic equation.",
+            "trust": "in-progress",
+            "file": "scratch/2026-08-31-day151-psi-Y12.md",
+            "role": "attempt",
+            "children": [
+              {
+                "id": "psi-catalan-prediction",
+                "approach": "Pre-registered on Day 150 cycle 2, in writing, before any computation: [W^n] psi|_{E_1=E_2=0} = C_{n+1} (Catalan), i.e. [Y^9]psi = 14 E_3^3 and [Y^12]psi = 42 E_3^4. Motivation: Catalan at both extremes of the E_3-filtration, since at E_3=0 the Narayana row sums are Catalan.",
+                "trust": "dead-end",
+                "reason": "REFUTED at the first new data point. [Y^9]psi = 2 E_2^3 E_3 + 22 E_1 E_2 E_3^2 + 34 E_3^3, so the slice value is 34, not 14; and [Y^12] gives 334, not 42. The actual slice is 1, 2, 5, 34, 334, 3958, 52599, 755256, 11467146, 181608526, 2972696179, 49967412130. The prediction matched exactly the three terms 1, 2, 5 that were used to generate it and diverged immediately afterwards -- a clean instance of fitting a classical sequence to its own defining data, which is why it was pre-registered as weak. Kills the 'psi is Catalan at both ends of the E_3-filtration' story; Narayana at E_3=0 is untouched.",
+                "refutation": "computed",
+                "file": "scratch/2026-08-31-day151-psi-Y12.md",
+                "role": "attempt",
+                "children": []
+              },
+              {
+                "id": "psi-slice-algebraic-equation",
+                "approach": "Day 151: the E_1 = E_2 = 0 slice of psi is algebraic, and the parent's algebraicity negative was under-powered rather than wrong. With f = psi|_{E_1=E_2=0} and W = E_3Y^3: f^5 - f^4 + W(22f^3 - 88f^2 + 64f) + W^2(-f^2 + 88f - 16) - 16W^3 = 0, i.e. deg_f = 5, deg_W = 3 -- outside the old deg_f <= 3, deg_W <= 4 scan box in BOTH variables. Fitted with 24 unknowns from 26 equations, 1-dimensional nullspace, residual 0 on ALL 40 computed coefficients: an over-determination margin of 16 free checks. Nothing with deg_f <= 4, deg_W <= 7 or deg_f <= 5, deg_W <= 2 fits. It is corroborated by a DERIVATION and not only by the fit: it is exactly the E_1 = E_2 = 0 degeneration of the general equation Q of psi-closed-form-degree5, which was obtained by resultant. Irreducible over Q; Newton-solving it from scratch regenerates the sequence exactly. disc_f = 1728 W^4 (W^3 + 636W^2 + 1344W - 64)^3; the dominant singularity is the positive root W* = 0.04659172... of W^3 + 636W^2 + 1344W - 64, so [W^n]psi grows like 21.46^n, consistent with the observed successive ratio climbing through 17.8 at n = 14. The sequence is 1, 2, 5, 34, 334, 3958, 52599, 755256, 11467146, 181608526, 2972696179, 49967412130 (40 terms computed). NOT IN OEIS -- queried directly, several prefixes -- and the companion ell_0^top(H) slice 1, 8, 119, 2200, 45500, 1007904 is absent too; both are new sequences. So algebraicity is ANSWERED here and identification of the sequence stays OPEN in the parent.",
+                "trust": "computed",
+                "file": "scratch/2026-08-31-day151-psi-closed-form.md",
+                "role": "attempt",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "graph-G-lift-path-refuted",
+            "trust": "checked-sober",
+            "approach": "Day 155 test of Day 154 dream hypothesis: does [T^n]H|_{d=0 stratum} lift to (n+1)*M_{P_{n+1}}(x) (path graph chromatic-analog symmetric function of Gonzalez D'Leon-Wachs 2608.08692)? REFUTED at n=3. The E_3=0 slice matches (Narayana, already Day 154). But full d=0 stratum equals [Y^n]psi^{n+1} where psi has [Y^3] = 2 E_3 (not E_3 as it would need to be for classical Lagrange = \u03c9 PF), so coefficient of E_3 for n=3 is 8 not 4. Discrepancy grows systematically on partitions containing size-3 parts. Path graph M_{P_n} is NOT the lift. Falsifier fires; downgrades the 'single chordal graph per stratum' hypothesis. Retain: E_3=0 slice = M_{P_n} projection to Narayana IS real.",
+            "file": "scratch/day155/strata.txt + compute_strata.py; question/q-graph-G-lift.md updated"
+          }
+        ]
+      },
+      {
+        "id": "kerov-character-polynomial-bridge",
+        "approach": "Day 150 hypothesis: Conjecture P's E-positivity is the shadow of Kerov/Feray positivity. Kerov character polynomials express the normalised characters Sigma_k in the free cumulants R_j of the transition measure, and Biane's conjecture / Feray's theorem says their coefficients are non-negative integers -- a positivity theorem about a Kostka-adjacent expansion in Lambda^*, proved by counting a different model rather than by a sign-reversing involution, i.e. exactly Conjecture P's shape. Rick's pre-registered tests: T1 (does the 3-variable ring receive the R_j?) then T2 (is P_b R-positive?), with the pre-registered rule 'if truncation destroys the structure the bridge is decorative and the question closes'. Both run on Day 151.",
         "trust": "dead-end",
-        "reason": "Impossible by this method, and the write-up says why precisely (\u00a76.4). Split points see only binom(l,3) residue classes and binom(l,3)/l^3 -> 1/6, so the minimal degree of a polynomial vanishing on them is Theta(l): Proposition 6 is optimal for this route, and each prime therefore controls only finitely many coefficients. At l=2 three integers are never distinct mod 2, so there is no information at all; at l=3 the split locus is the single class E = (0,2,0), giving 3-integrality only on that class, which does not exclude a denominator E_3/3. And one cannot escape to non-split points by base change: binom(x,m) does not map O -> O for O unramified over Z_l (binom(zeta_3,2) = zeta_3(zeta_3-1)/2 is not in Z_2[zeta_3]).",
-        "refutation": "proved",
+        "reason": "T1 FAILS and T2 FAILS: Kerov positivity does not survive Rick's 3-variable truncation. (a)/(b) pass -- R_2..R_8 are nonzero on Lambda_3 with the right filtration degree, and (R_2,R_3,R_4) is a polynomial automorphism of A^3_Q. But (c) integrality fails: the Jacobian is -6, so Z[R_2,R_3,R_4] is a proper subring of Rick's integral Lambda_3 (E_2 and E_3 pick up denominators 2 and 6). (d) free generation dies at R_5, which becomes a mixed-sign non-integral polynomial in R_2,R_3,R_4, so 'the expansion in the R's' -- unique in Lambda^* -- is ill-posed in Lambda_3. (e) is decisive: the truncated Sigma_4..Sigma_7, i.e. the very objects Feray PROVED positive, carry 5/10, 6/14, 10/22 and 12/26 negative coefficients and none is integral. The repaired T2 -- lift to the stable Lambda^*, where the expansion is unique and Feray positivity actually lives -- also fails, for both natural lifts of P_b: b=1 gives 2 negatives out of 3 terms, b=2 5/9 (full) and 5/11 (minimal), b=3 11/20 and 6/13, b=4 20/39 and 28/56; none integral. It fails at the smallest case in closed form, P_1 = s*_{(1,1)} = (R_2^2 - R_2 - R_3)/2. The pipeline is validated, not broken: it reproduces Biane's Sigma_1..Sigma_7 exactly with all coefficients non-negative integers, so it does detect Kerov positivity where it exists. Not circular: the tests test positivity of Kerov's Sigma_k, an external theorem, never Conjecture P itself. By Rick's own pre-registered criterion the question closes; 'Kerov' must not appear in the FPSAC draft. Rule 6 v2 firing #11 -- here the name matched AND the ring matched, and the structure still did not transfer.",
+        "refutation": "computed",
+        "file": "scratch/2026-08-31-day151-kerov-T1.md",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "kerov-filtration-coincidence",
+            "approach": "The one keeper from the Kerov hunt, and a statement about Rick's OWN grading obtained without importing anything: under u_i = -(lambda_i + 3 - i) -- the frame map frak s_mu(u)|_{u=-a(lambda)} = (-1)^{|mu|} s*_mu(lambda), all three normalisation knobs at once, verified 11 shapes x 10 partitions exactly, and P_b re-derived in the lambda-frame for b=0..4 over 12 partitions -- the Kerov filtration and Rick's u-degree filtration COINCIDE: deg_u R_j = j-1 exactly for j=2..8, with leading symbol (-1)^{j-1} p_{j-1}(u), and the Jacobian of (R_2,R_3,R_4) in (E_1,E_2,E_3) is the nonzero constant -6. So the E_3=0 / Narayana top layer sits at Kerov's top layer too. The layer-induction route never depended on Kerov and is untouched by the T1/T2 failure.",
+            "trust": "computed",
+            "file": "scratch/2026-08-31-day151-kerov-T1.md",
+            "role": "attempt",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "naive-positivity-refinements",
+        "approach": "Two cheap refinements of P_b that, had they worked, would have made E-positivity manifest term by term.",
+        "trust": "dead-end",
+        "reason": "Both false (Day 149 \u00a75), recorded so nobody re-runs them. The S_3-orbit refinement of P_b is not positive: 22 of 35 orbit sums (1/V) sum_{beta in S_3 alpha} prod_i u_i^{(beta_i)} V(u+beta) have negative E-coefficients, so cancellation BETWEEN orbits is essential. And the Pieri operator B is not positive on the E-monomial basis: 12 of 35 monomials of degree <= 4 fail, all with E_3-exponent >= 2, plus E_2^4 and E_2^3 E_3. The factorial Schur basis is the right one.",
+        "refutation": "computed",
         "file": "proofs/2026-08-30-day149-H2-PROVED.md",
         "role": "attempt",
         "children": []
-       }
-      ]
-     },
-     {
-      "id": "conjecture-C-separable-integrality",
-      "approach": "Conjecture C: [T^n]F_P is l-integral whenever the cubic is separable mod l. Would have given (H1) immediately, since Zariski density over all F_{l^f} upgrades pointwise integrality to Z_l[E].",
-      "trust": "dead-end",
-      "reason": "FALSE. Tested over 14835 (integer E, l) pairs with l not dividing the discriminant: 38108 violations, the first at E = (-22, 6, 24), l = 5, n = 5, where v_5(Psi_5) = 0 < v_5(5!) = 1. So the b! cancellation is genuinely a property of the RATIO H, not of F_P.",
-      "refutation": "computed",
-      "file": "proofs/2026-08-30-day149-H2-PROVED.md",
-      "role": "attempt",
-      "children": []
-     },
-     {
-      "id": "J-fraction-route",
-      "approach": "Look for a Stieltjes/J-fraction expansion of sum_n H_n T^n with non-negative integral coefficients, which would have delivered Conjecture P and (H1) at one stroke.",
-      "trust": "dead-end",
-      "reason": "Dead. At E = (0,0,0) the J-fraction coefficients are b = (6, 63, -36253/89, ...) and lambda = (3, -89/3, ...): neither integral nor positive. H is not a J-fraction object in T.",
-      "refutation": "computed",
-      "file": "proofs/2026-08-30-day149-H2-PROVED.md",
-      "role": "attempt",
-      "children": []
-     }
+      },
+      {
+        "id": "H1-integrality-payoff",
+        "approach": "(H1): H = tau(F_P)/F_P \u2208 Z[E_1,E_2,E_3][[T]]. Conjecture P implies it and would make it combinatorial. Verified for n<=16 symbolically (T^36 numerically as Conjecture H on Day 146). Day 149 \u00a79 puts it in fully explicit, p-adic-free form: the Hurwitz quotient of sum_b (T^b/b!) sum_mu K_{mu'(2^b)} frak s_{mu+(1^3)} by sum_b (T^b/b!) sum_mu K_{mu'(2^b)} frak s_mu lies in E_3 Z[E][[T]]; both numerator and denominator have coefficients in Z[E] and the whole difficulty is the b!. NOTE: (H1) is NOT needed for b_k = 0 mod 3, which is unconditional -- see bk-mod3.json.",
+        "trust": "in-progress",
+        "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "pieri-flow-reformulation",
+            "approach": "Day 149: H = e^{T B_2}(E_3) / (E_3 e^{T B_2}(1)) where B_k = V^{-1} e_k(hat u) V is the e_k-Pieri operator (hat u_i = u_i S_i) and e_3(hat u) = E_3 tau exactly. So (H1) is precisely the statement that a ratio of two 0/1-combinatorial Pieri flows, started at E_3 and at 1, has integral coefficients, the sole source of denominators being the 1/b! -- equivalently a statement about the commutator of e_2-Pieri with e_3-multiplication, which vanishes in Lambda_3 but not after the Psi-twist. Equivalently again (Theorem 5) the tau-shift is insertion of the single cubic g = 1 + 2(e_1+3)T + (e_1^2+4e_1+e_2)T^2 + (e_1e_2-e_3)T^3 into the umbral bracket, with the bridge H(u) = R(-u-1)^{-1}, R(u) = Phi(u+1)/Phi(u); g-identity verified symbolically to T^7 and the bridge to T^8.",
+            "trust": "proved",
+            "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "integer-valued-split-points",
+            "approach": "Day 149 Proposition 6, a genuine partial (H1): Phi*V is an integer-valued polynomial in u at every T-degree, and V(u+-1)=V(u), so [T^n]H is l-integral at every E coming from a cubic that splits with distinct roots mod l -- binom(l,3) residue classes. Combined with deg <= n (Theorem 2), Schwartz-Zippel gives [T^n]H \u2208 Z_(l)[E_1,E_2,E_3] whenever (l-1)(l-2) > 6nl, in particular for all l >> 6n.",
+            "trust": "proved",
+            "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+            "role": "attempt",
+            "children": [
+              {
+                "id": "integer-valued-route-is-optimal-hence-stalls",
+                "approach": "Push Proposition 6 to all primes / all n.",
+                "trust": "dead-end",
+                "reason": "Impossible by this method, and the write-up says why precisely (\u00a76.4). Split points see only binom(l,3) residue classes and binom(l,3)/l^3 -> 1/6, so the minimal degree of a polynomial vanishing on them is Theta(l): Proposition 6 is optimal for this route, and each prime therefore controls only finitely many coefficients. At l=2 three integers are never distinct mod 2, so there is no information at all; at l=3 the split locus is the single class E = (0,2,0), giving 3-integrality only on that class, which does not exclude a denominator E_3/3. And one cannot escape to non-split points by base change: binom(x,m) does not map O -> O for O unramified over Z_l (binom(zeta_3,2) = zeta_3(zeta_3-1)/2 is not in Z_2[zeta_3]).",
+                "refutation": "proved",
+                "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+                "role": "attempt",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "conjecture-C-separable-integrality",
+            "approach": "Conjecture C: [T^n]F_P is l-integral whenever the cubic is separable mod l. Would have given (H1) immediately, since Zariski density over all F_{l^f} upgrades pointwise integrality to Z_l[E].",
+            "trust": "dead-end",
+            "reason": "FALSE. Tested over 14835 (integer E, l) pairs with l not dividing the discriminant: 38108 violations, the first at E = (-22, 6, 24), l = 5, n = 5, where v_5(Psi_5) = 0 < v_5(5!) = 1. So the b! cancellation is genuinely a property of the RATIO H, not of F_P.",
+            "refutation": "computed",
+            "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+            "role": "attempt",
+            "children": []
+          },
+          {
+            "id": "J-fraction-route",
+            "approach": "Look for a Stieltjes/J-fraction expansion of sum_n H_n T^n with non-negative integral coefficients, which would have delivered Conjecture P and (H1) at one stroke.",
+            "trust": "dead-end",
+            "reason": "Dead. At E = (0,0,0) the J-fraction coefficients are b = (6, 63, -36253/89, ...) and lambda = (3, -89/3, ...): neither integral nor positive. H is not a J-fraction object in T.",
+            "refutation": "computed",
+            "file": "proofs/2026-08-30-day149-H2-PROVED.md",
+            "role": "attempt",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "minimality-half-of-P",
+        "approach": "The second half of Conjecture P -- that the minimum coefficient of [T^n]H is exactly n+1 and is attained at E_1^n -- is untouched and open. Day 150 explained the VALUE but not the MINIMALITY: E_1^n has u-degree n = top degree and no E_3, so it lives entirely in the leading symbol at E_2=E_3=0, where the Narayana identity gives (n+1) N(n+1,n+1) = n+1. Nothing yet rules out a smaller coefficient elsewhere.",
+        "trust": "in-progress",
+        "file": "memory/connections/2026-08-30-day150-two-arcs-one-lattice.md",
+        "role": "attempt",
+        "children": []
+      }
     ]
-   },
-   {
-    "id": "minimality-half-of-P",
-    "approach": "The second half of Conjecture P -- that the minimum coefficient of [T^n]H is exactly n+1 and is attained at E_1^n -- is untouched and open. Day 150 explained the VALUE but not the MINIMALITY: E_1^n has u-degree n = top degree and no E_3, so it lives entirely in the leading symbol at E_2=E_3=0, where the Narayana identity gives (n+1) N(n+1,n+1) = n+1. Nothing yet rules out a smaller coefficient elsewhere.",
-    "trust": "in-progress",
-    "file": "memory/connections/2026-08-30-day150-two-arcs-one-lattice.md",
-    "role": "attempt",
-    "children": []
-   }
-  ]
- }
+  }
 }
