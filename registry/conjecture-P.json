@@ -157,6 +157,22 @@
                 "role": "attempt",
                 "children": [
                   {
+                    "id": "partial-u3-Xi-at-u3-zero",
+                    "approach": "Day 161 Theorem 1 (2026-09-03, PROVED): partial_{u_3} Xi|_{u_3=0} = -log q, where q^2 = (1-E_1*T)^2 - 4*E_2*T^2. Proved via the Day 152 nu-system: applying ell^top_1 to the multivariate Riccati (R) and specialising to u_3=0 collapses the top-weight symbol to a two-variable identity solvable in closed form. Independent of the C.5 program (a companion identity to Theorem 2, easier to prove). Verified numerically against FP_coeffs (scripts under scratch/day161/).",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-03-day161-transverse-derivatives-of-log-W-and-Xi.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "partial-u3-logW-at-u3-zero",
+                    "approach": "Day 161 Theorem 2 (2026-09-03, PROVED): partial_{u_3} log W|_{u_3=0} = T*(q + R_1*R_2)/q^3, where q^2 = (1-E_1*T)^2 - 4*E_2*T^2 and R_1*R_2 = 2 - q^2 - 2*E_1*T = 1 - T^2*(E_1^2 - 4*E_2). Proved via the Day 152 nu-system, using the product form W = prod 1/rho_i to reduce the transverse derivative to a two-variable closed form. Load-bearing lemma for the C.5 program: combined with Day 158 gives Day 161 Theorem 3, E_2*bar D|_{E_3=0} = R^{(-1)} - (T/2)*(q+R_1*R_2)/q^3, which is the reduction of Day 156 C.5 to a two-variable identity for R^{(-1)}. Verified numerically to n<=13 at N=14 (scratch/day161/step3_verify_R_subtop.py).",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-03-day161-transverse-derivatives-of-log-W-and-Xi.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
                     "id": "theta-theta+2-Y2-reduction",
                     "approach": "Day 163 Lemma 1 (2026-09-04, PROVED unconditionally): theta*(theta+2)*Y^2 = 2*Y^2*[(q+1)^2 - E_1*T]/q^3 where theta = T*d/dT. Five-line algebraic proof (this file section 2) using theta*Y = Y/q (Day 158 Q2) and Day 158 Q1 identity q^2 = (1-E_1*T)^2 - 4*E_2*T^2 to reduce q*theta(q) = -E_1*T + E_1^2*T^2 - 4*E_2*T^2 and match q*[2(q+1) - theta(q)] = (q+1)^2 - E_1*T. Verified series n<=14 and symbolic. CONSEQUENCE: the three formulations of Theorem B (rational, Lagrange residue, T-derivative) are EQUIVALENT as algebraic identities in Q[E_1, E_2][[T]]; proving any one proves all three. Infrastructure for the eventual proof of Theorem B.",
                     "trust": "proved",
@@ -174,10 +190,98 @@
                   },
                   {
                     "id": "R-minus-one-closed-form",
-                    "approach": "Day 162 (2026-09-04): the explicit closed form R^{(-1)} := partial_{u_3} X^{(0)}|_{u_3=0} = (T/q^3)*[E_2*Y^2*((q+1)^2 - E_1*T) + (1/2)*(q + R_1R_2)] follows algebraically from Theorem B + Day 161 Thm 3. Verified n<=14 numerically. Missing Lemma (R) (Day 163 section 5): prove this closed form as a free-standing series identity, equivalent to Theorem B, equivalent to C.5. Both Route (i) and Route (iv) reduce to this identity.",
+                    "approach": "Day 162 (2026-09-04): explicit closed form R^{(-1)} := partial_{u_3} X^{(0)}|_{u_3=0} = (T/q^3)*[E_2*Y^2*((q+1)^2 - E_1*T) + (1/2)*(q + R_1R_2)]. Day 165 upgrade (2026-09-04): given Day 165's Sigma_0 closed form, this R^{(-1)} formula is proved by symbolic sympy identity via corrected (L3) ODE (see day165 close-Rminus1/step3_symbolic_verify.py) + first-order ODE uniqueness + initial condition R^{(-1)}(0)=0. Trust stays `checked-sober` because Sigma_0's closed form is `checked-sober` (n<=24, 15 specs, no analytic proof). If Sigma_0 upgrades to `proved`, R^{(-1)} auto-upgrades. Missing Lemma (R): now = prove ANY ONE of {Sigma_0, R^{(-1)}, Theorem B} closed form. Day 167 (2026-09-05): PARTIAL closure via Route (v). Prop 3 PROVED unconditionally. Route (A) (ξ_2 closure) PROVED. Route (B) ([deg=n-1]log(F_{-1}/F_0)) STALLED — reduces to Day 162 Theorem B (X^{(-1)}|_{u_3=0} not in closed form). Missing Lemma (R) trust unchanged: still `checked-sober`, gap is now Day 162 Theorem B specifically (equivalent by three-way collapse).",
                     "trust": "checked-sober",
-                    "file": "proofs/2026-09-04-day162-R-minus-one-closed-form.md",
+                    "file": "proofs/2026-09-04-day165-sigma-0-closed-form.md",
                     "role": "attempt",
+                    "children": []
+                  },
+                  {
+                    "id": "prop3-route-v-reduction",
+                    "approach": "Day 167 (2026-09-05, PROVED unconditionally by weight-grading). For all n ≥ 2, R^{(-1)}_n = (1/2) ∂²_{u_3} Ξ_n|_{u_3=0} − [deg_{(u_1,u_2)}=n-1]([T^n] log(F_{-1}/F_0)). Pure weight-grading proof from Day 149 Fact II(c) (wt(log F_P) ≤ 1) plus polynomial algebra: three layers (Ξ, X^(0), X^(-1)) contribute to the (u_1,u_2)-deg=n-1 part of [T^n] log F_P|_{u_3=c}; evaluating at c=0 and c=-1 and subtracting cancels X^(-1)|_{u_3=0}. Independent of Prop 1 and Prop 2 (which are used to define F_{-1} constructively, not for the identity). Verified sympy n≤12 (step4, step6 scripts). Rule 11 firing #9.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day167-prop3-proof.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "xi_1_closed_form_at_E3_zero",
+                    "approach": "Day 167 (Route A): ξ_1|_{E_3=0} = [-log q - ∂_{E_1}ξ_0 - E_1·∂_{E_2}ξ_0]/E_2 with ξ_0 = Ξ|_{u_3=0} (Day 158 Thm 1). Proved from Day 161 Thm 1 (∂_{u_3}Ξ|_{u_3=0} = -log q) + Day 163 Lemma 2 (chain rule). Verified numerically n ≤ 8.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day167-missing-lemma-R-final.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "xi_2_closed_form_at_E3_zero",
+                    "approach": "Day 167 (Route A): ξ_2|_{E_3=0} = [[E_3^1]log W - 3∂_{E_1}ξ_1 - 2E_1·∂_{E_2}ξ_1]/(2E_2). Follows from (P1) log W = ∂Ξ (Day 152 Thm C) at [E_3^1]. All inputs closed by Day 158 + Day 161. Verified numerically n ≤ 8.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day167-missing-lemma-R-final.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "half_dd_u3_Xi_at_u3_zero_closed_form",
+                    "approach": "Day 167 (Route A): (1/2)∂²_{u_3}Ξ|_{u_3=0} = (1/2)[∂²_{E_1}ξ_0 + 2E_1∂_{E_1}∂_{E_2}ξ_0 + E_1²∂²_{E_2}ξ_0 + 2E_2(∂_{E_1}ξ_1 + E_1·∂_{E_2}ξ_1) + 2E_2²·ξ_2]|_{E_3=0}. Combines ξ_0, ξ_1, ξ_2 closed forms with second-order chain rule. Verified numerically n ≤ 8.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day167-missing-lemma-R-final.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "LA-F1-sub-top-Sigma-0",
+                    "approach": "Day 165 (2026-09-04): closed form -Sigma_0 = (q+1-u)(q^2-6q+6-6u)/(2q^4) with u=E_1*T; equivalently -Sigma_0 = 1/(2q) + (1-u)/(2q^2) + 12*E_2*T^2/q^4. Sigma_0 = ell^top_0(L_A F_1/F_0). Discovered via P-recurrence hunt on E-basis diagonals of Sigma_0, then closed-form solution to Q-rec and P-rec via ansatz in (1-4W)^{alpha} with W = E_2*T^2/(1-E_1*T)^2. Verified checked-sober at N=24 across 10 specialisations (250 exact coefficient matches, day165/final_verify.py) + N=15 across 5 fresh specialisations (day165/close-Rminus1/step1_verify_sigma0.py). Since (1-4W) = q^2/(1-u)^2, everything rational in q. Under corrected (L3), Sigma_0 closed form ⟺ R^{(-1)} closed form ⟺ Theorem B (all equivalent, proving any one proves all).",
+                    "trust": "checked-sober",
+                    "file": "proofs/2026-09-04-day165-sigma-0-closed-form.md",
+                    "role": "attempt",
+                    "children": []
+                  },
+                  {
+                    "id": "LA-F1-Riccati-ODE-L3",
+                    "approach": "Day 164 Result 1 (L1) + Day 164 sec.5 weight-decomposition, corrected sign (Day 165): q*partial_T R^{(-1)} = theta(theta-1)Xi' + [2T^2*K + 3T]*partial_T Xi' - Sigma_0. Two-line derivation. Proved. The Day 164 boxed (L3) had a sign error on the middle term (was -, correct is +); caught by two Day-165 compute agents (day165/close-Rminus1/step2*.py, sigma0-proof/step14*.py) via numerical FP_coeffs check. Day 164 proof file annotated with correction.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-04-day164-LA-F1-riccati-split.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "R-minus-one-satisfies-L3",
+                    "approach": "Day 165 (2026-09-04): symbolic sympy identity — Day 162's explicit R^{(-1)} closed form (with Xi' = -log q from Day 161 Thm 1 and K from Day 158) satisfies the corrected (L3) as an algebraic identity in Y, q, E_1, E_2 under T = Y/phi(Y), q = (1-E_2*Y^2)/phi(Y). Both sides reduce to (E1^2 E2^2 Y^6 + 20 E1^2 E2 Y^4 + 3 E1^2 Y^2 + E1 E2^3 Y^7 + 42 E1 E2^2 Y^5 + 49 E1 E2 Y^3 + 4 E1 Y + 21 E2^3 Y^6 + 47 E2^2 Y^4 + 27 E2 Y^2 + 1) / (E2 Y^2 - 1)^4. Script: day165/close-Rminus1/step3_symbolic_verify.py.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-04-day165-sigma-0-closed-form.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "sigma0-Rminus1-algebraic-equivalence",
+                    "approach": "Day 165 corollary: given corrected (L3) [proved] + first-order ODE uniqueness + initial condition R^{(-1)}(0)=0 + Sigma_0 closed form [checked-sober], the R^{(-1)} closed form is analytically forced. Reverse direction is trivial (compute Sigma_0 from R^{(-1)} closed form via corrected (L3)). Hence: Sigma_0 closed form ⟺ R^{(-1)} closed form ⟺ Theorem B, all pairwise equivalent as algebraic identities modulo Day 158/161 already-proved machinery. Proving any one proves all three. Collapses FPSAC §5 open list from three items to one equivalence class.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-04-day165-sigma-0-closed-form.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "sub-sub-top-of-G-closed-form",
+                    "approach": "Day 168 (2026-09-05, PROVED): L := ell^top_0(G) = ell^top_{d=2}(G) = (1 + 3TK + T^2 K^2 + T*theta*K)/q, where G = F_0'/F_0 (at u_3=0), K = ell^top_1(G) from Day 158, q^2 = (1-E_1 T)^2 - 4 E_2 T^2. Proof: extract the weight-m (d=2) diagonal of Day 158 Corollary B (the Riccati T^2 G' + T^2 G^2 + [(E_1+3)T - 1] G + (1+E_1+E_2) = 0), yielding T*theta*K + 2T^2*H*L + T^2*K^2 + E_1*T*L + 3TK - L + 1 = 0; use 2T^2*H + E_1*T - 1 = -q (Day 158) to solve for L. Extends Day 158's Riccati one weight deeper. Rule 11 firing #10. Verified numerically to n <= 12 at (E1,E2)=(2,3) via scratch/day168/step1_verify_L_subsubtop.py.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day168-extended-riccati-and-Fm1-formula.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "X-minus-one-at-u3-zero-closed-form",
+                    "approach": "Day 168 (2026-09-05, PROVED as consequence of sub-sub-top-of-G-closed-form): X^{(-1)}|_{u_3=0} = int_0^T L dT' where L = (1 + 3TK + T^2 K^2 + T*theta*K)/q. Follows from L = ell^top_0(G) = ell^top_0((log F)') = partial_T ell^top_{-1}(log F) = partial_T X^{(-1)}|_{u_3=0} plus initial condition X^{(-1)}|_{u_3=0}(T=0) = 0. This closes ONE of the two ingredients of Route B (Day 167): [deg=n-1][T^n] log F_0 = X^{(-1)}|_{u_3=0} (Day 167 (L_0)). Route B itself requires ALSO the deg=n-1 part of log F_{-1}, which cancels the X^{(-1)} contribution so this closure alone does not close Route B.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day168-extended-riccati-and-Fm1-formula.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "F-minus-one-simplified-formula",
+                    "approach": "Day 168 (2026-09-05, PROVED): F_{-1} = F_P|_{u_3=-1} = 1 + p*int_0^T F_0 - p*T^2*F_0'/(p+s+1) where p = u_1 u_2, s = u_1 + u_2; equivalently F_{-1}' = 2p*F_0 - p*(1-(s+1)T)*F_0'/(p+s+1). Simpler than Clio's Prop 2. Two independent derivations: (a) direct evaluation of T^+(e^{T e_2} V)/V at u_3 = -1 using u_3^{(c)}|_{u_3=-1} = 0 for c >= 2, giving c_k^{(-1)} = p/k! * [B_k(u_1) B_k(u_2) - (k-1)(s+2k+1) B_{k-1}(u_1) B_{k-1}(u_2)] where B_k(u) = (u+2)(u+3)...(u+k); (b) from the recurrence (k+1) c_{k+1}^{(-1)} = p*[(p+s+1) - k(k+1)]/(p+s+1) * F_0[k] plus theta*(theta+1)*F_0 substitution using ODE (A) at u_3=0. Equivalence with Prop 2 verified via integrated ODE identity F_0 - 1 = (s+1) T F_0 + T^2 F_0' + p*int F_0. Verified numerically to n <= 7 via scratch/day168/step3_verify_Fm1_formula.py.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day168-extended-riccati-and-Fm1-formula.md",
+                    "role": "premise",
                     "children": []
                   }
                 ]
