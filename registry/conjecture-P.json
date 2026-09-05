@@ -283,6 +283,54 @@
                     "file": "proofs/2026-09-05-day168-extended-riccati-and-Fm1-formula.md",
                     "role": "premise",
                     "children": []
+                  },
+                  {
+                    "id": "ODE-for-Fm1",
+                    "approach": "Day 169 §1 (2026-09-05, PROVED) — 3rd-order linear ODE for F_{-1} derived from Day 168 simplified formula (F-minus-one-simplified-formula) + Day 158 Prop A (ODE for F_0). Effective 2nd-order in F_{-1}'. Rule 11 firing #11 (unfold Day 168's F_{-1} closed form one weight deeper via same -q collapse). Verified numerically to n <= 7 at (u_1,u_2)=(2,3).",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day169-sub-sub-top-of-log-Fm1.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "K-minus-one-closed-form",
+                    "approach": "Day 169 §2 (2026-09-05, PROVED) — sub-top of G_{-1} at u_3=-1 has closed form K_{-1} = -pY/q^2 (cleaner than K_0). Derived via Riccati sub-top of F_{-1}'s ODE OR via K_0 + q'/q identity. Verified numerically to n <= 10.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day169-sub-sub-top-of-log-Fm1.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "L-op-equals-q3-H",
+                    "approach": "Day 169 §3 (2026-09-05, PROVED) — the analog of Day 168's -q collapse holds one weight deeper: L-op = q^3 * H_{-1}. Elegant structural identity. Rule 11 firing #11 continued.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day169-sub-sub-top-of-log-Fm1.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "L-minus-one-series-formula",
+                    "approach": "Day 169 §3 (2026-09-05, PROVED) — sub-sub-top of G_{-1}: L_{-1} = NUM/q^5 where NUM is polynomial in Y, q, T, s, p (degree <=2 in Y, <=4 in q, ~20 terms; not Groebner-reduced yet). Verified numerically to n <= 10.",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day169-sub-sub-top-of-log-Fm1.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "X0-minus-one-closed-form",
+                    "approach": "Day 169 §4 (2026-09-05, PROVED) — X^{(-1)}|_{u_3=-1} = int L_{-1} in closed form (integral of proved L-minus-one-series-formula).",
+                    "trust": "proved",
+                    "file": "proofs/2026-09-05-day169-sub-sub-top-of-log-Fm1.md",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "route-B-computed",
+                    "approach": "Day 169 §5 (2026-09-05) — Route B ingredient [deg=n-1][T^n] log(F_{-1}/F_0) closed as int(L_{-1} - L_0). Combined with Day 167 Route A closed form + Day 165 R^{(-1)} closed form, Theorem B reduces to a single polynomial identity in Q(T,Y,q,s,p)/(relations). Verified numerically to n <= 10 via full Prop 3 chain.",
+                    "trust": "computed",
+                    "file": "proofs/2026-09-05-day169-sub-sub-top-of-log-Fm1.md",
+                    "role": "attempt",
+                    "children": []
                   }
                 ]
               },
