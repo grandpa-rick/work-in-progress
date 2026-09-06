@@ -1,0 +1,47 @@
+{
+  "peer": "Scot MacBeth",
+  "email": "scot.macbeth20@gmail.com",
+  "note": "Peer-claimed nodes from MacBeth. Trust grade 'peer-claimed' sits below Rick's checked-sober boundary — cite but do not build on without local re-derivation. See peers/macbeth/registry/peer-claims.json for the older MacBeth ledger.",
+  "claims": [
+    {
+      "id": "macbeth-mcontainers-thm2-codensity-eq-fullness",
+      "approach": "M-container extension [[-]]_M = [[-]] o M: fullness of the extension iff codensity of M (Thm 2) (macbeth, email 2026-09-05)",
+      "trust": "peer-claimed",
+      "claimed_by": "macbeth — peers/macbeth/emails/2026-09-05-mcontainers-codensity-polynomiality.md",
+      "file": "peers/macbeth/proofs/mcontainers-codensity-polynomiality.pdf",
+      "source_pin": "scotmacbeth/work-in-progress @ b94bc32"
+    },
+    {
+      "id": "macbeth-mcontainers-thm3-polynomiality-eq-composition",
+      "approach": "M-container extension: composition-closure iff polynomiality of M (Thm 3). Converse extended 05-Sep: necessity proved for super-polynomial monads (cardinality law) and analytic monads (Aut(X)-stabilizer invariant, Young-within-block vs D4 block-swap wreath); sole residual is a species Plethysm Lemma with no known monad inhabitant, so Thm 3 reads as a biconditional in practice (macbeth, email 2026-09-05)",
+      "trust": "peer-claimed",
+      "claimed_by": "macbeth — peers/macbeth/emails/2026-09-05-mcontainers-codensity-polynomiality.md",
+      "file": "peers/macbeth/proofs/mcontainers-codensity-polynomiality.pdf",
+      "source_pin": "scotmacbeth/work-in-progress @ b94bc32"
+    },
+    {
+      "id": "macbeth-vcont-thm33-faithful-not-full",
+      "approach": "VCont Thm 3.3: over Set the container extension is full and faithful, but over Vec the biproduct collapse makes it faithful-but-not-full and not injective on objects; ({*}, k^2) and ({1,2}, k) both present X -> X (+) X yet are non-isomorphic (lean-verified) (macbeth, email 2026-09-05)",
+      "trust": "peer-claimed",
+      "claimed_by": "macbeth — peers/macbeth/emails/2026-09-05-vcont-treatment.md",
+      "file": "peers/macbeth/proofs/vcont-treatment-2026-09-05.pdf",
+      "source_pin": "scotmacbeth/work-in-progress @ b94bc32"
+    },
+    {
+      "id": "macbeth-vcont-setxvecfd-admissible-off-pole",
+      "approach": "Composition-comonoids in VCont are families of k-algebras; Set x Vec_fd is admissible off the connected-unit pole (macbeth, email 2026-09-05)",
+      "trust": "peer-claimed",
+      "claimed_by": "macbeth — peers/macbeth/emails/2026-09-05-vcont-treatment.md",
+      "file": "peers/macbeth/proofs/vcont-treatment-2026-09-05.pdf",
+      "source_pin": "scotmacbeth/work-in-progress @ b94bc32"
+    },
+    {
+      "id": "macbeth-vcont-frontier-Q-infinite-dim-vec-projective",
+      "approach": "Frontier Question (Q): whether full infinite-dim Vec is admissible, equivalently whether F = Hom(E, (+)_N -) is projective; conjectured OPEN and independent of ZFC (macbeth, email 2026-09-05)",
+      "trust": "peer-claimed",
+      "claimed_by": "macbeth — peers/macbeth/emails/2026-09-05-vcont-treatment.md",
+      "file": "peers/macbeth/proofs/vcont-treatment-2026-09-05.pdf",
+      "source_pin": "scotmacbeth/work-in-progress @ b94bc32"
+    }
+  ]
+}

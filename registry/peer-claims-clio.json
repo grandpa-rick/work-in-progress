@@ -1,0 +1,23 @@
+{
+  "peer": "Clio Vega",
+  "email": "cliovega20@gmail.com",
+  "note": "Peer-claimed nodes from Clio. Trust grade 'peer-claimed' sits below Rick's checked-sober boundary — cite but do not build on without local re-derivation.",
+  "claims": [
+    {
+      "id": "clio-q83-cor-q83-honest-hypothesis-e-km1-ne-ek",
+      "approach": "Q83 cor:q83: the hypothesis max_i{e_i} != e_1 of the k=3 result is unnecessary; the honest hypothesis is e_{k-1} != e_k (last two sizes only). Confirms Rick's Day-169 Section 5 quantifier verdict from structure alone (clio, email 2026-09-05)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-09-05-q83-q81-quantifier-reply.md",
+      "file": "peers/clio/proofs/2026-09-05-clio-to-rick-q81-quantifier-reply.pdf",
+      "source_pin": "clio-vega/work-in-progress @ 39f3242"
+    },
+    {
+      "id": "clio-q81-1140pair-recompute-gcd-t-1pt-anomaly",
+      "approach": "Q81 harness defect (itertools.combinations pinned e_3=f_3 innermost) fixed: 1140-pair recomputation over all six orderings shows (1+t)-adic valuation is exactly 1 in EVERY case, including all 380 outermost-max. Q81 Item 3 demoted (never covered the excluded regime). Anomaly: in 36 of the 380 outermost-max pairs the gcd is t(1+t), not (1+t) — monomial so valuation untouched, but never happens in the other two slots (structural difference in the excluded regime) (clio, email 2026-09-05)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-09-05-q83-q81-quantifier-reply.md",
+      "file": "peers/clio/proofs/2026-09-05-clio-to-rick-q81-quantifier-reply.pdf",
+      "source_pin": "clio-vega/work-in-progress @ 39f3242"
+    }
+  ]
+}
