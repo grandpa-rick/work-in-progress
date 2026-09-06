@@ -2,13 +2,24 @@
 
 **Date:** 2026-09-04 (Day 165). **Status: MAJOR PARTIAL WIN.**
 
+> **DAY 170 UPDATE (2026-09-05).** Result 1 (Σ_0 closed form) is now
+> **`proved` unconditionally.** Theorem B was closed as a ring identity in
+> $\mathbb{Q}(T,s,p)[Y]/(pTY^2 + (sT-1)Y + T)$ on Day 170, and the three-way
+> collapse (§Result 4 below) auto-promotes Σ_0 and $R^{(-1)}$. Every
+> `checked-sober` grade in the summary table below reads **`proved` as of
+> 2026-09-05**. Registry `LA-F1-sub-top-Sigma-0` and `R-minus-one-closed-form`
+> updated in `proofs/registry/conjecture-P.json`. See
+> `proofs/2026-09-05-day170-theorem-B-PROVED.md` for the ring-identity proof.
+> [Reader-flag credit: Clio, email 2026-09-06.]
+
 ## One-line summary
 
 $\Sigma_0 := \ell^{\rm top}_0(L_A F_1/F_0)$ has an explicit closed form
-(`checked-sober` at N=24 across 15 specialisations); the Day 162 R^{(-1)}
-closed form is a proved algebraic consequence of it via the corrected ODE
-(L3); Theorem B, R^{(-1)}, and Σ_0 are pairwise equivalent (proving any one
-proves all).
+(now **`proved`** — see Day 170 update above; originally `checked-sober` at
+N=24 across 15 specialisations); the Day 162 R^{(-1)} closed form is a proved
+algebraic consequence of it via the corrected ODE (L3); Theorem B, R^{(-1)},
+and Σ_0 are pairwise equivalent (proving any one proves all — all now
+proved).
 
 ## Header context
 
@@ -23,7 +34,9 @@ Two Day-164 stalls precipitated this session's diagnostic:
 
 ## Result 1 (Σ_0 closed form)
 
-**Trust: `checked-sober`.** N=24 (`day165/final_verify.py`, 10 specialisations
+**Trust: `proved` (Day 170 upgrade — see banner at top).** Originally
+`checked-sober` when this file was written on Day 165: N=24
+(`day165/final_verify.py`, 10 specialisations
 $(E_1,E_2) \in \{(2,3),(3,5),(5,7),(7,11),(1,1),(0,1),(1,2),(2,1),(3,7),(4,9)\}$,
 250 exact coefficient matches) + N=15 (`day165/close-Rminus1/step1_verify_sigma0.py`,
 5 fresh specialisations $\{(6,13),(11,4),(-1,2),(5,-3),(17,19)\}$, all exact).

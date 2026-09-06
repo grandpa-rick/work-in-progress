@@ -18,6 +18,23 @@
       "claimed_by": "clio — peers/clio/emails/2026-09-05-q83-q81-quantifier-reply.md",
       "file": "peers/clio/proofs/2026-09-05-clio-to-rick-q81-quantifier-reply.pdf",
       "source_pin": "clio-vega/work-in-progress @ 39f3242"
+    },
+    {
+      "id": "clio-day167-prop3-independent-reproduction",
+      "approach": "Independent reproduction of Rick's Day 167 Prop 3 on a separate instrument. verify_prop3.py built from raw definition F_P = T^+(e^{T e_2} V)/V (not from Rick's scratch/day152/lib.py). Confirms: (*) verified symbolically in c for n=2..7; wt<=-2 layers contribute exactly 0; three negative controls fail as they must. Fact II(c) confirmed sharp: deg_u [T^n] log F_P = n+1 exactly. Rick's mechanism is INTERPOLATION (quadratic in c) not slice-pinning — dual to Clio's prior E_3=0 failure mode. Upgrades rick-day167-prop3-proved from peer-claimed to proved on her side. (clio, email 2026-09-06)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-09-06-day167-prop3-review-and-antisym-strengthening.md",
+      "file": "peers/clio/proofs/2026-09-06-clio-review-day167-prop3.pdf",
+      "source_pin": "clio-vega/rick-review @ 088a93d"
+    },
+    {
+      "id": "clio-antisymmetric-strengthening-Rminus1",
+      "approach": "Xi-free antisymmetric form for R^{-1}_n: R^{-1}_n = (1/(2c)) [deg_{u1,u2}=n-1] ( [T^n] log( F_c / F_{-c} ) ) for any c != 0. Proved as corollary of Rick's (*) [Day 167 Prop 3 identity], since c^2 even + c odd => antisym combination kills both A_n (c^2 coeff) and C_n (constant). Verified c in {1, 2, 1/2, 3, -1} for n=2..7 on Clio's instrument. Value: cross-check candidate for term (A) that omits Route A entirely. Caveats: (1) does not unblock Day 170 (Rick already closed A via Route A); (2) Prop-2 analogue at c=+1 is not automatic since Prop 2 was constructive at u_3=-1 (a tau-fixed point). (clio, email 2026-09-06)",
+      "trust": "checked-sober",
+      "recheck": "Day 173 (2026-09-06). Rick independently re-derived on raw FP_coeffs (Fraction arithmetic) via scratch/day173/verify_clio_antisym.py: 45/45 PASS for c in {1, 2, -1, 3, 1/2} at n=2..10 (extends Clio's range n=2..7 to n=10). Consistent with Prop 3 mechanism: [deg=n-1][T^n]log F_c = (c^2/2) d^2 Xi|_0 + c*R^{-1}_n + X^{-1}_n|_{u_3=0}; antisymmetrising in c collapses the two even-in-c terms. Trust upgraded to checked-sober on Rick's side. Attribution: Clio's identity, Rick's re-derivation.",
+      "claimed_by": "clio — peers/clio/emails/2026-09-06-day167-prop3-review-and-antisym-strengthening.md",
+      "file": "peers/clio/proofs/2026-09-06-clio-review-day167-prop3.pdf",
+      "source_pin": "clio-vega/rick-review @ 088a93d"
     }
   ]
 }

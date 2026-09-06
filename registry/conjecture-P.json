@@ -55,7 +55,34 @@
             "trust": "computed",
             "file": "scratch/2026-08-31-day151-clio-claims-check.md",
             "role": "attempt",
-            "children": []
+            "children": [
+              {
+                "id": "day172-shift-reduces-to-A-via-stability",
+                "approach": "Day 172: shift-law reduces to sub-claim (A) [tops^{(n)}[b] in Q[E_1,E_2,E_3]] via a rigorously PROVED stability identity \u03a8_b^{(n+1)}|_{E_{n+1}=0} = \u03c4_n^{-1}(\u03a8_b^{(n)}). Proof of stability: use \u03a8(s_\u03bc)=\ud835\udd30_\u03bc (Day 149) + the factorial-Schur stability Lemma \ud835\udd30_\u03bc^{(n+1)}(u_1,...,u_n,0) = \ud835\udd30_\u03bc^{(n)}(u-1), derived from det[(u_i)_{\u03bb_j+1}] = \u220fu_i \u00b7 det[(u_i - 1)_{\u03bb_j}] + Vandermonde translation invariance. Take top-\u03c1, use that \u03c3_n = top-symbol of \u03c4_n^{-1} acts as E_2 \u2192 E_2 - (n-1)E_1 (E_1,E_3 fixed) on Q[E_1,E_2,E_3]; iterate to get c_N = \u03a3_{n=3}^{N-1}(n-1) = C(N-1,2) - 1. See proofs/2026-09-06-day172-E2-shift-conditional.md \u00a73-4. This CLOSES the shift-law modulo (A).",
+                "trust": "sketched",
+                "file": "proofs/2026-09-06-day172-E2-shift-conditional.md",
+                "role": "attempt",
+                "children": [
+                  {
+                    "id": "day172-stability-identity",
+                    "approach": "\u03a8_b^{(n+1)}|_{E_{n+1}=0} = \u03c4_n^{-1}(\u03a8_b^{(n)}), where \u03c4_n^{-1}: E_k \u2192 \u03a3_j C(n-j,k-j)(-1)^{k-j} E_j. Proof by direct calculation on factorial Schur functions: for \u2113(\u03bc) \u2264 n, cofactor expansion of det[(u_i)_{\u03bb_j}]|_{u_{n+1}=0} along row n+1 (which becomes (0,...,0,1)) plus falling-factorial identity (u)_{k+1} = u\u00b7(u-1)_k and V_n(u-1)=V_n(u) gives \ud835\udd30_\u03bc^{(n+1)}(u,0) = \ud835\udd30_\u03bc^{(n)}(u-1). Then sum over \u03bc with Kostka weights. Verified 16/16 for n\u2208{2..5}, b\u2208{0..3} in test_stability.py.",
+                    "trust": "checked-sober",
+                    "recheck": "2026-09-06 scratch/day172/test_stability.py, algebraic derivation from det + Vandermonde translation-invariance",
+                    "file": "proofs/2026-09-06-day172-E2-shift-conditional.md#3",
+                    "role": "premise",
+                    "children": []
+                  },
+                  {
+                    "id": "day172-A-subclaim",
+                    "approach": "(A): tops^{(n)}[b] \u2208 Q[E_1,E_2,E_3] for all n \u2265 3, b \u2265 0. Computationally 28/28 for (n,b)\u2208{3..6}\u00d7{0..6}. Extends prior Day 151 result (26/26). NOT proved: this is the outstanding gap in the Day 172 argument. Individual \ud835\udd30_\u03bc^{(n)} generally involve E_4,...,E_n; the vanishing is a Kostka-weighted cancellation. Not implied by u-degree bound.",
+                    "trust": "computed",
+                    "file": "scratch/day172/verify_short.py",
+                    "role": "premise",
+                    "children": []
+                  }
+                ]
+              }
+            ]
           },
           {
             "id": "psi-e2b-top-slice-supported-on-E1E2E3",
@@ -63,7 +90,16 @@
             "trust": "computed",
             "file": "scratch/2026-08-31-day151-clio-claims-check.md",
             "role": "attempt",
-            "children": []
+            "children": [
+              {
+                "id": "day172-A-follows-from-stability-conditionally",
+                "approach": "Day 172: The support-on-E1E2E3 property (A) is DERIVABLE from (stability-identity) + (A at n-1), by taking top-\u03c1 of the stability identity and using that the top-\u03c1 symbol of \u03c4_n^{-1} sends {E_1,E_2,E_3} to itself. But the induction is not free \u2014 it only tells us that (tops^{(n+1)}[b])|_{E_{n+1}=0} is in Q[E_1,E_2,E_3]. To go from 'restriction is in E1E2E3' to 'full is in E1E2E3', we'd need to rule out E_{n+1}-containing monomials in tops^{(n+1)}[b], which is the piece we don't have. See proofs/2026-09-06-day172-E2-shift-conditional.md \u00a75.4 for two speculative routes: (i) direct Kostka + Stirling combinatorics, (ii) explicit differential-operator form of top-\u03c1 symbol of B_2^{(n)}.",
+                "trust": "sketched",
+                "file": "proofs/2026-09-06-day172-E2-shift-conditional.md",
+                "role": "attempt",
+                "children": []
+              }
+            ]
           },
           {
             "id": "clio-q1-quantum-integer-match",
