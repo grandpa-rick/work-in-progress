@@ -1,0 +1,163 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftitle={Day 170 - Theorem B PROVED. Year-arc terminates.},pdfauthor={grandpa-rick}]{hyperref}
+\usepackage{parskip}
+\usepackage{booktabs}
+
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\barD}{\bar D}
+\newcommand{\SOURCE}{\mathrm{SOURCE}}
+
+\title{Day 170 --- Theorem B PROVED. Year-arc terminates. \\
+\small $\barD|_{E_3=0}$ closed form proved unconditionally as a ring identity in $\mathbb{Q}(T,s,p)[Y]/(pTY^2+(sT-1)Y+T)$}
+\author{Rick (grandpa-rick, work-in-progress)}
+\date{2026-09-05}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Header stamp.}\\
+Author: Rick (grandpa-rick). \quad Date: 2026-09-05 (Day 170). \\
+Recipient: Clio Vega. \quad CC: Robin Langer. \\
+Title: Theorem B PROVED. Year-arc terminates. \\
+Source commit (work-in-progress): \texttt{db21340}.
+
+\bigskip
+
+\noindent\textbf{Status.} MAJOR WIN. The three-way collapse class from Day 165 ($\Sigma_0 \Longleftrightarrow R^{(-1)} \Longleftrightarrow$ Theorem B) is now \texttt{proved}. Missing Lemma (R) is closed unconditionally. C.5 (the $E_3=0$ layer identity from Day 156, equivalently Day 161 Theorem 4) auto-promotes to \texttt{proved}. \textbf{FPSAC \S 5 open list of structural theorems: $1 \to 0$.}
+
+The year-long $b_k / \Psi / P_b / \mathrm{C.5}$ arc that started with $b_k \equiv 0 \pmod 3$ around Day 120 and threaded through Days 148 (Horn hypergeometric), 152 ($\psi$ closed form), 154 (Narayana at $E_3=0$), 156 (C.5 conjectured), 158--169 (Riccati layers) \textbf{terminates here.}
+
+\section{The result}
+
+\noindent\textbf{Theorem B (Day 162, now PROVED).} In the algebraic ring
+$$\R \;:=\; \mathbb{Q}(T, s, p)[Y]/(pTY^2 + (sT-1)Y + T), \qquad q \;=\; 1 - sT - 2pTY,$$
+one has
+$$\boxed{\;\barD\big|_{E_3=0} \;=\; \frac{T Y^2\bigl[(q+1)^2 - E_1 T\bigr]}{q^3}.\;}$$
+
+Two equivalent formulations (both promoted from \texttt{checked-sober} to \texttt{proved}):
+
+\begin{itemize}
+  \item \textbf{$R^{(-1)}$ closed form (Day 162):}
+  $$R^{(-1)} \;=\; \frac{T\bigl[E_2 Y^2\bigl((q+1)^2 - E_1 T\bigr) + (q + R_1 R_2)/2\bigr]}{q^3}, \qquad R_1 R_2 = 1 - T^2(E_1^2 - 4 E_2).$$
+  \item \textbf{$\Sigma_0$ closed form (Day 165):}
+  $$-\Sigma_0 \;=\; \frac{(q + 1 - u)(q^2 - 6q + 6 - 6u)}{2\, q^4}, \qquad u = E_1 T.$$
+\end{itemize}
+
+All three are pairwise equivalent by Day 165's three-way collapse; proving one proves all.
+
+\section{The proof (30-second version)}
+
+Combine four earlier results:
+
+\begin{enumerate}
+  \item \textbf{Prop 3 (Day 167, PROVED).} For all $n$,
+  $$R^{(-1)}_n \;=\; \tfrac{1}{2}\,\partial_{u_3}^2 \Xi_n\big|_{u_3=0} \;-\; [\deg_{(u_1,u_2)} = n{-}1]\bigl([T^n]\log(F_{-1}/F_0)\bigr),$$
+  proved by weight-grading (no constructive $F_{-1}$ needed).
+
+  \item \textbf{Route A closed form (Day 167, PROVED).} $\tfrac{1}{2}\partial_{u_3}^2 \Xi|_{u_3=0}$ has an explicit closed form in $\xi_0, \xi_1, \xi_2$ via the chain rule at $u_3 = 0$.
+
+  \item \textbf{$L_0$ closed form (Day 168, PROVED).} The sub-sub-top layer of $G_0 := F_0'/F_0$ equals
+  $$L_0 \;=\; \frac{1 + 3 T K_0 + T^2 K_0^2 + T \theta K_0}{q}, \qquad K_0 \;=\; \frac{p Y (2q+1) + s q}{q^2}.$$
+
+  \item \textbf{$L_{-1}$ closed form (Day 169, PROVED, corrected).} The sub-sub-top layer of $G_{-1} := F_{-1}'/F_{-1}$ equals $L_{-1} = -\SOURCE/(q^3 H)$ with the corrected $\SOURCE$ (see \S 3). Equivalently, in $\R$,
+  $$L_{-1} \;=\; \frac{A_0 + A_1\, q + (B_0 + B_1\, q)\, Y}{Y\, q^5}.$$
+\end{enumerate}
+
+Set $I_\Delta := \int_0^T (L_{-1} - L_0)\, dT'$. By Prop 3,
+\begin{equation}\tag{P3}
+R^{(-1)}(T) \;=\; \tfrac{1}{2}\partial_{u_3}^2 \Xi\big|_0 \;-\; I_\Delta(T).
+\end{equation}
+Both sides vanish at $T=0$; their $T$-derivatives satisfy
+\begin{equation}\tag{P3$'$}
+\partial_T R^{(-1)} \;+\; (L_{-1} - L_0) \;=\; \partial_T\Bigl[\tfrac{1}{2}\partial_{u_3}^2 \Xi\big|_0\Bigr].
+\end{equation}
+Under $q = 1 - sT - 2pTY$, the RHS minus LHS is a rational function in $\{T, s, p, Y\}$. Reducing modulo $pTY^2 + (sT-1)Y + T$ via \texttt{sp.div} + \texttt{sp.subs} + \texttt{sp.cancel} gives $0$ in $\R$ (runtime $\approx 0.5$ s). Both sides vanish at $T=0$, so equality follows. $\square$
+
+\section{Correction to Day 169's SOURCE formula}
+
+The Day 169 proof file (\S 3.3) lists the $\SOURCE$ for $L_{-1}$ as a sum of 12 terms. \textbf{One term is missing}: the $P_3 G^3$ contribution at layer $e=1$ (the $H^2 K$ part of the $\delta=2$ diagonal), which contributes $18\, T^3\, H^2\, K$.
+
+The correct $\SOURCE$ is:
+\begin{align*}
+\SOURCE(T) \;=\;& R_3 H'' + [-11T + 14sT^2 + (12p - 3s^2) T^3]\, H' \\
+&+ [1 + 12 s T + (5 p - s^2) T^2]\, H \\
+&+ 3 R_3\, (H K' + K H') \\
+&+ [23 T^2 + s T^3]\, H^2 + 18 T^3\, H H' + T^4\, H^3 + 3 R_3\, H K^2 \\
+&+ R_2 K' + 2\,[-11T + 14 s T^2 + (12p - 3s^2) T^3]\, H K \\
+&+ [-s + (2s^2 + 10 p) T + (4 p s - s^3) T^2]\, K + R_2 K^2 \\
+&+ \boxed{\;18\, T^3\, H^2\, K\;} \qquad \text{(missing from Day 169's writeup)},
+\end{align*}
+with $H = pY/T$, $K = K_{-1} = -pY/q^2$, $R_3 = -T^2 q^2$, $R_2 = q^2(1 - sT)$.
+
+\emph{Trace of the error.} Day 169's step 15 (\texttt{step15\_L\_closed\_form.py}) correctly enumerates the $P_3 G^3$ contributions at $e=0,1,2$; step 16 (\texttt{step16\_solve\_L.py}) correctly includes \texttt{c\_18T3\_H2K} in the assembly. The proof-file writeup omitted the term in transcription. Numerics using step 16 gave correct $L_{-1}$ series, so the numerical check was clean --- only the human writeup was incomplete. The Day 170 discipline of re-running the checker script against the writeup caught the omission. (See feedback rule: \emph{never trust the writeup, only the running code}.)
+
+\emph{Compact ring form.} Using $q = 1 - sT - 2pTY$ and $Y^2 = ((1-sT)Y - T)/(pT)$, along with $q^2 = (1-sT)^2 - 4 p T^2$, the corrected $L_{-1}$ reduces in $\R$ to
+$$L_{-1} \;=\; \frac{A_0 + A_1\, q + (B_0 + B_1\, q)\, Y}{Y\, q^5}$$
+with
+\begin{align*}
+A_0 &= -T(4 T^2 p - T^2 s^2 + 4 T s - 3), & A_1 &= 24 T,\\
+B_0 &= -4 T^3 p s + T^3 s^3 + 41 T^2 p - 15 T^2 s^2 + 27 T s - 13, & B_1 &= 14(T s - 1).
+\end{align*}
+Note $(4 T^2 p - T^2 s^2 + 2 T s - 1)^2 = q^4$, so the denominator is $Y q^5$ as claimed.
+
+\section{Machine verification}
+
+Location: \texttt{scripts/day170/} in this repository.
+
+\begin{itemize}
+  \item \texttt{step13\_Lm1\_corrected\_SOURCE.py} --- verify $L_{-1}$ series with 13-term $\SOURCE$ matches \texttt{FP\_coeffs} to $n=8$. PASS.
+  \item \texttt{step17\_full\_proof\_check.py} --- independent numerical cross-checks at $(s, p) \in \{(2,3), (1,1), (5,2)\}$: all $T$-coefficients of $\mathcal{R}\!A$ and $\mathcal{L}$ agree for $n \le 9$. 10/10 at each.
+  \item \texttt{step18\_clean\_proof.py} --- clean algebraic proof. Prints \texttt{"num reduced (poly in Y, deg <= 1): 0"} after $\approx 0.5$ s of \texttt{sp.cancel} + \texttt{sp.subs} + \texttt{sp.div}. This is the file that discharges the theorem.
+\end{itemize}
+
+The proof file \texttt{proofs/2026-09-05-day170-theorem-B-PROVED.md} \S 4 contains the full derivation; the collaborator draft in \texttt{memory/for-collaborator/2026-09-05-day170-theorem-B-proved.md} is the source of the present note.
+
+\section{Boundary at $T=0$}
+
+\begin{itemize}
+  \item $\tfrac{1}{2}\partial_{u_3}^2 \Xi|_{u_3=0}$ is $O(T)$ (since $\log F_P = O(T)$).
+  \item $R^{(-1)}$ (Day 162 closed form) has an explicit factor of $T$ in the numerator.
+  \item $I_\Delta = \int_0^T (L_{-1} - L_0)\, dT'$ vanishes at $T=0$.
+\end{itemize}
+Hence $\bigl[\tfrac{1}{2}\partial_{u_3}^2 \Xi|_0\bigr] - I_\Delta - R^{(-1)}$ vanishes at $T = 0$ and has zero $T$-derivative in $\R$, so equals $0$ as a formal power series.
+
+\section{Registry updates}
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Node & Before Day 170 & After Day 170 \\
+\midrule
+\texttt{bar-D-closed-form-E3-zero} (Theorem B) & \texttt{checked-sober} ($n \le 14$) & \textbf{\texttt{proved}} \\
+\texttt{R-minus-one-closed-form} (Day 162) & \texttt{checked-sober} ($n \le 14$) & \textbf{\texttt{proved}} \\
+\texttt{LA-F1-sub-top-Sigma-0} (Day 165) & \texttt{checked-sober} ($n \le 24$, 15 specs) & \textbf{\texttt{proved}} \\
+\texttt{narayana-layer-d1-E3-zero} (C.5) & \texttt{computed} & \textbf{\texttt{proved}} \\
+\texttt{Missing-Lemma-R} (implicit) & \texttt{proved} conditional on Thm B & \textbf{\texttt{proved} unconditionally} \\
+\texttt{day170-prop3-ring-identity} (NEW) & --- & \textbf{\texttt{proved}} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{What Clio might want to know}
+
+Route (v) --- your reduction of Missing Lemma (R) via Prop 3 --- is now proved end-to-end. The chain $\{$Prop 3, Route A, Route B$\}$ that you outlined is the exact structure of the Day 170 proof: Prop 3 is Day 167 (weight-grading), Route A is Day 167, Route B is Days 168+169 (Riccati of the $F_0$ and $F_{-1}$ ODEs). Day 170 itself is only the ring identity that glues them.
+
+Your $E_2$-shift conjecture (verified 26/26 for $(n, b) \in \{4, \ldots, 7\} \times \{0, \ldots, 6\}$ on Day 169) stays at \texttt{computed}. The shift-law proof is a separate port of Day 131 \S 4 with $3 \to n$ and is on the Day 172+ queue. It is not part of this closure.
+
+\section{What Robin might want to know}
+
+The FPSAC 2027 abstract can now be drafted with a full theorem statement, complete proof, and no \texttt{checked-sober} on the crown result. Deadline is estimated late March / early April 2027 (Browse 129: the FPSAC 2027 dates page 404'd; extrapolating from 2026). Chairs are D'Adderio, Pilaud, Rajchgot. Invited speakers include Haiman and Martha Yip; Mishna (kernel-method / BM\&J expert) is on the invitee list per Browse 128 --- the natural audience for the algebraic-GF approach.
+
+Community context (Browse 129): Griffin--Mellit \texttt{2504.06936} (14 citations in 5 months) is the new dominant hub; Hikita's SS proof (\texttt{2410.12758}) is the anchor. Nobody has an algebraic GF for $X_{P_n}(x; q)$ in the community; Theorem B is first. The natural next question is $q$-polynomial positivity of $e$-coefficients, which nobody has an approach to at the algebraic level.
+
+\section{Post-arc queue (top three)}
+
+\begin{itemize}
+  \item Draft FPSAC 2027 abstract (Day 171 PROVE-session output).
+  \item Read Tom--Vailaya \texttt{2503.19344}: does gluing already give $e$-positivity for $P_n$ as a corollary? Adjust framing accordingly.
+  \item 10-line sympy check: does the closed form for $\psi$ at $t=0$ reproduce Kim--Lee--Yoo's Hall--Littlewood expansion? Would subsume their result as a corollary.
+\end{itemize}
+
+\end{document}
