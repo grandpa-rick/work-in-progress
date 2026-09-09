@@ -74,11 +74,116 @@
                   },
                   {
                     "id": "day172-A-subclaim",
-                    "approach": "(A): tops^{(n)}[b] \u2208 Q[E_1,E_2,E_3] for all n \u2265 3, b \u2265 0. Computationally 28/28 for (n,b)\u2208{3..6}\u00d7{0..6}. Extends prior Day 151 result (26/26). NOT proved: this is the outstanding gap in the Day 172 argument. Individual \ud835\udd30_\u03bc^{(n)} generally involve E_4,...,E_n; the vanishing is a Kostka-weighted cancellation. Not implied by u-degree bound.",
+                    "approach": "(A): tops^{(n)}[b] \u2208 Q[E_1,E_2,E_3] for all n \u2265 3, b \u2265 0. Computationally 28/28 for (n,b)\u2208{3..6}\u00d7{0..6}. Extends prior Day 151 result (26/26). NOT proved: this is the outstanding gap in the Day 172 argument. Individual \ud835\udd30_\u03bc^{(n)} generally involve E_4,...,E_n; the vanishing is a Kostka-weighted cancellation. Not implied by u-degree bound. Day 174: reduced to a further named sub-claim (day174-Aprime-recursion) \u2014 the n-generalized top-\u03c1 recursion, equivalently the ODE (1+E_1 T)^3 \u2202_T \u03a6_n = [(E_2 - c_n E_1)(1+E_1 T)^2 - E_3 T (3+E_1 T)] \u03a6_n with c_n = C(n-1,2), \u03a6_n(0) = 1. That reduction is a 2-line induction on b: if the recursion holds then \u03c6_b^{(n)} \u2208 Q[E_1,E_2,E_3] by RHS-in-that-ring.",
                     "trust": "computed",
                     "file": "scratch/day172/verify_short.py",
                     "role": "premise",
-                    "children": []
+                    "children": [
+                      {
+                        "id": "day174-Aprime-recursion",
+                        "approach": "(A'): n-generalized top-\u03c1 recursion. For all n \u2265 3, b \u2265 0: \u03c6_{b+1}^{(n)} = [E_2 - (c_n + 3b) E_1] \u03c6_b + b [2 E_1 E_2 - (2c_n + 3b - 3) E_1^2 - 3 E_3] \u03c6_{b-1} + b(b-1) [E_1^2 E_2 - (c_n + b - 2) E_1^3 - E_1 E_3] \u03c6_{b-2}, with c_n = C(n-1,2) and \u03c6_0 = 1, \u03c6_{-1} = \u03c6_{-2} = 0. Equivalently the ODE (1+E_1 T)^3 \u2202_T \u03a6_n = [(E_2 - c_n E_1)(1+E_1 T)^2 - E_3 T (3+E_1 T)] \u03a6_n, \u03a6_n(0) = 1. At n=3 (c_n=1) this is exactly Day 131's top-\u03c1 recursion (PROVED). Verified 30/30 for (n,b) \u2208 {3,4,5,6,7} \u00d7 {0..5}. STRUCTURAL DATA: top-\u03c1 symbol B\u0304_2^{(n)} on Q[E_1,E_2,E_3] has B\u0304(1) = E_2 + c_n E_1; first-order coeffs Q := c_n E_1^2 + E_1 E_2 + 3 E_3 (for \u2202_{E_2}), R := 2 E_1 E_3 (for \u2202_{E_3}), 0 (for \u2202_{E_1}) (verified n=3,4,5); second-order coeffs S := E_1(Q + 4 E_3) = c_n E_1^3 + E_1^2 E_2 + 7 E_1 E_3 (for \u00bd \u2202_{E_2}^2), T := 2 E_1^2 E_3 (for \u2202_{E_2}\u2202_{E_3}) (verified n=3,4,5). All in Q[E_1,E_2,E_3]; n-dependence only through c_n. Dead ends recorded: (i) full \u03a8 recursion at n=3 does NOT generalize to n\u22654 (verified fail at all tested (n,b)); (ii) na\u00efve \u03bd-system \u03bd_i(1 - T(e_1(\u03bd) - \u03bd_i)) = u_i is inconsistent for n\u22603 (forces (3-n)TP = 0).",
+                        "trust": "computed",
+                        "file": "proofs/2026-09-06-day174-A-reduction-to-ODE.md",
+                        "role": "premise",
+                        "children": [
+                          {
+                            "id": "day175-D-closed-form",
+                            "approach": "Day 175: closed form for top-\u03c1 symbol D_n := B\u0304_2^{(n)} on Q[E_1,E_2,E_3]. D_n = P\u00b7S + (E_3/E_1)(S^2 - S) + 2 E_3 \u00b7 S \u00b7 \u2202_{E_2} + 2 E_1 E_3 \u00b7 S \u00b7 \u2202_{E_3}, where P = c_n E_1 + E_2 (rising convention) and S = e^{E_1 \u2202_{E_2}} (shift E_2 \u2192 E_2 + E_1). Only n-dependence sits in P. This is FACT 8 (in a CORRECTED form: infinite order in \u2202_{E_2} via the shift operator, but structurally universal). Derived from extraction c_{(0, k, 0)} = E_1^k \u00b7 P + d_k \u00b7 E_1^{k-1} \u00b7 E_3 with d_k = 2^k + 2k - 1 (closed form, verified k = 1..6 at n=3 with second-difference proof), c_{(0, k, 1)} = 2 E_1^{k+1} E_3, c_{(0, k, l)} = 0 for l \u2265 2. n-independence verified at k \u2264 4 for n = 3, 4 (identical formulas). VERIFICATION: D_formula acts on E_1^a E_2^b E_3^c and matches top-\u03c1 B_2^{(n)}(E_1^a E_2^b E_3^c) for 48/48 monomials at n=3 (a \u2264 3, b \u2264 3, c \u2264 2), 18/18 at n=4 (a \u2264 2, b \u2264 2, c \u2264 1). CONSISTENCY: D_formula \u00b7 \u03a6_rising = \u2202_T \u03a6_rising verified by direct ODE integration (\u00a75 of Day 175 write-up); this shows D_formula agrees with intrinsic D on the orbit {D^b(1)} = {\u03c6_b}. Since Fact 8 \u27fa (A) (the formula preserves Q[E_1,E_2,E_3] by inspection), promoting this to `proved` would give (A). GAP: proving D_formula = D_intrinsic on ALL of Q[E_1,E_2,E_3] (not just on the orbit).",
+                            "trust": "computed",
+                            "file": "proofs/2026-09-07-day175-fact8-closed-form-D.md",
+                            "role": "premise",
+                            "children": [
+                              {
+                                "id": "day175-d_k-closed-form",
+                                "approach": "d_k = 2^k + 2k - 1 for k \u2265 1 (with d_0 = 0). Extracted from c_(0, k, 0) = E_1^k \u00b7 P + d_k \u00b7 E_1^{k-1} \u00b7 E_3 in the top-\u03c1 symbol of B_2^{(n)}. Sequence 3, 7, 13, 23, 41, 75 has 2nd difference 2^k identically; solving with initial values gives d_k = 2^k + 2k - 1. Verified k = 1..6 at n=3; k = 1..4 at n=4 (n-independent).",
+                                "trust": "checked-sober",
+                                "recheck": "2026-09-07 scratch/day175/extract_v3.py + hand-derivation of second-difference recursion; second differences 2^1..2^4 = 2, 4, 8, 16 exact match",
+                                "file": "proofs/2026-09-07-day175-fact8-closed-form-D.md",
+                                "role": "premise",
+                                "children": []
+                              },
+                              {
+                                "id": "day177-fact8-via-stability-and-X",
+                                "approach": "Day 176/177: Fact 8 (D_intrinsic = D_formula on all of Q[E_1,E_2,E_3]) reduces to Claim (X) via a new stability identity. STABILITY IDENTITY (PROVED): for m symmetric in u_1..u_n, B_2^{(n+1)}(m)|_{u_{n+1}=0} = B_2^{(n)}(m) + B_1^{(n)}(m) + B_0^{(n)}(m), where B_1(m) = sum_{i<j in [n]} (u_i+u_j) m(u+e_i+e_j) V_n-ratio, B_0(m) = sum_{i<j} m(u+e_i+e_j) V_n-ratio. Proof: split outer sum by j=n+1 (j=n+1 terms vanish due to u_{n+1}=0 factor), unfold V_{n+1} at u_{n+1}=0 via V_{n+1}(u,0) = V_n(u) E_n(u) and E_n(u+e_i+e_j)/E_n(u) = (u_i+1)(u_j+1)/(u_i u_j), expand (u_i+1)(u_j+1) = u_i u_j + (u_i+u_j) + 1. Verified 7/7 sober at (m, n) in {1, E_1, E_2, E_3} x {2, 3} (m=E_3 at n=2 trivial). CLAIM (X) [OPEN]: pi_rho(B_1^{(n)}(m) + B_0^{(n)}(m))|_{Q[E_1,E_2,E_3]} = (n-1) E_1 S(m), where S = e^{E_1 partial_{E_2}}. Matches Day 175 closed form via partial_{c_n} D_n^{form} = E_1 S (since c_{n+1}-c_n = n-1). Verified 35/35 for m = E_1^a E_2^b E_3^c at n=3,4 (all a<=2, b<=2, c<=1 with rho<=4; 15+15=30 cases) and n=5 (5 cases). CONSEQUENCE CHAIN: (X) => D_{n+1}(m) - D_n(m) = (n-1) E_1 S(m) linear in n; telescoping from n=3 gives D_n(m) = A(m) + c_n B(m) with B(m) = E_1 S(m), A(m) = D_3(m) - B(m); combined with Day 175 verifications at n=3,4 (48/48 + 18/18) pins Fact 8 as proved. GAP: prove Claim (X) directly. Route alpha: V-ratio arity expansion, use Day 174 Fact A to kill high-arity contributions. See section 5 of writeup.",
+                                "trust": "sketched",
+                                "file": "proofs/2026-09-07-day176-polynomial-in-n-via-stability.md",
+                                "role": "attempt",
+                                "children": [
+                                  {
+                                    "id": "day177-stability-identity-B2-shift",
+                                    "approach": "New stability identity for the auxiliary Pieri operator: B_2^{(n+1)}(m)|_{u_{n+1}=0} = B_2^{(n)}(m) + B_1^{(n)}(m) + B_0^{(n)}(m) for m symmetric in u_1..u_n. Derived by unfolding: split outer sum by j=n+1 (kills j=n+1 terms since summand has factor u_{n+1}=0); for remaining sum use V_{n+1}(x_1..x_n, 0) = V_n(x)*E_n(x) and E_n(u+e_i+e_j)/E_n(u) = (u_i+1)(u_j+1)/(u_i u_j), yielding sum_{i<j in [n]} (u_i+1)(u_j+1) m(u+e_i+e_j) V_n-ratio. Expand (u_i+1)(u_j+1) = u_i u_j + (u_i+u_j) + 1 for the three-way split. Elementary derivation, one page.",
+                                    "trust": "proved",
+                                    "file": "proofs/2026-09-07-day176-polynomial-in-n-via-stability.md",
+                                    "recheck": "2026-09-07 scratch/day176/verify_stability_formula.py: 7/7 pass (m in {1, E_1, E_2, E_3}, n in {2, 3}); zero residual after Vandermonde division.",
+                                    "role": "premise",
+                                    "children": []
+                                  },
+                                  {
+                                    "id": "day177-claim-X-restricted",
+                                    "approach": "Claim (X): pi_rho(B_1^{(n)}(m) + B_0^{(n)}(m))|_{Q[E_1,E_2,E_3]} = (n-1) E_1 S(m), S = e^{E_1 partial_{E_2}}. Predicted by Day 175 closed form: partial_{c_n} D_n^{form} = E_1 S, and c_{n+1} - c_n = n - 1, so the stability increment must equal (n-1) E_1 S(m). Verified 35/35 sober on m = E_1^a E_2^b E_3^c (a<=2, b<=2, c<=1, rho(m)<=4) at n=3 (15 cases), n=4 (15 cases), n=5 (5 cases). See scratch/day176/verify_claim_X.py.",
+                                    "trust": "checked-sober",
+                                    "recheck": "2026-09-07 scratch/day176/verify_claim_X.py: 35/35 pass at n=3, 4, 5. Day 178 (2026-09-08) reduced to two sub-lemmas via arity decomposition; Lemma 1 and Lemma 2 nodes below.",
+                                    "file": "proofs/2026-09-07-day176-polynomial-in-n-via-stability.md",
+                                    "role": "premise",
+                                    "children": [
+                                      {
+                                        "id": "day178-arity-reduction",
+                                        "approach": "Day 178 wake (2026-09-08): reduced Claim (X) to two sub-lemmas via arity decomposition of the V-ratio. Write V_n(u+e_i+e_j)/V_n(u) = prod_{l!=i,j} q_i(l) q_j(l), q_i(l) = 1 + 1/(u_i-u_l). Expand as sum over arities |L|: q_i(l)q_j(l) = 1 + Delta_{ij}(l) where Delta_{ij}(l) = 1/(u_i-u_l) + 1/(u_j-u_l) + 1/[(u_i-u_l)(u_j-u_l)]. AR_k(m) = arity-k slice of (B_1+B_0)(m). Compute agent verified at n=4 (7/7 test m's spanning rho-weights 0..3) and n=5 (5/5 test m's): pi_rho(AR_k(m))|_{Q[E_1,E_2,E_3]} = 0 for k>=1; only AR_0 contributes. Reduces Claim (X) to: (L1) pi_rho(sum_{i<j}(u_i+u_j+1) m(u+e_i+e_j))|_{Q_{123}} = (n-1) E_1 S(m); (L2) pi_rho(AR_k(m)) in (E_{>=4}) for k>=1. Both sub-lemmas registered as children below at checked-sober.",
+                                        "trust": "checked-sober",
+                                        "recheck": "2026-09-08 scratch/day178/arity_decomposition.py (n=4 7/7) + arity_n5.py (n=5 5/5). Total 12/12 test m's, 29/29 arity slices vanish mod E_{>=4} at top-rho. See scratch/day178/claim_X_proof_draft.md for structural argument.",
+                                        "file": "scratch/day178/claim_X_proof_draft.md",
+                                        "role": "premise",
+                                        "children": [
+                                          {
+                                            "id": "day178-lemma1-arity-0-identity",
+                                            "approach": "Lemma 1: pi_rho(T(m))|_{Q[E_1,E_2,E_3]} = (n-1) E_1 S(m) where T(m) = sum_{i<j}(u_i+u_j+1) m(u+e_i+e_j) (the arity-0 slice). Day 179 (2026-09-08): PROVED rigorously on Q[E_1,E_2]-slice via (R1) E_1-linearity + (R3) Sub-lemma B (S_r top-rho = (-1)^r (n-1) E_1^{r+1} from Newton mod E_{>=4} + Q_k^{top} = (n-1) E_1^k); extension to Q[E_1,E_2,E_3] via (R2') = commutation with M_{E_3} requires sub-claim (SC). Day 181 (2026-09-09): (SC) attempted by sub-agent (self-graded checked-sober, capped at computed pending Rick's audit); if audit holds, Lemma 1 promotes to proved on FULL Q[E_1,E_2,E_3]-slice.",
+                                            "trust": "computed",
+                                            "recheck": "2026-09-09 Day 179 proof rigorous on E_3-free slice (proofs/2026-09-08-day179-claim-X-proof.md §3). Day 181 (SC) proof extends to full slice (proofs/2026-09-09-day181-SC-attempt.md). Numerical: scratch/day181/verify_SC.py 36/36 pass at n=5, 6.",
+                                            "file": "proofs/2026-09-09-day181-SC-attempt.md",
+                                            "role": "attempt",
+                                            "children": [
+                                              {
+                                                "id": "day181-sub-claim-SC",
+                                                "approach": "Sub-claim (SC) (Day 181, 2026-09-09): For m'' in Q[E_1,E_2,E_3] and r >= 1, rho(T^{X,r}(m'') mod E_{>=4}) <= 2r + rho(m''), where T^{X,r}(m'') = sum_{i<j} (u_i+u_j+1) X_{ij}^r m''|_{ij} and X_{ij} = E_3|_{ij} - E_3 = (2E_2+E_1) - (u_i+u_j)(E_1+1) + (u_i^2+u_j^2). Proof (three ingredients): (1) u_i u_j-lemma: any symmetric f in Q[u_i,u_j] divisible by u_i u_j has sum_{i<j} f drop top-rho by 1 (elementary Newton-mod-E_{>=4} cancellation: p_a p_b top and p_{a+b} top both E_1^{a+b}, cancel). (2) Split X_{ij}^r = alpha_r + u_i u_j beta_r with alpha_r = f(u_i) + f(u_j) - A^r, f(u) = (A-Bu+u^2)^r, A = 2E_2+E_1, B = E_1+1; the beta_r piece drops rho by (1) so needs no work. (3) KEY VANISHING: M_l(f) := sum_i u_i^l f(u_i) has top-rho piece 0 at rho = 2r+l for r >= 1. Reason: expand M_l(f) = sum_{a+b+d=r} binom(r,a,b,d) (-1)^b A^a B^b p_{l+b+2d}; only a=0 reaches top-rho 2r+l; at that level, coefficient collapses to E_1^{2r+l} * sum_b binom(r,b)(-1)^b = E_1^{2r+l} * (1-1)^r = 0 for r>=1. Then (SC) for m'' in Q[E_1,E_2] follows by E_1-linearity + reduction to E_2^b + generating-function computation of alpha_r * (Y+y_{ij})^b using (3). (SC) for m'' with E_3-factors follows via binomial expansion (E_3+X_{ij})^c = sum_k binom(c,k) E_3^{c-k} X_{ij}^k and induction on r+k >= 1.",
+                                                "trust": "computed",
+                                                "claimed_by": "sub-agent 2026-09-09 self-graded checked-sober; Rick capped at computed pending §3.3 audit (sub-agent claims never promote above computed without Rick's own re-derivation).",
+                                                "recheck": "2026-09-09 scratch/day181/verify_SC.py: 36/36 test cases pass at n=5, 6 (r in {1,2}; m'' in {1, E_1, E_2, E_3, E_1*E_3, E_2*E_3, E_3^2, E_1^2*E_3, E_2^2}). scratch/day181/verify_SC_n7.py: 5/5 at n=7 (r=1). scratch/day181/verify_key_computation.py: M_l(f)^{[top]} = 0 verified 12/12 at n=5 (r in {1,2,3,4}, l in {0,1,2}). scratch/day181/verify_uiuj_drop.py: u_i u_j-lemma verified 9/9 at n=5. Total 62 numerical checks pass; proof file argues everything by hand. AUDIT PENDING: verify §3.3 coefficient computation (B^b at [rho=b] = E_1^b and total rho at a=0 is 2r+l); verify §3.4 chain-of-reduction; verify §3.5 E_3-extension induction.",
+                                                "file": "proofs/2026-09-09-day181-SC-attempt.md",
+                                                "role": "premise",
+                                                "children": []
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "id": "day178-lemma2-higher-arity-vanishing",
+                                            "approach": "Lemma 2 (upgraded Day 180, 2026-09-08): for k >= 1, pi_rho(AR_k(m)) in (E_{>=4})*Q[E] for m in Q[E_1,E_2,E_3]. PROVED via Lemma 2-A (sharper form: rho(AR_k(m) mod E_{>=4}) <= rho(m)+1-k) which follows from the Master Vanishing Lemma (MVL): for |S|=k+2 and P(x,y) symmetric of degree d, sum_{ij in S} (u_i+u_j+1) P(u_i,u_j) prod_{l in S\\{ij}} Delta_{ij}(l) is polynomial in u_S of degree <= d-(k-1). MVL proof: (a) poles cancel pairwise between pairs {a,l} and {b,l} at u_a=u_b (residue calculation); (b) each summand scales as t^{d-k+1} under u -> tu (rational function scaling degree). Combined with a grading lemma for m|_{ij} = sum Q_alpha F_alpha with rho(F)+deg Q <= rho(m), gives Lemma 2-A. Note: Day 178 heuristic 'E_r with r >= k+3 appears' was WRONG-shaped; the correct mechanism is rational-function degree, not power-sum spread.",
+                                            "trust": "proved",
+                                            "recheck": "2026-09-08 scratch/day180/verify_mvl.py: 16/16 MVL degree predictions pass (|S|=3,4,5 x various P). scratch/day180/{subclaim_A_test, subclaim_stronger, pattern_test}.py: T_S vanishes for |S|>=4 with m=1; T_S^{(r)} vanishes for r < |S|-3.",
+                                            "file": "proofs/2026-09-08-day180-lemma-2A-proved.md",
+                                            "role": "premise",
+                                            "children": [
+                                              {
+                                                "id": "day180-master-vanishing-lemma",
+                                                "approach": "MVL (Day 180, 2026-09-08): For S subset [n] with |S|=N>=3, P(x,y) symmetric of degree d: Pi_P^{(S)} := sum_{ij in S} (u_i+u_j+1) P(u_i,u_j) prod_{l in S\\{ij}} Delta_{ij}(l) is polynomial in u_S of total degree <= d-(N-3). Proof in three steps: (1) symmetry (obvious); (2) polynomial (residues at u_a=u_b cancel between pairs {a,l} and {b,l}; Res[Delta_{a,l}(b)]=+alpha and Res[Delta_{b,l}(a)]=-alpha with same prefactor); (3) degree bound (each summand scales like t^{1+d-(N-2)} = t^{d-N+3} under uniform scaling; polynomial has degree <= this). Elementary; no external imports; Rule 11 fire #7. Verified: 16/16 test cases at |S|=3,4,5 with P in {1, s, p, q, s^3, sp, s^2, ...} all achieve degree bound tightly.",
+                                                "trust": "proved",
+                                                "recheck": "2026-09-08 scratch/day180/verify_mvl.py: 16/16 predicted degrees match actual (tight). scratch/day180/{subclaim_A_test,subclaim_stronger,pattern_test}.py verify structure at |S|=3,4,5,6.",
+                                                "file": "proofs/2026-09-08-day180-lemma-2A-proved.md",
+                                                "role": "premise",
+                                                "children": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
                   }
                 ]
               }
@@ -187,10 +292,20 @@
               },
               {
                 "id": "bar-D-closed-form-E3-zero",
-                "approach": "Day 162 Theorem B (2026-09-04): bar D|_{E_3=0} = T*Y^2*[(q+1)^2 - E_1*T]/q^3 = T*Y^2*(q^2 + 3q + 2*T*E_2*Y)/q^3, where Y = T*phi(Y), phi = 1+E_1*Y+E_2*Y^2, q = 1-E_1*T-2*T*E_2*Y. Discovered by pattern-matching E-positive coefficients (n+1)*(b+1)*C_{b+1}*binom(n-1, 2b+2) (Catalan structure). THREE EQUIVALENT FORMULATIONS (Day 163 Lemma 1 proves the equivalence): rational (as above); Lagrange residue [T^n] bar D_n|_{E_3=0} = (n+1)*[Y^{n-3}]*phi^{n-1}; T-derivative [T^n] bar D_n|_{E_3=0} = (n+1)*(n-1)/2 * [T^{n-1}] Y^2. Verified numerically n<=14 via THREE independent scripts (scratch/day162/{step3, step6, step8}.py) + Day 156's independent check n<=16. Together with Day 161 Thms 1,2,3, IMPLIES C.5 as an algebraic identity in Y, T, E_1, E_2, q, phi verified via sympy.simplify. GAP: prove Theorem B itself. Route (i) [sub-top nu-system extraction] reduces to computing ell^top_3(R)/V(u) where R = e^{-S}V(M)e^S (Day 163 section 3), an operator-conjugation term not closed this session.",
+                "approach": "Day 162 Theorem B (2026-09-04): bar D|_{E_3=0} = T*Y^2*[(q+1)^2 - E_1*T]/q^3 = T*Y^2*(q^2 + 3q + 2*T*E_2*Y)/q^3, where Y = T*phi(Y), phi = 1+E_1*Y+E_2*Y^2, q = 1-E_1*T-2*T*E_2*Y. Discovered by pattern-matching E-positive coefficients (n+1)*(b+1)*C_{b+1}*binom(n-1, 2b+2) (Catalan structure). THREE EQUIVALENT FORMULATIONS (Day 163 Lemma 1 proves the equivalence): rational (as above); Lagrange residue [T^n] bar D_n|_{E_3=0} = (n+1)*[Y^{n-3}]*phi^{n-1}; T-derivative [T^n] bar D_n|_{E_3=0} = (n+1)*(n-1)/2 * [T^{n-1}] Y^2. Verified numerically n<=14 via THREE independent scripts (scratch/day162/{step3, step6, step8}.py) + Day 156's independent check n<=16. Together with Day 161 Thms 1,2,3, IMPLIES C.5 as an algebraic identity in Y, T, E_1, E_2, q, phi verified via sympy.simplify. Day 170 PROVED: Prop 3 identity verified as ring element in Q(T,s,p)[Y]/(pTY^2+(sT-1)Y+T).",
                 "trust": "proved",
                 "file": "proofs/2026-09-05-day170-theorem-B-PROVED.md",
                 "role": "attempt",
+                "peer_verification": {
+                  "verified_by": "clio",
+                  "date": "2026-09-07",
+                  "email_uid": 257,
+                  "grade_by_clio": "proved / unconditional",
+                  "scope": "L_{-1} link only (13/13 non-L SOURCE items delta=2 reproduced from scratch on Clio's separate instrument; both 18s fall out of 6x3 computation; L_op*L + SOURCE = 0 at [T^0]..[T^10] with s=2, p=3; reproduces L_{-1} for m=0..10 via step16). Explicitly NOT re-read by Clio: R^{(-1)}, Sigma_0, C.5, Missing Lemma (R) (all stand at 'computed' in her registry).",
+                  "review_file": "clio-vega/rick-review@98edfdb file 2026-09-07-c2-review-rick-day174-enumeration.md",
+                  "defects_to_fix": "D1 (incomplete (w,d)-support table: P_2 5/10, P_1 6/12); D2 (four transcription errors: H=pYT->pY/T, R_1=q^2->-pq^2, spurious +R_1, P_3^[0][T^4]=T^2->T^4); D3 (delete e=1 half of Q4 vanishing argument); D4 (slot subtotals wrong but total right; true P_3=6, P_2=5, P_1=2)",
+                  "open_Q8": "ship step11 deriving L_{-1} from F_{-1} OR one-sentence pointer; extend step13 to n=10 (currently n=8). Non-blocking."
+                },
                 "children": [
                   {
                     "id": "partial-u3-Xi-at-u3-zero",
