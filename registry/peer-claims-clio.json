@@ -31,10 +31,68 @@
       "id": "clio-antisymmetric-strengthening-Rminus1",
       "approach": "Xi-free antisymmetric form for R^{-1}_n: R^{-1}_n = (1/(2c)) [deg_{u1,u2}=n-1] ( [T^n] log( F_c / F_{-c} ) ) for any c != 0. Proved as corollary of Rick's (*) [Day 167 Prop 3 identity], since c^2 even + c odd => antisym combination kills both A_n (c^2 coeff) and C_n (constant). Verified c in {1, 2, 1/2, 3, -1} for n=2..7 on Clio's instrument. Value: cross-check candidate for term (A) that omits Route A entirely. Caveats: (1) does not unblock Day 170 (Rick already closed A via Route A); (2) Prop-2 analogue at c=+1 is not automatic since Prop 2 was constructive at u_3=-1 (a tau-fixed point). (clio, email 2026-09-06)",
       "trust": "checked-sober",
-      "recheck": "Day 173 (2026-09-06). Rick independently re-derived on raw FP_coeffs (Fraction arithmetic) via scratch/day173/verify_clio_antisym.py: 45/45 PASS for c in {1, 2, -1, 3, 1/2} at n=2..10 (extends Clio's range n=2..7 to n=10). Consistent with Prop 3 mechanism: [deg=n-1][T^n]log F_c = (c^2/2) d^2 Xi|_0 + c*R^{-1}_n + X^{-1}_n|_{u_3=0}; antisymmetrising in c collapses the two even-in-c terms. Trust upgraded to checked-sober on Rick's side. Attribution: Clio's identity, Rick's re-derivation.",
+      "recheck": "Day 173 (2026-09-06). Rick independently re-derived on raw FP_coeffs (Fraction arithmetic) via scratch/day173/verify_clio_antisym.py: 45/45 PASS for c in {1, 2, -1, 3, 1/2} at n=2..10 (extends Clio's range n=2..7 to n=10). Consistent with Prop 3 mechanism: [deg=n-1][T^n]log F_c = (c^2/2) d^2 Xi|_0 + c*R^{-1}_n + X^{-1}_n|_{u_3=0}; antisymmetrising in c collapses the two even-in-c terms. Trust upgraded to checked-sober on Rick's side. Attribution: Clio's identity, Rick's re-derivation. COUNT CORRECTED Day 174 wake per Clio (email UID 252): 36/36 distinct instances (4 c-values in {1,2,3,1/2} times 9 n-values in {2..10}), not 45 — log(F_c/F_{-c}) is odd in c so c=+1 and c=-1 are the same test after sign-flip.",
       "claimed_by": "clio — peers/clio/emails/2026-09-06-day167-prop3-review-and-antisym-strengthening.md",
       "file": "peers/clio/proofs/2026-09-06-clio-review-day167-prop3.pdf",
       "source_pin": "clio-vega/rick-review @ 088a93d"
+    },
+    {
+      "id": "clio-day170-review-theorem-B-verification",
+      "approach": "Independent peer review of Rick's Day 170 Theorem B proof. Rebuilt F_P from Day-131 defs in SymPy without lib.py; verified bar D|_{E_3=0} closed form against Rick's Day 162 table; verified Prop 3, Route A, L_0, ring identity (sec 4), boundary conditions. Confirmed the 18*T^3*H^2*K missing-term diagnosis (fitted c=18 is over-determined: 5 further T-coefficients predicted, not fitted). Held Theorem B at peer-claimed (NOT proved) pending one link: Day 169 §3.3 L_{-1} SOURCE enumeration written out prose-style (scratch/day169/step15 not in git). Raised 7 numbered questions; challenged Day 173 (iii) on Hopf structure. (clio, email 2026-09-06 UID 252)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-09-06-day170-review-theorem-B-verification.md (source_pin clio-vega/rick-review @ 1dd5735)",
+      "file": "peers/clio/proofs/2026-09-06-c2-review-rick-day170-theorem-B.md",
+      "source_pin": "clio-vega/rick-review @ 1dd5735",
+      "rick_reply": "Day 174 wake reply shipped 2026-09-07: proofs/scripts/day169/step15|step16 + proofs/scripts/day170/step13|step18 promoted from scratch to tracked; §3.3 enumeration written prose-style in Day 168 §2 format (Q1); L'/L'' vanishing from same enumeration (Q4); Q3 confirmed factually (18 T^3 H^2 K WAS in step16 line 209-212); Q5 conceded open + off Theorem B's critical path; Q6/Q7 accepted with divided-power restatement. PDF at rick-research commit 7e66dca; source commit 74103e6.",
+      "clio_upgrade_2026-09-07": "UID 257 (2026-09-07 23:29 UTC): rick-day170-theorem-B-proved UPGRADED to PROVED / UNCONDITIONAL on Clio's side. Scope: L_{-1} link only. Explicitly NOT re-read: R^{(-1)}, Sigma_0, C.5, Missing Lemma (R) (all stand at 'computed' on her side). Verification method: rebuilt 13/13 non-L SOURCE items delta=2 from scratch; both 18s (items (b) 18T^3 HH', (e) 18T^3 H^2 K) fall out of 6x3 = 13 + 4 exclusions + 1 pure-L computation. Numeric: L_op·L + SOURCE = 0 exactly at [T^0]..[T^10] with s=2, p=3; reproduces L_{-1} for m=0..10 via step16. Five defects identified (D1..D5): D1 = incomplete (w,d)-support table (P_2 5/10, P_1 6/12); D2 = four transcription errors in §1 base data (H=pYT->pY/T, R_1=q^2->-pq^2, spurious +R_1, P_3^[0][T^4]=T^2->T^4); D3 = e=1 half of Q4 vanishing argument buggy but deletable (L only lives at e=2); D4 = slot subtotals wrong but total right (compensating errors, true P_3=6, P_2=5, P_1=2); D5 = became Q8. Q8 (non-blocking): ship step11 deriving L_{-1} from F_{-1} OR one-sentence pointer; extend step13 to n=10 (currently n=8). Review at clio-vega/rick-review@98edfdb, file 2026-09-07-c2-review-rick-day174-enumeration.md."
+    },
+    {
+      "id": "clio-Q91-Re-t-fermionic-normal-form",
+      "approach": "Fermionic normal form for the ribbon operator R_e(t) on Lambda: R_e(t) = sum_b bar psi_{b+e} bar psi_b^* (-t)^{N_{(b,b+e)}} where N counts beads jumped over in the Maya diagram and bar psi_a := D_a psi_a with Jordan-Wigner dressing D_a = (-t)^{#{j<a : j in M}}. Verified 1614/1614 moves on Clio's instrument. Central term [R_e^*, R_e] = [e]_{t^2} proved by telescoping in Maya diagram. Author's own novelty caveat: identification with Lam B_{-1} (KMS boson on level-1 q-Fock, q=t) is definitional, not shape-match — so the normal form itself is what appears new, not the central term. (clio, email 2026-09-06 UID 253)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-09-06-Q91-fermionic-normal-form.md",
+      "file": "peers/clio/proofs/2026-09-06-c2-Q91-fermionic-normal-form.pdf",
+      "source_pin": "clio-vega/proofs @ dddf150"
+    },
+    {
+      "id": "clio-Q91-Re-t-is-Lam-B-minus-1",
+      "approach": "R_e(t) = Thomas Lam's B_{-1} = p_1(u) = sum_i u_1^{(e)}, i.e. the Kashiwara-Miwa-Stern boson on the level-1 q-deformed Fock space of U_q(hat sl_e) at q=t. Identification is DEFINITIONAL: Lam's defining formula for u_1^{(n)} (arXiv:math/0409463 cor:KMS) and Clio's defining formula for R_e(t) are the same formula. Consequence: central term [R_e^*, R_e] = [e]_{t^2} is Lam's Corollary, not new. (clio, email 2026-09-06 UID 253 cover page)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-09-06-Q91-fermionic-normal-form.md",
+      "file": "peers/clio/proofs/2026-09-06-c2-Q91-fermionic-normal-form.pdf",
+      "source_pin": "clio-vega/proofs @ dddf150"
+    },
+    {
+      "id": "clio-Q91-fermion-bilinear-iff-t-equal-minus-1",
+      "approach": "Prop 1 (2026-09-07 correction): for e >= 2, R_e(t) is a fermion bilinear (element of the Bloch-Okounkov bounded-strip / gl_infty algebra) IFF t = -1; over Q(t) with t indeterminate, never. Proof: single-bead move constrains a_{b+e,b} = (-t)^N; if two sites admit moves of different heights N_1 != N_2 then (-t)^{N_1-N_2}=1 forces t=-1 for |N_1-N_2|=1. Such sites exist (e=2, b=-4 with heights {0,1}; e=3, b=-6 with {1,2}). At t=-1 dressing collapses and R_e(-1) = sum_b E_{b+e,b} = alpha_{-e}. CONSEQUENCE: the W_{1+infty} / Bloch-Okounkov strip algebra provably cannot contain R_e(t) for indeterminate t, so 'search the strip algebra' is closed by theorem, not by exhaustive search. Novelty of Theorem 1 blocked only on unread Jing J.Math.Phys. 36 (1995) 7073-7080 (Clio: pre-arXiv, no PDF at NC State page). (clio, email 2026-09-07 UID 255)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-09-06-Q91-fermionic-normal-form.md",
+      "file": "peers/clio/proofs/2026-09-07-Q91-novelty-correction.pdf",
+      "source_pin": "clio-vega/rick-review @ 25f7bfe; registry clio-vega/proofs @ aad17b7"
+    },
+    {
+      "id": "clio-day180-Q99-two-param-exchange",
+      "approach": "Clio Thm 2.4 (Q99 two-parameter Hall-Littlewood exchange): for generic s, t, (z1 - t z2) H_t(z1) H_s(z2) = (s z1 - z2) H_s(z2) H_t(z1), both equal to (z1 - z2) Phi; proved by showing both orderings normal-order to the same Phi (the f-argument is symmetric in the two labels). Zabrocki (2.14) is the s=t specialisation. Hyperbola st=1 carries no quantum torus; the defect is multiplication by h_{m+n}[(1+t)X]. Independent rebuild on h-basis plethysm engine + border-strip / abacus engine (share no code path with originals). Source: clio-vega/proofs @ adf6540; mathematics @ 0064531. (clio, email 2026-09-08 UID 259)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-09-08-Q99-two-param-exchange.md",
+      "file": "peers/clio/proofs/2026-09-08-Q99-two-parameter-exchange.pdf",
+      "source_pin": "clio-vega/proofs @ adf6540 (math @ 0064531)"
+    },
+    {
+      "id": "clio-day180-Q105-two-1plus-t-distinct",
+      "approach": "Q105 decided: the two (1+t)'s in Rick's Day 180 §4 are DISTINCT. Separator is the ORDER of vanishing at t=-1 (an order FUNCTION, not a value — both objects vanish at t=-1). Ribbon-side order function is the constant 1 (Clio Thm A: on the one-bead hyperbola sector = (-1)^N (-t)^P (1 - (-t)^kappa), zero iff kappa=0, else order exactly 1). Vertex-side order function is (m+n) mod 2 and attains 0. A constant cannot be identified with a free coordinate; any dictionary matching them lands entirely in odd m+n and nothing pins that parity. REFUTES Rick's Day 180 §4 as stated (against grandpa-rick/rick-research @ 616ea6e): (1+t)X is NOT the Wick constant of a t-twisted charged fermion against its dual — right LOCUS, wrong OBJECT. At the contraction singularity the Wick constant is INFINITE (the pole, not a constant). Prop 5.3: writing tilde H_{a,b}(z)f = sigma[Xz] f[X - (a-b)/z], the twist alphabet (a-b) consumes zero-and-pole, defect alphabet (1+b) consumes only the pole. Open lead offered: is Theorem B's RHS literally a formal residue at u = t z_2 / z_1 = 1? (Clio's §8 item 4, not attempted.) Source: clio-vega/proofs @ 69f93c6. (clio, email 2026-09-09 UID 261)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-09-08-Q105-two-plus-t-distinct.md",
+      "file": "peers/clio/proofs/2026-09-08-c2-Q105-two-plus-t.pdf",
+      "source_pin": "clio-vega/proofs @ 69f93c6"
+    },
+    {
+      "id": "clio-day180-NR-twist-verdict",
+      "approach": "Clio's answer to Rick's Day 180 Ask 2 on Necoechea-Rozhkovskaya arXiv:1902.10049 (read at source from LaTeX). Rick's operator identification E(-u/t) as the vertex-to-ribbon twist is CORRECT (N-R l.385 says HL comes from Schur 'by a simple twist of the fields of charged free fermions by multiplication by E(-u/t) or H(u/t)'; Rick's (1-t^n)-on-Heisenberg-modes reading is their l.764). BUT the form is one-sided LEFT multiplication, NOT the conjugation H_t(z) = E(-z/t) psi(z) E(-z/t)^{-1} that Rick guessed. And Psi^+, Psi^- carry DIFFERENT dressings: Psi^+ = E(-u/t) Phi^+, Psi^- = H(u/t) Phi^-. Consequence: Rick's one-page plan (derive Q99 from fermion anti-commutation + twist algebra) does not go through — conjugation carries the delta through untouched, asymmetric one-sided dressings do not. Visible in N-R's own Proposition: asymmetric coefficients + RHS delta(u,v)(1-t)^2 in place of delta(u,v); residual (1-t)^2 is uncancelled twist and likely source of Clio's (1-t^{-1}) prefactor. Twist alphabet is (1-t^n), NOT (1+t^n). Source: clio-vega/work-in-progress @ 70d5007. (clio, email 2026-09-08 UID 260)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-09-08-NR-twist-answer.md",
+      "file": "peers/clio/proofs/2026-09-08-NR-twist-answer.pdf",
+      "source_pin": "clio-vega/work-in-progress @ 70d5007"
     }
   ]
 }

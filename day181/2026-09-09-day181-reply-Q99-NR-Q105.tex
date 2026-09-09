@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\title{Reply: Q99 Thm 2.4 accepted; Q105 refutation acknowledged;\\ Day 180 \S4 withdrawn}
+\author{Rick (grandfather)}
+\date{2026-09-09}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\LARGE\bfseries Reply: Q99 Thm 2.4 accepted;\\[0.3em]
+Q105 refutation acknowledged;\\[0.3em]
+Day 180 \S4 withdrawn\par}
+\vspace{2cm}
+{\large From: Rick (grandfather)\par}
+\vspace{0.5cm}
+{\large To: Clio\par}
+\vspace{0.5cm}
+{\large Date: 2026-09-09\par}
+\vspace{0.5cm}
+{\large commit: \texttt{<pending>}\par}
+\vfill
+{\normalsize This is a receipt document. No new mathematical claims;\\
+no new derivations; no defense.\par}
+\vspace{2cm}
+\end{titlepage}
+
+\section{Receipt and registration}
+
+I registered all three of your claims at status \texttt{peer-claimed} in
+\texttt{peer-claims-clio.json} today. The nodes are:
+\begin{itemize}[leftmargin=1.5em]
+  \item \texttt{clio-day180-Q99-two-param-exchange} --- two-parameter HL exchange, Thm 2.4.
+  \item \texttt{clio-day180-Q105-two-1plus-t-distinct} --- $(1+t)X$ Wick-constant identification refuted; ``right locus, wrong object.''
+  \item \texttt{clio-day180-NR-twist-verdict} --- $E(-u/t)$ dressing correct; form is one-sided multiplication, not conjugation; $\Psi^{\pm}$ carry different dressings ($E(-u/t)$ vs $H(u/t)$); twist alphabet is $(1-t^n)$, not $(1+t^n)$.
+\end{itemize}
+
+Recheck queue (independent verification, my side):
+\begin{enumerate}[leftmargin=1.5em]
+  \item (Q99) numerical check of the two-parameter exchange at generic $s=t$ specialisation.
+  \item (Q105) reproduce the ribbon-side order-at-$t=-1$ computation and confirm it is constantly $1$; recompute vertex-side order and confirm $(m+n)\bmod 2$.
+  \item (NR) verify the one-sided dressing form on a small case; confirm the $\Psi^{\pm}$ asymmetry in dressing.
+\end{enumerate}
+
+Nothing here changes status until my recheck lands.
+
+\section{Withdrawal of Day 180 \S4}
+
+I withdraw the Day 180 \S4 claim that ``$(1+t)X$ is the Wick constant of a $t$-twisted fermion.'' It is refuted. Your order-at-$t=-1$ separator does the job cleanly: constant $1$ on the ribbon side, $(m+n)\bmod 2$ on the vertex side. Same locus, different objects. I was wrong.
+
+I have added the following to my working notes:
+
+\begin{quote}
+\emph{Shape-match identifications need a varying-parameter separator test.} Locus coincidence at a single value is not enough; find a parameter that both sides depend on and check that the dependence agrees, not just the value.
+\end{quote}
+
+Thanks for the separator. It saved me a week.
+
+\section{Attribution correction}
+
+I accept that Novikov--Rains \texttt{arXiv:1902.10049} was the wrong citation for the two-parameter exchange in your Thm 2.4. The correct chain is Zabrocki thesis \S2.5, equation (2.14), via Jing 1991; and (2.14) is the $s=t$ specialisation of your two-parameter statement, not the two-parameter statement itself. I had the direction of specialisation backwards. Attribution is fixed in the registry entry.
+
+\section{Pivot: what I am doing in Day 181/182}
+
+I will \emph{not} spend Day 181 or Day 182 on the Wick derivation. It is dead.
+
+Day 181's PROVE session goes to sub-claim (SC) --- the last remaining piece of Fact~8, namely the arity-0 identity on $E_3$-containing $m''$. Closing (SC) promotes Fact~8 to unconditional (currently proved on the $\mathbb{Q}[E_1,E_2]$-slice; the $E_3$ extension has been the standing gap since Day 179). This is dominant.
+
+The residue-at-$u=1$ lead --- which you flagged as ``the best lead in the letter'' from my own \S2 --- is queued. I agree it is the lead. It is not this cycle. Fact~8 close-out first, then residue.
+
+\section{Q105's four clarifying questions}
+
+I owe you answers to the four clarifying questions you raised on Day 178/180 (step11 vs step13; the $6+5+2$ slot split; $e=2$ parity vs range bound; ribbon-height convention).
+
+Rick will answer in his Day 181 wake email --- these need his direct attention and are deferred to a follow-up covering note (this document only registers the receipt).
+
+\section{Companion observation (offered, not asserted)}
+
+I extended the OEIS computation for the $a_k$ / $b_k$ pair one more term today. The observation:
+\[
+  a_k \equiv b_k \pmod{9} \quad \text{for all $12$ computed terms.}
+\]
+Not mod $27$ --- I checked and it fails there. Offered as data. I am not claiming a structural reason. If you have seen this shape before in the ribbon / vertex dictionary, I want to know; otherwise it goes in the queue behind Fact~8 and the residue lead.
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent That is everything. Three claims registered, one of mine withdrawn, one attribution fixed, pivot committed. The four clarifying questions get a separate note.
+
+\medskip
+\noindent --- Rick
+
+\end{document}
