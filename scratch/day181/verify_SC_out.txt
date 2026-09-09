@@ -1,0 +1,40 @@
+===== n = 5 =====
+  r=1 m''=1            rho(m'')=0  bound=2  observed max_rho=  2  PASS 
+  r=1 m''=E_1          rho(m'')=1  bound=3  observed max_rho=  3  PASS 
+  r=1 m''=E_2          rho(m'')=1  bound=3  observed max_rho=  3  PASS 
+  r=1 m''=E_3          rho(m'')=2  bound=4  observed max_rho=  4  PASS 
+  r=1 m''=E_1*E_3      rho(m'')=3  bound=5  observed max_rho=  5  PASS 
+  r=1 m''=E_2*E_3      rho(m'')=3  bound=5  observed max_rho=  5  PASS 
+  r=1 m''=E_3^2        rho(m'')=4  bound=6  observed max_rho=  6  PASS 
+  r=1 m''=E_1^2*E_3    rho(m'')=4  bound=6  observed max_rho=  6  PASS 
+  r=1 m''=E_2^2        rho(m'')=2  bound=4  observed max_rho=  4  PASS 
+  r=2 m''=1            rho(m'')=0  bound=4  observed max_rho=  4  PASS 
+  r=2 m''=E_1          rho(m'')=1  bound=5  observed max_rho=  5  PASS 
+  r=2 m''=E_2          rho(m'')=1  bound=5  observed max_rho=  5  PASS 
+  r=2 m''=E_3          rho(m'')=2  bound=6  observed max_rho=  6  PASS 
+  r=2 m''=E_1*E_3      rho(m'')=3  bound=7  observed max_rho=  7  PASS 
+  r=2 m''=E_2*E_3      rho(m'')=3  bound=7  observed max_rho=  7  PASS 
+  r=2 m''=E_3^2        rho(m'')=4  bound=8  observed max_rho=  8  PASS 
+  r=2 m''=E_1^2*E_3    rho(m'')=4  bound=8  observed max_rho=  8  PASS 
+  r=2 m''=E_2^2        rho(m'')=2  bound=6  observed max_rho=  6  PASS 
+  TOTAL: 18/18 pass
+===== n = 6 =====
+  r=1 m''=1            rho(m'')=0  bound=2  observed max_rho=  2  PASS 
+  r=1 m''=E_1          rho(m'')=1  bound=3  observed max_rho=  3  PASS 
+  r=1 m''=E_2          rho(m'')=1  bound=3  observed max_rho=  3  PASS 
+  r=1 m''=E_3          rho(m'')=2  bound=4  observed max_rho=  4  PASS 
+  r=1 m''=E_1*E_3      rho(m'')=3  bound=5  observed max_rho=  5  PASS 
+  r=1 m''=E_2*E_3      rho(m'')=3  bound=5  observed max_rho=  5  PASS 
+  r=1 m''=E_3^2        rho(m'')=4  bound=6  observed max_rho=  6  PASS 
+  r=1 m''=E_1^2*E_3    rho(m'')=4  bound=6  observed max_rho=  6  PASS 
+  r=1 m''=E_2^2        rho(m'')=2  bound=4  observed max_rho=  4  PASS 
+  r=2 m''=1            rho(m'')=0  bound=4  observed max_rho=  4  PASS 
+  r=2 m''=E_1          rho(m'')=1  bound=5  observed max_rho=  5  PASS 
+  r=2 m''=E_2          rho(m'')=1  bound=5  observed max_rho=  5  PASS 
+  r=2 m''=E_3          rho(m'')=2  bound=6  observed max_rho=  6  PASS 
+  r=2 m''=E_1*E_3      rho(m'')=3  bound=7  observed max_rho=  7  PASS 
+  r=2 m''=E_2*E_3      rho(m'')=3  bound=7  observed max_rho=  7  PASS 
+  r=2 m''=E_3^2        rho(m'')=4  bound=8  observed max_rho=  8  PASS 
+  r=2 m''=E_1^2*E_3    rho(m'')=4  bound=8  observed max_rho=  8  PASS 
+  r=2 m''=E_2^2        rho(m'')=2  bound=6  observed max_rho=  6  PASS 
+  TOTAL: 18/18 pass
