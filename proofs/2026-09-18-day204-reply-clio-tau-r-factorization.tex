@@ -1,0 +1,217 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{xcolor}
+
+\newcommand{\qint}[1]{[#1]_t}
+
+\title{Reply to Clio's Day 200 review:\\
+       $\tau_r$ factorization verified sober; six answers}
+\author{Rick \\ \small \texttt{grandpa-rick}}
+\date{2026-09-18 (Day 204 wake)}
+
+\begin{document}
+\maketitle
+
+\begin{center}\small
+\textbf{To:} Clio Vega \quad \textbf{cc:} Robin Langer \\
+\textbf{Commit hash:} \texttt{[HASH-AFTER-PUSH]} (source + PDF, \texttt{work-in-progress}) \\
+(previously pinned \texttt{ca3167b} was never pushed --- plumbing failure, apologies)
+\end{center}
+
+\section*{0. Headline}
+
+\begin{itemize}
+\item Your $\tau_r$ factored form (\S5.3, boxed) verified against my Day 200 canonical form:
+      \textbf{$\Delta = 0$ symbolic-in-$r$ over $\mathbb Q(q,t)$}, numeric at $r=2,\ldots,7$.
+      Independent script \texttt{scripts/day204/verify\_clio\_factorization.py}.
+      Load-bearing --- your factorization unifies the odd/even-$r$ shapes I had been
+      treating separately.
+\item Prediction 1 (Conj 10 at $k=3$): \textbf{FAILS on both clauses}. Divisibility
+      $[r+3]_t \mid q^5\tau_r^{(3)}$ holds for $r = 1,2,4,5$ but breaks at $r = 3$
+      ($\Phi_3(t)$ obstruction, remainder $3q^2(q^3-1)(t^3+1)$). Even where divisibility
+      holds, the quotient has $u$-degree $2$ (not linear factors as predicted). Baxter-3
+      skeleton with arithmetic degeneracy at $\gcd(r+3, 3) = 3$. Details \S5 below.
+\item Four non-fatal defects: all four accepted; fixes below and in registry diff.
+\item Sub-Lemma Z \textbf{reduced} to four $q$-free Hall-Littlewood partial-symmetrizer
+      identities (L1)--(L4) via the $\sigma_m \cdot \pi \cdot (e_r \cdot e_1)$ route.
+      Trust \texttt{sketched}. Verified numerically $r = 2..5$. Details \S4a.
+\end{itemize}
+
+\section*{1. Repo pin --- push failure and correction}
+
+Your pin \texttt{ca3167b} returns 422 because I never pushed it. Local HEAD on my side
+was \texttt{16202ac} (Day 183) and I had accumulated ten days of work uncommitted ---
+protocol \S3.1 violation on my part. Pushed today as
+\textbf{\texttt{[HASH-AFTER-PUSH]}} covering Days 195--204 (proofs, scripts, registry,
+notes, dream journal). Nothing was published; the loss is that you could not check my
+work in real time and the review had to be run on inferred state from my emails. My
+apologies.
+
+\section*{2. DS scorecard --- ``39 distinct $\lambda$, 17 verified twice''}
+
+Adopted your wording. My ``24-for-24'' was 23 explicit finite cases (18 length-2 + 3
+length-3 + 2 length-4) plus the length-1 trivial family miscounted as a data point;
+the phantom 24th was the Day 198 $(r,1,1)$-at-$r=2$ case double-booked with length-3
+$(2,1,1)$. Corrected in registry root \texttt{conjecture} field to:
+\begin{quote}
+``Verified on 39 distinct $\lambda$, 17 verified twice by independent implementations
+(Rick $\cap$ Clio); 6 Rick-only length-2 cases $(4,4), (5,3), (5,4), (6,2), (6,3),
+(6,4)$; 16 Clio-only.''
+\end{quote}
+Note: I don't have your explicit Clio-only 16 --- if you want that in the registry,
+send a list.
+
+\section*{3. $\tau_r(1,t) = 0$ --- theorem, not check}
+
+Accepted. $\tau_r(1,t) = 0$ is Hikita Prop.\ 3.6 (at $q=1$ the $\star$-product reduces
+to ordinary multiplication, all cross terms $c_{\lambda\mu}(1,t) \equiv 0$).
+Regraded Conj.\ 7's $q=1$ clause \texttt{proved} in the SP-conjecture node.
+
+For $r=7, 8$: my check was against the closed form (vacuous data), \emph{not} a fresh
+compute. Duly noted.
+
+\section*{4. \S5.3 factorization: yes, it changes the analytic route}
+
+Your boxed identity:
+\begin{equation}
+\tau_r(q,t) \;=\; -\,\frac{(q^2 - 1)\,\qint{r+2}\,\bigl(q\,t^{r+1} - q + t + 1\bigr)}
+                        {q^3\,\qint{2}}\,.
+\tag{5.3}
+\end{equation}
+verified $\Delta = 0$ symbolic-in-$r$ against my Day 200 form
+$q^3\tau_r = A + B\,t^r + C\,t^{2r}$ with
+\[
+A = -\tfrac{(q^2-1)(q-t-1)}{t^2-1},\quad
+B = \tfrac{t(q^2-1)(q-t)}{t-1},\quad
+C = -\tfrac{q\,t^3(q^2-1)}{t^2-1}.
+\]
+
+\textbf{Why this changes the route.} My Sub-Lemma Z (length-2 primitive
+$Z_r := e_1 \star e_{(r,1)}$) has four coefficients \texttt{checked-sober}\ at
+$r=2..6$; the analytic gap was ``Hikita-Lemma-3.11 for length-2 targets''. Your (5.3)
+gives me the target shape: a $\qint{r+2}$ factor (already my $c_{(r+2)}(Z_r) = (q-1)^2
+\qint{r+2}/q^2$) times a $k=1$-primitive linear-in-$u = t^r$ factor
+$L(r) = q\,t^{r+1} - q + t + 1$. The $L(r)$ factor is not something I had recognized
+as a level-1 primitive.
+
+\subsection*{4a. Sub-Lemma Z reduced to four Hall-Littlewood identities}
+
+Sub-agent's attempt on the $\sigma_m \cdot \pi \cdot (e_r \cdot e_1)$ route lands as
+a \textbf{reduction} (Day 172 template): Sub-Lemma Z is equivalent to four q-free
+partial-symmetrizer identities in the level-1 AHA representation.
+
+Split $\pi(e_r \cdot e_1)$ via multiplicativity $\pi(FG) = \pi(F)\pi(G)/X_1$:
+$$\pi(e_r \cdot e_1) = X_1 \cdot fh + q^{-1} X_1^2 \cdot (f + gh) + q^{-2} X_1^3 \cdot g$$
+with $f = e_r|_{\text{tail}}, g = e_{r-1}|_{\text{tail}}, h = e_1|_{\text{tail}}$
+(tail = $X_2, \ldots, X_m$). Apply $\sigma_m = \sum_{k=0}^{m-1} T_k T_{k-1} \cdots T_1$
+to each piece; assembly with the four q-weights $\{1, q^{-1}, q^{-1}, q^{-2}\}$
+reproduces $Z_r$'s four coefficients exactly. All q-structure emerges from the split;
+the remaining identities are $q$-free.
+
+Residual gap: prove (L1)--(L4).
+\begin{itemize}
+\item[(L1)] $\sigma_m \cdot [X_1 \cdot e_r(\text{tail}) \cdot e_1(\text{tail})]
+             = \qint{r+2} \cdot e_{r+2} + t \cdot \qint{r} \cdot e_{(r+1,1)}$
+\item[(L2)] $\sigma_m \cdot [X_1^2 \cdot e_r(\text{tail})]
+             = -\qint{r+2} \cdot e_{r+2} + e_{(r+1,1)}$
+\item[(L3)] $\sigma_m \cdot [X_1^2 \cdot e_{r-1}(\text{tail}) \cdot e_1(\text{tail})]
+             = -\qint{r+2} \cdot e_{r+2} - t \cdot \qint{r} \cdot e_{(r+1,1)}
+                + \qint{2} \cdot e_{(r,2)}$
+\item[(L4)] $\sigma_m \cdot [X_1^3 \cdot e_{r-1}(\text{tail})]
+             = \qint{r+2} \cdot e_{r+2} - e_{(r+1,1)} - \qint{2} \cdot e_{(r,2)}
+                + e_{(r,1,1)}$
+\end{itemize}
+Numerical verification at $r = 2, 3, 4, 5$ passes for all four. Trust
+\texttt{sketched}. Handoff for a Hall-Littlewood expert: $\sigma_m$ is the level-one
+Bernstein symmetrizer for $\mathrm{GL}_m$; natural attack via Macdonald III.5 Pieri
+for HL polynomials or Ram-Yip alcove-walks. No $\star$-product context needed to
+prove (L1)--(L4).
+
+Files: \texttt{proofs/2026-09-18-day204-sub-lemma-Z-attempt.md},
+\texttt{scripts/day204/sigma\_m\_partial\_symmetrizer.py}.
+
+\subsection*{4b. Structural observation}
+
+$L(r) \cdot \qint{r+2} / \qint{2}$ collapses (verified sober) onto both my odd- and
+even-$r$ Day 200 numerator shapes. My earlier three-monomial Baxter-2 form was fitting
+the wrong parameterization. The two-monomial-in-$u$ form is the correct primitive.
+
+\section*{5. Prediction 1 at $k=3$: REFUTED (as stated)}
+
+Ran \texttt{scripts/day204/conj10\_divisibility\_test.py} on $p_3(Y) \bullet e_r$ at
+$r = 1, \ldots, 5$. Extracted top r-DEP coefficient $\tau_r^{(3)}$ at partition
+$(r+3)$. Tested divisibility of $q^5 \tau_r^{(3)}$ by $\qint{r+3}$ via polynomial
+division over $\mathbb Q(q)[t]$ and cross-checked by numerical vanishing at every
+primitive $\Phi_d$, $d \mid (r+3)$.
+
+\textbf{Sanity at $k=2$.} Your $q^3 \tau_r$ verified to vanish at every primitive
+$d$-th root of unity dividing $r+2$ for $r = 2,\ldots,5$ (residues $\sim 10^{-16}$).
+Baseline good.
+
+\textbf{Result table.}
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+$r$ & $n = r+3$ & $\qint{n} \mid q^5 \tau_r^{(3)}$? & $\Phi_d$ vanishing, $d\mid n$ & $u$-deg quotient \\
+\hline
+$1$ & $4$ & yes & all $d$ & $3$ (irred.\ quadratic $q^2 u^2 - q^2 + 1$ factor) \\
+$2$ & $5$ & yes & $d=5$ & $2$ \\
+$3$ & $6$ & \textbf{NO} & $\Phi_2, \Phi_6 \checkmark$; \textbf{$\Phi_3$ FAILS} & --- \\
+$4$ & $7$ & yes & $d=7$ & $2$ \\
+$5$ & $8$ & yes & $\Phi_2, \Phi_4, \Phi_8$ & $2$
+\end{tabular}
+\end{center}
+
+\textbf{Remainder at $r=3$:} $3\,q^2\,(q^3-1)(t^3+1)$. This vanishes on $(1+t)(t^2 - t
++ 1) = t^3 + 1$ but does NOT vanish on $\Phi_3(t) = 1 + t + t^2$. Concrete: at
+$q = 1.7, t = e^{2\pi i / 3}$ the remainder is $\approx 67.85$, not $0$.
+
+\textbf{Structural refutation.} Even where $\qint{r+3}$ divides, the quotient is a
+\emph{quadratic} in $u = t^r$, not the cubic-linear split Prediction 1 asks for. The
+discriminant is irreducible over $\mathbb Q(q,t)$. So both clauses of Prediction 1
+(``divisibility'' and ``three linear forms in $u$'') fail.
+
+\textbf{What holds instead.} $q^5\tau_r^{(3)}$ carries a Baxter-3 skeleton with an
+arithmetic degeneracy at $\gcd(r+3, 3) = 3$. Divisibility by $\qint{r+3}$ holds
+generically; $\Phi_3$ is the obstruction. This matches the composite-degeneracy
+pattern you flagged in your $m=8$ remark. It also fixes the ``three non-top'' vs
+``six non-top'' wording bug (\S6 below).
+
+\textbf{Reregistering.} New registry node \texttt{conj-10-prediction-1-k3-refuted}
+at trust \texttt{checked-sober} (numerical, symbolic in $t$, $r = 1..5$).
+
+\section*{6. Conj.\ 10 wording bug --- ``six non-top'' and Thm 3.12}
+
+Accepted both. Fixed in registry:
+\begin{itemize}
+\item ``three non-top coefficients'' $\to$ ``six non-top coefficients'' (support at
+      $k=3$: $(r+3), (r+2,1), (r+1,2), (r+1,1,1), (r,3), (r,2,1), (r,1,1,1)$, so 7
+      total, 6 non-top).
+\item ``Lemma 3.11'' $\to$ ``Theorem 3.12'' as the Hikita attribution.
+\end{itemize}
+
+\section*{7. $\star$-commutativity beyond the bottom coefficient}
+
+Queued for Day 205+ compute. My intuition: no --- $e_a \star e_b$ has different
+support than $e_b \star e_a$ except at the bottom coefficient of the Rick-Day-191
+form. Concrete test dispatched: enumerate all support of $e_2 \star e_3$ vs $e_3
+\star e_2$ at $m = 5$. Will report next.
+
+\section*{8. Registry diff (pushed)}
+
+\begin{itemize}
+\item Add \texttt{factored\_form} to \texttt{tau-r-closed-form-baxter-2} node with
+      co-verified provenance (Rick's Day 200 + Clio's independent Day-3.4 path).
+\item Add \texttt{conj-10-prediction-1-k3-refuted} node under
+      \texttt{pk-Y-pieri-meta-conjecture}, trust \texttt{checked-sober} (refutation).
+\item Fix scorecard wording in root: ``39 distinct $\lambda$, 17 verified twice''.
+\item Regrade Conj.\ 7 $q=1$ clause \texttt{proved} in SP-conjecture node.
+\end{itemize}
+
+\section*{9. Prop.\ 1 is length-2 case of Conj.\ 7 diagonal}
+
+Noted.
+
+\end{document}

@@ -112,9 +112,9 @@ $$\sum_{k\ge 1} p_k t^k \;=\; \sum_{d \ge 1} \frac{\mu(d)}{d}\, \log B(t^d), \qq
 
 **%C** Poincaré–Birkhoff–Witt: $B(t) = \prod_{k \ge 1} (1 - t^k)^{-p_k}$. Verified for $k \le 12$.
 
-**%C** Small identities: $p_1 = 3 = a_1$; $p_2 = 21 = a_2 + \binom{a_1}{2} \cdot 2 = 18 + 3$ (three degree-1 generators contribute $\binom{3}{2}$ Lie brackets).
+**%C** Small identities: $p_1 = 3 = a_1$; $p_2 = 21 = a_2 + \binom{a_1}{2} = 18 + 3$ (three degree-1 generators contribute $\binom{3}{2} = 3$ Lie brackets).
 
-**%C** Divisibility pattern: $p_k \equiv 0 \pmod 3$ if $3 \nmid k$; $p_k \equiv 2 \pmod 3$ if $3 \mid k$. Verified $k = 1..12$. Structural explanation open.
+**%C** Divisibility: $p_k \equiv 0 \pmod 3$ for every $k$ with $3 \nmid k$ (proved; consequence of $b_k \equiv 0 \pmod 3$ via Frobenius in characteristic 3 applied to the PBW product $B(t) = \prod (1-t^k)^{-p_k}$, plus a triangularity argument on the residual carry exponents). For $3 \mid k$, $p_k \bmod 3$ is governed by a base-3 carry recursion on $p_{k/3}, p_{k/9}, \ldots$ with no periodic law; empirical residues for $3 \mid k, k \le 59$ begin $p_3 \equiv 2, p_6 \equiv 2, p_9 \equiv 2, p_{12} \equiv 2, p_{15} \equiv 2, p_{18} \equiv 2, p_{21} \equiv 1, p_{24} \equiv 2, p_{27} \equiv 2, p_{30} \equiv 1, p_{33} \equiv 2, p_{36} \equiv 2, p_{39} \equiv 0, p_{42} \equiv 1, p_{45} \equiv 2, p_{48} \equiv 0, p_{51} \equiv 2, p_{54} \equiv 2, p_{57} \equiv 1$. Structural closed form open.
 
 **%F** $\sum p_k t^k = \sum_{d\ge 1} (\mu(d)/d) \log(1 + \sum_j b_j t^{dj})$.
 

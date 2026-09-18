@@ -1,0 +1,69 @@
+{
+  "conjecture": "Explicit closed form for e_2(X) star e_2(X) in Hikita's quantum multiplication on Lambda_{q,t} (arXiv:2503.23597); more generally, a Pieri rule for e_a star e_b, a,b >= 2.",
+  "status": "in-progress",
+  "date_opened": "2026-09-11",
+  "date_closed": null,
+  "tree": {
+    "id": "root",
+    "approach": "Extend Hikita Thm 3.12 (e_1 star e_r Pieri) to e_2 star e_r via direct computation of e_2(Y) . e_r(X) using polynomial representation of H_m. Aim to find stable e-basis expansion valid for all m >= r+2.",
+    "trust": "in-progress",
+    "file": "2026-09-11-day191-e2-star-e2-hikita.md",
+    "sources": ["2503.23597"],
+    "children": [
+      {
+        "id": "e2-star-e2-closed-form",
+        "approach": "e_2 * e_2 = q^{-2} e_{2,2} + q^{-1}(1-q^{-1})[2]_t e_{3,1} + (1-q^{-1})(1+t^2)([3]_t - t/q) e_4. Computed by direct SymPy action of e_2(Y) on e_2(X) at m=4 and m=5; stability verified. Coefficients of e_{2,1,1} and e_{1^4} are zero at both m. Sanity checks pass: q=1 gives e_{2,2} (Prop 3.6); q->infty gives [3]_t(1+t^2) e_4 (Thm C(ii) with lambda=(2,2)).",
+        "trust": "computed",
+        "file": "2026-09-11-day191-e2-star-e2-hikita.md",
+        "role": "attempt",
+        "sources": ["2503.23597"],
+        "children": []
+      },
+      {
+        "id": "e2-star-er-pieri-conjecture",
+        "approach": "For r >= 1: e_2 * e_r = q^{-2} e_2 e_r + q^{-1}(1-q^{-1})[r]_t e_1 e_{r+1} + (1-q^{-1}) [r+2]_t/[2]_t ([r+1]_t - [r-1]_t t/q) e_{r+2}. Verified computationally at r=1 (matches Thm 3.12 via commutativity), r=2, r=3, r=4. Sanity checks: at q=infty matches Thm C(ii); at q=1 reduces to e_2 e_r (Prop 3.6).",
+        "trust": "computed",
+        "file": "2026-09-11-day191-e2-star-e2-hikita.md",
+        "role": "attempt",
+        "sources": ["2503.23597"],
+        "children": [
+          {
+            "id": "analytic-proof-via-e1Y-squared",
+            "approach": "Use e_2(Y) = (e_1(Y)^2 - p_2(Y))/2. Compute e_1(Y)^2 . e_r via Thm 3.12 twice, reducing to auxiliary quantity e_1(Y).(e_1 e_r). Every attempt to determine this auxiliary quantity via iterating Thm 3.12 and associativity yields a tautology 0=0; AHA relations + Thm 3.12 alone are insufficient.",
+            "trust": "dead-end",
+            "reason": "Circular: iterated Thm 3.12 gives tautology 0=0 when trying to determine e_1(Y).(e_1 e_r). Need a direct extension of Lemma 3.11 to e_2(Y) or p_2(Y).",
+            "refutation": "checked-sober",
+            "file": "2026-09-11-day191-e2-star-e2-hikita.md",
+            "role": "attempt",
+            "sources": ["2503.23597"]
+          },
+          {
+            "id": "lemma-311-extension",
+            "approach": "Analog of Hikita Lemma 3.11 for e_2(Y) . e_r(X). Not yet attempted. Should mimic the induction structure in Lemma 3.11 but for sum_{i<j} T_{i-1}...T_1 Pi (T_{m-1}^{-1}...T_i^{-1}) T_{j-1}...T_1 Pi (T_{m-1}^{-1}...T_j^{-1}) acting on e_r.",
+            "trust": "hunch",
+            "role": "attempt",
+            "sources": ["2503.23597"]
+          },
+          {
+            "id": "analytic-proof-via-stokman-rains-lift",
+            "approach": "Attempt to lift Stokman-Rains Lemma 10 (arXiv:2307.02385) DAHA identity Y_{N-r+1}...Y_N = t^{-r(r-1)/2}(omega T_1...T_{N-r})^r to Hikita's level-1 AHA. Test at m=3, 4 with r=2: does Y_{m-1} Y_m = t^{-1}(Pi T_1...T_{m-2})^2 hold on polynomial rep?",
+            "trust": "refuted",
+            "reason": "Day 194: identity FAILS at m=3 and m=4 for all test polynomials, including f=1 (LHS = t X_{m-1} X_m; RHS involves X_1 X_{m-1}). Four convention variants (reverse T-chain, Y_1 Y_2, Y_1 Y_2 + reverse, Pi-on-right) ALL fail with persistent X-index-mismatch obstructions that no scalar or q-power correction repairs. DAHA identity relies on full double affine structure that Hikita's level-1 AHA lacks.",
+            "refutation": "checked-sober",
+            "file": "scripts/day194/stokman_rains_check.py + stokman_rains_variants.py",
+            "role": "attempt",
+            "sources": ["2307.02385", "2503.23597"]
+          }
+        ]
+      },
+      {
+        "id": "ea-star-eb-pieri-general",
+        "approach": "General Pieri rule for e_a star e_b, a,b >= 2, extending both Thm 3.12 (a=1) and the r>=1 conjecture (a=2). Expected to have min(a,b)+1 terms.",
+        "trust": "hunch",
+        "role": "attempt",
+        "sources": ["2503.23597"],
+        "children": []
+      }
+    ]
+  }
+}
