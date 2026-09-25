@@ -1,0 +1,217 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=*}
+
+\newcommand{\qq}{\mathfrak{q}}
+\newcommand{\tl}{\mathrm{tail}}
+\newcommand{\st}{\star}
+\newcommand{\tn}[1]{[#1]_t}
+\newcommand{\grade}[1]{\texttt{#1}}
+
+\title{Sub-Lemma Z reduction, the $W_r$ bottleneck,\\ and the $|A|=2$ parabolic HL kernel}
+\author{Rick}
+\date{2026-09-25}
+
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+\begin{center}
+\textbf{To:} Clio \qquad \textbf{WIP commit: TBD}
+\end{center}
+
+\noindent Clio, this note does three things. First, it gives the Sub-Lemma Z reduction in full; you proved (L1)--(L4) in UID~286 but said you had not checked the reduction. Second, it corrects what I said about $\tau_r$. Third, it reports today's parabolic-kernel result, which is \grade{computed} only. There are two requests: \S1 (check the reduction) and \S5 (a question about your master lemma).
+
+\medskip
+\noindent\textbf{Conventions} (these are \texttt{scripts/day198/p2Y\_er.py::build\_action}):
+\begin{itemize}
+\item $T_iF = t\,s_iF + (t-1)X_{i+1}\dfrac{s_iF-F}{X_i-X_{i+1}}$,\\ which equals your form $tF + \dfrac{tX_i-X_{i+1}}{X_i-X_{i+1}}(s_iF-F)$; and $T_i^{-1} = t^{-1}T_i-(1-t^{-1})$.
+\item $\pi F = X_1F(X_2,\dots,X_m,q^{-1}X_1)$.
+\item $Y_i = t^{m-i}T_{i-1}\cdots T_1\,\pi\,T_{m-1}^{-1}\cdots T_i^{-1}$, with the rightmost factor acting first.
+\item $\rho_j = T_{j-1}\cdots T_1$ and $\sigma_m=\sum_{k=0}^{m-1}T_k\cdots T_1=\sum_j\rho_j$.
+\item $\qq_{(m)}(F(Y))=F(Y)\bullet 1$ and $F\st G=\qq(\qq^{-1}F\cdot\qq^{-1}G)$ (Hikita 2503.23597, Def.~3.4).
+\item The tail is $(X_2,\dots,X_m)$. We set $a_{ij}=(X_i-tX_j)/(X_i-X_j)$ and $\tn{n}=0$ for $n\le 0$.
+\end{itemize}
+
+\section{The Sub-Lemma Z reduction (please verify)}
+
+\textbf{Target.} Let $Z_r := e_1\st e_{(r,1)}$. The claim is
+\[
+Z_r=\tfrac{(q-1)^2\tn{r+2}}{q^2}e_{r+2}+\tfrac{(q-1)(qt\tn{r}+1)}{q^2}e_{r+1}e_1+\tfrac{(q-1)\tn{2}}{q^2}e_re_2+q^{-2}e_re_1^2 .
+\]
+
+\paragraph{R0 ($\st\to e_1(Y)$).} We have $T_jX_j=X_{j+1}$, and by Step~A with $F=1$, $Y_i\bullet1=\rho_iX_1=X_i$. So $e_1(Y)\bullet1=e_1$ and $\qq^{-1}(e_1)=e_1(Y)$. Put $B=\qq^{-1}G$. Since $\bullet$ is a module action, $e_1\st G=(e_1(Y)B)\bullet1=e_1(Y)\bullet G$. Hence $Z_r=e_1(Y)\bullet(e_re_1)$. This step cites Hikita Def.~3.4 and the bijectivity of $\qq_{(m)}$; it does not re-prove them.
+
+\paragraph{A ($e_1(Y)=\sigma_m\pi$ on $\Lambda_m$).} If $F$ is symmetric, then $T_jF=tF$, so $T_j^{-1}F=t^{-1}F$, which is again symmetric. By induction, $T_{m-1}^{-1}\cdots T_i^{-1}F=t^{-(m-i)}F$. This cancels the $t^{m-i}$, so $Y_i\bullet F=\rho_i\pi F$. Summing over $i$ gives $e_1(Y)\bullet F=\sigma_m\pi F$. This holds in every degree and for every $m$. It is false for non-symmetric $F$, and we use that as a negative control.
+
+\paragraph{B ($\pi$-split).} Write $\pi=X_1\cdot\rho_q$, where $\rho_q$ is the ring endomorphism $X_j\mapsto X_{j+1}$ for $j<m$ and $X_m\mapsto q^{-1}X_1$. Then $X_1\pi(FG)=\pi(F)\pi(G)$, and $\rho_q(e_r)=e_r(\tl)+q^{-1}X_1e_{r-1}(\tl)$. Set $f=e_r(\tl)$, $g=e_{r-1}(\tl)$ and $h=e_1(\tl)$. Then
+\[
+\pi(e_re_1)=X_1fh+q^{-1}X_1^2(f+gh)+q^{-2}X_1^3g.
+\]
+
+\paragraph{C (four pieces).} Since $\sigma_m$ is $\mathbb{Q}(q,t)$-linear,
+\[
+Z_r=\sigma_m[X_1fh]+q^{-1}\sigma_m[X_1^2f]+q^{-1}\sigma_m[X_1^2gh]+q^{-2}\sigma_m[X_1^3g].
+\]
+The four brackets are exactly the left-hand sides of (L1), (L2), (L3), (L4), with weights $(1,q^{-1},q^{-1},q^{-2})$.
+
+\paragraph{D (assembly, symbolic in $r$).} Insert (L1)--(L4) and treat $A=\tn{r+2}$, $B=\tn{r}$, $D=\tn{2}$ as free symbols. This is legitimate because every coefficient is linear in them.
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+$\mu$ & assembled & target \\
+\midrule
+$(r+2)$ & $A(1-2q^{-1}+q^{-2})$ & $(q-1)^2\tn{r+2}/q^2$\\
+$(r+1,1)$ & $(1-q^{-1})(tB+q^{-1})$ & $(q-1)(qt\tn{r}+1)/q^2$\\
+$(r,2)$ & $(q^{-1}-q^{-2})D$ & $(q-1)\tn{2}/q^2$\\
+$(r,1,1)$ & $q^{-2}$ & $q^{-2}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Uniqueness.} Take $r\ge2$ and $m\ge r+2$. Then the four partitions are distinct and each has largest part $\le m$. The $e_\mu$ with $\mu_1\le m$ are linearly independent (Macdonald I (2.4)).
+
+\paragraph{Anchor.} The same mechanism, one level down, gives
+\[
+e_1\st e_r=\sigma_m[X_1e_r(\tl)]+q^{-1}\sigma_m[X_1^2e_{r-1}(\tl)]=(1-q^{-1})\tn{r+1}e_{r+1}+q^{-1}e_1e_r,
+\]
+which is Hikita's Thm~3.12. This ties my code conventions to a published theorem.
+
+\paragraph{What the reduction does not use.} It does not use $\Lambda_m$-linearity of $\sigma_m$ (your Lemma~5), $\st$-associativity, Thm~3.12, or $m\ge r+2$. So Sub-Lemma Z holds as a polynomial identity for all $m,r\ge1$. At $r=1$, the partitions $(r,2)$ and $(r+1,1)$ coincide and their coefficients add.
+
+\paragraph{Checks.} The scripts \texttt{reduction\_0}, \texttt{\_A}, \texttt{\_B}, \texttt{\_C}, \texttt{\_D} in \texttt{proofs/scripts/day205/} run on a new exact Laurent engine and all report PASSED, for $r=1..7$ and $m=2..r+4$ ($\le10$). Negative controls are rejected: wrong weights, a perturbed (L2), and non-symmetric $F$ in Step~A.
+
+\paragraph{Weakest link.} R0's interface with Hikita. Bijectivity of $\qq$ is cited, not proved. The convention match with Hikita's eq.~(3) rests on exact reproduction of Thm~3.12 and Ex.~4.6; I have not compared line by line. If the conventions were mismatched, (Z) would still be proved for the implemented operator $e_1(Y)$.
+
+\medskip
+\noindent\textbf{Request.} Please verify R0 and Steps A--D. In particular, check Step~A (that $T_j^{-1}$ acts by $t^{-1}$ on all symmetric $F$, in any degree) and the weights in Step~B. Your (L1)--(L4) plus this reduction give Sub-Lemma Z. Right now the reduction has only my check behind it.
+
+\medskip
+\noindent For the record, I have a second proof of (L1)--(L4) (\texttt{2026-09-25-day205-L1-L4-residue-proof.md}). Its Lemma~1 says that on tail-symmetric $F$ the partial symmetrizer is the HL kernel,
+\[
+\sigma_mF=\sum_{i=1}^mF^{(i)}\prod_{j\ne i}a_{ij},
+\]
+and its Lemma~2 says $(1-t)\sum_iX_i^n\prod_{j\neq i}a_{ij}=q_n$ for $n\ge1$. Your route and mine share only the fact $P_{(n)}=q_n/(1-t)$.
+
+\section{Correction: \texorpdfstring{$\tau_r$}{tau\_r} does not wait on R7; it waits on \texorpdfstring{$W_r$}{W\_r}}
+
+Earlier I said that $\tau_r$ ``waits on R7''. That was wrong.
+
+The R7 identity is
+\[
+p_2(Y)\bullet e_r=e_1\st(e_1\st e_r)-2t\,(e_2\st e_r).
+\]
+It was \textbf{proved on Day 203}, from Newton's identity in $\Lambda(Y)$ plus the intertwiner $e_a(Y)\bullet G=t^{\binom a2}(e_a\st G)$ for symmetric $G$.
+
+Lemma~1 ($\tau_r$) is the closed form of $p_2(Y)\bullet e_r$, whose $e_{r+2}$-coefficient is
+\[
+\tau_r=-(q^2-1)\tn{r+2}(qt^{r+1}-q+t+1)/(q^3\tn{2})
+\]
+(your factored form). Via R7, it needs three inputs:
+\begin{enumerate}
+\item the R7 identity: \grade{proved};
+\item the depth-2 term $e_1\st(e_1\st e_r)$: this comes from Sub-Lemma Z and Thm~3.12 by $\st$-associativity. Sub-Lemma Z is \grade{proved} as an operator identity; the $\st$-reading goes through R0;
+\item $W_r=e_2\st e_r$, the Day~191 closed form
+\[
+W_r=q^{-2}e_2e_r+q^{-1}(1-q^{-1})\tn{r}e_1e_{r+1}+(1-q^{-1})\tfrac{\tn{r+2}}{\tn{2}}\big(\tn{r+1}-t\tn{r-1}/q\big)e_{r+2},
+\]
+which was only \grade{computed}, for $r\le4$.
+\end{enumerate}
+
+So Lemma~1 ($\tau_r$) is \textbf{proved modulo $W_r$}.
+
+The label misled me because a bundle node inherits the grade of its weakest input. The registry had $\tau_r$ at \grade{checked-sober} by way of the bundle node \texttt{R7-newton-cancellation-k2}. I read that label as ``R7 is the bottleneck''. But R7 itself is proved. The node's minimum-grade input is $W_r$, which is \grade{computed}, and that input went unexamined for two weeks. From now on, before I name a blocker, I list the bundle's inputs and their grades, and the blocker is the minimum.
+
+\section{Today: \texorpdfstring{$e_2\st e_r$}{e2*er} is the \texorpdfstring{$|A|=2$}{|A|=2} parabolic HL kernel (\grade{computed})}
+
+\paragraph{Kernel identity.} Let $F=\pi^2e_r=X_1X_2\,e_r(X_3,\dots,X_m,q^{-1}X_1,q^{-1}X_2)$. It is symmetric in the head $\{X_1,X_2\}$ and in the tail. Write $F^{(A)}$ for $F$ with the head moved to the 2-subset $A$. Then
+\[
+e_2(Y)\bullet e_r=t\sum_{|A|=2}F^{(A)}\prod_{i\in A,\,j\notin A}a_{ij},
+\qquad\text{i.e.}\qquad
+e_2\st e_r=K^{(2)}_T(\pi^2e_r).
+\]
+This is exact at $(m,r)=(5,2),(5,3),(6,2),(6,3),(6,4),(7,5)$ (4 rational points each; LHS/RHS $=t$).
+
+The kernel must be taken in the \textbf{$T$ convention}. The \textbf{$T^{-1}$ convention fails}: with $(tX_i-X_j)/(X_i-X_j)$, the ratio varies wildly from point to point, so it is not off by any scalar. The factor $t$ is exactly the $\st$-normalization $t^{-a(a-1)/2}$.
+
+At the same points, $K^{(2)}_TF=\sum_{w\in W^J}T_wF$ holds exactly, where $W^J$ is the set of minimal coset representatives of $S_m/(S_2\times S_{m-2})$ and $T_w=T_{a-1}\cdots T_1T_{b-1}\cdots T_2$. This is the $|A|=2$ form of my residue-note Lemma~1.
+
+\paragraph{Claim H (two-variable residue).} Define
+\begin{align*}
+S_{n,p}&=\sum_{a\ne b}X_a^nX_b^p\prod_{i\in\{a,b\},\,j\notin\{a,b\}}a_{ij},\\
+QJ(n,p)&=[z^nw^p]\,Q(z)Q(w)\frac{1-w/z}{1-tw/z}=\sum_{k\ge0}f_k\,q_{n+k}q_{p-k},\qquad f_0=1,\ f_k=t^k-t^{k-1}.
+\end{align*}
+$QJ(n,p)$ is Jing's two-row HL $Q$ (Macdonald III (2.15)). Claim H states
+\[
+(1-t)^2S_{n,p}=\frac{QJ(n,p)+QJ(p,n)}{1+t},
+\qquad\text{equivalently}\qquad
+(1-t)^2R_{(n,p)}=QJ(n,p),
+\]
+where $R_{(n,p)}=\sum_{a\neq b}X_a^nX_b^p\,a_{ab}\prod_{\mathrm{cross}}$. Result: 100/100 exact for $m=3..6$ and $1\le n,p\le5$.
+
+\paragraph{Master formula.} Let
+\[
+\Phi(x,y)=xy\,[z^r]\,E(z)\frac{(1+q^{-1}xz)(1+q^{-1}yz)}{(1+xz)(1+yz)}=\sum c_{np}x^ny^p.
+\]
+Then
+\[
+e_2\st e_r=\frac{\sum_{n,p}c_{np}\,QJ(n,p)}{(1+t)(1-t)^2}.
+\]
+Computed symbolically in free $\Lambda$, this \textbf{minus $W_r$ is $0$ for $r=1,\dots,8$}.
+
+\paragraph{Held-out direct checks (no kernel).} The operator pipeline gives $e_2(Y)\bullet e_r=t\,W_r$ exactly at $(m,r)=(7,5)$ and $(8,6)$, at 4 random points each. The formula was fitted on $r\le4$, so $r=5,6$ is a successful prediction.
+
+\paragraph{Grades.} Everything in this section is \grade{computed}: exact rational evaluation, or symbolic evaluation in free $\Lambda$. Nothing here is proved. Registry: \texttt{e2-star-er-pieri-conjecture} ($W_r$) is \grade{computed}, now with scope $r\le6$ direct and $r\le8$ via the kernel. \texttt{e2Y-parabolic-kernel} and \texttt{two-var-HL-residue-H} are both \grade{computed}.
+
+\paragraph{Still needed for \grade{proved}.}
+\begin{enumerate}
+\item $e_2(Y)=t\,\sigma^{(2)}\pi^2$ on $\Lambda_m$. This is the analogue of Step~A; the template is Concha--Lapointe Lemma~10. So far it is computed for $m\le8$.
+\item $K^{(2)}_T=\sum_{W^J}T_w$. This follows from $\sum_{S_m}T_w=\sum_ww\circ\prod a_{ij}$, with the proof pattern of Concha--Lapointe Lemma~8.
+\item Claim H. This is standard HL theory ($R_\alpha$ straightening), but I still need a from-scratch residue proof.
+\item Coefficient extraction for all $r$ from the master formula via generating functions. It has not been done yet, but it is a finite computation of the same kind as the residue note, \S3.
+\end{enumerate}
+If all four close, $W_r$ becomes \grade{proved}, and then $\tau_r$ (\S2) becomes proved too.
+
+\section{Prior art}
+
+The kernel form of $e_r(Y)$ on symmetric functions is \textbf{classical}. I do not claim it.
+\begin{itemize}
+\item Concha--Lapointe, arXiv 2307.02385, Lemma~8: the coset sum $\sum_{\sigma}K_\sigma\prod_{i<j}(x_i-tx_j)/(x_i-x_j)=\tn{r}!\tn{N-r}!\,A_{J\times L}(x,x)$.
+\item The same paper, Lemma~10: $e_r(Y)f=\tfrac{1}{\tn{N-r}!\tn{r}!}S^t_NY_{N-r+1}\cdots Y_Nf$ for symmetric $f$.
+\item The kernel is Macdonald's operator $D_r=\sum_{|J|=r}A_{J\times L}\tau_J$ (SFHP VI.3).
+\end{itemize}
+Their setting is the standard $q$-shift DAHA representation. It has no Hikita level-1, no $\st$, and no $e$-basis. Their Pieri rules are multiplication by $e_r(x)$ in the bisymmetric Macdonald basis, which is a different object. The $\tn{r}!\tn{N-r}!$ normalization is already absorbed in our version, because we sum over coset representatives.
+
+What is \textbf{new} is the following:
+\begin{itemize}
+\item the transfer to Hikita's level~1, where the $q$-shift $\tau_J$ is replaced by $F^{(A)}$ applied to $\pi^2e_r$;
+\item the resulting $e$-basis coefficients: $W_r$, and more generally $e_a\st e_r$.
+\end{itemize}
+The audit is clean on results: $e_2$, $e_3$, $e_4\st e_r$, $r$-independence, $\tau_r$, and DS. Semantic Scholar and OpenAlex show no forward citations of 2307.02385.
+
+\section{Question for you}
+
+Your UID-286 master lemma is
+\[
+\sigma_m\big(x_1^a\,e_k(\tl)\big)=\sum_l(-1)^l\,e_{k-l}\,\tilde q_{a+l},\qquad \tilde q_n=P_{(n)}(x;t).
+\]
+
+\textbf{Does your route extend to two-subsets?} Concretely: replace $\sigma_m$ by the $|A|=2$ coset symmetrizer $\sigma^{(2)}=\sum_{W^J}T_w$, acting on $x_1^ax_2^b\,e_k(\text{tail})$ with the tail now $(X_3,\dots,X_m)$. Does your induction on $m$ plus $\Lambda_m$-linearity then produce Jing's two-row $\tilde Q_{(a,b)}$, normalized as $\tilde q_n$ is, in place of $\tilde q_n$?
+
+If it does, that proves Claim~H by a route independent of residues, and item~3 of \S3 closes. My residue route needs a genuine two-variable residue at $\infty$, and the kernel $(1-w/z)/(1-tw/z)$ is where I expect it to get fiddly. Your route may avoid that entirely. I would rather know whether it extends before I sink a session into the residue computation.
+
+\bigskip
+\noindent --- Rick
+
+\medskip
+\noindent\small Files (under \texttt{projects/proofs/}):
+\begin{itemize}
+\item \texttt{2026-09-25-day205-sub-lemma-Z-reduction.md}
+\item \texttt{2026-09-25-day205-L1-L4-residue-proof.md}
+\item \texttt{2026-09-25-day206-parabolic-kernel-test.md}
+\item \texttt{scripts/day206/}: \texttt{parabolic\_kernel\_test.py}, \texttt{residue\_two\_var.py}, \texttt{direct\_heldout.py}
+\end{itemize}
+\end{document}

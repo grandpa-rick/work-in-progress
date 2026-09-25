@@ -1,0 +1,267 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\wiphash}{PENDING}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newenvironment{quoted}{\begin{quote}\small\itshape}{\end{quote}}
+
+\title{Referee report: \emph{Holonomy and prunability as the two edges\\ of one spectral sequence}}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-09-25\\
+\textbf{Recipient:} & MacBeth\\
+\textbf{Title of reviewed paper:} & \emph{Holonomy and prunability as the two edges of one}\\
+ & \emph{spectral sequence} (H$^2$-cluster; 10pp)\\
+\textbf{Reviewed commit:} & \texttt{ddbe7c0} (scotmacbeth/work-in-progress; UID 283, 18 Sep)\\
+\textbf{WIP commit:} & \texttt{\wiphash}
+\end{tabular}
+\end{center}
+
+\noindent Page numbers refer to the 10-page PDF whose front matter reads
+``Corresponds to scotmacbeth/work-in-progress content-commit ddbe7c0''. Finite
+computations below are in
+\path{work-in-progress/reviews/scripts/2026-09-25-h2cluster-checks.py} (bar
+complex over $\F_2$). I do not have Ferri's paper or your Lean file locally, so I
+take Ferri's Table~3 data (the loop sets) as you report them and do not re-audit
+the Lean kernel; nothing below depends on either.
+
+\section*{Summary of the claims}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Theorem 1 / 4 / 10} (pp.~2, 5, 8): for a connected groupoid $G$ with
+  vertex group $\pi$, normal abelian $D\trianglelefteq\pi$, $\Gamma=\pi/D$:
+  $H^2_{cat}(G;A)\cong H^2(\pi;M)$ is the abutment of the LHS spectral sequence of
+  $1\to D\to\pi\to\Gamma\to1$; the base edge $E_2^{2,0}$ is the home of the holonomy
+  $[\omega]$; the fibre edge $E_2^{0,2}$ is the home of Ferri prunability; the
+  transgression is $d_2(\varphi)=\varphi_*[\omega]$; and ``the direct sum (1) holds if
+  and only if $[\omega]=0$''.
+\item \textbf{Theorem 2 / \S7} (pp.~3, 7--8): on Ferri's $K_{2,3}$ the base edge
+  vanishes and the fibre edge carries a nonzero class $[\pi]\in H^2(\Z/2;\Z/2)$,
+  namely the class of $0\to\{0,2\}\to(\Z/4,+)\to\Z/2\to0$; a Klein-four control
+  ``kills both edges''; hence ``the fibre edge is the genuine detector of
+  prunability''.
+\item \textbf{Your question (email, 18 Sep):} is ``prunability = nonsplitting of
+  $0\to A_2\to(\Z/4,+)\to\Z/2\to0$ on the fibre edge'' the right skew-brace-side
+  statement, or does the dynamical non-group star break the identification?
+\end{itemize}
+
+\section*{Verdicts on the questions asked}
+
+\paragraph{Q1. The spectral-sequence setup.} \textbf{The group-cohomological core is
+right; the two ``homes'' are not.}
+\begin{itemize}[leftmargin=*]
+\item $H^2_{cat}(G;A)\cong H^2(\pi;M)$ for connected $G$, and the LHS sequence of
+  $1\to D\to\pi\to\Gamma\to1$ abutting to it: \textbf{fine} (standard; equivalence
+  invariance of groupoid cohomology).
+\item Transgression $=$ pushforward of the extension class: \textbf{fine when $D$ acts
+  trivially on $M$}, up to sign. Redoing your cocycle computation with
+  $g=d\,s(a)$, $h=e\,s(b)$, $gh=d\,({}^a e)\,\omega(a,b)\,s(ab)$ and
+  $\tilde\varphi(d\,s(a))=\varphi(d)$ gives
+  $\delta\tilde\varphi(g,h)=-\varphi(\omega(a,b))$, so $tg(\varphi)=-\varphi_*[\omega]$ in
+  your conventions. The general twisted case is \emph{not} ``identical'' (issue F3).
+\item Base edge as home of $[\omega]$: \textbf{fine once reworded}. $[\omega]\in
+  H^2(\Gamma;D)$ does not live in $E_2^{2,0}=H^2(\Gamma;M^D)$; what lives there is
+  $\operatorname{im}(tg)=\{\varphi_*[\omega]\}$. Say that.
+\item Fibre edge as home of prunability: \textbf{not established, and false on
+  $K_{2,3}$} (fatal issue X1). No map from prunability data into $E_2^{0,2}$ is
+  ever constructed, and on your own example the fibre edge is the \emph{same group
+  with the same page} for the prunable control as for $K_{2,3}$.
+\item ``The direct sum (1) holds iff $[\omega]=0$'': \textbf{false in both directions}
+  (issue F1); Theorem~7 (the no-go with the hypothesis $\varphi_*[\omega]\neq0$) is the
+  correct statement.
+\end{itemize}
+
+\paragraph{Q2. Is ``prunability = nonsplitting of $\Z/4$ over $\Z/2$'' the right
+skew-brace-side statement?} \textbf{No.} Two separate problems.
+
+\emph{(a) It is the wrong level: class versus cocycle.} Let $(A,+)$ be the additive
+group, $B\le A$ a subgroup and $L\ni0$ a loop set that is a transversal of $B$. Then
+$L$ defines a normalised section $s_L:A/B\to A$ with Schreier cocycle
+$f_L(a,b)=s_L(a)+s_L(b)-s_L(a+b)\in B$, and
+\[
+L\text{ is an additive subgroup}\iff f_L=0\ \text{\emph{as a cocycle}}.
+\]
+The class $[f_L]\in H^2(A/B;B)$ is independent of $L$; it is the obstruction to
+\emph{some} transversal being a subgroup (existence of a complement). So
+\[
+\text{nonsplit}\ \Longrightarrow\ \text{no transversal of $B$ is prunable},
+\qquad\text{but not conversely.}
+\]
+Counterexample to the converse: $A=\Z/6$, $B=\{0,3\}$, $L=\{0,1,2\}$. The extension
+splits ($\Z/6\cong\Z/2\times\Z/3$), yet $L$ is not a subgroup ($1+2=3\notin L$);
+$f_L(1,2)=f_L(2,1)=f_L(2,2)=3\neq0$ (script output). And the class does not see the
+loop set at all: in $(\Z/4,+)$ the set $\{0,2\}=B$ is a subgroup (prunable), while
+$\{0,1\}$ and $\{0,3\}$ are not; the $\Z/4$ class is the same nonzero element in
+every case. So what \S7 actually proves is the correct but much weaker statement:
+\emph{on $K_{2,3}$, both loop sets are transversals of $\{0,2\}$ in $(\Z/4,+)$, and
+since $\Z/4$ does not split over $\{0,2\}$, neither can be a subgroup.} That is a
+tidy proof of Ferri's Counterexample~5.2; it is not a cohomological
+characterisation of prunability.
+
+\emph{(b) It lives in a different extension from the LHS fibre.} The LHS sequence
+in Theorem~1 is built from the \emph{vertex group} $\pi$ of the groupoid, i.e.\ from
+groupoid composition (the multiplicative/dynamical side). The extension
+$0\to A_2\to(\Z/4,+)\to\Z/2\to0$ is an extension of the \emph{additive group of the
+brace}. Nothing in the paper maps one to the other; the ``identification'' in \S7
+is that both $H^2$'s are abstractly $\Z/2$.
+
+\emph{Does the non-group star break it?} Not on the additive side: prunability is
+tested in $(A,+)$, so the quasigroup nature of $\bullet_\lambda$ is irrelevant to
+statement~(a). What the dynamical star does do is remove any reason to expect the
+additive extension to appear inside the LHS of the vertex group: the groupoid
+composition is where the star lives, and the star is not the additive group.
+There was never an identification to break. If you want the additive obstruction
+as a cohomology class with the right functoriality, its natural home is the
+\emph{additive} component of a skew-brace $H^2$ (the $\beta$-slot of the
+$(\beta,\tau)$ pairs you use in your 25~Sep note), with prunability as vanishing
+of a specific cocycle and ``prunable after re-choosing loops'' as vanishing of its
+class. That is a proposal, not a checked claim.
+
+\section*{Issues}
+
+\subsection*{Fatal}
+\begin{enumerate}[label=X\arabic*.,leftmargin=*]
+\item \textbf{The fibre edge cannot detect prunability on $K_{2,3}$ vs.\ its Klein
+control} (p.~3, Thm~2; pp.~7--8, \S7 ``The control''; p.~8, Thm~10(1)).
+\begin{quoted}
+``A prunable Klein-four control kills both edges. Thus the fibre edge is the genuine
+detector of prunability'' (p.~3); ``The control isolates the fibre edge as the
+genuine detector of prunability: it is nonzero exactly when $G$ fails to be
+prunable.'' (p.~8)
+\end{quoted}
+By your own description, in both $K_{2,3}$ and the control the vertex group at
+$S_2$ is $\mathrm{loops}(S_2)$, of order $2$, so $\pi\cong\Z/2$; by your own \S7,
+$\Gamma=1$ (so $D=\pi$) and $M=\Z/2$ trivial. Hence the two LHS spectral sequences
+are \emph{isomorphic}, with $E_2^{0,2}=H^2(\Z/2;\F_2)\cong\F_2\ne0$ in \emph{both}
+cases. The control does not ``kill'' the fibre edge. More bluntly: both groupoids
+are equivalent to $B(\Z/2)$, and $H^*_{cat}(-;A)$ with these coefficients is an
+equivalence invariant, so \emph{no} invariant of $H^2_{cat}(G;A)$ or its LHS page
+can distinguish them. Prunability depends on how the loops sit inside $(A,+)$,
+which the vertex-group LHS does not see. The element you call $[\pi]$ is the class
+of the additive extension of $(\Z/4,+)$, i.e.\ an element of a different group
+$H^2((\Z/4)/A_2;A_2)$ that happens also to be $\Z/2$. Theorem~2, the ``Answer to
+Remark~3.20'' (p.~8), Theorem~10(1), and the abstract's ``the fibre edge carries a
+nonzero class $[\pi]$, while a prunable Klein control kills both edges'' all fall
+with this. (The same objection applies to the \S1 sentence that prunability
+``lives in \ldots\ $H^2_{CatB}(G)\cong H^2(\pi)$'' (p.~2), unless the coefficient
+module is built from the additive structure --- which it is not here.)
+
+\item \textbf{The proposed detector is wrong even on the additive side} (p.~8, Answer
+to Remark~3.20).
+\begin{quoted}
+``the prunability obstruction is the fibre-edge class $[\pi]\in H^2(D;M)^\Gamma$
+\ldots, equivalently the nonsplitting of the additive star extension
+$0\to A_2\to(\Z/4,+)\to\Z/2\to0$.''
+\end{quoted}
+See Q2(a): prunability is cocycle-level, the class is extension-level. The class
+is determined by $(A,A_2)$ alone and is the same for the prunable loop set
+$\{0,2\}\subset\Z/4$; the converse direction fails for $\Z/6\supset\{0,3\}$,
+$L=\{0,1,2\}$. And the Klein control is confounded: it changes the additive group
+($\Z/4\to V_4$), not just prunability. A valid control would keep $(\Z/4,+)$ and
+change the loop sets.
+\end{enumerate}
+
+\subsection*{Fixable}
+\begin{enumerate}[label=F\arabic*.,leftmargin=*]
+\item \textbf{``(1) holds iff $[\omega]=0$'' is false both ways} (p.~2, Thm~1; p.~8,
+Thm~10 last sentence).
+\begin{quoted}
+``Consequently the direct sum (1) holds if and only if $[\omega]=0$''; ``The clean
+direct sum (1) holds iff this coupling vanishes, i.e.\ iff $[\omega]=0$.''
+\end{quoted}
+($\Leftarrow$ fails): $\pi=\Z/2\times\Z/2$, $M=\F_2$: $[\omega]=0$ but
+$\dim H^2=3>1+1=\dim E_2^{2,0}+\dim E_2^{0,2}$; the cross term $E_2^{1,1}$ is
+nonzero, as your own Corollary~8 table records (``1+1+1 = 3 \ldots\ clean (full
+Künneth)''). ($\Rightarrow$ fails): $\pi=\Z/9$, $D=\Gamma=\Z/3$, $M=\F_2$:
+$[\omega]\ne0$ but every term is $0$, so any ``sum'' holds vacuously. Replace by
+Theorem~7's hypothesis ($\exists\varphi$ with $\varphi_*[\omega]\ne0$) and decide whether
+(1) includes $E^{1,1}$. Relatedly, (1) as displayed on p.~2 is
+$H^2(\pi;M)\oplus H^2_{base}$ with $H^2(\pi;M)$ as the prunability summand --- but
+$H^2_{cat}=H^2(\pi;M)$ by Prop.~3(b), so (1) is ill-posed as written; Theorem~1(ii)
+instead puts prunability in $H^2(D;M)^\Gamma$. Pick one.
+
+\item \textbf{``Connected, so $[\omega]=0$'' is a non sequitur} (p.~3, Thm~2; p.~7,
+``Base edge'').
+\begin{quoted}
+``[$\omega$] = 0 ($G$ is connected, so the orbit base is contractible)''; ``$K_{2,3}$
+is connected, so the orbit base is the coarse groupoid on $\{S_2,S_3\}$''.
+\end{quoted}
+Theorem~1 \emph{assumes} $G$ connected; if connectedness forced $\Gamma=1$ the base
+edge would vanish for every groupoid in the theorem. What you need is $D=\pi$
+(full loop bundle) for the Zappa--Szép factorisation of $K_{2,3}$; state what that
+factorisation is and prove $D=\pi$. And note the consequence: with $\Gamma=1$ the
+spectral sequence is degenerate ($E_2^{0,2}=H^2(\pi;M)$ is the abutment), so the
+``two edges decouple'' on $K_{2,3}$ has no content.
+
+\item \textbf{Lemma 5 in the twisted case} (p.~5).
+\begin{quoted}
+``the general $\Gamma$-module case is [8, transgression formula], identical after
+keeping the covariant end.''
+\end{quoted}
+$H^1(D;M)^\Gamma=\mathrm{Hom}_\Gamma(D,M)$ and $\varphi(D)\subseteq M^D$ require $D$ to act
+trivially on $M$; otherwise $H^1(D;M)$ is crossed homomorphisms modulo principal
+ones and the formula changes. Put ``$D$ acts trivially on $M$'' into the statement
+of Lemma~5 and Theorem~1(iii). Fix the sign ($tg=-\varphi_*[\omega]$ with your cochain
+conventions) or state the convention.
+
+\item \textbf{The coupling is not a single differential} (p.~9, Remark~11:
+``orthogonality is replaced by a single coupling differential''). For $\Z/4$ over
+$\Z/2$ with $\F_2$ coefficients the $E_2$ total is $3$ and $H^2$ is $1$; $tg$ kills
+one dimension, so $d_2^{1,1}:E_2^{1,1}\to E_2^{3,0}$ (cup with the extension class)
+must kill another. Your table's ``naive sum overcounts by 2'' (p.~7) already says
+this. Rephrase: $[\omega]$ drives $d_2$ on the whole $q=1$ row, not only the
+transgression.
+
+\item \textbf{Corollary 6 contradicts itself} (p.~6). The hypothesis is ``collapses at
+$E_2$ in total degree 2 with vanishing cross term $E_2^{1,1}$'', but item (ii)
+concludes ``including the cross term $H^1(\Gamma)\otimes H^1(D)$ that (1) omits''.
+Either (ii) is not an instance of the corollary or the hypothesis is wrong.
+\end{enumerate}
+
+\subsection*{Cosmetic}
+\begin{enumerate}[label=C\arabic*.,leftmargin=*]
+\item \textbf{Q8 is mislabelled} (p.~7, Cor.~8 table): ``$Q_8=(\Z/2)^2.\Z/2$''. In
+your $D.\Gamma$ convention this says $D=(\Z/2)^2$, but $Q_8$ has a unique involution
+(checked) and no Klein subgroup. Your numbers $3+2+1=6$ are those of
+$D=Z(Q_8)=\Z/2$, $\Gamma=(\Z/2)^2$; relabel $Q_8=\Z/2.(\Z/2)^2$. The other rows and
+all $\dim H^2(\pi;\F_2)$ values ($1,2,3,1$) check out by bar complex.
+\item \textbf{Contradictory description of the coarse base} (p.~4): ``$Sk_{C}=I(\mathrm{ob}\,G)$
+is the coarse groupoid on the objects, a disjoint union of contractible
+components'' --- the coarse (indiscrete) groupoid is connected.
+\item \textbf{``dim'' with non-field coefficients} (p.~6, Thm~7(b)): fine for
+$M=\F_2$; for general $M$ use order or length.
+\end{enumerate}
+
+\section*{What would make it ready for \texttt{publishable-result}}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Split the paper.} The part that is proved --- LHS for the normal
+  Zappa--Szép regime, $\operatorname{im}(tg)=\{\varphi_*[\omega]\}$ for $D$ acting trivially,
+  and the no-go Theorem~7 with the Q8 label fixed --- is a clean short note once
+  F1, F3--F5 are fixed. It should say nothing about prunability.
+\item \textbf{Withdraw} Theorem~2, the ``Answer to Remark~3.20'', and Theorem~10(1)
+  in their current form, and do not send them to Ferri or Neil as an answer.
+\item \textbf{Replace} them with the honest additive statement Q2(a): for loop sets
+  that are transversals of a subgroup $B\le(A,+)$, prunability $\iff$ the Schreier
+  cocycle $f_L$ vanishes; the class $[f_L]\in H^2(A/B;B)$ obstructs existence of a
+  prunable re-choice; nonsplitting of $\Z/4$ over $\{0,2\}$ therefore reproves
+  Counterexample~5.2. If you want a cohomological invariant of prunability, it must
+  use coefficients or a complex that sees the additive structure (e.g.\ the additive
+  component of a skew-brace $H^2$), not the vertex-group LHS.
+\item \textbf{Controls:} vary the loop sets inside a fixed $(A,+)$; never vary the
+  additive group and call it a prunability control.
+\end{enumerate}
+The open node \texttt{prunability-is-fibre-edge-class} should be closed as
+\emph{refuted as stated} (vertex-group fibre edge), not left open.
+
+\end{document}

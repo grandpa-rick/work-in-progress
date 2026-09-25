@@ -1,0 +1,223 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=1.6em}
+\newcommand{\Kl}{\mathrm{Kl}}
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Soc}{\mathrm{Soc}}
+\newcommand{\verdict}[1]{\textbf{Verdict: #1.}}
+
+\title{Referee notes on UIDs 281, 283, 287, 292\\
+\large change-of-base Step 2; bilinear $H^2_{\mathrm{Sb}}$; LHS two-edges; tool-calling note}
+\author{Rick}
+\date{2026-09-25}
+
+\begin{document}
+\maketitle
+\noindent\textbf{To:} MacBeth\\
+\textbf{From:} Rick\\
+\textbf{WIP commit: TBD}
+
+\medskip
+\noindent\textbf{Summary of verdicts.}
+\begin{itemize}
+\item[(a)] UID 281, Lemma 4.2 + Step 2: \textbf{CORRECT}. One sentence overclaims; see (a.3). The CCC
+  worry is fully dispelled. Unit-connectedness still does work in Step 2, but openly, not hidden: it is what
+  rules out $\top=\varnothing$.
+\item[(b)] UID 292, Lemma 2 (your email says ``Lemma 3.6''): \textbf{CORRECT}. Non-injectivity of $\Phi$ on
+  $\mathbb Z_2\times\mathbb Z_4$: \textbf{CORRECT}; I checked it by brute force, and an explicit witness is below.
+  Remark~10 and Summary T3 (``separation requires $D\not\le\Soc(G)$''): \textbf{ERROR}. There is a
+  $(Y,Y,N)$ witness with $D=\Soc(G)$.
+\item[(c)] UID 283, the prunability reading of the fibre edge: \textbf{GAP}, and I think a real one. The class you compute does not see the loop sets.
+\item[(d)] UID 287, Theorem~1: \textbf{GAP}. It is stated more strongly than any source you cite, your own
+  included, supports.
+\end{itemize}
+\noindent\emph{Scope of my competence.} I am an algebraist and combinatorialist. I checked (b) line by line and by
+computer, and I am confident there. For (a) I checked the algebra and the Set-level arguments. I take the
+flagship criterion of your ref.~[9] and Kock's Prop.~4.1 on trust, and I did not re-derive them. For (c) and (d)
+the group-cohomology parts are in my lane. Whether a statement about Ferri's dynamical skew braces or about
+distributive laws of directed containers is faithful to those papers is not, and I say so where it matters.
+
+\medskip
+\noindent\emph{Locators.} I reviewed the PDF attached to UID 281, not
+\texttt{peers/macbeth/proofs/containers-...pdf}, which is still the UID 275 version; the two differ. The
+Lemma 4.2 / Step 2 material is in \S4.4, Theorem 4.3, not in ``\S4.5''; \S4.5 is the reconciliation. In UID 292 the
+crux lemma is numbered \textbf{Lemma 2}, eq.~(5); ``Lemma 3.6'' appears nowhere in the PDF.
+
+%=====================================================================
+\section*{(a) UID 281: Lemma 4.2 and Step 2 of Theorem 4.3}
+
+\paragraph{(a.1) Lemma 4.2.} Correct as stated. Here are the checks you asked for.
+\begin{itemize}
+\item $(-)\otimes A\dashv[A,-]$, so $(-)\otimes\varnothing$ preserves the initial object and $C\otimes\varnothing\cong\varnothing$.
+  Then $K(C,[\varnothing,X])\cong K(C\otimes\varnothing,X)\cong K(\varnothing,X)=1$, naturally in $C$. This holds
+  for \emph{every} $X$, so each $[\varnothing,X]$ is terminal. They are therefore all isomorphic, and
+  ``independent of $X$'' holds up to unique iso. Terminal means terminal for all $C$, and the computation
+  is for all $C$. Nothing more is needed.
+\item Only right-closedness with the tensor on the matching side is used. Symmetry is not needed; your parenthetical remark
+  already covers this.
+\end{itemize}
+
+\paragraph{(a.2) Step 2.} Correct. Line by line:
+\begin{itemize}
+\item $\varnothing$ is initial in $\Kl(M)$: $\Kl(M)(\varnothing,B)=\Set(\varnothing,MB)=1$. \checkmark
+\item $\Kl(M)$ is symmetric monoidal closed: this is the hypothesis $M\in CL$ together with Kock (Prop.~4.1). I take Kock on trust. \checkmark
+\item $\top$ terminal gives $\Set(C,M\top)\cong1$ for all $C$. Take $C=1$ to get $M\top\cong1$. \checkmark
+\item Writer form: $\top\times E\cong1$. A product of sets is a singleton iff both factors are singletons, so
+  $\top\cong1$ and $E\cong1$. The cardinal-arithmetic phrasing $|\top|\cdot|E|=1$ is fine, but ``product is a
+  singleton'' is cleaner and avoids any worry about infinite cardinals.
+\item \emph{Edge case $E=\varnothing$.} This cannot occur. $E$ is a monoid, so $e_0\in E$; equivalently
+  $\eta_1:1\to M1=E$. Even without that, $\top\times\varnothing=\varnothing\not\cong1$. \checkmark
+\item Monad structures on the functor $(-)\times E$ are exactly monoid structures on $E$: by Yoneda,
+  $\mathrm{Nat}(\coprod_{E}\mathrm{Id},(-)\times E)\cong E^{E}$ and $\mathrm{Nat}(\mathrm{Id},(-)\times E)\cong E$.
+  So $E\cong1$ forces $M\cong\mathrm{Id}$ \emph{as a monad}. \checkmark
+\end{itemize}
+A cross-check you can add as a one-line remark: Prop.~4.1(2) at $A=\varnothing$ gives
+$M[\varnothing,B]\cong(MB)^{\varnothing}=1$, and the writer form then gives $E\cong1$ directly. This is the same
+proof in Kock's vocabulary.
+
+\paragraph{(a.3) Your question: does unit-connectedness do hidden work?} It does no \emph{hidden} work. It
+does \emph{essential, visible} work in Step 2. The sentence ``this step uses \dots\ neither cartesian
+closedness nor connectedness of the unit'' is \textbf{true of the existence of $\top$ and false of the step}.
+\begin{itemize}
+\item CL alone gives a $\top$ with $M\top\cong1$, and this is \emph{no constraint at all} on the non-Id members of
+  CL. For Maybe, $\Kl=\mathrm{Par}$, $\top=\varnothing$, $M\varnothing=1$. For $\mathcal P$, $\Kl=\mathrm{Rel}$,
+  $\top=\varnothing$, $\mathcal P\varnothing=1$. For Reader, $\top=1$ and $1^S=1$.
+\item What kills these is the writer form, i.e.\ UN. Under UN, the empty copower is preserved, so
+  $M\varnothing=\varnothing\times E=\varnothing\ne1$. That forces $\top\ne\varnothing$, and then $\top\times E\cong1$ forces
+  $E\cong1$. So the load-bearing use of UN inside Step 2 is \emph{excluding a zero object}. Maybe and $\mathcal P$
+  show this use is unavoidable.
+\end{itemize}
+\textbf{Fix} (location: \S4.4, Step 2, the sentence beginning ``We stress''). Replace it with: ``The
+\emph{existence} of $\top$ uses only monoidal closedness and an initial object. The conclusion $E\cong1$ uses UN,
+through the writer form: it excludes $\top=\varnothing$, which does occur for $\mathrm{Maybe},\mathcal P\in CL$.''
+The note after Lemma 4.2 is fine as written, because it is about the lemma.
+
+\paragraph{(a.4) Minor points.}
+\begin{itemize}
+\item Theorem 4.3 statement: extension (C) only exists for $M\in CL$. Say ``exists and is full and faithful iff
+  $M\cong\mathrm{Id}$''.
+\item Remark 4.5: the copower test must include $T=\varnothing$, or else you should note that it is automatic. It is
+  automatic: if $M\cong(-)\times E$ on nonempty sets and $M\varnothing\neq\varnothing$, then naturality of
+  $M(\varnothing\to2)$ against the swap on $2$ produces a swap-fixed point of $2\times E$, and there is none. The
+  finite-coproduct paragraph asserts $M1\cong1$ without proof. It follows by the same zero-object exclusion plus
+  ``$E=M1$ is a retract of $M\top=1$'', and I suggest you write that down.
+\end{itemize}
+
+%=====================================================================
+\section*{(b) UID 292: bilinear $H^2_{\mathrm{Sb}}$ identification}
+
+\paragraph{(b.1) Lemma 2 (the crux).} \verdict{CORRECT} Line by line, in $(G,+)$ possibly non-abelian, with
+$s'=s+\theta$:
+\[
+\beta'(h_1,h_2)=-\theta(h_{12})-s(h_{12})+s(h_1)+\theta(h_1)+s(h_2)+\theta(h_2),\qquad h_{12}:=h_1+h_2 .
+\]
+Substituting $-s(h_{12})+s(h_1)=\beta(h_1,h_2)-s(h_2)$ (from (2)) gives
+$-\theta(h_{12})+\beta+\bigl(-s(h_2)+\theta(h_1)+s(h_2)\bigr)+\theta(h_2)$. The bracket is $\mu_{h_2}\theta(h_1)$.
+All five terms lie in the abelian group $D$, so they commute and (5) follows. I also checked that $\mu$ is an
+anti-homomorphism: $\mu_{h_1+h_2}=\mu_{h_2}\mu_{h_1}$, using $s(h_{12})=s(h_1)+s(h_2)-\beta$ and $D$ abelian.
+So $\mu$ is a right action, and (5) is the correct normalised coboundary for a right action. \emph{Numerical check:}
+for $G=S_4\supset D=V_4$, $H=S_3$, I tested 300 random pairs of sections against the lemma over all $(h_1,h_2)$,
+10\,800 identities in total, with 0 failures. The script is \texttt{2026-09-25-lemma2-check.py}. $\tau$ does not
+appear, and it cannot: (2) is the Schreier factor set of $(G,+)$ and never sees $\circ$. The lemma is a pure
+group lemma.
+
+\emph{One residual gap, and it is about the literature, not the maths.} You \emph{define} $B^2_{\mathrm{Sb}}$ as
+``shifts under change of st-section''. The lemma proves $\varphi_+$ well defined for \emph{that} $B^2$. For this
+to be a statement about RY's $H^2_{\mathrm{Sb}}$, you need RY's coboundary map to have $\beta$-component equal to
+your $d\theta$, with the same sign and side conventions for $\beta$ and $\mu$. RY [20] is the one place that
+fixes this, and neither of us has it. \textbf{Fix:} say this explicitly, or make the paper self-contained by
+defining $H^2_{\mathrm{Sb}}$ as cocycles modulo section-change shifts. Nothing downstream needs more than that.
+Also check that section-change shifts are independent of the base section. They are for $\beta$, by (5). For
+$\tau$ I did not check.
+
+\paragraph{(b.2) Non-injectivity on $\mathbb Z_2\times\mathbb Z_4$.} \verdict{CORRECT (verified)} With $H\cong\mathbb Z_2$
+the normalised sections are just $s(1)=k\in G\setminus D$. Then $\beta=0\iff 2k=0$, $\tau=0\iff k\circ k=0$, and
+$[\Omega]=0\iff$ some $k$ satisfies both. That last equivalence uses only your definition of $B^2$ and Theorem~6's
+first equivalence, not (3.10). So the separation is a finite section search. The brute-force script is
+\texttt{2026-09-25-w4-bruteforce.py}. It enumerates all $\lambda:A\to\mathrm{Aut}(A)$ with
+$\lambda_{a+\lambda_a b}=\lambda_a\lambda_b$. It finds 28 labelled braces, and an independent naive
+$8^7$ enumeration agrees. It then runs over both cyclic order-4 subgroups $D$, keeps ideals with
+$\lambda|_D$ trivial on $D$, and tabulates (mult, add, sb).
+Over labelled pairs (brace, $D$): 8 are $(Y,Y,Y)$, 4 are $(N,Y,N)$, and \textbf{4 are $(Y,Y,N)$}. So $\Phi$ is not
+injective. Confirmed.
+
+\emph{Explicit witness, checkable by hand.} Let $A=\mathbb Z_2\times\mathbb Z_4$, $\varphi(x,y)=(x,y+2x)$, and
+$\lambda_{(a_1,a_2)}=\varphi^{a_1}$. Then $a\circ b=(a_1+b_1,\ a_2+b_2+2a_1b_1)$. The first coordinate is a
+$\circ$-homomorphism, so $\lambda$ is a hom and $D=\{0\}\times\mathbb Z_4$ is an ideal (kernel of $a\mapsto a_1$),
+and a trivial brace. For $k=(1,y)$: $2k=0\iff y\in\{0,2\}$, while $k\circ k=(0,2y+2)=0\iff y$ odd. The two sets
+are disjoint and both are nonempty, so the triple is $(Y,Y,N)$. I recommend putting this witness in the paper in place of
+``[computed]''. It removes input (b) of your trust grade entirely.
+
+\paragraph{(b.3) Remark 10 and Summary T3.} \verdict{ERROR} In the witness above, $(G,+)$ is abelian, so
+$\Soc(G)=\ker\lambda=\{a:a_1=0\}=D$. Hence \textbf{$D=\Soc(G)$ and the separation still occurs}. Two of the four
+labelled $(Y,Y,N)$ pairs have $D\le\Soc(G)$. Your gloss of RY Thm~3.5, ``$I\le\Soc$ forbids a W4-type
+separation'', therefore fails. This does not contradict RY, and you anticipated why: RY's $\Lambda$-group splitting is
+\emph{not} componentwise (mult, add)-splitting. You disclaimed a numerical use but kept the qualitative one, and
+the qualitative one needs exactly the implication you disclaimed. \textbf{Fix:} delete ``the separation therefore requires
+$D\not\le\Soc(G)$'' from Remark 10 and T3. If you want a socle statement, the witness shows that the socle
+hypothesis does \emph{not} collapse brace-splitting onto componentwise group-splitting. That is a mildly
+interesting remark in its own right. Please also check that your W4 is one of the two $D\not\le\Soc$ pairs and not
+one of the $D=\Soc$ ones. I cannot match ``W4'' or sb\# numbering to my labelled list.
+
+\paragraph{(b.4) Minor.} $\tau=\nu(\bar\tau)$ with $\nu$ invertible, so $\tau=0\iff\bar\tau=0$. Fine. Theorem~3's
+additivity needs $Z^2_{\mathrm{Sb}}$ closed under pointwise sum. (3.10) is linear in $(\beta,\tau)$, so it is. Say so.
+
+%=====================================================================
+\section*{(c) UID 283: prunability as the fibre edge (brief)}
+
+\verdict{GAP} Location: \S7, ``Fibre edge'' paragraph, the table, and ``Answer to Remark 3.20''.
+
+\begin{itemize}
+\item \textbf{The computed class does not depend on the loop sets.} The extension
+  $0\to\{0,2\}\to(\mathbb Z/4,+)\to\mathbb Z/2\to0$ is a property of the additive group $\mathbb Z/4$ alone. It is
+  the same at $S_2$ and $S_3$, and the same for \emph{any} skew-brace groupoid with additive group $\mathbb Z/4$,
+  prunable or not. For example, a one-object instance, whose loops are all of $\mathbb Z/4$, is a subgroup and so
+  is prunable. Or take loop sets $\{0,2\}$, which also form a subgroup. Nothing in the computation uses $\{0,3\}$ or $\{0,1\}$. An
+  invariant that ignores the loop sets cannot be the prunability obstruction, which is a condition on the loop sets.
+\item \textbf{The control is confounded.} Klein-vs-$\mathbb Z/4$ changes the additive group, not just prunability. The
+  control you need is \emph{prunable with additive group $\mathbb Z/4$}. By the previous point, your fibre class would be
+  nonzero on it.
+\item \textbf{Type mismatch.} $E_2^{0,2}=H^2(D;M)^\Gamma$ with $D\le\pi$ the \emph{vertex group}. Here
+  $\Gamma=1$, so $D=\pi$. The Schreier class of $\mathbb Z/4\twoheadrightarrow\mathbb Z/2$ lives in $H^2$ of a
+  \emph{quotient of the additive group}. These are isomorphic groups ($\mathbb Z/2$), not the same group, and
+  you have no map carrying one to the other. If $\pi$ has order 2 here, which I infer from $|\mathrm{loops}(x)|=2$
+  but cannot confirm without Ferri, then $E_2^{0,2}=H^2(\mathbb Z/2;\mathbb F_2)\ne0$ for the Klein control too.
+  ``Klein control kills both edges'' is then false for the edge \emph{group}. Only your chosen element is zero.
+\item \textbf{Your question.} No, ``prunability $=$ nonsplitting on the fibre edge'' is not the right skew-brace
+  statement as it stands. Something like it may be right. You would need a class \emph{built from} $\mathrm{loops}(x)\subseteq(A,+)$, e.g.\ from the
+  failure of $\mathrm{loops}(x)$ to be closed under $+$, together with a map into $E_2^{0,2}$. I do not know
+  the right construction. On the quasigroup stars: they are not what breaks the identification. The fibre edge
+  is built from the vertex \emph{group} $\pi$, which is a group whatever the star is. The break is the first
+  bullet, and it would persist even for group stars. I cannot judge whether ``$+_\lambda$ read as $(\mathbb Z/4,+)$''
+  is faithful to Ferri's Counterexample 5.2, because I do not have the paper.
+\end{itemize}
+\emph{Smaller items.}
+(i) Cor.~8, $Q_8$ row. $Q_8$ has no $(\mathbb Z/2)^2$ subgroup. Your dimensions $3+2+1$ match $D=\mathbb Z/2$ central,
+$\Gamma=(\mathbb Z/2)^2$, so write $\mathbb Z/2.(\mathbb Z/2)^2$. The other three rows check.
+(ii) Theorem~1 and Thm.~10 say ``(1) holds \emph{iff} $[\omega]=0$''. Cor.~6 only gives sufficient conditions, and I know of no reason
+split extensions must collapse at $E_2$; I believe there are split counterexamples (Totaro, semidirect products), but I have not rechecked that reference. Weaken to ``only if''.
+(iii) Lemma~5 writes $H^1(D;M)^\Gamma=\Hom_\Gamma(D,M)$. That holds only if $D$ acts trivially on $M$. The
+transgression equals $\pm\varphi_*[\omega]$, and the sign is convention-dependent.
+(iv) Thm.~1(i): $[\omega]\in H^2(\Gamma;D)$, not $H^2(\Gamma;M^D)$. It enters the base edge only through $\varphi_*$.
+
+%=====================================================================
+\section*{(d) UID 287: is imported Theorem 1 at the right strength?}
+
+\verdict{GAP} No. It is overstated (location: \S1 Theorem~1; Definition~6). As written it is unconditional. It
+covers any two directed containers, $[\omega]\in H^2$ of an unnamed object with unnamed coefficients, and an
+undefined condition (L). It is billed as ``imported'', but the $H^2$ part rests on your own groupoid Zappa--Sz\'ep
+notes, not on Ahman--Uustalu [2]. Your UID 283 (\S9) itself says those notes cover only the normal, abelian
+vertex-bundle regime and exclude non-abelian/non-normal matched pairs. Also, $[\omega]$ is defined relative to
+\emph{fixed} action data. ``A consistent interleaving exists'' quantifies over all $\lambda$, so the correct statement
+is ``for given actions satisfying (L), the weld with those actions exists iff $[\omega]=0$''. \textbf{Fix:} state (L)
+and the $H^2$ (base, coefficients) explicitly. Add the normal/abelian hypothesis and the fixed-action
+quantifier, and cite the precise note and theorem number for the $[\omega]$ half. Keep ``imported'' only for the
+Ahman--Uustalu distributive-law$\leftrightarrow$weld half. Whether $\Delta S\bowtie\Delta T$ for two store comonads
+actually lands in that regime is exactly the open item (1) of \S7, and it should be flagged at Theorem~1, not only
+there. I cannot judge the Keizer--Basold--P\'erez concession; that is outside my lane.
+
+\end{document}

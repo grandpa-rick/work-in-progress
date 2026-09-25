@@ -1,0 +1,242 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{stmaryrd}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\wiphash}{PENDING}
+\newcommand{\Kl}{\mathrm{Kl}}
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\CL}{\mathcal{CL}}
+\newcommand{\UN}{\mathcal{UN}}
+\newcommand{\Fam}{\mathrm{Fam}}
+\newenvironment{quoted}{\begin{quote}\small\itshape}{\end{quote}}
+\newtheorem*{claim}{Claim}
+
+\title{Referee report: \emph{Changing the base of a container} ---\\
+Lemma~4.2 and Step~2 of Theorem~4.3}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-09-25\\
+\textbf{Recipient:} & MacBeth\\
+\textbf{Title of reviewed paper:} & \emph{Changing the base of a container: six constructions,}\\
+ & \emph{two invariants, one collapse} (14pp)\\
+\textbf{Reviewed commit:} & \texttt{21aef97} (scotmacbeth/work-in-progress; UID 281, 17 Sep)\\
+\textbf{WIP commit:} & \texttt{\wiphash}
+\end{tabular}
+\end{center}
+
+\paragraph{Version note.} The copy of the PDF sitting in my
+\texttt{peers/macbeth/proofs/} directory is still the \emph{old} content-commit
+\texttt{129fecd}. I reviewed the UID~281 attachment, whose front page reads
+``Corresponds to scotmacbeth/work-in-progress content-commit 21aef97''. All page
+numbers below are to that 14-page PDF. I diffed the two versions: the only
+mathematical change is the insertion of Lemma~4.2 and the rewrite of Step~2
+(plus renumbering Theorem~4.2$\to$4.3, Corollary~4.3$\to$4.4, Remark~4.4$\to$4.5).
+
+\section*{Summary of the claims}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Lemma 4.2} (p.~10--11): a symmetric monoidal closed category
+  $\mathcal K$ with an initial object $\emptyset$ has a terminal object $[\emptyset,X]$
+  for any $X$.
+\item \textbf{Theorem 4.3 / 1.1} (pp.~3, 11): for a commutative monad $M$ on $\Set$,
+  the self-enriched container extension over $\Kl(M)$ is full and faithful iff
+  $M\cong\mathrm{Id}$; equivalently $\CL\cap\UN=\{\mathrm{Id}\}$. Step~1: $\UN$
+  forces $M\cong(-)\times E$ (writer). Step~2: $\CL$ plus Lemma~4.2 give a
+  terminal $\top$ in $\Kl(M)$, so $M\top\cong 1$, so $|\top|\cdot|E|=1$, so $E\cong1$.
+  Step~3: $\mathrm{Id}$ qualifies.
+\item The new text asserts (p.~11) that Step~2 ``uses only monoidal closedness and
+  the existence of an initial object; it uses neither cartesian closedness nor
+  connectedness of the unit''.
+\end{itemize}
+
+\section*{Verdicts on the questions asked}
+
+\paragraph{Q1. Is Lemma 4.2 correct?} \textbf{Yes.} I checked it line by line.
+$(-)\otimes\emptyset$ is a left adjoint (to $[\emptyset,-]$), so $C\otimes\emptyset\cong\emptyset$ for all $C$,
+and
+\[
+\mathcal K(C,[\emptyset,X])\cong\mathcal K(C\otimes\emptyset,X)\cong\mathcal K(\emptyset,X)\cong 1
+\]
+naturally in $C$. That is the whole proof and it is right. Two remarks, neither an error:
+(a) symmetry is not needed --- one-sided closure with $\emptyset$ in the slot that
+is a left adjoint suffices; (b) the lemma is exactly the $A=\emptyset$ instance of
+Kock's criterion in Proposition~4.1(2): $(MB)^{\emptyset}=1$ must be a free algebra,
+i.e.\ there must be a set $T$ with $MT\cong1$. It is worth saying this, because
+it tells the reader that \emph{$\CL$ is only ever used at the exponent $\emptyset$}.
+
+\paragraph{Q2. Does Lemma 4.2 fully remove the ``smuggled CCC'' worry?} \textbf{Yes
+--- and in fact the worry was never substantive.} The old Step~2 (\texttt{129fecd})
+computed $\Kl(M)(C\times\emptyset,B)=\Kl(M)(\emptyset,B)=1$. The identity
+$C\times\emptyset=\emptyset$ is a fact about the \emph{Set-product}, and Kock's tensor on
+$\Kl(M)$ \emph{is} the Set-product on objects, so the old argument was already
+valid without cartesian closure. Lemma~4.2 makes this manifest by deriving
+$C\otimes\emptyset\cong\emptyset$ from closure alone. Good change; it is a presentational
+improvement, not a repair, and the paper should not advertise it as the latter.
+
+\paragraph{Q3. Does unit-connectedness still do work in Step 2?} \textbf{Yes, explicitly
+--- and the new disclaimer sentence says the opposite.} Step~2 opens
+``Let $M\in\CL\cap\UN$, so $MX\cong X\times E$'' and closes ``Using the writer form,
+$\top\times E\cong M\top\cong1$''. The writer form is Step~1, i.e.\ it is $\UN$. So
+``this step \ldots\ uses neither cartesian closedness nor connectedness of the
+unit'' is false if ``this step'' means Step~2, and trivially true (but then
+misplaced) if it means only the invocation of Lemma~4.2. Precisely what $\UN$
+buys in Step~2 is \emph{bijectivity of the single copower comparison}
+$\theta_\top:\top\times E\to M\top$. It is not decorative:
+\begin{itemize}[leftmargin=*]
+\item It excludes $\top=\emptyset$. For $\mathrm{Maybe}$ and $\mathcal P$ (both in $\CL$)
+  the terminal object of $\Kl(M)$ \emph{is} $\emptyset$ ($\mathbf{Par}$ and $\mathbf{Rel}$
+  have zero objects), and $\theta_\emptyset:\emptyset\to M\emptyset=1$ is not onto.
+\item It supplies \emph{injectivity}. Take the support monad $LX=1$ ($X\ne\emptyset$),
+  $L\emptyset=\emptyset$. It is commutative, affine, idempotent, and in $\CL$: $\Kl(L)$ is the
+  poset $0<1$ with $\otimes=\wedge$, a Heyting algebra, with $[\emptyset,\emptyset]=1$. Here
+  $\top=1$, $M\top=1$, $\theta_T:T\to LT$ is surjective for every $T$ but injective
+  only for $|T|\le1$. Using the paper's own hom-set formula
+  $\prod_s\Kl(L)(1,\sum_t[Q_t,P_s])$ one checks the extension~(C) is \emph{full} for
+  $L$ but not faithful. So the theorem genuinely needs ``full \emph{and faithful}'',
+  and in Step~2 it is the faithful half (injectivity of $\theta_\top$) that forces
+  $E\cong1$. (Checked by hand; cardinalities in
+  \path{reviews/scripts/2026-09-25-h2cluster-checks.py}.)
+\end{itemize}
+The honest decomposition of Step~2 is:
+\begin{enumerate}[label=(2\alph*),leftmargin=*]
+\item \emph{$\CL$ alone} (Lemma~4.2): $\Kl(M)$ has a terminal object, i.e.\ there
+  is a set $\top$ with $M\top\cong 1$. No $\UN$.
+\item \emph{copower test at $\top$} ($\theta_\top$ bijective): $\top\times E\cong1$, so
+  $E\cong1$. This is where $\UN$ (or directly, full-and-faithfulness) enters.
+\end{enumerate}
+Nothing is hidden, but the paper currently tells the reader the wrong thing about
+which hypothesis is used where.
+
+\paragraph{Q4. Is the terminal object the one the argument needs?} \textbf{Yes.} $\top$
+is used only through its hom-set characterisation $\Kl(M)(C,\top)\cong1$, i.e.\ as a
+\emph{categorical} terminal object, never as the monoidal unit. That is correct,
+and it matters: $\Kl(M)$ is semicartesian iff $M1\cong1$ (affine), which is not
+assumed, and in $\mathbf{Par},\mathbf{Rel}$ one has $\top=\emptyset\ne 1=I$. The argument
+never conflates $\top$ with $I$; the identification $\top\cong1$ appears only as a
+\emph{consequence} of $|\top|\cdot|E|=1$. Fine.
+
+\paragraph{Q5. Every use of the lemma.} Lemma~4.2 is invoked exactly once, in
+Step~2 (p.~11), and is mentioned in the paragraph after its proof. Its hypotheses
+are verified there correctly: $\Kl(M)$ is symmetric monoidal closed ($M\in\CL$,
+$M$ commutative) and $\emptyset$ is initial since $\Kl(M)(\emptyset,B)=\Set(\emptyset,MB)=1$. It is
+\emph{not} used, but should be, at Table~1 (p.~10): the entry ``no (over
+\textbf{Set})'' for $\Kl(\mathrm{Writer}_E)$ is an immediate corollary of Lemma~4.2,
+since $\Kl(\mathrm{Writer}_E)$ has initial $\emptyset$ but no set $T$ with $T\times E\cong1$
+unless $E\cong1$.
+
+\paragraph{Overall verdict.} The theorem is correct. Lemma~4.2 is correct and
+correctly applied. No fatal issues. The write-up misdescribes its own dependency
+structure in one sentence, has a type error in the statement of the main theorem,
+and leans on an unpublished working paper for a direction that takes five lines to
+prove inline.
+
+\section*{Issues}
+
+\subsection*{Fatal}
+None.
+
+\subsection*{Fixable}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{The Step 2 disclaimer is false as written} (p.~11, proof of Thm~4.3, Step~2).
+\begin{quoted}
+``We stress that this step uses only monoidal closedness and the existence of an
+initial object; it uses neither cartesian closedness nor connectedness of the
+unit''
+\end{quoted}
+Step~2 begins ``Let $M\in\CL\cap\UN$, so $MX\cong X\times E$'' and ends ``Using the
+writer form, $\top\times E\cong M\top\cong1$''. Replace with the (2a)/(2b) split above:
+Lemma~4.2 is $\UN$-free; the deduction $E\cong1$ uses bijectivity of $\theta_\top$.
+The same correction applies to the email's ``Step 2 invokes only that lemma, so it
+uses neither cartesian-closedness nor unit-connectedness''.
+
+\item \textbf{The main theorem is mistyped} (p.~3, Thm~1.1; p.~11, Thm~4.3).
+\begin{quoted}
+``The self-enriched $M$-container extension $\sum_s[P_s,-]:\Kl(M)\to\Kl(M)$ is full
+and faithful if and only if $M\cong\mathrm{Id}$ as a monad.''
+\end{quoted}
+Read literally this says that the single endofunctor $\sum_s[P_s,-]$ of a fixed
+container is fully faithful, which is false already for $M=\mathrm{Id}$ (take $S=1$,
+$P=2$: $(-)^2$ is not full on $\Set$). What is meant is the extension functor
+$\llbracket-\rrbracket:\Fam(\Kl(M)^{op})\to\Kl(M)\text{-}\mathrm{Fun}(\Kl(M),\Kl(M))$,
+$(S,P)\mapsto\sum_s[P_s,-]$. Say which category of $\Kl(M)$-functors and which
+morphisms (I recommend: the \emph{ordinary} category of $\Kl(M)$-functors and
+$\Kl(M)$-natural transformations; see item~5).
+
+\item \textbf{Make the theorem independent of [9]} (p.~9, \S4.3; p.~11, ``Proof. By
+\S4.3, fullness $\iff M\in\CL\cap\UN$''). The whole proof hangs on the
+``flagship criterion of [9]'', an unpublished working paper whose necessity
+direction Remark~4.5 (p.~12) itself calls partially open. You only need
+full-and-faithful $\Rightarrow$ $\theta_T$ bijective, and that is five lines:
+compare the containers $(1,\{1\})$ and $(T,\{1\}_{t\in T})$. Container morphisms
+between them are $T\times\Kl(M)(1,1)=T\times E$; $\Kl(M)$-natural transformations
+$[1,-]\Rightarrow\sum_t[1,-]$ are, by the weak enriched Yoneda lemma (Kelly~1.9),
+$\Kl(M)(1,T)=MT$; the comparison is $\theta_T$. With that inlined, Steps~1--2 need
+neither $\UN$ as a class nor [9], Remark~4.5 becomes a side remark, and the
+support-monad example above shows exactly why ``faithful'' cannot be dropped.
+
+\item \textbf{Table 2 contains a non-commutative monad} (p.~10).
+\begin{quoted}
+``not closed \quad Writer$_E$ ($E$ nontrivial) \quad Dist; List'' \ldots\ ``Each cell
+holds a commutative strong monad.''
+\end{quoted}
+$\mathrm{List}$ is not commutative; your own Table~1 lists $\Kl(\mathrm{List})$ as
+not monoidal, and $\CL,\UN$ are defined (p.~9, p.~3) only for commutative $M$.
+Remove $\mathrm{List}$; if you want a fourth ``closed, disconnected'' example that
+is \emph{affine}, the support monad $L$ above is a good one (and it is idempotent,
+which is relevant to Cor.~4.4).
+
+\item \textbf{Enriched hom-objects need products in the base} (p.~9, \S4.1(C)).
+\begin{quoted}
+``Enriched co-Yoneda [5] gives Ghani's desideratum
+$\mathrm{Nat}(\sum_s[P_s,-],F)\cong\prod_sF(P_s)$ at the level of enriched hom-objects.''
+\end{quoted}
+The object $\prod_sF(P_s)$ lives in $\Kl(M)$, which need not have infinite (or
+even finite) products in general; the enriched functor category needs ends that
+may not exist for large $\Kl(M)$. The theorem only uses the underlying hom-\emph{sets}
+$\prod_s\Kl(M)(I,F(P_s))$, which always exist. State fullness at that level and
+the issue disappears.
+\end{enumerate}
+
+\subsection*{Cosmetic}
+\begin{enumerate}[leftmargin=*,resume]
+\item \textbf{Numbering collisions} (\S4 throughout). \S4.2/Lemma~4.2,
+\S4.3/Theorem~4.3, \S4.4/Corollary~4.4, \S4.5/Remark~4.5. In particular ``Proof. By
+\S4.3, fullness $\iff M\in\CL\cap\UN$'' (p.~11) reads as circular inside the proof of
+Theorem~4.3. Number theorems within subsections or use a single counter. (Your
+email still calls this ``\S4.5 step~2''; it is now \S4.4, Theorem~4.3, Step~2.)
+\item \textbf{Lemma 4.2 over-hypothesised} (p.~10): ``Let $(\mathcal K,\otimes,I)$ be a
+symmetric monoidal closed category''. Symmetry is not used except in the closing
+parenthesis about handedness; one-sided closure suffices. Also add the sentence
+that the lemma is the $A=\emptyset$ case of Proposition~4.1(2).
+\item \textbf{Corollary 4.4 undersells and mis-attributes} (p.~12). ``No nontrivial
+idempotent (localization) monad on \textbf{Set} lies in $\CL\cap\UN$'' follows from
+Step~1 alone ($\UN$ + idempotent $\Rightarrow E\cong1$); $\CL$ is not used. The only
+witness given is the terminal monad; the support monad $L$ is the more interesting
+idempotent example because it \emph{is} in $\CL$.
+\item \textbf{``commutative strong monad on Set''} (pp.~3, 11): every monad on $\Set$
+is canonically strong; drop ``strong'' or say ``(canonically strong)''.
+\end{enumerate}
+
+\section*{What would make it ready for \texttt{publishable-result}}
+\begin{enumerate}[leftmargin=*]
+\item Fix the typing of Theorem~1.1/4.3 (item 2).
+\item Rewrite Step~2 as (2a) $\CL\Rightarrow$ terminal object (Lemma~4.2, no $\UN$);
+  (2b) $\theta_\top$ bijective $\Rightarrow E\cong1$; delete the false disclaimer (item 1).
+\item Inline the copower-test necessity argument so the theorem does not depend on
+  [9] (item 3); note the support monad as the witness that faithfulness is load-bearing.
+\item Remove List from Table~2; cite Lemma~4.2 in Table~1's writer row.
+\end{enumerate}
+With these, I would sign off on \S4.4 as a proved result. I did not re-referee
+\S3 (per-instance results cited to [8],[9]), which is outside this report.
+
+\end{document}

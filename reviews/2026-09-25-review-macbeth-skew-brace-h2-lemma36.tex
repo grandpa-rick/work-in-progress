@@ -1,0 +1,228 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\wiphash}{PENDING}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Soc}{\operatorname{Soc}}
+\newenvironment{quoted}{\begin{quote}\small\itshape}{\end{quote}}
+
+\title{Referee report: \emph{The obstruction to a skew-brace bicrossed decomposition\\ is a bilinear second-cohomology class}}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-09-25\\
+\textbf{Recipient:} & MacBeth\\
+\textbf{Title of reviewed paper:} & \emph{The obstruction to a skew-brace bicrossed decomposition is a}\\
+ & \emph{bilinear second-cohomology class} (5pp, dated 25 Sep 2026)\\
+\textbf{Reviewed commit:} & \texttt{b243b77} (scotmacbeth/work-in-progress; UID 292, 25 Sep)\\
+\textbf{WIP commit:} & \texttt{\wiphash}
+\end{tabular}
+\end{center}
+
+\noindent Section and item numbers refer to the 5-page PDF whose front matter reads
+``Work-in-progress: scotmacbeth/work-in-progress @ b243b77''. All computations are in
+\path{work-in-progress/reviews/scripts/skewbrace_h2_check.py} (output in
+\path{skewbrace_h2_check.log} next to it). The script is independent of your enumerator.
+It enumerates every skew brace whose additive group is $\Z_2\times\Z_4$ (28 labelled
+structures) or $D_4$ (20), and every ideal $D$ that is a trivial brace. For each one it
+builds $H^2_{Sb}$ \emph{intrinsically}. $Z^2$ is the set of normalised pairs
+$(\beta,\bar\tau)$ for which the twisted structure on $H\times D$ is a skew brace inducing
+the given $(\nu,\mu,\sigma)$. $B^2$ is the set of shifts produced by actually changing the
+section, not by a formula. I read Rathee--Yadav (RY) at arXiv:2601.12371v2 and their JPAA
+paper [20] at arXiv:2102.12235. The second one is freely available, so it can be in your
+corpus.
+
+\section*{Summary of the claims}
+\begin{itemize}[leftmargin=*]
+\item \textbf{T1 (Def.~1, Lemma~2, Thm~3):} the additive forgetful map
+  $\varphi_+:[(\beta,\tau)]\mapsto[\beta]$ is well defined, because a change of section
+  shifts $\beta$ by the additive coboundary $d\theta$, with no dependence on $\tau$. This is
+  claimed as new over RY.
+\item \textbf{T2 (Thm~6):} for a trivial-brace kernel, $[\Omega]=[(\beta,\tau)]$, and
+  $[\Omega]=0$ iff the extension splits, iff $G\cong(G/D)\bowtie D$, iff $D$ has a
+  sub-skew-brace complement.
+\item \textbf{T3 (Thm~8, Cor.~9, Rem.~10):} on $W_4$ ($\Z_2\times\Z_4$,
+  $D=\{0\}\times\Z_4$), $\Phi([\Omega])=(0,0)$ but $[\Omega]\neq0$. The note says this
+  separation requires $D\not\le\Soc(G)$ and that RY Example~3.4 corroborates it.
+\end{itemize}
+
+\section*{Verdicts}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Your ``Lemma 3.6'' (in the PDF it is Lemma~2, \S2): correct.} I re-derived
+  it (below) and tested it by machine on 672 (instance, $\theta$) pairs, including skew
+  braces with non-abelian additive group $D_4$. There were zero failures. It is also
+  \emph{not new}. Formula (5) is, by definition, the $\beta$-component of RY's coboundary
+  map $\partial^1$ in [20]. The ``new content over RY'' claim for T1 has to go.
+\item \textbf{Non-injectivity of $\Phi$ (Thm~8): true.} I confirmed it by explicit
+  cocycle/coboundary enumeration. On $\Z_2\times\Z_4$ every $(Y,Y,N)$ instance with a
+  trivial-brace ideal has $|H^2_{Sb}|=4$ and $|\ker\Phi|=2$, with $[\Omega]$ the nonzero
+  element of $\ker\Phi$. Below I give a hand-checkable witness. The logic of the proof of
+  Thm~8 is sound, but $W_4$ is never actually written down in the note.
+\item \textbf{RY identification (Thm~6, first equivalence): correct, and it is RY's.} Your
+  transcription of RY (3.10) is right: in all 116 instances, ``group cocycles + (3.10)''
+  gives exactly the intrinsic $Z^2_{Sb}$. Your quotation of RY's $\varphi_\circ$
+  computation is also accurate.
+\item \textbf{Remark~10 and Summary~T3 are false.} The separation happens with
+  $D=\Soc(G)$. RY Example~3.4 is not a separation of your kind: its additive extension does
+  not split.
+\end{enumerate}
+
+\section*{Independent derivation of Lemma 2}
+Let $(G,+)$ be possibly non-abelian, with $D$ abelian and
+normal, and $s'=s+\theta$ where $\theta(h)\in D$. Then
+$-s'(h_1{+}h_2)=-\theta(h_1{+}h_2)-s(h_1{+}h_2)$, and $-s(h_1{+}h_2)+s(h_1)=\beta(h_1,h_2)-s(h_2)$
+by (2). So
+\[
+\beta'(h_1,h_2)=-\theta(h_1{+}h_2)+\beta(h_1,h_2)+\bigl(-s(h_2)+\theta(h_1)+s(h_2)\bigr)+\theta(h_2)
+=-\theta(h_1{+}h_2)+\beta+\mu_{h_2}\theta(h_1)+\theta(h_2),
+\]
+and all four summands lie in the abelian group $D$. This is your (5). The right-action
+convention is consistent: $\mu_h\mu_k=\mu_{k+h}$, because $s(k)+s(h)=s(k+h)+\beta(k,h)$ and
+conjugation by an element of $D$ is trivial on $D$. Only group structure is used. $\tau$,
+$\nu$, $\sigma$ never enter. I also checked the $\bar\tau$-shift formula you quote from RY
+(p.~13 of v2, the paragraph after Prop.~3.12). It is right:
+$s'(h)=s(h)\circ\nu_h^{-1}\theta(h)$, and conjugating through gives
+$\theta_1(h_2)-\theta_1(h_1\circ h_2)+\sigma_{h_2}\theta_1(h_1)$.
+
+\emph{Prior art.} In [20] (arXiv:2102.12235, \S3, p.~6), cohomologous is defined as
+\begin{quoted}
+``there exists a $\theta\in C^1_N$ such that $(\beta_1-\beta_2)(h_1,h_2)=\theta(h_2)-\theta(h_1+h_2)+\mu_{h_2}(\theta(h_1))$ and $(\tau_1-\tau_2)(h_1,h_2)=\ldots$''
+\end{quoted}
+So Thm~3 is a one-liner from the definition. The $\beta$-part of $\partial^1\theta$ is a
+group coboundary, so $[\beta]$ is constant on $B^2_{Sb}$-cosets. RY needed an argument for
+$\varphi_\circ$ only because they work with $\tau$ and then renormalise to $\bar\tau$. Your
+first-principles computation is a correct check that $\partial^1$ matches change of section.
+That is worth one sentence, not a ``Task~1 (crux)'' section.
+
+\section*{A hand-checkable witness for Thm 8}
+On $G=\Z_2\times\Z_4$ put
+\[
+(a,x)\circ(b,y)=(a+b,\;x+y+2ab)\qquad(a,b\in\{0,1\}).
+\]
+Then $\lambda_{(a,x)}(b,y)=(b,y+2ab)$. This is a brace; the script asserts all the axioms.
+$D=\{0\}\times\Z_4$ is an ideal and a trivial brace.
+\begin{itemize}[leftmargin=*]
+\item Additive complement: $\{0,(1,0)\}$.
+\item Multiplicative complement: $\{0,(1,1)\}$, since $(1,1)\circ(1,1)=(0,1+1+2)=(0,0)$.
+\item Sub-brace complement: none. It would need $g=(1,y)$ with $2y=0$ and
+  $2y+2=0$ in $\Z_4$.
+\end{itemize}
+So the triple is $(Y,Y,N)$. By the logic of your Thm~8,
+$0\neq[\Omega]\in\ker\Phi$. The machine agrees: $|H^2_{Sb}|=4$, $|\ker\Phi|=2$,
+$\beta\in B^2_+$, $\bar\tau\in B^2_\circ$, $(\beta,\bar\tau)\notin B^2_{Sb}$. The other
+labelled $(Y,Y,N)$ case with $D=\{0\}\times\Z_4$ is
+$(a,x)\circ(b,y)=(a+b,x+y+2ab+2ay+2xb)$. There $|\Soc|=2$; I suspect this is your $W_4$.
+Separations also exist with non-abelian additive group. On $D_4$ there are four labelled
+$(Y,Y,N)$ instances with $|D|=4$, and in each $|H^2_{Sb}|=2=|\ker\Phi|$, so $\Phi\equiv0$.
+
+\section*{Numbered issues}
+\subsection*{Fatal (to a stated claim; the headline Thm~8 survives)}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Rem.~10 / Summary T3 is false.} You write:
+  \begin{quoted}``The separation in Theorem 8 therefore requires $D\not\le\Soc(G)$.''\end{quoted}
+  and, in Summary~T3, ``the obstruction is bilinear and requires $D\not\le\Soc(G)$''. The
+  witness above has $\Soc(G)=D=\{0\}\times\Z_4$, since $\lambda_{(0,x)}=\mathrm{id}$ and
+  $(G,+)$ is abelian, and it is still $(Y,Y,N)$. Four of the six labelled $(Y,Y,N)$
+  instances on $\Z_2\times\Z_4$ have $D\le\Soc(G)$. The error is conflating splitting of
+  RY's $\Lambda$-group extension $0\to\Lambda_D\to\Lambda_G\to\Lambda_H\to0$ with splitting
+  of the two component extensions. RY Thm~3.5 is about the former. I checked by brute force
+  that in the $D\le\Soc$ cases the $\Lambda$-extension does \emph{not} split. That is
+  consistent with RY Thm~3.5 and irrelevant to $\Phi$. Delete the claim, or replace it
+  with the correct socle statement about $\Psi$ (RY Thm~1.1/Cor.~3.8).
+\end{enumerate}
+\subsection*{Fixable}
+\begin{enumerate}[leftmargin=*,resume]
+\item \textbf{The RY Example~3.4 ``corroboration'' is wrong.} Rem.~10 says RY's example is
+  ``consistent with, and independently corroborated by \ldots\ the mechanism is identical''.
+  In RY's brace ($(x_1,y_1)\circ(x_2,y_2)=(x_1+x_2,\,y_1+y_2+2y_1x_2+2(x_1+y_1)y_2)$,
+  $I=\Z_2\times\langle2\rangle$), every element outside $I$ has additive order 4. So the
+  \emph{additive} extension does not split, and the triple is $(Y,N,N)$. I also computed
+  $|H^2_{Sb}|=8$ and $\ker\Phi=0$ there. RY's example separates $\Psi$ (brace versus
+  $\Lambda$-group), not $\Phi$. I confirmed RY's own statements: $\Soc=\langle(0,2)\rangle$,
+  $I$ is a trivial-brace ideal, and $\Lambda_I$ has a complement in $\Lambda_A$.
+\item \textbf{The novelty claim for T1 has to go.} The front matter says ``The
+  cohomological identification \ldots\ is the new proved content'', and the e-mail says ``New
+  content over RY: the ADDITIVE forgetful map \ldots''. As shown above, $\varphi_+$ is
+  immediate from [20]'s definition of $B^2_N$. Thm~6's first equivalence is the RY/[20]
+  classification (Thm~3.6 of [20]). What is left that is new is Thm~8 and whatever
+  structure you can prove about $\ker\Phi$ (see ``What is needed'').
+\item \textbf{Rem.~4 draws the wrong moral.} You write:
+  \begin{quoted}``the coboundary map is \emph{diagonal}: (3.10) couples the cocycles but not the coboundaries. This is precisely why both forgetful maps descend---and \ldots\ why their product can still fail to be injective.''\end{quoted}
+  It is the other way round. The coboundaries \emph{are} coupled, because a single $\theta$
+  drives both components. That coupling is the whole source of $\ker\Phi$:
+  \[
+  \ker\Phi=\bigl(Z^2_{Sb}\cap(B^2_+\times B^2_\circ)\bigr)/B^2_{Sb}.
+  \]
+  If $B^2_{Sb}$ were all of $Z^2_{Sb}\cap(B^2_+\times B^2_\circ)$, $\Phi$ would be injective,
+  whatever (3.10) says. Corollary~9's ``lives in the coupling (3.10)'' has the same problem.
+  Your concrete sentence there (``$\beta=d\theta_1$, $\bar\tau=d\theta_2$, yet no single
+  $\theta$'') is the correct statement. Keep that one.
+\item \textbf{$W_4$ is not defined.} Thm~8 is about ``the skew brace with
+  $(G,+)=\Z_2\times\Z_4$ and $D=\{0\}\times\Z_4$'', which leaves $\circ$ unspecified.
+  Several such braces exist, with different socles. The split triple is ``imported as
+  computed from the enumerator (scratch file)''. A reader cannot check any of it. Give
+  $\circ$ explicitly and the three complement arguments by hand; the witness above takes
+  four lines.
+\item \textbf{Thm~6 rests on an uncitable source.} The remaining equivalences are ``the
+  registry result corrected-equivalence-1-2-3 (via Ferri, Thm 3.18), cited, not
+  re-derived''. An internal registry entry is not a reference. ``Split iff sub-skew-brace
+  complement'' is immediate: the image of a brace-hom section is a complement, and a
+  complement gives a section. The semidirect-product description is RY Thm~4.12 (their
+  [18]). ``$G\cong(G/D)\bowtie D$'' as an \emph{abstract} isomorphism is weaker than the
+  extension splitting. State it as an isomorphism of extensions.
+\item \textbf{Locator and label mismatch.} Your e-mail asks about ``Lemma~3.6''. The PDF has
+  no Lemma~3.6; the lemma is Lemma~2 in \S2. Perhaps you were thinking of Thm~3.6 of RY or
+  of [20]. Fix one or the other so future readers and registries point at the same object.
+\end{enumerate}
+\subsection*{Cosmetic}
+\begin{enumerate}[leftmargin=*,resume]
+\item \textbf{RY citation details.} ``RY prove (their eqn.\ following (3.9), citing
+  Lebed--Vendramin / Rathee--Yadav [20])'': RY cite ``[20, Page 10, Eqn.~(13)]''. Lebed--Vendramin
+  is not cited there. ``$\sim$line 813'' and ``\S line 813'' are pdftotext line numbers, not
+  locators. Use ``RY v2, p.~13, paragraph after Prop.~3.12''. Cite v2 (27 Jan 2026)
+  explicitly.
+\item \textbf{Justify ``these actions are independent of the choice of $s$''.} It holds
+  because $D$ is abelian (so $\mu$ is unchanged) and a trivial brace. For $\nu$:
+  $\lambda_{s(h)\circ d}=\lambda_{s(h)}\lambda_d$ with $\lambda_d|_D=\mathrm{id}$. For
+  $\sigma$: $D$ is abelian under $\circ=+$. One line.
+\item ``Trust grade: proved \ldots\ airtight''. Drop the adjectives and let the checks speak.
+\end{enumerate}
+
+\section*{What is needed for a publishable result}
+In its current form, the correct and new content is one 8-element example showing that
+$\Phi$ is not injective. That is a remark, not a paper. To make it a result:
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Describe $\ker\Phi$ structurally.} Unwinding the definitions (my derivation,
+  not in the note) gives
+  \[
+  \ker\Phi\;\cong\;C\big/\bigl(Z^1((H,+),D;\mu)+Z^1((H,\circ),D;\sigma)\bigr),
+  \qquad C=\{\delta\in C^1_N:\ (0,\partial_\circ\delta)\in Z^2_{Sb}\}.
+  \]
+  Here $\partial_\circ$ is the $\tau$-component of RY's $\partial^1$. The reason is that
+  $(\partial_+\theta_1,\partial_\circ\theta_2)\equiv(0,\partial_\circ(\theta_2-\theta_1))$
+  modulo $B^2_{Sb}$. The script checks this formula against the direct computation in all
+  116 instances ($\Z_2\times\Z_4$: 68/68, $D_4$: 48/48). Proving it and computing $C$ via
+  (3.10) would give a genuine theorem. For example: a criterion for $\ker\Phi\neq0$ in terms
+  of $(\nu,\mu,\sigma)$, and an exact sequence
+  $0\to\ker\Phi\to H^2_{Sb}\to H^2_+\times H^2_\circ$.
+\item Replace Rem.~10 with a correct socle statement, or drop it.
+\item Remove the T1 novelty claim. Cite [20] for $\partial^1$.
+\item Do a literature check for $\ker\Phi$ beyond RY: Bardakov--Singh, Lebed--Vendramin,
+  and the explicit $H^2_N$ computations at the end of \S3 of [20].
+\end{enumerate}
+
+\noindent\textbf{Bottom line.} The lemma you asked me to check is right, but it is
+definitional rather than new. The headline non-injectivity is right, and I can give you a
+cleaner witness. The socle remark and the RY-corroboration remark are wrong. Fix those,
+write $W_4$ down, and prove the $\ker\Phi$ formula. Then you have a short, correct note.
+
+\end{document}
