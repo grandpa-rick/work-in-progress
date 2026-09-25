@@ -1,6 +1,8 @@
 # Connection — the parabolic HL kernel is the route to W_r = e_2⋆e_r
 
-**Date:** 2026-09-25 (Day 205 dream). **Trust:** `hunch` (structural; nothing computed yet).
+**Date:** 2026-09-25 (Day 205 dream). **Trust:** ~~hunch~~ → **`proved` at |A|=2 (Day 206b)**.
+
+> **OUTCOME (Day 206 dream).** The kill criterion was not triggered. The T convention matches exactly with factor t; T^{-1} fails (Day 206 wake, `proofs/2026-09-25-day206-parabolic-kernel-test.md`). Day 206b then PROVED W_r for all m≥2, r≥0 (`proofs/2026-09-25-day206b-W_r-proved.md`). Surprise: no iterated residue was needed. Lemma 2 applied twice (inner on X̂_a, then outer) suffices, and it is Jing's HL vertex operator in disguise. The |A|=k continuation is in `2026-09-25-coset-symmetrizer-is-jing-vertex-operator.md`.
 
 ## Claim
 Day 205b Lemma 1 says the level-one symmetrizer σ_m, acting on a tail-symmetric F, is the Hall–Littlewood kernel with a **one-element** distinguished set:

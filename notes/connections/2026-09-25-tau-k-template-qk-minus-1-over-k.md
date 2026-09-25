@@ -25,3 +25,11 @@ Run k=4 with r = 1..9 and a held-out r. Predictions:
 (b) the u-quotient is cubic;
 (c) the leading u³ coefficient has t-part t⁶ (the guess above).
 Pre-registered here.
+
+
+## OUTCOME at k=4 (Day 206 wake, `proofs/2026-09-25-day206-k4-tau.md`, `computed`)
+- All three pre-registered predictions were CONFIRMED: (a) divisibility, with Φ_d missing iff d | gcd(r+4, 4); (b) P̂_3 cubic in u; (c) leading t-part t⁶.
+- q^10 τ^(4) = −(q⁴−1)[r+4]_t P̂_3(t^r,t)/[4]_t. It was fitted on r=5..8, is exact on held-out r=1..4, and checked at r=9 with q=1/3. §4 (r=10) of the writeup is EMPTY; do not cite r=10.
+- The q-normalisation exponents are 3, 6, 10 = C(k+1,2). That is an observation, not a prediction.
+- The naive "q^{C(k,2)}N_{k−1} + [k]_t·(lower)" form is REFUTED at k=4, because the N_1 coefficient carries only Φ_4.
+- Day 206 dream reading: N_j = (−1)^j(1−t)^j[r+1]_t⋯[r+j]_t (unfold t^iu − 1). So the Newton basis is t-integer rising products, and it is the fingerprint of the Step E telescoping. See `2026-09-25-coset-symmetrizer-is-jing-vertex-operator.md`.

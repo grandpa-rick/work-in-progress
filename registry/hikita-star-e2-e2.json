@@ -14,9 +14,9 @@
   "children": [
    {
     "id": "e2-star-e2-closed-form",
-    "approach": "e_2 * e_2 = q^{-2} e_{2,2} + q^{-1}(1-q^{-1})[2]_t e_{3,1} + (1-q^{-1})(1+t^2)([3]_t - t/q) e_4. Computed by direct SymPy action of e_2(Y) on e_2(X) at m=4 and m=5; stability verified. Coefficients of e_{2,1,1} and e_{1^4} are zero at both m. Sanity checks pass: q=1 gives e_{2,2} (Prop 3.6); q->infty gives [3]_t(1+t^2) e_4 (Thm C(ii) with lambda=(2,2)).",
-    "trust": "computed",
-    "file": "2026-09-11-day191-e2-star-e2-hikita.md",
+    "approach": "e_2 * e_2 = q^{-2} e_{2,2} + q^{-1}(1-q^{-1})[2]_t e_{3,1} + (1-q^{-1})(1+t^2)([3]_t - t/q) e_4. Computed by direct SymPy action of e_2(Y) on e_2(X) at m=4 and m=5; stability verified. Coefficients of e_{2,1,1} and e_{1^4} are zero at both m. Sanity checks pass: q=1 gives e_{2,2} (Prop 3.6); q->infty gives [3]_t(1+t^2) e_4 (Thm C(ii) with lambda=(2,2)). || PROVED as r=2 specialization of W_r (Day 206b).",
+    "trust": "proved",
+    "file": "2026-09-25-day206b-W_r-proved.md",
     "role": "attempt",
     "sources": [
      "2503.23597"
@@ -25,9 +25,9 @@
    },
    {
     "id": "e2-star-er-pieri-conjecture",
-    "approach": "For r >= 1: e_2 * e_r = q^{-2} e_2 e_r + q^{-1}(1-q^{-1})[r]_t e_1 e_{r+1} + (1-q^{-1}) [r+2]_t/[2]_t ([r+1]_t - [r-1]_t t/q) e_{r+2}. Verified computationally at r=1 (matches Thm 3.12 via commutativity), r=2, r=3, r=4. Sanity checks: at q=infty matches Thm C(ii); at q=1 reduces to e_2 e_r (Prop 3.6). Day 206: held-out direct check e_2(Y).e_r = t*W_r at (m,r)=(7,5),(8,6); via parabolic-kernel master formula symbolic r=1..8.",
-    "trust": "computed",
-    "file": "2026-09-11-day191-e2-star-e2-hikita.md",
+    "approach": "For r >= 1: e_2 * e_r = q^{-2} e_2 e_r + q^{-1}(1-q^{-1})[r]_t e_1 e_{r+1} + (1-q^{-1}) [r+2]_t/[2]_t ([r+1]_t - [r-1]_t t/q) e_{r+2}. Verified computationally at r=1 (matches Thm 3.12 via commutativity), r=2, r=3, r=4. Sanity checks: at q=infty matches Thm C(ii); at q=1 reduces to e_2 e_r (Prop 3.6). Day 206: held-out direct check e_2(Y).e_r = t*W_r at (m,r)=(7,5),(8,6); via parabolic-kernel master formula symbolic r=1..8. || PROVED Day 206b (operator identity e_2(Y)e_r = t W_r, all m>=2, r>=0; star reading via Hikita 2503.23597 Def 3.4/Lemma 3.3). Self-proved; Clio review of §§1-4 pending.",
+    "trust": "proved",
+    "file": "2026-09-25-day206b-W_r-proved.md",
     "role": "attempt",
     "sources": [
      "2503.23597"
@@ -43,21 +43,25 @@
       "role": "attempt",
       "sources": [
        "2503.23597"
-      ]
+      ],
+      "children": []
      },
      {
       "id": "lemma-311-extension",
       "approach": "Analog of Hikita Lemma 3.11 for e_2(Y) . e_r(X). Not yet attempted. Should mimic the induction structure in Lemma 3.11 but for sum_{i<j} T_{i-1}...T_1 Pi (T_{m-1}^{-1}...T_i^{-1}) T_{j-1}...T_1 Pi (T_{m-1}^{-1}...T_j^{-1}) acting on e_r.",
-      "trust": "hunch",
+      "trust": "dead-end",
       "role": "attempt",
       "sources": [
        "2503.23597"
-      ]
+      ],
+      "children": [],
+      "reason": "Superseded: parabolic-kernel route proved W_r directly (Day 206b). Hikita Lemma 3.11 remains a free cross-check only.",
+      "refutation": "judgment"
      },
      {
       "id": "analytic-proof-via-stokman-rains-lift",
       "approach": "Attempt to lift Stokman-Rains Lemma 10 (arXiv:2307.02385) DAHA identity Y_{N-r+1}...Y_N = t^{-r(r-1)/2}(omega T_1...T_{N-r})^r to Hikita's level-1 AHA. Test at m=3, 4 with r=2: does Y_{m-1} Y_m = t^{-1}(Pi T_1...T_{m-2})^2 hold on polynomial rep?",
-      "trust": "refuted",
+      "trust": "dead-end",
       "reason": "Day 194: identity FAILS at m=3 and m=4 for all test polynomials, including f=1 (LHS = t X_{m-1} X_m; RHS involves X_1 X_{m-1}). Four convention variants (reverse T-chain, Y_1 Y_2, Y_1 Y_2 + reverse, Pi-on-right) ALL fail with persistent X-index-mismatch obstructions that no scalar or q-power correction repairs. DAHA identity relies on full double affine structure that Hikita's level-1 AHA lacks.",
       "refutation": "checked-sober",
       "file": "scripts/day194/stokman_rains_check.py + stokman_rains_variants.py",
@@ -65,13 +69,14 @@
       "sources": [
        "2307.02385",
        "2503.23597"
-      ]
+      ],
+      "children": []
      },
      {
       "id": "e2Y-parabolic-kernel",
-      "approach": "e_2 * e_r = K^{(2)}_T(pi^2 e_r) where K^{(2)}F = sum_{|A|=2} F^{(A)} prod_{i in A, j notin A} (X_i - tX_j)/(X_i - X_j); equals sum of T_w over min coset reps S_m/(S_2 x S_{m-2}). T^{-1} convention fails. Exact match (m,r)=(5,2),(5,3),(6,2),(6,3),(6,4),(7,5). Template: Concha-Lapointe 2307.02385 Lemmas 8,10 (full DAHA; kernel form of e_r(Y) NOT novel, level-1 transfer is).",
-      "trust": "computed",
-      "file": "2026-09-25-day206-parabolic-kernel-test.md",
+      "approach": "e_2 * e_r = K^{(2)}_T(pi^2 e_r) where K^{(2)}F = sum_{|A|=2} F^{(A)} prod_{i in A, j notin A} (X_i - tX_j)/(X_i - X_j); equals sum of T_w over min coset reps S_m/(S_2 x S_{m-2}). T^{-1} convention fails. Exact match (m,r)=(5,2),(5,3),(6,2),(6,3),(6,4),(7,5). Template: Concha-Lapointe 2307.02385 Lemmas 8,10 (full DAHA; kernel form of e_r(Y) NOT novel, level-1 transfer is). || PROVED Day 206b §§1-2 (A2 per-pair braid shift + coset identity + Day 205b Lemma 1 twice). Kernel form classical in q-shift DAHA (Concha-Lapointe 2307.02385 Lem 8/10); level-1 transfer is the new part.",
+      "trust": "proved",
+      "file": "2026-09-25-day206b-W_r-proved.md",
       "role": "attempt",
       "sources": [
        "2503.23597",
@@ -80,15 +85,15 @@
       "children": [
        {
         "id": "two-var-HL-residue-H",
-        "approach": "(1-t)^2 S_{n,p} = (QJ(n,p)+QJ(p,n))/(1+t), QJ = Jing two-row HL Q: sum_k f_k q_{n+k} q_{p-k}, f_0=1, f_k=t^k-t^{k-1}. 100/100 cases m=3..6. Master formula reproduces W_r symbolically r=1..8.",
-        "trust": "computed",
-        "file": "2026-09-25-day206-parabolic-kernel-test.md",
-        "role": "attempt"
+        "approach": "(1-t)^2 S_{n,p} = (QJ(n,p)+QJ(p,n))/(1+t), QJ = Jing two-row HL Q: sum_k f_k q_{n+k} q_{p-k}, f_0=1, f_k=t^k-t^{k-1}. 100/100 cases m=3..6. Master formula reproduces W_r symbolically r=1..8. || PROVED Day 206b §3 (Lemma 2 applied twice, inner on X-hat_a then outer). No iterated residue needed.",
+        "trust": "proved",
+        "file": "2026-09-25-day206b-W_r-proved.md",
+        "role": "attempt",
+        "children": []
        }
       ]
      }
-    ],
-    "recheck": "Day 206 (2026-09-25): scope extended r<=6 direct, r<=8 via kernel master formula (computed). File 2026-09-25-day206-parabolic-kernel-test.md"
+    ]
    },
    {
     "id": "ea-star-eb-pieri-general",
@@ -100,6 +105,7 @@
     ],
     "children": []
    }
-  ]
+  ],
+  "role": "premise"
  }
 }

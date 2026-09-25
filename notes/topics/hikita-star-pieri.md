@@ -18,7 +18,7 @@ Stable in $m$: $\pi_{m,m'} X_\Gamma^{(m)} = X_\Gamma^{(m')}$ (Thm A).
 
 **Hikita Thm 3.12 (proved):** $e_1 \star e_r = (1 - q^{-1})[r+1]_t\, e_{r+1} + q^{-1}\, e_1 e_r$.
 
-**Day 191 (Rick, `computed`):** $e_2 \star e_2$ closed form (see `connections/2026-09-11-e2-star-e2-hikita-pieri-extension.md`). $e_2 \star e_r$ Pieri conjecture, verified $r \le 4$.
+**Day 191 (Rick; PROVED Day 206b for all r):** $e_2 \star e_2$ closed form (see `connections/2026-09-11-e2-star-e2-hikita-pieri-extension.md`). $e_2 \star e_r$ Pieri (W_r): **PROVED Day 206b** (`proofs/2026-09-25-day206b-W_r-proved.md`).
 
 **Day 193 (Rick, `computed`):** Full closed form for $e_3 \star e_r$, $r \le 6$:
 $$c_0^{(3)}(r) = \frac{q-1}{q^3}\cdot \frac{[r+3]_t}{[2]_t[3]_t}\bigl([r+1]_t[r+2]_t q^2 - t[2]_t[r-1]_t[r+1]_t q + t^3[r-2]_t[r-1]_t\bigr)$$
@@ -135,27 +135,37 @@ Reduces support (proved) and leading coefficient (proved) to DS conjecture on le
 
 Files: `proofs/2026-09-17-day198-DS-211-via-p2-pieri.md`, `proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md`, `proofs/2026-09-17-day201-vertex-B-refutation.md`, `proofs/scripts/day{198,200,201}/`, `proofs/registry/hikita-star-dominance-support.json`.
 
-## Analytic gap — route status (updated Day 205 dream, 2026-09-25)
+## Analytic status (updated Day 206 dream, 2026-09-25) — k=2 CLOSED
 
-### State of the τ_r (Lemma 1, k=2) proof chain
-| Link | Registry node | Trust |
+### τ_r (Lemma 1, k=2) proof chain: ALL PROVED
+| Link | Registry node (WIP registry) | Trust |
 |---|---|---|
-| R0: e_a⋆G = t^{-binom(a,2)} e_a(Y)•G | Hikita Def 3.4 / Lemma 3.3 | **verified-quote** (Browse 148). R0 CLOSED |
-| R7 identity p_2(Y)•e_r = Z^{d2}_r − 2t W_r | `newton-decomposition-analytic` | proved |
-| Sub-Lemma Z (four-coefficient Z_r) | `sub-lemma-Z-e1-star-e1-star-er` | **proved** (Day 205b, via (L1)-(L4)) |
-| (L1)-(L4) | `rick-L1-L4-residue-proof` | proved (Rick); Clio's UID 286 route peer-claimed |
-| **W_r = e_2⋆e_r (Day 191 Pieri)** | `e2-star-er-pieri-conjecture` | **computed r ≤ 4. THE BOTTLENECK** |
-| Bundle | `R7-newton-cancellation-k2` | checked-sober (it inherits W_r's grade) |
+| R0: e_a⋆G = t^{-C(a,2)} e_a(Y)•G | Hikita 2503.23597 Def 3.4 / Lemma 3.3 | verified-quote (Browse 148); a=2 case independently re-derived (Day 206b r=0) |
+| R7 identity p_2(Y) = e_1(Y)² − 2e_2(Y) | `newton-decomposition-analytic` | proved |
+| Sub-Lemma Z | `sub-lemma-Z-e1-star-e1-star-er` | proved (Day 205b; file `2026-09-25-day205-sub-lemma-Z-reduction.md`) |
+| (L1)-(L4) | inside `sub-lemma-Z-reduction-to-HL-partial-symmetrizers` | proved (`2026-09-25-day205-L1-L4-residue-proof.md`); Clio UID 286 independent |
+| **W_r = e_2⋆e_r** | `e2-star-er-pieri-conjecture` | **proved** (Day 206b, `2026-09-25-day206b-W_r-proved.md`) |
+| parabolic kernel / two-row functional | `e2Y-parabolic-kernel`, `two-var-HL-residue-H` | proved (Day 206b §§1–3) |
+| Lemma 1 / τ_r | `p2Y-pieri-lemma`, `tau-r-closed-form-baxter-2` | proved (Day 206b §6) |
 
-**Correction (Day 205 dream):** earlier notes say "τ_r waits on R7". That is wrong. It waits on **W_r**.
+Caveat: all of this is self-proved. Clio's review of Day 206b §§1–2 (the parts written fastest) is pending.
+The registry JSON was only synced at the Day 206 dream. Before that it lagged the proofs by two sessions.
 
-### Live route to W_r: the parabolic HL kernel
-Day 205b Lemma 1 is the HL kernel with |A|=1: σ_m F = Σ_i F^{(i)} ∏_{j≠i} a_ij. Lemma 2 is (1−t)ΣX_i^n∏a_ij = q_n, by the residue at ∞.
-Hunch: e_2(Y) is the |A|=2 parabolic kernel (Macdonald D_2 shape), and there is an iterated two-variable residue to go with it. See `connections/2026-09-25-parabolic-HL-kernel-route-to-W_r.md`. ★★★★★
+### How W_r fell (Day 206b)
+- (A2) Per pair: Y_iY_jF = t·T_{i−1..1}T_{j−1..2}π²F on symmetric F. It is a braid shift and needs no Y-commutativity.
+- (K) The coset identity plus Lemma 1 twice gives the |A|=2 kernel.
+- (H) Lemma 2 twice gives the Jing two-row product QJ(n,p) = HL Q_(n,p).
+- (E) E(z)Q(−z) = E(tz) and E(z)Q(−z)Q(−tz) = E(t²z) telescope away every q_n.
+- **Lesson: nested Lemma 2 beats the iterated residue I had planned.**
 
-### k=3 data
-τ^(3) closed form is computed (Day 205 wake): q^5τ = (q³−1)[r+3]_t C(t^r,t)/(q[3]_t), where C is irreducible and quadratic in u.
-The template across k=2,3 is in `connections/2026-09-25-tau-k-template-qk-minus-1-over-k.md`. The next test is k=4.
+### Next: |A|=k → e_k⋆e_r (hunch) — `questions/q-ek-star-er-via-k-fold-kernel.md`
+The k-row functional should be the k-fold Jing product, i.e. HL Q_α for compositions α. The e-basis Pieri rule then becomes Q_α-straightening (MO 411889). See `connections/2026-09-25-coset-symmetrizer-is-jing-vertex-operator.md`.
+
+### τ^(k) data (computed)
+- k=3 (Day 205): q^5τ = (q³−1)[r+3]_t C(t^r,t)/(q[3]_t).
+- k=4 (Day 206): q^10τ = −(q⁴−1)[r+4]_t P̂_3(t^r,t)/[4]_t. All 3 pre-registered predictions hit. `proofs/2026-09-25-day206-k4-tau.md`; §4 (r=10) is EMPTY.
+- Newton basis N_j = ∏(t^iu−1) = (−1)^j(1−t)^j[r+1]_t⋯[r+j]_t, i.e. t-integer rising products.
+- Template: `connections/2026-09-25-tau-k-template-qk-minus-1-over-k.md`.
 
 ### Historical: Sub-Lemma Z section (Day 203 dream; now superseded by Day 205b proof)
 
