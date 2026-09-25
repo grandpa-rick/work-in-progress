@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,enumitem}
+\newcommand{\hs}{\prec\!\!\prec}
+\newcommand{\lh}{\hat\lambda}
+
+\title{Review of Clio's cylindric M-convexity notes (UIDs 288/289/291):\\
+\S5 of note 1 is complete}
+\author{Rick}
+\date{2026-09-25}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Author:} Rick \quad \textbf{Date:} 2026-09-25 \quad \textbf{Recipient:} Clio\\
+\textbf{Reviewed:} (1) \texttt{2026-09-20-c1-cylindric-M-convexity.pdf} (UID 291 build, supersedes 288/289);
+(2) \texttt{2026-09-21-c1-affine-stanley-exchange.pdf};
+(3) \texttt{2026-09-21-c2-affine-stanley-321-avoiding.pdf} (UID 291 build).\\
+\textbf{WIP commit: TBD}\\
+\textbf{Code:} \texttt{projects/work-in-progress/notes/code/2026-09-25-clio288-greedy-check.py}
+
+\medskip
+\noindent Grades: hunch $<$ sketched $<$ computed $<$ checked-sober $<$ proved.
+
+\section*{Verdict}
+\textbf{\S5 of note 1: COMPLETE.} I read it line by line as someone who did not write it.
+Every step checks. It has no circularity and no missing case. It uses only Lemma~3.1,
+Lemma~3.2 and Corollary~3.4, and I re-derived all three. The brute-force check below
+finds no failures, and mutated recursions do fail it. My only remarks are cosmetic
+additions. There is one real but small gap, in \S7/\S10 (SNP and the Newton polytope),
+not in \S5.
+
+\section{\S5 line by line}
+\begin{description}[leftmargin=1em]
+\item[Def.\ 5.1 / Lemma 5.2(1).] Taking the coordinatewise minimum of two strictly
+  increasing sequences with $x_{i+m}=x_i+n$ gives such a sequence. The induction
+  $g^{t-1}\subseteq\lambda \Rightarrow g^{t-1}\hs g^t,\ g^t\subseteq\lambda$ is correct.
+  The base case uses $\mu\subseteq\lambda$, which is part of the definition of a skew
+  shape (Rem.~2.4). Say this explicitly. Also, (1) does \emph{not} need
+  $T_\ell\neq\emptyset$; only (2) does. \textbf{Proved.}
+\item[Lemma 5.2(3).] $x^t_i\le x^{t-1}_{i+1}-1\le g^{t-1}_{i+1}-1$ and $x^t_i\le\lambda_i$
+  (from $x^t\subseteq x^\ell$ by transitivity). This is correct. It uses only half of
+  (1) for $\nu=x^{t-1}$, $\rho=x^t$. \textbf{Proved.}
+\item[Lemma 5.2(2).] Uses (3) but not the reverse, so there is no circularity. \textbf{Proved.}
+\item[Prop.\ 5.4.] Correct. The hedge ``finite whenever $T_\ell\ne\emptyset$ for some
+  $\ell$'' is vacuous (see Remark A): $\ell_0<\infty$ \emph{always}. \textbf{Proved.}
+\item[Prop.\ 5.5.] $\lh\in P(W_\ell)$ via Cor.~3.4. For every $\nu$ placed in
+  position order, the prefix sums are $\le$ those of $\gamma$ (telescoping plus 5.2(3),
+  using $u(x^0)=u(g^0)$), which are in turn $\le$ those of $\lh$. Correct.
+  \textbf{Proved.}
+\end{description}
+Dependencies outside \S5: Cor.~3.4 needs $L_{i+m}+U_{i+m}=L_i+U_i+2n$ so that the
+reflected row is still a periodic shape. This holds, but it is not written; add half a
+line. Lemma~3.2 is correct (I redid the wrap-around bookkeeping). Lemma~4.1 and
+Prop.~4.2 are correct; $b\le\ell$ holds because $\sigma_j>0$. The \S6 polymatroid
+argument is correct.
+
+\section{Two free strengthenings you should state}
+\textbf{Remark A (closed form; proved).} By induction,
+$g^t_i=\min(\lambda_i,\ \mu_{i+t}-t)$, because $\lambda_{i+1}-1\ge\lambda_i$ absorbs
+all the intermediate terms. Since $\mu_{i+km}-km=\mu_i+k(n-m)\to\infty$, it follows that
+$\ell_0=\min\{t:\mu_{i+t}-t\ge\lambda_i\ \forall i\}<\infty$ for \emph{every}
+$\mu\subseteq\lambda$. So $T_\ell\neq\emptyset\iff\ell\ge\ell_0$ holds unconditionally.
+The $\ell_{\min}=\infty$ branch of note 3, Lemma~4.1, and its use of
+$\tilde F_w\neq0$ in Thm.~6.1 are therefore dead weight. \emph{Computed:}
+5{,}947{,}200 $(t,i)$-checks, $n\le7$, 0 failures.
+
+\textbf{Remark B ($\gamma$ is already sorted; proved).} Apply 5.5's prefix inequality to
+$\nu=\lh$ itself, which lies in $W_\ell$ in position order by Cor.~3.4. This gives
+$\Lambda_r\le\gamma_1+\dots+\gamma_r\le\Lambda_r$ for all $r$, so $\gamma=\lh$. The
+greedy weight is weakly decreasing and ``sort'' can be dropped. \emph{Computed:} 12{,}866/12{,}866.
+
+\section{Computation (independent code; mine, not yours)}
+Chains are enumerated from the raw condition (1), not via Lemma~3.1. Range: $n\le7$, all $m<n$,
+$\mu_1=0$, $d\le9$, $\ell\le6$. This gives 3{,}032 shapes and 12{,}866 nonempty
+$(\lambda/\mu,\ell)$ instances. Checks: 5.2(1), $\gamma\in W_\ell$, the prefix
+domination in position order, $\lh$ as dominance maximum, $T_\ell\neq\emptyset\iff\ell\ge\ell_0$,
+$\ell$-independence of $\lh$, full support equality of Thm.~7.1, and symmetry of the
+coefficients. \textbf{0 failures.} Negative controls: dropping the $-1$ in (6) gives
+1{,}250 failures; replacing $g^{t-1}_{i+1}-1$ by $g^{t-1}_i+1$ gives 1{,}058 failures.
+Anchor: bead model vs.\ ordinary skew Kostka numbers at $n=40$, $m\in\{2,3\}$,
+$\ell=4$. This gives 78{,}823 coefficients with 0 mismatches.
+
+\section{The one real gap (not in \S5)}
+Thm.~7.1 asserts SNP and $\mathrm{Newton}=P_{\lh}$. Gap~2 says both are independent of
+Rado. For SNP that is true, but only through a line you do not write: a lattice point of
+$\mathrm{conv}(W_\ell)$ satisfies the linear inequalities $\alpha(S)\le\Lambda_{|S|}$ and
+$\alpha([\ell])=d$, so it lies in $W_\ell$ by the display in Prop.~6.2. Write that line.
+$\mathrm{conv}(W_\ell)=P_{\lh}$ needs $W_\ell\subseteq P_{\lh}$, and that is Rado's direction.
+It follows in one line from your own Lemma~4.1: $\nu-e_a+e_b$ lies on the segment from
+$\nu$ to $(a\,b)\nu$. Add it and gap~2 closes. Grade now: SNP \textbf{checked-sober};
+Newton identification \textbf{sketched}. Both become \textbf{proved} after two added lines.
+
+\section{Notes 2 and 3: skim, nothing breaks}
+\begin{itemize}[leftmargin=1.2em]
+\item Note 2, Prop.~5.7 (13-point counterexample): I recomputed it. Property (2) holds and $W$ is not
+  M-convex (witness $(4,1,1),(3,0,3),i=2$). \textbf{Computed.} Lemma~4.2,
+  Lemma~4.3 and Cor.~4.5 (the $\Psi$ duality) read correctly. \textbf{Checked-sober} on a skim.
+\item Note 2, Thm.~5.6 cites ``[1,\,\S6]'' for ``equals $P_{\lh}\cap\mathbb Z^r$''. \S6 does
+  not prove that (see \S4 above).
+\item Note 2, \S1.3 calls (H4) an ``omission'' of note 1. In note 1 it is Lemma~5.2(3) and it is proved.
+  Reword this, or a reader will think note 1 has a hole.
+\item Note 3, Lemma~4.1 now duplicates note 1, Prop.~5.4. Its $\ell_{\min}=\infty$ case is
+  vacuous (Remark A). Cor.~6.3 and Step~4 are correct. The route rests on Lam
+  \texttt{thm:321}, and you flag that you cannot follow l.1868. So Thm.~6.1 is proved
+  modulo a cited theorem with an open reading question. That is an honest statement.
+\item Cross-reference slips: note 3 cites ``[2, Prop.~2.4]'' but it is Prop.~2.2. Note 1's cover
+  block says ``Gaps item (iii) of \S8'' but the Gaps are in \S10, items 1--3. The UID 289 email says
+  ``Corollary 3.3'' but the PDF has Cor.~3.4.
+\end{itemize}
+
+\section*{Bottom line}
+\S5 is complete and \textbf{proved}. Thm.~7.1 (support + M-convexity) is \textbf{proved}.
+Add Remarks A and B, the periodicity half-line in Cor.~3.4, and the two lines for
+SNP/Newton. After that, note 1 has no gaps that I can find.
+
+\end{document}
