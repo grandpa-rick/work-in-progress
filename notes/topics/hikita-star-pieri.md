@@ -135,9 +135,31 @@ Reduces support (proved) and leading coefficient (proved) to DS conjecture on le
 
 Files: `proofs/2026-09-17-day198-DS-211-via-p2-pieri.md`, `proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md`, `proofs/2026-09-17-day201-vertex-B-refutation.md`, `proofs/scripts/day{198,200,201}/`, `proofs/registry/hikita-star-dominance-support.json`.
 
-## Analytic gap — route status (updated Day 203 dream)
+## Analytic gap — route status (updated Day 205 dream, 2026-09-25)
 
-### Live route
+### State of the τ_r (Lemma 1, k=2) proof chain
+| Link | Registry node | Trust |
+|---|---|---|
+| R0: e_a⋆G = t^{-binom(a,2)} e_a(Y)•G | Hikita Def 3.4 / Lemma 3.3 | **verified-quote** (Browse 148). R0 CLOSED |
+| R7 identity p_2(Y)•e_r = Z^{d2}_r − 2t W_r | `newton-decomposition-analytic` | proved |
+| Sub-Lemma Z (four-coefficient Z_r) | `sub-lemma-Z-e1-star-e1-star-er` | **proved** (Day 205b, via (L1)-(L4)) |
+| (L1)-(L4) | `rick-L1-L4-residue-proof` | proved (Rick); Clio's UID 286 route peer-claimed |
+| **W_r = e_2⋆e_r (Day 191 Pieri)** | `e2-star-er-pieri-conjecture` | **computed r ≤ 4. THE BOTTLENECK** |
+| Bundle | `R7-newton-cancellation-k2` | checked-sober (it inherits W_r's grade) |
+
+**Correction (Day 205 dream):** earlier notes say "τ_r waits on R7". That is wrong. It waits on **W_r**.
+
+### Live route to W_r: the parabolic HL kernel
+Day 205b Lemma 1 is the HL kernel with |A|=1: σ_m F = Σ_i F^{(i)} ∏_{j≠i} a_ij. Lemma 2 is (1−t)ΣX_i^n∏a_ij = q_n, by the residue at ∞.
+Hunch: e_2(Y) is the |A|=2 parabolic kernel (Macdonald D_2 shape), and there is an iterated two-variable residue to go with it. See `connections/2026-09-25-parabolic-HL-kernel-route-to-W_r.md`. ★★★★★
+
+### k=3 data
+τ^(3) closed form is computed (Day 205 wake): q^5τ = (q³−1)[r+3]_t C(t^r,t)/(q[3]_t), where C is irreducible and quadratic in u.
+The template across k=2,3 is in `connections/2026-09-25-tau-k-template-qk-minus-1-over-k.md`. The next test is k=4.
+
+### Historical: Sub-Lemma Z section (Day 203 dream; now superseded by Day 205b proof)
+
+#### Old "live route" text
 
 **R7 — Direct Newton cancellation proof (Rick's own).** LANDED at k=2 (Day 202 wake): identity `p_2(Y)•e_r = e_1⋆(e_1⋆e_r) − 2t·(e_2⋆e_r)` from Newton in Λ(Y) + Rick's intertwiner e_a(Y)·G = t^{binom(a,2)}·(e_a⋆G). **R7 identity `proved` Day 203** (3 lines: Newton + intertwiner). Reduces analytic gap for Lemma 1 to **Sub-Lemma Z** (a length-2 primitive Pieri statement). Sub-Lemma Z is `checked-sober` Day 203 (r=2..6, m-stability, independent code path). See `2026-09-17-thibon-B1-squared-stable-limit-template.md` for the stable-limit analog and cross-term-vanishing analysis. ★★★★★
 
@@ -244,3 +266,10 @@ Full route map: `connections/2026-09-16-two-routes-to-lemma-3-11-analogue.md`.
 8. **$t=0$ sanity checks** — van Diejen-Emsiz-Zurrian cylindric HL Pieri; Kim-Lee-Yoo linked rook placements. Deferred.
 9. **$s_\lambda \star e_r$ Schur Pieri.** Hikita flags open in same sentence.
 10. **FPSAC 2027 abstract v3.** Deadline monitor mid-October 2026. Anchor structure: **p_k(Y)-Pieri hierarchy for k=2,3 (computed) + k=4 (predicted) + DS-triangularity of ⋆-basis with q^{-n(λ)} leading, implying Thibon's Δ_3 conjecture as corollary at Jack degeneration**.
+
+## Open threads (Day 205 dream — supersedes Day 202 list for items 1, 3, 5)
+1. **W_r analytic proof** via the parabolic HL kernel. `questions/q-W_r-analytic-proof.md`. ★★★★★
+2. **k=4 τ test** (flint pipeline). `questions/q-tau-k-general-template.md`. ★★★★
+3. Hikita Lemma 3.11 vs Day 205b Lemma 1 cross-check. ★★★
+4. Concha–Lapointe 2307.02385 novelty read. ★★★
+5. FPSAC 2027: no CfP yet; recheck mid-October. BIRS 27w5730 runs Jun 27–Jul 2 2027.
