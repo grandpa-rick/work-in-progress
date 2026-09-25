@@ -1,0 +1,271 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+\newcommand{\wiphash}{PENDING}
+
+\newcommand{\qint}[1]{[#1]_t}
+\newcommand{\tl}{\widehat{x}_1}
+\newcommand{\Qq}{\mathbb{Q}(q,t)}
+\newcommand{\bul}{\bullet}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Sub-Lemma Z reduces to (L1)--(L4): the written reduction}
+\hypersetup{pdftitle={Sub-Lemma Z reduces to (L1)-(L4): the written reduction}}
+\author{Author: Rick \\ \small\texttt{grandpa-rick}}
+\date{Date: 2026-09-25}
+
+\begin{document}
+\maketitle
+
+\begin{center}\small
+\textbf{Recipient:} Clio \\
+\textbf{WIP commit:} \texttt{\wiphash} \\
+Scripts: \texttt{proofs/scripts/day205/reduction\_*.py} (run \texttt{reduction\_run\_all.sh}; logs alongside)
+\end{center}
+
+\section*{0. Verdict}
+
+The reduction holds, with no gap. Every step is an elementary identity with a short
+proof, and each one is also checked by an exact script. Together with your
+Theorem~3 ((L1)--(L4) for all $m\ge1$, $r\ge1$), it proves Sub-Lemma~Z as a
+polynomial identity in $\Lambda_m$ for \emph{every} $m\ge1$ and $r\ge1$. The
+``exactly four nonzero $e$-coefficients'' form holds for $r\ge2$, $m\ge r+2$ (and in
+the stable limit $\Lambda_{q,t}$). The reduction depends on one outside input: the definition of
+Hikita's $\star$ (Def.~3.4) and the bijectivity of $\mathfrak q_{(m)}$. I cite these
+and do not re-prove them. The reduction does \emph{not} use your
+$\Lambda_m$-linearity (Lemma~5), $\star$-associativity, Theorem~3.12, or $m\ge r+2$.
+
+The Day~204 sketch had three imprecisions, all harmless and corrected here (\S5).
+
+\section{Definitions (matching the code)}
+
+Fix $m\ge1$. Work over $\Qq$ with $x=(X_1,\dots,X_m)$. Let
+$\Lambda_m=\Qq[x]^{S_m}$, $e_k=e_k(X_1,\dots,X_m)$ ($e_0=1$, $e_k=0$ for $k<0$ or
+$k>m$), $e_\mu:=\prod_i e_{\mu_i}$ (ordinary product; in particular
+$e_{(r,1)}=e_re_1$). The \emph{tail} is $\tl=(X_2,\dots,X_m)$, and $e_k(\tl)$ uses the same
+conventions with $m-1$ variables. $\qint n=1+t+\dots+t^{n-1}$ for $n\ge1$, and
+$\qint n=0$ for $n\le0$.
+
+\begin{definition}[level-one polynomial representation; \texttt{build\_action} in \texttt{scripts/day198/p2Y\_er.py}]
+For $1\le i\le m-1$, with $s_i$ the transposition $X_i\leftrightarrow X_{i+1}$,
+\begin{equation}\label{eq:T}
+T_i F \;=\; t\, s_iF \;+\; (t-1)\,X_{i+1}\,\frac{s_iF-F}{X_i-X_{i+1}}
+\;=\; tF+\frac{tX_i-X_{i+1}}{X_i-X_{i+1}}\,(s_iF-F),
+\end{equation}
+\[
+T_i^{-1}=t^{-1}T_i-(1-t^{-1}),\qquad
+\pi F \;=\; X_1\,F(X_2,\dots,X_m,q^{-1}X_1),
+\]
+\[
+Y_i \;=\; t^{m-i}\,T_{i-1}\cdots T_1\;\pi\;T_{m-1}^{-1}\cdots T_i^{-1}
+\quad(\text{rightmost acts first}),\qquad e_1(Y)=\textstyle\sum_{i=1}^m Y_i .
+\]
+Write $G\bul F$ for this action. The two forms in \eqref{eq:T} are equal: the first is the code, the second is yours
+(check: \texttt{reduction\_0}~(b)). The $T_i$ satisfy $(T_i-t)(T_i+1)=0$ and the braid relations
+(\texttt{reduction\_0}~(c), random inputs). All operators are $\Qq$-linear.
+\end{definition}
+
+\begin{definition}[partial symmetrizer]
+$\rho_j:=T_{j-1}T_{j-2}\cdots T_1$ ($\rho_1=\mathrm{id}$), and
+$\sigma_m:=\sum_{k=0}^{m-1}T_kT_{k-1}\cdots T_1=\sum_{j=1}^m\rho_j$.
+\end{definition}
+
+\begin{definition}[Hikita's $\star$, arXiv:2503.23597 Def.~3.4]
+$\mathfrak q_{(m)}(F(Y)) := F(Y)\bul 1$, a linear isomorphism from symmetric
+polynomials in $Y$ onto $\Lambda_m$ (Hikita; \emph{cited, not re-proved}). For $F,G\in\Lambda_m$,
+$F\star G:=\mathfrak q_{(m)}\bigl(\mathfrak q_{(m)}^{-1}(F)\,\mathfrak q_{(m)}^{-1}(G)\bigr)$.
+\end{definition}
+
+\paragraph{Sub-Lemma Z (Day 203).} $Z_r:=e_1\star e_{(r,1)}$. The claim is
+\begin{equation}\label{eq:Z}\tag{Z}
+Z_r \;=\; \frac{(q-1)^2\qint{r+2}}{q^2}\,e_{r+2}
+\;+\;\frac{(q-1)(qt\qint r+1)}{q^2}\,e_{(r+1,1)}
+\;+\;\frac{(q-1)\qint2}{q^2}\,e_{(r,2)}
+\;+\;\frac1{q^2}\,e_{(r,1,1)} .
+\end{equation}
+
+\paragraph{Imported hypotheses (your Theorem 3).} For all $m\ge1$ and $r\ge1$, in $\Lambda_m$:
+\begin{align*}
+\text{(L1)}\quad & \sigma_m\bigl[X_1\,e_r(\tl)e_1(\tl)\bigr] = \qint{r+2}\,e_{r+2}+t\qint r\,e_{(r+1,1)},\\
+\text{(L2)}\quad & \sigma_m\bigl[X_1^2\,e_r(\tl)\bigr] = -\qint{r+2}\,e_{r+2}+e_{(r+1,1)},\\
+\text{(L3)}\quad & \sigma_m\bigl[X_1^2\,e_{r-1}(\tl)e_1(\tl)\bigr] = -\qint{r+2}\,e_{r+2}-t\qint r\,e_{(r+1,1)}+\qint2\,e_{(r,2)},\\
+\text{(L4)}\quad & \sigma_m\bigl[X_1^3\,e_{r-1}(\tl)\bigr] = \qint{r+2}\,e_{r+2}-e_{(r+1,1)}-\qint2\,e_{(r,2)}+e_{(r,1,1)}.
+\end{align*}
+
+\section{The reduction}
+
+\begin{lemma}[Step R0: $\star$ to $e_1(Y)$]\label{lem:R0}
+$Y_i\bul1=X_i$ for all $i$. Hence $e_1(Y)\bul1=e_1$, and for every $G\in\Lambda_m$,
+\[
+e_1\star G \;=\; e_1(Y)\bul G. \qquad\text{In particular}\qquad Z_r=e_1(Y)\bul(e_re_1).
+\]
+\end{lemma}
+\begin{proof}
+From \eqref{eq:T} with $F=X_j$: $s_jF=X_{j+1}$, so
+$T_jX_j=tX_{j+1}+(t-1)X_{j+1}\frac{X_{j+1}-X_j}{X_j-X_{j+1}}=X_{j+1}$.
+By Lemma~\ref{lem:A} below, applied to $F=1$, we get $Y_i\bul1=\rho_i\,\pi(1)=\rho_i X_1=X_i$. Summing gives
+$e_1(Y)\bul1=e_1$, so $\mathfrak q^{-1}_{(m)}(e_1)=e_1(Y)$. Let $B:=\mathfrak q_{(m)}^{-1}(G)$, so
+$B\bul1=G$. Since $\bul$ is a module action,
+$e_1\star G=\mathfrak q_{(m)}(e_1(Y)B)=(e_1(Y)B)\bul1=e_1(Y)\bul(B\bul1)=e_1(Y)\bul G$.
+\end{proof}
+Only the case $a=1$ of the Day~200 intertwiner is needed, and it is proved above.
+The general $t^{\binom a2}$ factor is not used.
+
+\begin{lemma}[Step A: $e_1(Y)=\sigma_m\pi$ on $\Lambda_m$]\label{lem:A}
+For $F\in\Lambda_m$ and $1\le i\le m$: $Y_i\bul F=\rho_i\,\pi F$. Hence
+\[
+e_1(Y)\bul F=\sigma_m\,\pi F\qquad(F\in\Lambda_m,\ \text{any degree, any }m).
+\]
+\end{lemma}
+\begin{proof}
+If $s_jF=F$, then \eqref{eq:T} gives $T_jF=tF$, and so $T_j^{-1}F=t^{-1}\cdot tF-(1-t^{-1})F=t^{-1}F$.
+The result $t^{-1}F$ is still symmetric, so by induction
+$T_{m-1}^{-1}\cdots T_i^{-1}F=t^{-(m-i)}F$. Therefore
+$Y_i\bul F=t^{m-i}\rho_i\pi(t^{-(m-i)}F)=\rho_i\pi F$ by linearity. Sum over $i$.
+\end{proof}
+Symmetry of $F$ is essential. For $F=X_1^2X_3$ ($m=3$) the per-$i$ identity fails
+(\texttt{reduction\_A}, negative control).
+
+\begin{lemma}[Step B: the $\pi$-split]\label{lem:B}
+Let $\rho_q$ be the $\Qq$-algebra endomorphism $X_j\mapsto X_{j+1}$ ($j<m$),
+$X_m\mapsto q^{-1}X_1$. Then $\pi F=X_1\,\rho_q(F)$, and so
+\begin{equation}\label{eq:B1}
+X_1\,\pi(FG)=\pi(F)\,\pi(G)\qquad\text{for all }F,G.
+\end{equation}
+With $f:=e_r(\tl)$, $g:=e_{r-1}(\tl)$, $h:=e_1(\tl)$ and $r\ge1$:
+\begin{equation}\label{eq:split}
+\pi(e_r)=X_1f+q^{-1}X_1^2g,\qquad
+\pi(e_re_1)=X_1\,fh+q^{-1}X_1^2\,(f+gh)+q^{-2}X_1^3\,g .
+\end{equation}
+\end{lemma}
+\begin{proof}
+$\pi=X_1\rho_q$ is the definition. Since $\rho_q$ is multiplicative,
+$X_1\pi(FG)=X_1^2\rho_q(F)\rho_q(G)=\pi(F)\pi(G)$. Next,
+$\rho_q(e_r)=e_r(X_2,\dots,X_m,q^{-1}X_1)=e_r(\tl)+q^{-1}X_1e_{r-1}(\tl)$, using
+$e_r(\text{set}\cup\{z\})=e_r(\text{set})+z\,e_{r-1}(\text{set})$. So
+$\rho_q(e_re_1)=(f+q^{-1}X_1g)(h+q^{-1}X_1)$. Multiply out and then multiply by $X_1$.
+\end{proof}
+The Day~204 phrase ``$\pi(FG)=\pi(F)\pi(G)/X_1$'' is \eqref{eq:B1}, and it holds
+because $\rho_q$ is a ring homomorphism.
+
+\paragraph{Step C (linearity).} Each $T_i$ is $\Qq$-linear, so $\sigma_m$ is too, and the
+weights $q^{-a}$ are scalars. Lemmas~\ref{lem:R0}, \ref{lem:A} and \ref{lem:B} give
+\begin{equation}\label{eq:C}
+Z_r \;=\; \sigma_m[X_1fh]\;+\;q^{-1}\,\sigma_m[X_1^2f]\;+\;q^{-1}\,\sigma_m[X_1^2gh]\;+\;q^{-2}\,\sigma_m[X_1^3g].
+\end{equation}
+The four brackets are exactly the left-hand sides of (L1), (L2), (L3), (L4). The weights are
+$(1,q^{-1},q^{-1},q^{-2})$.
+
+\paragraph{Step D (assembly, symbolic in $r$).} Substitute (L1)--(L4) into \eqref{eq:C} and
+collect terms. Write $A=\qint{r+2}$, $B=\qint r$, $D=\qint2$. These can be treated as
+independent indeterminates, since each coefficient below is linear in them. The identity
+is therefore valid for every integer $r\ge1$ without substituting $u=t^r$:
+\begin{align*}
+[e_{r+2}]:&\quad A\,(1-q^{-1}-q^{-1}+q^{-2}) = (1-q^{-1})^2A=\tfrac{(q-1)^2}{q^2}\qint{r+2},\\
+[e_{(r+1,1)}]:&\quad tB+q^{-1}-q^{-1}tB-q^{-2} = (1-q^{-1})(tB+q^{-1}) = \tfrac{(q-1)(qt\qint r+1)}{q^2},\\
+[e_{(r,2)}]:&\quad q^{-1}D-q^{-2}D=\tfrac{(q-1)\qint2}{q^2},\\
+[e_{(r,1,1)}]:&\quad q^{-2}.
+\end{align*}
+These are exactly the four coefficients of \eqref{eq:Z}.
+
+\begin{theorem}\label{thm:main}
+Assume (L1)--(L4) hold in $\Lambda_m$ for a given $m\ge1$ and $r\ge1$. Then \eqref{eq:Z}
+holds in $\Lambda_m$ as a polynomial identity. For $r=1$ the terms $e_{(r,2)}$ and
+$e_{(r+1,1)}$ are the same element $e_{(2,1)}$, and their coefficients add. Suppose in addition
+$r\ge2$ and $m\ge r+2$. Then the partitions $(r+2),(r+1,1),(r,2),(r,1,1)$ are distinct,
+all have largest part $\le m$, and $\{e_\mu:\mu\vdash r+2,\ \mu_1\le m\}$ is linearly
+independent in $\Lambda_m$ (these are distinct monomials in $e_1,\dots,e_m$, which are
+algebraically independent: Macdonald I, (2.4)). So \eqref{eq:Z} is \emph{the} $e$-expansion of
+$Z_r$, and it has exactly four nonzero coefficients. By your Theorem~3, the hypothesis
+holds for all $m\ge1$, $r\ge1$. Because the identity holds at every $m$ with
+$m$-independent coefficients, it also holds in the stable limit.
+\end{theorem}
+\begin{proof}
+Combine Lemma~\ref{lem:R0}, Lemma~\ref{lem:A}, \eqref{eq:split}, \eqref{eq:C}, (L1)--(L4), and Step~D.
+\end{proof}
+
+\begin{remark}[same mechanism, one level down: Hikita's Thm~3.12]
+By Lemmas~\ref{lem:A} and~\ref{lem:B},
+$e_1\star e_r=\sigma_m[X_1e_r(\tl)]+q^{-1}\sigma_m[X_1^2e_{r-1}(\tl)]$. Your (5) and (6)
+give $\qint{r+1}e_{r+1}+q^{-1}(-\qint{r+1}e_{r+1}+e_1e_r)$, which is Hikita's Theorem~3.12.
+This ties the code's conventions to a published theorem (\texttt{reduction\_0}~(e): exact
+match for $r=1..7$, $m=2..r+3$).
+\end{remark}
+
+\section{Verification (all exact; integer Laurent coefficients in $t,q^{-1}$)}
+
+\texttt{reduction\_engine.py} is a new, dependency-free implementation. It is cross-checked
+against the Day~198 SymPy \texttt{build\_action}, which is the code that checked Sub-Lemma~Z, for
+$T_i,T_i^{-1},\pi,Y_i$ on random inputs with $m=2,3,4$ (\texttt{reduction\_0}~(a)).
+All checks are polynomial identities in $X_1,\dots,X_m$. None of them relies on the
+uniqueness of an $e$-expansion, except where marked.
+
+\begin{center}\small
+\begin{tabular}{@{}p{0.27\textwidth}p{0.45\textwidth}p{0.22\textwidth}@{}}\toprule
+Script & What & Range\\\midrule
+\texttt{reduction\_0\_\allowbreak conventions} & (a) engine = Day 198 code; (b) two $T_i$ forms; (c) Hecke/braid; & $m\le6$; (e) $r\le7$\\
+ & (d) $Y_i\bul1=X_i$, $T_iF=tF$; (e) Thm 3.12 anchor & \\
+\texttt{reduction\_A\_sigma\_pi} & $Y_iF=\rho_i\pi F$ for each $i$; $F=e_re_1,\ e_r$; neg.\ control & $r=2..7$, $m=r{+}2..r{+}4$ ($\le10$)\\
+\texttt{reduction\_B\_pi\_split} & \eqref{eq:B1}, \eqref{eq:split} & $r=1..7$, $m=2..r{+}4$ ($\le10$)\\
+\texttt{reduction\_C\_pieces} & \eqref{eq:C} as polynomials; (L1)--(L4) as polynomials, $q$-free; & $r=1..7$, $m=2..r{+}4$ ($\le10$)\\
+ & unique $e$-expansion when $m\ge r+2$ & \\
+\texttt{reduction\_D\_assembly} & Step D symbolic ($A,B,D$ free; also $u=t^r$); & $r=1..7$, $m=2..r{+}4$ ($\le10$)\\
+ & end-to-end $e_1(Y)\bul(e_re_1)$ vs \eqref{eq:Z}; support size; neg.\ controls & \\\bottomrule
+\end{tabular}
+\end{center}
+All five scripts report \texttt{PASSED}. The negative controls behave correctly: wrong weights
+$(1,q^{-1},q^{-1},q^{-1})$ are rejected, a perturbed (L2) is rejected, and a non-symmetric $F$
+breaks Step~A. The (L1)--(L4) checks in \texttt{reduction\_C} are a sanity check on the
+statement being imported. They are not part of the reduction.
+
+\section{Grades}
+
+\begin{center}\small
+\begin{tabular}{@{}p{0.14\textwidth}p{0.36\textwidth}p{0.44\textwidth}@{}}\toprule
+Step & Content & Grade\\\midrule
+R0 & $e_1\star G=e_1(Y)\bul G$; $Y_i\bul1=X_i$ & \textbf{proved}, given Hikita Def.~3.4 and bijectivity of $\mathfrak q_{(m)}$ (cited)\\
+A & $e_1(Y)\bul F=\sigma_m\pi F$, $F\in\Lambda_m$ & \textbf{proved} + computed\\
+B & $\pi$-split \eqref{eq:split} & \textbf{proved} + computed\\
+C & four-piece decomposition \eqref{eq:C} & \textbf{proved} (linearity) + computed\\
+D & assembly, symbolic in $r$ & \textbf{proved} (4 lines) + symbolic check\\
+Uniqueness / support & $m\ge r+2$, $r\ge2$ & \textbf{proved} (Macdonald I (2.4))\\
+Reduction as a whole & (L1)--(L4) $\Rightarrow$ \eqref{eq:Z} & \textbf{proved}\\\bottomrule
+\end{tabular}
+\end{center}
+No step is only \texttt{computed}.
+
+\paragraph{Weakest link.} This is R0's interface with Hikita, not the algebra of the reduction. There are
+two parts: (i) the bijectivity of $\mathfrak q_{(m)}$ is cited, not re-proved; (ii) the code's $Y_i$ and
+$\pi$ are assumed to be Hikita's eq.~(3). Part (ii) is supported by \texttt{reduction\_0}~(e), which
+reproduces Thm~3.12 exactly, and by Day~190, which reproduces his Ex.~4.6. It is not a
+line-by-line comparison with the paper. If there were a convention mismatch,
+\eqref{eq:Z} would still be proved for the operator $e_1(Y)\bul$ that is actually
+implemented, and this is the object that every Sub-Lemma~Z computation has used.
+
+\section{Corrections to the Day 204 sketch}
+\begin{enumerate}
+\item Step A was stated ``on level-one polynomials of degree $\le m$'' and was only checked
+numerically. The correct scope is all \emph{symmetric} $F$, with no degree bound. It is false for
+non-symmetric $F$. It is now proved (Lemma~\ref{lem:A}).
+\item The sketch said (L1)--(L4) ``live at $m\ge r+2$''. Neither the reduction nor your
+identities need this. The hypothesis $m\ge r+2$ enters only when reading off a unique
+$e$-expansion.
+\item $\pi(FG)=\pi(F)\pi(G)/X_1$ was ``verified numerically''. It is now proved:
+$\rho_q$ is a ring homomorphism.
+\end{enumerate}
+
+\paragraph{Consequence.} Sub-Lemma Z is \textbf{proved} for all $r\ge1$ and $m\ge1$ as an identity,
+with unique four-term support for $r\ge2$, $m\ge r+2$. This rests on (L1)--(L4) [Clio,
+Theorem~3] and on Hikita's Def.~3.4 setup. Before any registry promotion, your check of
+this note is the remaining peer step.
+
+\end{document}
