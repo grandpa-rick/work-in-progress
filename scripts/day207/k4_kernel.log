@@ -1,0 +1,9 @@
+k=4 m=8 r=2: {'exact_exponents': [6], 'S_eq_KT': True, 'P_nonzero': True, 'nterms': 3388, 'tP': 0.1, 'time': 0.3}
+k=4 m=8 r=0: {'exact_exponents': [6], 'S_eq_KT': True, 'P_nonzero': True, 'nterms': 70, 'tP': 0.0, 'time': 0.0}
+k=4 m=8 r=1: {'exact_exponents': [6], 'S_eq_KT': True, 'P_nonzero': True, 'nterms': 840, 'tP': 0.0, 'time': 0.1}
+k=4 m=8 r=3: {'exact_exponents': [6], 'S_eq_KT': True, 'P_nonzero': True, 'nterms': 7384, 'tP': 0.1, 'time': 0.6}
+k=4 m=8 r=4: {'exact_exponents': [6], 'S_eq_KT': True, 'P_nonzero': True, 'nterms': 9631, 'tP': 0.1, 'time': 0.7}
+k=4 m=9 r=0: {'exact_exponents': [6], 'S_eq_KT': True, 'P_nonzero': True, 'nterms': 126, 'tP': 0.0, 'time': 0.1}
+k=4 m=9 r=1: {'exact_exponents': [6], 'S_eq_KT': True, 'P_nonzero': True, 'nterms': 1764, 'tP': 0.0, 'time': 0.2}
+k=4 m=9 r=2: {'exact_exponents': [6], 'S_eq_KT': True, 'P_nonzero': True, 'nterms': 7980, 'tP': 0.1, 'time': 0.7}
+k=4 m=9 r=3: {'exact_exponents': [6], 'S_eq_KT': True, 'P_nonzero': True, 'nterms': 19872, 'tP': 0.3, 'time': 1.6}

@@ -1,0 +1,6 @@
+stage x2 done: 9 terms [0.2s]
+stage x1 done: 27 terms [0.2s]
+Q symbols: {-z: Q[-z], -t*z: Q[-t*z]}
+(1, 1) (s - 1)*(s - t)/(t**2*z**2)
+(1, 0) (s - 1)*(t + 1)*(q1*s*t*z - s*t**2 + s*t - s + t)/(t**2*z**2)
+(0, 0) (q1**2*s**2*z**2 - q1*s**2*t*z - q1*s**2*z + q1*s*t*z + q1*s*z + q2*s**2*t*z**2 - q2*s**2*z**2 + s**2*t - s*t - s + 1)/z**2

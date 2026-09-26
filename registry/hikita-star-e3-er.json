@@ -32,7 +32,7 @@
       },
       {
         "id": "hikita-star-e3-er-pieri-conjecture-full-closed-form",
-        "approach": "Full closed form (Day 193 result), r ≥ 3: c_3(r) = q^{-3}; c_2(r) = (q-1)[r-1]/q^3; c_1(r) = (q-1)[r+1](q[r]-t[r-2])/(q^3[2]); c_0(r) = (q-1)/q^3 · [r+3]/([2][3]) · ([r+1][r+2]q^2 - t[2][r-1][r+1]q + t^3[r-2][r-1]). Symbolically verified r = 3, 4, 5, 6.",
+        "approach": "Full closed form (Day 193 result), r ≥ 3: c_3(r) = q^{-3}; c_2(r) = (q-1)[r-1]/q^3; c_1(r) = (q-1)[r+1](q[r]-t[r-2])/(q^3[2]); c_0(r) = (q-1)/q^3 · [r+3]/([2][3]) · ([r+1][r+2]q^2 - t[2][r-1][r+1]q + t^3[r-2][r-1]). Symbolically verified r = 3, 4, 5, 6. || Day 207: all-r version now computed symbolically in u=t^r via the telescoping GF, conditional on the parabolic kernel — see node e3-star-er-closed-form-all-r (and ek-star-er-general-M-formula in hikita-star-e4-er.json).",
         "trust": "computed",
         "file": "proofs/2026-09-16-day193-e3-star-er-hikita.md",
         "recheck": "2026-09-16 proofs/scripts/day193/verify_c0_closed_form.py + verify_c0_r6.py cross-check against fresh m=9 compute of e_3 ⋆ e_6 (1312 s).",
@@ -82,6 +82,53 @@
         "recheck": "2026-09-16 Day 193 (4,4) compute at m=8 verifies l=1,2,3 formulas at a=4.",
         "role": "attempt",
         "children": []
+      },
+      {
+        "id": "e3-star-er-closed-form-all-r",
+        "approach": "Day 193 e_3⋆e_r closed form (c_3..c_0) holds for ALL r: e-basis extraction of the k=3 GF equals Day 193 c_3,c_2,c_1,c_0 symbolically in u=t^r (difference 0; spurious monomials cancel); support {e_{r+3−b,b}} = min(3,r)+1 meta-conjecture at a=3. Conditional on ek-parabolic-kernel-k3 (computed m≤7); rest is Lemma 2 (proved) + finite symbolic Ω-stage.",
+        "trust": "computed",
+        "file": "2026-09-26-day207-k3-generating-function.md",
+        "recheck": "2026-09-26 scripts/day207/k3_gf_extract.py (+ .log)",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "ek-parabolic-kernel-k3",
+            "approach": "(A3+K3; note calls it e3Y-parabolic-kernel) On symmetric F: e_3(Y)•F = t^3 σ^{(3)}π³F, σ^{(3)} = Σ over min coset reps of S_m/(S_3×S_{m-3}) of T_w = |A|=3 HL kernel K_T F = Σ_{|A|=3} F^{(A)} ∏_{i∈A,j∉A}(X_i−tX_j)/(X_i−X_j). Exact polynomial identity P = t^3 S in Z[X,s,t] for (m,r) = (6,0..3),(7,1..4); only e=C(3,2) matches (e=0..4 tested); S = K_T at random rational points; T^{-1} kernel fails. Pre-registered kill (6,2) not triggered. Proof (per-triple braid shift + [3]! coset identity + Lemma 1 thrice) sketched, not written.",
+            "trust": "computed",
+            "file": "2026-09-26-day207-k3-kernel-test.md",
+            "recheck": "2026-09-26 scripts/day207/k3_kernel_test.py (t1.log)",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "lemma-2-HL-residue-stub",
+            "approach": "Stub: Day 206b Lemma 2 (one-variable HL residue (1-t)Σ_a X_a^n ∏_{j≠a}a_aj = q_n, n≥1), used iterated k deep; canonical node carries the proof.",
+            "trust": "proved",
+            "file": "2026-09-25-day206b-W_r-proved.md",
+            "shared": "hikita-star-e2-e2#two-var-HL-residue-H",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "k3-gf-telescoping",
+            "approach": "(t;t)_3 Σ_r z^r t^{-3}e_3(Y)•e_r = Σ_{j=0}^3 Σ_{b=0}^{3−j} M_jb e_b z^{b−3} E(t^j z). Iterated Lemma 2 (Ω) three deep; simple poles only at {−z,−tz,−t²z}; only chain prefixes Q(−z)⋯Q(−t^{j−1}z) occur, so everything telescopes to E(t^j z); no straightening. Symbolic (sympy, free of r and m), conditional on kernel (A3/K3). Checked vs direct AHA pipeline m=6,7, r=0..5 at 3 random pts (12/12); negative z-powers vanish.",
+            "trust": "computed",
+            "file": "2026-09-26-day207-k3-generating-function.md",
+            "recheck": "2026-09-26 scripts/day207/k3_gf_engine.py, k3_gf_verify.py (+ .log)",
+            "role": "attempt",
+            "children": [
+              {
+                "id": "jing-3fold-functional",
+                "approach": "(note calls it three-var-HL-residue-H3) (1−t)³R_α = QJ(α), R_α = Σ_{(a,b,c) distinct} x_a^n x_b^p x_c^s a_ab a_ac a_bc ∏_{i∈{a,b,c},j∉}a_ij, QJ = 3-fold Jing HL product Σ f f f q q q. Holds for all positive compositions: m=4 64/64, m=5 64/64, m=6 27/27 (2 random rational pts each); fails when a part is 0 (outside scope: π³ makes all exponents ≥1). Argument = Lemma 2 applied three times (H3 in GF note).",
+                "trust": "computed",
+                "file": "2026-09-26-day207-k3-kernel-test.md",
+                "recheck": "2026-09-26 scripts/day207/k3_kernel_test.py (t2.log)",
+                "role": "premise",
+                "children": []
+              }
+            ]
+          }
+        ]
       }
     ]
   }

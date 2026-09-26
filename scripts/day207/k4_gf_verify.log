@@ -1,0 +1,12 @@
+m=8 r=0: OK [0.0s]
+m=8 r=1: OK [0.1s]
+m=8 r=2: OK [0.3s]
+m=8 r=3: OK [0.6s]
+m=8 r=4: OK [0.8s]
+m=9 r=0: OK [0.0s]
+m=9 r=1: OK [0.2s]
+m=9 r=2: OK [0.7s]
+m=9 r=3: OK [1.8s]
+m=9 r=4: OK [2.6s]
+m=9 r=5: OK [2.5s]
+ALL OK

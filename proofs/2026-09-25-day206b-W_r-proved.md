@@ -170,7 +170,7 @@ Multiply by E(z). Three identities remove all the Q's:
 We also use q_1 = (1−t)e_1 and e_1q_1 − q_2 = (1−t²)e_2. The two pieces are:
 
 - T1 = s(1−t)²[ s(1+t)e_2e_r + (1−s)( t[r]e_1e_{r+1} + [r+2]e_{r+2} ) ]
-- T2 = (1−s)s(1−t)²[r] e_1e_{r+1} + (1−s)(1−t)²[r+2]([r+1] − s[r] + s) e_{r+2}.
+- T2 = (1−s)s(1−t)²[r] e_1e_{r+1} + (1−s)(1−t)²[r+2]([r+1] − s[r]) e_{r+2}   [typo fixed 2026-09-26: was "+ s"; the +s in W_r comes from T1].
 
 In T2, the e_{r+2} coefficient comes from (1−t^{r+2})[(1−s) − t^{r+1} + st^r], and (1−t^{r+1}) − s(1−t^r) = (1−t)([r+1] − s[r]).
 

@@ -42,7 +42,7 @@
       },
       {
         "id": "hikita-star-e4-er-pieri-full-closed-form",
-        "approach": "Full closed form (Day 195), r ≥ 4: c_4 = q^{-4}; c_3 = (q-1)/q^4·[r-2]; c_2 = (q-1)/q^4·[r]/[2]·(q[r-1] - t[r-3]); c_1 = (q-1)/q^4·[r+2]/([2][3])·([r+1][r]q^2 - t[2][r-2][r]q + t^3[r-3][r-2]); c_0 = (q-1)/q^4·[r+4]/([2][3][4])·P_4(q,t;r) with P_4 = [r+1][r+2][r+3]q^3 - t[3][r-1][r+1][r+2]q^2 + t^3[3][r-2][r-1][r+1]q - t^6[r-3][r-2][r-1]. Verified r = 4, 5.",
+        "approach": "Full closed form (Day 195), r ≥ 4: c_4 = q^{-4}; c_3 = (q-1)/q^4·[r-2]; c_2 = (q-1)/q^4·[r]/[2]·(q[r-1] - t[r-3]); c_1 = (q-1)/q^4·[r+2]/([2][3])·([r+1][r]q^2 - t[2][r-2][r]q + t^3[r-3][r-2]); c_0 = (q-1)/q^4·[r+4]/([2][3][4])·P_4(q,t;r) with P_4 = [r+1][r+2][r+3]q^3 - t[3][r-1][r+1][r+2]q^2 + t^3[3][r-2][r-1][r+1]q - t^6[r-3][r-2][r-1]. Verified r = 4, 5. || Day 207: all-r version now computed symbolically in u=t^r via the telescoping GF, conditional on the parabolic kernel — see node e4-star-er-closed-form-all-r (and ek-star-er-general-M-formula in hikita-star-e4-er.json).",
         "trust": "computed",
         "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
         "recheck": "2026-09-16 proofs/scripts/day195/verify_closed_form_a4.py; boundary consistency at r=3 (via verify_e4_e3_via_commutativity.py).",
@@ -83,6 +83,62 @@
         "file": null,
         "role": "attempt",
         "children": []
+      },
+      {
+        "id": "e4-star-er-closed-form-all-r",
+        "approach": "Day 195 e_4⋆e_r closed form (c_4..c_0) holds for ALL r: all 5 extracted GF coefficients equal Day 195's as rational functions of u=t^r (difference 0), no spurious e-monomials. Conditional on ek-parabolic-kernel-k4 (computed m≤9).",
+        "trust": "computed",
+        "file": "2026-09-26-day207-k4-kernel-gf.md",
+        "recheck": "2026-09-26 scripts/day207/k4_gf_extract.py (+ .log)",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "ek-parabolic-kernel-k4",
+            "approach": "e_4(Y)•e_r = t^6 σ^{(4)}π⁴e_r (|A|=4 HL kernel). Exact P = t^e S in Z[X,s,t] only for e=6 (e=0..8 tested); S = K_T at 2 random pts. m=8 r=0..4, m=9 r=0..3; pre-registered kill (8,2) passes.",
+            "trust": "computed",
+            "file": "2026-09-26-day207-k4-kernel-gf.md",
+            "recheck": "2026-09-26 scripts/day207/k4_kernel_test.py (k4_kernel.log)",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "lemma-2-HL-residue-stub",
+            "approach": "Stub: Day 206b Lemma 2 (one-variable HL residue (1-t)Σ_a X_a^n ∏_{j≠a}a_aj = q_n, n≥1), used iterated k deep; canonical node carries the proof.",
+            "trust": "proved",
+            "file": "2026-09-25-day206b-W_r-proved.md",
+            "shared": "hikita-star-e2-e2#two-var-HL-residue-H",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "k4-gf-telescoping",
+            "approach": "(t;t)_4 Σ_r z^r t^{-6}e_4(Y)•e_r = Σ_{j+b≤4} M_jb e_b z^{b−4} E(t^j z): Lemma 2 four deep, simple poles at {−z,…,−t³z}, only the 5 chain prefixes occur, C_j linear in e_b, support exactly j+b≤4 (15 entries). GF = direct AHA at m=8 r=0..4, m=9 r=0..5 (3 pts each); t^{-5} negative control fails.",
+            "trust": "computed",
+            "file": "2026-09-26-day207-k4-kernel-gf.md",
+            "recheck": "2026-09-26 scripts/day207/k4_gf_engine.py, k4_gf_verify.py (+ .log)",
+            "role": "attempt",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "ek-star-er-general-M-formula",
+        "approach": "General k (verbatim, Day 207 k4 note §3): M^{(k)}_{jb} = s^b · ∏_{i<j}(s−t^i) · (s;t)_{k−j−b} · R_{jb} / (s−1) · (t;t)_k / ((t;t)_j (t;t)_{k−j−b}) · t^{−kj}, R_{jb} = s(t^{k−b} − t^{k−b−j} + 1) − t^j (so R = t^j(s−1) when j+b=k). Implied Pieri rule, n = k−b: [e_{r+n}e_b] t^{−C(k,2)}e_k(Y)•e_r = s^b · F_n(t^{r−b}), F_n(w) = (s−1)^{−1} Σ_{j=0}^{n} (s;t)_{n−j} ∏_{i<j}(s−t^i) · (s(t^n − t^{n−j} + 1) − t^j) · w^j / ((t;t)_{n−j}(t;t)_j). Fit on k=2,3,4; k=5 blind test PASS (engine/conjecture ratio ≡ 1 on all 6+10+15+21 entries); includes W_r (k=2), Day 193, Day 195. Conditional on A_k/K_k kernel step (computed k≤5) and the sympy Ω-stage.",
+        "trust": "computed",
+        "file": "2026-09-26-day207-k4-kernel-gf.md",
+        "recheck": "2026-09-26 scripts/day207/gen_M_conjecture.py (+ .log)",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "ek-parabolic-kernel-k5",
+            "approach": "e_5(Y)•e_r = t^{10} σ^{(5)}π⁵e_r: kernel exponent exactly t^{C(5,2)} at m=8,9; k=5 GF (telescoping, linear, support j+b≤5) matches direct AHA at m=9, r=0..4.",
+            "trust": "computed",
+            "file": "2026-09-26-day207-k4-kernel-gf.md",
+            "recheck": "2026-09-26 scripts/day207/k5_check.py (+ k5_gf_engine.log, k5_check.log)",
+            "role": "premise",
+            "children": []
+          }
+        ]
       }
     ]
   }

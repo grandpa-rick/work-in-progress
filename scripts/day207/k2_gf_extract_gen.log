@@ -1,0 +1,12 @@
+telescoping: Q-monomials are exactly chain prefixes -> [0, 1, 2]
+C_j linear in single e_b (M_{jb} scalars): True
+support {(j,b)}: [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (2, 0)]
+M_00 = (s - 1)*(s*t - 1)
+M_01 = s*(s - 1)*(t - 1)*(t + 1)
+M_02 = s**2*(t - 1)**2*(t + 1)
+M_10 = -(s - 1)*(t + 1)*(s*t**2 - s*t + s - t)/t**2
+M_11 = -s*(s - 1)*(t - 1)*(t + 1)/t
+M_20 = (s - 1)*(s - t)/t**2
+coef of e_(r+0) e_2: s**2
+coef of e_(r+1) e_1: -s*(s - 1)*(u - 1)/(t - 1)
+coef of e_(r+2) e_0: -(s - 1)*(t**2*u - 1)*(s*t - s*u + t*u - 1)/((t - 1)**2*(t + 1))

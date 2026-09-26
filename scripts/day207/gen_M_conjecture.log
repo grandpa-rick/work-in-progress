@@ -1,0 +1,8 @@
+2 support = {j+b<=k}: True  ratios: [-1] {(0, 0): -1, (0, 1): -1, (0, 2): -1, (1, 0): -1, (1, 1): -1, (2, 0): -1}
+3 support = {j+b<=k}: True  ratios: [-1] {(0, 0): -1, (0, 1): -1, (0, 2): -1, (0, 3): -1, (1, 0): -1, (1, 1): -1, (1, 2)
+4 support = {j+b<=k}: True  ratios: [-1] {(0, 0): -1, (0, 1): -1, (0, 2): -1, (0, 3): -1, (0, 4): -1, (1, 0): -1, (1, 1)
+5 support = {j+b<=k}: True  ratios: [-1] {(0, 0): -1, (0, 1): -1, (0, 2): -1, (0, 3): -1, (0, 4): -1, (0, 5): -1, (1, 0)
+2 coef(e_{r+n}e_{k-n}) == s^{k-n} F_n(t^{r-k+n}) for all n: True
+3 coef(e_{r+n}e_{k-n}) == s^{k-n} F_n(t^{r-k+n}) for all n: True
+4 coef(e_{r+n}e_{k-n}) == s^{k-n} F_n(t^{r-k+n}) for all n: True
+5 coef(e_{r+n}e_{k-n}) == s^{k-n} F_n(t^{r-k+n}) for all n: True

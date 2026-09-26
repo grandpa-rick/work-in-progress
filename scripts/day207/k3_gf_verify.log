@@ -1,0 +1,13 @@
+m=6 r=0: OK  [0.2s]
+m=6 r=1: OK  [0.2s]
+m=6 r=2: OK  [0.2s]
+m=6 r=3: OK  [0.2s]
+m=6 r=4: OK  [0.2s]
+m=6 r=5: OK  [0.2s]
+m=7 r=0: OK  [0.2s]
+m=7 r=1: OK  [0.2s]
+m=7 r=2: OK  [0.3s]
+m=7 r=3: OK  [0.4s]
+m=7 r=4: OK  [0.3s]
+m=7 r=5: OK  [0.3s]
+ALL OK

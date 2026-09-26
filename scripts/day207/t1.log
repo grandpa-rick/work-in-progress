@@ -1,0 +1,110 @@
+k=2 m=5 r=2:
+    P == t^0 S (exact poly): False
+    P == t^1 S (exact poly): True
+    P == t^2 S (exact poly): False
+    P == t^3 S (exact poly): False
+    P == t^4 S (exact poly): False
+    S == K_T (pts): True
+    LHS/K_T (ratio, t): [(Fraction(4, 5), Fraction(4, 5)), (Fraction(2, 1), Fraction(2, 1)), (Fraction(3, 2), Fraction(3, 2))]
+    LHS/K_Tinv (ratio, t): [(Fraction(56533681166647375, 21040142290343936), Fraction(4, 5)), (Fraction(163470591, 20387216332), Fraction(2, 1)), (Fraction(3261696639328, 14903080330347), Fraction(3, 2))]
+    P nonzero: True
+    time: 0.0
+k=2 m=6 r=2:
+    P == t^0 S (exact poly): False
+    P == t^1 S (exact poly): True
+    P == t^2 S (exact poly): False
+    P == t^3 S (exact poly): False
+    P == t^4 S (exact poly): False
+    S == K_T (pts): True
+    LHS/K_T (ratio, t): [(Fraction(9, 5), Fraction(9, 5)), (Fraction(6, 1), Fraction(6, 1)), (Fraction(4, 5), Fraction(4, 5))]
+    LHS/K_Tinv (ratio, t): [(Fraction(379021441039859375, 260776459050927425667), Fraction(9, 5)), (Fraction(-369075391386263, 6936655038719285952), Fraction(6, 1)), (Fraction(162608780678115625, 17113906444438208), Fraction(4, 5))]
+    P nonzero: True
+    time: 0.1
+k=3 m=6 r=2:
+    P == t^0 S (exact poly): False
+    P == t^1 S (exact poly): False
+    P == t^2 S (exact poly): False
+    P == t^3 S (exact poly): True
+    P == t^4 S (exact poly): False
+    S == K_T (pts): True
+    LHS/K_T (ratio, t): [(Fraction(125, 8), Fraction(5, 2)), (Fraction(729, 64), Fraction(9, 4)), (Fraction(512, 27), Fraction(8, 3))]
+    LHS/K_Tinv (ratio, t): [(Fraction(125864337953122420, 339178375373236442149), Fraction(5, 2)), (Fraction(4096, 531441), Fraction(9, 4)), (Fraction(729, 262144), Fraction(8, 3))]
+    P nonzero: True
+    time: 0.1
+k=3 m=6 r=0:
+    P == t^0 S (exact poly): False
+    P == t^1 S (exact poly): False
+    P == t^2 S (exact poly): False
+    P == t^3 S (exact poly): True
+    P == t^4 S (exact poly): False
+    S == K_T (pts): True
+    LHS/K_T (ratio, t): [(Fraction(729, 125), Fraction(9, 5)), (Fraction(729, 1), Fraction(9, 1)), (Fraction(125, 64), Fraction(5, 4))]
+    LHS/K_Tinv (ratio, t): [(Fraction(15625, 531441), Fraction(9, 5)), (Fraction(1, 531441), Fraction(9, 1)), (Fraction(4096, 15625), Fraction(5, 4))]
+    P nonzero: True
+    time: 0.0
+k=3 m=6 r=1:
+    P == t^0 S (exact poly): False
+    P == t^1 S (exact poly): False
+    P == t^2 S (exact poly): False
+    P == t^3 S (exact poly): True
+    P == t^4 S (exact poly): False
+    S == K_T (pts): True
+    LHS/K_T (ratio, t): [(Fraction(343, 125), Fraction(7, 5)), (Fraction(8, 1), Fraction(2, 1)), (Fraction(343, 8), Fraction(7, 2))]
+    LHS/K_Tinv (ratio, t): [(Fraction(585508177842576875, 5902475660367070211), Fraction(7, 5)), (Fraction(15972199581299, 751341379633736), Fraction(2, 1)), (Fraction(670952343554, 404093463303509), Fraction(7, 2))]
+    P nonzero: True
+    time: 0.0
+k=3 m=6 r=3:
+    P == t^0 S (exact poly): False
+    P == t^1 S (exact poly): False
+    P == t^2 S (exact poly): False
+    P == t^3 S (exact poly): True
+    P == t^4 S (exact poly): False
+    S == K_T (pts): True
+    LHS/K_T (ratio, t): [(Fraction(27, 8), Fraction(3, 2)), (Fraction(343, 1), Fraction(7, 1)), (Fraction(27, 8), Fraction(3, 2))]
+    LHS/K_Tinv (ratio, t): [(Fraction(452131938952979731609, 2528371884840168641184), Fraction(3, 2)), (Fraction(-258039281433231332447, 368923315536247828028737), Fraction(7, 1)), (Fraction(64, 729), Fraction(3, 2))]
+    P nonzero: True
+    time: 0.2
+k=3 m=7 r=2:
+    P == t^0 S (exact poly): False
+    P == t^1 S (exact poly): False
+    P == t^2 S (exact poly): False
+    P == t^3 S (exact poly): True
+    P == t^4 S (exact poly): False
+    S == K_T (pts): True
+    LHS/K_T (ratio, t): [(Fraction(27, 64), Fraction(3, 4)), (Fraction(343, 27), Fraction(7, 3)), (Fraction(125, 64), Fraction(5, 4))]
+    LHS/K_Tinv (ratio, t): [(Fraction(74856432743424559616, 3960097828518237543), Fraction(3, 4)), (Fraction(-3592480598165817207243, 15536616129122078166406433), Fraction(7, 3)), (Fraction(381898934832278974976, 4326709960895336734375), Fraction(5, 4))]
+    P nonzero: True
+    time: 0.3
+k=3 m=7 r=3:
+    P == t^0 S (exact poly): False
+    P == t^1 S (exact poly): False
+    P == t^2 S (exact poly): False
+    P == t^3 S (exact poly): True
+    P == t^4 S (exact poly): False
+    S == K_T (pts): True
+    LHS/K_T (ratio, t): [(Fraction(27, 8), Fraction(3, 2)), (Fraction(27, 8), Fraction(3, 2)), (Fraction(27, 8), Fraction(3, 2))]
+    LHS/K_Tinv (ratio, t): [(Fraction(18020494809951715235417, 1847307032360064257026428), Fraction(3, 2)), (Fraction(25615042183705135996, 6874030528302902247999), Fraction(3, 2)), (Fraction(339976272026017644053, 71415517510083714862402), Fraction(3, 2))]
+    P nonzero: True
+    time: 0.5
+k=3 m=7 r=1:
+    P == t^0 S (exact poly): False
+    P == t^1 S (exact poly): False
+    P == t^2 S (exact poly): False
+    P == t^3 S (exact poly): True
+    P == t^4 S (exact poly): False
+    S == K_T (pts): True
+    LHS/K_T (ratio, t): [(Fraction(343, 64), Fraction(7, 4)), (Fraction(343, 8), Fraction(7, 2)), (Fraction(27, 1), Fraction(3, 1))]
+    LHS/K_Tinv (ratio, t): [(Fraction(956387681701888, 429698808426414289), Fraction(7, 4)), (Fraction(-60566829070966496, 1252021225869932169869), Fraction(7, 2)), (Fraction(-50561723608189, 920887050853144413), Fraction(3, 1))]
+    P nonzero: True
+    time: 0.1
+k=3 m=7 r=4:
+    P == t^0 S (exact poly): False
+    P == t^1 S (exact poly): False
+    P == t^2 S (exact poly): False
+    P == t^3 S (exact poly): True
+    P == t^4 S (exact poly): False
+    S == K_T (pts): True
+    LHS/K_T (ratio, t): [(Fraction(64, 1), Fraction(4, 1)), (Fraction(343, 125), Fraction(7, 5)), (Fraction(8, 1), Fraction(2, 1))]
+    LHS/K_Tinv (ratio, t): [(Fraction(-638256560437265468, 4389521410912190776483), Fraction(4, 1)), (Fraction(17233618929248499290983631, 288873515499447673116807501), Fraction(7, 5)), (Fraction(-162861747971846114224, 836617972619114851064155), Fraction(2, 1))]
+    P nonzero: True
+    time: 0.5
