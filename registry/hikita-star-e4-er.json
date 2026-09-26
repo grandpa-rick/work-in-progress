@@ -1,145 +1,152 @@
 {
-  "conjecture": "e_4 ⋆ e_r in Hikita's ⋆-product on Λ_{q,t} has an explicit Pieri closed form with min(4,r)+1 nonzero terms in the e_λ-basis, supported on partitions (r+4-k, k) for k = 0..min(4,r). Day 195 discovery: full closed form c_0..c_4 with the top P_4(q,t;r) = [r+1][r+2][r+3]q^3 - t[3][r-1][r+1][r+2]q^2 + t^3[3][r-2][r-1][r+1]q - t^6[r-3][r-2][r-1] — clean [k]_t-integer factored form, symmetric [3] middle-term prefactor.",
-  "status": "in-progress",
-  "date_opened": "2026-09-16",
-  "date_closed": null,
-  "predecessors": [
-    "hikita-star-e3-er.json (Day 193)",
-    "hikita-star-e2-e2.json (Day 191)"
-  ],
-  "tree": {
-    "id": "root",
-    "approach": "Extend Day 193's e_3 ⋆ e_r Pieri to e_4 ⋆ e_r; verify meta-conjecture #terms = min(a,b)+1; pattern-guess coefficient closed forms",
-    "trust": "in-progress",
+ "conjecture": "e_4 ⋆ e_r in Hikita's ⋆-product on Λ_{q,t} has an explicit Pieri closed form with min(4,r)+1 nonzero terms in the e_λ-basis, supported on partitions (r+4-k, k) for k = 0..min(4,r). Day 195 discovery: full closed form c_0..c_4 with the top P_4(q,t;r) = [r+1][r+2][r+3]q^3 - t[3][r-1][r+1][r+2]q^2 + t^3[3][r-2][r-1][r+1]q - t^6[r-3][r-2][r-1] — clean [k]_t-integer factored form, symmetric [3] middle-term prefactor.",
+ "status": "in-progress",
+ "date_opened": "2026-09-16",
+ "date_closed": null,
+ "predecessors": [
+  "hikita-star-e3-er.json (Day 193)",
+  "hikita-star-e2-e2.json (Day 191)"
+ ],
+ "tree": {
+  "id": "root",
+  "approach": "Extend Day 193's e_3 ⋆ e_r Pieri to e_4 ⋆ e_r; verify meta-conjecture #terms = min(a,b)+1; pattern-guess coefficient closed forms",
+  "trust": "in-progress",
+  "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
+  "children": [
+   {
+    "id": "hikita-star-e4-e3-via-commutativity",
+    "approach": "e_4 ⋆ e_3 = e_3 ⋆ e_4 by commutativity; 4 nonzero terms (min(4,3)+1 = 4). Direct computation at m=7 matches Day 193 formula for e_3 ⋆ e_4 on all c_0..c_3.",
+    "trust": "computed",
     "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
+    "recheck": "2026-09-16 proofs/scripts/day195/verify_e4_e3_via_commutativity.py against proofs/scripts/day193/e4_e3_m7.pkl.",
+    "role": "attempt",
+    "children": []
+   },
+   {
+    "id": "hikita-star-e4-e4-closed-form",
+    "approach": "e_4 ⋆ e_4 has 5 nonzero terms (min(4,4)+1 = 5). c_4 = q^{-4}; c_3 = (q-1)/q^4·[2]; c_2 = (q-1)/q^4·[4]/[2]·(q[3]-t[1]); c_1 = (q-1)/q^4·[6]/([2][3])·([5][4]q^2 - t[2][2][4]q + t^3[1][2]); c_0 = (q-1)/q^4·[8]/([2][3][4])·([5][6][7]q^3 - t[3][3][5][6]q^2 + t^3[3][2][3][5]q - t^6[1][2][3]). Verified at r=4.",
+    "trust": "computed",
+    "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
+    "recheck": "2026-09-16 proofs/scripts/day195/verify_closed_form_a4.py against proofs/scripts/day193/e4_e4_m8.pkl.",
+    "role": "attempt",
+    "children": []
+   },
+   {
+    "id": "hikita-star-e4-e5-closed-form",
+    "approach": "e_4 ⋆ e_5 has 5 nonzero terms (min(4,5)+1 = 5). Same closed form (with r=5). Verified against fresh Day 194 background compute at m=9 (4993 s wallclock).",
+    "trust": "computed",
+    "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
+    "recheck": "2026-09-16 proofs/scripts/day195/verify_closed_form_a4.py against proofs/scripts/day193/e4_e5_m9.pkl.",
+    "role": "attempt",
+    "children": []
+   },
+   {
+    "id": "hikita-star-e4-er-pieri-full-closed-form",
+    "approach": "Full closed form (Day 195), r ≥ 4: c_4 = q^{-4}; c_3 = (q-1)/q^4·[r-2]; c_2 = (q-1)/q^4·[r]/[2]·(q[r-1] - t[r-3]); c_1 = (q-1)/q^4·[r+2]/([2][3])·([r+1][r]q^2 - t[2][r-2][r]q + t^3[r-3][r-2]); c_0 = (q-1)/q^4·[r+4]/([2][3][4])·P_4(q,t;r) with P_4 = [r+1][r+2][r+3]q^3 - t[3][r-1][r+1][r+2]q^2 + t^3[3][r-2][r-1][r+1]q - t^6[r-3][r-2][r-1]. Verified r = 4, 5. || Day 207: all-r version now computed symbolically in u=t^r via the telescoping GF, conditional on the parabolic kernel — see node e4-star-er-closed-form-all-r (and ek-star-er-general-M-formula in hikita-star-e4-er.json).",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+    "recheck": "2026-09-26 — Day 207b written proof; scripts/day207b/{check_general_k,check_recursion_step,check_specializations}.py ALL OK",
+    "role": "attempt",
+    "children": [],
+    "note": "Day 207b: PROVED (general-k theorem, proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md)"
+   },
+   {
+    "id": "hikita-star-P_l-meta-shape-conjecture-updated",
+    "approach": "Update to Day 193 conjecture. For general a: c_{a-l}(r) = (q-1)/q^a · [r+2l-a]/([2][3]...[l]) · P_l(q,t;r,a). P_l is polynomial of degree l-1 in q; coefficient of q^{l-1-j} has t-exponent binom(j+1,2), alternating signs. Concrete: P_2 = q[r+3-a] - t[r+1-a]; P_3 = [r+5-a][r+4-a]q^2 - t[2][r+2-a][r+4-a]q + t^3[r+1-a][r+2-a]; P_4 = [r+7-a][r+6-a][r+5-a]q^3 - t[3][r+3-a][r+5-a][r+6-a]q^2 + t^3[3][r+2-a][r+3-a][r+5-a]q - t^6[r+1-a][r+2-a][r+3-a]. Verified l=1,2,3,4 for a=4 across r=3,4,5.",
+    "trust": "computed",
+    "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
+    "recheck": "2026-09-16 P_4 shifts hand-checked in verify_closed_form_a4.py; extracted via analyze_P4_v2.py ratio search.",
+    "role": "attempt",
+    "children": []
+   },
+   {
+    "id": "hikita-star-min-a-b-plus-1-terms-metaconjecture-scorecard",
+    "approach": "Meta-conjecture: e_a ⋆ e_b has exactly min(a,b)+1 nonzero e-basis terms. Scorecard 18-for-18 (up from Day 193's 15-for-15): +3 new checks (4,3)→4 terms, (4,4)→5 terms, (4,5)→5 terms. All PASS.",
+    "trust": "computed",
+    "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
+    "recheck": "2026-09-16 verified from Day 194 background compute + Day 193 (4,3)/(4,4) computes.",
+    "role": "attempt",
+    "children": []
+   },
+   {
+    "id": "hikita-star-t-zero-specialization",
+    "approach": "At t=0, c_k(r) = (q-1)/q^{k+1} for k=0..a-1, and c_a(r) = q^{-a}. Independent of r. Verified for a=2 (Day 194), a=4 (Day 195). Likely holds for all a.",
+    "trust": "computed",
+    "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
+    "recheck": "2026-09-16 verify_closed_form_a4.py Bonus section, t=0 spec at r=4, 5.",
+    "role": "attempt",
+    "children": []
+   },
+   {
+    "id": "hikita-star-e4-er-analytic-proof",
+    "approach": "Analytic proof via Thm 3.12 iterated with e_4(Y) = polynomial in p_1..p_4(Y). Not attempted in Day 195. Same blocker as a=3 case: AHA + Thm 3.12 alone insufficient; need Lemma-3.11-analog for p_k(Y) actions (per Day 191 pivot).",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+    "role": "attempt",
+    "children": [],
+    "note": "Day 207b: PROVED (general-k theorem, proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md)",
+    "recheck": "2026-09-26 — Day 207b written proof; scripts/day207b/{check_general_k,check_recursion_step,check_specializations}.py ALL OK"
+   },
+   {
+    "id": "e4-star-er-closed-form-all-r",
+    "approach": "Day 195 e_4⋆e_r closed form (c_4..c_0) holds for ALL r: all 5 extracted GF coefficients equal Day 195's as rational functions of u=t^r (difference 0), no spurious e-monomials. Conditional on ek-parabolic-kernel-k4 (computed m≤9).",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+    "recheck": "2026-09-26 — Day 207b written proof; scripts/day207b/{check_general_k,check_recursion_step,check_specializations}.py ALL OK",
+    "role": "attempt",
     "children": [
-      {
-        "id": "hikita-star-e4-e3-via-commutativity",
-        "approach": "e_4 ⋆ e_3 = e_3 ⋆ e_4 by commutativity; 4 nonzero terms (min(4,3)+1 = 4). Direct computation at m=7 matches Day 193 formula for e_3 ⋆ e_4 on all c_0..c_3.",
-        "trust": "computed",
-        "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-        "recheck": "2026-09-16 proofs/scripts/day195/verify_e4_e3_via_commutativity.py against proofs/scripts/day193/e4_e3_m7.pkl.",
-        "role": "attempt",
-        "children": []
-      },
-      {
-        "id": "hikita-star-e4-e4-closed-form",
-        "approach": "e_4 ⋆ e_4 has 5 nonzero terms (min(4,4)+1 = 5). c_4 = q^{-4}; c_3 = (q-1)/q^4·[2]; c_2 = (q-1)/q^4·[4]/[2]·(q[3]-t[1]); c_1 = (q-1)/q^4·[6]/([2][3])·([5][4]q^2 - t[2][2][4]q + t^3[1][2]); c_0 = (q-1)/q^4·[8]/([2][3][4])·([5][6][7]q^3 - t[3][3][5][6]q^2 + t^3[3][2][3][5]q - t^6[1][2][3]). Verified at r=4.",
-        "trust": "computed",
-        "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-        "recheck": "2026-09-16 proofs/scripts/day195/verify_closed_form_a4.py against proofs/scripts/day193/e4_e4_m8.pkl.",
-        "role": "attempt",
-        "children": []
-      },
-      {
-        "id": "hikita-star-e4-e5-closed-form",
-        "approach": "e_4 ⋆ e_5 has 5 nonzero terms (min(4,5)+1 = 5). Same closed form (with r=5). Verified against fresh Day 194 background compute at m=9 (4993 s wallclock).",
-        "trust": "computed",
-        "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-        "recheck": "2026-09-16 proofs/scripts/day195/verify_closed_form_a4.py against proofs/scripts/day193/e4_e5_m9.pkl.",
-        "role": "attempt",
-        "children": []
-      },
-      {
-        "id": "hikita-star-e4-er-pieri-full-closed-form",
-        "approach": "Full closed form (Day 195), r ≥ 4: c_4 = q^{-4}; c_3 = (q-1)/q^4·[r-2]; c_2 = (q-1)/q^4·[r]/[2]·(q[r-1] - t[r-3]); c_1 = (q-1)/q^4·[r+2]/([2][3])·([r+1][r]q^2 - t[2][r-2][r]q + t^3[r-3][r-2]); c_0 = (q-1)/q^4·[r+4]/([2][3][4])·P_4(q,t;r) with P_4 = [r+1][r+2][r+3]q^3 - t[3][r-1][r+1][r+2]q^2 + t^3[3][r-2][r-1][r+1]q - t^6[r-3][r-2][r-1]. Verified r = 4, 5. || Day 207: all-r version now computed symbolically in u=t^r via the telescoping GF, conditional on the parabolic kernel — see node e4-star-er-closed-form-all-r (and ek-star-er-general-M-formula in hikita-star-e4-er.json).",
-        "trust": "computed",
-        "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-        "recheck": "2026-09-16 proofs/scripts/day195/verify_closed_form_a4.py; boundary consistency at r=3 (via verify_e4_e3_via_commutativity.py).",
-        "role": "attempt",
-        "children": []
-      },
-      {
-        "id": "hikita-star-P_l-meta-shape-conjecture-updated",
-        "approach": "Update to Day 193 conjecture. For general a: c_{a-l}(r) = (q-1)/q^a · [r+2l-a]/([2][3]...[l]) · P_l(q,t;r,a). P_l is polynomial of degree l-1 in q; coefficient of q^{l-1-j} has t-exponent binom(j+1,2), alternating signs. Concrete: P_2 = q[r+3-a] - t[r+1-a]; P_3 = [r+5-a][r+4-a]q^2 - t[2][r+2-a][r+4-a]q + t^3[r+1-a][r+2-a]; P_4 = [r+7-a][r+6-a][r+5-a]q^3 - t[3][r+3-a][r+5-a][r+6-a]q^2 + t^3[3][r+2-a][r+3-a][r+5-a]q - t^6[r+1-a][r+2-a][r+3-a]. Verified l=1,2,3,4 for a=4 across r=3,4,5.",
-        "trust": "computed",
-        "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-        "recheck": "2026-09-16 P_4 shifts hand-checked in verify_closed_form_a4.py; extracted via analyze_P4_v2.py ratio search.",
-        "role": "attempt",
-        "children": []
-      },
-      {
-        "id": "hikita-star-min-a-b-plus-1-terms-metaconjecture-scorecard",
-        "approach": "Meta-conjecture: e_a ⋆ e_b has exactly min(a,b)+1 nonzero e-basis terms. Scorecard 18-for-18 (up from Day 193's 15-for-15): +3 new checks (4,3)→4 terms, (4,4)→5 terms, (4,5)→5 terms. All PASS.",
-        "trust": "computed",
-        "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-        "recheck": "2026-09-16 verified from Day 194 background compute + Day 193 (4,3)/(4,4) computes.",
-        "role": "attempt",
-        "children": []
-      },
-      {
-        "id": "hikita-star-t-zero-specialization",
-        "approach": "At t=0, c_k(r) = (q-1)/q^{k+1} for k=0..a-1, and c_a(r) = q^{-a}. Independent of r. Verified for a=2 (Day 194), a=4 (Day 195). Likely holds for all a.",
-        "trust": "computed",
-        "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-        "recheck": "2026-09-16 verify_closed_form_a4.py Bonus section, t=0 spec at r=4, 5.",
-        "role": "observation",
-        "children": []
-      },
-      {
-        "id": "hikita-star-e4-er-analytic-proof",
-        "approach": "Analytic proof via Thm 3.12 iterated with e_4(Y) = polynomial in p_1..p_4(Y). Not attempted in Day 195. Same blocker as a=3 case: AHA + Thm 3.12 alone insufficient; need Lemma-3.11-analog for p_k(Y) actions (per Day 191 pivot).",
-        "trust": "hunch",
-        "file": null,
-        "role": "attempt",
-        "children": []
-      },
-      {
-        "id": "e4-star-er-closed-form-all-r",
-        "approach": "Day 195 e_4⋆e_r closed form (c_4..c_0) holds for ALL r: all 5 extracted GF coefficients equal Day 195's as rational functions of u=t^r (difference 0), no spurious e-monomials. Conditional on ek-parabolic-kernel-k4 (computed m≤9).",
-        "trust": "computed",
-        "file": "2026-09-26-day207-k4-kernel-gf.md",
-        "recheck": "2026-09-26 scripts/day207/k4_gf_extract.py (+ .log)",
-        "role": "attempt",
-        "children": [
-          {
-            "id": "ek-parabolic-kernel-k4",
-            "approach": "e_4(Y)•e_r = t^6 σ^{(4)}π⁴e_r (|A|=4 HL kernel). Exact P = t^e S in Z[X,s,t] only for e=6 (e=0..8 tested); S = K_T at 2 random pts. m=8 r=0..4, m=9 r=0..3; pre-registered kill (8,2) passes.",
-            "trust": "computed",
-            "file": "2026-09-26-day207-k4-kernel-gf.md",
-            "recheck": "2026-09-26 scripts/day207/k4_kernel_test.py (k4_kernel.log)",
-            "role": "premise",
-            "children": []
-          },
-          {
-            "id": "lemma-2-HL-residue-stub",
-            "approach": "Stub: Day 206b Lemma 2 (one-variable HL residue (1-t)Σ_a X_a^n ∏_{j≠a}a_aj = q_n, n≥1), used iterated k deep; canonical node carries the proof.",
-            "trust": "proved",
-            "file": "2026-09-25-day206b-W_r-proved.md",
-            "shared": "hikita-star-e2-e2#two-var-HL-residue-H",
-            "role": "premise",
-            "children": []
-          },
-          {
-            "id": "k4-gf-telescoping",
-            "approach": "(t;t)_4 Σ_r z^r t^{-6}e_4(Y)•e_r = Σ_{j+b≤4} M_jb e_b z^{b−4} E(t^j z): Lemma 2 four deep, simple poles at {−z,…,−t³z}, only the 5 chain prefixes occur, C_j linear in e_b, support exactly j+b≤4 (15 entries). GF = direct AHA at m=8 r=0..4, m=9 r=0..5 (3 pts each); t^{-5} negative control fails.",
-            "trust": "computed",
-            "file": "2026-09-26-day207-k4-kernel-gf.md",
-            "recheck": "2026-09-26 scripts/day207/k4_gf_engine.py, k4_gf_verify.py (+ .log)",
-            "role": "attempt",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "ek-star-er-general-M-formula",
-        "approach": "General k (verbatim, Day 207 k4 note §3): M^{(k)}_{jb} = s^b · ∏_{i<j}(s−t^i) · (s;t)_{k−j−b} · R_{jb} / (s−1) · (t;t)_k / ((t;t)_j (t;t)_{k−j−b}) · t^{−kj}, R_{jb} = s(t^{k−b} − t^{k−b−j} + 1) − t^j (so R = t^j(s−1) when j+b=k). Implied Pieri rule, n = k−b: [e_{r+n}e_b] t^{−C(k,2)}e_k(Y)•e_r = s^b · F_n(t^{r−b}), F_n(w) = (s−1)^{−1} Σ_{j=0}^{n} (s;t)_{n−j} ∏_{i<j}(s−t^i) · (s(t^n − t^{n−j} + 1) − t^j) · w^j / ((t;t)_{n−j}(t;t)_j). Fit on k=2,3,4; k=5 blind test PASS (engine/conjecture ratio ≡ 1 on all 6+10+15+21 entries); includes W_r (k=2), Day 193, Day 195. Conditional on A_k/K_k kernel step (computed k≤5) and the sympy Ω-stage.",
-        "trust": "computed",
-        "file": "2026-09-26-day207-k4-kernel-gf.md",
-        "recheck": "2026-09-26 scripts/day207/gen_M_conjecture.py (+ .log)",
-        "role": "attempt",
-        "children": [
-          {
-            "id": "ek-parabolic-kernel-k5",
-            "approach": "e_5(Y)•e_r = t^{10} σ^{(5)}π⁵e_r: kernel exponent exactly t^{C(5,2)} at m=8,9; k=5 GF (telescoping, linear, support j+b≤5) matches direct AHA at m=9, r=0..4.",
-            "trust": "computed",
-            "file": "2026-09-26-day207-k4-kernel-gf.md",
-            "recheck": "2026-09-26 scripts/day207/k5_check.py (+ k5_gf_engine.log, k5_check.log)",
-            "role": "premise",
-            "children": []
-          }
-        ]
-      }
-    ]
-  }
+     {
+      "id": "ek-parabolic-kernel-k4",
+      "approach": "e_4(Y)•e_r = t^6 σ^{(4)}π⁴e_r (|A|=4 HL kernel). Exact P = t^e S in Z[X,s,t] only for e=6 (e=0..8 tested); S = K_T at 2 random pts. m=8 r=0..4, m=9 r=0..3; pre-registered kill (8,2) passes.",
+      "trust": "proved",
+      "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+      "recheck": "2026-09-26 — Day 207b written proof; scripts/day207b/{check_general_k,check_recursion_step,check_specializations}.py ALL OK",
+      "role": "premise",
+      "children": [],
+      "note": "Day 207b: PROVED (general-k theorem, proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md)"
+     },
+     {
+      "id": "lemma-2-HL-residue-stub",
+      "approach": "Stub: Day 206b Lemma 2 (one-variable HL residue (1-t)Σ_a X_a^n ∏_{j≠a}a_aj = q_n, n≥1), used iterated k deep; canonical node carries the proof.",
+      "trust": "proved",
+      "file": "proofs/2026-09-25-day206b-W_r-proved.md",
+      "shared": "hikita-star-e2-e2#two-var-HL-residue-H",
+      "role": "premise",
+      "children": []
+     },
+     {
+      "id": "k4-gf-telescoping",
+      "approach": "(t;t)_4 Σ_r z^r t^{-6}e_4(Y)•e_r = Σ_{j+b≤4} M_jb e_b z^{b−4} E(t^j z): Lemma 2 four deep, simple poles at {−z,…,−t³z}, only the 5 chain prefixes occur, C_j linear in e_b, support exactly j+b≤4 (15 entries). GF = direct AHA at m=8 r=0..4, m=9 r=0..5 (3 pts each); t^{-5} negative control fails.",
+      "trust": "computed",
+      "file": "proofs/2026-09-26-day207-k4-kernel-gf.md",
+      "recheck": "2026-09-26 scripts/day207/k4_gf_engine.py, k4_gf_verify.py (+ .log)",
+      "role": "attempt",
+      "children": []
+     }
+    ],
+    "note": "Day 207b: PROVED (general-k theorem, proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md); Day 195 c_0..c_4 = specialization, symbolic in u."
+   },
+   {
+    "id": "ek-star-er-general-M-formula",
+    "approach": "General k (verbatim, Day 207 k4 note §3): M^{(k)}_{jb} = s^b · ∏_{i<j}(s−t^i) · (s;t)_{k−j−b} · R_{jb} / (s−1) · (t;t)_k / ((t;t)_j (t;t)_{k−j−b}) · t^{−kj}, R_{jb} = s(t^{k−b} − t^{k−b−j} + 1) − t^j (so R = t^j(s−1) when j+b=k). Implied Pieri rule, n = k−b: [e_{r+n}e_b] t^{−C(k,2)}e_k(Y)•e_r = s^b · F_n(t^{r−b}), F_n(w) = (s−1)^{−1} Σ_{j=0}^{n} (s;t)_{n−j} ∏_{i<j}(s−t^i) · (s(t^n − t^{n−j} + 1) − t^j) · w^j / ((t;t)_{n−j}(t;t)_j). Fit on k=2,3,4; k=5 blind test PASS (engine/conjecture ratio ≡ 1 on all 6+10+15+21 entries); includes W_r (k=2), Day 193, Day 195. Conditional on A_k/K_k kernel step (computed k≤5) and the sympy Ω-stage.",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+    "recheck": "2026-09-26 — Day 207b written proof; scripts/day207b/{check_general_k,check_recursion_step,check_specializations}.py ALL OK",
+    "role": "attempt",
+    "children": [
+     {
+      "id": "ek-parabolic-kernel-k5",
+      "approach": "e_5(Y)•e_r = t^{10} σ^{(5)}π⁵e_r: kernel exponent exactly t^{C(5,2)} at m=8,9; k=5 GF (telescoping, linear, support j+b≤5) matches direct AHA at m=9, r=0..4.",
+      "trust": "proved",
+      "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+      "recheck": "2026-09-26 — Day 207b written proof; scripts/day207b/{check_general_k,check_recursion_step,check_specializations}.py ALL OK",
+      "role": "premise",
+      "children": [],
+      "note": "Day 207b: PROVED (general-k theorem, proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md)"
+     }
+    ],
+    "note": "Day 207b: PROVED (general-k theorem, proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md) — M^{(k)}_{jb} = (t;t)_k s^b t^{-kj} c(k-b,j)."
+   }
+  ]
+ }
 }

@@ -1,0 +1,100 @@
+{
+ "conjecture": "General Pieri rule for Hikita's star product: e_k * e_r in the e-basis for all k, r (Day 207b).",
+ "status": "proved",
+ "date_opened": "2026-09-26",
+ "date_closed": "2026-09-26",
+ "predecessors": [
+  "hikita-star-e2-e2.json (W_r, Day 206b)",
+  "hikita-star-e3-er.json",
+  "hikita-star-e4-er.json"
+ ],
+ "tree": {
+  "id": "root",
+  "approach": "Prove the k-fold parabolic kernel + generating function for e_k(Y).e_r and read off the e_k*e_r Pieri rule.",
+  "trust": "proved",
+  "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+  "sources": [
+   "2503.23597"
+  ],
+  "children": [
+   {
+    "id": "ek-star-er-pieri-all-k",
+    "approach": "e_k * e_r = sum_b s^b F_{k-b}(t^{r-b}) e_b e_{r+k-b}, F_n(w) = sum_j c(n,j) w^j, c(n,j) = (s;t)_{n-j}/(t;t)_{n-j} (alpha_j - s t^{n-j} alpha_{j-1}), alpha_j = prod_{i=1}^j (s-t^i)/(t;t)_j. All k>=1, r>=0, m>=0.",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+    "role": "attempt",
+    "recheck": "2026-09-26 — Day 207b written proof; scripts/day207b/{check_general_k,check_recursion_step,check_specializations}.py ALL OK",
+    "sources": [
+     "2503.23597"
+    ],
+    "children": [
+     {
+      "id": "Ak-parabolic-kernel-all-k",
+      "approach": "(A_k) e_k(Y)F = t^{C(k,2)} sigma^{(k)} pi^k F on symmetric F, all k: per-tuple induction via Key Lemma T_x^{-1} T_{w^D} H = t^{n-(m-c)} T_{w^{D-1}} H (one Coxeter length count; x = s_c..s_{m-1}).",
+      "trust": "proved",
+      "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+      "role": "premise",
+      "recheck": "2026-09-26 — Day 207b written proof; scripts/day207b/{check_general_k,check_recursion_step,check_specializations}.py ALL OK",
+      "children": []
+     },
+     {
+      "id": "Kk-kset-kernel-all-k",
+      "approach": "(K_k) sigma^{(k)}G = sum_{|A|=k} G^{(A)} prod^x_A: parabolic chain factorization sigma_[1,m]..sigma_[k,m] = [k]! sigma^{(k)} on head/tail-symmetric G + iterated Lemma 1 (ordered formula) + Poincare identity re-derived at m=k.",
+      "trust": "proved",
+      "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+      "role": "premise",
+      "recheck": "2026-09-26 — Day 207b written proof; scripts/day207b/{check_general_k,check_recursion_step,check_specializations}.py ALL OK",
+      "children": [
+       {
+        "id": "lemma-1-2-day205b",
+        "approach": "Day 205b Lemma 1 (sigma_m = HL kernel closed form) and Lemma 2 ((1-t) sum X_i^n prod a_ij = q_n, n>=1).",
+        "trust": "proved",
+        "file": "proofs/2026-09-25-day205-L1-L4-residue-proof.md",
+        "role": "premise",
+        "children": []
+       }
+      ]
+     },
+     {
+      "id": "Ek-gf-induction-all-k",
+      "approach": "(E_k) GF = sum_{j+b<=k} s^b t^{-kj} c(k-b,j) e_b z^{b-k} E(t^j z): induction on k peeling the OUTER variable (Lemma 1 top level), one-pole Lemma 2 evaluation of the IH at X_i, (w,gamma) difference quotient absorbs e_b(X^_i); M-recursion collapses to single-index identity (*) proved via G(x)=sum (s;t)_n/(t;t)_n x^n functional equation and the linear factorization alpha_j(1-sy)-s alpha_{j-1}(1-y) = D_j(1-s t^{-j} y).",
+      "trust": "proved",
+      "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+      "role": "premise",
+      "recheck": "2026-09-26 — Day 207b written proof; scripts/day207b/{check_general_k,check_recursion_step,check_specializations}.py ALL OK",
+      "children": [
+       {
+        "id": "lemma-1-2-day205b-2",
+        "approach": "Day 205b Lemma 1 (sigma_m = HL kernel closed form) and Lemma 2 ((1-t) sum X_i^n prod a_ij = q_n, n>=1).",
+        "trust": "proved",
+        "file": "proofs/2026-09-25-day205-L1-L4-residue-proof.md",
+        "role": "premise",
+        "children": []
+       }
+      ]
+     },
+     {
+      "id": "hikita-def34-lemma33-interface",
+      "approach": "Star reading: e_k * e_r = t^{-C(k,2)} e_k(Y).e_r via Hikita 2503.23597 Def 3.4 / Lemma 3.3 (verified-quote; r=0 normalization re-derived by the theorem).",
+      "trust": "proved",
+      "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+      "role": "premise",
+      "sources": [
+       "2503.23597"
+      ],
+      "children": []
+     }
+    ]
+   },
+   {
+    "id": "Fn-2phi1-form",
+    "approach": "F_n(w) = (1-t^n w)(s;t)_n/(t;t)_n 2phi1(t^{1-n}, t/s; t^{1-n}/s; t; w); SymPy-exact n=1..6. Not needed for the theorem.",
+    "trust": "computed",
+    "file": "proofs/2026-09-26-day207-k4-kernel-gf.md",
+    "role": "attempt",
+    "recheck": "2026-09-26 Day 207 novelty audit sympy",
+    "children": []
+   }
+  ]
+ }
+}
