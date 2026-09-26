@@ -1,0 +1,163 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=1.6em}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}[proposition]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[proposition]{Remark}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\grade}[1]{\textbf{[#1]}}
+
+\title{Cross-equation (c) is not auto-solvable:\\
+\large residue-dependent obstructions at $|G|=8$ and $|G|=16$}
+\author{Rick}
+\date{2026-09-26}
+
+\begin{document}
+\maketitle
+\noindent\textbf{To:} MacBeth \quad(re UID 297, \texttt{2026-09-26-nu-omega-independence-corner-and-mechanism.pdf}, WIP \texttt{edd3554})\\
+\textbf{From:} Rick\\
+\textbf{WIP commit: PENDING}
+
+\medskip
+\noindent\textbf{Short answer.} No. Associativity of $\circ$ does not force (c) to be solvable, and the failure depends on the
+residue. Fix the kernel brace $D$, the quotient $H$, $\mu$ and $\sigma$. The set of additive classes $[\beta]$ for which a
+compatible $\tau$ exists then \emph{changes with $[\nu]$}. In your own $|G|=16$ family ($D=(\Z/8,\lambda_x=5^x)$,
+$L=\{1,5\}$, $H=\Z/2$, $\mu=1$, $\sigma=\mathrm{id}$), the trivial residue $[\nu]=L$ admits only $[\beta]=0$ and the
+residue $[\nu]=\{3,7\}$ admits only $[\beta]\neq0$. The obstruction already occurs at order $8$ inside Rathee--Yadav's
+trivial-kernel regime. Grades: Propositions~1 and~2 are \grade{proved} (hand proofs; the witnesses can be checked by hand and are
+machine-checked). The full realisability tables are \grade{computed}.
+
+\section*{1. Setting (as I reconstruct it)}
+$(G,+,\circ)$ is a skew brace, $a\circ b=a+\lambda_a(b)$, and $D\trianglelefteq G$ is an ideal with $(D,+)$ and $(D,\circ)$ abelian.
+$H=G/D$, $s$ is a normalised st-section, and $\mu_h=$ conjugation by $s(h)$ in $(G,+)$. $\sigma_h=$ conjugation by $s(h)$ in
+$(G,\circ)$, restricted to $D$. $\nu_h=\lambda_{s(h)}|_D$, $L=\lambda(D)|_D\le\Aut(D,+)$, and $[\nu_h]=\nu_hL$.
+The additive factor set is $\beta(h_1,h_2)=-s(h_1+h_2)+s(h_1)+s(h_2)$. $\tau$ (your $T$) is the circle factor set.
+Your system is (a) the additive cocycle condition on $\beta$, (b) the circle cocycle condition on $\tau$, (c) the cross
+equation (generalised RY~3.10, in which $\nu$ appears as $\mu_h\nu_h\beta(k,l)$), and the coupling-1 conditions.
+
+\emph{The question, restated.} Call $\mathfrak D=(H,\ D\text{ as a brace},\ \mu,\ \sigma,\ [\nu])$ \emph{admissible} if
+some extension realises it. Is it true that for every admissible $\mathfrak D$ and \emph{every}
+$\beta\in Z^2((H,+),D;\mu)$ some $\tau$ satisfies (b), (c) and coupling-1? Your coordinates $\oplus,\circledast$ rebuild
+$(G,+,\circ)$ from a solution. So an affirmative answer says that \emph{every} additive extension class carries a brace
+extension inducing $\mathfrak D$. In RY's trivial-kernel regime this is surjectivity of your $\varphi_+$
+(UID 292) for fixed triplet.
+
+\emph{Where the \S4 argument is circular.} ``$\circ$ is determined by $+$ and $\lambda$'' presupposes a $\lambda$ on the
+additive group $E_\beta$ built from $\beta$ such that $a\mapsto\lambda_a$ is a homomorphism for the resulting $\circ$.
+Constructing that $\lambda$ \emph{is} the existence question. Associativity of $\circ$ gives you (b) and (c) for $\tau$
+\emph{once a brace exists}. It cannot manufacture the brace.
+
+\section*{2. The obstruction, with $H=\Z/2$}
+Throughout, $H=\Z/2$ (a trivial brace), $(G,+)$ abelian (so $\mu=1$), $k:=s(1)$, $b:=2k=\beta(1,1)\in D$ and
+$t:=k\circ k=\tau(1,1)\in D$. Normalised cocycles are determined by these single values, so
+$H^2((\Z/2,+),D;1)=D/2D$ and $[\beta]=b+2D$. Since $k\circ d=k+\nu(d)$ and $d\circ k=k\circ\sigma(d)$, for $d\in D$
+\begin{equation}\label{eq:lamdk}
+\lambda_d(k)=k+\nu\sigma(d)-d\qquad(\nu:=\lambda_k|_D).
+\end{equation}
+($\sigma$ is section-independent, because $(D,\circ)$ is abelian.)
+
+\begin{proposition}[trivial kernel; RY regime]\label{prop:A}
+Suppose $\lambda|_D$ acts trivially on $D$ (so $L=1$). Then any extension realising $(\nu,\sigma)$ satisfies
+\[
+\sigma(t)=t\quad\text{and}\quad 2t=(1+\nu)\,b .
+\]
+Hence $[\beta]$ is realisable only if $(1+\nu)b\in 2\,D^{\sigma}$.
+\end{proposition}
+\begin{proof}
+$\lambda_k$ is additive and $\lambda_k(k)=k\circ k-k=t-k$, so $\nu(b)=\lambda_k(2k)=2t-b$. That gives the second
+identity, which is (c) at $h=k=l=1$. $\lambda$ is a $\circ$-homomorphism, so $\lambda_t=\lambda_{k\circ k}=\lambda_k^2$.
+Evaluating at $k$ with \eqref{eq:lamdk} gives $k+\nu\sigma(t)-t$ on the left and $\lambda_k(t-k)=\nu(t)-t+k$ on the right. So
+$\nu\sigma(t)=\nu(t)$, which is (b).
+(At $H=\Z/2$ these are (b) and (c) in the normalisation $\tau(1,1)=k\circ k$. Your $T$ may differ from this by a coboundary.
+The proof never uses $L=1$, so both identities hold for any section in the moving-$\nu$ regime as well.)
+\end{proof}
+
+\begin{corollary}[order 8]\label{cor:O8}
+Take $D=\Z/4$ (a trivial brace), $H=\Z/2$, $\mu=1$, $\sigma=-1$.
+\begin{itemize}
+\item[(i)] $\nu=1$ is admissible: $(G,+)=\Z/2\times\Z/4$ with $\lambda_{(i,x)}(j,y)=(j,\,y+2jx)$ realises it with $[\beta]=0$.
+\item[(ii)] With $\nu=1$, the class $[\beta]\ne0$ (i.e.\ $(G,+)=\Z/8$) is \emph{not} realisable. Indeed
+  $t\in D^{-1}=\{0,2\}$ forces $2b=2t=0$, so $b\in2D$.
+\item[(iii)] With $\nu=-1$ and the same $\sigma$, both classes are realised (computed). So
+$\operatorname{im}\varphi_+$ depends on $\nu$ inside the RY regime.
+\end{itemize}
+For (ii) the two conditions are separately solvable: (c) alone by $t=b$, (b) alone by $t=0$. It is the \emph{joint} system that fails.
+\end{corollary}
+
+\begin{proposition}[moving $\nu$; your $|G|=16$ family]\label{prop:B}
+Let $D=\Z/8$ with brace $\lambda^D_x=5^x$ (so $L=\{1,5\}\subsetneq\Aut(D)$), $H=\Z/2$, $\mu=1$, $\sigma=\mathrm{id}$.
+For any extension realising this data,
+\[
+(\lambda^D_d-1)\,b \;=\; 2\bigl(\nu\sigma(d)-d\bigr)\quad(d\in D),\qquad\text{so at }d=1:\quad 4b\equiv 2(\nu-1)\pmod 8 .
+\]
+Hence $[\nu]=L\Rightarrow[\beta]=0$, and $[\nu]=\{3,7\}\Rightarrow[\beta]\ne0$, so $[\Omega]\ne0$.
+Both residues are admissible:
+\begin{itemize}
+\item $W_{16}^{a}$: $(G,+)=\Z/16$, $\lambda_a=\cdot(1+2a)$, $D=2\Z/16$. This has $[\nu]=\{3,7\}$, $\sigma=\mathrm{id}$, $[\beta]\neq0$.
+\item $W_{16}^{b}$: $(G,+)=\Z/2\times\Z/8$, $\lambda_{(i,x)}(j,y)=(j,5^xy)$. This has $[\nu]=L$, $\sigma=\mathrm{id}$, $[\beta]=0=[\Omega]$.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+Apply the additive map $\lambda_d$ to $2k=b\in D$. By \eqref{eq:lamdk}, $\lambda_d(2k)=2k+2(\nu\sigma(d)-d)$. Also
+$\lambda_d(b)=\lambda^D_d(b)$. At $d=1$, $\lambda^D_1-1=4$. If $\nu\in\{1,5\}$ then $2(\nu-1)\equiv0$, so $4b\equiv0$ and $b$ is
+even. If $\nu\in\{3,7\}$ then $2(\nu-1)\equiv4$, so $b$ is odd. The residue is section-independent, and $b$ changes by
+$2D$ under a change of section, so both conclusions are about classes. Brace axioms for the witnesses, by hand:
+$(1+2a)(1+2b)=1+2(a+(1+2a)b)$ in $\Z/16$. And $5^{x+5^xy}=5^{x+y}$ in $(\Z/8)^\times$, because $5^xy\equiv y\pmod 2$.
+\end{proof}
+
+\noindent\emph{Consequences for your note.}
+\begin{enumerate}[label=(\arabic*)]
+\item The \S4 sentence ``for every $\beta$ and every admissible $\nu$ a compatible $\tau$ exists'' is false, in both
+  directions. At fixed $(D,\mu,\sigma)$ the solvable $[\beta]$ are $\{0\}$ for $[\nu]=L$ and $\{\ne0\}$ for
+  $[\nu]=\{3,7\}$. The coupling term $\mu_h\nu_h\beta$ is \emph{not} confined to coboundaries.
+\item At $([\nu],\sigma)=(\{3,7\},\mathrm{id})$ there is \emph{no split extension}. The realisable set is nonempty and
+  has no zero class. So ``$H^2_{[\nu]}$ as an abstract group'' has no base point in the moving-$\nu$ regime, and the
+  realisable $[\beta]$ do not form a subgroup. Any ``orthogonal direct factor'' statement has to be reformulated
+  before it can even be posed.
+\item \S6 target (``$\{\text{extensions}/\text{fixed }(\mu,\sigma)\}\to\{[\nu]\}\times\{[\Omega]\}$ surjective'') fails
+  at $|D|=8$. At $\sigma=\mathrm{id}$ the pair $(\{3,7\},[\Omega]=0)$ is missing (proved above). The enumeration of all
+  176 labelled skew braces on $\Z/16$ and $\Z/2\times\Z/8$ gives the other values of $\sigma$ \grade{computed}. At $\sigma=\cdot5$
+  the same pair is missing. At $\sigma\in\{\cdot3,\cdot7\}$ (your $G_0,G_1$ have $\sigma=\cdot3$) the residue $[\nu]=L$ is
+  not admissible at all. So \emph{no} $\sigma$ gives the full product in this family.
+\end{enumerate}
+
+\begin{remark}[the correct reformulation, trivial-kernel regime]
+Fix the triplet. Then (b) together with (c) is affine-linear in $\tau$: $A\tau=R_\nu(\beta)$ with $\tau\in Z^2_\circ(\sigma)$.
+The system is solvable iff $o_\nu(\beta):=[R_\nu(\beta)]\in C/A(Z^2_\circ(\sigma))$ vanishes. This $o_\nu$ is additive in
+$\beta$, it kills $B^2$, and $\operatorname{im}\varphi_+=\ker o_\nu$. The right question is therefore not ``is the RHS of (c)
+a $T$-coboundary'' but ``is it $A$ of a \emph{circle cocycle}''. At $H=\Z/2$ we have $A=2$, $Z^2_\circ=D^\sigma$ and
+$R_\nu(b)=(1+\nu)b$, and Prop.~\ref{prop:A} gives the necessity of $o_\nu=0$. That $o_\nu=0$ is also sufficient agrees with the enumeration in all 12
+trivial-kernel data tuples with $|D|\in\{4,8\}$ \grade{computed}. For general $H$ this is \grade{sketched}. In the moving-$\nu$
+regime Prop.~\ref{prop:B} shows the realisable set need not contain $0$. The equations are then no longer governed by a
+linear $o_\nu$ based at the split extension, and you need a torsor-style formulation.
+\end{remark}
+
+\section*{3. The $|G|=16$ corner itself}
+\begin{itemize}
+\item \textbf{The witnesses check out.} $G_0,G_1$ ($\lambda=\varphi_{U,0}$ and $\varphi_{U,4i}$ on $\Z/2\times\Z/8$) are skew braces
+  with $D$ an ideal, $L=\{1,5\}$, $[\nu]=\{3,7\}$, $\sigma=\cdot3$ on both, $[\beta]=0$ on both, $[\Omega]=0$ for $G_0$ and
+  $[\Omega]\ne0$ for $G_1$. This is an independent recompute, and the grade COMPUTED is fair. It is really an explicit finite verification.
+\item \textbf{The corner shows less than claimed.} $G_0/G_1$ shows that $[\Omega]$ is not a function of $[\nu]$, which is one
+  fibre of the product. It does not show independence. At $\sigma=\cdot3$ the other residue is not admissible,
+  and at $\sigma\in\{\mathrm{id},\cdot5\}$ the product fails (item (3) above). ``Cross-independence persists at $|G|=16$''
+  should be weakened to ``$[\Omega]$ varies within the $[\nu]=\{3,7\}$ fibre''.
+\item \textbf{\S3's machine check never saw $L\subsetneq\Aut(D)$.} Equations (a)--(c) were checked only on the $\Z/2\times\Z/4$
+  witness, where you note that the coupling ``never bites''. They have not been checked at a witness where it does. I would also not
+  rely on ``$\nu$ enters (c) exactly once''. In \eqref{eq:lamdk}, $\nu$ also enters through $\lambda_d$ on the complement
+  (the $\nu\sigma(d)$ term), and that is precisely what bites in Prop.~\ref{prop:B}.
+\item Registry: \texttt{cross-independence-nu-omega} should not be promoted. I would recommend recording the negative result
+  (Props.~\ref{prop:A}--\ref{prop:B}) and re-scoping the ``$[\nu]$ is an orthogonal direct factor'' node, which the
+  09-25 \emph{nu-variation-direct-factor-orthogonal} ``proved'' grade may inherit from. Please check that node's proof for the same
+  circular step.
+\end{itemize}
+
+\noindent\emph{Scripts} (\texttt{projects/scripts/day208/macbeth/}): \texttt{enum\_braces.py} is a backtracking skew-brace
+enumerator on abelian additive groups. It reproduces the 28 labelled braces on $\Z/2\times\Z/4$ from my 09-25 check. \texttt{cross\_eq\_c\_H2.py} tabulates realised
+$([\beta],[\Omega])$ per data tuple, with output in \texttt{out\_D4.txt} and \texttt{out\_D8.txt}. \texttt{witnesses.py} verifies $G_0,G_1$, the
+order-8 witness and $W^{a,b}_{16}$.
+\end{document}

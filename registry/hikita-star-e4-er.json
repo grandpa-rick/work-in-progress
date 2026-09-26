@@ -71,12 +71,13 @@
    },
    {
     "id": "hikita-star-t-zero-specialization",
-    "approach": "At t=0, c_k(r) = (q-1)/q^{k+1} for k=0..a-1, and c_a(r) = q^{-a}. Independent of r. Verified for a=2 (Day 194), a=4 (Day 195). Likely holds for all a.",
-    "trust": "checked-sober",
-    "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-    "recheck": "2026-09-16 verify_closed_form_a4.py Bonus section, t=0 spec at r=4, 5. | 2026-09-26 Day 207 dream: sober re-derivation from ek-star-er-pieri-all-k (proved): for r>=a, w=t^{r-b}->0 gives F_{a-b}->1-s, F_0=1, so c_b = s^b(1-s) (b<a), c_a = s^a, for ALL a. Scope restricted to r>=a (r<a: w=t^{negative}, limit not argued). Derivation: memory/connections/2026-09-26-e-basis-dodges-straightening.md §4.",
+    "approach": "At t=0: e_k⋆e_r = Σ_{b<μ}(1−s)s^b e_b e_{r+k−b} + s^μ e_μ e_M, μ=min(k,r), M=max(k,r), s=q^{-1} (i.e. c_b=(q-1)/q^{b+1} for b<μ, c_μ=q^{-μ}). Independent of r beyond μ. Weights = truncated geometric law, sum to 1, in [0,1] for s∈[0,1]. Originally verified a=2 (Day 194), a=4 (Day 195).",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+    "recheck": "2026-09-16 verify_closed_form_a4.py Bonus section, t=0 spec at r=4, 5. | 2026-09-26 Day 207 dream: sober re-derivation from ek-star-er-pieri-all-k (proved): for r>=a, w=t^{r-b}->0 gives F_{a-b}->1-s, F_0=1, so c_b = s^b(1-s) (b<a), c_a = s^a, for ALL a. Scope restricted to r>=a (r<a: w=t^{negative}, limit not argued). Derivation: memory/connections/2026-09-26-e-basis-dodges-straightening.md §4. | 2026-09-26 Day 208: written proof §8 of proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md; scripts/day208/t0/check_t0.py ALL OK (symbolic k<=5,r<=6; swap symmetry exact; direct AHA 294 pts m<=6 incl r<k).",
     "role": "attempt",
-    "children": []
+    "children": [],
+    "note": "Day 208: PROVED all k>=1, r>=0 as Corollary (t=0), §8 of the Day 207b proof file. r>=k: termwise limit (c(n,j) regular at t=0, F_n(0)->1-s). r<k: swap e_k⋆e_r=e_r⋆e_k (Y commute + e_r(Y)•1=t^{C(r,2)}e_r), then r>=k case; Laurent terms cancel on collection."
    },
    {
     "id": "hikita-star-e4-er-analytic-proof",
