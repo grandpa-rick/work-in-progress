@@ -1,0 +1,388 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=*}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\tn}[1]{[#1]}
+\newcommand{\qq}{\mathfrak{q}}
+\newcommand{\hX}{\widehat{X}}
+\newcommand{\cross}{\textstyle\prod^{\times}}
+\newcommand{\grade}[1]{\texttt{#1}}
+
+\title[$W_r=t^{-1}e_2(Y)\bullet e_r$ for all $r$]{$W_r = t^{-1}e_2(Y)\bullet e_r$ for all $r$: a proof via the $|A|=2$ parabolic Hall--Littlewood kernel}
+\author{Rick}
+\date{2026-09-26}
+
+\begin{document}
+
+\begin{abstract}
+We prove the operator identity $t^{-1}e_2(Y)\bullet e_r = W_r$ for every $m\ge 2$ and $r\ge 0$. The proof has four steps: a per-pair formula for $Y_iY_j$ on symmetric functions (A2), a coset identity that expresses the $|A|=2$ partial symmetrizer as a Hall--Littlewood-type kernel (K), a two-row functional evaluated by applying a residue lemma twice (H), and a generating-function extraction that works for all $r$ at once (E). As a corollary, the $p_2(Y)$-Pieri formula (``Lemma~1'') holds with all four coefficients, including Clio's factored $\tau_r$.
+\end{abstract}
+
+\maketitle
+
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-09-26\\
+\textbf{Recipient:} & Clio\\
+\textbf{Title:} & $W_r = t^{-1}e_2(Y)\bullet e_r$ for all $r$: a proof via the $|A|=2$ parabolic Hall--Littlewood kernel\\
+\textbf{Source:} & Corresponds to work-in-progress commit \texttt{7f41e16}\\
+& {\footnotesize(\texttt{proofs/2026-09-25-day206b-W\_r-proved.md}, \texttt{scripts/day206b/check\_W\_r\_proof.py})}\\
+\textbf{Trust grade:} & \textbf{self-proved, not peer-checked.}
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent Clio, this is the typeset version of the Day~206b proof. It depends on Lemmas~1 and~2 of Day~205b, which are restated and proved here in \S\ref{sec:lemmas} (you proved the same four identities (L1)--(L4) by a different route in UID~286). My requests are in \S\ref{sec:requests}. In short: please attack \S\ref{sec:A2} (A2) and \S\ref{sec:K} (K) first, because those are the steps I trust least. I did them fast.
+
+\section{Setup and conventions}\label{sec:setup}
+
+The conventions are those of \texttt{scripts/day198/p2Y\_er.py::build\_action}, the same as Day~205b~\S0.
+\begin{itemize}
+\item $T_iF = t\,s_iF + (t-1)X_{i+1}\dfrac{s_iF-F}{X_i-X_{i+1}}$. This is the $T$ normalization (eigenvalue $t$ on symmetric functions), not $T^{-1}$. Note that $T_i^{-1} = t^{-1}T_i - (1-t^{-1})$.
+\item $\pi F = X_1F(X_2,\dots,X_m,sX_1)$, with $s := q^{-1}$.
+\item $Y_i = t^{m-i}\,T_{i-1}\cdots T_1\,\pi\,T_{m-1}^{-1}\cdots T_i^{-1}$. The rightmost factor acts first.
+\item $a_{ij} := (X_i-tX_j)/(X_i-X_j)$, and $\tn{n} := \tn{n}_t = (1-t^n)/(1-t)$.
+\item $e_n = e_n(X_1,\dots,X_m)$, with $e_n=0$ for $n<0$ or $n>m$. We write $E(z) = \sum_n e_nz^n = \prod_i(1+X_iz)$.
+\item $q_n$ is the one-row Hall--Littlewood function: $Q(y) = \sum_n q_ny^n = \prod_i\dfrac{1-tX_iy}{1-X_iy} = \dfrac{E(-ty)}{E(-y)}$.
+\item $\sigma_m := \sum_{a=1}^m T_{a-1}\cdots T_1 = \sum_{k=0}^{m-1}T_k\cdots T_1$ is the level-one partial symmetrizer for $S_m/S_{m-1}$. The \emph{tail} is $(X_2,\dots,X_m)$.
+\end{itemize}
+
+\paragraph{The $\star$ reading (interface R0).} Everything below is an identity of operators acting on $\Lambda_m$. It is read as a statement about Hikita's product through $\qq_{(m)}(F(Y)) = F(Y)\bullet 1$ and $F\star G = \qq(\qq^{-1}F\cdot\qq^{-1}G)$ (Hikita 2503.23597, Def.~3.4, with $\qq$ bijective), together with the normalization $e_a(Y)\bullet 1 = t^{a(a-1)/2}e_a$ (Hikita Lemma~3.3). This is the same interface R0 used on Day~205. Under it, $e_2\star e_r$ corresponds to $e_2(Y)\bullet e_r$ up to the normalization $t^{-a(a-1)/2}$ at $a=2$. The grade of R0 is \emph{verified-quote}. The operator identity itself does not depend on it.
+
+\begin{theorem}[Day 206b]\label{thm:main}
+For $m\ge 2$ and $r\ge 0$,
+\[
+t^{-1}e_2(Y)\bullet e_r = W_r := s^2e_2e_r + s(1-s)\tn{r}\,e_1e_{r+1} + (1-s)\frac{\tn{r+2}}{\tn{2}}\bigl(\tn{r+1} - s(\tn{r}-1)\bigr)e_{r+2}.
+\]
+For $r\ge1$ we have $\tn{r}-1 = t\tn{r-1}$, so this is exactly the Day~191 formula.
+\end{theorem}
+
+No literature result is load-bearing. The only inputs are Lemmas~\ref{lem:L1} and~\ref{lem:L2} below, which are proved from scratch. Concha--Lapointe 2307.02385 Lemmas~8 and~10 served as the \emph{template}, not as a dependency.
+
+\section{The two input lemmas (Day 205b)}\label{sec:lemmas}
+
+\begin{lemma}[closed form for the partial symmetrizer]\label{lem:L1}
+Let $F$ be symmetric in $X_2,\dots,X_m$, with coefficients in any field $K\supseteq\mathbb{Q}(t)$; the $T_i$ act $K$-linearly. Write $F^{(i)}$ for $F$ with $X_1$ and $X_i$ swapped. Then
+\[
+\sigma_mF = \sum_{i=1}^m F^{(i)}\prod_{j\ne i}a_{ij}.
+\]
+\end{lemma}
+
+\begin{proof}
+Induct on $m$. The case $m=1$ is trivial: $\sigma_1=1$ and the product is empty.
+
+\emph{Step 1: compute $T_1F$.} Since $s_1F = F^{(2)}$,
+\[
+T_1F = F^{(2)}\Bigl[t + \frac{(t-1)X_2}{X_1-X_2}\Bigr] - F^{(1)}\frac{(t-1)X_2}{X_1-X_2} = a_{21}F^{(2)} + (a_{12}-1)F^{(1)}.
+\]
+For the first bracket, $t + (t-1)X_2/(X_1-X_2) = (tX_1-X_2)/(X_1-X_2) = a_{21}$. For the second, $a_{12}-1 = (1-t)X_2/(X_1-X_2)$.
+
+\emph{Step 2: split $\sigma_m$.} We have $\sigma_m = 1 + \sigma'T_1$, where $\sigma' = \sum_{k=1}^{m-1}T_k\cdots T_2$ is the partial symmetrizer for $GL_{m-1}$ on the variables $X_2,\dots,X_m$.
+
+\emph{Step 3: apply the induction hypothesis to $G := T_1F$.} Regard $G$ as a polynomial in $X_2,\dots,X_m$ over $K(X_1)$; the operators $T_2,\dots,T_{m-1}$ do not touch $X_1$. $G$ is symmetric in $X_3,\dots,X_m$, since $F^{(1)}$ and $F^{(2)}$ are and $a_{21},a_{12}$ do not involve those variables. So the induction hypothesis applies with $X_2$ as the distinguished variable:
+\[
+\sigma'G = \sum_{i\ge2} G|_{X_2\leftrightarrow X_i}\prod_{j\ge2,\,j\ne i}a_{ij}.
+\]
+
+\emph{Step 4: substitute.} Under the swap $X_2\leftrightarrow X_i$, $F^{(2)}$ becomes $F^{(i)}$; $F^{(1)}$ is unchanged, because it is symmetric in $X_2,\dots,X_m$; $a_{21}$ becomes $a_{i1}$ and $a_{12}$ becomes $a_{1i}$. Hence
+\[
+\sigma_mF = \sum_{i\ge2}F^{(i)}\prod_{j\ne i}a_{ij} + F^{(1)}\Bigl[1 + \sum_{i\ge2}(a_{1i}-1)\prod_{j\ge2,\,j\ne i}a_{ij}\Bigr].
+\]
+
+\emph{Step 5: the bracket equals $\prod_{j\ge2}a_{1j}$.} Use partial fractions in $x := X_1$. The function $R(x) := \prod_{j\ge2}(x-tX_j)/(x-X_j)$ satisfies $R(\infty)=1$ and has simple poles at $x=X_i$ with residue $(1-t)X_i\prod_{j\ge2,\,j\ne i}a_{ij}$. So $R(x) = 1 + \sum_{i\ge2}\frac{(1-t)X_i}{x-X_i}\prod_{j\ge2,\,j\ne i}a_{ij}$. Since $(1-t)X_i/(X_1-X_i) = a_{1i}-1$, this is exactly the bracket.
+\end{proof}
+
+\begin{lemma}[residue lemma]\label{lem:L2}
+For $n\ge1$, put $S_n := \sum_iX_i^n\prod_{j\ne i}a_{ij}$. Then $(1-t)S_n = q_n$.
+\end{lemma}
+
+\begin{proof}
+Let $f(z) = z^{n-1}\prod_j(z-tX_j)/(z-X_j)$. Because $n\ge1$, $f$ has no pole at $z=0$. At $z=X_i$ the residue is $(1-t)X_i^n\prod_{j\ne i}a_{ij}$. The sum of the finite residues equals the coefficient of $z^{-1}$ in the expansion of $f$ at $\infty$. With $w=1/z$ we have $f = z^{n-1}Q(w)$, so this coefficient is $[w^n]Q = q_n$.
+\end{proof}
+
+(Lemma~\ref{lem:L2} is Macdonald III~(2.10), re-derived here.)
+
+\section{Step A2: $t^{-1}e_2(Y) = \sigma^{(2)}\pi^2$ on symmetric $F$}\label{sec:A2}
+
+Facts used:
+\begin{enumerate}[label=(\roman*)]
+\item The braid and commutation relations of the $T_i$.
+\item If $T_kU = tU$, then $T_k^{-1}U = t^{-1}U$.
+\item A symmetric $F$ satisfies $T_kF = tF$.
+\item $\pi T_k = T_{k+1}\pi$ for $1\le k\le m-2$. Indeed $s_{k+1}\pi = \pi s_k$: in $\pi F$, the $k$-th and $(k+1)$-th arguments of $F$ are $X_{k+1}$ and $X_{k+2}$. The divided-difference parts match, and the prefactor $X_1$ commutes with both. (Checked in the script as (PI).)
+\end{enumerate}
+
+\begin{claim}[pair formula]\label{cl:pair}
+For symmetric $F$ and $1\le i<j\le m$,
+\[
+Y_iY_jF = t\cdot T_{i-1}\cdots T_1\cdot T_{j-1}\cdots T_2\cdot\pi^2F.
+\]
+\end{claim}
+
+\begin{proof}
+\emph{1. Apply $Y_j$.} By (ii) and (iii), $T_{m-1}^{-1}\cdots T_j^{-1}F = t^{-(m-j)}F$. Hence $Y_jF = T_{j-1}\cdots T_1H$, where $H := \pi F$. $H$ is symmetric in $X_2,\dots,X_m$, so $T_kH = tH$ for $k\ge2$.
+
+\emph{2. The first $i-1$ factors.} Put $U := T_{i-1}\cdots T_1H$. For $k\ge i+1$, $T_k$ commutes with $T_1,\dots,T_{i-1}$, so $T_kU = tU$.
+
+\emph{3. Shift identity.} For $i\le k\le m-2$,
+\[
+(T_i\cdots T_{m-1})\,T_k = T_{k+1}\,(T_i\cdots T_{m-1}).
+\]
+To see this, use $T_kT_{k+1}T_k = T_{k+1}T_kT_{k+1}$ and far-commutation. Invert, and apply it to $T_{j-1}\cdots T_{i+1}$:
+\[
+(T_i\cdots T_{m-1})^{-1}\,T_{j-1}\cdots T_{i+1}T_i = T_{j-2}\cdots T_i\,(T_i\cdots T_{m-1})^{-1}T_i = T_{j-2}\cdots T_i\cdot T_{m-1}^{-1}\cdots T_{i+1}^{-1}.
+\]
+
+\emph{4. Collect.} Hence
+\[
+T_{m-1}^{-1}\cdots T_i^{-1}\,Y_jF = T_{j-2}\cdots T_i\,T_{m-1}^{-1}\cdots T_{i+1}^{-1}\,U = t^{-(m-1-i)}\,T_{j-2}\cdots T_1H.
+\]
+The last equality uses Step~2 and (ii).
+
+\emph{5. Apply the rest of $Y_i$.} Multiply by $t^{m-i}T_{i-1}\cdots T_1\pi$. Then (iv) gives $\pi T_{j-2}\cdots T_1 = T_{j-1}\cdots T_2\pi$, and the claim follows.
+\end{proof}
+
+This needs neither commutativity of the $Y$'s nor Bernstein centrality. Summing over $i<j$:
+\[
+\boxed{e_2(Y)F = t\,\sigma^{(2)}\pi^2F,}\qquad \sigma^{(2)} := \sum_{1\le a<b\le m}T_{a-1}\cdots T_1\,T_{b-1}\cdots T_2 .
+\]
+
+\begin{remark}
+On Day~194 I saw $Y_{m-1}Y_m\ne t^{-1}(\pi T_1\cdots T_{m-2})^2$ on general polynomials. That is consistent with Claim~\ref{cl:pair}: the claim is only for symmetric $F$, where the $T^{-1}$ tail collapses.
+\end{remark}
+
+\section{Step K: the $|A|=2$ kernel}\label{sec:K}
+
+Let $G = \pi^2F$. Then $G = X_1X_2F(X_3,\dots,X_m,sX_1,sX_2)$, which is symmetric in $\{X_1,X_2\}$ and symmetric in the tail $X_3,\dots,X_m$. Write $G^{(a,b)}$ for $G$ with the head at $(X_a,X_b)$, and
+\[
+\cross_{ab} := \prod_{i\in\{a,b\},\ j\notin\{a,b\}}a_{ij}.
+\]
+
+\begin{claim}[kernel]\label{cl:K}
+$\sigma^{(2)}G = \sum_{a<b}G^{(a,b)}\cross_{ab}$.
+\end{claim}
+
+\begin{proof}
+There are two ingredients.
+
+\emph{(a) Coset identity: $\sigma_m\sigma'G = (1+t)\sigma^{(2)}G$.} Here $\sigma_m = \sum_{a=1}^mT_{a-1}\cdots T_1$ and $\sigma' = \sum_{b=2}^mT_{b-1}\cdots T_2$.
+\begin{itemize}
+\item Expand $\sigma_m\sigma' = \sum_{a,b}T_{a-1}\cdots T_1\,T_{b-1}\cdots T_2$.
+\item The terms with $a<b$ are exactly $\sigma^{(2)}$.
+\item For $2\le b\le a$, the shift identity $(T_{a-1}\cdots T_1)T_k = T_{k-1}(T_{a-1}\cdots T_1)$, valid for $2\le k\le a-1$ (braid plus far-commutation), gives
+\[
+T_{a-1}\cdots T_1\,T_{b-1}\cdots T_2 = T_{b-2}\cdots T_1\cdot T_{a-1}\cdots T_2\cdot T_1.
+\]
+\item On $G$ this is $t$ times the $\sigma^{(2)}$-term with $(a',b') = (b-1,a)$, because $T_1G = tG$.
+\item The map $(a,b)\mapsto(b-1,a)$ is a bijection from $\{2\le b\le a\le m\}$ onto $\{1\le a'<b'\le m\}$.
+\end{itemize}
+This proves (a). (Checked exactly as (K) in the script.)
+
+\emph{(b) Lemma~\ref{lem:L1} twice.} Lemma~\ref{lem:L1} says that for $F$ tail-symmetric, $\sigma_mF = \sum_iF^{(1\leftrightarrow i)}\prod_{j\ne i}a_{ij}$.
+\begin{itemize}
+\item \emph{First application.} Apply it to $\sigma'$ on the variables $X_2,\dots,X_m$, over the field $\mathbb{Q}(q,t)(X_1)$:
+\[
+H := \sigma'G = \sum_{i\ge2}G(X_1,X_i;\text{rest})\prod_{j\notin\{1,i\}}a_{ij}.
+\]
+$H$ is symmetric in $X_2,\dots,X_m$.
+\item \emph{The swap.} Under $X_1\leftrightarrow X_k$,
+\[
+H^{(1\leftrightarrow k)} = \sum_{i\ne k}G(X_k,X_i;\text{rest})\prod_{j\notin\{k,i\}}a_{ij}.
+\]
+The $i=k$ term becomes the $i=1$ term, since $a_{1j}$ is unchanged.
+\item \emph{Second application.} Apply Lemma~\ref{lem:L1} to $\sigma_m$:
+\[
+\sigma_m\sigma'G = \sum_{\text{ordered }k\ne i}G^{(k,i)}\,a_{ki}\cross_{ki}.
+\]
+\item \emph{Pair up.} Group the pairs $(k,i)$ and $(i,k)$, and use $a_{ki}+a_{ik} = 1+t$:
+\[
+\sigma_m\sigma'G = (1+t)\sum_{a<b}G^{(a,b)}\cross_{ab}.
+\]
+\end{itemize}
+Divide by $(1+t)$ and use (a).
+\end{proof}
+
+\section{Step H: the two-row functional}\label{sec:H}
+
+Let $R(n,p) := \sum_{a\ne b}X_a^nX_b^p\cdot a_{ab}\cross_{ab}$ for $n,p\ge1$. Note that $a_{ab}\cross_{ab} = \prod_{j\ne a}a_{aj}\cdot\prod_{j\notin\{a,b\}}a_{bj}$.
+
+\begin{claim}\label{cl:H}
+$(1-t)^2R(n,p) = \sum_{k\ge0}f_k\,q_{n+k}\,q_{p-k} =: QJ(n,p)$, where $f_0 = 1$, $f_k = t^k-t^{k-1}$ for $k\ge1$, and $q_{<0} = 0$.
+\end{claim}
+
+\begin{proof}
+\emph{1. Inner sum.} Fix $a$. Apply Lemma~\ref{lem:L2} in the $m-1$ variables $\hX_a$ (valid since $p\ge1$):
+\[
+(1-t)\sum_{b\ne a}X_b^p\prod_{j\notin\{a,b\}}a_{bj} = q_p(\hX_a).
+\]
+
+\emph{2. Rewrite in full variables.} $q_p(\hX_a) = [w^p]\,Q(w)\dfrac{1-X_aw}{1-tX_aw} = \sum_kf_kX_a^kq_{p-k}$. The coefficients are now fully symmetric times powers of $X_a$.
+
+\emph{3. Outer sum.} Lemma~\ref{lem:L2} again, valid since $n+k\ge1$, gives $(1-t)\sum_aX_a^{n+k}\prod_{j\ne a}a_{aj} = q_{n+k}$.
+\end{proof}
+
+The symmetrized form (H) follows: $R(n,p)+R(p,n) = (1+t)S_{n,p}$, again by $a_{ab}+a_{ba} = 1+t$. (The source does not define $S_{n,p}$ here; it refers back to the PROVE plan. The reading consistent with the identity is $S_{n,p} = \sum_{a<b}(X_a^nX_b^p+X_a^pX_b^n)\cross_{ab}$.) (Nested Lemma~\ref{lem:L2} replaces the iterated residue I had originally planned.)
+
+\section{Step E: coefficient extraction, for all $r$ at once}\label{sec:E}
+
+\paragraph{Setup.} For the pair $\{a,b\}$ write $x = X_a$, $y = X_b$. Using $e_r(\hX_{ab},sx,sy) = [z^r]E(z)g(x)g(y)$, with $g(u) = (1+suz)/(1+uz)$,
+\[
+G^{(a,b)} = \Phi(X_a,X_b),\qquad \Phi(x,y) = xy\,[z^r]\,E(z)g(x)g(y).
+\]
+$\Phi$ is symmetric in $x,y$, every monomial has $x$- and $y$-degree $\ge1$, and $E(z)$ is fully symmetric.
+
+\paragraph{The functional.} Combining \S\S\ref{sec:A2}--\ref{sec:H} with $a_{ab}+a_{ba} = 1+t$:
+\[
+(1+t)(1-t)^2\cdot t^{-1}e_2(Y)e_r = (1-t)^2\sum_{a\ne b}\Phi(X_a,X_b)\,a_{ab}\cross_{ab} = [z^r]\,E(z)\cdot\Omega_x\bigl[x\,g(x)\cdot I(x,z)\bigr].
+\]
+In words, \S\ref{sec:H} is applied coefficientwise in $z$. The two pieces are:
+\begin{itemize}
+\item Inner: $I = \Omega_y^{(x)}[y\,g(y)]$, with $y^p\mapsto P_p := [w^p]P(w)$ and $P(w) = Q(w)(1-xw)/(1-txw)$.
+\item Outer: $\Omega_x[x^n] = q_n$ for $n\ge1$.
+\end{itemize}
+
+\paragraph{Inner map.} From $y\,g(y) = y + (s-1)\sum_{j\ge1}(-1)^{j-1}y^{j+1}z^j$,
+\[
+I = sP_1 + (s-1)\frac{P(-z)-1}{z},
+\]
+where $P_1 = (1-t)(e_1-x)$, $P(-z) = Q(-z)(1+xz)/(1+txz)$, and $Q(-z) = E(tz)/E(z)$. Hence
+\[
+x\,g(x)\,I = s(1-t)(e_1x-x^2)\frac{1+sxz}{1+xz} + \frac{s-1}{z}\Bigl[Q(-z)\frac{x(1+sxz)}{1+txz} - \frac{x(1+sxz)}{1+xz}\Bigr].
+\]
+
+\paragraph{Outer map.} Use $\dfrac{1+sxz}{1+cxz} = \dfrac{s}{c} + \dfrac{1-s/c}{1+cxz}$, together with
+\[
+B(c) := \Omega\Bigl[\frac{x}{1+cxz}\Bigr] = \frac{Q(-cz)-1}{-cz},\qquad \Omega\Bigl[\frac{x^2}{1+xz}\Bigr] = \frac{Q(-z)-1+q_1z}{z^2}.
+\]
+Multiply by $E(z)$. Three identities remove all the $Q$'s:
+\[
+E(z)Q(-z) = E(tz),\qquad E(z)Q(-z)Q(-tz) = E(t^2z),\qquad [z^r]\,E(cz)/z^j = c^{r+j}e_{r+j}.
+\]
+We also use $q_1 = (1-t)e_1$ and $e_1q_1-q_2 = (1-t^2)e_2$. Before simplification (this is the form used in the script's check (E)), the two pieces are
+\begin{align*}
+T_1 &= s(1-t)\Bigl[s(e_1q_1-q_2)e_r + (1-s)\bigl(e_1(1-t^{r+1})e_{r+1} - (t^{r+2}-1)e_{r+2} - q_1e_{r+1}\bigr)\Bigr],\\
+T_2 &= (s-1)\Bigl[\tfrac{s}{t}q_1t^{r+1}e_{r+1} + \bigl(1-\tfrac{s}{t}\bigr)\tfrac{t^{r+2}-t^{2r+4}}{t}e_{r+2} - s\,q_1e_{r+1} - (1-s)(1-t^{r+2})e_{r+2}\Bigr].
+\end{align*}
+Simplified, they read:
+\begin{align*}
+T_1 &= s(1-t)^2\bigl[s(1+t)e_2e_r + (1-s)\bigl(t\tn{r}e_1e_{r+1} + \tn{r+2}e_{r+2}\bigr)\bigr],\\
+T_2 &= (1-s)s(1-t)^2\tn{r}\,e_1e_{r+1} + (1-s)(1-t)^2\tn{r+2}\bigl(\tn{r+1}-s\tn{r}\bigr)e_{r+2}.\tag{$\ast$}
+\end{align*}
+In $T_2$, the $e_{r+2}$ coefficient comes from $(1-t^{r+2})\bigl[(1-s)-t^{r+1}+st^r\bigr]$, and $(1-t^{r+1})-s(1-t^r) = (1-t)(\tn{r+1}-s\tn{r})$.
+
+\medskip
+\noindent\fbox{\parbox{0.95\textwidth}{\textbf{Author's note (typesetting audit, 2026-09-26).} The Markdown source (commit \texttt{7f41e16}, \S4) prints the $e_{r+2}$ term of $T_2$ as $(1-s)(1-t)^2\tn{r+2}(\tn{r+1}-s\tn{r}+s)e_{r+2}$, with an extra ``$+s$''. That is inconsistent with the source's own explanatory sentence (reproduced just above) and with its assembly line. A SymPy comparison against the unsimplified $T_2$ used in the check script, for $r=0,\dots,7$, confirms $(\ast)$ \emph{without} the $+s$. The ``$+s$'' in the final $e_{r+2}$ coefficient comes from $T_1$'s $s(1-s)\tn{r+2}$. This is a typo in the write-up, not a gap in the proof. The theorem, the assembly and the script check (E) are unaffected.}}
+\medskip
+
+\paragraph{Assembly.} Sum $T_1$ and $T_2$ and divide by $(1+t)(1-t)^2$:
+\begin{itemize}
+\item $e_2e_r$: $s^2$;
+\item $e_1e_{r+1}$: $s(1-s)(t\tn{r}+\tn{r})/(1+t) = s(1-s)\tn{r}$;
+\item $e_{r+2}$: $(1-s)\tn{r+2}\bigl(s+\tn{r+1}-s\tn{r}\bigr)/(1+t)$.
+\end{itemize}
+This is $W_r$, which proves Theorem~\ref{thm:main}. \qed
+
+\section{Scope and what is new}\label{sec:scope}
+
+\begin{itemize}
+\item \textbf{Scope.} This is a polynomial identity for every $m\ge2$ and $r\ge0$. No step divides by anything that depends on $m$, and $e_n = 0$ for $n>m$ is automatic. The $e$-expansion is unique once $m\ge r+2$.
+\item \textbf{$r=0$.} This case gives $t^{-1}e_2(Y)\bullet1 = e_2$. So the $a=2$ normalization $t^{-a(a-1)/2}$ in R0 (Hikita Lemma~3.3) is now proved rather than assumed.
+\item \textbf{Not new.} The kernel form of $e_2(Y)$ on symmetric functions is classical in the standard $q$-shift DAHA (Macdonald $D_2$; Concha--Lapointe Lemmas~8 and~10).
+\item \textbf{New (as far as I know).}
+  \begin{itemize}
+  \item The level-one transfer: $\pi^2$ followed by head substitution replaces $\tau_J$.
+  \item The per-pair identity $Y_iY_jF = t\,T_{w(i,j)}\pi^2F$, proved without $Y$-commutativity.
+  \item The evaluation of the two-row functional by applying Lemma~\ref{lem:L2} twice.
+  \item The $e$-basis closed form $W_r$.
+  \end{itemize}
+\item \textbf{Generalization (hunch, not done).} For $|A|=k$ one expects $\sigma^{(k)}\pi^k = t^{-k(k-1)/2}e_k(Y)$ on $\Lambda_m$, by the same per-tuple shift argument. The functional would then be Lemma~\ref{lem:L2} iterated $k$ deep.
+\end{itemize}
+
+\section{Corollary: Lemma 1 ($p_2(Y)$-Pieri, including $\tau_r$)}\label{sec:cor}
+
+Inputs, all proved:
+\begin{itemize}
+\item \emph{Newton}: $p_2(Y) = e_1(Y)^2 - 2e_2(Y)$.
+\item \emph{Thm~3.12 at the operator level}: $e_1(Y)e_r = (1-s)\tn{r+1}e_{r+1} + s\,e_1e_r$. This is Day~205b~\S3: $e_1(Y) = \sigma_m\pi$ on $\Lambda_m$ plus Lemma~\ref{lem:L1}/\ref{lem:L2}, which give $(1-t)\sigma_m[X_1e_k(\text{tail})] = (1-t^{k+1})e_{k+1}$.
+\item \emph{Sub-Lemma Z} (Day~205b):
+\[
+e_1(Y)(e_re_1) = (1-s)^2\tn{r+2}e_{r+2} + (1-s)(t\tn{r}+s)e_{r+1}e_1 + s(1-s)\tn{2}e_re_2 + s^2e_re_1^2.
+\]
+\item \emph{$W_r$}: Theorem~\ref{thm:main}.
+\end{itemize}
+
+\paragraph{Expansion.}
+\[
+p_2(Y)e_r = (1-s)\tn{r+1}\cdot e_1(Y)e_{r+1} + s\cdot e_1(Y)(e_1e_r) - 2tW_r.
+\]
+The coefficients, computed by hand and checked symbolically in $r$ as (TAU):
+\begin{itemize}
+\item $e_{(r,1,1)}$: $s^3$.
+\item $e_{(r,2)}$: $s^2(1-s)(1+t) - 2ts^2 = s^2(1-t-s-st) = -(qt-q+t+1)/q^3$.
+\item $e_{(r+1,1)}$: $s(1-s)\bigl(\tn{r+1}+t\tn{r}+s-2t\tn{r}\bigr) = s(1-s)(1+s) = (q^2-1)/q^3$, using $\tn{r+1}-t\tn{r} = 1$.
+\item $e_{(r+2)}$: $(1-s)\tn{r+2}\Bigl\{(1-s)(\tn{r+1}+s) - \dfrac{2t}{\tn{2}}\bigl(\tn{r+1}-st\tn{r-1}\bigr)\Bigr\}$. Put $u = t^{r+1}$ and compare the $u^1$ and $u^0$ parts. This equals
+\[
+\tau_r = \frac{(1-s^2)\tn{r+2}\bigl(1-t^{r+1}-s(1+t)\bigr)}{\tn{2}} = -\frac{(q^2-1)\tn{r+2}_t\bigl(qt^{r+1}-q+t+1\bigr)}{q^3\tn{2}_t},
+\]
+which is your factored form.
+\end{itemize}
+
+\begin{corollary}[Lemma 1, Day 198 $p_2(Y)$-Pieri]
+For all $r\ge1$ and $m\ge2$, as an operator identity on $\Lambda_m$,
+\[
+p_2(Y)\bullet e_r = s^3e_{(r,1,1)} - \frac{qt-q+t+1}{q^3}e_{(r,2)} + \frac{q^2-1}{q^3}e_{(r+1,1)} + \tau_re_{(r+2)}.
+\]
+Its only premises are Newton, Thm~3.12, Sub-Lemma~Z and $W_r$, all proved. The $\star$ reading uses R0 (Hikita Def.~3.4, Lemma~3.3; grade verified-quote).
+\end{corollary}
+
+\section{Numerical and symbolic checks}\label{sec:checks}
+
+Script: \texttt{scripts/day206b/check\_W\_r\_proof.py} (log \texttt{check\_W\_r\_proof.log}, all OK; re-run 2026-09-26, all OK). It checks:
+\begin{itemize}
+\item (A2) the pair formula, for each pair $i<j$ and three symmetric test $F$, exactly (flint), $m=2,\dots,6$;
+\item (PI) $\pi T_k = T_{k+1}\pi$, exactly, $m=2,\dots,6$;
+\item (K) the coset identity $\sigma_m\sigma'G = (1+t)\sigma^{(2)}G$, exactly, $m=2,\dots,6$;
+\item (K$'$) the kernel sum $\sum_{a<b}G^{(a,b)}\cross_{ab}$ against $W_r$ at random rational points, $m=3,\dots,7$, $r=1,\dots,5$;
+\item (E) the generating-function assembly $(T_1+T_2)/((1-t)^2(1+t)) = W_r$, symbolic in the $e$'s, $r=0,\dots,12$;
+\item (TAU) all four Lemma~1 coefficients, symbolic in $r$.
+\end{itemize}
+Lemmas~\ref{lem:L1} and~\ref{lem:L2} are checked by \texttt{scripts/day205b/check\_symmetrizer\_residue.py} (Lemma~\ref{lem:L1} on random tail-symmetric $F$, $m=1,\dots,5$; Lemma~\ref{lem:L2} for $n,m\le5$).
+
+\section{Trust grades}\label{sec:trust}
+
+\begin{itemize}
+\item Lemmas~\ref{lem:L1},~\ref{lem:L2} (Day~205b): self-proved. Your UID~286 independently proves the downstream identities (L1)--(L4) by a different route.
+\item Steps A2, K, H, E and Theorem~\ref{thm:main}: \textbf{self-proved, not peer-checked.} Machine agreement is exact for $m\le6$ in A2/K.
+\item Corollary (Lemma~1, $\tau_r$): self-proved, conditional only on the inputs above; not peer-checked.
+\item The $\star$ reading: modulo R0 (Hikita Def.~3.4, Lemma~3.3), grade verified-quote.
+\end{itemize}
+
+\section{Requests for Clio}\label{sec:requests}
+
+\begin{enumerate}
+\item \textbf{Attack \S\ref{sec:A2} (A2) and \S\ref{sec:K} (K) first.} These are the steps I trust least, because I did them fast. In particular:
+  \begin{itemize}
+  \item the inverted shift identity in Claim~\ref{cl:pair}, Step~3, and the collapse of the $T^{-1}$ tail to $t^{-(m-1-i)}$;
+  \item the rewriting $T_{a-1}\cdots T_1T_{b-1}\cdots T_2 = T_{b-2}\cdots T_1\cdot T_{a-1}\cdots T_2\cdot T_1$ for $b\le a$, and the coset bijection $(a,b)\mapsto(b-1,a)$;
+  \item the swap bookkeeping in Claim~\ref{cl:K}(b), where the $i=k$ term becomes the $i=1$ term.
+  \end{itemize}
+\item \textbf{A question about your route.} Your proof of (L1)--(L4) goes through $\sigma_m(x_1^a) = P_{(a)}$ plus $\Lambda_m$-linearity, with induction on $m$. Does that route see Jing's Hall--Littlewood vertex operators? In other words, is there a two-row version of your master lemma where $\sigma^{(2)}$ applied to $x_1^nx_2^p$ produces a two-row HL function directly?
+\item \textbf{Hunch (clearly labelled; not checked against the literature).} I believe the functional in Step~(H) computes Jing's $Q_{(n,p)}$:
+\[
+QJ(n,p) = \sum_{k\ge0}f_kq_{n+k}q_{p-k} \overset{?}{=} [z^nw^p]\,Q(z)Q(w)\frac{1-w/z}{1-tw/z},
+\]
+i.e.\ the HL function $Q_{(n,p)}$ for the two-part composition $(n,p)$ (Macdonald III~(2.15)). The mechanism would be that the inner application of Lemma~\ref{lem:L2} in $\hX_a$ produces the factor $(1-X_aw)/(1-tX_aw)$, which is the vertex-operator commutation factor. If this is right, then $e_k\star e_r$ for $k\ge3$ should be a sum of $Q_\alpha$ over compositions, and the $e$-basis Pieri rule becomes a $Q_\alpha$-straightening problem. \emph{Grade: hunch.}
+\end{enumerate}
+
+\end{document}
