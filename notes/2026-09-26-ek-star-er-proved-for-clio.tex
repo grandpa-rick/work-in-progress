@@ -1,0 +1,271 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=*}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\hX}{\widehat{X}}
+\newcommand{\cross}{\textstyle\prod^{\times}}
+\newcommand{\poch}[2]{(#1;t)_{#2}}
+
+\title[The $e_k\star e_r$ Pieri rule for all $k$]{The $e_k\star e_r$ Pieri rule for all $k$: parabolic kernel, chain factorization, and a one-index $q$-series identity}
+\author{Rick}
+\date{2026-09-26}
+
+\begin{document}
+
+\begin{abstract}
+For every $k\ge1$, $r\ge0$ and every number of variables $m\ge0$, we prove
+\[
+t^{-\binom k2}e_k(Y)\bullet e_r=\sum_{b=0}^{k}s^b\,F_{k-b}(t^{r-b})\,e_b\,e_{r+k-b},\qquad s=q^{-1},
+\]
+with the explicit polynomial $F_n$ defined in \eqref{eq:c} below. Via Hikita's Definition~3.4 and Lemma~3.3 (arXiv:2503.23597), the left side is $e_k\star e_r$. The cases $k=1$ and $k=2$ recover Hikita's Theorem~3.12 and our $W_r$. The cases $k=3$ and $k=4$ recover the Day~193 and Day~195 closed forms, which are now proved for all $r$.
+\end{abstract}
+
+\maketitle
+
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-09-26\\
+\textbf{Recipient:} & Clio\\
+\textbf{Source:} & Corresponds to work-in-progress commit \texttt{7682bfd}\\
+& {\footnotesize(\texttt{proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md}, \texttt{scripts/day207b/})}\\
+\end{tabular}
+\end{center}
+
+\section{Conventions and statement}
+
+\paragraph{Operators.} The conventions are those of the W$_r$ note.
+\[
+T_iF=t\,s_iF+(t-1)X_{i+1}\frac{s_iF-F}{X_i-X_{i+1}},\qquad
+\pi F=X_1F(X_2,\dots,X_m,sX_1),\]
+\[Y_i=t^{m-i}T_{i-1}\cdots T_1\,\pi\,T_{m-1}^{-1}\cdots T_i^{-1}.
+\]
+
+\paragraph{Symmetric functions.}
+\begin{itemize}
+\item $a_{ij}=(X_i-tX_j)/(X_i-X_j)$ and $\cross_A=\prod_{i\in A,\,j\notin A}a_{ij}$.
+\item $E(z)=\prod_i(1+X_iz)=\sum_n e_nz^n$.
+\item $Q(y)=\sum_n q_ny^n=E(-ty)/E(-y)$.
+\item $[n]=[n]_t$.
+\end{itemize}
+
+\paragraph{Coefficients.} For $0\le j\le n$ put
+\begin{equation}\label{eq:c}
+\alpha_j=\frac{\prod_{i=1}^{j}(s-t^i)}{\poch tj},\quad \alpha_{-1}=0,\qquad
+c(n,j)=\frac{\poch s{n-j}}{\poch t{n-j}}\bigl(\alpha_j-s\,t^{n-j}\alpha_{j-1}\bigr),\qquad
+F_n(w)=\sum_{j=0}^n c(n,j)\,w^j .
+\end{equation}
+Set $c(n,j)=0$ outside the range $0\le j\le n$.
+
+\begin{theorem}\label{thm:main}
+For all $m\ge0$, $k\ge1$ and $r\ge0$,
+\[
+\sum_{r\ge0} z^r\,t^{-\binom k2}e_k(Y)\bullet e_r
+=\sum_{j+b\le k}s^b t^{-kj}c(k-b,j)\;e_b\,z^{b-k}E(t^jz).
+\]
+Taking the coefficient of $z^r$ gives
+\[
+t^{-\binom k2}e_k(Y)\bullet e_r=\sum_{b=0}^k s^bF_{k-b}(t^{r-b})\,e_b e_{r+k-b}.
+\]
+\end{theorem}
+
+\section{Hecke facts}
+
+The $T_i$ satisfy the braid relations and $(T_i-t)(T_i+1)=0$. Hence:
+\begin{itemize}
+\item $T_w$ is well defined on reduced words;
+\item $T_uT_v=T_{uv}$ whenever $\ell(uv)=\ell(u)+\ell(v)$.
+\end{itemize}
+
+For $J\subseteq S$, let $W^J$ be the set of minimal left coset representatives, so that $w=w^Jw_J$ uniquely and length-additively.
+
+\paragraph{(Chain).} If $K\subseteq J$, then $W^J\times(W_J)^K\to W^K$, $(u,v)\mapsto uv$, is a length-additive bijection.
+\begin{itemize}
+\item If $s\in K$, then $\ell(uvs)=\ell(u)+\ell(vs)=\ell(u)+\ell(v)+1$.
+\item Conversely, if $x\in W^K$ but $x_Js<x_J$ for some $s\in K$, then $\ell(xs)<\ell(x)$, which is a contradiction.
+\end{itemize}
+
+\paragraph{Spherical vectors.} If $T_kH=tH$ for all $s_k\in J$, then $T_vH=t^{\ell(v)}H$ for every $v\in W_J$.
+
+\paragraph{Shifting through $\pi$.} $\pi T_k=T_{k+1}\pi$ for $1\le k\le m-2$.
+
+\paragraph{Minimal representatives.} Let $J_n=\langle s_i:i\ne n\rangle$. For $D=\{d_1<\dots<d_n\}$, the word
+\[
+w(D)=(s_{d_1-1}\cdots s_1)(s_{d_2-1}\cdots s_2)\cdots(s_{d_n-1}\cdots s_n)
+\]
+sends $l\mapsto d_l$. Its length is $\sum_l(d_l-l)=\ell(w^D)$. Hence it is a reduced word for the minimal representative $w^D$. We set $\sigma^{(k)}=\sum_{|D|=k}T_{w(D)}$.
+
+\section{The parabolic kernel $(A_k)$}
+
+\begin{lemma}[Key Lemma]
+Let $1\le c<d_1<\dots<d_n\le m$, and let $H$ satisfy $T_kH=tH$ for all $k\neq n$. Then
+\[
+(T_c\cdots T_{m-1})^{-1}\,T_{w(D)}H=t^{\,n-(m-c)}\,T_{w(D-1)}H.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $x=s_c\cdots s_{m-1}$. It sends $m\mapsto c$ and $i\mapsto i+1$ for $c\le i<m$. Let $y=w(D-1)$; then $y(m)=m$.
+\begin{itemize}
+\item \emph{Length.} $x$ is increasing on $[1,m-1]$, and $xy(m)=c$ is inverted with exactly the $m-c$ positions $i$ with $y(i)\ge c$. So $\ell(xy)=\ell(y)+m-c$.
+\item \emph{Coset.} $xy([n])=x(D-1)=D$. Therefore $xy=w^Dv$ with $v\in W_{J_n}$ and $\ell(v)=m-c-n$.
+\end{itemize}
+Hence $T_xT_yH=T_{w^D}T_vH=t^{m-c-n}T_{w^D}H$.
+\end{proof}
+
+\begin{proposition}[$A_k$]
+Let $F$ be symmetric and $b_1<\dots<b_k$. Then $Y_{b_1}\cdots Y_{b_k}F=t^{\binom k2}T_{w(b)}\pi^kF$. Consequently $e_k(Y)F=t^{\binom k2}\sigma^{(k)}\pi^kF$.
+\end{proposition}
+
+\begin{proof}
+Induct on $k$. Put $H=\pi^nF$; it is symmetric in the head and in the tail. By the Key Lemma,
+\[
+Y_c\,T_{w(D)}H=t^{m-c}T_{c-1}\cdots T_1\,\pi\,(T_c\cdots T_{m-1})^{-1}T_{w(D)}H=t^{n}\,T_{c-1}\cdots T_1\,\pi\,T_{w(D-1)}H .
+\]
+Shifting through $\pi$ turns this into $t^nT_{w(\{c\}\cup D)}\pi^{n+1}F$. Finally, $\binom n2+n=\binom{n+1}2$.
+\end{proof}
+
+\section{The $k$-set kernel $(K_k)$}
+
+Let $\sigma_{[l,m]}=\sum_{a=l}^mT_{a-1}\cdots T_l$ and $K_l=\langle s_{l+1},\dots,s_{m-1}\rangle$.
+
+\paragraph{(C1) Two factorizations.} Applying (Chain) along $K_k\subset K_{k-1}\subset\dots\subset K_0$, and also along $K_k\subset J_k$ (where $(W_{J_k})^{K_k}=S_k$), gives
+\[
+\sum_{u\in W^{K_k}}T_u=\sigma_{[1,m]}\cdots\sigma_{[k,m]}=\sigma^{(k)}\sum_{v\in S_k}T_v .
+\]
+Consequently, if $G$ is symmetric in the head and in the tail, then $\sigma_{[1,m]}\cdots\sigma_{[k,m]}G=[k]!\,\sigma^{(k)}G$.
+
+\paragraph{(C2) Ordered formula.} Suppose $G$ is symmetric in the tail only. Iterating Day~205b Lemma~1, applied first in $X_2,\dots,X_m$ over $\mathbb Q(s,t)(X_1)$ and then at the top level, gives
+\[
+\sigma_{[1,m]}\cdots\sigma_{[k,m]}G=\sum_{(a_1,\dots,a_k)\text{ distinct}}G(X_{a_1},\dots,X_{a_k};\text{rest})\prod_{l=1}^k\prod_{j\notin\{a_1,\dots,a_l\}}a_{a_lj}.
+\]
+
+\paragraph{(C3) Poincar\'e identity.} Taking $m=k$ and $G=1$ in (C1) and (C2) gives $\sum_{w\in S_k}\prod_{l<l'}a_{w_lw_{l'}}=[k]!$.
+
+\begin{proposition}[$K_k$]
+If $G$ is symmetric in the head and in the tail, then $\sigma^{(k)}G=\sum_{|A|=k}G^{(A)}\cross_A$.
+\end{proposition}
+
+\begin{proof}
+In (C2), group the ordered tuples by their underlying set $A$. The weight of each tuple factors as $\cross_A\cdot\prod_{l<l'}a_{a_la_{l'}}$. Summing over the orderings of $A$ gives $[k]!\,\cross_A$ by (C3). Now compare with (C1).
+\end{proof}
+
+\section{The generating function $(E_k)$}
+
+Let $\varphi(u)=u(1+suz)/(1+uz)$. By $(A_k)$ and $(K_k)$,
+\[
+\Gamma_k:=\sum_rz^rt^{-\binom k2}e_k(Y)\bullet e_r=E(z)\sum_{|A|=k}\cross_A\prod_{a\in A}\varphi(X_a).
+\]
+This holds for all $m\ge0$; both sides vanish when $m<k$. Let $T_k$ denote the right side of Theorem~\ref{thm:main}.
+
+\begin{lemma}[Recursion]
+For $k,m\ge1$,
+\[
+[k]\,\Gamma_k(X)=\sum_iX_i(1+sX_iz)\prod_{j\ne i}a_{ij}\,\Gamma_{k-1}(\hX_i).
+\]
+\end{lemma}
+
+\begin{proof}
+Use (C2) and (C3), and peel off the first index $a_1=i$. Then use $\varphi(X_i)E(X;z)=X_i(1+sX_iz)E(\hX_i;z)$.
+\end{proof}
+
+\begin{lemma}[Step]\label{lem:step}
+For every $m\ge0$ and $k\ge1$,
+\[
+\sum_iX_i(1+sX_iz)\prod_{j\ne i}a_{ij}\,T_{k-1}(\hX_i)=[k]\,T_k(X).
+\]
+\end{lemma}
+
+\begin{proof}
+Let $\gamma=t^jz$. Expand
+\[
+e_b(\hX_i)=\sum_c(-X_i)^ce_{b-c},\qquad E(\hX_i;\gamma)=\frac{E(\gamma)}{1+\gamma X_i},
+\]
+and split
+\[
+\frac{1+suz}{1+\gamma u}=st^{-j}+\frac{1-st^{-j}}{1+\gamma u}.
+\]
+Now apply Lemma~2 in the form $\sum_ig(X_i)\prod_{j\ne i}a_{ij}=(1-t)^{-1}\Omega[g]$, where $\Omega[u^n]=q_n$ for $n\ge1$. Two facts evaluate the result:
+\begin{enumerate}[label=(\alph*)]
+\item $\sum_c(-1)^ce_{b-c}q_{c+1}=(1-t^{b+1})e_{b+1}$;
+\item $\displaystyle E(\gamma)\sum_c(-1)^ce_{b-c}\,\Omega\!\left[\frac{u^{1+c}}{1+\gamma u}\right]
+=[w^b]\,\frac{E(w)E(t\gamma)-E(\gamma)E(tw)}{w-\gamma}$\\
+$\displaystyle\qquad=-\sum_{n\le b}e_n\gamma^{n-1-b}\bigl(E(t\gamma)-t^nE(\gamma)\bigr).$
+\end{enumerate}
+For (b), first note that $\Omega[u/((1+wu)(1+\gamma u))]=(Q(-\gamma)-Q(-w))/(w-\gamma)$; then use $E(x)Q(-x)=E(tx)$.
+
+Write $N'_{jb}=s^bt^{-(k-1)j}c(k-1-b,j)$ for the coefficients of $T_{k-1}$, and put $n=k-b'$. The coefficient of $e_{b'}z^{b'-k}E(t^jz)$ on the left side is then $(1-t)^{-1}s^{b'}t^{-kj}$ times
+\[
+(1-t^{b'})c(n,j)+t^{b'}\Bigl[(1-st^{-j})\sum_{p\ge0}(st^{-j})^pc(n-1-p,j)-t^n(1-st^{1-j})\sum_{p\ge0}(st^{1-j})^pc(n-1-p,j-1)\Bigr].
+\]
+By Lemma~\ref{lem:star} the bracket equals $(1-t^n)c(n,j)$. So the whole expression is $(1-t^k)c(n,j)$, which is the claim.
+\end{proof}
+
+\begin{lemma}[$\star$]\label{lem:star}
+For $n\ge1$ and $j\ge0$,
+\[
+(1-t^n)c(n,j)=(1-st^{-j})\sum_{p\ge0}(st^{-j})^pc(n-1-p,j)-t^n(1-st^{1-j})\sum_{p\ge0}(st^{1-j})^pc(n-1-p,j-1).
+\]
+\end{lemma}
+
+\begin{proof}
+\emph{Generating functions.} Let $G(x)=\sum_n\frac{\poch sn}{\poch tn}x^n$. Comparing coefficients gives $(1-x)G(x)=(1-sx)G(tx)$. Let $C_j(x)=\sum_nc(n,j)x^n$. Then
+\[
+C_j(x)=x^j\bigl[\alpha_jG(x)-s\alpha_{j-1}G(tx)\bigr].
+\]
+
+\emph{Reformulation.} In terms of the $C_j$, the claim is
+\[
+\frac{C_j(x)(1-x)}{1-st^{-j}x}-C_j(tx)=-\frac{(1-st^{1-j})\,tx\,C_{j-1}(tx)}{1-st^{2-j}x}.
+\]
+
+\emph{Linear factorization.} Put $D_j=\alpha_j-s\alpha_{j-1}$. Since $\alpha_j=\alpha_{j-1}(s-t^j)/(1-t^j)$, we have
+\[
+\alpha_j(1-sy)-s\alpha_{j-1}(1-y)=D_j(1-st^{-j}y).
+\]
+Indeed, both sides are linear in $y$ and agree at $y=0$ and at $y=t^j/s$.
+
+\emph{Reduction.} Substituting the factorization, both sides of the reformulated claim become the common factor $x^jG(t^2x)/(1-tx)$ times
+\[
+D_j(1-t^j)\qquad\text{and}\qquad t(s-t^{j-1})D_{j-1}
+\]
+respectively. These are equal, because $D_j=\alpha_{j-1}t^j(s-1)/(1-t^j)$ for $j\ge1$. For $j=0$ both sides vanish.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Induct on $k$, for all $m$ simultaneously. The base case is $\Gamma_0=E(z)=T_0$. For $k\ge1$:
+\begin{itemize}
+\item if $m=0$, the Step Lemma gives $T_k=0=\Gamma_k$;
+\item if $m\ge1$, combine the Recursion, the induction hypothesis in $m-1$ variables, and the Step Lemma.
+\end{itemize}
+Finally, $[z^r]\,z^{b-k}E(t^jz)=t^{j(r+k-b)}e_{r+k-b}$.
+\end{proof}
+
+\section{Remarks}
+
+\paragraph{What is classical and what is new.} The kernel form of $e_k(Y)$ is classical in the $q$-shift DAHA; see Concha--Lapointe, arXiv:2307.02385, Lemmas~8 and~10. The level-one $\pi^k$ transfer and the $e$-basis Pieri rule for general $k$ are, as far as the Day~207 audit found, new.
+
+\paragraph{Specializations.} The following are checked symbolically in $u=t^r$: $k=1$ gives Hikita's Theorem~3.12; $k=2$ gives $W_r$; $k=3,4$ give Days~193 and~195. The case $r=0$ recovers Hikita's Lemma~3.3, $e_k(Y)\bullet1=t^{\binom k2}e_k$; this is checked symbolically for $k\le7$.
+
+\paragraph{Machine checks} (\texttt{scripts/day207b/}, all OK).
+\begin{itemize}
+\item Key Lemma and $(A_k)$: exact for $m\le6$.
+\item (C2): checked.
+\item Lemma~$\star$: checked for $n\le9$.
+\item Step Lemma: checked with $z$ symbolic.
+\item Full theorem against a direct AHA computation: 216 cases, including $m<k$.
+\end{itemize}
+
+\paragraph{Open.} The ${}_2\phi_1$ form $F_n(w)=(1-t^nw)\frac{\poch sn}{\poch tn}\,{}_2\phi_1(t^{1-n},t/s;t^{1-n}/s;t;w)$ is only computed ($n\le6$), and it is not needed for the theorem.
+
+\end{document}
