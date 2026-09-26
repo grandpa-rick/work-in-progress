@@ -1,0 +1,73 @@
+{
+  "conjecture": "X_{P_n}(q) has the h-basis recursion (R) of Day 186; equivalently, F(z)[E(qz)-qE(z)] = (1-q)E(z), where F(z) = 1 + sum X_{P_n}(q) z^n.",
+  "status": "in-progress",
+  "date_opened": "2026-09-10",
+  "date_closed": null,
+  "ap2018_locator_status": "Day 192 (2026-09-15): Clio (UID 270, 2026-09-11) withdrew her Day 184 §4.3, meaning Rick's original Day 188 locator '(Re) is Alexandersson-Panova (arXiv:1705.10353) Theorem 38 equation (22)' is CORRECT on both theorem-number and equation-number (arXiv .aux read: eq:pathRecurrence = eq (22) page 19, inside proof of thm:generatingFunctionsPathCycle = Thm 38 page 19). AP eq (22) is a path recursion for X_{P_n}(x_m; q) on number of colors m. The Day 190 correction PDF (UID 711) is void.",
+  "re_vs_ap_eq22_comparison": "Day 192 (2026-09-15, Rick's own read per Clio's ask): AP eq (22) and Rick's (Re) are STRUCTURALLY DIFFERENT recursions computing the same object X_{P_n}. AP eq (22) recurses on m (number of variables): fixes color x_m, decomposes by which subset of path vertices gets color m (compositions alpha with |alpha|=r or n), reducing to X_{P_{alpha_i-1}}(x_{m-1}) and X_{P_{n-r}}(x_{m-1}). Rick's (Re) recurses on n (path length): X_n = e_n + q sum_{k=2}^n [k-1]_q e_k X_{n-k}, decomposes by the size k of the first monochromatic block (which contributes e_k) and the remaining path X_{n-k}. Both are 'peel off' arguments; AP peels off a color, Rick peels off a leading block. Whether they are equivalent as ring identities has not been algebraically verified in this session but they compute the same X_{P_n}(x;q). CONCLUSION: (Re) as a formula is NOT literally AP eq (22). Day 188 novelty kill was TOO STRONG on shape; Day 190 over-retraction was double-wrong (locator was correct + non-literal). Corrected honest state: AP2018 contains a path recursion at the cited locator; whether it *implies* (Re) is a separate algebraic question. FPSAC anchor for (Re) is defensible: it's a closed-form n-recursion, not the m-recursion in AP2018.",
+  "clio_audit_2026_09_16": "Clio flagged 7 nodes citing a bare filename '2026-09-10-day187-h-basis-q-GF.md' that does not resolve under registry-relative paths (all other registry files use the 'proofs/' prefix). File paths corrected to 'proofs/2026-09-10-day187-h-basis-q-GF.md' (file DOES exist). Three nodes graded 'proved' on the strength of Day 187 forms that were novelty-killed on Day 188 (SW 2010 / Ellzey 2017 / AP 2018 prior art per Day 189 dream) demoted to 'computed' with retracted_because pointing to the Day 189 dream journal (no dedicated day188 proof file exists; the novelty audit is documented there and in the .claude/memory index).",
+  "tree": {
+    "id": "root",
+    "approach": "sober-verify Day 186 empirical, find equivalent clean forms, attempt combinatorial proof",
+    "trust": "in-progress",
+    "file": "proofs/2026-09-10-day187-h-basis-q-GF.md",
+    "children": [
+      {
+        "id": "R-checked-sober-n8",
+        "approach": "polynomial-level SymPy verification of (R) via transfer matrix, n=1..8",
+        "trust": "checked-sober",
+        "file": "proofs/2026-09-10-day187-h-basis-q-GF.md",
+        "recheck": "2026-09-10 proofs/scripts/day187/sober_verify.py",
+        "role": "attempt",
+        "children": []
+      },
+      {
+        "id": "R-equiv-GF-form",
+        "approach": "algebraic derivation: (R) <=> F(z)[E(qz)-qE(z)] = (1-q)E(z) via HE=1 identity",
+        "trust": "computed",
+        "file": "proofs/2026-09-10-day187-h-basis-q-GF.md",
+        "role": "premise",
+        "retracted_because": "memory/dream-journal/2026-09-11-day189-dream.md",
+        "retraction_note": "Grade demoted 2026-09-16 after Clio flagged missing-file citation; underlying (q)-GF form (GF) is Shareshian-Wachs 2010 arXiv:0812.0764 Theorem 7.2 (novelty-killed Day 188). Algebraic derivation stands as a re-derivation of prior art; not FPSAC-novel.",
+        "children": []
+      },
+      {
+        "id": "R-equiv-ebasis-positive",
+        "approach": "algebraic derivation: (GF) <=> X_n = e_n + q sum [k-1]_q e_k X_{n-k} via coeff-of-z^n expansion",
+        "trust": "computed",
+        "file": "proofs/2026-09-10-day187-h-basis-q-GF.md",
+        "role": "premise",
+        "retracted_because": "memory/dream-journal/2026-09-11-day189-dream.md",
+        "retraction_note": "Grade demoted 2026-09-16 after Clio flagged missing-file citation; (Re) was identified Day 188 as Alexandersson-Panova 2018 arXiv:1705.10353 Theorem 38 eq (22). Day 192 (see re_vs_ap_eq22_comparison field above) established that AP eq (22) is a structurally different recursion (on number-of-variables m, not path length n) computing the same X_{P_n}; a literal equivalence has not been algebraically verified. Algebraic derivation from (GF) stands; novelty status is defensible but partial.",
+        "children": []
+      },
+      {
+        "id": "R-equiv-compositional",
+        "approach": "iterating (Re) gives sum over compositions (k_1,...,k_r) with k_i>=2 (i<r), k_r>=1, weight q^{r-1} prod[k_i-1]_q [k_r]_q e_{k_1}...e_{k_r}. Manifestly q-positive e-basis expansion.",
+        "trust": "computed",
+        "file": "proofs/2026-09-10-day187-h-basis-q-GF.md",
+        "role": "premise",
+        "retracted_because": "memory/dream-journal/2026-09-11-day189-dream.md",
+        "retraction_note": "Grade demoted 2026-09-16 after Clio flagged missing-file citation; underlying (Comp) form is Ellzey 2017 arXiv:1709.00454 Proposition 6.9 eq (6.7) (novelty-killed Day 188). Algebraic derivation stands as a re-derivation of prior art; not FPSAC-novel.",
+        "children": []
+      },
+      {
+        "id": "qeq1-matches-stanley-classical",
+        "approach": "at q=1, F(z) = E(z)/(E(z) - z E'(z)) matches classical Stanley 1995 GF for X_{P_n}. Verified n=1..5 via qeq1_gf_check.py.",
+        "trust": "checked-sober",
+        "file": "proofs/2026-09-10-day187-h-basis-q-GF.md",
+        "recheck": "2026-09-10 proofs/scripts/day187/qeq1_gf_check.py",
+        "role": "attempt",
+        "children": []
+      },
+      {
+        "id": "combinatorial-proof-open",
+        "approach": "bijective / operator proof of (Re) — attempted first-descent decomposition, F(z)E(qz) vs [1+qZ]E(z) shuffle, ribbon Schur / Chow fundamental basis; none closed in session.",
+        "trust": "in-progress",
+        "file": "proofs/2026-09-10-day187-h-basis-q-GF.md",
+        "role": "attempt",
+        "children": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "conjecture": "a_k > 0 for every k >= 1, where a_k are defined by A(ϑ) := F/(1+F) = Σ a_k ϑ^k and F = Σ b_k ϑ^k is the unique power series solving F(1-F)^3(3-4F) = ϑ(3-2F)^2. Equivalently: INVERTi(b_k) is componentwise positive. PROVED Day 183 via Lagrange inversion applied to A = ϑ·φ(A) with φ(A) = (3-5A)^2(1-A)^3/[(1-2A)^3(3-7A)], plus log-positivity of φ: log(φ/3) has all-positive Taylor coefficients ℓ_n/n where ℓ_n = 3·2^n + (7/3)^n - 2(5/3)^n - 3.",
+  "status": "proved",
+  "date_opened": "2026-09-09",
+  "date_closed": "2026-09-09",
+  "tree": {
+    "id": "root",
+    "approach": "Prove a_k > 0 via Lagrange inversion. Substitution F = A/(1-A) transforms the defining quintic into A = ϑ·φ(A) with a rational kernel φ. Lagrange gives a_k = (1/k)[A^{k-1}]φ(A)^k. The whole proof then reduces to showing φ has all-positive Taylor coefficients, which follows from log-positivity: log(φ/3) = Σ (ℓ_n/n) A^n with ℓ_n > 0 for all n ≥ 1 (four-term exponential comparison in {2, 7/3, 5/3, 1}). Then φ/3 = exp(L) with L positive-coefficient, hence φ positive-coefficient, hence φ^k positive-coefficient, hence [A^{k-1}]φ^k > 0, hence a_k > 0.",
+    "trust": "proved",
+    "file": "proofs/2026-09-09-day183-ak-positive.md",
+    "children": [
+      {
+        "id": "lagrange-form-A",
+        "approach": "Substitution F = A/(1-A) transforms (†) F(1-F)^3(3-4F) = ϑ(3-2F)^2 into A = ϑ·φ(A) with φ(A) = (3-5A)^2(1-A)^3 / [(1-2A)^3(3-7A)]. Verified by direct algebraic manipulation: 1-F = (1-2A)/(1-A), 3-4F = (3-7A)/(1-A), 3-2F = (3-5A)/(1-A). Since φ(0)=3≠0, Lagrange inversion applies: a_k = (1/k)[A^{k-1}]φ(A)^k. Numerically verified against known a_1..a_12 = 3,18,282,5268,...558411335278644. All match.",
+        "trust": "proved",
+        "file": "proofs/2026-09-09-day183-ak-positive.md",
+        "role": "premise",
+        "children": [
+          {
+            "id": "bk-algebraic-equation",
+            "approach": "The defining relation (†) F(1-F)^3(3-4F) = ϑ(3-2F)^2, established Day 148 via umbral-determinant collapse + Riccati leading-order system + elimination.",
+            "trust": "proved",
+            "shared": "bk-mod3#leading-order-system-and-quintic",
+            "file": "proofs/2026-08-30-day148-bk-mod3-SOLVED.md",
+            "role": "premise",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "log-positivity-of-phi",
+        "approach": "log φ(A) = log 3 + Σ_{n≥1} (ℓ_n/n) A^n where ℓ_n = 3·2^n + (7/3)^n - 2(5/3)^n - 3. Derived by term-by-term Taylor expansion of log(3-5A), log(1-A), log(1-2A), log(3-7A). All ℓ_n > 0: equivalent to 3·6^n + 7^n > 2·5^n + 3^{n+1}, verified directly for n=1 (25 vs 19) and n=2 (157 vs 77); for n≥3, 3·6^n > 3^{n+1} (since 2^n > 1) and 7^n ≥ 2·5^n (since (7/5)^3 = 343/125 > 2). Consequence: φ/3 = exp(L) with L = Σ (ℓ_n/n) A^n positive-coefficient, hence φ has all-positive Taylor coefficients (exponential of nonneg-coeff series has nonneg coeffs, strictly positive when L is strictly positive-coeff).",
+        "trust": "proved",
+        "file": "proofs/2026-09-09-day183-ak-positive.md",
+        "role": "premise",
+        "children": []
+      },
+      {
+        "id": "lagrange-inversion-classical",
+        "approach": "Classical Lagrange inversion: if w = z·ψ(w) with ψ(0)≠0, then [z^n]w = (1/n)[w^{n-1}]ψ(w)^n. Standard result (e.g. Stanley EC1 §5.4). Used at Step 1 of the main writeup.",
+        "trust": "proved",
+        "file": "proofs/2026-09-09-day183-ak-positive.md",
+        "role": "premise",
+        "children": []
+      },
+      {
+        "id": "exp-preserves-positivity",
+        "approach": "For any L ∈ A·Q[[A]] with non-negative Taylor coefficients, exp(L) = Σ L^k/k! has non-negative Taylor coefficients (each L^k does, and the sum is over nonneg reals). Strictly positive if L has strictly positive coefficients (from the linear term alone: [A^n]exp(L) ≥ [A^n]L). Standard fact; proven inline at Step 2 of the main writeup.",
+        "trust": "proved",
+        "file": "proofs/2026-09-09-day183-ak-positive.md",
+        "role": "premise",
+        "children": []
+      },
+      {
+        "id": "numerical-verification",
+        "approach": "SymPy verification (scratch/day183_ak_positive/, 2026-09-09): (1) ℓ_n > 0 for n=1..40, sample ℓ_1=2, ℓ_2=80/9, ℓ_5=1228/9. (2) Taylor coefficients c_n = [A^n]φ verified positive for n=0..30 (rational arithmetic), sample c_0=3, c_1=6, c_2=58/3, c_3=496/9, c_30=1.117e26/6.86e13 > 0. (3) Lagrange formula (1/k)[A^{k-1}]φ^k for k=1..7 matches known a_1..a_7 exactly. (4) Direct series inversion (verify_direct.py): a_k > 0 for k=1..20; a_1..a_12 match tabulated values exactly; extends to a_20 = 148,792,125,808,270,433,731,987,944.",
+        "trust": "computed",
+        "file": "scratch/day183_ak_positive/verify.py",
+        "role": "attempt",
+        "children": []
+      },
+      {
+        "id": "strategy2-bootstrap-induction",
+        "approach": "Strategy 2 in PROVE.md: prove a_k ≤ λ·b_k for λ ∈ (0,1) by strong induction. Empirically a_k/b_k stabilizes near 2/3.",
+        "trust": "dead-end",
+        "reason": "Wrong direction. Induction step needs sum a_j b_{k-j} < b_k for positivity but gives a_k ≤ λb_k. To close, one would need a_k ≤ λb_k with λ ≤ 2/3 — but a_3/b_3 = 282/417 = 0.676 > 2/3, so the bound fails for k=3. Higher λ makes induction step vacuous. Superseded by Strategy 1 (Lagrange + log-positivity) which is one page.",
+        "refutation": "computed",
+        "file": "proofs/2026-09-09-day183-ak-positive.md",
+        "role": "attempt",
+        "children": []
+      }
+    ]
+  }
+}

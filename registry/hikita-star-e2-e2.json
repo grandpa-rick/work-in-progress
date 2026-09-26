@@ -15,13 +15,14 @@
    {
     "id": "e2-star-e2-closed-form",
     "approach": "e_2 * e_2 = q^{-2} e_{2,2} + q^{-1}(1-q^{-1})[2]_t e_{3,1} + (1-q^{-1})(1+t^2)([3]_t - t/q) e_4. Computed by direct SymPy action of e_2(Y) on e_2(X) at m=4 and m=5; stability verified. Coefficients of e_{2,1,1} and e_{1^4} are zero at both m. Sanity checks pass: q=1 gives e_{2,2} (Prop 3.6); q->infty gives [3]_t(1+t^2) e_4 (Thm C(ii) with lambda=(2,2)).",
-    "trust": "computed",
-    "file": "proofs/2026-09-11-day191-e2-star-e2-hikita.md",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
     "role": "attempt",
     "sources": [
      "2503.23597"
     ],
-    "children": []
+    "children": [],
+    "recheck": "2026-09-26 Day 207 dream: promoted computed->proved as corollary of ek-star-er-pieri-all-k (hikita-star-ek-er.json) at (k,r)=(2,2); scripts/day207b/check_specializations.py matches the Day 193/195 all-r forms symbolically in u=t^r, and these nodes are r-instances of those forms (direct AHA data)."
    },
    {
     "id": "e2-star-er-pieri-conjecture",

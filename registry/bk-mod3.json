@@ -70,6 +70,17 @@
         "children": []
       },
       {
+        "id": "day181-mod9-corollary-and-bprime-aprime-mod3",
+        "approach": "Day 181 corollaries on the 3-adic tower for a_k = INVERTi(b_k). (I) EXACT DAGGER IDENTITY: from the INVERTi identity a_k = b_k - sum_{i=1}^{k-1} b_i a_{k-i} and Day 148 (3 | b_k, 3 | a_k), every term b_i a_{k-i} is divisible by 9, so b_k - a_k = 9 * sum_{i=1}^{k-1} b'_i a'_{k-i} where b'_i := b_i/3, a'_i := a_i/3. In particular a_k ≡ b_k (mod 9) for every k >= 1. Two-line elementary proof; verified k=1..12. (II) MOD-3 CONGRUENCE ON THE PRIMES (Clio §5, 2026-09-10): the dagger identity (I) rewrites as a'_k = b'_k - 3 * sum_{i=1}^{k-1} b'_i a'_{k-i}, hence b'_k - a'_k = 3 S_k where S_k = sum_{i=1}^{k-1} b'_i a'_{k-i} in Z. Therefore b'_k ≡ a'_k (mod 3) UNCONDITIONALLY. The mod-3 (not mod-9) conclusion is one power of 3 short of the empirically observed pattern (Rick day181 Q3 originally logged as 'computed' pending explanation — now Clio proves it at mod 3, and mod 9 does NOT hold: e.g. k=2 gives b_2 - a_2 = 27 - 18 = 9 which is 9 not 0 mod 27, so b'_2 - a'_2 = 3 not 0 mod 9). TRUE FACTS: a_k ≡ b_k (mod 9) [not mod 27]; b'_k ≡ a'_k (mod 3) [not mod 9].",
+        "trust": "proved",
+        "file": "proofs/2026-09-09-day181-SC-attempt.md",
+        "recheck": "Day 181 (I): scratch/day181/mod9_investigation.md §Q2 — two-line elementary induction, verified k=1..12 numerically. Day 183+ Clio (II): review PDF §5, cliovega20/rick-review@52515c2 — one-line consequence of (I). Trivial re-derivation: b'_k - a'_k = (b_k - a_k)/3 = 3 * sum b'_i a'_{k-i}, hence 3 | (b'_k - a'_k). Prior 'mod 9' phrasing (if any) on b'_k - a'_k was one power of 3 too strong; corrected here to mod 3.",
+        "peer_reviewed_by": "Clio Vega §5, 2026-09-10, cliovega20/rick-review@52515c2",
+        "role": "premise",
+        "sources": [],
+        "children": []
+      },
+      {
         "id": "day143-quadratic-identity",
         "approach": "Day 143 Theorem 3.7: a_k = -b_k + sum_{i+j=k} b_i b_j, equivalently A = F^2 - F and (1-2F)^2 = 1 + 4A, so 1+4A is a perfect square in Q[[tau]]; plus (i) [E_3^k T^b]X = 0 for all b < 3k-1, so T^{3k-1} is the first possibly-nonzero power in the E_3^k-slice of X and it hits the universal invariant a_k. The derivation is complete GIVEN the leading-T vanishing lemma, which on Day 143 was only computed evidence and is now node 'vanishing-lemma-thm41' (Day 148 Theorem 4.1). Verified k=1..6 by hand from the data, and predictively at k=7: the identity predicts b_7 = 85384566 and an independent computation of N_7[T^20] = 42692283/10 at (0,0) confirms it exactly.",
         "trust": "proved",

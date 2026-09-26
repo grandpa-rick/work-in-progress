@@ -12,7 +12,7 @@
   "id": "root",
   "approach": "Dominance-Support: e_λ^{(q,t)} = q^{-n(λ)} e_λ + Σ_{μ ≻ λ} c_{λμ}(q,t) e_μ, with c_{λμ}(1,t) = 0. Empirically 22-for-22. Implies SP (length-2 slice). Implies meta-conjecture min(a,b)+1 for length-2. Suggests Macdonald-triangularity connection.",
   "trust": "in-progress",
-  "file": "2026-09-16-day196-dominance-support.md",
+  "file": "proofs/2026-09-16-day196-dominance-support.md",
   "recheck": "2026-09-16 empirical tests at length 3 and 4 across 5 new cases; leading coefficient q^{-n(λ)} verified.",
   "role": "premise",
   "children": [
@@ -20,7 +20,7 @@
     "id": "ds-length-2-slice-is-SP",
     "approach": "DS restricted to length-2 λ = (b, a) reduces to Rick's SP conjecture (Day 195). Verified 18-for-18 across (a,b) with a≤4, b≤6. Closed forms Day 191/193/195 give explicit c_{λμ}(q,t).",
     "trust": "computed",
-    "file": "2026-09-16-day195-support-preservation.md",
+    "file": "proofs/2026-09-16-day195-support-preservation.md",
     "role": "premise",
     "children": []
    },
@@ -28,7 +28,7 @@
     "id": "ds-length-3-empirical",
     "approach": "Tested λ = (2,1,1), (3,1,1), (2,2,1) at m=5,6. DS holds; leading coefficient q^{-n(λ)} = q^{-3}, q^{-3}, q^{-4} respectively (matches formula).",
     "trust": "computed",
-    "file": "2026-09-16-day196-dominance-support.md",
+    "file": "proofs/2026-09-16-day196-dominance-support.md",
     "recheck": "scripts/day196/lp_test_length3.py, lp_test_length3_v2.py, ds_test_221.py",
     "role": "attempt",
     "children": []
@@ -38,14 +38,14 @@
     "approach": "Day 198 structural decomposition C = e_1⋆e_1⋆e_2 = p_2(Y)•e_2 + 2t·(e_2⋆e_2). Analytic identity from Newton e_1(Y)² = p_2(Y) + 2e_2(Y) in Λ(Y) + Hikita's 𝔮-scaling. Combined with (i) Lemma 1 (Day 198 new p_2-Pieri, computed r=2,3,4,5) giving p_2(Y)•e_r closed form with three r-independent coefficients, and (ii) Day 191 e_2⋆e_2 (computed). Cross-checked against Rick's Day 196 direct-SymPy in verify_decomp.py (all 5 coefficient differences = 0). DS at (2,1,1) is 'computed' via this new decomposition (upgrade to checked-sober requires promoting Lemma 1 to checked-sober; boundary rule). || PROVED Day 207 (2026-09-26): all inputs now proved (Newton; Lemma 1 incl. τ_r and W_r = e_2⋆e_r, Day 206b). D in (⋆) is e_2⋆e_2 = W_2. Route recorded as §2 (second proof) of 2026-09-26-day207-DS-r11-proved.md; symbolic-in-r consistency check scripts/day207/ds_r11_route_consistency.py. Self-proved, not peer-checked.",
     "trust": "proved",
     "recheck": "2026-09-17 — verify_decomp.py checks all 5 e-basis coefficients of C against p_2(Y)•e_2 + 2tD; all diffs identically zero after simplification.",
-    "file": "2026-09-26-day207-DS-r11-proved.md",
+    "file": "proofs/2026-09-26-day207-DS-r11-proved.md",
     "role": "attempt",
     "children": [
      {
       "id": "p2Y-pieri-lemma",
       "approach": "p_2(Y)•e_r(X) = 1/q^3 · e_(r,1,1) - (qt-q+t+1)/q^3 · e_(r,2) + (q^2-1)/q^3 · e_(r+1,1) + τ_r(q,t) · e_(r+2). Support is DS-interval of (r,1,1); three of four coefficients are r-independent. Analog of Hikita's Lemma 3.11 for p_2 (which Day 191 flagged as missing ingredient). || PROVED Day 206b §6 as corollary: Newton + Thm 3.12 (operator) + Sub-Lemma Z + W_r. All four coefficients.",
       "trust": "proved",
-      "file": "2026-09-25-day206b-W_r-proved.md",
+      "file": "proofs/2026-09-25-day206b-W_r-proved.md",
       "role": "premise",
       "children": []
      },
@@ -53,7 +53,7 @@
       "id": "newton-decomposition-analytic",
       "approach": "Analytic identity (proved) C = p_2(Y)•e_2 + 2t·D, derived from Newton's e_1(Y)² = p_2(Y) + 2e_2(Y) in Λ(Y), multiplied by e_2(Y), then apply •1 using Hikita 𝔮-scaling e_r(Y)•1 = t^binom(r,2) · e_r(X).",
       "trust": "proved",
-      "file": "2026-09-17-day198-DS-211-via-p2-pieri.md",
+      "file": "proofs/2026-09-17-day198-DS-211-via-p2-pieri.md",
       "role": "premise",
       "children": []
      },
@@ -61,7 +61,7 @@
       "id": "tau-r-closed-form-baxter-2",
       "approach": "τ_r(q,t) · q³ = A(q,t) + B(q,t)·t^r + C(q,t)·t^(2r), with A = −(q²−1)(q−t−1)/(t²−1), B = t(q²−1)(q−t)/(t−1), C = −q·t³·(q²−1)/(t²−1). Fit r=2,3,4 verified r=5,6. Rule 11 fire #25 (three-monomial unfold). Day 203: promoted from `computed` to `checked-sober` via R7 route (proved) + Sub-Lemma Z (computed-sober) + Day 191 W_r (computed). Day 204: co-verified via Clio's independent Def-3.4 path with an equivalent factored form (see factored_form field). || PROVED Day 206b §6 (e_{r+2} coefficient = Clio's factored form).",
       "trust": "proved",
-      "file": "2026-09-25-day206b-W_r-proved.md",
+      "file": "proofs/2026-09-25-day206b-W_r-proved.md",
       "verified_at": [
        "r=2",
        "r=3",
@@ -80,7 +80,7 @@
       "id": "sub-lemma-Z-reduction-to-HL-partial-symmetrizers",
       "approach": "Day 204: Sub-Lemma Z (Z_r := e_1⋆e_(r,1)) reduced to four q-free Hall-Littlewood partial-symmetrizer identities (L1)-(L4) via σ_m·π·(e_r·e_1) route. Split π(e_r·e_1) = X_1·fh + q^{-1}·X_1²·(f+gh) + q^{-2}·X_1³·g (tail vars X_2..X_m); apply σ_m = Σ T_k...T_1 to each piece; assembly with weights {1, q^{-1}, q^{-1}, q^{-2}} reproduces Z_r exactly. Numerically verified r=2..5. Trust sketched (sub-agent attempt). Residual gap: prove (L1)-(L4) analytically. Natural attack: Macdonald III.5 HL Pieri or Ram-Yip alcove walks. σ_m is the level-one Bernstein symmetrizer for GL_m. Handoff-ready: (L1)-(L4) are q-free identities in the level-1 AHA rep, no ⋆-product context needed. || PROVED Day 205b: reduction written + (L1)-(L4) proved in 2026-09-25-day205-L1-L4-residue-proof.md; Clio UID 286 independent proof.",
       "trust": "proved",
-      "file": "2026-09-25-day205-sub-lemma-Z-reduction.md",
+      "file": "proofs/2026-09-25-day205-sub-lemma-Z-reduction.md",
       "verified_at": [
        "r=2 (num)",
        "r=3 (num)",
@@ -95,7 +95,7 @@
       "id": "conj-10-prediction-1-k3-refuted",
       "approach": "Clio's Day 200 review §7.3 Prediction 1 for k=3: q^5·τ_r^(3) has (1-t^(r+3)) = (1-t)[r+3]_t as factor AND splits into three linear-in-u=t^r forms over Q(q,t). REFUTED on both clauses at r=3: Φ_3(t) does not divide q^5·τ_3^(3) (remainder 3q²(q³-1)(t³+1)); quotient at r=1,2,4,5 has u-degree 2 (not linear factors). Baxter-3 skeleton is the real structure with arithmetic degeneracy at gcd(r+3, 3) = 3.",
       "trust": "dead-end",
-      "file": "scripts/day204/conj10_divisibility_test.py",
+      "file": "proofs/scripts/day204/conj10_divisibility_test.py",
       "verified_at": [
        "r=1",
        "r=2",
@@ -118,7 +118,7 @@
     "id": "ds-lambda-r11-all-r",
     "approach": "DS(r,1,1) for all r ≥ 2 (sharpened triangular form), direct route: C_r = e_1⋆e_1⋆e_r = e_1(Y)•(e_1(Y)•e_r) (R0) = (1−s)[r+1]_t·e_1(Y)•e_{r+1} + s·e_1(Y)•(e_1e_r), s = q^{-1}; Thm 3.12 operator form (re-derived from Day 205 A/B + Day 205b M_1, M_2) and Sub-Lemma Z (operator form) give C_r = s³e_(r,1,1) + s²(1−s)[2]e_(r,2) + s(1−s)([r+1]+t[r]+s)e_(r+1,1) + (1−s)²[r+2]([r+1]+s)e_(r+2), valid all m; unique e-expansion for m ≥ r+2. Support = DS-interval of (r,1,1), all four coefficients nonzero, leading q^{-3}, off-diagonal ∝ (1−s). Second proof = Day 198 route (sibling ds-lambda-211-via-p2Y-pieri, now proved). Checked: scripts/day207/ds_r11_direct_check.py r=2..5, m=r+2,r+3 (24/24 exact) + ds_r11_route_consistency.py (both routes = closed form, symbolic in r). Self-proved, not peer-checked. First length-3 DS instance that is a theorem.",
     "trust": "proved",
-    "file": "2026-09-26-day207-DS-r11-proved.md",
+    "file": "proofs/2026-09-26-day207-DS-r11-proved.md",
     "sources": [
      "2503.23597"
     ],
@@ -129,7 +129,7 @@
       "id": "ds-r11-thm-3-12-operator-form",
       "approach": "e_1(Y)•e_n = (1−s)[n+1]e_{n+1} + s·e_1e_n for all n ≥ 1, m ≥ 1: Day 205 Step A (e_1(Y)=σ_mπ on symmetric F) + Step B (π-split) + Day 205b §3 M_1(n), M_2(n−1). Hikita Thm 3.12 re-derived.",
       "trust": "proved",
-      "file": "2026-09-25-day205-L1-L4-residue-proof.md",
+      "file": "proofs/2026-09-25-day205-L1-L4-residue-proof.md",
       "sources": [
        "2503.23597"
       ],
@@ -140,7 +140,7 @@
       "id": "ds-r11-sub-lemma-Z-operator-form",
       "approach": "e_1(Y)•(e_1e_r) four-term formula, all r ≥ 1, m ≥ 1 (same result as node sub-lemma-Z-reduction-to-HL-partial-symmetrizers; cross-ref). Reduction Day 205 A–D + (L1)–(L4) Day 205b; Clio UID 286 independent proof of (L1)–(L4).",
       "trust": "proved",
-      "file": "2026-09-25-day205-sub-lemma-Z-reduction.md",
+      "file": "proofs/2026-09-25-day205-sub-lemma-Z-reduction.md",
       "sources": [
        "2503.23597"
       ],
@@ -153,7 +153,7 @@
     "id": "ds-length-4-empirical",
     "approach": "Tested λ = (1,1,1,1) and (2,1,1,1) at m=4,5. DS holds; leading coefficient q^{-6} = q^{-n(λ)} in both cases.",
     "trust": "computed",
-    "file": "2026-09-16-day196-dominance-support.md",
+    "file": "proofs/2026-09-16-day196-dominance-support.md",
     "recheck": "scripts/day196/ds_test_length4.py",
     "role": "attempt",
     "children": []
@@ -171,7 +171,7 @@
     "id": "A2-equals-p2Y-normalized-refuted",
     "approach": "Nazarov-Sklyanin A^{(2)} = c(q,t)·p_2(Y) in Hikita's level-1 rep (naive AND spectral F=p_2(Y)•1 sharpening). REFUTED both readings. Naive: p_2(Y) raises X-degree by 2, A^{(2)} preserves degree. Spectral: F ⋆ 1 = F ≠ 0 while A^{(2)}·1 = 0 (P*_(1,1) vanishes at empty partition). Route R5 Vertex A DEAD.",
     "trust": "dead-end",
-    "file": "scripts/day200/star_F_vs_A2.py",
+    "file": "proofs/scripts/day200/star_F_vs_A2.py",
     "verified_at": [
      "λ=∅ direct diagnostic",
      "|λ|≤2 full spectral compute at m=4"
@@ -197,7 +197,7 @@
     "trust": "dead-end",
     "reason": "Iterated Thm 3.12 produces obstruction e_μ ⋆ e_b for μ length ≥ 2, tautologically at least as hard as DS.",
     "refutation": "checked-sober",
-    "file": "2026-09-16-day195-support-preservation.md",
+    "file": "proofs/2026-09-16-day195-support-preservation.md",
     "role": "attempt",
     "children": []
    },
@@ -205,7 +205,7 @@
     "id": "ds-via-lemma-3-11-extension-e2Y",
     "approach": "Route 2: mimic Hikita's Lemma 3.11 for e_2(Y) instead of e_1(Y). Base case Π•F for F = e_1(Y)•e_r is a 5-term (not 2-term) expression involving X_1^3. Inductive step would require identifying the correct RHS ansatz — likely with 3 dominance-triangular pieces (matching the min(2,r)+1 = 3 predicted terms). Not attempted in Day 196; base case written out.",
     "trust": "sketched",
-    "file": "2026-09-16-day196-dominance-support.md",
+    "file": "proofs/2026-09-16-day196-dominance-support.md",
     "role": "attempt",
     "children": []
    },
@@ -215,7 +215,7 @@
     "trust": "dead-end",
     "refutation": "computed",
     "reason": "Direct SymPy test at m=3,r=1 and m=4,r=2: D_{(2)} e_r in p-basis differs structurally from e_2⋆e_r. Specifically the p_(4) coefficient of D_{(2)} e_2 is identically zero, whereas Hikita's e_2⋆e_2 has p_(4) coefficient = -(q-1)(t²+1)(qt²+qt+q-t)/(4q²) ≠ 0. No monomial q^i t^j rescaling can bridge nonzero → zero. At q=1, D_{(2)} f = h_2 · f (verified via p_(1,1,1,1) − p_(2,2))/4 = h_2·e_2), so D_{(a)} is the h-side Pieri, while Hikita's e_a⋆ is the e-side. Different Pieri families.",
-    "file": "scripts/day197/D_a_vs_e_a_Y.py",
+    "file": "proofs/scripts/day197/D_a_vs_e_a_Y.py",
     "recheck": "run_output.log same directory; log preserved.",
     "role": "attempt",
     "children": [
@@ -225,7 +225,7 @@
       "trust": "dead-end",
       "refutation": "computed",
       "reason": "Match table 0/3 at (2,1,3) and 0/5 at (2,2,4) raw; renormalization sweep produces irreducible non-monomial rational-function ratios like -q^3(t-1)/((q^2-qt-1)(t^2+t+1)); no monomial rescaling closes them. Diagnostic: at q=1, D_{(2)} e_r DOES equal ordinary h_2·e_r, but h_2(Y).e_r at q=1 does NOT equal h_2·e_r. Conclusion: the Y-generated symmetric-function action is intrinsically e-side; the map Λ → End(Λ_m), f ↦ f(Y_1,...,Y_m), is not a ring homomorphism into ordinary Λ-multiplication under any Newton-induced identification. Cannot manufacture h-side Pieri from Y-operators.",
-      "file": "scripts/day197/h_side_and_omega.py",
+      "file": "proofs/scripts/day197/h_side_and_omega.py",
       "recheck": "h_side_and_omega.log, h_side_and_omega_diag.log same directory.",
       "role": "attempt",
       "children": []
@@ -236,7 +236,7 @@
       "trust": "dead-end",
       "refutation": "computed",
       "reason": "All three ω variants fail at (a,r,m) = (2,1,3) and (2,2,4). Residuals are non-trivial rational functions in q,t; no monomial rescaling closes them. ω is not a Hikita-⋆ automorphism at level 1.",
-      "file": "scripts/day197/h_side_and_omega.py",
+      "file": "proofs/scripts/day197/h_side_and_omega.py",
       "recheck": "h_side_and_omega.log same directory.",
       "role": "attempt",
       "children": []
@@ -247,7 +247,7 @@
     "id": "ds-corollary-meta-conjecture",
     "approach": "DS-triangular ⇒ #{μ : [e_μ] e_a⋆e_b ≠ 0} ≤ min(a,b)+1. Equality follows if all c_{λμ}(q,t) for μ dominating λ are nonvanishing rational functions (empirically true, need proof).",
     "trust": "computed",
-    "file": "2026-09-16-day196-dominance-support.md",
+    "file": "proofs/2026-09-16-day196-dominance-support.md",
     "role": "attempt",
     "children": []
    },
@@ -257,7 +257,7 @@
     "trust": "dead-end",
     "refutation": "computed",
     "reason": "Both degree and spectral tests fail independently. Rick's degree-+2 operator cannot degenerate to a degree-0 Thibon Δ_2(α). F(spec_λ) at ε^1 is only sensitive to |λ|, insufficient to encode Thibon's quadratic content-power-sum.",
-    "file": "2026-09-17-day201-vertex-B-refutation.md",
+    "file": "proofs/2026-09-17-day201-vertex-B-refutation.md",
     "recheck": "scripts/day201/vertex_B_refutation.py at m=5, λ ∈ {∅,(1),(2),(1,1),(3),(2,1),(1,1,1),(2,2),(3,1)}. Log preserved.",
     "date": "2026-09-17",
     "role": "attempt",
@@ -267,7 +267,7 @@
     "id": "p3Y-pieri-conjecture",
     "approach": "p_3(Y)•e_r(X) closed form at k=3. Support = full DS-cone of (r,1,1,1) = 7 partitions for r≥3. FIVE r-INDEPENDENT coefficients (partitions with μ_1 ≤ r+1: (r,1,1,1), (r,2,1), (r+1,1,1), (r,3), (r+1,2)) and TWO r-DEPENDENT coefficients (μ_1 ≥ r+2: (r+2,1) and (r+3)). Leading pivot coefficient q^{-6} = q^{-n((r,1,1,1))}. r-indep closed forms exact match at r=2,3,4. c_(r+2,1) has BAXTER-2 shape c_(r+2,1)·q^6 = -(q^3-1)(q^2 t^{r+1} - q^2 - q t^{r+2} + qt + 1) verified r=2,3,4. c_(r+3) needs r=5 to fit Baxter-N shape (Baxter-3 fit exists at r=2,3,4 but coeffs have (t-1) denominator, hinting Baxter-4 is natural).",
     "trust": "computed",
-    "file": "2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
+    "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
     "recheck": "scripts/day201/{p3Y_er.py at r=1,2,3, m=4,5,6}, {p3Y_er_r4.py at r=4, m=7}, {p3Y_er_r5.py at r=5, m=8 pending}. Fits in scripts/day201/{verify_r_indep_p3Y.py, fit_r_dep_p3Y.py}.",
     "verified_at": [
      "r=1 (with position degeneracies)",
@@ -283,7 +283,7 @@
       "id": "p3Y-r-indep-closed-forms",
       "approach": "Five r-independent closed forms (all times q^{-6}): c_(r,1,1,1) = 1; c_(r,2,1) = -(q^2 t - q^2 + qt - q + t + 2); c_(r+1,1,1) = q^3 - 1; c_(r,3) = q^3 t^3 - q^3 t^2 - q^3 t + q^3 + q^2 t^3 - q^2 + q t^3 - q + t^2 + t + 1; c_(r+1,2) = -(q^3 - 1)(q t^2 + t - q + 1). All match r=3, r=4 empirical data exactly.",
       "trust": "computed",
-      "file": "2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
+      "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
       "role": "premise",
       "children": []
      },
@@ -291,7 +291,7 @@
       "id": "p3Y-r-dep-baxter-2-r-plus-2-1",
       "approach": "c_(r+2,1)(q,t) · q^6 = -(q^3 - 1)(q^2 t^{r+1} - q^2 - q t^{r+2} + qt + 1). Two t^r monomials (Baxter-2). Rewrites as A + B·t^r with A = -(q^3-1)(1 + qt - q^2), B = q t (q^3-1)(t - q).",
       "trust": "computed",
-      "file": "scripts/day201/fit_r_dep_p3Y.py",
+      "file": "proofs/scripts/day201/fit_r_dep_p3Y.py",
       "verified_at": [
        "r=2",
        "r=3",
@@ -306,7 +306,7 @@
       "id": "p3Y-r-dep-baxter-4-r-plus-3",
       "approach": "c_(r+3)(q,t) · q^6 = A_0 + A_1 t^r + A_2 t^{2r} + A_3 t^{3r} (Baxter-4). Fit at r=1,2,3,4; VERIFIED at r=5 (m=8, 1251s independent SymPy). Top coefficient A_3 = q^3 t^6 (q^3 - 1)/(t^3 - 1). Diagnostic: Baxter-3 (3 monomials) fits r=2,3,4 but FAILS at r=1 with diff q^3 t^9 (q^3-1)(t-1)^2(t+1). So Baxter-4 is genuinely required. Structural pattern for top Baxter coefficient across k: A_k = (-1)^{k-1} q^{k(k-1)/2} t^{k(k+1)/2} (q^k-1)/(t^k-1). Consistent with p_2's C = -q t^3 (q^2-1)/(t^2-1) and p_3's A_3.",
       "trust": "computed",
-      "file": "scripts/day201/fit_baxter4_c_rp3.py",
+      "file": "proofs/scripts/day201/fit_baxter4_c_rp3.py",
       "verified_at": [
        "r=1",
        "r=2",
@@ -324,14 +324,14 @@
     "id": "pk-Y-pieri-meta-conjecture",
     "approach": "For all k≥2, r≥k: (i) p_k(Y)•e_r has DS-triangular support at pivot (r,1^k); (ii) leading coefficient q^{-n((r,1^k))} = q^{-k(k+1)/2}; (iii) r-INDEPENDENT coefficients exactly for μ with μ_1 ≤ r+1 (count = p(k) + p(k-1)); (iv) r-DEPENDENT for μ_1 ≥ r+2 (count = p(0) + p(1) + ... + p(k-2)). k-uniform closed forms: c_(r,1^k) = q^{-k(k+1)/2}, c_(r+1,1^{k-1}) = (q^k - 1)/q^{k(k+1)/2}, c_(r,2,1^{k-2}) = -(q [k-1]_q (t-1) + (t + k - 1))/q^{k(k+1)/2}. Verified k=2 (matches Rick's Lemma 1) and k=3 empirics.",
     "trust": "sketched",
-    "file": "2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
+    "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
     "role": "attempt",
     "children": [
      {
       "id": "pk-Y-newton-decomposition",
       "approach": "Analytic reduction: p_k(Y)•e_r = Σ_{λ⊢k} c_λ · t^{Σ_i binom(λ_i, 2)} · (e_λ ⋆ e_r) via Newton in Λ(Y) + Rick's intertwiner e_λ(Y)•F = t^{Σ_i binom(λ_i, 2)} · (e_{λ_1} ⋆ ... ⋆ F). Consequences: support (i) and leading coefficient (ii) follow ANALYTICALLY conditional on DS. r-independence (iii) reduces to r-independence of sub-leading DS coefficients of e_λ ⋆ e_r for μ_1 ≤ r+1 (empirically consistent with Rick's Day 191/193/195 data). At k=2: p_2(Y)•e_r = e_1⋆e_1⋆e_r - 2t·(e_2⋆e_r); at k=3: p_3(Y)•e_r = e_1⋆³⋆e_r - 3t·(e_2⋆e_1⋆e_r) + 3t^3·(e_3⋆e_r).",
       "trust": "sketched",
-      "file": "2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
+      "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
       "role": "attempt",
       "children": []
      },
@@ -339,14 +339,14 @@
       "id": "R7-newton-cancellation-k2",
       "approach": "Day 202 R7: sole surviving analytic route after R1–R6 all refuted. R7 identity: p_2(Y)•e_r = e_1⋆(e_1⋆e_r) - 2t·(e_2⋆e_r) = Z^{d2}_r - 2t W_r. R7 identity is PROVED (Newton in Λ(Y) + Rick's intertwiner e_a(Y)•G = t^{binom(a,2)}(e_a ⋆ G) for symmetric G — see Day 203 §2). Cancellation at (r+1,1) reduces to the elementary q-integer identity [r+1]_t - t·[r]_t = 1 — Rule 11 fire #27. Lemma 1 (Day 198 p_2(Y) Pieri closed form) reduces via R7 to Sub-Lemma Z: closed form for Z_r := e_1⋆e_(r,1) (length-2 primitive; sub-agent Day 202 named this Z_r) at four positions (r,1,1), (r,2), (r+1,1), (r+2). Sub-Lemma Z is *simpler* than Lemma 1 — the top-row coefficient is a single [r+2]_t (not a Baxter-2 three-monomial). Sub-Lemma Z verified r=2..6 sober (Day 203 recheck). Given Sub-Lemma Z (computed-sober) + Day 191 W_r (computed) + R7 (proved), Rick's Day 200 τ_r closed form is symbolic-in-r derivable via R7 — see Day 203 §4. || PROVED: bundle inputs (R7 identity, Sub-Lemma Z, W_r) all proved as of Day 206b.",
       "trust": "proved",
-      "file": "2026-09-25-day206b-W_r-proved.md",
+      "file": "proofs/2026-09-25-day206b-W_r-proved.md",
       "role": "attempt",
       "children": [
        {
         "id": "sub-lemma-Z-e1-star-e1-star-er",
         "approach": "Sub-Lemma Z (CORRECTED naming Day 203): Z_r := e_1⋆e_(r,1) = e_1(Y)·(e_r(X)·e_1(X)), the length-2 target Pieri primitive (NOT the depth-2 iteration e_1⋆(e_1⋆e_r), which was PROVE.md's misstatement — the four coefficients below match the length-2 primitive per sub-agent R7_symbolic_lemma.py:92-104 code and Day 203 sober recheck). For r≥2, Z_r has e-basis expansion with EXACTLY four nonzero coefficients: c_(r,1,1) = q^{-2}, c_(r,2) = (q-1)(t+1)/q^2, c_(r+1,1) = (q-1)(qt[r]_t + 1)/q^2, c_(r+2) = (q-1)^2 [r+2]_t / q^2. Depth-2 iteration Z^{d2}_r := e_1⋆(e_1⋆e_r) follows by ⋆-associativity: Z^{d2}_r = α_r α_{r+1} e_{r+2} + α_r β e_(r+1,1) + β Z_r. The R7 identity (proved) uses this depth-2 quantity: p_2(Y)·e_r = Z^{d2}_r - 2t W_r. || PROVED Day 205b (operator form), via (L1)-(L4).",
         "trust": "proved",
-        "file": "2026-09-25-day205-sub-lemma-Z-reduction.md",
+        "file": "proofs/2026-09-25-day205-sub-lemma-Z-reduction.md",
         "role": "premise",
         "gap": "Analytic proof of Sub-Lemma Z requires a Hikita-Lemma-3.11-analog for the length-2 X-side target e_r·e_1 (or an equivalent extended intertwiner). Thm 3.12 + ⋆-associativity + q-multiplicativity produce only 3 linearly independent identities among {Z_r, Z^{d2}_r, e_(1,1)⋆e_r, p_2(Y)·e_r} (with W_r known), which is 4 unknowns — underdetermined. See Day 191 for-collaborator note; same tautology diagnosed there for e_2⋆e_r Pieri.",
         "note": "PROVE.md line 5 conflates the length-2 primitive Z_r = e_1⋆e_(r,1) with the depth-2 iteration Z^{d2}_r = e_1⋆(e_1⋆e_r). The FOUR-coefficient table in PROVE.md matches Z_r (length-2 primitive); do not confuse with Z^{d2}_r, which has different coefficients (specifically c_(r+2)[Z^{d2}_r] = (q-1)^2 [r+2]_t (q[r+1]_t + 1)/q^3, not (q-1)^2 [r+2]_t/q^2).",
@@ -358,7 +358,7 @@
       "id": "R6-BW-2310-EHA-descent-refuted",
       "approach": "Route R6 (Day 202 dream primary): descend BW 2310.10249 (elliptic Hall algebra, EHA E⁺) e_r Pieri to Hikita level-1 AHA under a hypothesized surjection E⁺ → Hikita AHA. REFUTED Day 202 wake: (i) BW predates Hikita (2503.23597 is 2025) and makes zero reference to level-1 AHA or ⋆-product. (ii) BW's e_r[X]• is literal X-multiplication on Macdonald basis, orthogonal to Rick's e_r ⋆ (which transports Y-multiplication). (iii) BW's SV13 inverse-system tower is on SPHERICAL DAHA, not the level-1 non-spherical polynomial rep that Hikita uses. (iv) BW has no e_r-generator in E⁺; e_r acts as an external multiplication operator on the module. Route R7 (Rick's own Newton cancellation, sub-node R7-newton-cancellation-k2) is the sole surviving analytic route.",
       "trust": "dead-end",
-      "file": "2026-09-17-day202-R7-newton-cancellation-sketch.md",
+      "file": "proofs/2026-09-17-day202-R7-newton-cancellation-sketch.md",
       "role": "attempt",
       "children": [],
       "refutation": "computed",
@@ -368,7 +368,7 @@
       "id": "tau-r-k3-closed-form",
       "approach": "q^5 tau^(3) = (q^3-1)[r+3]_t C(t^r,t)/(q[3]_t); fit r=5,6,7, held out r=1-4, 8-13; m-stable.",
       "trust": "computed",
-      "file": "2026-09-25-day205-k3-tau-structure.md",
+      "file": "proofs/2026-09-25-day205-k3-tau-structure.md",
       "role": "attempt",
       "children": []
      },
@@ -376,7 +376,7 @@
       "id": "tau-r-k4-closed-form",
       "approach": "q^10 tau^(4) = -(q^4-1)[r+4]_t P3(t^r,t)/[4]_t, P3 cubic in u=t^r in Newton basis N_j; pre-registered predictions (a) divisibility (b) cubic (c) t^6 leading all CONFIRMED; fit r=5..8, held out r=1..4 exact, r=9 at q=1/3. §4 (r=10) of the writeup is EMPTY.",
       "trust": "computed",
-      "file": "2026-09-25-day206-k4-tau.md",
+      "file": "proofs/2026-09-25-day206-k4-tau.md",
       "role": "attempt",
       "children": []
      }

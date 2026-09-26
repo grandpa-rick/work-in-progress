@@ -1,0 +1,54 @@
+{
+  "conjecture": "Rick's Day 189 atomic-data hunch: path graphs + disjoint union multiplicativity + Huh-Hwang-Kim-Kim-Oh restricted modular law generate X_G (Stanley chromatic symmetric function, q=1) for every unit-interval graph G.",
+  "status": "dead-end",
+  "date_opened": "2026-09-11",
+  "date_closed": "2026-09-11",
+  "tree": {
+    "id": "root",
+    "approach": "hunch-testing PROVE session; novelty check first per feedback_novelty_check_before_writeup.md",
+    "trust": "dead-end",
+    "reason": "Exact theorem is HHKKO 2504.09123 Thm 3.7 with explicit reduction Algorithm 3.5. Novelty-check sub-agent quoted the paper verbatim in §1.1 and §3, but HHKKO is at agent-summary extraction in sources.json — refutation is COMPUTED via n=4 numerical span-verification of the CONTENT (see child n4-numerical-verify), plus sub-agent quote. Deep-read HHKKO §3 to promote refutation to checked-sober.",
+    "refutation": "computed",
+    "file": "2026-09-11-day189-atomic-data-hunch-killed.md",
+    "sources": ["2504.09123"],
+    "children": [
+      {
+        "id": "hhkko-thm37",
+        "approach": "Huh-Hwang-Kim-Kim-Oh Theorem 3.7: any function f: H -> A satisfying the restricted modular law is uniquely determined by its values f(p_{n_1}+...+p_{n_d}) on disjoint unions of paths. Algorithm 3.5 is the explicit reduction via Lemmas 3.3 (flat case) and 3.4 (non-flat case).",
+        "trust": "unclassified",
+        "reason": null,
+        "role": "premise",
+        "file": null,
+        "sources": ["2504.09123"],
+        "children": []
+      },
+      {
+        "id": "guay-paquet-modular-law-for-XG",
+        "approach": "X_G (chromatic quasisymmetric) satisfies the full modular law (Guay-Paquet 2013 for the original CSF; Abreu-Nigro for CQSF). A fortiori X_G satisfies the restricted modular law of HHKKO. Combined with HHKKO Thm 3.7, this gives Rick's hunch as an immediate corollary.",
+        "trust": "unclassified",
+        "reason": null,
+        "role": "premise",
+        "file": null,
+        "children": []
+      },
+      {
+        "id": "n4-numerical-verify",
+        "approach": "Direct SymPy computation: for all 9 iso types of unit-interval graphs on 4 vertices, X_G expressed as integer linear combination of {X_{P_lambda} : lambda |- 4}. Path products form a basis of Lambda_4 (rank 5 = p(4)). Coefficients are integers, often negative (K_4 = 6 X_{P_4} - 4 X_{P_31} - 3 X_{P_22} + 2 X_{P_211}).",
+        "trust": "checked-sober",
+        "recheck": "2026-09-11 proofs/scripts/day189/path_span_check_n4.py",
+        "role": "attempt",
+        "file": null,
+        "children": []
+      },
+      {
+        "id": "novelty-check-agent-report",
+        "approach": "Sub-agent novelty check dispatched at PROVE session start. Report verbatim: 'The exact claim is already a theorem in the literature -- twice. HHKKO Thm 3.7 is literally Rick's hunch, and Algorithm 3.5 is Rick's Guay-Paquet reduction algorithm.'",
+        "trust": "checked-sober",
+        "recheck": "2026-09-11 /tmp/claude-1001/-home-agent/*/tasks/abea36ec77ab3d7e7.output",
+        "role": "attempt",
+        "file": null,
+        "children": []
+      }
+    ]
+  }
+}

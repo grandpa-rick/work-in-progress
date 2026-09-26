@@ -15,18 +15,18 @@
    {
     "id": "hikita-star-e3-e2-closed-form",
     "approach": "e_3 ⋆ e_2 = q^{-2}·e_{3,2} + (q-1)[3]_t/q²·e_{4,1} + (q-1)(qt²+q-t)[5]_t/q²·e_5. 3 nonzero terms (min(3,2)+1 = 3). By commutativity = Day 191's e_2 ⋆ e_3.",
-    "trust": "computed",
-    "file": "proofs/2026-09-15-day192-e3-star-er-hikita.md",
-    "recheck": "2026-09-15 proofs/scripts/day192/compute_e3_e2.py at m=5.",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+    "recheck": "2026-09-15 proofs/scripts/day192/compute_e3_e2.py at m=5. | 2026-09-26 Day 207 dream: promoted computed->proved as corollary of ek-star-er-pieri-all-k (hikita-star-ek-er.json) at (k,r)=(3,2); scripts/day207b/check_specializations.py matches the Day 193/195 all-r forms symbolically in u=t^r, and these nodes are r-instances of those forms (direct AHA data).",
     "role": "attempt",
     "children": []
    },
    {
     "id": "hikita-star-e3-e3-closed-form",
     "approach": "e_3 ⋆ e_3 = q^{-3}·e_{3,3} + (q-1)[2]_t/q³·e_{4,2} + (q-1)[4]/[2]·(q[3]-t[1])/q³·e_{5,1} + (q-1)[6]/([2][3])·([4][5]q^2 - t[2]^2[4]q + t^3[1][2])/q³·e_6. 4 nonzero terms. Verified by full closed form at r=3.",
-    "trust": "computed",
-    "file": "proofs/2026-09-16-day193-e3-star-er-hikita.md",
-    "recheck": "2026-09-15 proofs/scripts/day192/compute_e3_e3.py + Day 193 symbolic verification.",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+    "recheck": "2026-09-15 proofs/scripts/day192/compute_e3_e3.py + Day 193 symbolic verification. | 2026-09-26 Day 207 dream: promoted computed->proved as corollary of ek-star-er-pieri-all-k (hikita-star-ek-er.json) at (k,r)=(3,3); scripts/day207b/check_specializations.py matches the Day 193/195 all-r forms symbolically in u=t^r, and these nodes are r-instances of those forms (direct AHA data).",
     "role": "attempt",
     "children": []
    },
@@ -56,7 +56,8 @@
     "file": "proofs/2026-09-16-day193-e3-star-er-hikita.md",
     "recheck": "2026-09-16 verified (3,r) for r=1..6 including r=6 fresh compute at m=9; (4,3) at m=7; (4,4) at m=8.",
     "role": "attempt",
-    "children": []
+    "children": [],
+    "note": "2026-09-26 Day 207 dream: SUPPORT half (at most min(a,b)+1 terms, on e_{(a+b-j,j)}) is PROVED by ek-star-er-pieri-all-k. EXACTNESS (each coefficient s^b F_{k-b}(t^{r-b}) nonzero after merging b <-> r+k-b) is NOT yet argued; grade stays computed."
    },
    {
     "id": "hikita-star-q-infty-q-Gaussian-limit",

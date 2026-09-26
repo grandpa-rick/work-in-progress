@@ -16,27 +16,27 @@
    {
     "id": "hikita-star-e4-e3-via-commutativity",
     "approach": "e_4 ⋆ e_3 = e_3 ⋆ e_4 by commutativity; 4 nonzero terms (min(4,3)+1 = 4). Direct computation at m=7 matches Day 193 formula for e_3 ⋆ e_4 on all c_0..c_3.",
-    "trust": "computed",
-    "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-    "recheck": "2026-09-16 proofs/scripts/day195/verify_e4_e3_via_commutativity.py against proofs/scripts/day193/e4_e3_m7.pkl.",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+    "recheck": "2026-09-16 proofs/scripts/day195/verify_e4_e3_via_commutativity.py against proofs/scripts/day193/e4_e3_m7.pkl. | 2026-09-26 Day 207 dream: promoted computed->proved as corollary of ek-star-er-pieri-all-k (hikita-star-ek-er.json) at (k,r)=(4,3) directly; commutativity not needed; scripts/day207b/check_specializations.py matches the Day 193/195 all-r forms symbolically in u=t^r, and these nodes are r-instances of those forms (direct AHA data).",
     "role": "attempt",
     "children": []
    },
    {
     "id": "hikita-star-e4-e4-closed-form",
     "approach": "e_4 ⋆ e_4 has 5 nonzero terms (min(4,4)+1 = 5). c_4 = q^{-4}; c_3 = (q-1)/q^4·[2]; c_2 = (q-1)/q^4·[4]/[2]·(q[3]-t[1]); c_1 = (q-1)/q^4·[6]/([2][3])·([5][4]q^2 - t[2][2][4]q + t^3[1][2]); c_0 = (q-1)/q^4·[8]/([2][3][4])·([5][6][7]q^3 - t[3][3][5][6]q^2 + t^3[3][2][3][5]q - t^6[1][2][3]). Verified at r=4.",
-    "trust": "computed",
-    "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-    "recheck": "2026-09-16 proofs/scripts/day195/verify_closed_form_a4.py against proofs/scripts/day193/e4_e4_m8.pkl.",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+    "recheck": "2026-09-16 proofs/scripts/day195/verify_closed_form_a4.py against proofs/scripts/day193/e4_e4_m8.pkl. | 2026-09-26 Day 207 dream: promoted computed->proved as corollary of ek-star-er-pieri-all-k (hikita-star-ek-er.json) at (k,r)=(4,4); scripts/day207b/check_specializations.py matches the Day 193/195 all-r forms symbolically in u=t^r, and these nodes are r-instances of those forms (direct AHA data).",
     "role": "attempt",
     "children": []
    },
    {
     "id": "hikita-star-e4-e5-closed-form",
     "approach": "e_4 ⋆ e_5 has 5 nonzero terms (min(4,5)+1 = 5). Same closed form (with r=5). Verified against fresh Day 194 background compute at m=9 (4993 s wallclock).",
-    "trust": "computed",
-    "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-    "recheck": "2026-09-16 proofs/scripts/day195/verify_closed_form_a4.py against proofs/scripts/day193/e4_e5_m9.pkl.",
+    "trust": "proved",
+    "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+    "recheck": "2026-09-16 proofs/scripts/day195/verify_closed_form_a4.py against proofs/scripts/day193/e4_e5_m9.pkl. | 2026-09-26 Day 207 dream: promoted computed->proved as corollary of ek-star-er-pieri-all-k (hikita-star-ek-er.json) at (k,r)=(4,5); scripts/day207b/check_specializations.py matches the Day 193/195 all-r forms symbolically in u=t^r, and these nodes are r-instances of those forms (direct AHA data).",
     "role": "attempt",
     "children": []
    },
@@ -66,7 +66,8 @@
     "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
     "recheck": "2026-09-16 verified from Day 194 background compute + Day 193 (4,3)/(4,4) computes.",
     "role": "attempt",
-    "children": []
+    "children": [],
+    "note": "2026-09-26 Day 207 dream: SUPPORT half (at most min(a,b)+1 terms, on e_{(a+b-j,j)}) is PROVED by ek-star-er-pieri-all-k. EXACTNESS (each coefficient s^b F_{k-b}(t^{r-b}) nonzero after merging b <-> r+k-b) is NOT yet argued; grade stays computed."
    },
    {
     "id": "hikita-star-t-zero-specialization",

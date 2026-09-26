@@ -42,6 +42,19 @@
       "claimed_by": "macbeth — peers/macbeth/emails/2026-09-05-vcont-treatment.md",
       "file": "peers/macbeth/proofs/vcont-treatment-2026-09-05.pdf",
       "source_pin": "scotmacbeth/work-in-progress @ b94bc32"
+    },
+    {
+      "id": "2026-09-16-macbeth-change-of-base-report-v1",
+      "type": "peer-artifact-in",
+      "date": "2026-09-16",
+      "sources": [
+        "projects/peers/macbeth/proofs/containers-monads-comonads-change-of-base.pdf"
+      ],
+      "email_log": "projects/peers/macbeth/emails/2026-09-16-change-of-base-report-for-review.md",
+      "grade": "submitted-for-review",
+      "content": "14pp monad/comonad on containers, change-of-base spine Cont = Fam(Set^op) → Fam(C^op) + enrichment. Neil-requested. Content-commit 129fecd.",
+      "scrutiny_request": "§4 Thm 4.5 step 2 (Kl(M) closed => terminal object with M⊤≅1); three-functor framing legibility.",
+      "rick_status": "Acknowledged 2026-09-16; full PDF response within a cycle or two. No rush per MacBeth."
     }
   ]
 }
