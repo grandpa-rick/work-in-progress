@@ -35,10 +35,10 @@
    },
    {
     "id": "ds-lambda-211-via-p2Y-pieri",
-    "approach": "Day 198 structural decomposition C = e_1⋆e_1⋆e_2 = p_2(Y)•e_2 + 2t·(e_2⋆e_2). Analytic identity from Newton e_1(Y)² = p_2(Y) + 2e_2(Y) in Λ(Y) + Hikita's 𝔮-scaling. Combined with (i) Lemma 1 (Day 198 new p_2-Pieri, computed r=2,3,4,5) giving p_2(Y)•e_r closed form with three r-independent coefficients, and (ii) Day 191 e_2⋆e_2 (computed). Cross-checked against Rick's Day 196 direct-SymPy in verify_decomp.py (all 5 coefficient differences = 0). DS at (2,1,1) is 'computed' via this new decomposition (upgrade to checked-sober requires promoting Lemma 1 to checked-sober; boundary rule).",
-    "trust": "computed",
+    "approach": "Day 198 structural decomposition C = e_1⋆e_1⋆e_2 = p_2(Y)•e_2 + 2t·(e_2⋆e_2). Analytic identity from Newton e_1(Y)² = p_2(Y) + 2e_2(Y) in Λ(Y) + Hikita's 𝔮-scaling. Combined with (i) Lemma 1 (Day 198 new p_2-Pieri, computed r=2,3,4,5) giving p_2(Y)•e_r closed form with three r-independent coefficients, and (ii) Day 191 e_2⋆e_2 (computed). Cross-checked against Rick's Day 196 direct-SymPy in verify_decomp.py (all 5 coefficient differences = 0). DS at (2,1,1) is 'computed' via this new decomposition (upgrade to checked-sober requires promoting Lemma 1 to checked-sober; boundary rule). || PROVED Day 207 (2026-09-26): all inputs now proved (Newton; Lemma 1 incl. τ_r and W_r = e_2⋆e_r, Day 206b). D in (⋆) is e_2⋆e_2 = W_2. Route recorded as §2 (second proof) of 2026-09-26-day207-DS-r11-proved.md; symbolic-in-r consistency check scripts/day207/ds_r11_route_consistency.py. Self-proved, not peer-checked.",
+    "trust": "proved",
     "recheck": "2026-09-17 — verify_decomp.py checks all 5 e-basis coefficients of C against p_2(Y)•e_2 + 2tD; all diffs identically zero after simplification.",
-    "file": "2026-09-17-day198-DS-211-via-p2-pieri.md",
+    "file": "2026-09-26-day207-DS-r11-proved.md",
     "role": "attempt",
     "children": [
      {
@@ -108,21 +108,43 @@
       "children": [],
       "reason": "Prediction 1 (divisibility by full [r+3]_t) refuted at k=3: Phi_d missing iff d|gcd(r+3,3). Superseded by tau^(k) template (Day 205/206).",
       "refutation": "computed"
-     },
+     }
+    ],
+    "sources": [
+     "2503.23597"
+    ]
+   },
+   {
+    "id": "ds-lambda-r11-all-r",
+    "approach": "DS(r,1,1) for all r ≥ 2 (sharpened triangular form), direct route: C_r = e_1⋆e_1⋆e_r = e_1(Y)•(e_1(Y)•e_r) (R0) = (1−s)[r+1]_t·e_1(Y)•e_{r+1} + s·e_1(Y)•(e_1e_r), s = q^{-1}; Thm 3.12 operator form (re-derived from Day 205 A/B + Day 205b M_1, M_2) and Sub-Lemma Z (operator form) give C_r = s³e_(r,1,1) + s²(1−s)[2]e_(r,2) + s(1−s)([r+1]+t[r]+s)e_(r+1,1) + (1−s)²[r+2]([r+1]+s)e_(r+2), valid all m; unique e-expansion for m ≥ r+2. Support = DS-interval of (r,1,1), all four coefficients nonzero, leading q^{-3}, off-diagonal ∝ (1−s). Second proof = Day 198 route (sibling ds-lambda-211-via-p2Y-pieri, now proved). Checked: scripts/day207/ds_r11_direct_check.py r=2..5, m=r+2,r+3 (24/24 exact) + ds_r11_route_consistency.py (both routes = closed form, symbolic in r). Self-proved, not peer-checked. First length-3 DS instance that is a theorem.",
+    "trust": "proved",
+    "file": "2026-09-26-day207-DS-r11-proved.md",
+    "sources": [
+     "2503.23597"
+    ],
+    "date": "2026-09-26",
+    "role": "attempt",
+    "children": [
      {
-      "id": "tau-r-k3-closed-form",
-      "approach": "q^5 tau^(3) = (q^3-1)[r+3]_t C(t^r,t)/(q[3]_t); fit r=5,6,7, held out r=1-4, 8-13; m-stable.",
-      "trust": "computed",
-      "file": "2026-09-25-day205-k3-tau-structure.md",
-      "role": "attempt",
+      "id": "ds-r11-thm-3-12-operator-form",
+      "approach": "e_1(Y)•e_n = (1−s)[n+1]e_{n+1} + s·e_1e_n for all n ≥ 1, m ≥ 1: Day 205 Step A (e_1(Y)=σ_mπ on symmetric F) + Step B (π-split) + Day 205b §3 M_1(n), M_2(n−1). Hikita Thm 3.12 re-derived.",
+      "trust": "proved",
+      "file": "2026-09-25-day205-L1-L4-residue-proof.md",
+      "sources": [
+       "2503.23597"
+      ],
+      "role": "premise",
       "children": []
      },
      {
-      "id": "tau-r-k4-closed-form",
-      "approach": "q^10 tau^(4) = -(q^4-1)[r+4]_t P3(t^r,t)/[4]_t, P3 cubic in u=t^r in Newton basis N_j; pre-registered predictions (a) divisibility (b) cubic (c) t^6 leading all CONFIRMED; fit r=5..8, held out r=1..4 exact, r=9 at q=1/3. §4 (r=10) of the writeup is EMPTY.",
-      "trust": "computed",
-      "file": "2026-09-25-day206-k4-tau.md",
-      "role": "attempt",
+      "id": "ds-r11-sub-lemma-Z-operator-form",
+      "approach": "e_1(Y)•(e_1e_r) four-term formula, all r ≥ 1, m ≥ 1 (same result as node sub-lemma-Z-reduction-to-HL-partial-symmetrizers; cross-ref). Reduction Day 205 A–D + (L1)–(L4) Day 205b; Clio UID 286 independent proof of (L1)–(L4).",
+      "trust": "proved",
+      "file": "2026-09-25-day205-sub-lemma-Z-reduction.md",
+      "sources": [
+       "2503.23597"
+      ],
+      "role": "premise",
       "children": []
      }
     ]
@@ -341,6 +363,22 @@
       "children": [],
       "refutation": "computed",
       "reason": "refuted (see file)"
+     },
+     {
+      "id": "tau-r-k3-closed-form",
+      "approach": "q^5 tau^(3) = (q^3-1)[r+3]_t C(t^r,t)/(q[3]_t); fit r=5,6,7, held out r=1-4, 8-13; m-stable.",
+      "trust": "computed",
+      "file": "2026-09-25-day205-k3-tau-structure.md",
+      "role": "attempt",
+      "children": []
+     },
+     {
+      "id": "tau-r-k4-closed-form",
+      "approach": "q^10 tau^(4) = -(q^4-1)[r+4]_t P3(t^r,t)/[4]_t, P3 cubic in u=t^r in Newton basis N_j; pre-registered predictions (a) divisibility (b) cubic (c) t^6 leading all CONFIRMED; fit r=5..8, held out r=1..4 exact, r=9 at q=1/3. §4 (r=10) of the writeup is EMPTY.",
+      "trust": "computed",
+      "file": "2026-09-25-day206-k4-tau.md",
+      "role": "attempt",
+      "children": []
      }
     ]
    }
