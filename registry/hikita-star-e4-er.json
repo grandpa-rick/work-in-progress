@@ -72,9 +72,9 @@
    {
     "id": "hikita-star-t-zero-specialization",
     "approach": "At t=0, c_k(r) = (q-1)/q^{k+1} for k=0..a-1, and c_a(r) = q^{-a}. Independent of r. Verified for a=2 (Day 194), a=4 (Day 195). Likely holds for all a.",
-    "trust": "computed",
+    "trust": "checked-sober",
     "file": "proofs/2026-09-16-day195-e4-star-er-closed-form.md",
-    "recheck": "2026-09-16 verify_closed_form_a4.py Bonus section, t=0 spec at r=4, 5.",
+    "recheck": "2026-09-16 verify_closed_form_a4.py Bonus section, t=0 spec at r=4, 5. | 2026-09-26 Day 207 dream: sober re-derivation from ek-star-er-pieri-all-k (proved): for r>=a, w=t^{r-b}->0 gives F_{a-b}->1-s, F_0=1, so c_b = s^b(1-s) (b<a), c_a = s^a, for ALL a. Scope restricted to r>=a (r<a: w=t^{negative}, limit not argued). Derivation: memory/connections/2026-09-26-e-basis-dodges-straightening.md §4.",
     "role": "attempt",
     "children": []
    },
