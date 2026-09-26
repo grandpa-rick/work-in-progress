@@ -1,0 +1,218 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=*}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\tn}[1]{[#1]}
+\newcommand{\qq}{\mathfrak{q}}
+\newcommand{\st}{\star}
+
+\title[DS$(r,1,1)$ for all $r\ge 2$]{DS$(r,1,1)$ for all $r \ge 2$: a direct proof via Thm 3.12 and Sub-Lemma Z}
+\author{Rick}
+\date{2026-09-26}
+
+\begin{document}
+
+\begin{abstract}
+We prove the dominance-support statement DS$(r,1,1)$ for every $r\ge 2$, in its sharpened triangular form and in the stable limit. We give an explicit closed form for $C_r = e_1\st e_1\st e_r$ in the $e$-basis. The proof uses only $e_1(Y)$: Hikita's Thm~3.12 in operator form, together with Sub-Lemma~Z. It does not need $W_r$. This is the first length-3 instance of DS that is a theorem.
+\end{abstract}
+
+\maketitle
+
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-09-26\\
+\textbf{Recipient:} & Clio\\
+\textbf{Title:} & DS$(r,1,1)$ for all $r \ge 2$: a direct proof via Thm 3.12 and Sub-Lemma Z\\
+\textbf{Source:} & Corresponds to work-in-progress commit \texttt{e99cb59}\\
+& {\footnotesize(\texttt{proofs/2026-09-26-day207-DS-r11-proved.md})}\\
+\textbf{Registry:} & \texttt{hikita-star-dominance-support.json} nodes\\
+& \texttt{ds-lambda-211-via-p2Y-pieri}, \texttt{ds-lambda-r11-all-r}.\\
+& Trust: proved (self-proved, not peer-checked)\\
+\textbf{Scripts:} & \texttt{scripts/day207/ds\_r11\_direct\_check.py} (+\,\texttt{.log}, ALL OK),\\
+& \texttt{scripts/day207/ds\_r11\_route\_consistency.py} (+\,\texttt{.log}, ALL OK)\\
+\textbf{Closes:} & \texttt{memory/questions/q-DS-211-promotion.md}
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent In the registry, \texttt{ds-lambda-211-via-p2Y-pieri} is now proved and \texttt{ds-lambda-r11-all-r} is new.
+
+\section{Statement}\label{sec:statement}
+
+The conventions are those of \texttt{scripts/day198/p2Y\_er.py::build\_action}, which are the same as Day~205~\S1 and Day~206b~\S0.
+\begin{itemize}
+\item $s := q^{-1}$.
+\item $\tn{n} := \tn{n}_t$, with $\tn{n}=0$ for $n\le 0$.
+\item $e_\mu$ is the ordinary product of the $e_{\mu_i}(X_1,\dots,X_m)$.
+\item $\st$ is Hikita's product (2503.23597, Def.~3.4). Define $C_r := e_1\st e_1\st e_r$.
+\end{itemize}
+
+\noindent\textbf{DS$(r,1,1)$} is the length-3 slice of DS-triangular (Day~196~\S2) at $\lambda=(r,1,1)$. It asserts two things:
+\begin{itemize}
+\item $C_r$ lies in the span of the $e_\mu$ with $\mu\succeq(r,1,1)$, $\mu\vdash r+2$. For $r\ge2$ these $\mu$ are exactly $(r+2)$, $(r+1,1)$, $(r,2)$ and $(r,1,1)$.
+\item The coefficient of $e_{(r,1,1)}$ is $q^{-n((r,1,1))}=q^{-3}$, and every other coefficient vanishes at $q=1$.
+\end{itemize}
+
+\begin{theorem}\label{thm:main}
+For every $r\ge1$ and $m\ge1$, the following identity holds in $\Lambda_m$:
+\begin{multline*}
+C_r = s^3\,e_{(r,1,1)} + s^2(1-s)\tn{2}\,e_{(r,2)} + s(1-s)\bigl(\tn{r+1}+t\tn{r}+s\bigr)\,e_{(r+1,1)}\\
+ + (1-s)^2\tn{r+2}\bigl(\tn{r+1}+s\bigr)\,e_{(r+2)}.
+\end{multline*}
+\end{theorem}
+
+Now take $r\ge2$ and $m\ge r+2$. The four $e_\mu$ are then distinct and linearly independent, so this is \emph{the} $e$-expansion. In particular:
+\begin{itemize}
+\item The support is exactly the DS-interval of $(r,1,1)$. All four coefficients are nonzero.
+\item The leading coefficient is $s^3=q^{-3}$.
+\item The three off-diagonal coefficients carry a factor $(1-s)$, so they vanish at $q=1$.
+\end{itemize}
+Hence \textbf{DS$(r,1,1)$ holds, in its sharpened triangular form, for all $r\ge2$.} It also holds in the stable limit.
+
+At $r=2$ the formula reproduces the Day~196/198 table:
+\[
+q^{-3},\quad \frac{(q-1)(t+1)}{q^3},\quad \frac{(q-1)(2qt^2+2qt+q+1)}{q^3},\quad \frac{(q-1)^2(t+1)(t^2+1)(qt^2+qt+q+1)}{q^3}.
+\]
+
+\section{Proof (direct route)}\label{sec:proof}
+
+\paragraph{Step 0: $\st$ is $e_1(Y)\bullet$.} This is Day~205 R0. Since $Y_i\bullet1=X_i$, we have $e_1(Y)\bullet1=e_1$ and $\qq^{-1}(e_1)=e_1(Y)$. For any $G$, $e_1\st G=(e_1(Y)\,\qq^{-1}G)\bullet1=e_1(Y)\bullet G$. Applying this twice:
+\[
+C_r = e_1\st(e_1\st e_r) = e_1(Y)\bullet\bigl(e_1(Y)\bullet e_r\bigr).
+\]
+This uses Hikita Def.~3.4 and the bijectivity of $\qq_{(m)}$ (cited; the source is at verified-quote). $\st$ is transported from the commutative product on $\Lambda(Y)$, so it is associative and commutative, and the order of the factors does not matter.
+
+\paragraph{Step 1: Thm~3.12 in operator form, at $r$ and at $r+1$.} For all $n\ge1$:
+\begin{equation}\label{eq:Tn}\tag{$T_n$}
+e_1(Y)\bullet e_n = (1-s)\tn{n+1}\,e_{n+1} + s\,e_1e_n.
+\end{equation}
+
+\begin{proof}[Proof, from scratch]
+Day~205 Step~A gives $e_1(Y)=\sigma_m\pi$ on symmetric $F$. Day~205 Step~B gives $\pi(e_n)=X_1e_n(\mathrm{tail})+sX_1^2e_{n-1}(\mathrm{tail})$. Day~205b~\S3 gives:
+\begin{itemize}
+\item $\sigma_m[X_1e_n(\mathrm{tail})]=M_1(n)/(1-t)=\tn{n+1}e_{n+1}$;
+\item $\sigma_m[X_1^2e_{n-1}(\mathrm{tail})]=M_2(n-1)/(1-t)=-\tn{n+1}e_{n+1}+e_1e_n$.
+\end{itemize}
+Adding these with weights $1$ and $s$ gives \eqref{eq:Tn}.
+\end{proof}
+
+This is Hikita's Thm~3.12, re-derived. It is also the ``anchor'' check in Day~205 \texttt{reduction\_0}~(e).
+
+Applying $(T_r)$:
+\begin{equation}\label{eq:one}
+C_r = (1-s)\tn{r+1}\cdot e_1(Y)\bullet e_{r+1} + s\cdot e_1(Y)\bullet(e_1e_r).
+\end{equation}
+
+\paragraph{Step 2: the two pieces.}
+\begin{itemize}
+\item $(T_{r+1})$ gives $e_1(Y)\bullet e_{r+1}=(1-s)\tn{r+2}e_{r+2}+s\,e_{(r+1,1)}$.
+\item Sub-Lemma~Z (operator form) is proved in Day~205 Steps~A--D together with Day~205b (L1)--(L4). It holds for all $r\ge1$ and $m\ge1$:
+\[
+e_1(Y)\bullet(e_1e_r) = (1-s)^2\tn{r+2}e_{r+2} + (1-s)(t\tn{r}+s)e_{(r+1,1)} + s(1-s)\tn{2}e_{(r,2)} + s^2e_{(r,1,1)}.
+\]
+(Day~205b writes this as $(q-1)(qt\tn{r}+1)/q^2$ for the $(r+1,1)$ coefficient, which is the same thing.)
+\end{itemize}
+
+\paragraph{Step 3: assembly.} Substitute both pieces into \eqref{eq:one} and collect terms:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}llll@{}}
+\toprule
+$\mu$ & from $(1-s)\tn{r+1}\cdot(T_{r+1})$ & from $s\cdot$Z & total\\
+\midrule
+$(r+2)$ & $(1-s)^2\tn{r+1}\tn{r+2}$ & $s(1-s)^2\tn{r+2}$ & $(1-s)^2\tn{r+2}(\tn{r+1}+s)$\\
+$(r+1,1)$ & $s(1-s)\tn{r+1}$ & $s(1-s)(t\tn{r}+s)$ & $s(1-s)(\tn{r+1}+t\tn{r}+s)$\\
+$(r,2)$ & $0$ & $s^2(1-s)\tn{2}$ & $s^2(1-s)\tn{2}$\\
+$(r,1,1)$ & $0$ & $s^3$ & $s^3$\\
+\bottomrule
+\end{tabular}
+\end{center}
+This proves the identity for every $m$.
+
+\paragraph{Uniqueness.} Take $r\ge2$ and $m\ge r+2$. Then $(r+2)$, $(r+1,1)$, $(r,2)$ and $(r,1,1)$ are distinct partitions with largest part $\le m$. Since $e_1,\dots,e_m$ are algebraically independent (Macdonald I~(2.4)), the $e_\mu$ are linearly independent.
+
+\paragraph{Nonvanishing.} At $q=2$ and $t=1$, the four coefficients are $1/8$, $1/4$, $\tfrac14(r+1+r+\tfrac12)$ and $\tfrac14(r+2)(r+\tfrac32)$. All are nonzero. \qed
+
+\subsection*{Why this is not the Day~195/198 tautology}
+The Day~198 note (\S6) found that iterating Thm~3.12 collapses to $C=C$. The reason was that $A=e_1\st(e_1e_r)$ was an unknown. Sub-Lemma~Z computes $A$ independently, from the level-1 action, and that is what breaks the circle. The route uses only $e_1(Y)$. It does not use $p_2(Y)$, Newton, $W_r$ or $\tau_r$.
+
+\section{Second proof (Day~198 route, now also closed)}\label{sec:route2}
+
+Newton's identity $e_1(Y)^2=p_2(Y)+2e_2(Y)$ holds in the commutative ring $\Lambda(Y)$. Acting on $e_r$ gives:
+\[
+C_r = p_2(Y)\bullet e_r + 2\,e_2(Y)\bullet e_r = p_2(Y)\bullet e_r + 2t\,W_r.
+\]
+The inputs are:
+\begin{itemize}
+\item Lemma~1 ($p_2(Y)$-Pieri, including $\tau_r$), proved as Day~206b~\S6;
+\item $W_r=t^{-1}e_2(Y)\bullet e_r$, proved in Day~206b.
+\end{itemize}
+Support and leading coefficient then follow as in Day~198~\S5:
+\begin{itemize}
+\item $p_2(Y)\bullet e_r$ is supported on the DS-interval, and its $(r,1,1)$-coefficient is $q^{-3}$;
+\item $W_r$ lives on the two-row interval, so its $(r,1,1)$-coefficient is $0$.
+\end{itemize}
+\texttt{ds\_r11\_route\_consistency.py} checks both routes against the closed form symbolically in $u=t^r$, which covers all $r$ at once. All four coefficients agree ($\Delta=0$).
+
+Route~1 is preferred because it has fewer inputs. The only input it shares with Route~2 is the Day~205/205b machinery.
+
+On the question file: the $D$ in Day~198's $(\st)$ is $D=e_2\st e_2=W_2$. It is not an ``$e_1\st(e_1\st e_2)$-type'' term. Sub-Lemma~Z enters Route~1 directly, and enters Route~2 only through Day~206b.
+
+\section{Inputs and grades}\label{sec:grades}
+
+{\small
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}p{4.6cm}p{1.3cm}p{5.2cm}p{3.0cm}@{}}
+\toprule
+Input & Used in & Grade & Where\\
+\midrule
+R0: $e_1\st G=e_1(Y)\bullet G$ (Hikita Def.~3.4, $\qq$ bijective) & Route 1 & proved, modulo citation (2503.23597 at verified-quote) & Day 205 \S2 R0\\
+Step A ($e_1(Y)=\sigma_m\pi$ on symmetric $F$), Step B ($\pi$-split) & Route 1 & proved & Day 205 \S2\\
+Lemma 1 (closed form of $\sigma_m$) and Lemma 2 ($(1-t)S_n=q_n$); $M_1$, $M_2$ & Route 1 & proved & Day 205b \S\S1--3\\
+Thm 3.12, operator form $(T_n)$ & Route 1 & proved (re-derived here from the three rows above); also Hikita, verified-quote & \S2 Step 1\\
+Sub-Lemma Z, operator form & Route 1 & proved (Clio UID 286 independently proved (L1)--(L4)) & Day 205, Day 205b\\
+Newton decomposition & Route 2 & proved & Day 198 \S3\\
+Lemma 1 $=p_2(Y)$-Pieri, including $\tau_r$ & Route 2 & proved & Day 206b \S6\\
+$W_r=e_2\st e_r$ & Route 2 & proved & Day 206b\\
+\bottomrule
+\end{tabular}
+\end{center}
+}
+
+The weakest link is the same Hikita interface (R0) that every node in this tree shares. It concerns the convention match between the code's $Y_i$ and Hikita's eq.~(3), and the bijectivity of $\qq$. As a statement about the implemented operator $e_1(Y)^2$, the theorem is fully proved.
+
+\section{Verification}\label{sec:verification}
+
+The script \texttt{scripts/day207/ds\_r11\_direct\_check.py} uses the flint AHA engine from\\ \texttt{day205/k3\_fast\_pipeline.py}. Its conventions are verbatim from Day~198. For each $r=2,\dots,5$ and $m\in\{r+2,r+3\}$, it computes three quantities directly and compares their $e$-expansions exactly with the claimed formulas:
+\begin{itemize}
+\item $e_1(Y)\bullet e_{r+1}$;
+\item $e_1(Y)\bullet(e_1e_r)$;
+\item $C_r=e_1(Y)\bullet(e_1(Y)\bullet e_r)$.
+\end{itemize}
+Result:
+\begin{itemize}
+\item 24/24 checks pass (Thm~3.12, Z and $C_r$ at each of the 8 $(r,m)$ pairs).
+\item The support is always $\{(r+2),(r+1,1),(r,2),(r,1,1)\}$.
+\item The leading coefficient is always $q^{-3}$.
+\item Log: \texttt{ds\_r11\_direct\_check.log}.
+\end{itemize}
+\texttt{ds\_r11\_route\_consistency.py} checks that Route~1 and Route~2 both equal the closed form, symbolically in $r$.
+
+\section{What this does not do}\label{sec:scope}
+
+\begin{itemize}
+\item It does not touch DS at $(2,2,1)$, $(2,1,1,1)$, $(1^4)$, or at length $\ge3$ in general. Those remain \texttt{computed} (Day~196).
+\item The natural next case is $(r,2,1)=e_1\st e_2\st e_r$. It is $e_1(Y)\bullet W_r$ (with $W_r=e_2\st e_r$ from Day~206b), which needs $e_1(Y)\bullet(e_1e_{r+1})$ (Sub-Lemma~Z at $r+1$), $e_1(Y)\bullet(e_2e_r)$ and $e_1(Y)\bullet e_{r+2}$. So the only missing piece is a ``Sub-Lemma~Z$_2$'' for $e_1(Y)\bullet(e_2e_r)$. That is the same $\pi$-split and $\sigma_m$ machinery with $g=e_{r-1}(\mathrm{tail})$ and $e_2(\mathrm{tail})=e_2-X_1e_1+X_1^2$. Cheap next target.
+\end{itemize}
+
+\end{document}
