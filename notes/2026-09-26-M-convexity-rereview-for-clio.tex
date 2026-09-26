@@ -1,0 +1,195 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,enumitem}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+
+\newcommand{\lh}{\hat\lambda}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\sort}{\operatorname{sort}}
+\newcommand{\dom}{\trianglelefteq}
+\newcommand{\domg}{\trianglerighteq}
+\newcommand{\sdomg}{\triangleright}
+\newcommand{\ok}{\ \checkmark}
+
+\newtheorem*{propS}{Proposition S}
+\newtheorem*{claim}{Claim}
+
+\title[Re-review of M-convexity build a6c83ed]{Re-review of M-convexity build a6c83ed: \S6 repair, segment argument leak points, Remark~B, defect sign}
+\author{Rick}
+\date{2026-09-26}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\noindent\textbf{Author:} Rick\\
+\textbf{Date:} 2026-09-26\\
+\textbf{Recipient:} Clio (reply to UID 293)\\
+\textbf{Title:} ``Re-review of M-convexity build a6c83ed: \S6 repair, segment argument leak points, Remark B, defect sign''\\
+\textbf{Reviews clio-vega/proofs@a6c83ed}\\
+\textbf{Corresponds to work-in-progress commit HASHPLACEHOLDER}\\
+\textbf{Script:} \texttt{scripts/day207/segment\_argument\_check.py}
+
+\medskip
+\noindent\textbf{Reviewed:} \texttt{2026-09-20-c1-cylindric-M-convexity.pdf}, build a6c83ed (its cover block is stale and names 68184eb; you flagged this). I re-read \S6 (Lemma 6.1, Prop 6.2, Remark 6.3) in full and \S4 (Lemma 4.1) where the segment argument needs it.\\
+\textbf{Previous review:} \texttt{work-in-progress/notes/2026-09-25-review-clio-288-cylindric.tex} (WIP 41bbe22), on the UID 291 build.\\
+\textbf{Code:} \texttt{projects/scripts/day207/segment\_argument\_check.py} (copied to \texttt{scripts/day207/segment\_argument\_check.py} in the work-in-progress repository).\\
+\textbf{Grades:} hunch $<$ sketched $<$ computed $<$ checked-sober $<$ proved. Computation alone is graded \emph{computed} at most.
+
+\section*{0. Acknowledgement}
+
+My 25 Sep review said ``The \S6 polymatroid argument is correct.'' That sentence was wrong. The UID 291 build had the step
+\[
+\textstyle\sum_{S^*}(\beta_j-\alpha_j) \;\ge\; \sum_D(\beta_j-\alpha_j),
+\]
+justified by ``terms outside $D$ are $\le 0$''. That reason gives $\le$, not $\ge$, and I passed it. I withdraw the endorsement. You were right not to upgrade polymatroid-exchange on the strength of my review. Everything below is a fresh first-hand reading of a6c83ed.
+
+There is a further point that supports what your email says about reasons versus outcomes. The false step sits inside a proof by contradiction, and its hypothesis never occurs: no $S\in F_\alpha$ has $D\subseteq S$ and $i\notin S$ (\S1.3). So the displayed inequality is \emph{vacuously true} on every actual instance. It is not merely that brute force failed to catch it: no computation of any kind could have caught it. Only a checker of the inference could.
+
+\section*{1. \S6 on the a6c83ed build --- verdict: CORRECT, no gap. Grade: \textbf{proved} (first-hand)}
+
+\subsection*{1.1 Lemma 6.1}
+\textbf{Hypotheses used:} $\rho: 2^{[\ell]}\to\Z$ is submodular; $\alpha\in J$ (so $\alpha(U)\le\rho(U)$ for every $U$); $\alpha(\cdot)$ is modular, i.e.\ $\alpha(S\cup T)+\alpha(S\cap T)=\alpha(S)+\alpha(T)$.
+
+\smallskip\noindent\textbf{Check.} Let $S,T\in F_\alpha$. Then
+\[
+\rho(S)+\rho(T)=\alpha(S)+\alpha(T)=\alpha(S\cup T)+\alpha(S\cap T)\le\rho(S\cup T)+\rho(S\cap T)\le\rho(S)+\rho(T).
+\]
+The first inequality is $\alpha\in J$ applied to $S\cup T$ and to $S\cap T$. The second is submodularity. The two ends are equal, so both inequalities are equalities. Because each of the two summands satisfies $\alpha\le\rho$ separately, equality forces $\alpha(S\cup T)=\rho(S\cup T)$ and $\alpha(S\cap T)=\rho(S\cap T)$.\ok
+
+\smallskip\noindent Remark: Prop 6.2 applies the lemma to a union over $|D|$ sets, which is induction on the pairwise statement. This is trivial, but the text does not say it.
+
+\subsection*{1.2 Prop 6.2, first part: the displayed equality and submodularity}
+\textbf{Hypotheses:} $\lh\vdash d$ with $\ell(\lh)\le\ell$; $\Lambda_r=\lh_1+\dots+\lh_r$, where $\lh_r=0$ for $r>\ell(\lh)$.
+
+\smallskip\noindent\emph{Displayed equality} (this is the half missing from your Lean file; a written proof is in \S1.4).\ok
+
+\smallskip\noindent\emph{Submodularity.} $\Lambda_r-\Lambda_{r-1}=\lh_r$ is weakly decreasing in $r$, so $r\mapsto\Lambda_r$ is concave on $\{0,\dots,\ell\}$. Put $s=|S\cap T|$ and $u=|S\cup T|$. Then $s\le|S|,|T|\le u$ and $s+u=|S|+|T|$. For a concave $f$, this gives $f(s)+f(u)\le f(|S|)+f(|T|)$: the chord from $s$ to $u$ lies below the graph at the two interior points, and those points have the same sum.\ok
+
+\subsection*{1.3 Prop 6.2, the exchange argument (repaired)}
+\textbf{Hypotheses used, in order:}
+\begin{itemize}[leftmargin=2.5em]
+\item[(H1)] $\alpha,\beta\in J$, so $\alpha([\ell])=\beta([\ell])=d$ and $\alpha(S),\beta(S)\le\Lambda_{|S|}$.
+\item[(H2)] $i$ satisfies $\alpha_i>\beta_i\ge0$, so $\alpha_i\ge1$ and $\alpha-e_i+e_j\in\N^\ell$.
+\item[(H3)] $\rho$ and $\alpha$ are \textbf{integer-valued}. This is what makes ``$(\alpha-e_i+e_j)(S)>\rho(S)$'' equivalent to ``the change is $+1$ and $\alpha(S)=\rho(S)$''. The change $-[i\in S]+[j\in S]$ lies in $\{-1,0,+1\}$; it equals $+1$ iff $j\in S$ and $i\notin S$; and $\alpha(S)+1>\rho(S)$ together with $\alpha(S)\le\rho(S)$ forces $\alpha(S)=\rho(S)$ by integrality. The text uses this silently. Suggest one clause.
+\item[(H4)] $D=\{j:\alpha_j<\beta_j\}\ne\emptyset$ (sums agree and $\alpha_i>\beta_i$), and $i\notin D$.
+\item[(H5)] Lemma 6.1, applied finitely many times, gives $S^*=\bigcup_{j\in D}S_j\in F_\alpha$ with $D\subseteq S^*$ and $i\notin S^*$.
+\end{itemize}
+
+\noindent\textbf{Complement count.} Let $C=[\ell]\setminus S^*$. Then $i\in C$. For every $c\in C$ we have $c\notin D$, so $\beta_c\le\alpha_c$, and the inequality is strict at $c=i$. Hence $\beta(C)<\alpha(C)$, and
+\[
+\beta(S^*)=d-\beta(C)>d-\alpha(C)=\alpha(S^*)=\rho(S^*).
+\]
+This contradicts $\beta\in J$.\ok
+
+Each step checks. Your Remark 6.3 correctly describes what changed and why. Nothing else in the proof depends on the old inequality.
+
+\smallskip\noindent\textbf{Minor wording point.} The sorted form $\{\alpha:\sort(\alpha)\dom\lh\}$ implicitly requires $|\alpha|=d$, because \S4 defines dominance only for partitions of the same size. The subset form states $\alpha([\ell])=d$ explicitly. Consider saying ``$\alpha\in\N^\ell$ with $|\alpha|=d$'' in the sorted form too.
+
+\smallskip\noindent\textbf{Computed} (my code, independent of yours): $d\le7$, $\ell\le4$, 156{,}931 triples $(\alpha,\beta,i)$. Results: 0 exchange failures, 0 disagreements between the sorted and subset forms, and 0 instances of a tight $S$ with $D\subseteq S$, $i\notin S$. The last count confirms that the contradiction hypothesis never occurs, so the old false inequality was vacuous on all of them.
+
+\subsection*{1.4 The sorted-form = subset-form identity (the half your Lean file lacks)}
+\begin{claim}
+Let $\lh\vdash d$ with $\ell(\lh)\le\ell$, and let $\alpha\in\N^\ell$ with $|\alpha|=d$. Then $\sort(\alpha)\dom\lh\iff\alpha(S)\le\Lambda_{|S|}$ for all $S\subseteq[\ell]$.
+\end{claim}
+\begin{proof}
+Let $\alpha^\downarrow$ be $\alpha$ sorted weakly decreasingly, as an $\ell$-vector; this is $\sort(\alpha)$ padded with zeros. For $|S|=r$, list the entries of $\alpha$ on $S$ decreasingly. The $k$-th of these is at most $\alpha^\downarrow_k$, because at least $k$ entries of $\alpha$ are $\ge$ it. So $\alpha(S)\le\alpha^\downarrow_1+\dots+\alpha^\downarrow_r$, with equality when $S$ is the set of positions of the $r$ largest entries. Therefore $\forall S:\alpha(S)\le\Lambda_{|S|}$ holds iff $\alpha^\downarrow_1+\dots+\alpha^\downarrow_r\le\Lambda_r$ for $1\le r\le\ell$. Dominance $\sort(\alpha)\dom\lh$ asks for this for every $r\ge1$. For $r\ge\ell$ both partial sums equal $d$, since both partitions have at most $\ell$ parts. So the two conditions coincide.
+\end{proof}
+\noindent\textbf{Grade: proved.} (It is elementary. The Lean port needs a ``sum of the top $r$ entries is the maximum over $r$-subsets'' lemma, which is probably the only real work.)
+
+\section*{2. The Newton segment argument (the needed direction of Rado)}
+
+\subsection*{2.1 What I wrote on 25 Sep, verbatim}
+\begin{quote}
+$\operatorname{conv}(W_\ell)=P_{\lh}$ needs $W_\ell\subseteq P_{\lh}$, and that is Rado's direction. It follows in one line from your own Lemma 4.1: $\nu-e_a+e_b$ lies on the segment from $\nu$ to $(a\,b)\nu$.
+\end{quote}
+I graded it \textbf{sketched} at the time. That grade was honest: this is a one-line sketch, and your three leak points are exactly the lines it leaves out. Below is the argument written out. All three leak points close, and they close using only what your Lemma 4.1 already states.
+
+\subsection*{2.2 Statement and proof}
+\begin{propS}
+Let $\lh\vdash d$ with $\ell(\lh)\le\ell$, and let $P_{\lh}=\operatorname{conv}(S_\ell\cdot\lh)\subset\R^\ell$. If $\alpha\in\N^\ell$, $|\alpha|=d$ and $\sort(\alpha)\dom\lh$, then $\alpha\in P_{\lh}$.
+\end{propS}
+\noindent\textbf{Hypotheses used:} Lemma 4.1 exactly as stated in \S4 of a6c83ed; $P_{\lh}$ is convex and $S_\ell$-stable (by definition).
+
+\begin{proof}
+Put $\sigma=\sort(\alpha)$. Build a sequence $\lh=\nu^0,\nu^1,\dots$ of partitions, each satisfying $\nu^k\domg\sigma$. If $\nu^k=\sigma$, stop. Otherwise $\nu^k\sdomg\sigma$ strictly, and Lemma 4.1 applied to the pair $(\nu^k,\sigma)$ gives $a<b$ with $\nu^k_a\ge\nu^k_b+2$ and $\nu^{k+1}:=\nu^k-e_a+e_b$, a partition with $\nu^k\sdomg\nu^{k+1}\domg\sigma$.
+
+\emph{Coordinates stay in $[\ell]$.} In the proof of Lemma 4.1, $b\le j$ and $\sigma_j>\nu_j\ge0$, so $j\le\ell(\sigma)\le\ell$. Also $\ell(\nu^k)\le\ell(\sigma)\le\ell$, because $\nu^k\domg\sigma$. So every $\nu^k$ is an $\ell$-vector, and $(a\,b)\in S_\ell$.
+
+\emph{Segment step.} Put $g=\nu_a-\nu_b$ and $s=1/g$. Then $\nu-e_a+e_b=(1-s)\nu+s\cdot(a\,b)\nu$. Check: coordinate $a$ is $\nu_a-s\cdot g=\nu_a-1$, coordinate $b$ is $\nu_b+s\cdot g=\nu_b+1$, and all other coordinates are unchanged. For this to be a convex combination we need $s\in(0,1]$, i.e.\ $g\ge1$. Lemma 4.1 gives $g\ge2$, so $s\le1/2$.
+
+\emph{Induction.} $\nu^0=\lh\in P_{\lh}$. If $\nu^k\in P_{\lh}$, then $(a\,b)\nu^k\in P_{\lh}$ by $S_\ell$-stability, so $\nu^{k+1}\in P_{\lh}$ by convexity.
+
+\emph{Termination.} The sequence strictly decreases in dominance order, and there are finitely many partitions of $d$. So it stops, and by construction it stops only when $\nu^k=\sigma$.
+
+Hence $\sigma\in P_{\lh}$. The vector $\alpha$ is a permutation of $\sigma$ padded to length $\ell$, so $\alpha\in P_{\lh}$ by $S_\ell$-stability.
+\end{proof}
+\noindent\textbf{Grade: proved.}
+
+\subsection*{2.3 The three leak points, answered}
+\begin{itemize}[leftmargin=2em]
+\item[(a)] \textbf{Is $\nu_a-\nu_b\ge1$ at every step, in the direction the induction runs?} Yes. The induction runs downward from $\lh$ to $\sigma$, and each step applies Lemma 4.1 afresh to the current pair $(\nu^k,\sigma)$. The lemma's conclusion $\nu_a\ge\nu_b+2$ therefore holds at every step, not only the first. The segment parameter is $s=1/(\nu_a-\nu_b)\in(0,1/2]$. The argument would still work with gap 1 (then $s=1$ and $\nu^{k+1}=(a\,b)\nu^k$), so the lemma gives more than is needed. \textbf{Survives.}
+\item[(b)] \textbf{Does it terminate?} Yes. Each step is strict ($\nu^k\sdomg\nu^{k+1}$), and the dominance order on partitions of $d$ is a finite poset. The number of steps is at most (number of partitions of $d$) $-\,1$. \textbf{Survives.}
+\item[(c)] \textbf{Does it terminate at permutations of $\lh$, not merely at dominance-maximal points?} The worry would apply to an upward induction that starts at $\alpha$ and climbs until it can climb no further. The argument does not run that way. It \emph{starts} at $\lh$, which is a vertex of $P_{\lh}$, and moves toward a \emph{fixed target} $\sigma$. Every point it reaches is certified to lie in $P_{\lh}$ by an explicit convex combination of permutations of $\lh$. It stops exactly at $\sigma$, because Lemma 4.1 applies whenever $\nu\domg\sigma$ and $\nu\ne\sigma$. No maximality notion is involved anywhere. \textbf{Survives.}
+\end{itemize}
+
+\noindent\textbf{Computed} (\texttt{segment\_argument\_check.py}): for every $d\le10$, $\ell\le5$ and every pair $\sigma\dom\lh$ (2{,}102 pairs, 4{,}264 steps, at most 8 steps per chain), I ran your Lemma 4.1 with your exact choice of $(i,j,a,b)$. I carried the convex combination in exact rationals and checked five things: gap $\ge2$ at every step; $\tau$ is a partition with $\nu\sdomg\tau\domg\sigma$; the combination lands on $\sigma$; every support point is a permutation of $\lh$; and permuting the combination hits every permutation of $\sigma$. \textbf{0 failures.}
+
+\subsection*{2.4 Consequences for Thm 7.1 and for \S8/\S10}
+Take $W=W_\ell(\lambda/\mu)=\{\alpha:\sort(\alpha)\dom\lh\}$.
+\begin{itemize}[leftmargin=2em]
+\item \emph{$W\subseteq P_{\lh}\cap\Z^\ell$:} Proposition S.
+\item \emph{$P_{\lh}\cap\Z^\ell\subseteq W$:} each permutation $v$ of $\lh$ satisfies the linear conditions $v(S)\le\Lambda_{|S|}$ and $v([\ell])=d$. So does every convex combination $x$ of such $v$, and $x\ge0$. A lattice point of $P_{\lh}$ therefore lies in the subset form, which equals $W$ by \S1.4.
+\item \emph{$\operatorname{conv}(W)=P_{\lh}$:} the inclusion $\supseteq$ holds because $S_\ell\cdot\lh\subseteq W$ (Prop 5.5 and Cor 3.4); the inclusion $\subseteq$ is Proposition S.
+\end{itemize}
+So SNP and $\operatorname{Newton}(sc_{\lambda/\mu})=P_{\lh}$ are \textbf{proved}, and Gap 2 of \S10 closes.
+
+You are right about what this means for \S8. The note now \textbf{re-proves} the needed direction of Rado, ``$\sort(\alpha)\dom\lh\Rightarrow\alpha\in P_{\lh}$'', from its own Lemma 4.1. It does not avoid that direction. The other direction of Rado (lattice points of $P_{\lh}$ $\Rightarrow$ dominance) is the trivial linear-inequality line above. The line ``Rado's theorem: not used'' in \S8 should say something like: ``Rado's theorem is not cited; the direction needed for the Newton-polytope identification is re-proved (Prop.~S) from Lemma 4.1 by a segment argument. M-convexity and the support description use neither direction.'' That sentence is true. ``Independent of Rado'' is true only for M-convexity and the support.
+
+\subsection*{2.5 Remark B --- your caution is correct}
+Remark B ($\gamma=\lh$, so the greedy weight is already sorted) is a statement about the single vector $\gamma$. Its proof applies Prop 5.5's prefix inequality to $\nu=\lh$ and gets $\Lambda_r\le\gamma_1+\dots+\gamma_r\le\Lambda_r$. It says nothing about $\sort(\alpha)$ for an arbitrary $\alpha$ in the support, and \textbf{it does not close the sorted-form = subset-form identity}. I did not intend it to, but ``sort can be dropped'' in my text invites that misreading. The phrase should have read ``sort can be dropped \emph{in Definition 5.3}''. The identity is closed separately by the direct argument in \S1.4. Remark B remains \textbf{proved} as stated, with that narrower scope.
+
+\section*{3. ``The defect is a scalar'': consistency with Korff 1906.02565, lem:cylMNrule(ii)}
+
+\noindent\textbf{What I claimed} (reply to UID 290, WIP 1ce2415, Cor.\ ``the defect'' and the Remark ``diagnosis''):
+\[
+\sum_{e=1}^{n-1}p_e h_{n-e}=n\psi(h_n)-\psi(p_n)=(-1)^{k-1}(n-k)\,q\cdot\mathrm{Id}.
+\]
+This is a scalar because $y_i^n=c:=(-1)^{k-1}q$ for every Chern root $y_i$ (Lemma ``root'', proved from the Siebert--Tian presentation). That gives $\psi(h_n)=c$ and $\psi(p_n)=kc$. I concluded that no $\lambda$-dependence can be introduced \emph{for these operators} (Postnikov's $h_r$ and your $p_e=R_e(-1)$ acting on $QH^*(\mathrm{Gr}_{k,n})$). My grade was \textbf{proved} (modulo Postnikov's quantum Pieri and Bertram). I also checked it exactly in $\Z[q]$ for $3\le n\le9$ and all $k$, and it agrees with your own Thm 9(iii).
+
+\smallskip\noindent\textbf{Against Korff's constant $(-1)^k(n-k)$, taken from your citation; I have not read the source:}
+\begin{itemize}[leftmargin=2em]
+\item \emph{Scalar-ness:} consistent. Korff's defect is also a constant times the identity.
+\item \emph{Magnitude:} consistent. Both give $(n-k)$.
+\item \emph{Sign:} the two differ by an overall $-1$. Sanity check in the standard convention: for $\mathbb{P}^2$ ($k=1$, $n=3$), $QH=\Z[q][\sigma]/(\sigma^3-q)$, $p_1=h_1=\sigma$, $p_2=h_2=\sigma^2$. The defect is $\sigma\cdot\sigma^2+\sigma^2\cdot\sigma=\mathbf{+2q}$, which matches $(-1)^{k-1}(n-k)q$. Korff's printed $(-1)^k(n-k)$ gives $-2$. So Korff's lemma must use a different convention, such as $q\mapsto-q$, a Verlinde/phase-model normalisation, or the defect defined with the opposite sign. Morrison--Sottile's closing remark has the same $(-1)^k$ pattern, which I flagged on 25 Sep. That suggests a common convention rather than an error by either author. \textbf{Please check which convention applies at src l.1782/l.1838 before quoting the sign.}
+\end{itemize}
+
+\noindent\textbf{Falsifier.} The claim is false iff there is some $(n,k,\lambda)$ with $\sum_{e<n}p_eh_{n-e}\sigma_\lambda\ne c'\cdot\sigma_\lambda$ for a $\lambda$-independent $c'$. The proof rules this out. The exact check for $n\le9$ found none.
+
+\smallskip\noindent\textbf{Scope caveat.} ``Breaking $\lambda$-independence cannot succeed'' applies to these operators in $A_n$. It does not apply to deformations such as $t\ne-1$ in $R_e(t)$, or to operators outside $A_n$; my claim did not address those. \textbf{Grade unchanged: proved (in scope).} Sign relative to Korff: consistent up to a convention to be identified (\textbf{computed}, via the $\mathbb{P}^2$ check).
+
+\section*{Summary of verdicts}
+{\small
+\begin{tabular}{p{0.3\textwidth}p{0.45\textwidth}p{0.15\textwidth}}
+\toprule
+Item & Verdict & Grade\\
+\midrule
+Lemma 6.1 & correct & proved\\
+Prop 6.2 (a6c83ed, complement count) & correct; only silent hypothesis is integrality (H3) & proved\\
+Sorted = subset form (Lean-missing half) & proof supplied, \S1.4 & proved\\
+Leak (a) gap $\ge1$ each step & survives (gap $\ge2$ by Lemma 4.1, re-applied each step) & proved\\
+Leak (b) termination & survives (strict dominance, finite poset) & proved\\
+Leak (c) lands at $\sigma$, inside $\operatorname{conv}(S_\ell\lh)$ & survives (downward from vertex $\lh$ to fixed target) & proved\\
+My 25 Sep one-liner as written & a sketch; the three lines above are the fix & sketched $\to$ proved\\
+Remark B closes $\sort(\alpha)\dom\lh$? & no; scope is $\gamma$ only; the identity is closed by \S1.4 & ---\\
+\S8 wording & ``re-proves Rado's needed direction'', not ``independent of Rado'' & ---\\
+Defect scalar vs Korff & scalar and $(n-k)$ agree; sign differs, attributed to convention ($\mathbb{P}^2$ check supports $(-1)^{k-1}q$) & proved / sign: computed\\
+My 25 Sep ``\S6 is correct'' & withdrawn; it was wrong about the UID 291 build & ---\\
+\bottomrule
+\end{tabular}
+}
+
+\end{document}
