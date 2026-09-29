@@ -1,0 +1,312 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=*}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\hX}{\widehat{X}}
+\newcommand{\cross}{\textstyle\prod^{\times}}
+\newcommand{\poch}[2]{(#1;t)_{#2}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\Res}{\operatorname*{Res}}
+\newcommand{\plab}[1]{\textbf{(#1)}}
+
+\title[The two-column rule (TC) for all $k$]{The two-column rule (TC) for $e_k(Y)\bullet(e_ae_b)$, proved for all $k$: outer peel, a three-pole residue step, and a two-index closing identity}
+\author{Rick}
+\date{2026-09-29}
+
+\begin{document}
+
+\begin{abstract}
+For every number of variables $m\ge0$ and every $k\ge0$ we prove a closed generating-function rule (TC) for $\sum_{a,b}z^aw^b\,t^{-\binom k2}e_k(Y)\bullet(e_ae_b)$, as an identity in $\Lambda_m\otimes\mathbb{Q}(s,t)(z,w)$, $s=q^{-1}$. The right side is a sum of chain shifts $e_b\,E(t^iz)E(t^jw)$ weighted by products of two one-column weights $N^{(n_1)}_iN^{(n_2)}_j$ and a cross kernel $K_{ij}$. Via Hikita's Definition~3.4 and Lemma~3.3 (arXiv:2503.23597), the coefficients are $e_k\star(e_ae_b)$. The proof is the Day~207b outer-peel argument; the closing identity reduces to a three-line polynomial identity.
+\end{abstract}
+
+\maketitle
+
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-09-29\\
+\textbf{Recipient:} & Clio Vega\\
+\textbf{Title:} & The two-column rule (TC) for $e_k(Y)\bullet(e_ae_b)$, proved for all $k$\\
+\textbf{WIP commit:} & \texttt{1e92c63}\\
+& {\footnotesize(\texttt{proofs/2026-09-29-day209-two-column-TC-PROVED.md}, \texttt{scripts/day209/})}\\
+\textbf{Status:} & Proved; self-checked and machine-checked; not yet reviewed by anyone else.\\
+\textbf{Prior reference:} & One-column companion: $e_k\star e_r$ for all $k$ (Day~207b),\\
+& \texttt{notes/2026-09-26-ek-star-er-proved-for-clio.pdf}, commit \texttt{e98fb0b}.\\
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent\textbf{Please check in particular:} \S\ref{sec:step}, the step map, especially the Laurent/residue extraction for the $e_n$ coefficient; and \S\ref{sec:star2}, Step~B, the normalisations. Items \plab{P1}--\plab{P8} are machine-checked, and the step map was compared against an independent symbolic recursion.
+
+\section{Conventions and statement}\label{sec:statement}
+
+The conventions are those of Day~207b (``207b'' below; source file
+{\footnotesize\texttt{proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md}}):
+\begin{itemize}
+\item $s=q^{-1}$, $a_{ij}=(X_i-tX_j)/(X_i-X_j)$, $E(z)=\prod_i(1+X_iz)=\sum_r e_rz^r$;
+\item $\alpha_j=\prod_{i\le j}(s-t^i)/\poch tj$;
+\item $c(n,j)=\dfrac{\poch s{n-j}}{\poch t{n-j}}\bigl(\alpha_j-s\,t^{n-j}\alpha_{j-1}\bigr)$;
+\item $N^{(n)}_j=t^{-nj}c(n,j)$.
+\end{itemize}
+Define the cross kernel
+\[
+K_{ij}:=\prod_{p<i}\frac{t^pz-sw}{t^pz-t^jw}\;\prod_{r<j}\frac{sz-t^rw}{t^iz-t^rw},
+\]
+and, for $i,j\ge0$,
+\[
+V^{(n)}_{ij}:=K_{ij}\sum_{n_1+n_2=n}s^{(n_1-i)+(n_2-j)}\,t^{-(n_1-i)j-(n_2-j)i}\,N^{(n_1)}_iN^{(n_2)}_j\,z^{-n_1}w^{-n_2},
+\]
+with $V:=0$ if $i<0$ or $j<0$. Since $c(n,j)=0$ for $n<j$, the constraints $n_1\ge i$ and $n_2\ge j$ are automatic.
+
+\begin{theorem}[TC]\label{thm:TC}
+For all $m\ge0$ and $k\ge0$, in $\Lambda_m\otimes\mathbb{Q}(s,t)(z,w)$,
+\[
+\Gamma_k:=\sum_{a,b}z^aw^b\,t^{-\binom k2}e_k(Y)\bullet(e_ae_b)
+\;=\;T_k:=\sum_{b,i,j}s^{2b}t^{-b(i+j)}\,V^{(k-b)}_{ij}\;e_b\,E(t^iz)E(t^jw).
+\]
+\end{theorem}
+Writing $b_0=b$ and $n_1+n_2=k-b$, this is PROVE.md's (TC) verbatim.
+
+\begin{corollary}
+$\Gamma_k$ is a polynomial in $z$ and $w$. Hence all the poles of $T_k$ at $z=t^cw$ and at $z=0$ cancel in the total, and the coefficient of $z^aw^b$ in $T_k$ is $e_k\star(e_ae_b)$, in Hikita's reading (207b \S0). In particular this gives $e_2\star(e_ae_b)$ for all $a,b$.
+\end{corollary}
+
+\section{The recursion (R2)}\label{sec:R2}
+
+This is 207b \S\S2--3 verbatim. $(A_k)$ and $(K_k)$ hold for any symmetric $F$, and $F=e_ae_b$ is symmetric. With
+\[
+\varphi(u):=\frac{u(1+suz)(1+suw)}{(1+uz)(1+uw)}
+\quad\text{we get}\quad
+\Gamma_k=E(z)E(w)\sum_{|A|=k}\cross_A\prod_{a\in A}\varphi(X_a).
+\]
+The reason is that the generating function of $(\pi^k(e_ae_b))^{(A)}=X_A\,e_a(X_{A^c},sX_A)\,e_b(X_{A^c},sX_A)$ is $X_A\prod_{A^c}(1+Xz)(1+Xw)\prod_A(1+sXz)(1+sXw)$.
+
+The proof of 207b (R) (ordered formula (C2), then Poincar\'e (C3), then separating $a_1=i$) uses nothing about $\varphi$. Together with $\varphi(X_i)E(z)E(w)=X_i(1+sX_iz)(1+sX_iw)E(\hX_i;z)E(\hX_i;w)$, it gives
+\begin{equation}\tag{R2}
+[k]\,\Gamma_k(X)=\sum_iX_i(1+sX_iz)(1+sX_iw)\prod_{j\ne i}a_{ij}\;\Gamma_{k-1}(\hX_i),\qquad m\ge1.
+\end{equation}
+For $m=0$, $\Gamma_k=0$ when $k\ge1$.
+
+\section{Step map (rational form of Lemma 2)}\label{sec:step}
+
+\begin{lemma}[Lemma $2'$, residues]\label{lem:2prime}
+Let $\mathsf K\supseteq\mathbb{Q}(t)$ be a field and $H\in\mathsf K(y)$ with $H(0)=0$. Suppose the poles of $H/y$ are simple, lie at points $p_\ell\notin\{X_i\}$, and that $H(y)/y=O(1/y)$ at $\infty$. Then in $\mathsf K(X_1,\dots,X_m)$,
+\[
+(1-t)\sum_iH(X_i)\prod_{j\ne i}a_{ij}=-\sum_\ell\Res_{y=p_\ell}\Bigl[\frac{H(y)Q(1/y)}{y}\Bigr]-\Res_{y=\infty}\Bigl[\frac{H(y)Q(1/y)}{y}\Bigr],
+\]
+where $Q(1/y):=\prod_j(y-tX_j)/(y-X_j)$.
+\end{lemma}
+\begin{proof}
+Let $f(y):=H(y)Q(1/y)/y$. It is regular at $y=0$. Its residue at $y=X_i$ is $(1-t)H(X_i)\prod_{j\ne i}a_{ij}$. The sum of all residues of a rational function is $0$.
+\end{proof}
+
+This is the same residue argument as Day~205b Lemma~2 (Macdonald III (2.10)); Lemma~2 is the case $H=y^n$. We use it with $\mathsf K=\mathbb{Q}(s,t,z,w,x)$. At a pole $y=-1/a$ we have $Q(-a)=E(ta)/E(a)$ exactly, so no power series are needed.
+
+\paragraph{Step map.} Fix one term $\cW\cdot e_b(\hX_i)E(\hX_i;\gamma)E(\hX_i;\delta)$ of $T_{k-1}(\hX_i)$, where $\gamma=t^iz$, $\delta=t^jw$, and $\cW\in\mathbb{Q}(s,t)(z,w)$. Put $u=X_i$. Then
+\begin{itemize}
+\item $e_b(\hX_i)=\sum_{c\le b}(-u)^ce_{b-c}=[x^b]\,E(x)/(1+xu)$;
+\item $E(\hX_i;a)=E(a)/(1+au)$.
+\end{itemize}
+So, after multiplying by $u(1+suz)(1+suw)$ and summing over $i$ against $\prod a_{ij}$, the term contributes
+\[
+\cW\,E(\gamma)E(\delta)\cdot[x^b]\sum_iE(x)\,H(X_i;x)\prod_{j\ne i}a_{ij},\qquad
+H(y;x):=\frac{y(1+syz)(1+syw)}{(1+\gamma y)(1+\delta y)(1+xy)}.
+\]
+Here $[x^b]$ is taken of a finite sum of rational functions regular at $x=0$, so it commutes with the sum over $i$. The function $H/y$ has simple poles at $-1/a$ for $a\in\{x,\gamma,\delta\}$, and it is $\sim c/(xy)$ at $\infty$, where
+\[
+c:=\frac{s^2zw}{\gamma\delta}=s^2t^{-i-j}.
+\]
+The residues are $\rho_a:=\dfrac{(a-sz)(a-sw)}{a\prod_{a'\ne a}(a-a')}$. Lemma~\ref{lem:2prime} then gives
+\[
+(1-t)\sum_iH(X_i;x)\prod a_{ij}=\frac cx-\sum_{a\in\{x,\gamma,\delta\}}\rho_a\,\frac{E(ta)}{E(a)}.
+\]
+Multiply by $E(x)E(\gamma)E(\delta)$ and write $E(x)=\sum e_nx^n$ and $E(tx)=\sum t^ne_nx^n$. The coefficient of $e_n$ becomes $[x^{b-n}]$ of the Laurent expansion at $x=0$ of
+\[
+\tilde\rho_n(x)=\Bigl(\frac cx-t^n\rho_x\Bigr)E(\gamma)E(\delta)-\rho_\gamma E(t\gamma)E(\delta)-\rho_\delta E(\gamma)E(t\delta).
+\]
+This function has simple poles at $x\in\{0,\gamma,\delta\}$ and is $O(1/x)$ at $\infty$. So:
+\begin{itemize}
+\item \textbf{$n=b+1$:} the coefficient is $\Res_0\tilde\rho_{b+1}=c(1-t^{b+1})E(\gamma)E(\delta)$, since $\Res_0\rho_x=c$.
+\item \textbf{$n\le b$:} there is no residue at $\infty$. With $\Res_\gamma\rho_x=\kappa_\gamma$ and $\Res_\gamma\rho_\gamma=-\kappa_\gamma$, the coefficient is
+\[
+-\kappa_\gamma\gamma^{n-b-1}\bigl(E(t\gamma)-t^nE(\gamma)\bigr)E(\delta)-\kappa_\delta\delta^{n-b-1}E(\gamma)\bigl(E(t\delta)-t^nE(\delta)\bigr),
+\]
+where $\kappa_\gamma:=\dfrac{(\gamma-sz)(\gamma-sw)}{\gamma(\gamma-\delta)}$ and $\kappa_\delta:=\dfrac{(\delta-sz)(\delta-sw)}{\delta(\delta-\gamma)}$.
+\item \textbf{$n>b+1$:} the coefficient is $0$.
+\end{itemize}
+For one column ($w$-free) this collapses to 207b (L)(a)+(b). \texttt{step\_map\_check.py} confirms that this closed step map equals Day~208's symbolic \texttt{gf\_recursion.step}.
+
+\section{Step Lemma (L2) and the reduction to \texorpdfstring{($\bigstar$2)}{(*2)}}\label{sec:L2}
+
+\begin{lemma}[L2]\label{lem:L2}
+For all $m\ge0$ and $k\ge1$:
+\[
+\sum_iX_i(1+sX_iz)(1+sX_iw)\prod_{j\ne i}a_{ij}\;T_{k-1}(\hX_i)=[k]\,T_k(X).
+\]
+\end{lemma}
+\begin{proof}
+Write $T_{k-1}=\sum W'_{bij}\,e_bE(t^iz)E(t^jw)$ with $W'_{bij}=s^{2b}t^{-b(i+j)}V^{(k-1-b)}_{ij}$. By \S\ref{sec:step}, $(1-t)\cdot\mathrm{LHS}$ is a sum of terms $e_{b'}E(t^iz)E(t^jw)$. For each $(b',i,j)$ the coefficient is
+\begin{multline*}
+W'_{b'-1,ij}\,c\,(1-t^{b'})+\sum_{b\ge b'}\Bigl[t^{b'}W'_{bij}\bigl(\kappa_\gamma\gamma^{b'-b-1}+\kappa_\delta\delta^{b'-b-1}\bigr)\\
+-W'_{b,i-1,j}\,\kappa_\gamma^{(i-1,j)}(t^{i-1}z)^{b'-b-1}-W'_{b,i,j-1}\,\kappa_\delta^{(i,j-1)}(t^{j-1}w)^{b'-b-1}\Bigr].
+\end{multline*}
+Here $\kappa^{(i-1,j)}$ denotes $\kappa$ evaluated at $(\gamma,\delta)=(t^{i-1}z,t^jw)$. The two last terms are the shifted outputs $E(t\gamma')$ of the $(i-1,j)$ and $(i,j-1)$ inputs, and they land on $E(t^iz)E(t^jw)$.
+
+Put $n=k-b'$ and $p=b-b'$, and factor out $s^{2b'}t^{-b'(i+j)}$. The prefix weights give:
+\begin{itemize}
+\item $W'_{b'-1,ij}\cdot c=s^{2b'}t^{-b'(i+j)}V^{(n)}_{ij}$;
+\item $W'_{bij}=s^{2b'}t^{-b'(i+j)}\,c^p\,V^{(n-1-p)}_{ij}$;
+\item $W'_{b,i-1,j}=s^{2b'}t^{-b'(i+j)}\,t^{b'}(ct)^p\,V^{(n-1-p)}_{i-1,j}$, and the same for $(i,j-1)$.
+\end{itemize}
+So the coefficient is $s^{2b'}t^{-b'(i+j)}\bigl[(1-t^{b'})V^{(n)}_{ij}+t^{b'}\cdot\Sigma\bigr]$, where
+\begin{multline*}
+\Sigma:=\sum_{p\ge0}c^p\Bigl[V^{(n-1-p)}_{ij}\bigl(\kappa_\gamma\gamma^{-p-1}+\kappa_\delta\delta^{-p-1}\bigr)
+-t^pV^{(n-1-p)}_{i-1,j}\,\kappa_\gamma^{(i-1,j)}(t^{i-1}z)^{-p-1}\\
+-t^pV^{(n-1-p)}_{i,j-1}\,\kappa_\delta^{(i,j-1)}(t^{j-1}w)^{-p-1}\Bigr].
+\end{multline*}
+
+\medskip\noindent\textbf{($\bigstar$2)} \emph{For all $n\ge0$ and $i,j\ge0$: $\Sigma=(1-t^n)V^{(n)}_{ij}$.} (Proved in \S\ref{sec:star2}.)
+
+\medskip
+Given ($\bigstar$2), the coefficient is $s^{2b'}t^{-b'(i+j)}(1-t^{b'+n})V^{(n)}_{ij}=(1-t^k)W^{(k)}_{b'ij}$. Divide by $(1-t)$. This matches $T_k$ term by term, so the sums agree and no uniqueness of the representation is needed.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:TC} from (L2)]
+Induct on $k$, for all $m$ at once. For $k=0$, $\Gamma_0=E(z)E(w)=T_0$, since $V^{(0)}_{00}=1$. Let $k\ge1$.
+\begin{itemize}
+\item $m=0$: $\Gamma_k=0$, and (L2) with its empty left side gives $[k]T_k=0$.
+\item $m\ge1$: by (R2), the induction hypothesis in $\hX_i$, and (L2), $[k]\Gamma_k=[k]T_k$.
+\end{itemize}
+(This is 207b's $(E_k)$ argument word for word.)
+\end{proof}
+
+\section{Proof of \texorpdfstring{($\bigstar$2)}{(*2)}}\label{sec:star2}
+
+\paragraph{Generating function.} Let $\cV_{ij}(x):=\sum_nV^{(n)}_{ij}x^n$. With $C_i(x):=\sum_nc(n,i)x^n$ (207b), the sum over $(n_1,n_2)$ factors as
+\[
+\cV_{ij}(x)=K_{ij}\,s^{-i-j}t^{2ij}\,C_i(X)\,C_j(W),\qquad X:=st^{-i-j}x/z,\quad W:=st^{-i-j}x/w.
+\]
+The $t$-exponent is $-(n_1-i)j-n_1i-(n_2-j)i-n_2j=-(n_1+n_2)(i+j)+2ij$.
+
+Multiply ($\bigstar$2) by $x^n$ and sum over $n$ (the $p$-sums are convolutions). Then ($\bigstar$2) for all $n$ is equivalent to
+\begin{equation}\tag{$\bigstar$2-GF}
+\cV_{ij}(x)U(x)-\cV_{ij}(tx)=-\kappa_\gamma^{(i-1,j)}\frac{x}{t^{i-1}z-ctx}\cV_{i-1,j}(x)-\kappa_\delta^{(i,j-1)}\frac{x}{t^{j-1}w-ctx}\cV_{i,j-1}(x),
+\end{equation}
+where $U:=1-\dfrac{\kappa_\gamma x}{\gamma-cx}-\dfrac{\kappa_\delta x}{\delta-cx}$.
+
+\paragraph{Step A: $U$ is a product.} Let $F(y):=\dfrac{(y-sz)(y-sw)}{y(y-\gamma)(y-\delta)}$.
+\begin{itemize}
+\item Its partial fractions are $F=\dfrac cy+\dfrac{\kappa_\gamma}{y-\gamma}+\dfrac{\kappa_\delta}{y-\delta}$. \hfill\plab{P1}
+\item Hence $xF(cx)=1-\dfrac{\kappa_\gamma x}{\gamma-cx}-\dfrac{\kappa_\delta x}{\delta-cx}=U$. \hfill\plab{P2}
+\item Now evaluate $F$ at $y=cx$. Using $c\gamma\delta=s^2zw$, together with $swx/(\gamma\delta)=X$, $szx/(\gamma\delta)=W$ and $s^2zwx/(\gamma^2\delta)=sX/A$ ($A:=t^i$, $B:=t^j$), we get
+\[
+U=\frac{(1-X)(1-W)}{(1-sX/A)(1-sW/B)}.\tag{P3}
+\]
+\end{itemize}
+This is the two-column version of 207b's move $C_j(x)\bigl[1-(1-st^{-j})x/(1-st^{-j}x)\bigr]=C_j(x)(1-x)/(1-st^{-j}x)$. The residue function $F$ \emph{is} that move.
+
+\paragraph{Step B: normalise.} From 207b \S4, $C_i(x)=x^iG(tx)\bigl[\alpha_i(1-sx)/(1-x)-s\alpha_{i-1}\bigr]$. Together with the linear factorization $\alpha_i(1-sy)-s\alpha_{i-1}(1-y)=D_i(1-st^{-i}y)$, this gives
+\[
+C_i(x)=D_i\,x^iG(tx)\frac{1-sx/A}{1-x},\qquad \frac{G(y)}{G(ty)}=\frac{1-sy}{1-y},\qquad (1-t^i)D_i=t(s-t^{i-1})D_{i-1}\ (i\ge1).
+\]
+Divide ($\bigstar$2-GF) by $K_{ij}s^{-i-j}t^{2ij}\cdot D_iD_jX^iW^jG(t^2X)G(t^2W)$. This is legitimate because $D_i\ne0$ in $\mathbb{Q}(s,t)$. The normalised pieces are:
+\begin{itemize}
+\item $\hat C(X):=C_i(X)/(D_iX^iG(t^2X))=\dfrac{(1-stX)(1-sX/A)}{(1-tX)(1-X)}$.
+\item $\hat C_t(X):=C_i(tX)/(\dots)=\dfrac{A-stX}{1-tX}$.
+\item \textbf{Left side.} $L_0:=\hat C(X)\hat C(W)U-\hat C_t(X)\hat C_t(W)$. By (P3),
+\[
+L_0=\frac{(1-stX)(1-stW)-(A-stX)(B-stW)}{(1-tX)(1-tW)}.
+\]
+\item \textbf{First shifted term} ($i\ge1$). Use:
+\begin{itemize}
+\item $\dfrac{x}{t^{i-1}z-ctx}=\dfrac{tBX/s}{1-st^2X/A}$; \hfill\plab{P4}
+\item $\cV_{i-1,j}$ has prefactor $s\cdot t^{-2j}\cdot K_{i-1,j}/K_{ij}$ relative to $\cV_{ij}$;
+\item $C_{i-1}(tX)/(D_iX^iG(t^2X))=\dfrac{1-A}{ts-A}\cdot\dfrac At X^{-1}\dfrac{1-st^2X/A}{1-tX}$, in which the factor $(1-st^2X/A)$ cancels the denominator of (P4);
+\item the telescoped ratio, with $\rho:=z/w=W/X$,
+\[
+\frac{K_{i-1,j}}{K_{ij}}=\frac{B(A\rho/t-B)(A\rho/t-1/t)}{(A\rho/t-s)(A\rho/t-B/t)};\tag{P8}
+\]
+\item the product with $\kappa_\gamma^{(i-1,j)}=\dfrac{(A/t-s)(A\rho/t-s)}{(A/t)(A\rho/t-B)}$, which is
+\[
+\frac{B(A-st)(A\rho-1)}{A(A\rho-B)}.\tag{P6}
+\]
+\end{itemize}
+The first shifted term contributes $-S_1$ to the right side of ($\bigstar$2-GF), with
+\[
+S_1=-\frac{(1-A)(B-stW)(AW-X)}{(AW-BX)(1-tX)(1-tW)}.
+\]
+For $i=0$ the term is absent, and the formula has the factor $(1-A)=0$ anyway.
+\item \textbf{Second shifted term.} By the $z\leftrightarrow w$, $i\leftrightarrow j$ symmetry of $K_{ij}$, $V$ and $\kappa$, it contributes $-S_2$ with
+\[
+S_2=-\frac{(1-B)(A-stX)(W-BX)}{(AW-BX)(1-tX)(1-tW)}.
+\]
+\end{itemize}
+
+\paragraph{Step C: the closing polynomial identity.} ($\bigstar$2-GF) is now $L_0+S_1+S_2=0$. Put $u:=stX$ and $v:=stW$. We must show
+\[
+(AW-BX)\bigl[(1-u)(1-v)-(A-u)(B-v)\bigr]=(1-A)(B-v)(AW-X)+(1-B)(A-u)(W-BX).\tag{P7}
+\]
+\begin{itemize}
+\item The bracket on the left is $(1-AB)-(1-B)u-(1-A)v$.
+\item \emph{Constant parts.} $(1-A)B(AW-X)+(1-B)A(W-BX)=AW-BX-A^2BW+AB^2X=(1-AB)(AW-BX)$. This matches.
+\item \emph{$v$-parts.} The right has $-(1-A)v(AW-X)$ and the left has $-(1-A)v(AW-BX)$. They differ by $(1-A)(1-B)vX$.
+\item \emph{$u$-parts.} The right has $-(1-B)u(W-BX)$ and the left has $-(1-B)u(AW-BX)$. They differ by $-(1-A)(1-B)uW$.
+\item The total difference is $(1-A)(1-B)(vX-uW)=(1-A)(1-B)\cdot st(WX-XW)=0$.
+\end{itemize}
+($\bigstar$2-GF) is therefore an identity of rational functions in $x$ with $A=t^i$ and $B=t^j$. None of the denominators used vanishes identically: $(AW-BX)\propto(t^iz-t^jw)$, and $(1-sX/A)$, $(ts-A)$, $(A\rho/t-s)$ are all nonzero. Comparing coefficients of $x^n$ gives ($\bigstar$2) for every $n\ge0$ (at $n=0$ it reads $0=0$), and this completes the proof of Theorem~\ref{thm:TC}. \qed
+
+\section{Remarks}\label{sec:remarks}
+
+\paragraph{What made it short.}
+\begin{itemize}
+\item \emph{Same skeleton as 207b.} Outer peel, then one Lemma-2 evaluation per step, then an index identity. Only the evaluation has three poles instead of two, and the index identity has two indices.
+\item \emph{Rational Lemma $2'$.} Doing Lemma~2 as a residue identity on $\mathsf K(y)$ avoids all power-series bookkeeping. The $(w,\gamma)$ difference quotient of 207b becomes a residue sum over $\{\gamma,\delta\}$.
+\item \emph{The cross poles.} $K_{ij}$ is forced by the $\kappa$'s and needs no separate derivation. The whole two-index recursion collapses once $U$ factors as $(1-X)(1-W)/((1-sX/A)(1-sW/B))$, via the residue function $F$, and the kernel ratio $\times\,\kappa$ collapses to $(AW-X)/(AW-BX)$. What remains is (P7), which says in effect that ``$u/X=v/W$''.
+\item \emph{No $q$-Pfaff--Saalsch\"utz.} PROVE.md expected one; it is not needed. The two columns interact only through the rational factor $(AW-X)/(AW-BX)$, and each column keeps its own 207b generating function $C_i$.
+\end{itemize}
+
+\paragraph{Verification} (\texttt{scripts/day209/}, all logs ALL OK).
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}p{0.36\textwidth}p{0.3\textwidth}p{0.27\textwidth}@{}}
+\toprule
+check & scope & log\\
+\midrule
+step map (\S\ref{sec:step}) $=$ Day~208 \texttt{gf\_recursion.step} & symbolic, $k\le3$ & \texttt{step\_map\_check.log}\\
+iterated step map $=$ (TC) & symbolic, $k\le4$ & \texttt{step\_map\_check.log}\\
+($\bigstar$2-GF) with free $A,B$ & symbolic, exact $0$ & \texttt{star2\_rational.py}\\
+($\bigstar$2) coefficient form & $n\le8$, all $i+j\le n$, 3 exact random points & \texttt{star2\_coeff\_check.log}\\
+(P1)--(P8) & symbolic & \texttt{check\_writeup\_steps.log}\\
+(TC) vs direct AHA (Day~208) & $m\le6$, $k\le4$, and $(6,5),(7,4),(7,5)$ & \texttt{scripts/day208/}\allowbreak\texttt{check\_conj*.log}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Scope.} Operator identity in $\Lambda_m\otimes\mathbb{Q}(s,t)(z,w)$, for every $m\ge0$ and $k\ge0$.
+
+\paragraph{Gaps.} None in the argument. The load-bearing inputs are 207b's $(A_k)$, $(K_k)$ and (R), which were proved and re-used verbatim; 207b's $C_i$ closed form and $D$-recursion; and the residue theorem. The $\star$-reading uses Hikita 2503.23597 Def.~3.4 / Lemma~3.3 (verified-quote), as in 207b.
+
+\paragraph{Not claimed.}
+\begin{itemize}
+\item An explicit bounded coefficient formula for $e_2\star(e_ae_b)$. By Day~208 \S2 there is none of bounded length: the tail $T(q)+T(N-q)=0$ comes from the cross poles.
+\item DS at length 3 for general $k$. Extracting it from (TC) is a separate job and is not claimed here.
+\end{itemize}
+
+\paragraph{Novelty.} As per novelty audit~12 (Day~208); no browsing was done on Day~209. The kernel $(K_k)$ is classical (Macdonald III (2.2)).
+
+\paragraph{Next.} The $\ell$-column rule for $\sum z_1^{a_1}\cdots z_\ell^{a_\ell}\,e_k(Y)\bullet(e_{a_1}\cdots e_{a_\ell})$. The same proof should go through with $F(y)=\prod_c(y-sz_c)/(y\prod_c(y-\gamma_c))$, and it would give $e_k\star e_\lambda$ for all $\lambda$. Conjecture (not proved here): $U=\prod_c(1-X_c)/(1-sX_c/A_c)$, with pairwise cross kernels.
+
+\end{document}
