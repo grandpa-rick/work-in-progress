@@ -1,0 +1,8 @@
+exec(open('star2_rational.py').read().split('LHS =')[0])
+U = 1 - kg(A,B)*B*X/(s*(1-s*X/A)) - kd(A,B)*A*W/(s*(1-s*W/B))
+print('U =',sp.factor(U))
+L0 = Chat(X,A)*Chat(W,B)*U - Chat_t(X,A)*Chat_t(W,B)
+print('L0 =',sp.factor(L0))
+S1 = rKi*s/B**2*Cm1_t(X,A)*Chat_t(W,B)*kg(A/t,B)*t*B*X/(s*(1-s*t**2*X/A))
+S2 = rKj*s/A**2*Chat_t(X,A)*Cm1_t(W,B)*kd(A,B/t)*t*A*W/(s*(1-s*t**2*W/B))
+print('S1 =',sp.factor(S1)); print('S2 =',sp.factor(S2))

@@ -1,8 +1,8 @@
 {
  "conjecture": "Two-column Pieri rule for Hikita's star product: generating function for t^{-C(k,2)} e_k(Y).(e_a e_b), i.e. e_k * (e_a e_b), for all k, a, b (Day 208).",
- "status": "in-progress",
+ "status": "proved",
  "date_opened": "2026-09-29",
- "date_closed": null,
+ "date_closed": "2026-09-29",
  "predecessors": [
   "hikita-star-ek-er.json (one-column e_k*e_r theorem, Day 207b)"
  ],
@@ -19,8 +19,8 @@
  "tree": {
   "id": "root",
   "approach": "Run the Day 207b outer-peel induction on the two-variable GF Gamma_0 = E(z)E(w); fit and prove a closed two-column rule (TC).",
-  "trust": "in-progress",
-  "file": "proofs/2026-09-29-day208-two-column-k2-data.md",
+  "trust": "proved",
+  "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
   "sources": [
    "2410.13642",
    "2011.12189"
@@ -28,18 +28,21 @@
   "children": [
    {
     "id": "two-column-gf-rule",
-    "approach": "(TC) sum_{a,b} z^a w^b t^{-C(k,2)} e_k(Y).(e_a e_b) = sum_{b0+n1+n2=k} sum_{i<=n1,j<=n2} s^{2b0+(n1-i)+(n2-j)} t^{-b0(i+j)-(n1-i)j-(n2-j)i} K_ij(z,w) N^(n1)_i N^(n2)_j z^{-n1} w^{-n2} e_{b0} E(t^i z)E(t^j w), K_ij = prod_{p<i}(t^p z - s w)/(t^p z - t^j w) prod_{r<j}(s z - t^r w)/(t^i z - t^r w), N^(n)_j = t^{-nj}c(n,j). Fitted on symbolic Gamma_1..Gamma_3 (fit_structure.py); checked vs direct AHA exactly at 3 random rational points for all m<=6, k<=4, and at (m,k)=(6,5),(7,4),(7,5) (check_conj.py; k=4,5 out of sample).",
-    "trust": "computed",
-    "file": "proofs/2026-09-29-day208-two-column-k2-data.md",
-    "role": "attempt",
+    "approach": "(TC) sum_{a,b} z^a w^b t^{-C(k,2)} e_k(Y).(e_a e_b) = sum_{b0+n1+n2=k} sum_{i<=n1,j<=n2} s^{2b0+(n1-i)+(n2-j)} t^{-b0(i+j)-(n1-i)j-(n2-j)i} K_ij(z,w) N^(n1)_i N^(n2)_j z^{-n1} w^{-n2} e_{b0} E(t^i z)E(t^j w), K_ij = prod_{p<i}(t^p z - s w)/(t^p z - t^j w) prod_{r<j}(s z - t^r w)/(t^i z - t^r w), N^(n)_j = t^{-nj}c(n,j). PROVED Day 209 for all k>=0, m>=0 by outer-peel induction (R2)+(L2)+(★2). Originally fitted on symbolic Gamma_1..Gamma_3 (fit_structure.py); checked vs direct AHA exactly at 3 random rational points for all m<=6, k<=4, and at (m,k)=(6,5),(7,4),(7,5) (check_conj.py; k=4,5 out of sample).",
+    "trust": "proved",
+    "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
+    "role": "premise",
     "scripts": [
      "scripts/day208/check_conj.py",
-     "scripts/day208/fit_structure.py"
+     "scripts/day208/fit_structure.py",
+     "scripts/day209/step_map_check.py",
+     "scripts/day209/star2_rational.py",
+     "scripts/day209/star2_coeff_check.py",
+     "scripts/day209/check_writeup_steps.py"
     ],
     "depends": [
      "hikita-star-ek-er#ek-star-er-pieri-all-k"
     ],
-    "blocking": "two-column-closing-identity",
     "children": [
      {
       "id": "ek-star-er-theorem-stub",
@@ -52,10 +55,45 @@
      },
      {
       "id": "two-column-closing-identity",
-      "approach": "BLOCKING sub-claim: closing identity for the two-variable outer-peel step (analogue of Day 207b (*)); every other step of gf_recursion.py is a proved Day 207b lemma. Proving it promotes (TC) to proved by outer-peel induction.",
-      "trust": "in-progress",
-      "file": null,
+      "approach": "(★2): sum_p c^p[V^{n-1-p}_ij(kg g^{-p-1}+kd d^{-p-1}) - t^p V^{n-1-p}_{i-1,j} kg_{i-1,j} (t^{i-1}z)^{-p-1} - t^p V^{n-1-p}_{i,j-1} kd_{i,j-1} (t^{j-1}w)^{-p-1}] = (1-t^n)V^n_ij. Proof: GF in x; U = xF(cx) with residue function F(y)=(y-sz)(y-sw)/(y(y-g)(y-d)) factors as (1-X)(1-W)/((1-sX/A)(1-sW/B)); kernel ratio x kappa collapses to (AW-X)/(AW-BX); closes by 3-line polynomial identity (P7). Symbolic in A=t^i, B=t^j.",
+      "trust": "proved",
+      "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
       "role": "premise",
+      "children": [],
+      "scripts": [
+       "scripts/day209/star2_rational.py",
+       "scripts/day209/star2_coeff_check.py",
+       "scripts/day209/check_writeup_steps.py"
+      ]
+     },
+     {
+      "id": "two-column-step-map",
+      "approach": "Rational Lemma 2' (residue theorem on K(y)) applied to H(y;x)=y(1+syz)(1+syw)/((1+gy)(1+dy)(1+xy)); closed step map (a) e_{b+1}: c(1-t^{b+1}), (b) n<=b: -kappa_a a^{n-b-1}(E(ta)-t^nE(a)). Matches Day 208 gf_recursion.step symbolically k<=3.",
+      "trust": "proved",
+      "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
+      "role": "premise",
+      "scripts": [
+       "scripts/day209/step_map_check.py"
+      ],
+      "children": []
+     },
+     {
+      "id": "two-column-R2-recursion",
+      "approach": "(R2) [k]Gamma_k = sum_i X_i(1+sX_iz)(1+sX_iw) prod a_ij Gamma_{k-1}(X^_i): Day 207b (A_k),(K_k),(R) verbatim with two-variable phi.",
+      "trust": "proved",
+      "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
+      "role": "premise",
+      "depends": [
+       "hikita-star-ek-er#ek-star-er-pieri-all-k"
+      ],
+      "children": []
+     },
+     {
+      "id": "attempt-q-pfaff-saalschutz",
+      "approach": "PROVE.md-anticipated two-index q-Pfaff-Saalschutz closing identity: NOT needed; columns interact only via rational factor (AW-X)/(AW-BX).",
+      "trust": "hunch",
+      "role": "attempt",
+      "reason": "superseded: closing identity is rational, no hypergeometric summation required",
       "children": []
      }
     ]
@@ -72,6 +110,13 @@
      "scripts/day208/tails.py",
      "scripts/day208/folded.py"
     ],
+    "children": []
+   },
+   {
+    "id": "ell-column-rule",
+    "approach": "Next: l-column rule for e_k(Y).(e_{a_1}...e_{a_l}) via F(y)=prod_c(y-sz_c)/(y prod_c(y-g_c)); conjecture U=prod_c(1-X_c)/(1-sX_c/A_c) with pairwise cross kernels; would give e_k*e_lambda for all lambda.",
+    "trust": "hunch",
+    "role": "attempt",
     "children": []
    }
   ]
