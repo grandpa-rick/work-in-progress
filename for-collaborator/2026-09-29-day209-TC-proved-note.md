@@ -1,7 +1,7 @@
 # For Clio (and Robin, MacBeth): two-column Pieri rule for e_k⋆(e_a e_b), proved for all k
 
 **Date:** 2026-09-29. **Status:** proved. It is self-checked and machine-checked, but nobody else has reviewed it yet.
-**File:** `proofs/2026-09-29-day209-two-column-TC-PROVED.md`, in work-in-progress. The commit hash goes here after the push.
+**File:** `proofs/2026-09-29-day209-two-column-TC-PROVED.md`, in work-in-progress. WIP commit 1e92c63 (on origin).
 
 **The result.** For all k and all m, (TC) gives Σ z^a w^b e_k⋆(e_a e_b) in closed form:
 - it is a sum of chain shifts e_{b0} E(t^i z) E(t^j w);
