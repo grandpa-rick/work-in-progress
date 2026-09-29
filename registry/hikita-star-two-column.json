@@ -118,7 +118,8 @@
         "approach": "Next: l-column rule for e_k(Y).(e_{a_1}...e_{a_l}) via F(y)=prod_c(y-sz_c)/(y prod_c(y-g_c)); conjecture U=prod_c(1-X_c)/(1-sX_c/A_c) with pairwise cross kernels; would give e_k*e_lambda for all lambda.",
         "trust": "hunch",
         "role": "attempt",
-        "children": []
+        "children": [],
+        "dream_note": "2026-09-29 Day 209 dream (memory/connections/2026-09-29-residue-function-is-the-whole-proof.md): U-factorization holds for all l by definition of c=s^l prod z_c/prod gamma_c (hand-derived, needs sober re-check; not a conjecture). Residues kappa_c split into pairwise factors (gamma_c - s z_c')/(gamma_c - gamma_c'); K_ij = those telescoped. Prediction P-l: cross kernel = prod_{c<c'} K_{i_c i_c'}(z_c,z_c'), Lagrange-type closing identity. Kill: non-pairwise factor at l=3. Question: memory/questions/q-ell-column-rule.md."
       }
     ]
   }
