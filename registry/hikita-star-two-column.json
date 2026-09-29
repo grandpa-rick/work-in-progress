@@ -1,0 +1,79 @@
+{
+ "conjecture": "Two-column Pieri rule for Hikita's star product: generating function for t^{-C(k,2)} e_k(Y).(e_a e_b), i.e. e_k * (e_a e_b), for all k, a, b (Day 208).",
+ "status": "in-progress",
+ "date_opened": "2026-09-29",
+ "date_closed": null,
+ "predecessors": [
+  "hikita-star-ek-er.json (one-column e_k*e_r theorem, Day 207b)"
+ ],
+ "novelty_audits": [
+  {
+   "n": 12,
+   "date": "2026-09-29",
+   "result": "clean",
+   "file": "memory/reading/2026-09-29-bw-orr-prior-art.md",
+   "also": "memory/reading/2026-09-26-prior-art-jing-deep-read.md",
+   "summary": "Result (general-k e_k*e_r, k-fold coset-sum / Jing identification, two-column GF) is NEW. k=1 plethystic-Y_1 precedent: OBW24 (2410.13642) Prop 5.4 and Ion-Wu 2011.12189 Prop 6.32 (+ Thm 7.13), stable limit, single Y_1 only. The kernel (K_k) alone is classical: Macdonald SF&HP III (2.2) (HL P_lambda at lambda=(1^k)). Also checked: SZ00, Bhattacharya, Venkateswaran - clear."
+  }
+ ],
+ "tree": {
+  "id": "root",
+  "approach": "Run the Day 207b outer-peel induction on the two-variable GF Gamma_0 = E(z)E(w); fit and prove a closed two-column rule (TC).",
+  "trust": "in-progress",
+  "file": "proofs/2026-09-29-day208-two-column-k2-data.md",
+  "sources": [
+   "2410.13642",
+   "2011.12189"
+  ],
+  "children": [
+   {
+    "id": "two-column-gf-rule",
+    "approach": "(TC) sum_{a,b} z^a w^b t^{-C(k,2)} e_k(Y).(e_a e_b) = sum_{b0+n1+n2=k} sum_{i<=n1,j<=n2} s^{2b0+(n1-i)+(n2-j)} t^{-b0(i+j)-(n1-i)j-(n2-j)i} K_ij(z,w) N^(n1)_i N^(n2)_j z^{-n1} w^{-n2} e_{b0} E(t^i z)E(t^j w), K_ij = prod_{p<i}(t^p z - s w)/(t^p z - t^j w) prod_{r<j}(s z - t^r w)/(t^i z - t^r w), N^(n)_j = t^{-nj}c(n,j). Fitted on symbolic Gamma_1..Gamma_3 (fit_structure.py); checked vs direct AHA exactly at 3 random rational points for all m<=6, k<=4, and at (m,k)=(6,5),(7,4),(7,5) (check_conj.py; k=4,5 out of sample).",
+    "trust": "computed",
+    "file": "proofs/2026-09-29-day208-two-column-k2-data.md",
+    "role": "attempt",
+    "scripts": [
+     "scripts/day208/check_conj.py",
+     "scripts/day208/fit_structure.py"
+    ],
+    "depends": [
+     "hikita-star-ek-er#ek-star-er-pieri-all-k"
+    ],
+    "blocking": "two-column-closing-identity",
+    "children": [
+     {
+      "id": "ek-star-er-theorem-stub",
+      "approach": "Stub: one-column e_k*e_r Pieri theorem (A_k kernel, K_k chain, E_k outer-peel + (*)), Day 207b; canonical node carries the proof.",
+      "trust": "proved",
+      "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+      "shared": "hikita-star-ek-er#ek-star-er-pieri-all-k",
+      "role": "premise",
+      "children": []
+     },
+     {
+      "id": "two-column-closing-identity",
+      "approach": "BLOCKING sub-claim: closing identity for the two-variable outer-peel step (analogue of Day 207b (*)); every other step of gf_recursion.py is a proved Day 207b lemma. Proving it promotes (TC) to proved by outer-peel induction.",
+      "trust": "in-progress",
+      "file": null,
+      "role": "premise",
+      "children": []
+     }
+    ]
+   },
+   {
+    "id": "two-column-straightening-free",
+    "approach": "Kill test: outer-peel on E(z)E(w) yields only chain shifts e_{b0} E(t^i z)E(t^j w), b0+i+j<=k (C(k+3,3) terms), support l(lambda)<=3; no non-chain Q-product appears, so the kill criterion did NOT fire. Symbolic for k<=3 (gf_recursion.py), k=4,5 via (TC); checked vs direct AHA m<=4, k<=3.",
+    "trust": "computed",
+    "file": "proofs/2026-09-29-day208-two-column-k2-data.md",
+    "role": "attempt",
+    "caveat": "Coefficients carry cross poles at z = t^c w (from partial-fractioning in Lemma 2) that cancel only in the total and cannot be absorbed into the shifts; the e-expansion has an unbounded tail sum_q T_lambda(t^q) e_lambda e_q e_{N-q} of length ~min(a,b), T(q)+T(N-q)=0 (tails.py, folded.py; verified vs AHA a,b<=4). No bounded-length e-expansion; GF rule is closed.",
+    "scripts": [
+     "scripts/day208/gf_recursion.py",
+     "scripts/day208/tails.py",
+     "scripts/day208/folded.py"
+    ],
+    "children": []
+   }
+  ]
+ }
+}

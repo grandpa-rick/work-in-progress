@@ -300,3 +300,50 @@ Everything is in `scripts/day207b/`; see the header. KL, A_k, (C2), (★), (L) a
 - **Consequences.**
   - Day 193 (e_3⋆e_r) and Day 195 (e_4⋆e_r) closed forms: PROVED for all r (`check_specializations.py`, symbolic in u).
   - The support claim of the min(k,r)+1 meta-conjecture: PROVED. The support is {e_b e_{r+k−b} : 0 ≤ b ≤ k}.
+
+## 8. Corollary (t = 0)  [added Day 208, 2026-09-26; grade: PROVED, all k ≥ 1, r ≥ 0]
+
+**Corollary.** For all k ≥ 1 and r ≥ 0, put μ = min(k,r) and M = max(k,r). Then e_k⋆e_r, a polynomial in the e's with coefficients in ℚ(s,t), has coefficients regular at t = 0, and
+
+  **(e_k⋆e_r)|_{t=0} = Σ_{b=0}^{μ−1} (1−s) s^b e_b e_{r+k−b} + s^μ e_μ e_M.**
+
+For r ≥ k this reads Σ_{b<k}(1−s)s^b e_b e_{r+k−b} + s^k e_k e_r. The r < k case is the same formula with k and r swapped.
+
+**Normalization.** By §0 (Hikita Def 3.4 / Lemma 3.3), e_k⋆e_r *is* t^{−C(k,2)}e_k(Y)•e_r. There is no further Hikita factor, so a t = 0 value only makes sense if the right side of the Theorem is regular at t = 0. The proof below shows this; nothing about the limit is assumed. (Independently, direct AHA shows e_k(Y)•e_r ∈ t^{C(k,2)}ℤ[X,s,t] for m ≤ 6; see `check_t0.py`.)
+
+**Step 0 (coefficients at t = 0).**
+- (t;t)_n = ∏_{i=1}^{n}(1−t^i) equals 1 at t = 0. Hence α_j and every c(n,j) lie in ℚ[s,t] localized at the (t;t)'s, and are regular at t = 0.
+- (s;t)_n|_{t=0} = 1−s for n ≥ 1 (only the i = 0 factor survives), and it equals 1 for n = 0.
+- Therefore F_n(0) = c(n,0) = (s;t)_n/(t;t)_n becomes **1−s at t = 0 for n ≥ 1**. Also F_0 ≡ c(0,0) = 1, so F_0(1) = 1.
+
+**Case r ≥ k.** Every b ∈ [0,k] has r − b ≥ 0. So in s^bF_{k−b}(t^{r−b}) = s^b Σ_j c(k−b,j) t^{j(r−b)}, each summand is regular at t = 0, and the Theorem's right side can be specialized term by term.
+- If b < r, the terms with j ≥ 1 carry t^{j(r−b)} → 0, which leaves s^b c(k−b,0)|_{t=0}.
+  - For b < k this is (1−s)s^b.
+  - For b = k (which forces r > k here) it is s^k c(0,0) = s^k.
+- If b = r, then r ≥ k ≥ b forces b = k = r. Here w = t^0 = 1 and the term is s^k F_0(1) = s^k.
+
+Summing gives Σ_{b<k}(1−s)s^b e_b e_{r+k−b} + s^k e_k e_r. ∎
+
+**Case r < k (swap).** The Y_i commute. The Theorem at r = 0 gives e_r(Y)•1 = t^{C(r,2)}e_r (trivially so for r = 0 as well). Hence
+
+  t^{−C(k,2)}e_k(Y)•e_r = t^{−C(k,2)−C(r,2)} e_k(Y)e_r(Y)•1 = t^{−C(r,2)} e_r(Y)•e_k,
+
+so e_k⋆e_r = e_r⋆e_k as elements of Λ_m ⊗ ℚ(s,t), for every m.
+- If r = 0, then e_k⋆1 = e_k, which is the formula with μ = 0.
+- If r ≥ 1, apply the Theorem to (k', r') = (r, k), where r' > k'. By the case above, all of its terms are regular at t = 0, and the specialization is Σ_{b<r}(1−s)s^b e_b e_{r+k−b} + s^r e_r e_k.
+
+So in the Theorem's own (k,r)-expansion, the individual terms with b > r carry negative powers t^{j(r−b)}. Those Laurent parts must cancel once the monomial e_be_{r+k−b} is collected with its partner b' = r+k−b. The swap identity shows that they do, without computing them. ∎
+
+**Remarks.**
+1. *Probability mixture.* For every (k,r), the weights are (1−s)s^b for 0 ≤ b < μ, together with s^μ.
+   - They sum to (1−s)(1+⋯+s^{μ−1}) + s^μ = 1.
+   - They lie in [0,1] for s ∈ [0,1].
+   - This is the law of min(G, μ), where G is geometric with P(G = b) = (1−s)s^b.
+   - The monomials e_be_{r+k−b} (b < μ) and e_μe_M are pairwise distinct: for b < μ, r+k−b > M. So the mixture is not an artifact of collisions.
+
+   It remains a probability mixture for r < k, with μ = r replacing k. At t = 0, therefore, e_k⋆ is a "truncated-geometric" averaging of the ordinary products e_be_{r+k−b} over how many of the k boxes "stay in the first column".
+2. *Collected form, directly.* For r < k and b > r, the collected coefficient s^bF_{k−b}(t^{r−b}) + s^{b'}F_{k−b'}(t^{r−b'}) is regular at t = 0. When b = b' it is the single term s^bF_{k−b}(t^{r−b}). Its value is 0 when b' ≠ r, and s^r when b' = r (that is, b = k). This is checked symbolically for k ≤ 5, r ≤ 6, and it follows from the swap identity above.
+3. *Verification* (`scripts/day208/t0/check_t0.py`, log ALL OK):
+   - (i) the collected Theorem RHS is regular at t = 0 and has limit equal to the Corollary, exactly, for k ≤ 5 and r ≤ 6;
+   - (ii) the swap symmetry RHS(k,r) = RHS(r,k) holds exactly as rational functions, for k ≤ 5 and 1 ≤ r ≤ 6;
+   - (iii) independently, direct AHA e_k(Y)•e_r (Day 205 flint pipeline) for m ≤ 6, k ≤ min(m,5) (excluding m = 6, k = 5), r ≤ m. All t-coefficients below t^{C(k,2)} vanish, and the t^{C(k,2)}-coefficient matches the Corollary at 294 random rational points (this includes r < k).
