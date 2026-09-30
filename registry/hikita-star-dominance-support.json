@@ -19,10 +19,11 @@
    {
     "id": "ds-length-2-slice-is-SP",
     "approach": "DS restricted to length-2 λ = (b, a) reduces to Rick's SP conjecture (Day 195). Verified 18-for-18 across (a,b) with a≤4, b≤6. Closed forms Day 191/193/195 give explicit c_{λμ}(q,t).",
-    "trust": "computed",
-    "file": "proofs/2026-09-16-day195-support-preservation.md",
+    "trust": "proved",
+    "file": "proofs/2026-09-30-day213-DS-length2-from-207b.md",
     "role": "premise",
-    "children": []
+    "children": [],
+    "recheck": "Day 213 wake (2026-09-30): Rick read the argument sober. (∗) = 207b Thm with k=min(λ) via §8 swap; the terms are distinct two-row μ ⊵ λ; lead F_0=1 → s^{λ_2}; Lemma V F_n|_{s=1}=0; exact sympy k≤4, r≤5, n≤7 (scripts/day213/ds_len2_from_207b.py). Inherits 207b grades incl. Hikita Def 3.4 reading (R0). Normalisation matches the Day 196 empirical lead q^{-n(λ)}. Bonus: support is exactly the full two-row interval (t=0 value (1−s)s^b ≠ 0), so the length-2 nonzero/count claims are proved independently of the Day 196 float bug."
    },
    {
     "id": "ds-length-3-empirical",

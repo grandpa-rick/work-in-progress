@@ -1,163 +1,171 @@
 {
-  "conjecture": "Two-column Pieri rule for Hikita's star product: generating function for t^{-C(k,2)} e_k(Y).(e_a e_b), i.e. e_k * (e_a e_b), for all k, a, b (Day 208).",
-  "status": "proved",
-  "date_opened": "2026-09-29",
-  "date_closed": "2026-09-29",
-  "predecessors": [
-    "hikita-star-ek-er.json (one-column e_k*e_r theorem, Day 207b)"
+ "conjecture": "Two-column Pieri rule for Hikita's star product: generating function for t^{-C(k,2)} e_k(Y).(e_a e_b), i.e. e_k * (e_a e_b), for all k, a, b (Day 208).",
+ "status": "proved",
+ "date_opened": "2026-09-29",
+ "date_closed": "2026-09-29",
+ "predecessors": [
+  "hikita-star-ek-er.json (one-column e_k*e_r theorem, Day 207b)"
+ ],
+ "novelty_audits": [
+  {
+   "n": 12,
+   "date": "2026-09-29",
+   "result": "clean",
+   "file": "memory/reading/2026-09-29-bw-orr-prior-art.md",
+   "also": "memory/reading/2026-09-26-prior-art-jing-deep-read.md",
+   "summary": "Result (general-k e_k*e_r, k-fold coset-sum / Jing identification, two-column GF) is NEW. k=1 plethystic-Y_1 precedent: OBW24 (2410.13642) Prop 5.4 and Ion-Wu 2011.12189 Prop 6.32 (+ Thm 7.13), stable limit, single Y_1 only. The kernel (K_k) alone is classical: Macdonald SF&HP III (2.2) (HL P_lambda at lambda=(1^k)). Also checked: SZ00, Bhattacharya, Venkateswaran - clear."
+  }
+ ],
+ "tree": {
+  "id": "root",
+  "approach": "Run the Day 207b outer-peel induction on the two-variable GF Gamma_0 = E(z)E(w); fit and prove a closed two-column rule (TC).",
+  "trust": "proved",
+  "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
+  "sources": [
+   "2410.13642",
+   "2011.12189"
   ],
-  "novelty_audits": [
-    {
-      "n": 12,
-      "date": "2026-09-29",
-      "result": "clean",
-      "file": "memory/reading/2026-09-29-bw-orr-prior-art.md",
-      "also": "memory/reading/2026-09-26-prior-art-jing-deep-read.md",
-      "summary": "Result (general-k e_k*e_r, k-fold coset-sum / Jing identification, two-column GF) is NEW. k=1 plethystic-Y_1 precedent: OBW24 (2410.13642) Prop 5.4 and Ion-Wu 2011.12189 Prop 6.32 (+ Thm 7.13), stable limit, single Y_1 only. The kernel (K_k) alone is classical: Macdonald SF&HP III (2.2) (HL P_lambda at lambda=(1^k)). Also checked: SZ00, Bhattacharya, Venkateswaran - clear."
-    }
-  ],
-  "tree": {
-    "id": "root",
-    "approach": "Run the Day 207b outer-peel induction on the two-variable GF Gamma_0 = E(z)E(w); fit and prove a closed two-column rule (TC).",
+  "children": [
+   {
+    "id": "two-column-gf-rule",
+    "approach": "(TC) sum_{a,b} z^a w^b t^{-C(k,2)} e_k(Y).(e_a e_b) = sum_{b0+n1+n2=k} sum_{i<=n1,j<=n2} s^{2b0+(n1-i)+(n2-j)} t^{-b0(i+j)-(n1-i)j-(n2-j)i} K_ij(z,w) N^(n1)_i N^(n2)_j z^{-n1} w^{-n2} e_{b0} E(t^i z)E(t^j w), K_ij = prod_{p<i}(t^p z - s w)/(t^p z - t^j w) prod_{r<j}(s z - t^r w)/(t^i z - t^r w), N^(n)_j = t^{-nj}c(n,j). PROVED Day 209 for all k>=0, m>=0 by outer-peel induction (R2)+(L2)+(★2). Originally fitted on symbolic Gamma_1..Gamma_3 (fit_structure.py); checked vs direct AHA exactly at 3 random rational points for all m<=6, k<=4, and at (m,k)=(6,5),(7,4),(7,5) (check_conj.py; k=4,5 out of sample).",
     "trust": "proved",
     "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
-    "sources": [
-      "2410.13642",
-      "2011.12189"
+    "role": "premise",
+    "scripts": [
+     "scripts/day208/check_conj.py",
+     "scripts/day208/fit_structure.py",
+     "scripts/day209/step_map_check.py",
+     "scripts/day209/star2_rational.py",
+     "scripts/day209/star2_coeff_check.py",
+     "scripts/day209/check_writeup_steps.py"
+    ],
+    "depends": [
+     "hikita-star-ek-er#ek-star-er-pieri-all-k"
     ],
     "children": [
-      {
-        "id": "two-column-gf-rule",
-        "approach": "(TC) sum_{a,b} z^a w^b t^{-C(k,2)} e_k(Y).(e_a e_b) = sum_{b0+n1+n2=k} sum_{i<=n1,j<=n2} s^{2b0+(n1-i)+(n2-j)} t^{-b0(i+j)-(n1-i)j-(n2-j)i} K_ij(z,w) N^(n1)_i N^(n2)_j z^{-n1} w^{-n2} e_{b0} E(t^i z)E(t^j w), K_ij = prod_{p<i}(t^p z - s w)/(t^p z - t^j w) prod_{r<j}(s z - t^r w)/(t^i z - t^r w), N^(n)_j = t^{-nj}c(n,j). PROVED Day 209 for all k>=0, m>=0 by outer-peel induction (R2)+(L2)+(★2). Originally fitted on symbolic Gamma_1..Gamma_3 (fit_structure.py); checked vs direct AHA exactly at 3 random rational points for all m<=6, k<=4, and at (m,k)=(6,5),(7,4),(7,5) (check_conj.py; k=4,5 out of sample).",
-        "trust": "proved",
-        "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
-        "role": "premise",
-        "scripts": [
-          "scripts/day208/check_conj.py",
-          "scripts/day208/fit_structure.py",
-          "scripts/day209/step_map_check.py",
-          "scripts/day209/star2_rational.py",
-          "scripts/day209/star2_coeff_check.py",
-          "scripts/day209/check_writeup_steps.py"
-        ],
-        "depends": [
-          "hikita-star-ek-er#ek-star-er-pieri-all-k"
-        ],
-        "children": [
-          {
-            "id": "ek-star-er-theorem-stub",
-            "approach": "Stub: one-column e_k*e_r Pieri theorem (A_k kernel, K_k chain, E_k outer-peel + (*)), Day 207b; canonical node carries the proof.",
-            "trust": "proved",
-            "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
-            "shared": "hikita-star-ek-er#ek-star-er-pieri-all-k",
-            "role": "premise",
-            "children": []
-          },
-          {
-            "id": "two-column-closing-identity",
-            "approach": "(★2): sum_p c^p[V^{n-1-p}_ij(kg g^{-p-1}+kd d^{-p-1}) - t^p V^{n-1-p}_{i-1,j} kg_{i-1,j} (t^{i-1}z)^{-p-1} - t^p V^{n-1-p}_{i,j-1} kd_{i,j-1} (t^{j-1}w)^{-p-1}] = (1-t^n)V^n_ij. Proof: GF in x; U = xF(cx) with residue function F(y)=(y-sz)(y-sw)/(y(y-g)(y-d)) factors as (1-X)(1-W)/((1-sX/A)(1-sW/B)); kernel ratio x kappa collapses to (AW-X)/(AW-BX); closes by 3-line polynomial identity (P7). Symbolic in A=t^i, B=t^j.",
-            "trust": "proved",
-            "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
-            "role": "premise",
-            "children": [],
-            "scripts": [
-              "scripts/day209/star2_rational.py",
-              "scripts/day209/star2_coeff_check.py",
-              "scripts/day209/check_writeup_steps.py"
-            ]
-          },
-          {
-            "id": "two-column-step-map",
-            "approach": "Rational Lemma 2' (residue theorem on K(y)) applied to H(y;x)=y(1+syz)(1+syw)/((1+gy)(1+dy)(1+xy)); closed step map (a) e_{b+1}: c(1-t^{b+1}), (b) n<=b: -kappa_a a^{n-b-1}(E(ta)-t^nE(a)). Matches Day 208 gf_recursion.step symbolically k<=3.",
-            "trust": "proved",
-            "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
-            "role": "premise",
-            "scripts": [
-              "scripts/day209/step_map_check.py"
-            ],
-            "children": []
-          },
-          {
-            "id": "two-column-R2-recursion",
-            "approach": "(R2) [k]Gamma_k = sum_i X_i(1+sX_iz)(1+sX_iw) prod a_ij Gamma_{k-1}(X^_i): Day 207b (A_k),(K_k),(R) verbatim with two-variable phi.",
-            "trust": "proved",
-            "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
-            "role": "premise",
-            "depends": [
-              "hikita-star-ek-er#ek-star-er-pieri-all-k"
-            ],
-            "children": []
-          },
-          {
-            "id": "attempt-q-pfaff-saalschutz",
-            "approach": "PROVE.md-anticipated two-index q-Pfaff-Saalschutz closing identity: NOT needed; columns interact only via rational factor (AW-X)/(AW-BX).",
-            "trust": "hunch",
-            "role": "attempt",
-            "reason": "superseded: closing identity is rational, no hypergeometric summation required",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "two-column-straightening-free",
-        "approach": "Kill test: outer-peel on E(z)E(w) yields only chain shifts e_{b0} E(t^i z)E(t^j w), b0+i+j<=k (C(k+3,3) terms), support l(lambda)<=3; no non-chain Q-product appears, so the kill criterion did NOT fire. Symbolic for k<=3 (gf_recursion.py), k=4,5 via (TC); checked vs direct AHA m<=4, k<=3.",
-        "trust": "proved",
-        "file": "proofs/2026-09-29-day208-two-column-k2-data.md",
-        "role": "attempt",
-        "caveat": "Coefficients carry cross poles at z = t^c w (from partial-fractioning in Lemma 2) that cancel only in the total and cannot be absorbed into the shifts; the e-expansion has an unbounded tail sum_q T_lambda(t^q) e_lambda e_q e_{N-q} of length ~min(a,b), T(q)+T(N-q)=0 (tails.py, folded.py; verified vs AHA a,b<=4). No bounded-length e-expansion; GF rule is closed.",
-        "scripts": [
-          "scripts/day208/gf_recursion.py",
-          "scripts/day208/tails.py",
-          "scripts/day208/folded.py"
-        ],
-        "children": [],
-        "promoted": "2026-09-29 Day 209 dream: computed -> proved as a COROLLARY of node two-column-gf-rule (proved, proofs/2026-09-29-day209-two-column-TC-PROVED.md Thm (TC)). T_k is by definition a sum of chain shifts e_b E(t^i z)E(t^j w), so at the GF level only chain shifts appear and support is l(lambda)<=3. The caveat (no bounded-length e-expansion; tail T(q)+T(N-q)=0) stays COMPUTED (tails.py, folded.py) and is not covered by this promotion."
-      },
-      {
-        "id": "ell-column-rule",
-        "approach": "l-column rule for e_k(Y).(e_{a_1}...e_{a_l}): corrected P-l = pairwise cross kernel prod_{c<c'}K_{i_c i_c'} with prefactor s^{(l-1)Sum(n_c-i_c)} t^{-Sum_{c!=c'}(n_c-i_c)i_c'} and e_b dressing (s^l t^{-Sum i})^b; straightening-free (chain terms only).",
-        "trust": "proved",
-        "role": "premise",
-        "children": [
-          {
-            "id": "ell-column-closing-identity-Z",
-            "approach": "(Z) Lagrange/residue identity for g(w)=prod(w-mu_c)/((w-1)prod(w-lam_c)); lam_c=A_c/u_c, mu_c=1/u_c. At l=2 this is Day 209 (P7).",
-            "trust": "proved",
-            "file": "proofs/2026-09-30-day212-ell-column-PROVED.md",
-            "role": "premise",
-            "children": [],
-            "scripts": [
-              "scripts/day212/check_steps.py"
-            ]
-          },
-          {
-            "id": "ell-column-step-map",
-            "approach": "Closed l-column step map from Lemma 2' with l+1 poles; matches day210 gf_recursion_ell (l=3,k<=2) and iterates to T_k (l=2 k<=3, l=3 k<=3, l=4 k<=2).",
-            "trust": "proved",
-            "file": "proofs/2026-09-30-day212-ell-column-PROVED.md",
-            "role": "premise",
-            "children": [],
-            "scripts": [
-              "scripts/day212/step_map_ell.py"
-            ]
-          }
-        ],
-        "dream_note": "2026-09-29 Day 209 dream (memory/connections/2026-09-29-residue-function-is-the-whole-proof.md): U-factorization holds for all l by definition of c=s^l prod z_c/prod gamma_c (hand-derived, needs sober re-check; not a conjecture). Residues kappa_c split into pairwise factors (gamma_c - s z_c')/(gamma_c - gamma_c'); K_ij = those telescoped. Prediction P-l: cross kernel = prod_{c<c'} K_{i_c i_c'}(z_c,z_c'), Lagrange-type closing identity. Kill: non-pairwise factor at l=3. Question: memory/questions/q-ell-column-rule.md.",
-        "file": "proofs/2026-09-30-day212-ell-column-PROVED.md",
-        "compute_note": "2026-09-29 Day 210 wake (WIP 10436a4): U-factorization checked symbolically l<=4 (computed; confirms dream section 1). Fit at l=3,k<=2 symbolic; blind direct-AHA tests l=3 up to m=6,k<=5 and l=4 m=4 k<=3 (never fitted) all OK; negative controls (drop K_13, version-A prefactor) FAIL as they should. Dream prefactor s^{Sum(n-i)} was WRONG; corrected to s^{(l-1)Sum(n-i)}. aha_221.log MISMATCH resolved Day 211: float exponent t**(-f*(f-1)/2) harness bug in day196 engine; after fix and on independent flint engine all match (proofs/2026-09-30-day211-aha221-mismatch.md). TC unaffected.",
-        "depends": [
-          "hikita-star-ek-er#ek-star-er-pieri-all-k"
-        ],
-        "scripts": [
-          "scripts/day212/step_map_ell.py",
-          "scripts/day212/step_map_point.py",
-          "scripts/day212/check_steps.py",
-          "scripts/day212/check_concrete.py",
-          "scripts/day212/check_stepB.py",
-          "scripts/day210/aha_check_ell.py"
-        ],
-        "prove_note": "2026-09-30 Day 212 PROVE: PROVED all k,l. Day 209 skeleton with l poles: step map via Lemma 2' with F(y)=prod(y-sz_c)/(y prod(y-gam_c)); (star-l-GF); U=prod(1-X_c)/(1-sX_c/A_c); kappa' splits pairwise so Phi_c = kappa'_c K_{I-e_c}/K_I pairwise; normalised identity = (Z) prod(mu-1)-prod(lam-1)=sum_c(mu_c-lam_c)prod_{c'!=c}(lam_c'-1)(lam_c-mu_c')/(lam_c-lam_c'), proved by residue theorem for prod(w-mu)/((w-1)prod(w-lam)). Symbolic checks in scripts/day212."
-      }
+     {
+      "id": "ek-star-er-theorem-stub",
+      "approach": "Stub: one-column e_k*e_r Pieri theorem (A_k kernel, K_k chain, E_k outer-peel + (*)), Day 207b; canonical node carries the proof.",
+      "trust": "proved",
+      "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+      "shared": "hikita-star-ek-er#ek-star-er-pieri-all-k",
+      "role": "premise",
+      "children": []
+     },
+     {
+      "id": "two-column-closing-identity",
+      "approach": "(★2): sum_p c^p[V^{n-1-p}_ij(kg g^{-p-1}+kd d^{-p-1}) - t^p V^{n-1-p}_{i-1,j} kg_{i-1,j} (t^{i-1}z)^{-p-1} - t^p V^{n-1-p}_{i,j-1} kd_{i,j-1} (t^{j-1}w)^{-p-1}] = (1-t^n)V^n_ij. Proof: GF in x; U = xF(cx) with residue function F(y)=(y-sz)(y-sw)/(y(y-g)(y-d)) factors as (1-X)(1-W)/((1-sX/A)(1-sW/B)); kernel ratio x kappa collapses to (AW-X)/(AW-BX); closes by 3-line polynomial identity (P7). Symbolic in A=t^i, B=t^j.",
+      "trust": "proved",
+      "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
+      "role": "premise",
+      "children": [],
+      "scripts": [
+       "scripts/day209/star2_rational.py",
+       "scripts/day209/star2_coeff_check.py",
+       "scripts/day209/check_writeup_steps.py"
+      ]
+     },
+     {
+      "id": "two-column-step-map",
+      "approach": "Rational Lemma 2' (residue theorem on K(y)) applied to H(y;x)=y(1+syz)(1+syw)/((1+gy)(1+dy)(1+xy)); closed step map (a) e_{b+1}: c(1-t^{b+1}), (b) n<=b: -kappa_a a^{n-b-1}(E(ta)-t^nE(a)). Matches Day 208 gf_recursion.step symbolically k<=3.",
+      "trust": "proved",
+      "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
+      "role": "premise",
+      "scripts": [
+       "scripts/day209/step_map_check.py"
+      ],
+      "children": []
+     },
+     {
+      "id": "two-column-R2-recursion",
+      "approach": "(R2) [k]Gamma_k = sum_i X_i(1+sX_iz)(1+sX_iw) prod a_ij Gamma_{k-1}(X^_i): Day 207b (A_k),(K_k),(R) verbatim with two-variable phi.",
+      "trust": "proved",
+      "file": "proofs/2026-09-29-day209-two-column-TC-PROVED.md",
+      "role": "premise",
+      "depends": [
+       "hikita-star-ek-er#ek-star-er-pieri-all-k"
+      ],
+      "children": []
+     },
+     {
+      "id": "attempt-q-pfaff-saalschutz",
+      "approach": "PROVE.md-anticipated two-index q-Pfaff-Saalschutz closing identity: NOT needed; columns interact only via rational factor (AW-X)/(AW-BX).",
+      "trust": "hunch",
+      "role": "attempt",
+      "reason": "superseded: closing identity is rational, no hypergeometric summation required",
+      "children": []
+     }
     ]
-  }
+   },
+   {
+    "id": "two-column-straightening-free",
+    "approach": "Kill test: outer-peel on E(z)E(w) yields only chain shifts e_{b0} E(t^i z)E(t^j w), b0+i+j<=k (C(k+3,3) terms), support l(lambda)<=3; no non-chain Q-product appears, so the kill criterion did NOT fire. Symbolic for k<=3 (gf_recursion.py), k=4,5 via (TC); checked vs direct AHA m<=4, k<=3.",
+    "trust": "proved",
+    "file": "proofs/2026-09-29-day208-two-column-k2-data.md",
+    "role": "attempt",
+    "caveat": "Coefficients carry cross poles at z = t^c w (from partial-fractioning in Lemma 2) that cancel only in the total and cannot be absorbed into the shifts; the e-expansion has an unbounded tail sum_q T_lambda(t^q) e_lambda e_q e_{N-q} of length ~min(a,b), T(q)+T(N-q)=0 (tails.py, folded.py; verified vs AHA a,b<=4). No bounded-length e-expansion; GF rule is closed.",
+    "scripts": [
+     "scripts/day208/gf_recursion.py",
+     "scripts/day208/tails.py",
+     "scripts/day208/folded.py"
+    ],
+    "children": [],
+    "promoted": "2026-09-29 Day 209 dream: computed -> proved as a COROLLARY of node two-column-gf-rule (proved, proofs/2026-09-29-day209-two-column-TC-PROVED.md Thm (TC)). T_k is by definition a sum of chain shifts e_b E(t^i z)E(t^j w), so at the GF level only chain shifts appear and support is l(lambda)<=3. The caveat (no bounded-length e-expansion; tail T(q)+T(N-q)=0) stays COMPUTED (tails.py, folded.py) and is not covered by this promotion."
+   },
+   {
+    "id": "ell-column-rule",
+    "approach": "l-column rule for e_k(Y).(e_{a_1}...e_{a_l}): corrected P-l = pairwise cross kernel prod_{c<c'}K_{i_c i_c'} with prefactor s^{(l-1)Sum(n_c-i_c)} t^{-Sum_{c!=c'}(n_c-i_c)i_c'} and e_b dressing (s^l t^{-Sum i})^b; straightening-free (chain terms only).",
+    "trust": "proved",
+    "role": "premise",
+    "children": [
+     {
+      "id": "ell-column-closing-identity-Z",
+      "approach": "(Z) Lagrange/residue identity for g(w)=prod(w-mu_c)/((w-1)prod(w-lam_c)); lam_c=A_c/u_c, mu_c=1/u_c. At l=2 this is Day 209 (P7).",
+      "trust": "proved",
+      "file": "proofs/2026-09-30-day212-ell-column-PROVED.md",
+      "role": "premise",
+      "children": [],
+      "scripts": [
+       "scripts/day212/check_steps.py"
+      ]
+     },
+     {
+      "id": "ell-column-step-map",
+      "approach": "Closed l-column step map from Lemma 2' with l+1 poles; matches day210 gf_recursion_ell (l=3,k<=2) and iterates to T_k (l=2 k<=3, l=3 k<=3, l=4 k<=2).",
+      "trust": "proved",
+      "file": "proofs/2026-09-30-day212-ell-column-PROVED.md",
+      "role": "premise",
+      "children": [],
+      "scripts": [
+       "scripts/day212/step_map_ell.py"
+      ]
+     }
+    ],
+    "dream_note": "2026-09-29 Day 209 dream (memory/connections/2026-09-29-residue-function-is-the-whole-proof.md): U-factorization holds for all l by definition of c=s^l prod z_c/prod gamma_c (hand-derived, needs sober re-check; not a conjecture). Residues kappa_c split into pairwise factors (gamma_c - s z_c')/(gamma_c - gamma_c'); K_ij = those telescoped. Prediction P-l: cross kernel = prod_{c<c'} K_{i_c i_c'}(z_c,z_c'), Lagrange-type closing identity. Kill: non-pairwise factor at l=3. Question: memory/questions/q-ell-column-rule.md.",
+    "file": "proofs/2026-09-30-day212-ell-column-PROVED.md",
+    "compute_note": "2026-09-29 Day 210 wake (WIP 10436a4): U-factorization checked symbolically l<=4 (computed; confirms dream section 1). Fit at l=3,k<=2 symbolic; blind direct-AHA tests l=3 up to m=6,k<=5 and l=4 m=4 k<=3 (never fitted) all OK; negative controls (drop K_13, version-A prefactor) FAIL as they should. Dream prefactor s^{Sum(n-i)} was WRONG; corrected to s^{(l-1)Sum(n-i)}. aha_221.log MISMATCH resolved Day 211: float exponent t**(-f*(f-1)/2) harness bug in day196 engine; after fix and on independent flint engine all match (proofs/2026-09-30-day211-aha221-mismatch.md). TC unaffected.",
+    "depends": [
+     "hikita-star-ek-er#ek-star-er-pieri-all-k"
+    ],
+    "scripts": [
+     "scripts/day212/step_map_ell.py",
+     "scripts/day212/step_map_point.py",
+     "scripts/day212/check_steps.py",
+     "scripts/day212/check_concrete.py",
+     "scripts/day212/check_stepB.py",
+     "scripts/day210/aha_check_ell.py"
+    ],
+    "prove_note": "2026-09-30 Day 212 PROVE: PROVED all k,l. Day 209 skeleton with l poles: step map via Lemma 2' with F(y)=prod(y-sz_c)/(y prod(y-gam_c)); (star-l-GF); U=prod(1-X_c)/(1-sX_c/A_c); kappa' splits pairwise so Phi_c = kappa'_c K_{I-e_c}/K_I pairwise; normalised identity = (Z) prod(mu-1)-prod(lam-1)=sum_c(mu_c-lam_c)prod_{c'!=c}(lam_c'-1)(lam_c-mu_c')/(lam_c-lam_c'), proved by residue theorem for prod(w-mu)/((w-1)prod(w-lam)). Symbolic checks in scripts/day212."
+   },
+   {
+    "id": "pairwise-kernel-wick-bilinear",
+    "approach": "log K_ij = j log s − ij log t + Σ_n (u^n/n) B_n(X,Y), X=t^{−in}, Y=t^{jn}, B_n = a_n + b_n X + c_n Y − XY with T=t^n, S=s^n: a_n=(TS−1/S)/(1−T), b_n=(1−TS)/(1−T), c_n=(1/S−T)/(1−T); equivalently B_n=(Y−S)(1−X)/(1−1/T)+(X−1/S)(1−Y)/(1−T). Fit on (i,j)∈{1,2}², 12 held-out pairs in {0..3}² pass, n≤6, exact sympy.",
+    "trust": "computed",
+    "file": "scripts/day213/wick_kernel_check.py",
+    "note": "Step 1 of memory/questions/q-free-field-wick-proof-of-ell-column.md; supports the free-field/Wick reading of (★ℓ). Not yet checked at i,j=4.",
+    "children": []
+   }
+  ]
+ }
 }
