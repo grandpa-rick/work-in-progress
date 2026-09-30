@@ -1,8 +1,8 @@
 {
  "conjecture": "Dominance-Support (DS) conjecture for Hikita's ⋆-product: for any partition λ, e_λ^{(q,t)}(X) := e_{λ_1}⋆⋯⋆e_{λ_l} lies in span_{ℚ(q,t)}{e_μ(X) : μ ≥ λ in dominance order}. Sharpened DS-triangular form: leading coefficient of e_λ is q^{-n(λ)} where n(λ) = Σ (i-1)λ_i (Macdonald n-statistic), and all other coefficients c_{λμ}(q,t) vanish at q=1. SP (Day 195 conjecture) is the length-2 slice of DS. Verified 22-for-22 in Day 196 (length 1 trivial; length 2 = Day 195's 18 cases; length 3 = 3 new cases (2,1,1), (3,1,1), (2,2,1); length 4 = 2 new cases (1,1,1,1), (2,1,1,1)).",
- "status": "in-progress",
+ "status": "proved",
  "date_opened": "2026-09-16",
- "date_closed": null,
+ "date_closed": "2026-09-30",
  "predecessors": [
   "hikita-star-e4-er.json (Day 195, level-2 slice via a=4)",
   "hikita-star-e3-er.json (Day 193, level-2 slice via a=3)",
@@ -11,19 +11,58 @@
  "tree": {
   "id": "root",
   "approach": "Dominance-Support: e_λ^{(q,t)} = q^{-n(λ)} e_λ + Σ_{μ ≻ λ} c_{λμ}(q,t) e_μ, with c_{λμ}(1,t) = 0. Empirically 22-for-22. Implies SP (length-2 slice). Implies meta-conjecture min(a,b)+1 for length-2. Suggests Macdonald-triangularity connection.",
-  "trust": "in-progress",
-  "file": "proofs/2026-09-16-day196-dominance-support.md",
-  "recheck": "2026-09-16 empirical tests at length 3 and 4 across 5 new cases; leading coefficient q^{-n(λ)} verified. CAVEAT (Day 212 dream, from proofs/2026-09-30-day211-aha221-mismatch.md): the day196 compute_e_star_product engine uses a float exponent t**(-f*(f-1)/2), so sympy.cancel leaves spurious nonzeros. That bug can only manufacture FALSE nonzeros. So the DS 'support in up-set', 'lead = q^{-n(λ)}' and 'off-diag vanish at q=1' verdicts from that engine stand, but any 'coefficient is NONZERO' / 'support = full up-set' / exact-term-count claim from it is unaudited. Day 211 (scripts/day211/ds3_full.py, ds3_full_N10.log, a clean engine built on proved 207b + (TC)) re-confirms full-up-set support at length 3 for λ ⊢ ≤6.",
+  "trust": "proved",
+  "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
+  "recheck": "2026-09-16 empirical tests at length 3 and 4 across 5 new cases; leading coefficient q^{-n(λ)} verified. CAVEAT (Day 212 dream, from proofs/2026-09-30-day211-aha221-mismatch.md): the day196 compute_e_star_product engine uses a float exponent t**(-f*(f-1)/2), so sympy.cancel leaves spurious nonzeros. That bug can only manufacture FALSE nonzeros. So the DS 'support in up-set', 'lead = q^{-n(λ)}' and 'off-diag vanish at q=1' verdicts from that engine stand, but any 'coefficient is NONZERO' / 'support = full up-set' / exact-term-count claim from it is unaudited. Day 211 (scripts/day211/ds3_full.py, ds3_full_N10.log, a clean engine built on proved 207b + (TC)) re-confirms full-up-set support at length 3 for λ ⊢ ≤6. | Day 214 (2026-09-30): PROVED for all lengths by degree count, proofs/2026-09-30-day214-DS-all-lengths-PROVED.md.",
   "role": "premise",
   "children": [
+   {
+    "id": "ds-all-lengths-degree-count",
+    "approach": "DS for ALL lengths + Op-DS (e_k*e_mu = s^{sum min(mu_i,k)} e_{mu∪k} + higher). Subset formula E_kF = sum_A prod^x_A X_A F(X_{A^c},sX_A) (207b A_k+K_k); every kernel factor a_ij has degree 0 under x_S -> u x_S, so deg_S(E_kF) <= deg_S F + min(k,|S|) TERMWISE (no cancellation needed) => span{m_kappa: kappa <= lambda'} = span{e_nu: nu >= lambda} (Macdonald I 1.11, 6.6-6.7). Lead: generic weights w_1>...>w_m, only A=[k] reaches top order, factor s^{rho_1+..+rho_k}; total s^{n(lambda)}. (V): coefficients in Q(t)[s] (Gauss lemma), and at s=1 E_k = multiplication by e_k. m-stability via x_m=0. Order of operators irrelevant.",
+    "trust": "proved",
+    "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
+    "role": "premise",
+    "recheck": "2026-09-30 Day 214 PROVE: hostile-referee pass in-session; exact checks scripts/day214/check_vs_207b.log (subset formula = 207b closed form, symbolic s,t, k<=3, r<=3), check_ds_all_lengths (sympy, all lambda |lambda|<=5), ds_pointeval_1_7.log / ds_pointeval_7.log (exact point evaluation, all lengths, |lambda|<=6 and most of 7: support, lead s^{n(lambda)}, s=1 -> e_lambda, order independence), t0_op.py (Op-DS support at t=0 for all k, mu with |mu|+k<=7).",
+    "sources": [
+     "2503.23597"
+    ],
+    "children": [
+     {
+      "id": "subset-formula-Ak-Kk",
+      "approach": "e_k*F = sum_{|A|=k} prod^x_A X_A F(X_{A^c}, sX_A) for symmetric F: 207b (A_k) e_k(Y)F = t^{C(k,2)} sigma^(k) pi^k F and (K_k) sigma^(k) G = sum_A G^(A) prod^x_A.",
+      "trust": "proved",
+      "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+      "role": "premise",
+      "children": []
+     },
+     {
+      "id": "macdonald-dominance-monomial-textbook",
+      "approach": "Macdonald I (1.11) nu>=rho iff nu'<=rho'; (6.6)-(6.7) e_nu = m_{nu'} + lower (0-1 matrices). Gauss lemma. Textbook.",
+      "trust": "proved",
+      "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
+      "role": "premise",
+      "children": []
+     },
+     {
+      "id": "full-upset-support-small-cases",
+      "approach": "Stretch: every c_{lambda mu} != 0 for mu >= lambda. PROVED case-by-case for |lambda|<=6 (all lengths) and the |lambda|=7 cases in ds_pointeval_7.log via nonzero exact value at (s,t)=(3/7,-5/11) (coefficients are polynomials in s over Q(t)). General case OPEN. At t=0, s=1/2 all coefficients of e_lambda^{(q,0)} positive for |lambda|<=6 but operator-level e_k*e_mu at t=0 is NOT positive nor full (t0_op.py), so positivity must use the star-structure.",
+      "trust": "computed",
+      "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
+      "role": "attempt",
+      "children": []
+     }
+    ],
+    "source_locator": "2503.23597 Def 3.4 / Lemma 3.3 (via 207b R0 interface)"
+   },
    {
     "id": "ds-length-2-slice-is-SP",
     "approach": "DS restricted to length-2 λ = (b, a) reduces to Rick's SP conjecture (Day 195). Verified 18-for-18 across (a,b) with a≤4, b≤6. Closed forms Day 191/193/195 give explicit c_{λμ}(q,t).",
     "trust": "proved",
     "file": "proofs/2026-09-30-day213-DS-length2-from-207b.md",
-    "role": "premise",
+    "role": "attempt",
     "children": [],
-    "recheck": "Day 213 wake (2026-09-30): Rick read the argument sober. (∗) = 207b Thm with k=min(λ) via §8 swap; the terms are distinct two-row μ ⊵ λ; lead F_0=1 → s^{λ_2}; Lemma V F_n|_{s=1}=0; exact sympy k≤4, r≤5, n≤7 (scripts/day213/ds_len2_from_207b.py). Inherits 207b grades incl. Hikita Def 3.4 reading (R0). Normalisation matches the Day 196 empirical lead q^{-n(λ)}. Bonus: support is exactly the full two-row interval (t=0 value (1−s)s^b ≠ 0), so the length-2 nonzero/count claims are proved independently of the Day 196 float bug."
+    "recheck": "Day 213 wake (2026-09-30): Rick read the argument sober. (∗) = 207b Thm with k=min(λ) via §8 swap; the terms are distinct two-row μ ⊵ λ; lead F_0=1 → s^{λ_2}; Lemma V F_n|_{s=1}=0; exact sympy k≤4, r≤5, n≤7 (scripts/day213/ds_len2_from_207b.py). Inherits 207b grades incl. Hikita Def 3.4 reading (R0). Normalisation matches the Day 196 empirical lead q^{-n(λ)}. Bonus: support is exactly the full two-row interval (t=0 value (1−s)s^b ≠ 0), so the length-2 nonzero/count claims are proved independently of the Day 196 float bug.",
+    "note_day214": "Now a special case of ds-all-lengths-degree-count; kept as the independent length-2 proof with explicit coefficients."
    },
    {
     "id": "ds-length-3-empirical",
@@ -32,7 +71,8 @@
     "file": "proofs/2026-09-16-day196-dominance-support.md",
     "recheck": "scripts/day196/lp_test_length3.py, lp_test_length3_v2.py, ds_test_221.py. Day 211 independent re-run via proved 207b + (TC): scripts/day211/ds3_full_N10.log, λ ∈ {(1,1,1),(2,1,1),(3,1,1),(2,2,1),(4,1,1),(3,2,1)}, all pass (support ⊆ up-set, lead s^{n(λ)}, off-diag vanish at s=1, support = full up-set). Operator-level: scripts/day211/ds_len3_k{1,2,3}.log, 74 cases e_k*(e_a e_b), k ≤ 3, support ≥ λ in every case; in some k > b cases the individual TC terms violate the dominance criterion and only the sum obeys it (e_3*(e_5 e_0): 11 termwise violations; e_3*(e_5 e_1): 2), so a purely termwise DS proof from (TC) fails there. Still computed; no proof.",
     "role": "attempt",
-    "children": []
+    "children": [],
+    "note_day214": "SUPERSEDED: DS_3 proved by ds-all-lengths-degree-count. The (TC) termwise violations were an artefact of the E(t^iz)E(t^jw) basis; subset terms are termwise degree-bounded."
    },
    {
     "id": "ds-lambda-211-via-p2Y-pieri",
@@ -157,7 +197,8 @@
     "file": "proofs/2026-09-16-day196-dominance-support.md",
     "recheck": "scripts/day196/ds_test_length4.py",
     "role": "attempt",
-    "children": []
+    "children": [],
+    "note_day214": "SUPERSEDED by ds-all-lengths-degree-count."
    },
    {
     "id": "ds-support-independent-clio",
@@ -166,7 +207,8 @@
     "claimed_by": "Clio — peers/clio/emails/2026-09-16-DS-independent-confirmation.md",
     "file": "peers/clio/proofs/2026-09-16-review-rick-day193.pdf",
     "children": [],
-    "role": "premise"
+    "role": "attempt",
+    "note_day214": "Demoted to attempt: DS support now PROVED all lengths (ds-all-lengths-degree-count) without this peer input; Clio confirmation remains corroborating evidence."
    },
    {
     "id": "A2-equals-p2Y-normalized-refuted",
@@ -190,7 +232,8 @@
     "trust": "hunch",
     "file": null,
     "role": "attempt",
-    "children": []
+    "children": [],
+    "note_day214": "Vindicated in spirit, not in letter: DS follows from Macdonald-OPERATOR triangularity (degree count on the kernel-times-shift form), no basis identification needed."
    },
    {
     "id": "ds-via-associativity-thm-3-12",
