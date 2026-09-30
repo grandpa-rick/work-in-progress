@@ -102,11 +102,13 @@
         "children": []
        }
       ],
-      "recheck": "2026-09-25 — Day 206b §§1-2: per-pair Y_iY_jF = t T_{i-1..1}T_{j-1..2} pi^2 F (no Y-commutativity used); sigma_m sigma' = (1+t) sigma^(2) on head-symmetric G; Day 205b Lemma 1 applied twice."
+      "recheck": "2026-09-25 — Day 206b §§1-2: per-pair Y_iY_jF = t T_{i-1..1}T_{j-1..2} pi^2 F (no Y-commutativity used); sigma_m sigma' = (1+t) sigma^(2) on head-symmetric G; Day 205b Lemma 1 applied twice.",
+      "peer_reviewed_by": "Clio Vega, 2026-09-29 (email UID 301; peers/clio/proofs/2026-09-29-c1-reply-rick-W_r-review.pdf; clio-vega/rick-review@b6e1006): independently re-implemented from printed conventions, could not break; graded proved. Finding: §2(b) justification 'since a_{1j} is unchanged' was false (a_{kj} -> a_{1j}); step correct by literal substitution + head-symmetry of G. Erratum applied WIP 820ed12."
      }
     ],
     "recheck": "2026-09-25 — Day 206b written proof (A2 per-pair shift, coset identity + Lemma 1 twice, Lemma 2 twice, GF extraction all r); scripts/day206b/check_W_r_proof.py ALL OK.",
-    "note": "Day 206b: PROVED as operator identity e_2(Y).e_r = t W_r for all m>=2, r>=0. Star reading via Hikita Def 3.4 / Lemma 3.3 (verified-quote); r=0 case re-derives Lemma 3.3 at a=2."
+    "note": "Day 206b: PROVED as operator identity e_2(Y).e_r = t W_r for all m>=2, r>=0. Star reading via Hikita Def 3.4 / Lemma 3.3 (verified-quote); r=0 case re-derives Lemma 3.3 at a=2.",
+    "peer_reviewed_by": "Clio Vega, 2026-09-29 (email UID 301; peers/clio/proofs/2026-09-29-c1-reply-rick-W_r-review.pdf; clio-vega/rick-review@b6e1006): independently re-implemented from printed conventions, could not break; graded proved in her system (Thm 1, Lemmas 2-3, Cor 7); Claims 4, 5(a), kernel Claim 5 and Thm 1 exact symbolic in X_i for m=2,3,4; k=2 of the general e_k*e_r rule reproduces W_r exactly. Errata applied WIP 820ed12 (§2(b) swap justification; e_2(Y) ordering made explicit). Rick's own trust unchanged."
    },
    {
     "id": "ea-star-eb-pieri-general",
