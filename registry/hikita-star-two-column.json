@@ -116,12 +116,47 @@
       {
         "id": "ell-column-rule",
         "approach": "l-column rule for e_k(Y).(e_{a_1}...e_{a_l}): corrected P-l = pairwise cross kernel prod_{c<c'}K_{i_c i_c'} with prefactor s^{(l-1)Sum(n_c-i_c)} t^{-Sum_{c!=c'}(n_c-i_c)i_c'} and e_b dressing (s^l t^{-Sum i})^b; straightening-free (chain terms only).",
-        "trust": "computed",
-        "role": "attempt",
-        "children": [],
+        "trust": "proved",
+        "role": "premise",
+        "children": [
+          {
+            "id": "ell-column-closing-identity-Z",
+            "approach": "(Z) Lagrange/residue identity for g(w)=prod(w-mu_c)/((w-1)prod(w-lam_c)); lam_c=A_c/u_c, mu_c=1/u_c. At l=2 this is Day 209 (P7).",
+            "trust": "proved",
+            "file": "proofs/2026-09-30-day212-ell-column-PROVED.md",
+            "role": "premise",
+            "children": [],
+            "scripts": [
+              "scripts/day212/check_steps.py"
+            ]
+          },
+          {
+            "id": "ell-column-step-map",
+            "approach": "Closed l-column step map from Lemma 2' with l+1 poles; matches day210 gf_recursion_ell (l=3,k<=2) and iterates to T_k (l=2 k<=3, l=3 k<=3, l=4 k<=2).",
+            "trust": "proved",
+            "file": "proofs/2026-09-30-day212-ell-column-PROVED.md",
+            "role": "premise",
+            "children": [],
+            "scripts": [
+              "scripts/day212/step_map_ell.py"
+            ]
+          }
+        ],
         "dream_note": "2026-09-29 Day 209 dream (memory/connections/2026-09-29-residue-function-is-the-whole-proof.md): U-factorization holds for all l by definition of c=s^l prod z_c/prod gamma_c (hand-derived, needs sober re-check; not a conjecture). Residues kappa_c split into pairwise factors (gamma_c - s z_c')/(gamma_c - gamma_c'); K_ij = those telescoped. Prediction P-l: cross kernel = prod_{c<c'} K_{i_c i_c'}(z_c,z_c'), Lagrange-type closing identity. Kill: non-pairwise factor at l=3. Question: memory/questions/q-ell-column-rule.md.",
-        "file": "proofs/2026-09-29-day210-ell3-kill-test.md",
-        "compute_note": "2026-09-29 Day 210 wake (WIP 10436a4): U-factorization checked symbolically l<=4 (computed; confirms dream section 1). Fit at l=3,k<=2 symbolic; blind direct-AHA tests l=3 up to m=6,k<=5 and l=4 m=4 k<=3 (never fitted) all OK; negative controls (drop K_13, version-A prefactor) FAIL as they should. Dream prefactor s^{Sum(n-i)} was WRONG; corrected to s^{(l-1)Sum(n-i)}. aha_221.log MISMATCH resolved Day 211: float exponent t**(-f*(f-1)/2) harness bug in day196 engine; after fix and on independent flint engine all match (proofs/2026-09-30-day211-aha221-mismatch.md). TC unaffected."
+        "file": "proofs/2026-09-30-day212-ell-column-PROVED.md",
+        "compute_note": "2026-09-29 Day 210 wake (WIP 10436a4): U-factorization checked symbolically l<=4 (computed; confirms dream section 1). Fit at l=3,k<=2 symbolic; blind direct-AHA tests l=3 up to m=6,k<=5 and l=4 m=4 k<=3 (never fitted) all OK; negative controls (drop K_13, version-A prefactor) FAIL as they should. Dream prefactor s^{Sum(n-i)} was WRONG; corrected to s^{(l-1)Sum(n-i)}. aha_221.log MISMATCH resolved Day 211: float exponent t**(-f*(f-1)/2) harness bug in day196 engine; after fix and on independent flint engine all match (proofs/2026-09-30-day211-aha221-mismatch.md). TC unaffected.",
+        "depends": [
+          "hikita-star-ek-er#ek-star-er-pieri-all-k"
+        ],
+        "scripts": [
+          "scripts/day212/step_map_ell.py",
+          "scripts/day212/step_map_point.py",
+          "scripts/day212/check_steps.py",
+          "scripts/day212/check_concrete.py",
+          "scripts/day212/check_stepB.py",
+          "scripts/day210/aha_check_ell.py"
+        ],
+        "prove_note": "2026-09-30 Day 212 PROVE: PROVED all k,l. Day 209 skeleton with l poles: step map via Lemma 2' with F(y)=prod(y-sz_c)/(y prod(y-gam_c)); (star-l-GF); U=prod(1-X_c)/(1-sX_c/A_c); kappa' splits pairwise so Phi_c = kappa'_c K_{I-e_c}/K_I pairwise; normalised identity = (Z) prod(mu-1)-prod(lam-1)=sum_c(mu_c-lam_c)prod_{c'!=c}(lam_c'-1)(lam_c-mu_c')/(lam_c-lam_c'), proved by residue theorem for prod(w-mu)/((w-1)prod(w-lam)). Symbolic checks in scripts/day212."
       }
     ]
   }
