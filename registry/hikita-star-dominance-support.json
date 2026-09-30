@@ -13,7 +13,7 @@
   "approach": "Dominance-Support: e_λ^{(q,t)} = q^{-n(λ)} e_λ + Σ_{μ ≻ λ} c_{λμ}(q,t) e_μ, with c_{λμ}(1,t) = 0. Empirically 22-for-22. Implies SP (length-2 slice). Implies meta-conjecture min(a,b)+1 for length-2. Suggests Macdonald-triangularity connection.",
   "trust": "in-progress",
   "file": "proofs/2026-09-16-day196-dominance-support.md",
-  "recheck": "2026-09-16 empirical tests at length 3 and 4 across 5 new cases; leading coefficient q^{-n(λ)} verified.",
+  "recheck": "2026-09-16 empirical tests at length 3 and 4 across 5 new cases; leading coefficient q^{-n(λ)} verified. CAVEAT (Day 212 dream, from proofs/2026-09-30-day211-aha221-mismatch.md): the day196 compute_e_star_product engine uses a float exponent t**(-f*(f-1)/2), so sympy.cancel leaves spurious nonzeros. That bug can only manufacture FALSE nonzeros. So the DS 'support in up-set', 'lead = q^{-n(λ)}' and 'off-diag vanish at q=1' verdicts from that engine stand, but any 'coefficient is NONZERO' / 'support = full up-set' / exact-term-count claim from it is unaudited. Day 211 (scripts/day211/ds3_full.py, ds3_full_N10.log, a clean engine built on proved 207b + (TC)) re-confirms full-up-set support at length 3 for λ ⊢ ≤6.",
   "role": "premise",
   "children": [
    {
@@ -29,7 +29,7 @@
     "approach": "Tested λ = (2,1,1), (3,1,1), (2,2,1) at m=5,6. DS holds; leading coefficient q^{-n(λ)} = q^{-3}, q^{-3}, q^{-4} respectively (matches formula).",
     "trust": "computed",
     "file": "proofs/2026-09-16-day196-dominance-support.md",
-    "recheck": "scripts/day196/lp_test_length3.py, lp_test_length3_v2.py, ds_test_221.py",
+    "recheck": "scripts/day196/lp_test_length3.py, lp_test_length3_v2.py, ds_test_221.py. Day 211 independent re-run via proved 207b + (TC): scripts/day211/ds3_full_N10.log, λ ∈ {(1,1,1),(2,1,1),(3,1,1),(2,2,1),(4,1,1),(3,2,1)}, all pass (support ⊆ up-set, lead s^{n(λ)}, off-diag vanish at s=1, support = full up-set). Operator-level: scripts/day211/ds_len3_k{1,2,3}.log, 74 cases e_k*(e_a e_b), k ≤ 3, support ≥ λ in every case; in some k > b cases the individual TC terms violate the dominance criterion and only the sum obeys it (e_3*(e_5 e_0): 11 termwise violations; e_3*(e_5 e_1): 2), so a purely termwise DS proof from (TC) fails there. Still computed; no proof.",
     "role": "attempt",
     "children": []
    },
