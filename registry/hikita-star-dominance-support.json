@@ -50,7 +50,17 @@
       "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
       "role": "attempt",
       "recheck": "2026-09-30 Day 214: hostile pass in-session; scripts/day214/check_stretch.log (level-set identities, conjugate peel formula n≤12, valuation n(μ) & lowest coeff 1 at t=0, n≤5, generic t n≤5), check_stretch_n6_t0.log (n=6, t=0), peel_monotone.py (10788 triples n≤11), peel_lemma.py (13955 cases n≤12), t1_count.py (d(1)=M_{λμ'} n≤5, remark only).",
-      "children": []
+      "children": [
+       {
+        "id": "d-lambda-mu-t-count-01-matrices",
+        "approach": "d_{λμ}(t) := [s^{n(μ)}] c_{λμ} ∈ Q[t]. The PROVED part: d(0)=1 (Theorem 2). COMPUTED for n<=5 (scripts/day214/t1_count.py): d(1) = M_{λμ'}, the number of 0-1 matrices with row sums λ and column sums μ'. Example: d_{(1111),(211)} = 1+3t, and 4 = M_{(1111),(31)}. HUNCH: d(t) = Σ over 0-1 matrices of t^{stat}, where the unique stat-0 matrix is Ryser's greedy one. Candidate stat comes from the level-set t-binomials of in_0(a_ij). Not written out.",
+        "trust": "computed",
+        "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md §8 Remark",
+        "role": "conjecture",
+        "recheck": "Day 214 dream: registered. Open question questions/q-d-lambda-mu-t-count-01-matrices.md.",
+        "children": []
+       }
+      ]
      }
     ],
     "source_locator": "2503.23597 Def 3.4 / Lemma 3.3 (via 207b R0 interface)"
@@ -68,9 +78,9 @@
    {
     "id": "ds-length-3-empirical",
     "approach": "Tested λ = (2,1,1), (3,1,1), (2,2,1) at m=5,6. DS holds; leading coefficient q^{-n(λ)} = q^{-3}, q^{-3}, q^{-4} respectively (matches formula).",
-    "trust": "computed",
+    "trust": "proved",
     "file": "proofs/2026-09-16-day196-dominance-support.md",
-    "recheck": "scripts/day196/lp_test_length3.py, lp_test_length3_v2.py, ds_test_221.py. Day 211 independent re-run via proved 207b + (TC): scripts/day211/ds3_full_N10.log, λ ∈ {(1,1,1),(2,1,1),(3,1,1),(2,2,1),(4,1,1),(3,2,1)}, all pass (support ⊆ up-set, lead s^{n(λ)}, off-diag vanish at s=1, support = full up-set). Operator-level: scripts/day211/ds_len3_k{1,2,3}.log, 74 cases e_k*(e_a e_b), k ≤ 3, support ≥ λ in every case; in some k > b cases the individual TC terms violate the dominance criterion and only the sum obeys it (e_3*(e_5 e_0): 11 termwise violations; e_3*(e_5 e_1): 2), so a purely termwise DS proof from (TC) fails there. Still computed; no proof.",
+    "recheck": "scripts/day196/lp_test_length3.py, lp_test_length3_v2.py, ds_test_221.py. Day 211 independent re-run via proved 207b + (TC): scripts/day211/ds3_full_N10.log, λ ∈ {(1,1,1),(2,1,1),(3,1,1),(2,2,1),(4,1,1),(3,2,1)}, all pass (support ⊆ up-set, lead s^{n(λ)}, off-diag vanish at s=1, support = full up-set). Operator-level: scripts/day211/ds_len3_k{1,2,3}.log, 74 cases e_k*(e_a e_b), k ≤ 3, support ≥ λ in every case; in some k > b cases the individual TC terms violate the dominance criterion and only the sum obeys it (e_3*(e_5 e_0): 11 termwise violations; e_3*(e_5 e_1): 2), so a purely termwise DS proof from (TC) fails there. Still computed; no proof. | Day 214 dream (2026-09-30): promoted computed->proved as a corollary of ds-all-lengths-degree-count (proofs/2026-09-30-day214-DS-all-lengths-PROVED.md). Empirical data retained as consistency evidence.",
     "role": "attempt",
     "children": [],
     "note_day214": "SUPERSEDED: DS_3 proved by ds-all-lengths-degree-count. The (TC) termwise violations were an artefact of the E(t^iz)E(t^jw) basis; subset terms are termwise degree-bounded."
@@ -194,9 +204,9 @@
    {
     "id": "ds-length-4-empirical",
     "approach": "Tested λ = (1,1,1,1) and (2,1,1,1) at m=4,5. DS holds; leading coefficient q^{-6} = q^{-n(λ)} in both cases.",
-    "trust": "computed",
+    "trust": "proved",
     "file": "proofs/2026-09-16-day196-dominance-support.md",
-    "recheck": "scripts/day196/ds_test_length4.py",
+    "recheck": "scripts/day196/ds_test_length4.py | Day 214 dream (2026-09-30): promoted computed->proved as a corollary of ds-all-lengths-degree-count (proofs/2026-09-30-day214-DS-all-lengths-PROVED.md). Empirical data retained as consistency evidence.",
     "role": "attempt",
     "children": [],
     "note_day214": "SUPERSEDED by ds-all-lengths-degree-count."
@@ -230,11 +240,12 @@
    {
     "id": "ds-macdonald-triangularity-connection",
     "approach": "The q^{-n(λ)} leading coefficient with Macdonald n-statistic suggests DS reflects a classical dominance-triangular basis structure. Candidate: identify Hikita's e_λ^{(q,t)}-basis as a rescaling of some Macdonald-related basis (e.g., non-symmetric Macdonald E_λ, or a level-one variant). If such an identification works, DS follows from classical Macdonald triangularity.",
-    "trust": "hunch",
+    "trust": "checked-sober",
     "file": null,
     "role": "attempt",
     "children": [],
-    "note_day214": "Vindicated in spirit, not in letter: DS follows from Macdonald-OPERATOR triangularity (degree count on the kernel-times-shift form), no basis identification needed."
+    "note_day214": "Vindicated in spirit, not in letter: DS follows from Macdonald-OPERATOR triangularity (degree count on the kernel-times-shift form), no basis identification needed.",
+    "recheck": " | Day 214 dream (2026-09-30): hunch->checked-sober. The Day 214 proof IS a Macdonald-type triangularity degree count: kernel factors have deg_S 0, cf. Macdonald VI (3.6)-(3.10). OPEN, not audited: whether DS is literally stated in Hikita 2503.23597 or elsewhere (novelty)."
    },
    {
     "id": "ds-via-associativity-thm-3-12",
@@ -249,10 +260,11 @@
    {
     "id": "ds-via-lemma-3-11-extension-e2Y",
     "approach": "Route 2: mimic Hikita's Lemma 3.11 for e_2(Y) instead of e_1(Y). Base case Π•F for F = e_1(Y)•e_r is a 5-term (not 2-term) expression involving X_1^3. Inductive step would require identifying the correct RHS ansatz — likely with 3 dominance-triangular pieces (matching the min(2,r)+1 = 3 predicted terms). Not attempted in Day 196; base case written out.",
-    "trust": "sketched",
+    "trust": "superseded",
     "file": "proofs/2026-09-16-day196-dominance-support.md",
     "role": "attempt",
-    "children": []
+    "children": [],
+    "recheck": " | Day 214 dream (2026-09-30): superseded by ds-all-lengths-degree-count. Route not pursued further."
    },
    {
     "id": "ds-via-DAdderio-Negut-direct",
@@ -291,10 +303,11 @@
    {
     "id": "ds-corollary-meta-conjecture",
     "approach": "DS-triangular ⇒ #{μ : [e_μ] e_a⋆e_b ≠ 0} ≤ min(a,b)+1. Equality follows if all c_{λμ}(q,t) for μ dominating λ are nonvanishing rational functions (empirically true, need proof).",
-    "trust": "computed",
+    "trust": "proved",
     "file": "proofs/2026-09-16-day196-dominance-support.md",
     "role": "attempt",
-    "children": []
+    "children": [],
+    "recheck": " | Day 214 dream (2026-09-30): promoted computed->proved. The up-set of (a,b), a>=b, is {(a+j,b-j): 0<=j<=b}, of size min(a,b)+1. full-upset-support-exact-valuation (Theorem 2, §8) makes every one of those coefficients nonzero, so equality holds."
    },
    {
     "id": "p2Y-pieri-lemma-jack-limit-refuted",
@@ -425,7 +438,8 @@
       "role": "attempt",
       "children": []
      }
-    ]
+    ],
+    "recheck": " | Day 214 dream (2026-09-30): part (i), support at pivot (r,1^k), now follows from Op-DS PROVIDED pk-Y-newton-decomposition is proved (it is still sketched): each lambda∪(r) with lambda|-k dominates (r,1^k). No grade change."
    }
   ]
  }
