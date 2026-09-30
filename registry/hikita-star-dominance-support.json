@@ -44,11 +44,12 @@
       "children": []
      },
      {
-      "id": "full-upset-support-small-cases",
-      "approach": "Stretch: every c_{lambda mu} != 0 for mu >= lambda. PROVED case-by-case for |lambda|<=6 (all lengths) and the |lambda|=7 cases in ds_pointeval_7.log via nonzero exact value at (s,t)=(3/7,-5/11) (coefficients are polynomials in s over Q(t)). General case OPEN. At t=0, s=1/2 all coefficients of e_lambda^{(q,0)} positive for |lambda|<=6 but operator-level e_k*e_mu at t=0 is NOT positive nor full (t0_op.py), so positivity must use the star-structure.",
-      "trust": "computed",
+      "id": "full-upset-support-exact-valuation",
+      "approach": "Stretch PROVED (Theorem 2, §8): c_{λμ} ∈ Q[s,t], s^{n(μ)} | c_{λμ}, and c_{λμ}(s,0) = s^{n(μ)}(1+O(s)) ⇒ support = full up-set, val_s c_{λμ} = n(μ) exactly. Lemma A: Gauss-valuation bound v(σ_c e_λ) ≥ min_{B_λ}(ω(β) − c·β), ω(β)=ΣC(β_j,2), termwise via ω(β+1_A)=ω(β)+1_A·β; extraction at c=α−½. Lemma B: at t=0 initial forms obey Λ_{μ∪k}(α)=Λ_μ(peel_k α) (only upper-set A survive; level-set kernel sum = 1). Peel Lemma: peel_k monotone for dominance via conjugate formula (peel κ)'_c = κ'_c − min(k,κ'_c) + min(k,κ'_{c+1}).",
+      "trust": "proved",
       "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
       "role": "attempt",
+      "recheck": "2026-09-30 Day 214: hostile pass in-session; scripts/day214/check_stretch.log (level-set identities, conjugate peel formula n≤12, valuation n(μ) & lowest coeff 1 at t=0, n≤5, generic t n≤5), check_stretch_n6_t0.log (n=6, t=0), peel_monotone.py (10788 triples n≤11), peel_lemma.py (13955 cases n≤12), t1_count.py (d(1)=M_{λμ'} n≤5, remark only).",
       "children": []
      }
     ],

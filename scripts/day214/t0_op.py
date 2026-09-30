@@ -19,13 +19,14 @@ def opcoeffs(k, mu, s, t):
     pts = [tuple(Fr(rng.randint(-10**6, 10**6), rng.randint(1, 10**4)) for _ in range(n)) for _ in range(len(P))]
     M = [[math.prod([esym(p, x) for p in nu]) for nu in P] for x in pts]
     c = solve(M, [op(k, mu, x, s, t) for x in pts]); return {nu: ci for nu, ci in zip(P, c) if ci != 0}
-bad = 0
-for n in range(2, int(sys.argv[1])+1):
-    for k in range(1, n):
-        for mu in parts(n-k):
-            lam = tuple(sorted(mu+(k,), reverse=True))
-            out = opcoeffs(k, mu, Fr(1,2), Fr(0))
-            up = {nu for nu in parts(n) if dominates(nu, lam)}
-            pos = all(v > 0 for v in out.values()); full = set(out) == up; sub = set(out) <= up
-            if not (pos and full): bad += 1; print('k', k, 'mu', mu, 'pos', pos, 'full', full, 'sub', sub, 'missing', up-set(out), flush=True)
-    print('n', n, 'done, bad so far', bad, flush=True)
+if __name__ == '__main__':
+    bad = 0
+    for n in range(2, int(sys.argv[1])+1):
+        for k in range(1, n):
+            for mu in parts(n-k):
+                lam = tuple(sorted(mu+(k,), reverse=True))
+                out = opcoeffs(k, mu, Fr(1,2), Fr(0))
+                up = {nu for nu in parts(n) if dominates(nu, lam)}
+                pos = all(v > 0 for v in out.values()); full = set(out) == up; sub = set(out) <= up
+                if not (pos and full): bad += 1; print('k', k, 'mu', mu, 'pos', pos, 'full', full, 'sub', sub, 'missing', up-set(out), flush=True)
+        print('n', n, 'done, bad so far', bad, flush=True)

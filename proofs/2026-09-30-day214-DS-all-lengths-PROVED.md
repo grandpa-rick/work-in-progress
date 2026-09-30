@@ -1,7 +1,7 @@
 # Day 214 PROVE: Dominance-Support (DS) PROVED for ALL lengths, by a degree count
 
 **Date:** 2026-09-30 (deep-work session). **Author:** Rick.
-**Status:** PROVED for every partition λ. That includes DS₃ (the PROVE.md target), all longer lengths, and the operator-level version for every e_k⋆e_μ.
+**Status:** PROVED for every partition λ, **including the stretch goal**: the support is exactly the full up-set, and val_s c_{λμ} = n(μ) (§8). That includes DS₃ (the PROVE.md target), all longer lengths, and the operator-level version for every e_k⋆e_μ.
 **Inputs:** 207b (A_k) + (K_k), which give the subset formula (0.1) below, and Lemma 3.3 (e_k⋆1 = e_k). Everything else is textbook symmetric-function combinatorics (Macdonald I §§1, 6).
 **Not used:** (TC), (★ℓ), the Wick kernel, residues.
 **Scripts:** `scripts/day214/` (exact sympy, all ALL OK).
@@ -185,7 +185,141 @@ Results:
   - The load-bearing inputs are 207b (A_k) and (K_k), both PROVED, reviewed by Clio on 2026-09-29, together with Lemma 3.3, a Hikita verified-quote (R0).
   - Macdonald I (1.11), (6.6) and (6.7) are textbook.
   - Gauss's lemma is textbook.
-- **Stretch goal NOT proved in general.** "Support = full up-set", i.e. every c_{λμ} ≠ 0 for μ ⊵ λ, is proved only case by case (|λ| ≤ 6) by exact evaluation. A general argument would need a specialisation where every c_{λμ} is visibly nonzero. Candidates are t = 0 (Day 207 "geometric mixture") or s → 0. This is open.
+- **Stretch goal: PROVED in §8.** Every c_{λμ} with μ ⊵ λ is nonzero, and in fact val_s c_{λμ} = n(μ) exactly.
 - **Trust.** DS no longer depends on (TC) or (★ℓ). So Clio's pending review of those does NOT gate DS. DS inherits only the 207b grade.
 - **Novelty caution.** The argument is the standard "Macdonald-operator triangularity" degree count (compare Macdonald VI §3 / VI (3.6)–(3.10): D_n^r acts triangularly on m_λ). Since the ⋆-operators have exactly Macdonald's shape — a kernel ∏^× times a shift, here twisted by the X_A factor — it is plausible that Hikita or someone else states DS, or its monomial-triangular form, explicitly. That needs a novelty check before any claim. No browsing was done in this session.
 - **What changed about the Day 211 obstruction.** The (TC) termwise dominance violations are real, but they are an artefact of the E(t^iz)E(t^jw) expansion basis. The subset expansion (0.1) is termwise degree-bounded. **Lesson: choose the expansion in which the bound is termwise.**
+
+
+## 8. Stretch goal PROVED: the support is exactly the up-set, and val_s c_{λμ} = n(μ)
+
+**Theorem 2.** Let λ be a partition and μ ⊵ λ.
+- (a) c_{λμ} ∈ ℚ[s,t], and s^{n(μ)} divides c_{λμ}.
+- (b) c_{λμ}(s,0) = s^{n(μ)}(1 + s·ℚ[s]).
+
+Consequently:
+- every c_{λμ} (μ ⊵ λ) is nonzero, so supp e_λ^{(q,t)} = {μ : μ ⊵ λ} *exactly*;
+- the s-adic valuation of c_{λμ} is exactly n(μ);
+- the lowest coefficient d_{λμ}(t) := [s^{n(μ)}]c_{λμ} ∈ ℚ[t] satisfies d_{λμ}(0) = 1.
+
+At s = t = 0, in the rescaled basis b_μ := s^{n(μ)}e_μ, e_λ^{(q,t)} is Σ_{μ⊵λ} b_μ, **the zeta function of the dominance order**.
+
+**Notation.**
+- ω(α) := Σ_j C(α_j, 2) for α ∈ ℤ^m_{≥0}.
+- B_μ := {β ∈ ℤ^m_{≥0} : sort(β) ⊴ μ'}. By §2, this is the monomial support set of e_μ^{(q,t)}.
+- Write e_μ^{(q,t)} = Σ_β a^μ_β x^β. The coefficient a^μ_β is symmetric in β, because e_μ^{(q,t)} is a symmetric polynomial.
+
+**Key identity.** For A ⊆ [m], ω(β + 1_A) = ω(β) + 1_A·β, since C(b+1, 2) = C(b, 2) + b. This is where s^{n} comes from.
+
+### 8.1 Integrality
+
+§4's Gauss-lemma argument works over ℚ[s,t], because N_A uses only (x_i − t x_j) and no t^{−1}. So E_k preserves ℚ[s,t][x]^{S_m}, and hence c_{λμ} ∈ ℚ[s,t].
+
+Specialising t = 0 is a ring map. Moreover c_{λμ}(s,0) are the e-coefficients of E⁰_{λ_1}⋯E⁰_{λ_ℓ}(1), where E⁰_k is (0.1) with a_{ij} replaced by x_i/(x_i − x_j).
+
+### 8.2 Lemma A (valuation bound)
+
+*Statement.* For t generic, and also at t = 0, val_s(a^λ_α) ≥ ω(α) for all α.
+
+*Setup.*
+- Work over K = ℚ(t)(s^{1/2}), or K = ℚ(s^{1/2}) at t = 0, with the s-adic valuation v. It is trivial on ℚ(t).
+- Extend v to K(x) by the Gauss valuation: v(Σ a_β x^β) = min_β v(a_β), and v(P/Q) = v(P) − v(Q). This is a valuation.
+- For c ∈ (½ℤ)^m, let σ_c be the K-automorphism x_j ↦ s^{−c_j}x_j.
+
+*Claim.* v(σ_c e_λ^{(q,t)}) ≥ min_{β∈B_λ}(ω(β) − c·β) for all c.
+
+*Proof of the claim.* Induct along E_k: e_μ ↦ e_{μ∪k}. Base case: 1 = e_∅, with B_∅ = {0}.
+
+For a term R_A of (0.1) applied to F = e_μ^{(q,t)}, the three factors of σ_c R_A are:
+- **The kernel.** At generic t, v(σ_c a_{ij}) = min(−c_i, −c_j) − min(−c_i, −c_j) = 0. At t = 0, v = −c_i + max(c_i, c_j) ≥ 0.
+- **The monomial.** σ_c X_A = s^{−c·1_A} X_A.
+- **The shifted F.** σ_c[F(X_{A^c}, sX_A)] = σ_{c−1_A}F.
+
+Hence
+
+  v(σ_c R_A) ≥ −c·1_A + min_{β∈B_μ}(ω(β) − (c−1_A)·β) = min_{β∈B_μ}(ω(β+1_A) − c·(β+1_A)),
+
+using the key identity. Now β + 1_A ∈ B_{μ∪k}: the top-j sums grow by at most min(j,k), and μ' + 1^k = (μ∪k)'. So the bound is ≥ min_{B_{μ∪k}}. Take the minimum over A. ∎
+
+*Extraction.* Put c := α − ½·𝟙. Then
+
+  ω(β) − c·β = Σ_j [(β_j − α_j)²/2 − α_j²/2],
+
+whose *unique* minimiser over all of ℤ^m is β = α. Since v(σ_c P) = min_β(v(a_β) − c·β), we get v(a_α) − c·α ≥ ω(α) − c·α. ∎(A)
+
+### 8.3 From monomials to e-coefficients
+
+Recall n(ν) = Σ_i (n − S_i(ν)), so ν ◁ μ implies n(ν) > n(μ). Also n(μ) = ω(μ').
+
+Write c_ν = s^{n(ν)}d_ν. Suppose min_ν v(d_ν) = δ < 0. Among the ν with v(d_ν) = δ, pick μ minimal in dominance. Then:
+- a_{μ'} = Σ_{ν⊴μ} c_ν M_{νμ'}, with M_{μμ'} = 1 (Lemma 1.1).
+- The ν = μ term has valuation exactly n(μ) + δ.
+- Every other term has valuation > n(μ) + δ: if ν ◁ μ, then n(ν) > n(μ).
+
+So v(a_{μ'}) = n(μ) + δ < ω(μ'), contradicting Lemma A. Hence every d_ν is s-integral, which proves Theorem 2(a). Reducing mod s gives
+
+  d_μ(0) = [s^{ω(μ')}] a_{μ'} =: Λ_λ(μ').
+
+### 8.4 Lemma B (initial forms at t = 0)
+
+*Statement.* At t = 0, Λ⁰_λ(α) := [s^{ω(α)}]a^λ_α equals 1 if sort(α) ⊴ λ', and 0 otherwise.
+
+*Setup.* Let in_{v_0}(R) denote the reduction of s^{−v_0}R in the residue field ℚ(x) of the Gauss valuation, defined when v(R) ≥ v_0. It is additive at a common level, and multiplicative.
+
+Fix α with sort α ⊴ (μ∪k)', put c = α − ½ and v_0 = ω(α) − c·α. By the extraction uniqueness,
+
+  in_{v_0}(σ_c e_{μ∪k}^{(q,t)}) = Λ⁰_{μ∪k}(α) x^α.
+
+*Termwise analysis.* Consider the term R_A.
+- **Terms that miss the top order.** Suppose α − 1_A is not in B_μ, or has a negative entry. Then v(σ_cR_A) > v_0 strictly, because the unique minimiser α is not of the form β + 1_A. So in_{v_0} kills R_A.
+- **Terms that survive.** Otherwise, with β_0 = α − 1_A and c − 1_A = β_0 − ½,
+
+  in_{v_0}(σ_cR_A) = in_0(σ_c ∏^×_A) · Λ⁰_μ(β_0) · x^α.
+
+*The kernel factor at t = 0.* Here in_0(σ_c a_{ij}) equals:
+- 1 if α_i > α_j;
+- 0 if α_i < α_j;
+- x_i/(x_i − x_j) if α_i = α_j.
+
+So only A that are *upper sets* for α survive. Let v be the k-th largest entry of α and L_v := {j : α_j = v}. The surviving sets are A = {α > v} ⊔ B, where B ⊆ L_v has size r := k − #{α > v}. Every entry of A is ≥ 1, because ℓ(sort α) ≥ ℓ((μ∪k)') ≥ k.
+
+*Summing over B.* sort(α − 1_A) = peel_k(sort α) does not depend on B, and Λ⁰_μ is symmetric. So
+
+  Λ⁰_{μ∪k}(α) = Λ⁰_μ(peel_k α) · Σ_{B⊆L_v, |B|=r} ∏_{i∈B, j∈L_v∖B} x_i/(x_i − x_j) = Λ⁰_μ(peel_k α).
+
+The last sum is 1. It is symmetric (S_{L_v} permutes the terms), so its product with the Vandermonde is antisymmetric, and the sum is a polynomial. It is homogeneous of degree 0, hence a constant. The constant is its u-leading coefficient under the weights w_1 > w_2 > ⋯ of §3, where only B = the first r indices contributes, with value 1. The t-version, Σ = [N r]_t, is checked in `check_stretch.py`.
+
+Here peel_k(κ) means: subtract 1 from the k largest parts of κ.
+
+**Peel Lemma.** Let κ ⊴ λ with |κ| = |λ| and k ≤ ℓ(λ). Then peel_k κ ⊴ peel_k λ.
+
+*Proof.*
+1. **Conjugate formula.** Counting the parts ≥ c after the peel gives
+
+   (peel_kκ)'_c = κ'_c − min(k, κ'_c) + min(k, κ'_{c+1}).
+
+   (This is checked for n ≤ 12 in `check_stretch.py`.)
+2. **Partial sums.** Telescoping, and using κ'_1 = ℓ(κ) ≥ ℓ(λ) ≥ k,
+
+   S_C((peel_kκ)') = S_C(κ') − k + min(k, κ'_{C+1}).
+
+   The same holds for λ.
+3. **Compare.** We have κ' ⊵ λ' (Macdonald I (1.11)). Put D_C := S_C(κ') − S_C(λ') ≥ 0 and m(x) := min(k, x).
+   - If m(κ'_{C+1}) ≥ m(λ'_{C+1}), we are done.
+   - Otherwise κ'_{C+1} < k and κ'_{C+1} < λ'_{C+1}. Then D_C ≥ D_{C+1} + λ'_{C+1} − κ'_{C+1} ≥ m(λ'_{C+1}) − m(κ'_{C+1}).
+4. So (peel κ)' ⊵ (peel λ)', which is peel κ ⊴ peel λ. ∎
+
+(A brute-force check confirms it for all 10,788 triples with n ≤ 11, in `peel_monotone.py`. This is the greedy step of Ryser's algorithm for the Gale–Ryser theorem.)
+
+*Proof of Lemma B.* Induct along E_k. The base case is Λ⁰_∅(0) = 1. For sort α ⊴ (μ∪k)', the Peel Lemma with λ := (μ∪k)' gives:
+- peel_k(sort α) ⊴ peel_k((μ∪k)');
+- peel_k((μ∪k)') = μ', because (μ∪k)' = μ' + 1^k and its top k parts sit in positions 1..k.
+
+So Λ⁰_{μ∪k}(α) = 1. Outside B_{μ∪k}, the value is 0 by (S). ∎(B)
+
+*Proof of Theorem 2.* d_{λμ}(0)|_{t=0} = Λ⁰_λ(μ') = [μ' ⊴ λ'] = [μ ⊵ λ] = 1. Since c_{λμ}/s^{n(μ)} ∈ ℚ[s,t] (by §8.3, together with s^{n(μ)} | c in ℚ(t)[s] ∩ ℚ[s,t]), its value at s = t = 0 is 1. ∎
+
+**Checks.**
+- `s_valuation.py` (n ≤ 5), `check_stretch.py` (n ≤ 5) and `check_stretch_n6.py` (n = 6, t = 0): val_s c_{λμ} = n(μ) for every μ ⊵ λ, with lowest coefficient exactly 1 at t = 0. At t = −5/11 the valuation is again n(μ).
+- The d_{λμ}(t) are genuinely t-dependent. Example: d_{(1111),(211)} = 1 + 3t, a value consistent with the data at t = −5/11.
+- *Remark (computed for n ≤ 5 in `t1_count.py`; the t = 1 case follows from the same in_0 argument, but it is not written out).* At t = 1 the recursion becomes Λ_{μ∪k}(α) = Σ_{A ⊆ supp α} Λ_μ(α − 1_A). This counts 0-1 matrices, so d_{λμ}(1) = M_{λμ'}. The case 1 + 3t at t = 1 gives 4 = M_{(1111),(31)}. At general t, the in_0 of a_{ij} for α_i < α_j is t, and the level-set sums are t-binomials. So d_{λμ}(t) is a t-count of 0-1 matrices with row sums λ and column sums μ'. This is not written out here.
