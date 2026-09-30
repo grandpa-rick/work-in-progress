@@ -1,0 +1,292 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=*}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\hX}{\widehat{X}}
+\newcommand{\poch}[2]{(#1;t)_{#2}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\Res}{\operatorname*{Res}}
+\newcommand{\plab}[1]{\textbf{(#1)}}
+\newcommand{\starl}{($\bigstar\ell$)}
+
+\title[The $\ell$-column rule for all $k,\ell$]{The $\ell$-column $\star$-Pieri rule ($\bigstar\ell$) for $e_k(Y)\bullet(e_{a_1}\cdots e_{a_\ell})$, proved for all $k$, $\ell$}
+\author{Rick}
+\date{2026-09-30}
+
+\begin{document}
+
+\begin{abstract}
+For every $m\ge0$, $k\ge0$ and $\ell\ge1$ we prove a closed generating-function rule for $\sum_a\prod_cz_c^{a_c}\,t^{-\binom k2}e_k(Y)\bullet(e_{a_1}\cdots e_{a_\ell})$, as an identity in $\Lambda_m\otimes\mathbb{Q}(s,t)(z_1,\dots,z_\ell)$, $s=q^{-1}$. It specialises to Day~207b's $e_k\star e_r$ at $\ell=1$ and to the two-column rule (TC) of Day~209 at $\ell=2$. The proof is the Day~209 skeleton with $\ell$ poles instead of two; the only new input is a closing identity (Z), which is the residue theorem for one rational function.
+\end{abstract}
+
+\maketitle
+
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-09-30\\
+\textbf{Recipient:} & For Clio (cc Robin)\\
+\textbf{Title:} & The $\ell$-column $\star$-Pieri rule ($\bigstar\ell$) for $e_k(Y)\bullet(e_{a_1}\cdots e_{a_\ell})$,\\
+& proved for all $k$, $\ell$\\
+\textbf{WIP commit:} & Corresponds to work-in-progress commit \texttt{05666cc} (proof source)\\
+& {\footnotesize(\texttt{proofs/2026-09-30-day212-ell-column-PROVED.md}, \texttt{scripts/day212/})}\\
+\textbf{Status:} & Proved; self-checked and machine-checked; not yet reviewed by anyone else.\\
+\textbf{Prior reference:} & Two-column case (TC), \texttt{notes/2026-09-29-two-column-TC-proved.pdf} (``209'').\\
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent\textbf{Please check:} \S\ref{sec:proof}, Step~B, the prefactor bookkeeping that produces $t^{2i_c-S}=A_c/\prod_{c'\ne c}A_{c'}$; and the pairwise splitting \plab{P6} of $\kappa'_c$ against the kernel ratio $K_{I-e_c}/K_I$. These are the two places where the $\ell=2$ computation was generalised rather than copied.
+
+\section{Statement}\label{sec:statement}
+
+Conventions are those of 207b and Day~209 ({\footnotesize\texttt{proofs/2026-09-29-day209-two-column-TC-PROVED.md}}, ``209'' below):
+\begin{itemize}
+\item $s=q^{-1}$; $a_{ij}=(X_i-tX_j)/(X_i-X_j)$; $E(z)=\sum e_rz^r$;
+\item $c(n,j)$, $N^{(n)}_j=t^{-nj}c(n,j)$, $C_j(x)=\sum_nc(n,j)x^n$, $D_j$ and $G$ as in 207b \S4;
+\item $K_{ij}(z,w)$ as in 209 \S0, i.e.\ $K_{ij}(z,w)=\prod_{p<i}\frac{t^pz-sw}{t^pz-t^jw}\prod_{r<j}\frac{sz-t^rw}{t^iz-t^rw}$. It satisfies $K_{ij}(z,w)=K_{ji}(w,z)$: substitute $p\leftrightarrow r$ and flip both signs in each factor.
+\end{itemize}
+
+Fix $\ell\ge1$ and variables $z_1,\dots,z_\ell$. For $I=(i_1,\dots,i_\ell)\in\mathbb{Z}^\ell_{\ge0}$, put $S:=\sum_ci_c$, $A_c:=t^{i_c}$, $K_I:=\prod_{c<c'}K_{i_ci_{c'}}(z_c,z_{c'})$, and
+\[
+V^{(n)}_I:=K_I\sum_{\sum n_c=n}s^{(\ell-1)\sum_c(n_c-i_c)}\,t^{-\sum_{c\ne c'}(n_c-i_c)i_{c'}}\prod_cN^{(n_c)}_{i_c}z_c^{-n_c},
+\]
+with $V_I:=0$ if some $i_c<0$.
+
+\begin{theorem}[$\bigstar\ell$]\label{thm:main}
+For all $m,k\ge0$, in $\Lambda_m\otimes\mathbb{Q}(s,t)(z)$:
+\[
+\Gamma_k:=\sum_a\prod_cz_c^{a_c}\,t^{-\binom k2}e_k(Y)\bullet(e_{a_1}\cdots e_{a_\ell})
+\;=\;T_k:=\sum_{b,I}(s^\ell t^{-S})^b\,V^{(k-b)}_I\cdot e_b\prod_cE(t^{i_c}z_c).
+\]
+\end{theorem}
+Writing $n=\sum n_c$, this is PROVE.md's formula verbatim. The special cases:
+\begin{itemize}
+\item $\ell=1$ gives 207b's $e_k\star e_r$;
+\item $\ell=2$ gives (TC) (209).
+\end{itemize}
+
+\begin{corollary}
+$\Gamma_k$ is a polynomial in $z$. Hence the coefficient of $z^a$ in $T_k$ is $e_k\star(e_{a_1}\cdots e_{a_\ell})$ in Hikita's reading, exactly as in 209. Because the $e_a$ generate, this gives $e_k\star F$ for every $F\in\Lambda$.
+\end{corollary}
+
+\section{The recursion (R\texorpdfstring{$\ell$}{l})}\label{sec:R}
+
+This is 209 \S1 verbatim with $\varphi(u):=u\prod_c(1+suz_c)/(1+uz_c)$. 207b's $(A_k)$, $(K_k)$ and (R) need only a symmetric $F$, and $e_{a_1}\cdots e_{a_\ell}$ is symmetric. The generating function of $X_A\prod_ce_{a_c}(X_{A^c},sX_A)$ is $X_A\prod_c\prod_{A^c}(1+Xz_c)\prod_A(1+sXz_c)$. This gives
+\begin{equation}\tag{R$\ell$}
+[k]\,\Gamma_k(X)=\sum_iX_i\prod_c(1+sX_iz_c)\prod_{j\ne i}a_{ij}\;\Gamma_{k-1}(\hX_i)\qquad(m\ge1),
+\end{equation}
+with $\Gamma_k=0$ for $m=0$ and $k\ge1$, and $\Gamma_0=\prod_cE(z_c)$. This recursion is the one implemented in \texttt{scripts/day210/gf\_recursion\_ell.py}.
+
+\section{Step map}\label{sec:step}
+
+Fix one term $\cW\,e_b(\hX_i)\prod_cE(\hX_i;\gamma_c)$ of $T_{k-1}(\hX_i)$, with $\gamma_c=t^{i_c}z_c$. As in 209 \S2, it contributes
+\[
+\cW\prod_cE(\gamma_c)\cdot[x^b]\sum_iE(x)H(X_i;x)\prod_{j\ne i}a_{ij},\qquad
+H(y;x):=\frac{y\prod_c(1+syz_c)}{\prod_c(1+\gamma_cy)\cdot(1+xy)}.
+\]
+The poles of $H/y$ are simple, at $-1/a$ for $a\in\{x,\gamma_1,\dots,\gamma_\ell\}$. At infinity $H/y\sim c/(xy)$, where
+\[
+c:=s^\ell\prod z_c\Big/\prod\gamma_c=s^\ell t^{-S}.
+\]
+At $y=-1/a$ the residue of $H(y)Q(1/y)/y$ is $\rho_a\cdot E(ta)/E(a)$, with
+\[
+\rho_a:=\frac{\prod_c(a-sz_c)}{a\prod_{a'\ne a}(a-a')}.
+\]
+To see this, note that $\prod_c(1-sz_c/a)=\prod(a-sz_c)/a^\ell$ and $\prod_{a'\ne a}(1-a'/a)=\prod(a-a')/a^\ell$, and that $Q(-a)=E(ta)/E(a)$. Lemma~$2'$ (209 \S2) then gives
+\[
+(1-t)\sum_iH(X_i;x)\prod a_{ij}=\frac cx-\sum_{a\in\{x,\gamma\}}\rho_a\frac{E(ta)}{E(a)}.
+\]
+Now let $F(y):=\prod_c(y-sz_c)\big/\bigl(y\prod_c(y-\gamma_c)\bigr)$. Then $\rho_x=F(x)$, and:
+\begin{itemize}
+\item $\Res_0F=c$;
+\item $\Res_{\gamma_c}F=\kappa_c:=\dfrac{\prod_{c'}(\gamma_c-sz_{c'})}{\gamma_c\prod_{c'\ne c}(\gamma_c-\gamma_{c'})}$;
+\item $\rho_{\gamma_c}=-\kappa_c/(x-\gamma_c)$.
+\end{itemize}
+Every term is $O(1/x)$ at $x=\infty$. Extracting the coefficient of $e_n$ (argued exactly as in 209 \S2) gives the \textbf{step map}:
+\begin{itemize}
+\item \textbf{$n=b+1$:} $c(1-t^{b+1})\prod E(\gamma_c)$.
+\item \textbf{$n\le b$:} $-\sum_c\kappa_c\gamma_c^{n-b-1}\bigl(E(t\gamma_c)-t^nE(\gamma_c)\bigr)\prod_{c'\ne c}E(\gamma_{c'})$.
+\item \textbf{$n>b+1$:} $0$.
+\end{itemize}
+Machine checks:
+\begin{itemize}
+\item \texttt{step\_map\_ell.py} compares this step map with the Day~210 recursion output ($\ell=3$, $k\le2$, symbolic);
+\item \texttt{step\_map\_point.py} iterates the step map from $\Gamma_0$ and compares with $T_k$ at exact points ($\ell\le5$; see \S\ref{sec:verif}).
+\end{itemize}
+
+\section{Step lemma (L\texorpdfstring{$\ell$}{l}) and reduction to (\texorpdfstring{$\bigstar\ell$}{*l}-GF)}\label{sec:L}
+
+\begin{lemma}[L$\ell$]
+$\displaystyle\sum_iX_i\prod_c(1+sX_iz_c)\prod_{j\ne i}a_{ij}\,T_{k-1}(\hX_i)=[k]\,T_k.$
+\end{lemma}
+
+Write $W'_{bI}=(s^\ell t^{-S})^bV^{(k-1-b)}_I$. By \S\ref{sec:step}, the coefficient of $e_{b'}\prod E(t^{i_c}z_c)$ in $(1-t)\cdot\mathrm{LHS}$ is
+\[
+W'_{b'-1,I}\,c(1-t^{b'})+\sum_{b\ge b'}\Bigl[t^{b'}W'_{bI}\sum_c\kappa_c\gamma_c^{b'-b-1}-\sum_cW'_{b,I-e_c}\,\kappa'_c\,(t^{i_c-1}z_c)^{b'-b-1}\Bigr],
+\]
+where $\kappa'_c$ is $\kappa_c$ evaluated at the $\gamma$'s of $I-e_c$. Put $n=k-b'$ and $p=b-b'$, and factor out $P:=(s^\ell t^{-S})^{b'}$:
+\begin{itemize}
+\item $W'_{b'-1,I}\,c=P\cdot V^{(n)}_I$;
+\item $W'_{bI}=P\cdot c^pV^{(n-1-p)}_I$;
+\item $W'_{b,I-e_c}=P\cdot t^{b'}(ct)^pV^{(n-1-p)}_{I-e_c}$, since the $c$-value of $I-e_c$ is $ct$.
+\end{itemize}
+So (L$\ell$) follows, exactly as in 209 \S3, from
+\begin{equation}\tag{$\bigstar\ell$}
+\sum_{p\ge0}c^p\Bigl[V^{(n-1-p)}_I\sum_c\kappa_c\gamma_c^{-p-1}-t^p\sum_cV^{(n-1-p)}_{I-e_c}\,\kappa'_c\,(t^{i_c-1}z_c)^{-p-1}\Bigr]=(1-t^n)V^{(n)}_I.
+\end{equation}
+Given \starl, the coefficient is $P(1-t^{b'+n})V^{(n)}_I=(1-t^k)\cdot(\text{the }T_k\text{ weight})$. \starl{} and $T_0=\Gamma_0$ then prove the Theorem by induction on $k$ for all $m$ at once, as 209 \S3 does, and (R$\ell$) supplies the $m\ge1$ step.
+
+Put $\cV_I(x):=\sum_nV^{(n)}_Ix^n$. The $p$-sums are convolutions, and $\sum_pc^p\gamma^{-p-1}x^{p+1}=x/(\gamma-cx)$. So \starl{} for all $n$ is equivalent to
+\begin{equation}\tag{$\bigstar\ell$-GF}
+\cV_I(x)U(x)-\cV_I(tx)=-\sum_c\kappa'_c\,\frac{x}{t^{i_c-1}z_c-ctx}\,\cV_{I-e_c}(x),\qquad U:=1-\sum_c\frac{\kappa_cx}{\gamma_c-cx}.
+\end{equation}
+
+\section{Proof of (\texorpdfstring{$\bigstar\ell$}{*l}-GF)}\label{sec:proof}
+
+\paragraph{Closed form of $\cV_I$ \plab{P5}.} Let $X_c:=s^{\ell-1}t^{-S}x/z_c=cx/(sz_c)$. The $t$-exponent attached to column $c$ is $-(n_c-i_c)(S-i_c)-n_ci_c=-n_cS+i_c(S-i_c)$. The $n_c$-sums therefore factor:
+\[
+\cV_I(x)=K_I\,s^{-(\ell-1)S}\,t^{S^2-\sum i_c^2}\prod_cC_{i_c}(X_c).
+\]
+For $I-e_c$, every $X_{c'}$ becomes $tX_{c'}$.
+
+\paragraph{Step A: $U$ factors \plab{P1}--\plab{P3}.}
+\begin{itemize}
+\item $F$ has numerator degree $\ell$ and denominator degree $\ell+1$, so $F=c/y+\sum_c\kappa_c/(y-\gamma_c)$. \hfill\plab{P1}
+\item Hence $U=xF(cx)$. \hfill\plab{P2}
+\item We have $cx-sz_c=-sz_c(1-X_c)$ and $cx-\gamma_c=-\gamma_c(1-sX_c/A_c)$. With $c\prod\gamma_c=s^\ell\prod z_c$ this gives
+\[
+U=\prod_c\frac{1-X_c}{1-sX_c/A_c}.\tag{P3}
+\]
+\end{itemize}
+
+\paragraph{Step B: normalise.} Divide ($\bigstar\ell$-GF) by $\cN:=K_Is^{-(\ell-1)S}t^{S^2-\sum i^2}\prod_cD_{i_c}X_c^{i_c}G(t^2X_c)$. This is legitimate because $D_j\ne0$ (207b \S4). 207b gives $C_i(X)=D_iX^iG(tX)(1-sX/A)/(1-X)$ and $G(tX)/G(t^2X)=(1-stX)/(1-tX)$. With $u_c:=stX_c$:
+\begin{itemize}
+\item \textbf{Left side.} Column $c$ of $\cV_I\cdot U$ gives $\dfrac{C_i(X)}{D_iX^iG(t^2X)}\cdot\dfrac{1-X}{1-sX/A}=\dfrac{1-stX}{1-tX}=\dfrac{1-u}{1-tX}$. Column $c$ of $\cV_I(tx)$ gives $\dfrac{C_i(tX)}{D_iX^iG(t^2X)}=\dfrac{A(1-stX/A)}{1-tX}=\dfrac{A-u}{1-tX}$. So
+\[
+L_0:=\frac{\prod_c(1-u_c)-\prod_c(A_c-u_c)}{\prod_c(1-tX_c)}.
+\]
+\item \textbf{Shifted term $c$} ($i_c\ge1$). The factors are:
+\begin{itemize}
+\item \plab{P4} $\dfrac{x}{t^{i_c-1}z_c-ctx}=\dfrac{stX_c}{c(A_c-st^2X_c)}$;
+\item the prefactor ratio of $\cV_{I-e_c}$ to $\cN$ is $s^{\ell-1}t^{(S-1)^2-\sum i'^2-S^2+\sum i^2}=s^{\ell-1}t^{-2(S-i_c)}$;
+\item for columns $c'\ne c$: $C_{i_{c'}}(tX_{c'})/(\dots)=(A_{c'}-u_{c'})/(1-tX_{c'})$;
+\item for column $c$: $C_{i_c-1}(tX_c)/(\dots)=\dfrac{1-A_c}{ts-A_c}\cdot\dfrac{A_c}{t}X_c^{-1}\dfrac{1-st^2X_c/A_c}{1-tX_c}$, from $D_{i-1}/D_i=(1-A)/(ts-A)$;
+\item \plab{P6} $\kappa'$ splits pairwise: $\kappa'_c=\dfrac{\gamma'_c-sz_c}{\gamma'_c}\cdot\prod_{c'\ne c}\dfrac{\gamma'_c-sz_{c'}}{\gamma'_c-\gamma_{c'}}$. $K_{I-e_c}/K_I$ is a product of the $\ell-1$ pair ratios involving $c$. Using $K_{ij}(z,w)=K_{ji}(w,z)$ (\S\ref{sec:statement}), we may put $c$ in the first slot of each pair. Then the pair factor of $\kappa'$ times the pair ratio of $K$ is exactly the 209 (P6) computation, with $(z,w,A,B)\to(z_c,z_{c'},A_c,A_{c'})$. The remaining diagonal factor is $(\gamma'_c-sz_c)/\gamma'_c=(A_c-st)/A_c$. With $\rho_{cc'}:=z_c/z_{c'}=X_{c'}/X_c$:
+\[
+\Phi_c:=\kappa'_cK_{I-e_c}/K_I=\frac{A_c-st}{A_c}\cdot\prod_{c'\ne c}\frac{A_{c'}(A_c\rho_{cc'}-1)}{A_c\rho_{cc'}-A_{c'}}.
+\]
+\end{itemize}
+Multiply these together:
+\begin{itemize}
+\item $\dfrac{stX_c}{c(A_c-st^2X_c)}\cdot\dfrac{A_c}{t}X_c^{-1}(1-st^2X_c/A_c)=s/c$;
+\item $s\cdot s^{\ell-1}/c\cdot t^{-2(S-i_c)}=t^{2i_c-S}=A_c\big/\prod_{c'\ne c}A_{c'}$;
+\item $(A_c-st)/(ts-A_c)=-1$.
+\end{itemize}
+The shifted term, moved to the left, is therefore $S_c/\prod(1-tX)$, where
+\[
+S_c=(1-A_c)\,\Psi_c\prod_{c'\ne c}(A_{c'}-u_{c'}),\qquad \Psi_c:=-\prod_{c'\ne c}\frac{A_cX_{c'}-X_c}{A_cX_{c'}-A_{c'}X_c}.
+\]
+For $i_c=0$ the term is absent, and the formula gives $0$ anyway because of the factor $1-A_c$.
+\end{itemize}
+For $\ell=2$ this reproduces 209's $S_1$ and $S_2$. ($\bigstar\ell$-GF) is now equivalent to $\prod(1-u_c)-\prod(A_c-u_c)+\sum_cS_c=0$.
+
+\paragraph{Step C: the closing identity.} Put $\lambda_c:=A_c/u_c$ and $\mu_c:=1/u_c$. Then:
+\begin{itemize}
+\item $A_{c'}-u_{c'}=u_{c'}(\lambda_{c'}-1)$;
+\item $(A_cX_{c'}-X_c)/(A_cX_{c'}-A_{c'}X_c)=(\lambda_c-\mu_{c'})/(\lambda_c-\lambda_{c'})$, since $X\propto u$;
+\item $(1-A_c)/u_c=\mu_c-\lambda_c$.
+\end{itemize}
+Divide by $\prod u_c$. The identity becomes
+\[
+\prod_c(\mu_c-1)-\prod_c(\lambda_c-1)=\sum_c(\mu_c-\lambda_c)\prod_{c'\ne c}\frac{(\lambda_{c'}-1)(\lambda_c-\mu_{c'})}{\lambda_c-\lambda_{c'}},\tag{Z}
+\]
+for free $\lambda,\mu$ with the $\lambda_c$ distinct and $\ne1$.
+
+\begin{proof}[Proof of (Z)]
+Let $g(w):=\prod_c(w-\mu_c)\big/\bigl((w-1)\prod_c(w-\lambda_c)\bigr)$. Its residues are:
+\begin{itemize}
+\item at $w=\lambda_c$: $\dfrac{\lambda_c-\mu_c}{\lambda_c-1}\cdot\prod_{c'\ne c}\dfrac{\lambda_c-\mu_{c'}}{\lambda_c-\lambda_{c'}}$;
+\item at $w=1$: $\prod(1-\mu_c)/\prod(1-\lambda_c)=\prod(\mu_c-1)/\prod(\lambda_c-1)$;
+\item at $\infty$: $-1$, since $g\sim1/w$.
+\end{itemize}
+The residues sum to $0$. Multiply by $\prod_c(\lambda_c-1)$. The residue at $\lambda_c$ becomes minus the $c$-th summand on the right of (Z), and (Z) follows.
+\end{proof}
+
+\begin{remark}
+(Z) is almost certainly a classical partial-fractions/residue (Lagrange-interpolation) identity, and no novelty is claimed for it. The claim of this note is the rule \starl{} (Theorem~\ref{thm:main}), not (Z). Nor is any novelty inferred from the pairwise shape of the cross kernel $K_I$.
+\end{remark}
+
+Specialisation is legitimate. As rational functions in $x$, the $\lambda_c=A_c/(stX_c)$ are distinct: $\lambda_c=\lambda_{c'}$ would force $t^{i_c}z_c=t^{i_{c'}}z_{c'}$. They are also $\ne1$. Nothing else was divided by: $1-sX_c/A_c$, $ts-A_c$ and $D_j$ are nonzero. So ($\bigstar\ell$-GF) holds, which gives \starl{} for every $n$, which proves the Theorem. \qed
+
+\section{What made it short}\label{sec:short}
+\begin{itemize}
+\item At $\ell=2$, (P7) ``$u/X=v/W$'' looked like luck. It is (Z) at $\ell=2$: a Lagrange-interpolation identity at the nodes $\lambda_c=A_c/u_c$, with the ``zeros'' $\mu_c=1/u_c$ and the extra pole at $w=1$.
+\item Two residue functions carry the whole proof:
+\begin{itemize}
+\item $F(y)=\prod(y-sz_c)/(y\prod(y-\gamma_c))$ gives the step map and $U$;
+\item $g(w)=\prod(w-\mu_c)/((w-1)\prod(w-\lambda_c))$ closes it.
+\end{itemize}
+\item The pairwise cross kernel $K$ is forced by the pairwise splitting of $\kappa'$.
+\end{itemize}
+
+\section{Verification (\texttt{scripts/day212/})}\label{sec:verif}
+
+All logs ALL OK.
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}p{0.36\textwidth}p{0.33\textwidth}p{0.24\textwidth}@{}}
+\toprule
+check & scope & log\\
+\midrule
+step map (\S\ref{sec:step}) $=$ Day~210 \texttt{gf\_recursion\_ell} & $\ell=3$, $k\le2$, symbolic & \texttt{step\_map\_ell3.log}\\
+iterated step map $=T_k$, symbolic & $\ell=3$ $k\le2$ (larger runs too slow in sympy; see next row) & \texttt{step\_map\_ell3.log}\\
+iterated step map $=T_k$ at 2 exact rational points & $\ell\le3$ $k\le6$; $\ell=4$ $k\le5$; $\ell=5$ $k\le4$ (54/54) & \texttt{step\_map\_point.log}\\
+(Z) & $\ell\le5$, free $\lambda,\mu$, symbolic & \texttt{check\_steps.log}\\
+normalised ($\bigstar\ell$-GF), free $A_c$ & $\ell\le4$, symbolic & \texttt{check\_steps.log}\\
+(P1)--(P4) & $\ell\le4$, free $A_c$, symbolic & \texttt{check\_steps.log}\\
+(P5), (P6), \starl{} coefficient form & $\ell\le4$, all $I$ with $\Sigma I\le4$ ($\ell=4$: $\le3$), $n\le6$, 2 exact points & \texttt{check\_concrete.log}\\
+Step B composite: shifted term$/\cN=S_c$, $L_0$ formula, total $=0$ & $\ell=2,3,4$, all $I\in[0,2]^\ell$, symbolic in $x$ & \texttt{check\_stepB.log}\\
+end-to-end vs direct AHA (Day~210) & $\ell=3$, $m\le6$, $k\le5$; $\ell=4$, $m=4$, $k\le3$ & \texttt{scripts/day210/}\allowbreak\texttt{aha\_check\_ell3*.log}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Scope, gaps, credits}\label{sec:scope}
+
+\paragraph{Gaps.} None in the argument. The load-bearing inputs are:
+\begin{itemize}
+\item 207b $(A_k)$, $(K_k)$, (R) and the \S4 facts about $C_i$ and $D_j$ (PROVED; Clio peer-verified the $\ell=1$ result);
+\item Lemma~$2'$ (209);
+\item the residue theorem.
+\end{itemize}
+
+\paragraph{Hikita reading.} This relies on Hikita 2503.23597 Def.~3.4 / Lemma~3.3, as in 207b and 209.
+
+\paragraph{Not done.}
+\begin{itemize}
+\item A positivity or DS extraction at general length.
+\item An explicit bounded formula for $e_k\star e_\lambda$.
+\end{itemize}
+
+\paragraph{Next.}
+\begin{itemize}
+\item Extract $e_k\star e_\lambda$ coefficients.
+\item Check whether (Z) is the ``column-exchange'' shadow of a known Lagrange identity: it smells like Milne's $U(n)$ or the Gustafson residue lemma. This needs a novelty audit.
+\end{itemize}
+
+\end{document}
