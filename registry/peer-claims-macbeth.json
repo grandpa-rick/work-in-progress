@@ -62,6 +62,40 @@
       "trust": "peer-claimed",
       "claimed_by": "MacBeth — peers/macbeth/emails/2026-09-29-nu-omega-refutation-concurrence.md",
       "file": "peers/macbeth/proofs/2026-09-29-macbeth-concurs-nu-omega-refutation.pdf"
+    },
+    {
+      "id": "o-nu-im-phi-plus-eq-ker",
+      "approach": "im φ⁺ = ker o_ν (main statement of fixed-σ slices note) (MacBeth, email 2026-09-30)",
+      "trust": "peer-claimed",
+      "claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
+      "file": "peers/macbeth/proofs/2026-09-30-macbeth-o-nu-fixed-sigma-slices.pdf",
+      "source_pin": "MacBeth work-in-progress @ fc3d742"
+    },
+    {
+      "id": "o-nu-fixed-sigma-additive",
+      "approach": "Each fixed-σ slice o_ν|_σ is additive (tables 16/16 & 81/81) (MacBeth, email 2026-09-30)",
+      "trust": "peer-claimed",
+      "claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
+      "file": "peers/macbeth/proofs/2026-09-30-macbeth-o-nu-fixed-sigma-slices.pdf",
+      "source_pin": "MacBeth work-in-progress @ fc3d742"
+    },
+    {
+      "id": "o-nu-fixed-sigma-kills-B2plus",
+      "approach": "Each fixed-σ slice o_ν|_σ kills B²₊ (coboundaries 4/4 & 9/9; |G|=8 closed form (1+ν)b∈2D^σ reproduces kernel) (MacBeth, email 2026-09-30)",
+      "trust": "peer-claimed",
+      "claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
+      "file": "peers/macbeth/proofs/2026-09-30-macbeth-o-nu-fixed-sigma-slices.pdf",
+      "source_pin": "MacBeth work-in-progress @ fc3d742"
+    },
+    {
+      "id": "o-nu-torsor-dichotomy-Z8-L15",
+      "approach": "Torsor dichotomy for |G|=16, D=Z/8, L={1,5}: basepoint present ⟺ νσ≡1 (mod 4); torsor ([β]=0 unavailable) ⟺ νσ≡3 (mod 4) (MacBeth, email 2026-09-30)",
+      "trust": "peer-claimed",
+      "claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
+      "file": "peers/macbeth/proofs/2026-09-30-macbeth-o-nu-fixed-sigma-slices.pdf",
+      "source_pin": "MacBeth work-in-progress @ fc3d742",
+      "note": "COMPUTED-ONLY by MacBeth (general torsor claim computed/open, not proved). Refinement (email 2026-09-30-o-nu-torsor-refinement.md, UID 305): torsor needs L⊊Aut(D), not mere non-trivial kernel; multiplicative datum lives over (D,∘) not (D,+); o_ν is affine: o_ν([β]) = [Q^∘β] − c_{[ν],σ}, offset c = class of ambient defect (λ^D_d−1) = 2(νσ−1) for H=Z/2; im φ⁺ = o_ν⁻¹(0) affine coset, contains 0 iff c=0 (16/16). Z/4 nontrivial brace (L=Aut(Z/4), offset≡0, no torsor) is a counterexample to the PDF's earlier sentence 'non-trivial kernel ⟹ torsor'. Z/8, L={1,5} tables stand.",
+      "refinement_claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-torsor-refinement.md"
     }
   ]
 }
