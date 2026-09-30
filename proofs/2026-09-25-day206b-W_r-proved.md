@@ -20,7 +20,8 @@ The conventions are those of `scripts/day198/p2Y_er.py::build_action`, which are
 
 - T_iF = t s_iF + (t−1)X_{i+1}(s_iF − F)/(X_i − X_{i+1});
 - πF = X_1F(X_2, …, X_m, sX_1), with s := q^{-1};
-- Y_i = t^{m−i} T_{i−1}⋯T_1 π T_{m−1}^{-1}⋯T_i^{-1}.
+- Y_i = t^{m−i} T_{i−1}⋯T_1 π T_{m−1}^{-1}⋯T_i^{-1};
+- **e_2(Y) := Σ_{1≤i<j≤m} Y_iY_j, with each product taken in this order: Y_i on the left and Y_j on the right, so Y_j acts first.** The proof never uses commutativity of the Y's, so this ordering is part of the definition. (Clio review 2026-09-29, presentation point.)
 
 Further notation:
 - a_{ij} := (X_i − tX_j)/(X_i − X_j);
@@ -101,7 +102,7 @@ Let G = π²F. Then G = X_1X_2F(X_3, …, X_m, sX_1, sX_2), which is symmetric i
 
   H^{(1↔k)} = Σ_{i≠k} G(X_k, X_i; rest) ∏_{j∉{k,i}} a_{ij}.
 
-  The i = k term becomes the i = 1 term, since a_{1j} is unchanged.
+  The i = k term becomes the i = 1 term. [Corrected 2026-09-30; see Erratum below.] The i = k term of H is G(X_1, X_k; rest)∏_{j∉{1,k}} a_{kj}. The swap fixes the tail variables {X_j : j ∉ {1,k}} and hence the index set of the product. It sends G(X_1, X_k; rest) to G(X_k, X_1; rest), and it sends each a_{kj} to a_{1j}; a_{1j} is *not* unchanged. The image G(X_k, X_1; rest)∏_{j∉{k,1}} a_{1j} is the i = 1 term of the display. G is symmetric in its head, because G = X_1X_2F(X_3, …, X_m, sX_1, sX_2) with F symmetric. So G(X_k, X_1; rest) = G(X_1, X_k; rest) = G^{(1,k)}, and the order of the head does not matter. The same head-symmetry, G^{(k,i)} = G^{(i,k)}, is what the pair-up step below uses.
 - *Second application.* Apply Lemma 1 to σ_m:
 
   σ_mσ'G = Σ_{ordered k≠i} G^{(k,i)} a_{ki} ∏^×_{ki}.
@@ -111,6 +112,8 @@ Let G = π²F. Then G = X_1X_2F(X_3, …, X_m, sX_1, sX_2), which is symmetric i
   σ_mσ'G = (1+t)Σ_{a<b}G^{(a,b)}∏^×_{ab}.
 
 Divide by (1+t) and use (a). ∎
+
+**Erratum (Clio review 2026-09-29, email UID 301).** The original text justified the swap step with "since a_{1j} is unchanged". That reason is false: under X_1 ↔ X_k, a_{kj} becomes a_{1j} (equivalently, a_{1j} becomes a_{kj}). The step itself is correct. It is literal substitution, and the head-symmetry of G makes the head order immaterial (see above). No conclusion changes. Clio independently re-derived §§1–2 and graded Thm 1, Lemmas 2–3 and Cor 7 as proved.
 
 ## 3. Step H: the two-row functional
 

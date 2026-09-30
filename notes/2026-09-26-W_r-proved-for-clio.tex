@@ -38,7 +38,8 @@ We prove the operator identity $t^{-1}e_2(Y)\bullet e_r = W_r$ for every $m\ge 2
 \textbf{Title:} & $W_r = t^{-1}e_2(Y)\bullet e_r$ for all $r$: a proof via the $|A|=2$ parabolic Hall--Littlewood kernel\\
 \textbf{Source:} & Corresponds to work-in-progress commit \texttt{7f41e16}\\
 & {\footnotesize(\texttt{proofs/2026-09-25-day206b-W\_r-proved.md}, \texttt{scripts/day206b/check\_W\_r\_proof.py})}\\
-\textbf{Trust grade:} & \textbf{self-proved, not peer-checked.}
+\textbf{Trust grade:} & \textbf{self-proved, not peer-checked} (as of 2026-09-26).\\
+\textbf{Revised:} & 2026-09-30: errata from Clio's review (UID~301): \S\ref{sec:K}(b) swap justification; ordering in $e_2(Y)$.
 \end{tabular}
 \end{center}
 
@@ -52,6 +53,11 @@ The conventions are those of \texttt{scripts/day198/p2Y\_er.py::build\_action}, 
 \item $T_iF = t\,s_iF + (t-1)X_{i+1}\dfrac{s_iF-F}{X_i-X_{i+1}}$. This is the $T$ normalization (eigenvalue $t$ on symmetric functions), not $T^{-1}$. Note that $T_i^{-1} = t^{-1}T_i - (1-t^{-1})$.
 \item $\pi F = X_1F(X_2,\dots,X_m,sX_1)$, with $s := q^{-1}$.
 \item $Y_i = t^{m-i}\,T_{i-1}\cdots T_1\,\pi\,T_{m-1}^{-1}\cdots T_i^{-1}$. The rightmost factor acts first.
+\item The ordering is fixed as part of the definition:
+\[
+e_2(Y) := \sum_{1\le i<j\le m} Y_iY_j \qquad(\text{$Y_i$ on the left, $Y_j$ on the right, so $Y_j$ acts first}).
+\]
+The proof never uses commutativity of the $Y$'s, so this ordering is load-bearing.
 \item $a_{ij} := (X_i-tX_j)/(X_i-X_j)$, and $\tn{n} := \tn{n}_t = (1-t^n)/(1-t)$.
 \item $e_n = e_n(X_1,\dots,X_m)$, with $e_n=0$ for $n<0$ or $n>m$. We write $E(z) = \sum_n e_nz^n = \prod_i(1+X_iz)$.
 \item $q_n$ is the one-row Hall--Littlewood function: $Q(y) = \sum_n q_ny^n = \prod_i\dfrac{1-tX_iy}{1-X_iy} = \dfrac{E(-ty)}{E(-y)}$.
@@ -200,7 +206,7 @@ $H$ is symmetric in $X_2,\dots,X_m$.
 \[
 H^{(1\leftrightarrow k)} = \sum_{i\ne k}G(X_k,X_i;\text{rest})\prod_{j\notin\{k,i\}}a_{ij}.
 \]
-The $i=k$ term becomes the $i=1$ term, since $a_{1j}$ is unchanged.
+The $i=k$ term becomes the $i=1$ term. (Corrected 2026-09-30; see the Erratum after the proof.) The $i=k$ term of $H$ is $G(X_1,X_k;\text{rest})\prod_{j\notin\{1,k\}}a_{kj}$. The swap fixes the tail variables $\{X_j:j\notin\{1,k\}\}$, and hence the index set of the product. It sends $G(X_1,X_k;\text{rest})$ to $G(X_k,X_1;\text{rest})$, and it sends each $a_{kj}$ to $a_{1j}$; the factors $a_{1j}$ are \emph{not} unchanged. The image $G(X_k,X_1;\text{rest})\prod_{j\notin\{k,1\}}a_{1j}$ is the $i=1$ term of the display. $G$ is symmetric in its head, since $G=X_1X_2F(X_3,\dots,X_m,sX_1,sX_2)$ with $F$ symmetric. Hence $G(X_k,X_1;\text{rest})=G(X_1,X_k;\text{rest})=G^{(1,k)}$, and the order of the head does not matter. The same head-symmetry, $G^{(k,i)}=G^{(i,k)}$, is what the pair-up step below uses.
 \item \emph{Second application.} Apply Lemma~\ref{lem:L1} to $\sigma_m$:
 \[
 \sigma_m\sigma'G = \sum_{\text{ordered }k\ne i}G^{(k,i)}\,a_{ki}\cross_{ki}.
@@ -212,6 +218,10 @@ The $i=k$ term becomes the $i=1$ term, since $a_{1j}$ is unchanged.
 \end{itemize}
 Divide by $(1+t)$ and use (a).
 \end{proof}
+
+\begin{remark}[Erratum, Clio review 2026-09-29, email UID~301]
+The version of 2026-09-26 justified the swap step with ``since $a_{1j}$ is unchanged''. That reason is false: under $X_1\leftrightarrow X_k$ the factor $a_{kj}$ becomes $a_{1j}$. The step itself is correct. It is a literal substitution, and the head-symmetry of $G$ makes the head order immaterial. No conclusion changes.
+\end{remark}
 
 \section{Step H: the two-row functional}\label{sec:H}
 

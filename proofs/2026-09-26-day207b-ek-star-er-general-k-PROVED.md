@@ -28,7 +28,7 @@ Conventions as in Day 206b §0 (`scripts/day198/p2Y_er.py`, `scripts/day205/k3_f
 - T_iF = t s_iF + (t−1)X_{i+1}(s_iF − F)/(X_i − X_{i+1}), which satisfies (T_i − t)(T_i + 1) = 0;
 - πF = X_1F(X_2..X_m, sX_1), with s = q^{−1};
 - Y_i = t^{m−i}T_{i−1}⋯T_1 π T_{m−1}^{−1}⋯T_i^{−1};
-- e_k(Y) = Σ_{b_1<⋯<b_k} Y_{b_1}⋯Y_{b_k}. The Y_i commute, so the order is irrelevant; the proof uses only this order.
+- **e_k(Y) := Σ_{b_1<⋯<b_k} Y_{b_1}Y_{b_2}⋯Y_{b_k}, with each product taken in increasing index order from left to right, so Y_{b_k} acts first.** The proof of the Theorem (§§2–6) uses only this order and never uses commutativity of the Y's, so the ordering is part of the definition. Commutativity (Bernstein) is used only in the swap step of the §8 Corollary. (Clio review 2026-09-29, presentation point.)
 
 Further notation:
 - a_{ij} = (X_i − tX_j)/(X_i − X_j);
@@ -308,6 +308,11 @@ Everything is in `scripts/day207b/`; see the header. KL, A_k, (C2), (★), (L) a
   **(e_k⋆e_r)|_{t=0} = Σ_{b=0}^{μ−1} (1−s) s^b e_b e_{r+k−b} + s^μ e_μ e_M.**
 
 For r ≥ k this reads Σ_{b<k}(1−s)s^b e_b e_{r+k−b} + s^k e_k e_r. The r < k case is the same formula with k and r swapped.
+
+**Threshold (Erratum, Clio review 2026-09-29, email UID 301).** The uncollapsed form Σ_{b<k}(1−s)s^b e_b e_{r+k−b} + s^k e_k e_r is correct for **r ≥ k−1**, not only for r ≥ k. The covering email (UID 732 P.S., 2026-09-26) stated r ≥ k, which gave away one case.
+- At r = k−1, the b = k−1 term (1−s)s^{k−1}e_{k−1}e_k and the b = k term s^k e_k e_{k−1} combine to s^{k−1}e_{k−1}e_k. That is exactly the μ = r = k−1 Corollary.
+- At r = k−2 (k ≥ 2), the uncollapsed form minus the Corollary is (1−s)s^{k−1}(e_{k−1}² − e_{k−2}e_k), which is nonzero. At k = 3, r = 1 this is ∝ e_2² − e_1e_3, as Clio found.
+- Check: the collected Theorem RHS was taken to its t→0 limit and compared with the uncollapsed form for k = 1..5, r ∈ {k−2, k−1, k}. It holds at r = k−1 and r = k and fails at every r = k−2. Clio checked k = 1..6. The Corollary itself (the μ = min(k,r) form) is unaffected.
 
 **Normalization.** By §0 (Hikita Def 3.4 / Lemma 3.3), e_k⋆e_r *is* t^{−C(k,2)}e_k(Y)•e_r. There is no further Hikita factor, so a t = 0 value only makes sense if the right side of the Theorem is regular at t = 0. The proof below shows this; nothing about the limit is assumed. (Independently, direct AHA shows e_k(Y)•e_r ∈ t^{C(k,2)}ℤ[X,s,t] for m ≤ 6; see `check_t0.py`.)
 
