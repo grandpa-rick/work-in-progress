@@ -110,7 +110,114 @@
                "scripts/day216/comm_test.py",
                "scripts/day216/psi.py"
               ],
-              "children": []
+              "children": [],
+              "note": "Day 216b: Psi(b_mu) is not a Macdonald basis, but (if (N)) the operator Psi = N^{-1} is diagonal on P_nu(x;s,1/t). See theorem-H-prime-t-infinity-q-whittaker."
+             },
+             {
+              "id": "theorem-H-prime-t-infinity-q-whittaker",
+              "approach": "Theorem H': lim_{t->inf} t^{n(mu')} Psi_s(b_mu) = P_{mu'}(x;s,0) = W_{mu'}(x;s) = omega Q'_mu(x;s). Proof from (N) (Psi = N^{-1}, N P_nu(x;s,1/t) = t^{n(nu)} s^{n(nu')} P_nu): expand e_mu = sum_{nu<=mu'} a P_nu, only nu=mu' survives t->inf since n strictly order-reversing; P(x;s,0)=omega Q' by Macdonald VI (5.1). Same computation at s->0 re-derives Theorem H.",
+              "trust": "computed",
+              "role": "attempt",
+              "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+              "note": "Bundle grade = weakest premise: (N) is computed for k>=2. Proof-from-(N) is 3 lines and complete. Original computed evidence n<=5 (scripts/day216/psi_struct_SUMMARY.txt).",
+              "children": [
+               {
+                "id": "N-star-is-nabla-transport",
+                "approach": "(N): E_k = t^{-C(k,2)} N e_k N^{-1}, N = diag(t^{n(nu)} s^{n(nu')}) on Macdonald P_nu(x;q=s,t_Mac=1/t). Equivalently t^{n(lam')} e*_lam = phi^{-1} nabla_{q=s,t} phi(e_lam), phi(F)=F[-eps X/(1-t)]; equivalently (GE') Frobenius/Gaussian evaluation identity (Cherednik-type).",
+                "trust": "computed",
+                "role": "premise",
+                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                "note": "Evidence: nabla_test.py symbolic all lam |-n<=3 (q=1/s negative control fails); N_check.py exact (3/7,-5/2) n+k<=6; boundary cases k=1,k=m,t=1,s=1 proved; s->0 leading = Theorem H. Gap: k>=2 general = Cherednik Gaussian SL2 relation, locator unverified.",
+                "children": [
+                 {
+                  "id": "N1-k1-commutator",
+                  "approach": "(N) at k=1: [D_1,e_1]=(s-1) sum_i A_i x_i T_{s,i}; E_1=t^{m-1}(s-1)^{-1}[D_1,e_1]; eigenvalue difference for box (i,j) = (s-1)tau^{m-1} t^{i-1}s^{j-1} = (s-1)tau^{m-1} T_lam/T_nu.",
+                  "trust": "proved",
+                  "role": "attempt",
+                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                  "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
+                  "children": []
+                 },
+                 {
+                  "id": "N-boundaries-km-t1-s1",
+                  "approach": "(N) at k=m (E_m=e_m T_s), t=1 (monomial check), s=1 (P(x;1,tau)=e_{nu'}).",
+                  "trust": "proved",
+                  "role": "attempt",
+                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                  "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
+                  "children": []
+                 },
+                 {
+                  "id": "N-exact-identities-Ok-and-gaussian-kernel",
+                  "approach": "O_k = sum_{a+b=k}(-1)^b e_a[X/(1-s)] D_k h_b[X/(1-s)] (conjugation by g_z=prod 1/(-z x_i;s)_inf); e_n[X/(1-s)] = N(h_n[X/(1-s)]) via principal specializations VI (6.11').",
+                  "trust": "proved",
+                  "role": "attempt",
+                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                  "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
+                  "children": []
+                 },
+                 {
+                  "id": "N-induction-m-iota-duality",
+                  "approach": "Induction on m via x->1/x (E_k<->E_{m-k}), stability, commutativity: kills defect on Q[e_1,e_{m-1},e_m]; gives m<=3; scalar ambiguity Y'_2(e_2)=c e_4 at m=4 not killed.",
+                  "trust": "sketched",
+                  "role": "attempt",
+                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                  "children": []
+                 },
+                 {
+                  "id": "N-via-Dk-ek-commutators",
+                  "approach": "[D_k,e_k] or D(u)-conjugation by E(z) to isolate O_k for k>=2",
+                  "trust": "dead-end",
+                  "role": "attempt",
+                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                  "reason": "commutators give mixed operators O_k[e_i h_l]; E(z)-conjugation gives prod phi(x_a) weights, Mobius inversion does not commute with T_A",
+                  "refutation": "judgment",
+                  "children": []
+                 }
+                ],
+                "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)"
+               },
+               {
+                "id": "KF-hall-littlewood-formula-for-Ek",
+                "approach": "(KF) E_k F = sum_{l(rho)<=k} P_{rho+1^k}(x;t) (Q'_rho[(s-1)X;t])^perp F, via sigma_k(X_A P_rho(X_A;t)) = P_{rho+1^k}(x;t) (Macdonald III (2.2) coset factorization) + HL Cauchy.",
+                "trust": "proved",
+                "role": "attempt",
+                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                "note": "checked n+k<=4 (scripts/day216b/check_KF.py). Not used by H'.",
+                "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
+                "children": []
+               },
+               {
+                "id": "H-prime-operator-form-b-Q-pieri",
+                "approach": "b-basis matrix of E_k: deg_t M_{nu mu} <= n(nu')-n(mu')-C(k,2), top coefficient psi_{nu/mu}(s) (HL Q-Pieri, Macdonald III (5.8)); phi (P-Pieri) fails.",
+                "trust": "computed",
+                "role": "attempt",
+                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                "note": "testb2.py 136/136, n+k<=5 symbolic.",
+                "children": []
+               },
+               {
+                "id": "psi-omega-duality-s-to-1-over-t",
+                "approach": "omega Psi_{s,t}(b_mu) proportional to Psi_{1/t,1/s}(b_{mu'}) (edges are omega-swapped)",
+                "trust": "dead-end",
+                "role": "attempt",
+                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                "reason": "fails already at n=2 (scripts/day216b/sym_test2.py)",
+                "refutation": "computed",
+                "children": []
+               },
+               {
+                "id": "t-infinity-gauss-valuation-on-monomials",
+                "approach": "Theorem-H-style Gauss valuation in 1/t with x-tilts",
+                "trust": "dead-end",
+                "role": "attempt",
+                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                "reason": "lattice weight n(sort beta) is piecewise linear (not strictly convex): tilts cannot isolate monomials; same for omega-lattice (concave)",
+                "refutation": "judgment",
+                "children": []
+               }
+              ],
+              "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)"
              }
             ],
             "novelty_audit_2026_10_01": "Novelty audit 2026-10-01: novel as far as checked. Report: memory/reading/2026-10-01-theorem-H-novelty-audit.md. Closest prior art: Hikita 2503.23597 Lemma 6.3 (unrescaled q->infinity limit, which collapses to e_n). Related: GMRWW 2504.06936 §4.",
