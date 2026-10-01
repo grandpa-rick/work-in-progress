@@ -2,16 +2,14 @@
 
 **Date:** 2026-10-01 (deep-work session). **Author:** Rick.
 
-**Status (honest):**
+**Status (honest; updated Day 216c, same date):**
 - **(KF), the HL formula for E_k: PROVED** (§1).
-- **(N₁), (N) for k = 1: PROVED** (§2). Also the trivial cases k = m, t = 1 and s = 1.
-- **(N) for general k: COMPUTED** (§3).
-  - Symbolic in s, t for every λ with n ≤ 3, in the ∇ form.
-  - Exact in the Macdonald-P form at two rational points: complete for n + k ≤ 5 at both, partial for n + k = 6 (log in §6).
-  - It is equivalent to a Gaussian/Frobenius evaluation identity (GE′) of Cherednik type. I have NOT proved this for general k.
-- **H′ and Theorem H: PROVED from (N)** (§4), in three lines each.
-- So H′ is **proved conditional on (N)**, and (N) is proved at k = 1 and computed in general.
-- PROVE.md's operator form (b) was computed for n + k ≤ 5 (§5). It is also a consequence of (N).
+- **(N) for ALL k: PROVED** (§9, Day 216c). The proof uses three standard facts about Cherednik operators: triangularity/simple spectrum, Bernstein centrality, and commutativity of the Y_i. These are textbook facts whose locators were not re-verified this session; each was machine-checked in our conventions. Everything else is proved here or in 207b/214.
+  - The key step is the nonsymmetric Gaussian identity **(NS): γ̂ X_i γ̂^{-1} = Y^•_i**, where Y^• are Hikita's twisted Cherednik operators.
+  - Its engine is one telescoping commutator, **(I): [e_1(Y), X_1] = (s−1) X_1Y_1**.
+- **H′ and Theorem H: PROVED** (§4 + §9).
+- Earlier sections §2–§3 and §7–§8 are kept as the historical record. §3's "COMPUTED" and §7's gap 1 are superseded by §9.
+- Novelty: UNAUDITED. (NS) is surely Cherednik's τ_− = Ad(Gaussian) in some form; see §9.6.
 
 **Scripts:** `scripts/day216b/`.
 
@@ -256,3 +254,142 @@ Form (b) follows from (N) by the same limit argument.
 - (iii) Hikita's • is exactly the τ_+-twist (re-read 207b §(A_k) and Hikita Def 3.4).
 
 **Reference to deep-read.** Cherednik, *Double affine Hecke algebras* (LMS LN 319), ch. 3: τ_±, the Gaussian, and the Fourier transform. Locators unverified.
+
+
+## 9. (N) for all k — PROVED (Day 216c)
+
+> Drunk summary: stop fighting the symmetric functions. Go nonsymmetric. Define γ̂ := the Gaussian ∏θ(Y_i), a diagonal operator on the nonsymmetric E_λ. Then γ̂ X_i γ̂^{-1} is EXACTLY Hikita's twisted Y^•_i, with scalar 1 and no fudge. The proof is the Day 216b k=1 commutator trick done one level down, where it works for X_1 alone, and the T_i carry it to every X_i. Then e_k of both sides plus 207b's (A_k) gives (N) for all k at once. γ̂ restricted to Sym is 𝒩 on the nose: ∏θ(s^{ν_i}t^{i−1}) = s^{n(ν')}t^{n(ν)}.
+
+### 9.0 Conventions (as in 207b §0, `scripts/day216c/nsym_b.py`)
+
+Operators on ℚ(s,t)[X_1..X_m]:
+- T_iF = t s_iF + (t−1)X_{i+1}(s_iF − F)/(X_i − X_{i+1});
+- the standard shift is πF = F(X_2,…,X_m, sX_1); Hikita's twisted shift is π^• := X_1π;
+- Y_i := t^{m−i}T_{i−1}⋯T_1 π T_{m−1}^{-1}⋯T_i^{-1}, and Y^•_i is the same word with π^• in place of π.
+
+So Y^•_1 = t^{m−1}X_1πT_{m−1}^{-1}⋯T_1^{-1} = **X_1Y_1**.
+
+Let θ be the function on monomials s^a t^b given by θ(s^a t^b) := s^{C(a,2)} t^{ab}. It satisfies
+
+  (9.0) θ(s·y) = y·θ(y).
+
+### 9.1 Facts used
+
+Elementary relations (each a one-line check from the definitions; all machine-checked by `rels.py` for m = 2, 3, 4 on random polynomials of degree ≤ 3):
+- (R1) T_iX_iT_i = tX_{i+1}, and T_i commutes with X_j for j ∉ {i, i+1}.
+- (R2) πX_j = X_{j+1}π for j < m, and πX_m = sX_1π.
+- (R3) πT_k = T_{k+1}π for k ≤ m−2.
+- (R4) T_i^{-1} = t^{-1}T_i − (1 − t^{-1}), from (T_i − t)(T_i + 1) = 0.
+- (B2) Y_{i+1} = t^{-1}T_iY_iT_i, and likewise for Y^•. This is formal from the defining word, valid for any π: T_i^{-1}Y_{i+1} = t^{-1}·Y_iT_i.
+
+Standard facts about Cherednik operators (textbook; locators not re-verified this session; machine-checked: `rels.py` 'Ycomm', 'B1'; `spec.py`):
+- (C1) The Y_i commute.
+- (C2) Bernstein: T_i commutes with every symmetric polynomial in Y. Equivalently, T_i preserves the joint eigenspaces of Sym(Y). This follows from (B2), (C1) and [T_i, Y_j] = 0 for j ∉ {i, i+1}.
+- (C3) Triangularity. On each Pol_d (homogeneous polynomials of degree d) the Y_i are simultaneously diagonalisable over ℚ(s,t), with simple joint spectrum.
+  - There is an eigenbasis E_λ, indexed by compositions λ with |λ| = d, such that y_i(λ) = s^{λ_i} t^{b_i(λ)}, with b(λ) a permutation of (0, 1, …, m−1).
+  - `spec.py`: m = 2, d ≤ 4 and m = 3, d ≤ 3, at (s,t) = (2,3) with exact factorisation of the eigenvalues.
+
+Define the Gaussian γ̂ on Pol by
+
+  γ̂ E_λ := γ(λ) E_λ,  γ(λ) := ∏_i θ(y_i(λ)).
+
+So γ(λ) depends only on the multiset of spectral values.
+
+### 9.2 Lemma (I): [Y_1 + ⋯ + Y_m, X_1] = (s−1) X_1Y_1
+
+*Proof.*
+
+1. **From (R1) and (R4).** These give T_j^{-1}X_j = X_{j+1}T_j^{-1} − (1−t^{-1})X_j and T_1X_2 = X_1T_1 + (t−1)X_2.
+
+2. **The terms j ≥ 2.** The tail T_{m−1}^{-1}⋯T_j^{-1} commutes with X_1, and πX_1 = X_2π. Then T_{j−1}⋯T_2 commutes with X_1, and T_1X_2 = X_1T_1 + (t−1)X_2. Hence
+
+   [Y_j, X_1] = (t−1) t^{m−j} T_{j−1}⋯T_2 X_2 π T_{m−1}^{-1}⋯T_j^{-1}  =: (t−1)L_j.
+
+3. **The term j = 1.** Push X_1 leftwards through T_{m−1}^{-1}⋯T_1^{-1} using the first identity of step 1. By induction on the number of factors,
+
+   T_{m−1}^{-1}⋯T_1^{-1}X_1 = X_m T_{m−1}^{-1}⋯T_1^{-1} − (1−t^{-1}) Σ_{i=1}^{m−1} X_i T_{m−1}^{-1}⋯T_{i+1}^{-1} T_{i−1}^{-1}⋯T_1^{-1}.
+
+   Here X_i commutes with T_{i+1}, …, T_{m−1}. Apply t^{m−1}π and use (R2). The first term becomes sX_1Y_1, so
+
+   [Y_1, X_1] = (s−1)X_1Y_1 − (t−1) Σ_{i=1}^{m−1} R_i,  R_i := t^{m−2} X_{i+1} π T_{m−1}^{-1}⋯T_{i+1}^{-1} T_{i−1}^{-1}⋯T_1^{-1}.
+
+4. **Telescoping.**
+   - T_{i−1}^{-1}⋯T_1^{-1} commutes with T_{m−1}^{-1}⋯T_{i+1}^{-1}, since the indices differ by at least 2.
+   - It passes through π as T_i^{-1}⋯T_2^{-1}, by (R3).
+   - By (R1), X_{k+1}T_k^{-1} = t^{-1}T_kX_k, so X_{i+1}T_i^{-1}⋯T_2^{-1} = t^{−(i−1)} T_i⋯T_2 X_2.
+
+   Hence R_i = t^{m−(i+1)} T_i⋯T_2 X_2 π T_{m−1}^{-1}⋯T_{i+1}^{-1} = L_{i+1}. Summing over j, the L's cancel the R's. ∎
+
+Checks (`rels.py`, 'I'): m = 2, 3, 4 at (s,t) = (5/7, −3/11). The constant (s−1) is confirmed by the ratio −2/7. At (2,3) the ratio is 1, which is why s = 2 alone is a bad test point.
+
+### 9.3 Proposition (NS): γ̂ X_i γ̂^{-1} = Y^•_i for all i (as operators on Pol)
+
+*Proof.*
+
+1. **The case i = 1.** Write X_1E_λ = Σ_μ c_{μλ}E_μ, with |μ| = |λ|+1.
+   - Apply (I) to E_λ. For every μ with c_{μλ} ≠ 0,
+
+     Σ_j y_j(μ) − Σ_j y_j(λ) = (s−1) y_1(λ),
+
+     as an identity in ℚ(s,t), hence of Laurent polynomials.
+   - By (C3) both spectral vectors have the form (s^{a_j} t^{b_j}), with the t-exponents b_j a permutation of 0..m−1 and hence distinct. Compare coefficients of t^b for each b:
+     - for b ≠ b_1(λ), the s-exponents of μ and λ agree;
+     - for b = b_1(λ), s^{a(μ)} = s·s^{λ_1}.
+   - So spec(μ) = spec(λ) with y_1(λ) replaced by s·y_1(λ). By (9.0), γ(μ) = y_1(λ)γ(λ). Therefore
+
+     γ̂X_1γ̂^{-1}E_λ = Σ c_{μλ} y_1(λ) E_μ = X_1Y_1E_λ = Y^•_1E_λ.
+
+2. **γ̂ commutes with every T_i.**
+   - On Pol_d, take a polynomial interpolating γ on the finite W-stable set W·spec(Pol_d). γ is W-invariant, so we may symmetrise it to some f_d ∈ Sym(Y). Then γ̂|_{Pol_d} = f_d(Y)|_{Pol_d}.
+   - Apply (C2). ✓
+
+3. **Propagation.** By (R1) and (B2), X_{i+1} = t^{-1}T_iX_iT_i and Y^•_{i+1} = t^{-1}T_iY^•_iT_i. Conjugate by γ̂ and induct on i. ∎
+
+**Corollary.**
+- The Y^•_i commute, since they are conjugates of the commuting X_i. This is Bernstein commutativity for Hikita's •, for free.
+- γ̂ e_k(X) γ̂^{-1} = e_k(Y^•) for every k, in any product order.
+
+Direct check (`nsym.py`): γ̂X_iγ̂^{-1} = 1·Y^•_i exactly, for m = 2 (deg ≤ 3 → 4) and m = 3 (deg ≤ 2 → 3), at (s,t) = (2,3).
+- Negative controls: the wrong Gaussians s^{−C(a,2)}t^{±ab} and s^{C(a,2)}t^{−ab} all FAIL from degree 1 on.
+
+### 9.4 γ̂ restricted to Sym is 𝒩
+
+1. **The symmetric eigenvalue.** For symmetric F, the (A_k)/(K_k) argument of 207b runs verbatim with π instead of π^•. Only (H1)–(H5) and the head/tail symmetry of πF are used. It gives
+
+   e_1(Y)F = Σ_a ∏_{j≠a} (X_a − tX_j)/(X_a − X_j) F(…, sX_a, …) = t^{m−1} D_1^{(s,τ)}F.
+
+   So P_ν := P_ν(x; s, 1/t) is an e_1(Y)-eigenvector with eigenvalue Σ_i s^{ν_i} t^{i−1}.
+2. **Spectral support.** Expand P_ν = Σ c_λE_λ. As in 9.3, comparing t-exponents shows that e_1 of a (C3)-type spectral vector determines its multiset. So every λ in the support has spec(λ) = {s^{ν_i}t^{i−1}} as a multiset.
+3. **The eigenvalue of γ̂.** γ̂P_ν = ∏_i θ(s^{ν_i}t^{i−1}) P_ν = s^{Σ C(ν_i,2)} t^{Σ(i−1)ν_i} P_ν = s^{n(ν')}t^{n(ν)} P_ν = T_νP_ν. Hence **γ̂|_Sym = 𝒩** exactly.
+
+### 9.5 Theorem (N), all k
+
+**Theorem.** For all m and k: E_k = t^{−C(k,2)} 𝒩 e_k 𝒩^{-1} on Λ_m.
+
+*Proof.* Let F be symmetric. Then:
+- E_kF = t^{−C(k,2)}e_k(Y^•)F, by 207b (A_k)+(K_k) together with the Day 214 subset formula; both sides equal Σ_A ∏^×_A X_A F(X_{A^c}, sX_A).
+- e_k(Y^•)F = γ̂e_k(X)γ̂^{-1}F, by the Corollary.
+- γ̂^{-1}F = 𝒩^{-1}F is symmetric, and γ̂(e_k𝒩^{-1}F) = 𝒩(e_k𝒩^{-1}F), by 9.4. ∎
+
+**Consequences.**
+- Ψ_s = 𝒩^{-1}.
+- **Theorem H′ PROVED** (§4).
+- Theorem H gets a second proof (§4.2).
+- Form (b) follows (§5).
+- The t→∞ edge of Ψ_s is the q-Whittaker basis W_{μ'}(x;s) = ωQ′_μ(x;s).
+
+### 9.6 What this is, and novelty
+
+- In DAHA language, (NS) says τ_−(X_i) = τ_+(Y_i). Here τ_− = Ad γ̂ fixes Y and T (9.3 step 2, plus π = t^{1−m}Y_1T_1⋯T_{m−1}), and τ_+ fixes X and T and sends π ↦ X_1π. This is the SL₂(ℤ) relation of Cherednik, evaluated on one generator.
+- The proof above is self-contained modulo (C1)–(C3). It never uses the full braid relation, only the single commutator (I). I believe (I) itself is a known DAHA identity, a "Pieri for Y via e_1(Y)", but locator not verified.
+- Novelty of the *conclusion* (Hikita's ⋆ is ∇-transport of ·, and both HL edges) is UNAUDITED. Hikita 2503.23597 builds ⋆ from DAHA, so the authors may well state ⋆ = Gaussian twist. **The next browse must check this before any claim of novelty.**
+- The explicit edge theorems (H, H′), (KF) and the self-contained (I)-proof are our deliverables regardless.
+
+### 9.7 Verification log (Day 216c, `scripts/day216c/`)
+
+| check | script | range | result |
+|---|---|---|---|
+| (NS) γ̂X_iγ̂^{-1} = Y^•_i | nsym.py | m=2 deg≤3; m=3 deg≤2 (s,t)=(2,3) | all i, scalar 1; wrong Gaussians fail |
+| (I), R1, R3, B1, B2, Y1bul, Ycomm | rels.py | m=2,3,4, deg≤3, (5/7,−3/11) | all True |
+| (C3) spectral form, simple spectrum | spec.py | m=2 d≤4, m=3 d≤3 | True |
+| X_1 support claim | perm.py | m=3 d≤2 | True |

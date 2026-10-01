@@ -116,18 +116,18 @@
              {
               "id": "theorem-H-prime-t-infinity-q-whittaker",
               "approach": "Theorem H': lim_{t->inf} t^{n(mu')} Psi_s(b_mu) = P_{mu'}(x;s,0) = W_{mu'}(x;s) = omega Q'_mu(x;s). Proof from (N) (Psi = N^{-1}, N P_nu(x;s,1/t) = t^{n(nu)} s^{n(nu')} P_nu): expand e_mu = sum_{nu<=mu'} a P_nu, only nu=mu' survives t->inf since n strictly order-reversing; P(x;s,0)=omega Q' by Macdonald VI (5.1). Same computation at s->0 re-derives Theorem H.",
-              "trust": "computed",
+              "trust": "proved",
               "role": "attempt",
               "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-              "note": "Bundle grade = weakest premise: (N) is computed for k>=2. Proof-from-(N) is 3 lines and complete. Original computed evidence n<=5 (scripts/day216/psi_struct_SUMMARY.txt).",
+              "note": "Day 216c: premise (N) now PROVED all k (section 9, modulo textbook Cherednik facts C1-C3, machine-checked). Proof-from-(N) is 3 lines. Original computed evidence n<=5 (scripts/day216/psi_struct_SUMMARY.txt). Novelty UNAUDITED vs Hikita 2503.23597.",
               "children": [
                {
                 "id": "N-star-is-nabla-transport",
                 "approach": "(N): E_k = t^{-C(k,2)} N e_k N^{-1}, N = diag(t^{n(nu)} s^{n(nu')}) on Macdonald P_nu(x;q=s,t_Mac=1/t). Equivalently t^{n(lam')} e*_lam = phi^{-1} nabla_{q=s,t} phi(e_lam), phi(F)=F[-eps X/(1-t)]; equivalently (GE') Frobenius/Gaussian evaluation identity (Cherednik-type).",
-                "trust": "computed",
+                "trust": "proved",
                 "role": "premise",
                 "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                "note": "Evidence: nabla_test.py symbolic all lam |-n<=3 (q=1/s negative control fails); N_check.py exact at (3/7,-5/2) and (5/11,7/3), complete n+k<=5, partial n+k=6; boundary cases k=1,k=m,t=1,s=1 proved; s->0 leading = Theorem H. Gap: k>=2 general = Cherednik Gaussian SL2 relation, locator unverified.",
+                "note": "Day 216c section 9: proved all k via nonsymmetric Gaussian (NS) gamma X_i gamma^{-1} = Y^bullet_i, engine Lemma (I) [e_1(Y),X_1]=(s-1)X_1Y_1 (telescoping, proved), then 207b (A_k) + gamma|Sym = N. Uses textbook facts C1 (Y commute), C2 (Bernstein centrality), C3 (triangular simple spectrum s^a t^b, b perm of 0..m-1); locators unverified, all machine-checked (scripts/day216c/rels.py, spec.py, nsym.py). Earlier evidence: nabla_test.py, N_check.py.",
                 "children": [
                  {
                   "id": "N1-k1-commutator",
@@ -173,9 +173,19 @@
                   "reason": "commutators give mixed operators O_k[e_i h_l]; E(z)-conjugation gives prod phi(x_a) weights, Mobius inversion does not commute with T_A",
                   "refutation": "judgment",
                   "children": []
+                 },
+                 {
+                  "id": "NS-nonsym-gaussian-X-to-Ybullet",
+                  "approach": "(NS): gamma-hat X_i gamma-hat^{-1} = Y^bullet_i on Pol, gamma-hat E_lam = prod theta(y_i(lam)) E_lam, theta(s^a t^b)=s^{C(a,2)} t^{ab}. i=1: Lemma (I) [sum Y_j, X_1]=(s-1)X_1Y_1 (telescoping L_j=R_{j-1} via R1-R4) + spectral t-exponent comparison => gamma(mu)/gamma(lam)=y_1(lam). Propagate by T (gamma-hat = f_d(Y) symmetric, Bernstein).",
+                  "trust": "proved",
+                  "role": "attempt",
+                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                  "textbook_refs": "Cherednik operators C1-C3 (textbook)",
+                  "note": "Machine: nsym.py (m=2 deg<=3, m=3 deg<=2, scalar exactly 1, wrong Gaussians fail), rels.py m=2,3,4.",
+                  "children": []
                  }
                 ],
-                "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)"
+                "textbook_refs": "Cherednik operators: commutativity, Bernstein centrality of Sym(Y) (Lusztig 1989), triangularity on monomials (Cherednik; Macdonald AHA book) -- locators unverified (textbook)"
                },
                {
                 "id": "KF-hall-littlewood-formula-for-Ek",
