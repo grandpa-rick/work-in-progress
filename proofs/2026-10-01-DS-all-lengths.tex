@@ -1,0 +1,488 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theoremDS}{Theorem (DS)}
+\newtheorem*{opDS}{Operator form (Op-DS)}
+\newtheorem*{theorem2}{Theorem 2}
+\newtheorem{genericlemma}{Lemma}
+\newenvironment{lem}[1]{\renewcommand{\thegenericlemma}{#1}\begin{genericlemma}}{\end{genericlemma}}
+\newtheorem*{lemmaA}{Lemma A (valuation bound)}
+\newtheorem*{lemmaB}{Lemma B (initial forms at $t=0$)}
+\newtheorem*{peel}{Peel Lemma}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\eqt}{e^{(q,t)}}
+\newcommand{\prodx}{\textstyle\prod^{\times}}
+\newcommand{\dom}{\trianglerighteq}
+\newcommand{\sdom}{\triangleright}
+\newcommand{\domd}{\trianglelefteq}
+\newcommand{\sdomd}{\triangleleft}
+\newcommand{\val}{\operatorname{val}}
+\newcommand{\sort}{\operatorname{sort}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\inn}{\operatorname{in}}
+\newcommand{\peelk}{\operatorname{peel}_k}
+\newcommand{\inv}{\operatorname{inv}}
+\newcommand{\ev}{\operatorname{ev}}
+\newcommand{\one}{\mathbb{1}}
+\newcommand{\file}[1]{\texttt{#1}}
+
+\title{Dominance-Support for the Hikita $\star$-product:\\ all lengths, exact up-set support}
+\author{Rick}
+\date{2026-10-01}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\begin{tabular}{rp{0.72\textwidth}}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-10-01\\
+\textbf{Recipient:} & Clio Vega\\
+\textbf{Title:} & Dominance-Support for the Hikita $\star$-product: all lengths, exact up-set support\\
+\textbf{Source:} & \file{proofs/2026-09-30-day214-DS-all-lengths-PROVED.md}\\
+\textbf{WIP commit:} & This proof corresponds to work-in-progress commit \texttt{9b9db51} \\
+ & (the proof file was last changed in \texttt{b5ccc50}, which added Theorem 2 / \S8;\\
+ & this PDF itself is added in a follow-up commit).\\
+\textbf{Registry:} & \file{proofs/registry/hikita-star-dominance-support.json}, root node, trust: proved
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\noindent\textbf{Original header (Day 214 PROVE).}
+Date: 2026-09-30 (deep-work session). Author: Rick.
+
+\noindent\textbf{Status:} PROVED for every partition $\lambda$, \textbf{including the stretch goal}: the support is exactly the full up-set, and $\val_s c_{\lambda\mu} = n(\mu)$ (\S8). That includes DS$_3$ (the PROVE.md target), all longer lengths, and the operator-level version for every $e_k\star e_\mu$.
+
+\noindent\textbf{Inputs:} 207b $(A_k)$ + $(K_k)$, which give the subset formula (0.1) below, and Lemma 3.3 ($e_k\star 1 = e_k$). Everything else is textbook symmetric-function combinatorics (Macdonald I \S\S1, 6).
+
+\noindent\textbf{Not used:} (TC), ($\bigstar\ell$), the Wick kernel, residues.
+
+\noindent\textbf{Scripts:} \file{scripts/day214/} (exact sympy, all ALL OK).
+
+\begin{quote}
+\textbf{Informal summary.} PROVE.md was bracing for a cross-$b$ cancellation mechanism. There isn't one to find. \textbf{Degree bounds don't care about cancellation.} Each subset term of $e_k\star F$ is a rational function whose $u$-degree under $x_S \to u\cdot x_S$ is at most $\deg_S F + |A\cap S|$, because every kernel factor $a_{ij}$ has degree $0$. That is the whole support proof. The (TC) termwise violations were an artefact of expanding in $E(t^iz)E(t^jw)$. The \emph{subset} terms never violate anything. Third time the ``don't reach for machinery'' lesson fires; this time the lever is a degree count, not a residue.
+\end{quote}
+
+\section*{0. Setup and statement}
+
+\begin{itemize}
+\item $s = q^{-1}$. We work in $\Lambda_m \otimes \Q(s,t)$, writing $K := \Q(s,t)$.
+\item $a_{ij} := (x_i - t x_j)/(x_i - x_j)$.
+\item For $A \subseteq [m]$, $\prodx_A := \prod_{i\in A,\, j\notin A} a_{ij}$ and $X_A := \prod_{a\in A} x_a$.
+\end{itemize}
+
+\noindent\textbf{(0.1) Subset formula.} For symmetric $F$ and $1 \le k \le m$,
+\[
+E_k F := e_k\star F = t^{-\binom{k}{2}}\, e_k(Y)\bullet F = \sum_{|A|=k} \prodx_A \cdot X_A \cdot F(X_{A^c}, sX_A). \tag{0.1}
+\]
+
+\noindent\emph{Justification.}
+\begin{itemize}
+\item 207b $(A_k)$ gives $e_k(Y)F = t^{\binom{k}{2}} \sigma^{(k)} \pi^k F$.
+\item $\pi^k F = x_1\cdots x_k\, F(x_{k+1..m}, s x_1..s x_k)$, which is symmetric in the head and in the tail.
+\item 207b $(K_k)$ gives $\sigma^{(k)}G = \sum_A G^{(A)} \prodx_A$.
+\item This is the same formula 207b \S4 and (TC) \S1 start from.
+\item Re-checked here: \file{check\_vs\_207b.py} compares (0.1) with the 207b closed form symbolically in $s,t$ for $k \le 3$, $r \le 3$.
+\end{itemize}
+Because $F$ is symmetric, $F(X_{A^c}, sX_A)$ is simply $F$ with $x_a \mapsto s x_a$ for $a \in A$. The order of the arguments is irrelevant.
+
+\begin{definition}
+$e_\lambda^{(q,t)} := E_{\lambda_1}E_{\lambda_2}\cdots E_{\lambda_\ell}(1)$. By Lemma 3.3, $E_k(1) = e_k$, so this is $e_{\lambda_1}\star(e_{\lambda_2}\star(\cdots\star e_{\lambda_\ell}))$. The proof below works for the operators applied in \textbf{any} order, so neither associativity nor commutativity of $\star$ is used.
+\end{definition}
+
+\begin{theoremDS}
+For every partition $\lambda \vdash n$, and in $\Lambda_m$ for every $m \ge n$ (hence in $\Lambda$, by \S5):
+\[
+e_\lambda^{(q,t)} = s^{n(\lambda)} e_\lambda + \sum_{\mu \sdom \lambda} c_{\lambda\mu}\, e_\mu, \qquad n(\lambda) = \sum (i-1)\lambda_i,
+\]
+with every $c_{\lambda\mu} \in \Q(t)[s]$ and $c_{\lambda\mu}|_{s=1} = 0$ for $\mu \ne \lambda$. Its parts:
+\begin{itemize}
+\item \textbf{(S) Support:} only $\mu \dom \lambda$ occur.
+\item \textbf{(L) Leading term:} the coefficient of $e_\lambda$ is $q^{-n(\lambda)}$.
+\item \textbf{(V) Vanishing:} each off-diagonal coefficient is \emph{polynomial} in $s$, so in particular regular at $s = 1$, and it vanishes there.
+\end{itemize}
+\end{theoremDS}
+
+\begin{opDS}
+For every $k \ge 1$ and every partition $\mu$:
+\[
+e_k\star e_\mu \in s^{\sum_i \min(\mu_i,k)}\, e_{\mu\cup k} + \operatorname{span}\{e_\nu : \nu \sdom \mu\cup k\}.
+\]
+This is the ``74 operator-level cases'' of Day 211, now for all $k$ and $\mu$.
+\end{opDS}
+
+\section*{1. From e-dominance to monomial degree bounds}
+
+\begin{lem}{1.1}
+Let $m \ge n$ and $\rho \vdash n$. Then $\operatorname{span}\{e_\nu : \nu \dom \rho'\} = \operatorname{span}\{m_\kappa : \kappa \domd \rho\}$ in $\Lambda_m^n$.
+\end{lem}
+
+\begin{proof}
+\leavevmode
+\begin{enumerate}
+\item By Macdonald I (6.6), $e_\nu = \sum_\kappa M_{\nu\kappa} m_\kappa$, where $M_{\nu\kappa}$ counts 0-1 matrices with row sums $\nu$ and column sums $\kappa$.
+\item If $M_{\nu\kappa} \ne 0$, then $\kappa \domd \nu'$. The first $j$ columns of such a matrix hold at most $\sum_i \min(\nu_i, j) = \nu'_1+\cdots+\nu'_j$ ones.
+\item Also $M_{\nu\nu'} = 1$, which is (6.7).
+\item By Macdonald I (1.11), $\nu \dom \rho' \iff \nu' \domd \rho$. So every $e_\nu$ on the left lies in the right span.
+\item The $e_\nu$ ($\nu \vdash n$) are linearly independent in $\Lambda_m$, because $m \ge n$. The map $\nu \mapsto \nu'$ is a bijection between the two index sets, so the dimensions agree. \qedhere
+\end{enumerate}
+\end{proof}
+
+\noindent\textbf{Degree.} For $S \subseteq [m]$ and a nonzero $R \in K(x)$, let $\deg_S R$ be the degree in $u$ of $R|_{x_i \mapsto u x_i\ (i\in S)}$. Here the $u$-degree of a rational function over $K(x)$ means $\deg \text{num} - \deg \text{den}$.
+
+\noindent Properties:
+\begin{itemize}
+\item $\deg_S(R_1R_2) = \deg_S R_1 + \deg_S R_2$.
+\item $\deg_S(R_1 + R_2) \le \max(\deg_S R_1, \deg_S R_2)$.
+\item For a polynomial $P$, $\deg_S P$ is the largest $S$-degree $\sum_{i\in S} \alpha_i$ of a monomial $x^\alpha$ of $P$. The reason is that the $u^d$ coefficient is the $S$-degree-$d$ part of $P$, which is nonzero.
+\item For symmetric $P$, $\deg_S P$ depends only on $j = |S|$. Write $D_j(P)$ for it.
+\end{itemize}
+
+\begin{lem}{1.2}
+Let $P \in \Lambda_m$ be homogeneous of degree $n = |\rho|$. Then $P \in \operatorname{span}\{m_\kappa : \kappa \domd \rho\}$ if and only if $D_j(P) \le \rho_1+\cdots+\rho_j$ for all $j$.
+\end{lem}
+
+\begin{proof}
+The $m_\kappa$ have disjoint monomial supports, and $D_j(m_\kappa) = \kappa_1+\cdots+\kappa_j$.
+\end{proof}
+
+\section*{2. The degree lemma $\Rightarrow$ (S)}
+
+\begin{lem}{2.1}[degree step]
+Let $F$ be a symmetric polynomial and $k \le m$. For every $j$,
+\[
+D_j(E_kF) \le D_j(F) + \min(k, j).
+\]
+\end{lem}
+
+\begin{proof}
+Fix $S$ with $|S| = j$ and bound each subset term $R_A = \prodx_A \cdot X_A \cdot F(X_{A^c}, sX_A)$ of (0.1).
+\begin{itemize}
+\item \textbf{The kernel.} $\deg_S a_{ij} = 0$ in all cases:
+ \begin{itemize}
+ \item if $i$ and $j$ are both in $S$, or both out, then $a_{ij}$ is homogeneous of degree $0$ in $u$, or constant;
+ \item if exactly one is in $S$, then numerator and denominator both have $u$-degree $1$.
+ \end{itemize}
+\item \textbf{The monomial.} $\deg_S X_A = |A \cap S| \le \min(k, j)$.
+\item \textbf{The shifted $F$.} $F(X_{A^c}, sX_A)$ is $F$ with some variables multiplied by the constant $s \in K^\times$, and this does not change $u$-degrees. So its $\deg_S$ equals the maximal $S$-degree of a monomial of $F$, which is $D_j(F)$.
+\end{itemize}
+Hence $\deg_S R_A \le D_j(F) + \min(k, j)$. The degree of a sum is at most the maximum of the degrees. $E_kF$ is a polynomial by 207b, so its $\deg_S$ is the monomial degree.
+\end{proof}
+
+\noindent\textbf{Proof of (S).} Induct on the operators applied, in any order. Start from $D_j(1) = 0$. After applying $E_{\lambda_\ell}, \ldots, E_{\lambda_1}$,
+\[
+D_j(e_\lambda^{(q,t)}) \le \sum_i \min(\lambda_i, j) = \lambda'_1 + \cdots + \lambda'_j.
+\]
+By Lemma 1.2, $e_\lambda^{(q,t)} \in \operatorname{span}\{m_\kappa : \kappa \domd \lambda'\}$. By Lemma 1.1 this is $\operatorname{span}\{e_\nu : \nu \dom \lambda\}$. \hfill$\blacksquare$(S)
+
+\smallskip
+Op-DS support is the same argument with a single step: starting from $F = e_\mu$ with $D_j = \sum \min(\mu_i, j)$, one gets $D_j \le \sum \min(\mu_i, j) + \min(k, j) =$ the partial sums of $(\mu\cup k)'$.
+
+\section*{3. The leading coefficient (L)}
+
+Fix integers $w_1 > w_2 > \cdots > w_m > 0$. Substitute $x_i \mapsto u^{w_i} x_i$ and expand in $K(x)((u^{-1}))$. For $\rho = (\rho_1 \ge \cdots \ge \rho_m \ge 0)$, put $W(\rho) := \sum w_i \rho_i$.
+
+\begin{lem}{3.1}
+Let $x^\alpha$ be a monomial with $\sort(\alpha) = \kappa \domd \rho$. Then $\sum w_i \alpha_i \le W(\rho)$, with equality only if $\alpha = \rho$.
+\end{lem}
+
+\begin{proof}
+\leavevmode
+\begin{itemize}
+\item $\sum w_i \alpha_i \le \sum w_i \kappa_i$ by the rearrangement inequality. Since the $w_i$ are strictly decreasing, equality holds only if $\alpha$ is weakly decreasing, i.e.\ $\alpha = \kappa$.
+\item Abel summation gives $\sum w_i \kappa_i = \sum_j (w_j - w_{j+1})(\kappa_1+\cdots+\kappa_j)$, with $w_{m+1} := 0$. Every weight $w_j - w_{j+1}$ is positive, so this is at most the same expression for $\rho$. Equality holds only if all the partial sums agree, i.e.\ $\kappa = \rho$. \qedhere
+\end{itemize}
+\end{proof}
+
+\noindent Consequently, if $P \in \operatorname{span}\{m_\kappa : \kappa \domd \rho\}$ has $m_\rho$-coefficient $c$, then the $u^{W(\rho)}$-coefficient of $P(u^w x)$ is $c\cdot x^\rho$.
+
+\begin{lem}{3.2}[lead step]
+Let $F \in \operatorname{span}\{m_\kappa : \kappa \domd \rho\}$ with $m_\rho$-coefficient $c_F$, and let $k \le m$. Then $E_kF \in \operatorname{span}\{m_\kappa : \kappa \domd \rho + 1^k\}$, and its $m_{\rho+1^k}$-coefficient is
+\[
+s^{\rho_1+\cdots+\rho_k}\, c_F.
+\]
+\end{lem}
+
+\begin{proof}
+\leavevmode
+\begin{enumerate}
+\item \textbf{Membership.} This is Lemma 2.1 together with Lemma 1.2. The partial sums of $\rho + 1^k$ are those of $\rho$ plus $\min(k, j)$.
+\item \textbf{Expand each factor of $R_A$ in $u^{-1}$.}
+ \begin{itemize}
+ \item \textbf{The kernel.} If $w_i > w_j$ ($i < j$), then $a_{ij} = (1 - t u^{w_j-w_i} x_j/x_i)/(1 - u^{w_j-w_i} x_j/x_i) = 1 + O(u^{-1})$. If $i > j$, then $a_{ij} = t + O(u^{-1})$. So $\prodx_A = t^{\inv(A)}(1 + O(u^{-1}))$, where $\inv(A) = \#\{i\in A, j\notin A : i > j\}$.
+ \item \textbf{The monomial.} $X_A$ becomes $u^{\sum_{a\in A} w_a} X_A$.
+ \item \textbf{The shifted $F$.} $F(X_{A^c}, sX_A)$ has the same monomials as $F$, but $x^\alpha$ is rescaled by $s^{\sum_{a\in A} \alpha_a}$. By Lemma 3.1 it is $u^{W(\rho)}(c_F s^{\sum_{a\in A} \rho_a} x^\rho + O(u^{-1}))$.
+ \end{itemize}
+\item \textbf{Leading orders.} So $R_A = u^{W(\rho) + \sum_A w_a}\bigl(t^{\inv(A)} c_F s^{\sum_A \rho_a} x^{\rho+1_A} + O(u^{-1})\bigr)$.
+ \begin{itemize}
+ \item $\sum_{a\in A} w_a$ is uniquely maximised at $A = [k]$, where $\inv = 0$.
+ \item Hence the $u^{W(\rho+1^k)}$-coefficient of $E_kF(u^w x)$ is $c_F s^{\rho_1+\cdots+\rho_k} x^{\rho+1^k}$. The other $A$ are of strictly lower order.
+ \end{itemize}
+\item \textbf{Conclude.} Apply the Consequence of Lemma 3.1 to $E_kF$ with the partition $\rho + 1^k$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\noindent\textbf{Proof of (L).} Apply the operators in any order $p_1, p_2, \ldots, p_\ell$, one after another. When $E_{\lambda_p}$ is applied to the current $\rho = (\cup_{i \text{ already applied}} \lambda_i)'$, it multiplies the lead by
+\[
+s^{\rho_1+\cdots+\rho_{\lambda_p}} = s^{\sum_{i \text{ applied}} \min(\lambda_i, \lambda_p)}.
+\]
+Over the whole process every unordered pair $\{i, p\}$ contributes $\min(\lambda_i, \lambda_p)$ exactly once. So the total exponent is
+\[
+\sum_{i<p} \min(\lambda_i, \lambda_p) = \sum_{i<p} \lambda_p = \sum_p (p-1)\lambda_p = n(\lambda).
+\]
+The $m_{\lambda'}$-coefficient equals the $e_\lambda$-coefficient: in Lemma 1.1's triangularity, the only $e_\nu$ ($\nu \dom \lambda$) that contains $m_{\lambda'}$ is $\nu = \lambda$, and there with coefficient $1$. So $c_{\lambda\lambda} = s^{n(\lambda)} = q^{-n(\lambda)}$. \hfill$\blacksquare$(L)
+
+\smallskip
+For Op-DS, the lead is $s^{\sum_{i\le k} \mu'_i} = s^{\sum_i \min(\mu_i,k)}$.
+
+\section*{4. Vanishing at $s = 1$ (V)}
+
+Let $R := \Q(t)[s]$ and $V := \prod_{i<j}(x_i - x_j)$.
+\begin{enumerate}
+\item \textbf{Clearing denominators.} Multiplying (0.1) by $V$ gives
+\[
+V\cdot E_kF = \sum_A \varepsilon_A \cdot \prod_{\substack{i<j\\ \text{both in } A \text{ or both out}}}(x_i - x_j) \cdot \prod_{i\in A,\, j\notin A}(x_i - t x_j) \cdot X_A \cdot F(X_{A^c}, sX_A),
+\]
+where $\varepsilon_A = (-1)^{\inv(A)}$. Call this sum $N$. If $F \in R[x]$, then $N \in R[x]$.
+\item \textbf{Coefficients stay in $R$.} $V \in \Z[x]$ has content $1$. By Gauss's lemma over the UFD $R[x]$, $E_kF = N/V$ lies in $R[x]$. By induction, $e_\lambda^{(q,t)} \in R[x]^{S_m}$. Expanding a symmetric polynomial over a ring $R$ in the $e$-basis keeps the coefficients in $R$, so every $c_{\lambda\mu} \in \Q(t)[s]$.
+\item \textbf{Specialising.} Let $\ev: R[x] \to \Q(t)[x]$ be the ring map $s \mapsto 1$. Applying it to $N$ kills every $s$ inside $F(X_{A^c}, sX_A)$, so
+\[
+V\cdot \ev(E_kF) = \ev(F) \cdot \sum_A \varepsilon_A(\cdots) = \ev(F) \cdot V\cdot E_k(1) = V\cdot\ev(F)\cdot e_k.
+\]
+Cancelling $V$ in the domain $\Q(t)[x]$ gives $\ev(E_kF) = e_k\cdot\ev(F)$.
+\item \textbf{Iterating.} $\ev(e_\lambda^{(q,t)}) = e_\lambda$. Since the $e$-expansion is unique, $c_{\lambda\lambda}|_{s=1} = 1$ (consistent with $s^{n(\lambda)}$) and $c_{\lambda\mu}|_{s=1} = 0$ for $\mu \ne \lambda$. \hfill$\blacksquare$(V)
+\end{enumerate}
+
+\begin{remark}
+At $q = 1$ the $\star$-product is literally the ordinary product. For length 2, (V) was Lemma V ($F_n|_{s=1} = 0$). Lemma V is now a corollary of this structural fact, not a coincidence of the $F_n$.
+\end{remark}
+
+\section*{5. Stability in $m$}
+
+Let $F \in \Lambda_m$ and set $x_m = 0$ in (0.1). The terms are rational, but their denominators $x_i - x_m$ become $x_i \ne 0$, so the substitution is legitimate.
+\begin{itemize}
+\item \textbf{Terms with $m \in A$} die, because of the factor $X_A$.
+\item \textbf{Terms with $m \notin A$} have $a_{im}|_{x_m=0} = 1$, and $F(X_{A^c}, sX_A)|_{x_m=0} = (F|_{x_m=0})(\ldots)$.
+\end{itemize}
+So $E_k^{(m)}F|_{x_m=0} = E_k^{(m-1)}(F|_{x_m=0})$. The restriction $\Lambda_m \to \Lambda_{m-1}$ sends $e_\nu \mapsto e_\nu$, and it is injective in degree $n$ when $m - 1 \ge n$. Hence the $c_{\lambda\mu}$ do not depend on $m \ge n$, and DS holds in $\Lambda \otimes \Q(q,t)$. \hfill$\blacksquare$
+
+\medskip
+\noindent\textbf{DS is proved for all $\lambda$.} \hfill$\blacksquare$
+
+\section*{6. Verification (\file{scripts/day214/})}
+
+\noindent\textbf{Engine.} \file{ek\_subset\_engine.py} implements (0.1) exactly, as $N/V$ with the division checked exact, and $e$-expands the result.
+
+\noindent\textbf{\file{check\_vs\_207b.py}.} Compares (0.1) with the 207b Pieri closed form, \emph{symbolically} in $s,t$, for $k \le 3$ and $r \le 3$ (log \file{check\_vs\_207b.log}). This confirms the conventions and normalisation match the proved length-2 theory.
+
+\noindent\textbf{\file{check\_ds\_all\_lengths.py N}.} Runs over every $\lambda \vdash n \le N$, of all lengths, at the exact point $(s,t) = (3/7, -5/11)$, and checks:
+\begin{itemize}
+\item (S);
+\item (L), i.e.\ lead $= s^{n(\lambda)}$ exactly;
+\item (V), by running the engine at $s = 1$ and checking $e_\lambda^{(q,t)} = e_\lambda$;
+\item order-independence, $E_{\lambda_\ell}\cdots E_{\lambda_1} = E_{\lambda_1}\cdots E_{\lambda_\ell}$;
+\item ``support $=$ full up-set''.
+\end{itemize}
+Results:
+\begin{itemize}
+\item \textbf{$N = 5$:} all 18 partitions pass everything (\file{check\_ds\_all\_lengths\_N5.log}).
+\item \textbf{$N = 6$:} see \file{check\_ds\_all\_lengths\_N6.log}.
+\end{itemize}
+
+\noindent\textbf{How to read the full-up-set results.} The $c_{\lambda\mu}$ are polynomials in $s$ with coefficients in $\Q(t)$. So a nonzero value at an exact rational point \emph{proves} $c_{\lambda\mu} \ne 0$. For the partitions checked, ``support $=$ full up-set'' is therefore proved case by case.
+
+\noindent\textbf{Independent confirmation.} Day 211's (TC)-based engine found full up-set support for length 3, $|\lambda| \le 6$.
+
+\section*{7. Gaps, caveats, scope}
+
+\begin{itemize}
+\item \textbf{No gap in the argument.}
+ \begin{itemize}
+ \item The load-bearing inputs are 207b $(A_k)$ and $(K_k)$, both PROVED, reviewed by Clio on 2026-09-29, together with Lemma 3.3, a Hikita verified-quote (R0).
+ \item Macdonald I (1.11), (6.6) and (6.7) are textbook.
+ \item Gauss's lemma is textbook.
+ \end{itemize}
+\item \textbf{Stretch goal: PROVED in \S8.} Every $c_{\lambda\mu}$ with $\mu \dom \lambda$ is nonzero, and in fact $\val_s c_{\lambda\mu} = n(\mu)$ exactly.
+\item \textbf{Trust.} DS no longer depends on (TC) or ($\bigstar\ell$). So Clio's pending review of those does NOT gate DS. DS inherits only the 207b grade.
+\item \textbf{Novelty caution.} The argument is the standard ``Macdonald-operator triangularity'' degree count (compare Macdonald VI \S3 / VI (3.6)--(3.10): $D_n^r$ acts triangularly on $m_\lambda$). Since the $\star$-operators have exactly Macdonald's shape --- a kernel $\prodx$ times a shift, here twisted by the $X_A$ factor --- it is plausible that Hikita or someone else states DS, or its monomial-triangular form, explicitly. That needs a novelty check before any claim. No browsing was done in this session.
+\item \textbf{What changed about the Day 211 obstruction.} The (TC) termwise dominance violations are real, but they are an artefact of the $E(t^iz)E(t^jw)$ expansion basis. The subset expansion (0.1) is termwise degree-bounded. \textbf{Lesson: choose the expansion in which the bound is termwise.}
+\end{itemize}
+
+\section*{8. Stretch goal PROVED: the support is exactly the up-set, and $\val_s c_{\lambda\mu} = n(\mu)$}
+
+\begin{theorem2}
+Let $\lambda$ be a partition and $\mu \dom \lambda$.
+\begin{itemize}
+\item[(a)] $c_{\lambda\mu} \in \Q[s,t]$, and $s^{n(\mu)}$ divides $c_{\lambda\mu}$.
+\item[(b)] $c_{\lambda\mu}(s,0) = s^{n(\mu)}(1 + s\cdot\Q[s])$.
+\end{itemize}
+Consequently:
+\begin{itemize}
+\item every $c_{\lambda\mu}$ ($\mu \dom \lambda$) is nonzero, so $\supp e_\lambda^{(q,t)} = \{\mu : \mu \dom \lambda\}$ \emph{exactly};
+\item the $s$-adic valuation of $c_{\lambda\mu}$ is exactly $n(\mu)$;
+\item the lowest coefficient $d_{\lambda\mu}(t) := [s^{n(\mu)}]c_{\lambda\mu} \in \Q[t]$ satisfies $d_{\lambda\mu}(0) = 1$.
+\end{itemize}
+At $s = t = 0$, in the rescaled basis $b_\mu := s^{n(\mu)}e_\mu$, $e_\lambda^{(q,t)}$ is $\sum_{\mu\dom\lambda} b_\mu$, \textbf{the zeta function of the dominance order}.
+\end{theorem2}
+
+\noindent\textbf{Notation.}
+\begin{itemize}
+\item $\omega(\alpha) := \sum_j \binom{\alpha_j}{2}$ for $\alpha \in \Z^m_{\ge0}$.
+\item $B_\mu := \{\beta \in \Z^m_{\ge0} : \sort(\beta) \domd \mu'\}$. By \S2, this is the monomial support set of $e_\mu^{(q,t)}$.
+\item Write $e_\mu^{(q,t)} = \sum_\beta a^\mu_\beta x^\beta$. The coefficient $a^\mu_\beta$ is symmetric in $\beta$, because $e_\mu^{(q,t)}$ is a symmetric polynomial.
+\end{itemize}
+
+\noindent\textbf{Key identity.} For $A \subseteq [m]$, $\omega(\beta + 1_A) = \omega(\beta) + 1_A\cdot\beta$, since $\binom{b+1}{2} = \binom{b}{2} + b$. This is where $s^{n}$ comes from.
+
+\subsection*{8.1 Integrality}
+
+\S4's Gauss-lemma argument works over $\Q[s,t]$, because $N_A$ uses only $(x_i - t x_j)$ and no $t^{-1}$. So $E_k$ preserves $\Q[s,t][x]^{S_m}$, and hence $c_{\lambda\mu} \in \Q[s,t]$.
+
+Specialising $t = 0$ is a ring map. Moreover $c_{\lambda\mu}(s,0)$ are the $e$-coefficients of $E^0_{\lambda_1}\cdots E^0_{\lambda_\ell}(1)$, where $E^0_k$ is (0.1) with $a_{ij}$ replaced by $x_i/(x_i - x_j)$.
+
+\subsection*{8.2 Lemma A (valuation bound)}
+
+\begin{lemmaA}
+For $t$ generic, and also at $t = 0$, $\val_s(a^\lambda_\alpha) \ge \omega(\alpha)$ for all $\alpha$.
+\end{lemmaA}
+
+\noindent\emph{Setup.}
+\begin{itemize}
+\item Work over $K = \Q(t)(s^{1/2})$, or $K = \Q(s^{1/2})$ at $t = 0$, with the $s$-adic valuation $v$. It is trivial on $\Q(t)$.
+\item Extend $v$ to $K(x)$ by the Gauss valuation: $v(\sum a_\beta x^\beta) = \min_\beta v(a_\beta)$, and $v(P/Q) = v(P) - v(Q)$. This is a valuation.
+\item For $c \in (\tfrac12\Z)^m$, let $\sigma_c$ be the $K$-automorphism $x_j \mapsto s^{-c_j}x_j$.
+\end{itemize}
+
+\noindent\emph{Claim.} $v(\sigma_c e_\lambda^{(q,t)}) \ge \min_{\beta\in B_\lambda}(\omega(\beta) - c\cdot\beta)$ for all $c$.
+
+\noindent\emph{Proof of the claim.} Induct along $E_k$: $e_\mu \mapsto e_{\mu\cup k}$. Base case: $1 = e_\varnothing$, with $B_\varnothing = \{0\}$.
+
+For a term $R_A$ of (0.1) applied to $F = e_\mu^{(q,t)}$, the three factors of $\sigma_c R_A$ are:
+\begin{itemize}
+\item \textbf{The kernel.} At generic $t$, $v(\sigma_c a_{ij}) = \min(-c_i, -c_j) - \min(-c_i, -c_j) = 0$. At $t = 0$, $v = -c_i + \max(c_i, c_j) \ge 0$.
+\item \textbf{The monomial.} $\sigma_c X_A = s^{-c\cdot 1_A} X_A$.
+\item \textbf{The shifted $F$.} $\sigma_c[F(X_{A^c}, sX_A)] = \sigma_{c-1_A}F$.
+\end{itemize}
+Hence
+\[
+v(\sigma_c R_A) \ge -c\cdot 1_A + \min_{\beta\in B_\mu}\bigl(\omega(\beta) - (c-1_A)\cdot\beta\bigr) = \min_{\beta\in B_\mu}\bigl(\omega(\beta+1_A) - c\cdot(\beta+1_A)\bigr),
+\]
+using the key identity. Now $\beta + 1_A \in B_{\mu\cup k}$: the top-$j$ sums grow by at most $\min(j,k)$, and $\mu' + 1^k = (\mu\cup k)'$. So the bound is $\ge \min_{B_{\mu\cup k}}$. Take the minimum over $A$. \hfill$\square$
+
+\noindent\emph{Extraction.} Put $c := \alpha - \tfrac12\cdot\one$. Then
+\[
+\omega(\beta) - c\cdot\beta = \sum_j \Bigl[\frac{(\beta_j - \alpha_j)^2}{2} - \frac{\alpha_j^2}{2}\Bigr],
+\]
+whose \emph{unique} minimiser over all of $\Z^m$ is $\beta = \alpha$. Since $v(\sigma_c P) = \min_\beta(v(a_\beta) - c\cdot\beta)$, we get $v(a_\alpha) - c\cdot\alpha \ge \omega(\alpha) - c\cdot\alpha$. \hfill$\blacksquare$(A)
+
+\subsection*{8.3 From monomials to $e$-coefficients}
+
+Recall $n(\nu) = \sum_i (n - S_i(\nu))$, so $\nu \sdomd \mu$ implies $n(\nu) > n(\mu)$. Also $n(\mu) = \omega(\mu')$.
+
+Write $c_\nu = s^{n(\nu)}d_\nu$. Suppose $\min_\nu v(d_\nu) = \delta < 0$. Among the $\nu$ with $v(d_\nu) = \delta$, pick $\mu$ minimal in dominance. Then:
+\begin{itemize}
+\item $a_{\mu'} = \sum_{\nu\domd\mu} c_\nu M_{\nu\mu'}$, with $M_{\mu\mu'} = 1$ (Lemma 1.1).
+\item The $\nu = \mu$ term has valuation exactly $n(\mu) + \delta$.
+\item Every other term has valuation $> n(\mu) + \delta$: if $\nu \sdomd \mu$, then $n(\nu) > n(\mu)$.
+\end{itemize}
+So $v(a_{\mu'}) = n(\mu) + \delta < \omega(\mu')$, contradicting Lemma A. Hence every $d_\nu$ is $s$-integral, which proves Theorem 2(a). Reducing mod $s$ gives
+\[
+d_\mu(0) = [s^{\omega(\mu')}]\, a_{\mu'} =: \Lambda_\lambda(\mu').
+\]
+
+\subsection*{8.4 Lemma B (initial forms at $t = 0$)}
+
+\begin{lemmaB}
+At $t = 0$, $\Lambda^0_\lambda(\alpha) := [s^{\omega(\alpha)}]a^\lambda_\alpha$ equals $1$ if $\sort(\alpha) \domd \lambda'$, and $0$ otherwise.
+\end{lemmaB}
+
+\noindent\emph{Setup.} Let $\inn_{v_0}(R)$ denote the reduction of $s^{-v_0}R$ in the residue field $\Q(x)$ of the Gauss valuation, defined when $v(R) \ge v_0$. It is additive at a common level, and multiplicative.
+
+Fix $\alpha$ with $\sort\alpha \domd (\mu\cup k)'$, put $c = \alpha - \tfrac12$ and $v_0 = \omega(\alpha) - c\cdot\alpha$. By the extraction uniqueness,
+\[
+\inn_{v_0}(\sigma_c e_{\mu\cup k}^{(q,t)}) = \Lambda^0_{\mu\cup k}(\alpha)\, x^\alpha.
+\]
+
+\noindent\emph{Termwise analysis.} Consider the term $R_A$.
+\begin{itemize}
+\item \textbf{Terms that miss the top order.} Suppose $\alpha - 1_A$ is not in $B_\mu$, or has a negative entry. Then $v(\sigma_cR_A) > v_0$ strictly, because the unique minimiser $\alpha$ is not of the form $\beta + 1_A$. So $\inn_{v_0}$ kills $R_A$.
+\item \textbf{Terms that survive.} Otherwise, with $\beta_0 = \alpha - 1_A$ and $c - 1_A = \beta_0 - \tfrac12$,
+\[
+\inn_{v_0}(\sigma_cR_A) = \inn_0(\sigma_c \prodx_A) \cdot \Lambda^0_\mu(\beta_0) \cdot x^\alpha.
+\]
+\end{itemize}
+
+\noindent\emph{The kernel factor at $t = 0$.} Here $\inn_0(\sigma_c a_{ij})$ equals:
+\begin{itemize}
+\item $1$ if $\alpha_i > \alpha_j$;
+\item $0$ if $\alpha_i < \alpha_j$;
+\item $x_i/(x_i - x_j)$ if $\alpha_i = \alpha_j$.
+\end{itemize}
+So only $A$ that are \emph{upper sets} for $\alpha$ survive. Let $v$ be the $k$-th largest entry of $\alpha$ and $L_v := \{j : \alpha_j = v\}$. The surviving sets are $A = \{\alpha > v\} \sqcup B$, where $B \subseteq L_v$ has size $r := k - \#\{\alpha > v\}$. Every entry of $A$ is $\ge 1$, because $\ell(\sort\alpha) \ge \ell((\mu\cup k)') \ge k$.
+
+\noindent\emph{Summing over $B$.} $\sort(\alpha - 1_A) = \peelk(\sort\alpha)$ does not depend on $B$, and $\Lambda^0_\mu$ is symmetric. So
+\[
+\Lambda^0_{\mu\cup k}(\alpha) = \Lambda^0_\mu(\peelk\alpha) \cdot \sum_{B\subseteq L_v,\ |B|=r}\ \prod_{i\in B,\ j\in L_v\setminus B} \frac{x_i}{x_i - x_j} = \Lambda^0_\mu(\peelk\alpha).
+\]
+The last sum is $1$. It is symmetric ($S_{L_v}$ permutes the terms), so its product with the Vandermonde is antisymmetric, and the sum is a polynomial. It is homogeneous of degree $0$, hence a constant. The constant is its $u$-leading coefficient under the weights $w_1 > w_2 > \cdots$ of \S3, where only $B =$ the first $r$ indices contributes, with value $1$. The $t$-version, $\Sigma = \binom{N}{r}_t$, is checked in \file{check\_stretch.py}.
+
+Here $\peelk(\kappa)$ means: subtract $1$ from the $k$ largest parts of $\kappa$.
+
+\begin{peel}
+Let $\kappa \domd \lambda$ with $|\kappa| = |\lambda|$ and $k \le \ell(\lambda)$. Then $\peelk\kappa \domd \peelk\lambda$.
+\end{peel}
+
+\begin{proof}
+\leavevmode
+\begin{enumerate}
+\item \textbf{Conjugate formula.} Counting the parts $\ge c$ after the peel gives
+\[
+(\peelk\kappa)'_c = \kappa'_c - \min(k, \kappa'_c) + \min(k, \kappa'_{c+1}).
+\]
+(This is checked for $n \le 12$ in \file{check\_stretch.py}.)
+\item \textbf{Partial sums.} Telescoping, and using $\kappa'_1 = \ell(\kappa) \ge \ell(\lambda) \ge k$,
+\[
+S_C((\peelk\kappa)') = S_C(\kappa') - k + \min(k, \kappa'_{C+1}).
+\]
+The same holds for $\lambda$.
+\item \textbf{Compare.} We have $\kappa' \dom \lambda'$ (Macdonald I (1.11)). Put $D_C := S_C(\kappa') - S_C(\lambda') \ge 0$ and $m(x) := \min(k, x)$.
+ \begin{itemize}
+ \item If $m(\kappa'_{C+1}) \ge m(\lambda'_{C+1})$, we are done.
+ \item Otherwise $\kappa'_{C+1} < k$ and $\kappa'_{C+1} < \lambda'_{C+1}$. Then $D_C \ge D_{C+1} + \lambda'_{C+1} - \kappa'_{C+1} \ge m(\lambda'_{C+1}) - m(\kappa'_{C+1})$.
+ \end{itemize}
+\item So $(\peelk\kappa)' \dom (\peelk\lambda)'$, which is $\peelk\kappa \domd \peelk\lambda$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\noindent(A brute-force check confirms it for all 10,788 triples with $n \le 11$, in \file{peel\_monotone.py}. This is the greedy step of Ryser's algorithm for the Gale--Ryser theorem.)
+
+\medskip
+\noindent\emph{Proof of Lemma B.} Induct along $E_k$. The base case is $\Lambda^0_\varnothing(0) = 1$. For $\sort\alpha \domd (\mu\cup k)'$, the Peel Lemma with $\lambda := (\mu\cup k)'$ gives:
+\begin{itemize}
+\item $\peelk(\sort\alpha) \domd \peelk((\mu\cup k)')$;
+\item $\peelk((\mu\cup k)') = \mu'$, because $(\mu\cup k)' = \mu' + 1^k$ and its top $k$ parts sit in positions $1..k$.
+\end{itemize}
+So $\Lambda^0_{\mu\cup k}(\alpha) = 1$. Outside $B_{\mu\cup k}$, the value is $0$ by (S). \hfill$\blacksquare$(B)
+
+\medskip
+\noindent\emph{Proof of Theorem 2.} $d_{\lambda\mu}(0)|_{t=0} = \Lambda^0_\lambda(\mu') = [\mu' \domd \lambda'] = [\mu \dom \lambda] = 1$. Since $c_{\lambda\mu}/s^{n(\mu)} \in \Q[s,t]$ (by \S8.3, together with $s^{n(\mu)} \mid c$ in $\Q(t)[s] \cap \Q[s,t]$), its value at $s = t = 0$ is $1$. \hfill$\blacksquare$
+
+\medskip
+\noindent\textbf{Checks.}
+\begin{itemize}
+\item \file{s\_valuation.py} ($n \le 5$), \file{check\_stretch.py} ($n \le 5$) and \file{check\_stretch\_n6.py} ($n = 6$, $t = 0$): $\val_s c_{\lambda\mu} = n(\mu)$ for every $\mu \dom \lambda$, with lowest coefficient exactly $1$ at $t = 0$. At $t = -5/11$ the valuation is again $n(\mu)$.
+\item The $d_{\lambda\mu}(t)$ are genuinely $t$-dependent. Example: $d_{(1111),(211)} = 1 + 3t$, a value consistent with the data at $t = -5/11$.
+\item \emph{Remark (computed for $n \le 5$ in \file{t1\_count.py}; the $t = 1$ case follows from the same $\inn_0$ argument, but it is not written out).} At $t = 1$ the recursion becomes $\Lambda_{\mu\cup k}(\alpha) = \sum_{A \subseteq \supp\alpha} \Lambda_\mu(\alpha - 1_A)$. This counts 0-1 matrices, so $d_{\lambda\mu}(1) = M_{\lambda\mu'}$. The case $1 + 3t$ at $t = 1$ gives $4 = M_{(1111),(31)}$. At general $t$, the $\inn_0$ of $a_{ij}$ for $\alpha_i < \alpha_j$ is $t$, and the level-set sums are $t$-binomials. So $d_{\lambda\mu}(t)$ is a $t$-count of 0-1 matrices with row sums $\lambda$ and column sums $\mu'$. This is not written out here.
+\end{itemize}
+
+\end{document}
