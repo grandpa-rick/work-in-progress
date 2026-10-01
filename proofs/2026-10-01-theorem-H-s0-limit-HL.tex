@@ -1,0 +1,210 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem*{theoremH}{Theorem H}
+\newtheorem*{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}[lemma]{Proposition}
+\theoremstyle{definition}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\prodx}{\textstyle\prod^{\times}}
+\newcommand{\dom}{\trianglerighteq}
+\newcommand{\domd}{\trianglelefteq}
+\newcommand{\sdomd}{\triangleleft}
+\newcommand{\sort}{\operatorname{sort}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\inn}{\operatorname{in}}
+\newcommand{\inv}{\operatorname{inv}}
+\newcommand{\res}{\operatorname{res}}
+\newcommand{\one}{\mathbb{1}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\gbin}[3]{\genfrac{[}{]}{0pt}{}{#1}{#2}_{#3}}
+\newcommand{\file}[1]{\texttt{#1}}
+
+\title{Theorem H: the $s\to 0$ limit of Hikita's $\star$ is\\ Hall--Littlewood $e_k$-multiplication}
+\author{Rick}
+\date{2026-10-01}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\begin{tabular}{rp{0.72\textwidth}}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-10-01\\
+\textbf{Recipient:} & Clio Vega (cc Robin Langer)\\
+\textbf{Title:} & Theorem H: the $s\to0$ limit of Hikita's $\star$ is Hall--Littlewood $e_k$-multiplication\\
+\textbf{WIP commit:} & Content as of work-in-progress commit \texttt{f1bd0a2}\\
+ & (this PDF itself is added in a follow-up commit).\\
+\textbf{Source:} & \file{proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md}\\
+\textbf{Registry:} & \file{proofs/registry/hikita-star-dominance-support.json}, nodes \file{theorem-H-s0-star-is-HL-pieri}, \file{d-equals-hall-littlewood-transition}\\
+\textbf{Grade:} & \emph{proved} (self-proved; sober re-read once; not peer-reviewed).
+ \textbf{Novelty UNAUDITED} --- may be folklore (product-level shadow of $P_\lambda(x;q{=}0,t)=\mathrm{HL}$).
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section{Setup}
+
+Let $s=q^{-1}$ and $a_{ij}=(x_i-tx_j)/(x_i-x_j)$. The subset formula (Day 207b, proved and reviewed) is
+\begin{equation}\tag{0.1}
+E_kF=\sum_{|A|=k}\prodx_A\cdot X_A\cdot F(X_{A^c},sX_A),\qquad \prodx_A=\prod_{i\in A,\,j\notin A}a_{ij},
+\end{equation}
+where $E_k=e_k\star(-)$ and $X_A=\prod_{i\in A}x_i$. Put $e^\star_\lambda:=E_{\lambda_1}\cdots E_{\lambda_\ell}(1)$ and $b_\mu:=s^{n(\mu)}e_\mu$ (ordinary product $e_\mu$). Here $t$ is an indeterminate. By stability (Day 214 \S5) we work in $\Lambda_m$ with $m$ at least the total degree.
+
+Notation: $n(\kappa)=\sum(i-1)\kappa_i=\sum_{i<j}\min(\kappa_i,\kappa_j)$ over pairs of parts; for $\alpha\in\Z^m_{\ge0}$, $\omega(\alpha):=\sum_j\binom{\alpha_j}{2}$, so $\omega(\alpha)=n(\kappa')$ for $\kappa=\sort\alpha$; $\gbin{N}{r}{t}$ is the Gaussian binomial.
+
+\begin{theoremH}
+Let $\cO:=\Q(t)[s]_{(s)}$ and $\cL:=\bigoplus_\mu\cO\, b_\mu$.
+\begin{enumerate}[label=(\arabic*)]
+\item \emph{(Integrality)} $E_k\cL\subseteq\cL$; more precisely $E_kb_\mu\in\bigoplus_\rho\Q[s,t]\,b_\rho$.
+\item \emph{(H)} Let $L_k$ be the $\Q(t)$-linear map induced by $E_k$ on $\cL/s\cL=\bigoplus\Q(t)\bar b_\mu$, and let $\varphi:\cL/s\cL\to\Lambda_{\Q(t)}$, $\varphi(\bar b_\mu):=t^{-n(\mu')}P_{\mu'}(x;t^{-1})$. Then
+\[\varphi\circ L_k=t^{-\binom k2}\,e_k\cdot\varphi.\]
+\item \emph{(Explicit matrix)} With $\rho:=\mu'$, $\kappa:=\nu'$,
+\[L_k\bar b_\mu=\sum_\nu t^{\inv(\kappa/\rho)}\prod_{v\ge1}\gbin{m_v(\kappa)}{r_v}{t}\,\bar b_\nu,\]
+summed over $\kappa\supseteq\rho$ with $\kappa/\rho$ a vertical $k$-strip; $r_v$ is the number of parts of $\kappa$ equal to $v$ lying in rows of the strip, and $\inv(\kappa/\rho):=\sum_{v<w}r_v\,(m_w(\kappa)-r_w)$. Equivalently $\nu/\mu$ is a horizontal $k$-strip. The term $\nu=\mu\cup k$ (i.e.\ $\kappa=\rho+1^k$) is always present; it is the DS leading term.
+\end{enumerate}
+\end{theoremH}
+
+\begin{corollary}
+For all $\lambda,\mu\vdash n$,
+\[d_{\lambda\mu}(t):=[s^{n(\mu)}]\,c_{\lambda\mu}=t^{n(\mu')-n(\lambda')}\,[P_{\mu'}(x;t^{-1})]\,e_\lambda=t^{-n(\lambda')}\sum_\nu K_{\nu'\lambda}\,\tilde K_{\nu\mu'}(t),\]
+where $e^\star_\lambda=\sum_\mu c_{\lambda\mu}e_\mu$ and $\tilde K_{\nu\kappa}(t)=t^{n(\kappa)}K_{\nu\kappa}(t^{-1})$ is the cocharge Kostka--Foulkes polynomial. Hence $d_{\lambda\mu}\in\N[t]$; $d_{\lambda\mu}(1)=M_{\lambda\mu'}$, the number of $0$-$1$ matrices with row sums $\lambda$ and column sums $\mu'$; and $d_{\lambda\mu}(0)=1$ for $\mu\dom\lambda$, recovering Day 214 Theorem 2(b).
+\end{corollary}
+
+\section{Admissible polynomials are the $b$-lattice}
+
+Let $K=\Q(t)(s^{1/2})$ with $s$-adic valuation $v$ (trivial on $\Q(t)$), extended to $K(x)$ by the Gauss valuation. For $c\in(\tfrac12\Z)^m$ let $\sigma_c:x_j\mapsto s^{-c_j}x_j$. A homogeneous symmetric $F=\sum_\beta a_\beta x^\beta\in K[x]$ is \emph{admissible} if $v(a_\beta)\ge\omega(\beta)$ for all $\beta$.
+
+\begin{lemma}\label{lem:adm}
+$F$ is admissible $\iff$ for every $c$, $v(\sigma_cF)\ge\min_{\beta\in\Z^m_{\ge0}}(\omega(\beta)-c\cdot\beta)$.
+\end{lemma}
+\begin{proof}
+($\Rightarrow$) $v(\sigma_cF)=\min_\beta(v(a_\beta)-c\cdot\beta)$. ($\Leftarrow$) Take $c=\alpha-\tfrac12\one$. Then $\omega(\beta)-c\cdot\beta=\sum_j[(\beta_j-\alpha_j)^2-\alpha_j^2]/2$, uniquely minimised on $\Z^m$ at $\beta=\alpha$. So $v(a_\alpha)-c\cdot\alpha\ge v(\sigma_cF)\ge\omega(\alpha)-c\cdot\alpha$.
+\end{proof}
+
+\paragraph{Initial form.} For admissible $F$ put $\inn(F)(\alpha):=$ residue of $s^{-\omega(\alpha)}a_\alpha$ in $\Q(t)$. It is symmetric in $\alpha$, so a function of $\kappa=\sort\alpha$, written $\inn(F)(\kappa)$. With $c=\alpha-\frac12$ and $v_0=\omega(\alpha)-c\cdot\alpha$, the proof above shows
+\begin{equation}\tag{1.2}
+\inn_{v_0}(\sigma_cF)=\inn(F)(\alpha)\cdot x^\alpha\quad\text{in the residue field }\Q(t)(x),
+\end{equation}
+since every $\beta\neq\alpha$ contributes at strictly higher valuation.
+
+\begin{lemma}\label{lem:L}
+Let $F=\sum_\mu c_\mu e_\mu\in\Lambda_m\otimes K$ be homogeneous of degree $n\le m$. Then $F$ is admissible $\iff v(c_\mu)\ge n(\mu)$ for all $\mu$, i.e.\ $F\in\cL\otimes\cO[s^{1/2}]$. In that case $\inn(F)(\mu')=\res(s^{-n(\mu)}c_\mu)=:\bar c_\mu$, the $\bar b_\mu$-coordinate of $F$ mod $s$.
+\end{lemma}
+\begin{proof}
+\emph{$b_\mu$ is admissible.} The $x^\beta$-coefficient of $s^{n(\mu)}e_\mu$ is $s^{n(\mu)}M_{\mu\kappa}$, $\kappa=\sort\beta$. By Day 214 Lemma 1.1, $M_{\mu\kappa}\ne0\Rightarrow\kappa\domd\mu'$, so $\kappa'\dom\mu$ (Macdonald I (1.11)), hence $\omega(\beta)=n(\kappa')\le n(\mu)$, since $n$ is strictly order-reversing ($n(\lambda)=\sum_{j\ge1}(|\lambda|-S_j(\lambda))$). Equality iff $\kappa=\mu'$. So $b_\mu$ is admissible with $\inn(b_\mu)(\kappa)=[\kappa=\mu']$, using $M_{\mu\mu'}=1$.
+
+($\Leftarrow$) Admissibility is preserved by sums and by scalars of valuation $\ge0$.
+
+($\Rightarrow$) We have $a_{\mu'}=\sum_{\nu\domd\mu}c_\nu M_{\nu\mu'}$ with $M_{\mu\mu'}=1$. Let $\delta:=\min_\nu(v(c_\nu)-n(\nu))$ and suppose $\delta<0$. Choose $\mu$ dominance-minimal with $v(c_\mu)-n(\mu)=\delta$. Every $\nu\sdomd\mu$ has $v(c_\nu)\ge n(\nu)+\delta>n(\mu)+\delta$. Hence $v(a_{\mu'})=n(\mu)+\delta<\omega(\mu')$, contradicting admissibility.
+
+\emph{Formula.} $\inn(F)(\mu')=\sum_\nu\res(s^{n(\nu)-n(\mu)}\cdot s^{-n(\nu)}c_\nu)M_{\nu\mu'}$; only $\nu$ with $n(\nu)\le n(\mu)$ and $\nu\domd\mu$ survive, i.e.\ $\nu=\mu$.
+\end{proof}
+
+\section{The one-step recursion}
+
+\begin{lemma}[level-set sum]\label{lem:level}
+For $0\le r\le N$,
+\[\sum_{B\subseteq[N],\,|B|=r}\ \prod_{i\in B,\,j\notin B}\frac{x_i-tx_j}{x_i-x_j}=\gbin{N}{r}{t}.\]
+\end{lemma}
+\begin{proof}
+The sum $S$ is symmetric (permuting variables permutes terms), so $V_N S$ is an antisymmetric polynomial, divisible by $V_N$; thus $S$ is a polynomial, homogeneous of degree $0$, hence a constant in $\Q(t)$. Substitute $x_i=u^{N-i}$ and let $u\to\infty$: $a_{ij}\to1$ for $i<j$ and $\to t$ for $i>j$. So $S=\sum_Bt^{\#\{i\in B,\,j\notin B:\,i>j\}}$, the inversion generating function of $0$-$1$ words with $r$ ones, which is $\gbin Nr t$. (Equivalently Macdonald III (1.4) split over $S_r\times S_{N-r}$ cosets.)
+\end{proof}
+
+\begin{proposition}\label{prop:rec}
+Let $F\in\Lambda_m\otimes K$ be admissible of degree $n$, $m\ge n+k$. Then $E_kF$ is admissible, and for every $\kappa\vdash n+k$
+\begin{equation}\tag{2.3}
+\inn(E_kF)(\kappa)=\sum_{\rho:\ \kappa/\rho\text{ vert.\ }k\text{-strip}}t^{\inv(\kappa/\rho)}\prod_v\gbin{m_v(\kappa)}{r_v}{t}\,\inn(F)(\rho).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Fix $c$ and $A$ with $|A|=k$, and consider $\sigma_cR_A$ for the term $R_A$ of (0.1).
+\begin{enumerate}[label=\arabic*.]
+\item \emph{Kernel.} Since $t$ is a unit, $v(\sigma_c(x_i-tx_j))=v(\sigma_c(x_i-x_j))=\min(-c_i,-c_j)$, so $v(\sigma_ca_{ij})=0$, with initial form $1$ if $c_i>c_j$, $t$ if $c_i<c_j$, and $a_{ij}$ itself if $c_i=c_j$.
+\item \emph{Monomial.} $\sigma_cX_A=s^{-c\cdot\one_A}X_A$.
+\item \emph{Shifted $F$.} $\sigma_c[F(X_{A^c},sX_A)]=\sigma_{c-\one_A}F$.
+\item \emph{Lower bound.} By Lemma~\ref{lem:adm} and $\omega(\beta+\one_A)=\omega(\beta)+\one_A\cdot\beta$,
+\[v(\sigma_cR_A)\ge-c\cdot\one_A+\min_{\beta\ge0}(\omega(\beta)-(c-\one_A)\cdot\beta)=\min_{\gamma\ge\one_A}(\omega(\gamma)-c\cdot\gamma)\ge\min_{\gamma\ge0}(\omega(\gamma)-c\cdot\gamma).\]
+Minimising over $A$, Lemma~\ref{lem:adm} gives admissibility of $E_kF$ (symmetric by 207b).
+\end{enumerate}
+Now fix $\alpha\in\Z^m_{\ge0}$ with $\sort\alpha=\kappa$, $c=\alpha-\frac12$, $v_0=\omega(\alpha)-c\cdot\alpha$. All terms have $v\ge v_0$, so initial forms add and by (1.2) $\inn(E_kF)(\alpha)x^\alpha=\sum_A\inn_{v_0}(\sigma_cR_A)$.
+\begin{enumerate}[label=\arabic*.,resume]
+\item \emph{$A\not\subseteq\supp\alpha$.} Then $\gamma=\alpha$ is excluded from $\{\gamma\ge\one_A\}$; the minimiser over $\Z^m$ is unique and the discrete minimum is attained, so $v(\sigma_cR_A)>v_0$: contribution $0$.
+\item \emph{$A\subseteq\supp\alpha$.} Put $\beta_0=\alpha-\one_A\ge0$, so $c-\one_A=\beta_0-\frac12$. By (1.2) for $F$ at $\beta_0$ and multiplicativity, $\inn_{v_0}(\sigma_cR_A)=\inn_0(\sigma_c\prodx_A)\cdot\inn(F)(\beta_0)\cdot x^\alpha$; the levels match by the key identity.
+\item \emph{Kernel factorises.} Let $L_v=\{j:\alpha_j=v\}$, $m_v=|L_v|$, $B_v=A\cap L_v$, $r_v=|B_v|$ ($v\ge1$). By step 1,
+\[\inn_0(\sigma_c\prodx_A)=t^{\#\{i\in A,\,j\notin A:\,\alpha_i<\alpha_j\}}\prod_v\prod_{i\in B_v,\,j\in L_v\setminus B_v}a_{ij},\]
+and the $t$-exponent is $\sum_{v<w}r_v(m_w-r_w)=\inv$.
+\item \emph{Dependence only on $(r_v)$.} $\sort(\beta_0)=:\rho(r)$ is $\kappa$ with $r_v$ of its parts equal to $v$ lowered by one; $\kappa/\rho(r)$ is a vertical $k$-strip, and each vertical $k$-strip arises from a unique $(r_v)$. Both $\inn(F)(\beta_0)=\inn(F)(\rho(r))$ and $\inv$ depend only on $(r_v)$.
+\item \emph{Sum over the $B_v$.} For fixed $(r_v)$, Lemma~\ref{lem:level} on each level set gives $\prod_v\gbin{m_v}{r_v}t$. Dividing by $x^\alpha$ gives (2.3).\qedhere
+\end{enumerate}
+\end{proof}
+
+\section{Proof of Theorem H}
+
+\paragraph{(1) Integrality.} $b_\mu$ is admissible, so $E_kb_\mu$ is admissible (Prop.~\ref{prop:rec}) and by Lemma~\ref{lem:L} every $b$-coordinate has $v\ge0$. By Day 214 \S8.1 (Gauss's lemma over $\Q[s,t]$), $E_ke_\mu\in\bigoplus\Q[s,t]e_\nu$, so the $b_\nu$-coordinate of $E_kb_\mu$ is $p(s,t)/s^{n(\nu)-n(\mu)}$ with $p\in\Q[s,t]$. Its $s$-adic valuation over $\Q(t)$ is $\ge0$, so the $s^j$-coefficients of $p$ for $j<n(\nu)-n(\mu)$ vanish in $\Q(t)$, hence in $\Q[t]$; the coordinate lies in $\Q[s,t]$. As $\cL$ is closed under $\cO$-combinations, $E_k\cL\subseteq\cL$.
+
+\paragraph{(3) Explicit matrix.} By Lemma~\ref{lem:L} the $\bar b_\nu$-coordinate of $L_k\bar b_\mu$ is $\inn(E_kb_\mu)(\nu')$. Apply (2.3) with $\inn(b_\mu)(\rho)=[\rho=\mu']$: the result is $t^{\inv(\nu'/\mu')}\prod\gbin{m_v(\nu')}{r_v}t$ if $\nu'/\mu'$ is a vertical $k$-strip, and $0$ otherwise.
+
+\paragraph{(2) The intertwining.}
+\begin{enumerate}[label=\arabic*.]
+\item \emph{The $\inv$ count.} Let $\kappa/\rho$ be a vertical $k$-strip with data $(r_v)$ and $A$ as above. Using $n(\kappa)=\sum_{\text{pairs}}\min$, lowering the parts in $A$ by one changes a pair's min by: $-1$ if both parts are in $A$; $-1$ iff $v\le w$ if part $i\in A$ has value $v$ and part $j\notin A$ has value $w$; $0$ otherwise. Hence
+\begin{equation}\tag{3.1}
+n(\kappa)-n(\rho)=\binom k2+\inv(\kappa/\rho)+\sum_vr_v(m_v-r_v).
+\end{equation}
+\item \emph{Flip $t$.} Since $\gbin mr{t^{-1}}=t^{-r(m-r)}\gbin mrt$,
+\[t^{\inv}\prod_v\gbin{m_v}{r_v}t=t^{\,n(\kappa)-n(\rho)-\binom k2}\,\psi_{\kappa/\rho}(t^{-1}),\qquad\psi_{\kappa/\rho}(u):=\prod_v\gbin{m_v(\kappa)}{r_v}u.\]
+\item \emph{Pieri.} Macdonald III (3.2): $e_kP_\rho(x;u)=\sum_{\kappa/\rho\text{ vert.\ }k\text{-strip}}\psi_{\kappa/\rho}(u)P_\kappa(x;u)$, with $m_v(\kappa)=\kappa'_v-\kappa'_{v+1}$ and $r_v=\kappa'_v-\rho'_v$ (machine-checked, \S6).
+\item \emph{Conclude.} For $X\in\cL$ write $h(\kappa):=t^{-n(\kappa)}\inn(X)(\kappa)$, so $\varphi(\bar X)=\sum_\kappa h(\kappa)P_\kappa(x;t^{-1})$ by Lemma~\ref{lem:L}. By (2.3) and step 2,
+\[t^{-n(\kappa)}\inn(E_kX)(\kappa)=t^{-\binom k2}\sum_\rho\psi_{\kappa/\rho}(t^{-1})\,h(\rho),\]
+so $\varphi(L_k\bar X)=t^{-\binom k2}\sum_\rho h(\rho)\sum_\kappa\psi_{\kappa/\rho}(t^{-1})P_\kappa(x;t^{-1})=t^{-\binom k2}e_k\varphi(\bar X)$.\qed
+\end{enumerate}
+
+\section{Proof of the Corollary}
+
+\begin{enumerate}[label=\arabic*.]
+\item \emph{Iterate.} $e^\star_\lambda=E_{\lambda_1}\cdots E_{\lambda_\ell}(1)$ with $1=b_\varnothing$ and $\varphi(\bar b_\varnothing)=1$. Iterating (H),
+$\varphi(e^\star_\lambda\bmod s)=t^{-\sum_i\binom{\lambda_i}2}e_\lambda=t^{-n(\lambda')}e_\lambda$.
+\item \emph{Read off $d$.} By Day 214 Theorem 2(a), $e^\star_\lambda=\sum_\mu s^{n(\mu)}d_{\lambda\mu}(t)(1+O(s))e_\mu$, so its class mod $s$ is $\sum_\mu d_{\lambda\mu}\bar b_\mu$. Comparing $P_{\mu'}(x;t^{-1})$-coefficients,
+$t^{-n(\mu')}d_{\lambda\mu}=t^{-n(\lambda')}[P_{\mu'}(x;t^{-1})]e_\lambda$.
+\item \emph{Kostka--Foulkes.} With $e_\lambda=\sum_\nu K_{\nu'\lambda}s_\nu$ and $s_\nu=\sum_\kappa K_{\nu\kappa}(u)P_\kappa(x;u)$ (Macdonald III (2.6)), $u=t^{-1}$:
+\[d_{\lambda\mu}=t^{-n(\lambda')}\sum_\nu K_{\nu'\lambda}\,t^{n(\mu')}K_{\nu\mu'}(t^{-1})=t^{-n(\lambda')}\sum_\nu K_{\nu'\lambda}\tilde K_{\nu\mu'}(t).\]
+\item \emph{Consequences.} $\tilde K\in\N[t]$ (Lascoux--Sch\"utzenberger cocharge, Macdonald III (6.5)) and $d\in\Q[t]$ (Day 214) give $d\in\N[t]$. At $t=1$: $\sum_\nu K_{\nu'\lambda}K_{\nu\mu'}=M_{\lambda\mu'}$ by dual RSK / Macdonald I (6.6)--(6.7), via $e_\lambda=\sum M_{\lambda\kappa}m_\kappa$ and $P_\kappa(x;1)=m_\kappa$.\qed
+\end{enumerate}
+
+\section{Verification (\file{scripts/day215b/}, \file{scripts/day215/})}
+
+\begin{itemize}
+\item \file{op\_kill.py}: explicit matrix (3) against the exact engine (0.1) applied to $b_\mu$; $b$-coordinates checked exactly with no negative $s$-power (the integrality assert), and the $s=0$ value compared with the prediction.
+\item \file{hl\_pieri\_check.py}: Macdonald III (3.2) with $P$ built from the (2.2) symmetrisation.
+\end{itemize}
+
+\paragraph{Check log (stated honestly).}
+\begin{itemize}
+\item \file{op\_kill\_sym5.log} (symbolic $s,t$, all $n+k\le5$): \textbf{26/26 pass, 0 bad}. Complete; this is the load-bearing check.
+\item \file{op\_kill\_num6.log} (numeric $t$, $n+k\le6$): \textbf{PARTIAL} --- through $n=0..3$ (28 cases, 0 bad); no lines for $n=4,5$.
+\item \file{op\_kill\_num7.log} (numeric $t$, $n+k\le7$): \textbf{PARTIAL} --- through $n=0,1$ (13 cases, 0 bad).
+\item \file{hl\_pieri\_num6.log}: Macdonald III (3.2), $n=1..6$, 0 bad (complete); symbolic $t$, $n\le4$: 0 failures.
+\item Independent end-to-end check of the Corollary (including the normalisation $t^{-n(\lambda')}$): \textbf{233/233} pairs with $n\le7$ (\file{scripts/day215/test\_formula.py}).
+\end{itemize}
+
+\section{Scope, grade, and the novelty question}
+
+\textbf{Grade:} proved (self-proved; sober re-read once; not peer-reviewed). No known logical gap. External inputs: 207b (proved, Clio-reviewed); Day 214 \S\S1, 5, 8.1--8.3 (proved, review queued); textbook Macdonald III (2.2), (2.6), (3.2), (6.5) and I (1.11), (6.6); (3.2) is load-bearing and machine-checked.
+
+\textbf{Novelty: UNAUDITED.} This may well be folklore: it looks like a product-level shadow of $P_\lambda(x;q=0,t)=$ Hall--Littlewood. Candidates to check: Hikita 2503.23597 (Lemma 6.3 covers only the $q\to\infty$ limit on the unrescaled $e$); Bechtloff Weising--Orr 2410.13642; Shimozono--Zabrocki; general ``$q\to0$/$q\to\infty$ of Macdonald operators gives HL'' (Macdonald VI). The features that look specific here are the rescaling $b_\mu=s^{n(\mu)}e_\mu$ and the conjugation $\mu\mapsto\mu'$.
+
+\begin{remark}[Mechanism]
+The rescaling $b_\mu=s^{n(\mu)}e_\mu$ is exactly the Gauss-valuation weight $\omega(\beta)=n(\sort(\beta)')$. The tilt $c=\alpha-\frac12$ turns each kernel factor into $1$, $t$, or the level-set HL kernel, so the $s\to0$ limit sees only the relative order of exponents --- precisely the information HL symmetrisation uses.
+\end{remark}
+
+\end{document}
