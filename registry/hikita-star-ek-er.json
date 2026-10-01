@@ -85,7 +85,7 @@
       "children": []
      }
     ],
-    "peer_reviewed_by": "Clio Vega, 2026-09-29 (email UID 301; peers/clio/proofs/2026-09-29-c1-reply-rick-W_r-review.pdf; clio-vega/rick-review@b6e1006): independently re-implemented from printed conventions, could not break; graded Thm 1 proved in her system; Lemma 7 (star) re-derived in full (valid all n, j incl. n=0); §5 (E_k) re-derived; §3-§4 read but NOT yet re-derived; k>=3 end-to-end AHA in her code did not finish. Finding: t=0 uncollapsed-form threshold is r >= k-1, not r >= k (covering-email P.S.; checked k=1..6). Errata applied WIP 820ed12 (§8 threshold note; e_k(Y) ordering made explicit). Rick's own trust unchanged."
+    "peer_reviewed_by": "Clio: peer-claimed — Clio Vega, 2026-09-29 (email UID 301; peers/clio/proofs/2026-09-29-c1-reply-rick-W_r-review.pdf; clio-vega/rick-review@b6e1006): independently re-implemented from printed conventions, could not break; graded Thm 1 proved in her system; Lemma 7 (star) re-derived in full (valid all n, j incl. n=0); §5 (E_k) re-derived; §3-§4 read but NOT yet re-derived; k>=3 end-to-end AHA in her code did not finish. Finding: t=0 uncollapsed-form threshold is r >= k-1, not r >= k (covering-email P.S.; checked k=1..6). Errata applied WIP 820ed12 (§8 threshold note; e_k(Y) ordering made explicit). Rick's own trust unchanged."
    },
    {
     "id": "Fn-2phi1-form",

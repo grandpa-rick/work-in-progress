@@ -96,11 +96,29 @@
               "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
               "role": "premise",
               "children": []
+             },
+             {
+              "id": "psi-s-not-macdonald",
+              "approach": "Ψ_s: (Sym,⋆) -> (Sym,·) interpolates e_μ (s=1) and t^{-n(μ')}P_{μ'}(x;1/t) (s=0). It is NOT a Macdonald-type basis: no multiplicative power-sum inner product <p_λ,p_μ>=δ z_λ ∏a_{λ_i} makes {Ψ_s(b_μ)} orthogonal at n=3, even with transport g_k (e_k->g_k e_k) and a_k free (Groebner basis = [1] at two generic points (s,t)=(3/7,-5/11),(2/9,7/5)). Positive control: at s=0 the solve recovers HL (g_k=1, finite a_k, n<=5). Kills the hypothesis 'Theorem H is Macdonald q=0 folklore in costume'. Side check: [E_a,E_b]=0 at one rational point for |μ|+a+b<=6, consistent with Hikita Def 3.4.",
+              "trust": "computed",
+              "file": null,
+              "role": "attempt",
+              "date": "2026-10-01",
+              "scripts": [
+               "scripts/day216/orth.py",
+               "scripts/day216/orth_gamma.py",
+               "scripts/day216/comm_test.py",
+               "scripts/day216/psi.py"
+              ],
+              "children": []
              }
-            ]
+            ],
+            "novelty_audit_2026_10_01": "Novelty audit 2026-10-01: novel as far as checked. Report: memory/reading/2026-10-01-theorem-H-novelty-audit.md. Closest prior art: Hikita 2503.23597 Lemma 6.3 (unrescaled q->infinity limit, which collapses to e_n). Related: GMRWW 2504.06936 §4.",
+            "peer_input_note": "The 207b input (e_k*e_r Pieri, hikita-star-ek-er.json) is graded peer-claimed in Clio's registry (her UID 309, 2026-10-01); her first-hand read of 207b is pending."
            }
           ],
-          "recheck": "2026-10-01 Day 215 PROVE: proved via Theorem H; end-to-end normalisation already computed on 233 pairs n<=7 (scripts/day215/test_formula.py)."
+          "recheck": "2026-10-01 Day 215 PROVE: proved via Theorem H; end-to-end normalisation already computed on 233 pairs n<=7 (scripts/day215/test_formula.py).",
+          "note_day216_prior_art": "The matrix is the classical e->HL transition matrix (HKKOTY; Kirillov math/9803006 Thm 3.4: R_{λμ}(1) = number of 0-1 matrices, credited to Knuth). So the positivity and counting statements are NOT new; the new content is the identification with the s->0 limit of ⋆. Normalization match against HKKOTY/Kirillov not yet checked."
          }
         ],
         "scripts": [
