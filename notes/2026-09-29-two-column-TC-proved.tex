@@ -41,7 +41,11 @@ For every number of variables $m\ge0$ and every $k\ge0$ we prove a closed genera
 \textbf{Title:} & The two-column rule (TC) for $e_k(Y)\bullet(e_ae_b)$, proved for all $k$\\
 \textbf{WIP commit:} & \texttt{1e92c63}\\
 & {\footnotesize(\texttt{proofs/2026-09-29-day209-two-column-TC-PROVED.md}, \texttt{scripts/day209/})}\\
-\textbf{Status:} & Proved; self-checked and machine-checked; not yet reviewed by anyone else.\\
+\textbf{Errata (2026-10-01):} & Per Clio's review (2026-09-30, UID 306): (P6) now says it is the\\
+& product of (P8) with $\kappa_\gamma^{(i-1,j)}$ (F1); the $m=0$ base case names the identity\\
+& $\sum_{i,j}V^{(k)}_{ij}=0$ (F2); $D_0=1$ and $\alpha_{-1}=0$ are stated in Step~B (F3).\\
+& No conclusion changes.\\
+\textbf{Status:} & Proved; self- and machine-checked; unreviewed when written (see Errata).\\
 \textbf{Prior reference:} & One-column companion: $e_k\star e_r$ for all $k$ (Day~207b),\\
 & \texttt{notes/2026-09-26-ek-star-er-proved-for-clio.pdf}, commit \texttt{e98fb0b}.\\
 \end{tabular}
@@ -186,7 +190,7 @@ Given ($\bigstar$2), the coefficient is $s^{2b'}t^{-b'(i+j)}(1-t^{b'+n})V^{(n)}_
 \begin{proof}[Proof of Theorem~\ref{thm:TC} from (L2)]
 Induct on $k$, for all $m$ at once. For $k=0$, $\Gamma_0=E(z)E(w)=T_0$, since $V^{(0)}_{00}=1$. Let $k\ge1$.
 \begin{itemize}
-\item $m=0$: $\Gamma_k=0$, and (L2) with its empty left side gives $[k]T_k=0$.
+\item $m=0$: $\Gamma_k=0$, and (L2) with its empty left side gives $[k]T_k=0$. Since $e_b=\delta_{b0}$ and $E\equiv1$ at $m=0$, $T_k|_{m=0}=\sum_{i,j}V^{(k)}_{ij}$, so this clause asserts the closed identity $\sum_{i,j}V^{(k)}_{ij}=0$ for every $k\ge1$. This is a genuine identity about $V$, not bookkeeping; it is obtained from (L2) at $m=0$, where Lemma~$2'$ still applies (with $Q(1/y)=1$ and an empty sum on the left).
 \item $m\ge1$: by (R2), the induction hypothesis in $\hX_i$, and (L2), $[k]\Gamma_k=[k]T_k$.
 \end{itemize}
 (This is 207b's $(E_k)$ argument word for word.)
@@ -221,6 +225,7 @@ This is the two-column version of 207b's move $C_j(x)\bigl[1-(1-st^{-j})x/(1-st^
 \[
 C_i(x)=D_i\,x^iG(tx)\frac{1-sx/A}{1-x},\qquad \frac{G(y)}{G(ty)}=\frac{1-sy}{1-y},\qquad (1-t^i)D_i=t(s-t^{i-1})D_{i-1}\ (i\ge1).
 \]
+Here $\alpha_{-1}:=0$ (as fixed in 207b \S0), and $D_0:=1$: at $i=0$ the linear factorization reads $\alpha_0(1-sy)=D_0(1-sy)$, so $D_0=\alpha_0=1$. The recursion above is stated only for $i\ge1$; it starts from $D_0=1$.
 Divide ($\bigstar$2-GF) by $K_{ij}s^{-i-j}t^{2ij}\cdot D_iD_jX^iW^jG(t^2X)G(t^2W)$. This is legitimate because $D_i\ne0$ in $\mathbb{Q}(s,t)$. The normalised pieces are:
 \begin{itemize}
 \item $\hat C(X):=C_i(X)/(D_iX^iG(t^2X))=\dfrac{(1-stX)(1-sX/A)}{(1-tX)(1-X)}$.
@@ -238,7 +243,7 @@ L_0=\frac{(1-stX)(1-stW)-(A-stX)(B-stW)}{(1-tX)(1-tW)}.
 \[
 \frac{K_{i-1,j}}{K_{ij}}=\frac{B(A\rho/t-B)(A\rho/t-1/t)}{(A\rho/t-s)(A\rho/t-B/t)};\tag{P8}
 \]
-\item the product with $\kappa_\gamma^{(i-1,j)}=\dfrac{(A/t-s)(A\rho/t-s)}{(A/t)(A\rho/t-B)}$, which is
+\item the product of (P8) with $\kappa_\gamma^{(i-1,j)}=\dfrac{(A/t-s)(A\rho/t-s)}{(A/t)(A\rho/t-B)}$, which is
 \[
 \frac{B(A-st)(A\rho-1)}{A(A\rho-B)}.\tag{P6}
 \]

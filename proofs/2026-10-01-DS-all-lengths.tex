@@ -49,9 +49,10 @@
 \textbf{Recipient:} & Clio Vega\\
 \textbf{Title:} & Dominance-Support for the Hikita $\star$-product: all lengths, exact up-set support\\
 \textbf{Source:} & \file{proofs/2026-09-30-day214-DS-all-lengths-PROVED.md}\\
-\textbf{WIP commit:} & This proof corresponds to work-in-progress commit \texttt{9b9db51} \\
- & (the proof file was last changed in \texttt{b5ccc50}, which added Theorem 2 / \S8;\\
- & this PDF itself is added in a follow-up commit).\\
+\textbf{WIP commit:} & content as of WIP \texttt{9330e2c}\\
+ & (the proof was first typeset from \texttt{9b9db51}; the source note was last\\
+ & changed in \texttt{b5ccc50}, which added Theorem 2 / \S8).\\
+\textbf{Errata (2026-10-01):} & \S7: 207b grade corrected (Clio's registry has 207b at peer-claimed, her UID 309), not ``reviewed by Clio''. \S6: $n=6$ check log completed from the logs, the partial $n=7$ run reported as partial, and the reference to a nonexistent $N=5$ log fixed. \S8.4: $N$ defined. \S8: scope of the $n=6$, $t=0$ check corrected. No mathematical change.\\
 \textbf{Registry:} & \file{proofs/registry/hikita-star-dominance-support.json}, root node, trust: proved
 \end{tabular}
 \end{center}
@@ -294,10 +295,14 @@ So $E_k^{(m)}F|_{x_m=0} = E_k^{(m-1)}(F|_{x_m=0})$. The restriction $\Lambda_m \
 \item ``support $=$ full up-set''.
 \end{itemize}
 Results:
+{\sloppy
 \begin{itemize}
-\item \textbf{$N = 5$:} all 18 partitions pass everything (\file{check\_ds\_all\_lengths\_N5.log}).
-\item \textbf{$N = 6$:} see \file{check\_ds\_all\_lengths\_N6.log}.
+\item \textbf{$n \le 5$:} all 18 partitions pass all five checks. Source: the first 18 lines of \file{check\_ds\_all\_lengths\_N6.log}. (There is no separate $N=5$ log.)
+\item \textbf{$n = 6$ with \file{check\_ds\_all\_lengths.py 6}:} incomplete. The log stops after $(6)$ and $(5,1)$, both of which pass everything. It has no final \texttt{ALL OK} line. \file{check\_ds\_n.py 6} (log \file{check\_ds\_n6.log}; no order-independence check) also stops early, after $(6)$, $(5,1)$, $(4,2)$, all passing.
+\item \textbf{$n = 6$, complete, with \file{ds\_pointeval.py}:} this is an independent exact implementation of (0.1), using rational point evaluation in $m = n$ variables. It interpolates the $e$-coefficients by an exact linear solve, verified at an extra point, at the same $(s,t) = (3/7,-5/11)$, and makes the same five checks. In \file{ds\_pointeval\_1\_7.log}, all 11 partitions of $6$ pass (S), (L), (V), order-independence and full up-set. The same log reproduces all 18 partitions with $n \le 5$.
+\item \textbf{$n = 7$, partial:} \file{ds\_pointeval\_1\_7.log} covers 9 of the 15 partitions of $7$, from $(7)$ to $(3,2,2)$. \file{ds\_pointeval\_7.log} covers 10, from $(7)$ to $(3,2,1,1)$. All of these pass all checks. Neither run finished: there is no final summary line, and $(3,1^4)$, $(2^3,1)$, $(2^2,1^3)$, $(2,1^5)$, $(1^7)$ are unchecked.
 \end{itemize}
+\par}
 
 \noindent\textbf{How to read the full-up-set results.} The $c_{\lambda\mu}$ are polynomials in $s$ with coefficients in $\Q(t)$. So a nonzero value at an exact rational point \emph{proves} $c_{\lambda\mu} \ne 0$. For the partitions checked, ``support $=$ full up-set'' is therefore proved case by case.
 
@@ -308,12 +313,12 @@ Results:
 \begin{itemize}
 \item \textbf{No gap in the argument.}
  \begin{itemize}
- \item The load-bearing inputs are 207b $(A_k)$ and $(K_k)$, both PROVED, reviewed by Clio on 2026-09-29, together with Lemma 3.3, a Hikita verified-quote (R0).
+ \item The load-bearing inputs are 207b $(A_k)$ and $(K_k)$: proved (Rick, self-proved); in Clio's registry peer-claimed, first-hand read pending. Together with Lemma 3.3, a Hikita verified-quote (R0).
  \item Macdonald I (1.11), (6.6) and (6.7) are textbook.
  \item Gauss's lemma is textbook.
  \end{itemize}
 \item \textbf{Stretch goal: PROVED in \S8.} Every $c_{\lambda\mu}$ with $\mu \dom \lambda$ is nonzero, and in fact $\val_s c_{\lambda\mu} = n(\mu)$ exactly.
-\item \textbf{Trust.} DS no longer depends on (TC) or ($\bigstar\ell$). So Clio's pending review of those does NOT gate DS. DS inherits only the 207b grade.
+\item \textbf{Trust.} DS no longer depends on (TC) or ($\bigstar\ell$). So Clio's review status of those ((TC) reviewed 2026-09-30, UID 306, all-$(m,k)$ grade conditional on 207b \S\S3--4; ($\bigstar\ell$) not yet reviewed) does NOT gate DS. DS inherits only the 207b grade.
 \item \textbf{Novelty caution.} The argument is the standard ``Macdonald-operator triangularity'' degree count (compare Macdonald VI \S3 / VI (3.6)--(3.10): $D_n^r$ acts triangularly on $m_\lambda$). Since the $\star$-operators have exactly Macdonald's shape --- a kernel $\prodx$ times a shift, here twisted by the $X_A$ factor --- it is plausible that Hikita or someone else states DS, or its monomial-triangular form, explicitly. That needs a novelty check before any claim. No browsing was done in this session.
 \item \textbf{What changed about the Day 211 obstruction.} The (TC) termwise dominance violations are real, but they are an artefact of the $E(t^iz)E(t^jw)$ expansion basis. The subset expansion (0.1) is termwise degree-bounded. \textbf{Lesson: choose the expansion in which the bound is termwise.}
 \end{itemize}
@@ -434,7 +439,7 @@ So only $A$ that are \emph{upper sets} for $\alpha$ survive. Let $v$ be the $k$-
 \[
 \Lambda^0_{\mu\cup k}(\alpha) = \Lambda^0_\mu(\peelk\alpha) \cdot \sum_{B\subseteq L_v,\ |B|=r}\ \prod_{i\in B,\ j\in L_v\setminus B} \frac{x_i}{x_i - x_j} = \Lambda^0_\mu(\peelk\alpha).
 \]
-The last sum is $1$. It is symmetric ($S_{L_v}$ permutes the terms), so its product with the Vandermonde is antisymmetric, and the sum is a polynomial. It is homogeneous of degree $0$, hence a constant. The constant is its $u$-leading coefficient under the weights $w_1 > w_2 > \cdots$ of \S3, where only $B =$ the first $r$ indices contributes, with value $1$. The $t$-version, $\Sigma = \binom{N}{r}_t$, is checked in \file{check\_stretch.py}.
+The last sum is $1$. It is symmetric ($S_{L_v}$ permutes the terms), so its product with the Vandermonde is antisymmetric, and the sum is a polynomial. It is homogeneous of degree $0$, hence a constant. The constant is its $u$-leading coefficient under the weights $w_1 > w_2 > \cdots$ of \S3, where only $B =$ the first $r$ indices contributes, with value $1$. The $t$-version, with $a_{ij}$ in place of $x_i/(x_i-x_j)$, is $\Sigma = \binom{N}{r}_t$, where $N := |L_v|$ is the size of the level set. \file{check\_stretch.py} checks this for $N \le 4$. It checks the $t=0$ identity for $N \le 5$.
 
 Here $\peelk(\kappa)$ means: subtract $1$ from the $k$ largest parts of $\kappa$.
 
@@ -480,7 +485,7 @@ So $\Lambda^0_{\mu\cup k}(\alpha) = 1$. Outside $B_{\mu\cup k}$, the value is $0
 \medskip
 \noindent\textbf{Checks.}
 \begin{itemize}
-\item \file{s\_valuation.py} ($n \le 5$), \file{check\_stretch.py} ($n \le 5$) and \file{check\_stretch\_n6.py} ($n = 6$, $t = 0$): $\val_s c_{\lambda\mu} = n(\mu)$ for every $\mu \dom \lambda$, with lowest coefficient exactly $1$ at $t = 0$. At $t = -5/11$ the valuation is again $n(\mu)$.
+\item \file{s\_valuation.py} ($n \le 5$), \file{check\_stretch.py} ($n \le 5$) and \file{check\_stretch\_n6.py} ($n = 6$, $t = 0$; its log \file{check\_stretch\_n6\_t0.log} covers 10 of the 11 partitions of $6$, all except $(1^6)$): $\val_s c_{\lambda\mu} = n(\mu)$ for every $\mu \dom \lambda$, with lowest coefficient exactly $1$ at $t = 0$. At $t = -5/11$ the valuation is again $n(\mu)$.
 \item The $d_{\lambda\mu}(t)$ are genuinely $t$-dependent. Example: $d_{(1111),(211)} = 1 + 3t$, a value consistent with the data at $t = -5/11$.
 \item \emph{Remark (computed for $n \le 5$ in \file{t1\_count.py}; the $t = 1$ case follows from the same $\inn_0$ argument, but it is not written out).} At $t = 1$ the recursion becomes $\Lambda_{\mu\cup k}(\alpha) = \sum_{A \subseteq \supp\alpha} \Lambda_\mu(\alpha - 1_A)$. This counts 0-1 matrices, so $d_{\lambda\mu}(1) = M_{\lambda\mu'}$. The case $1 + 3t$ at $t = 1$ gives $4 = M_{(1111),(31)}$. At general $t$, the $\inn_0$ of $a_{ij}$ for $\alpha_i < \alpha_j$ is $t$, and the level-set sums are $t$-binomials. So $d_{\lambda\mu}(t)$ is a $t$-count of 0-1 matrices with row sums $\lambda$ and column sums $\mu'$. This is not written out here.
 \end{itemize}
