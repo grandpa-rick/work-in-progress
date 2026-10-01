@@ -127,7 +127,7 @@
                 "trust": "computed",
                 "role": "premise",
                 "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                "note": "Evidence: nabla_test.py symbolic all lam |-n<=3 (q=1/s negative control fails); N_check.py exact (3/7,-5/2) n+k<=6; boundary cases k=1,k=m,t=1,s=1 proved; s->0 leading = Theorem H. Gap: k>=2 general = Cherednik Gaussian SL2 relation, locator unverified.",
+                "note": "Evidence: nabla_test.py symbolic all lam |-n<=3 (q=1/s negative control fails); N_check.py exact at (3/7,-5/2) and (5/11,7/3), complete n+k<=5, partial n+k=6; boundary cases k=1,k=m,t=1,s=1 proved; s->0 leading = Theorem H. Gap: k>=2 general = Cherednik Gaussian SL2 relation, locator unverified.",
                 "children": [
                  {
                   "id": "N1-k1-commutator",

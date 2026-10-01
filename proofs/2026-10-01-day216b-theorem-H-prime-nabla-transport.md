@@ -7,7 +7,7 @@
 - **(N₁), (N) for k = 1: PROVED** (§2). Also the trivial cases k = m, t = 1 and s = 1.
 - **(N) for general k: COMPUTED** (§3).
   - Symbolic in s, t for every λ with n ≤ 3, in the ∇ form.
-  - Exact at a rational point, in the Macdonald-P form, for all n + k ≤ 6 (log in §6).
+  - Exact in the Macdonald-P form at two rational points: complete for n + k ≤ 5 at both, partial for n + k = 6 (log in §6).
   - It is equivalent to a Gaussian/Frobenius evaluation identity (GE′) of Cherednik type. I have NOT proved this for general k.
 - **H′ and Theorem H: PROVED from (N)** (§4), in three lines each.
 - So H′ is **proved conditional on (N)**, and (N) is proved at k = 1 and computed in general.
@@ -134,6 +134,41 @@ Equivalently, the bilinear form K(μ,ν) := g(μ)g(ν)P̂_ν(ζ_μ) is a Frobeni
 - I hand-checked (GE′) at μ = ν = (1), m = 2.
 - This is Cherednik's "Fourier transform of the Gaussian is the inverse Gaussian" (the SL₂(ℤ) relation τ_+ ↔ τ_−) in symmetric Macdonald form. **Locator NOT verified (no browsing this session).**
 
+
+**3.3 Reformulation: (N) ⟺ O_k is fixed by Macdonald's duality anti-involution. (All steps below are PROVED; the fixed-point claim is the gap.)**
+
+Notation:
+- p_r(X), e_k(X) denote multiplication operators.
+- f(Y) denotes the operator that is diagonal on P_ν with eigenvalue f(y(ν)), where y_i(ν) = s^{ν_i}τ^{m−i}. So D_k = τ^{−C(k,2)} e_k(Y), and p_r(Y) ∈ ℚ[D_1..D_m] by Newton.
+- ad_f(A) := [A, f], nested left to right.
+- α_λ := (ε_λ/z_λ) ∏_i (s^{λ_i} − 1)^{-1}.
+
+Steps:
+1. **The X-side formula.** O_k = Σ_{λ⊢k} α_λ ad_{p_λ(X)}(D_k).
+   - Proof: [D_k, f] = Σ_A A_A (f(T_{s,A}x) − f(x)) T_{s,A}, and nesting multiplies these differences.
+   - p_r(T_{s,A}x) − p_r(x) = (s^r − 1) p_r(X_A).
+   - Newton in the k variables X_A gives e_k(X_A) = X_A.
+2. **The Y-side formula.** τ^{k(m−1)} 𝒩 e_k 𝒩^{-1} = Σ_{λ⊢k} α_λ [p_{λ_ℓ}(Y), […[p_{λ_1}(Y), e_k(X)]]].
+   - Proof: in the P-basis, the right side has entries c^{(k)}_{κν} Σ_λ (ε_λ/z_λ) p_λ(y_R(ν)) = c^{(k)}_{κν} e_k(y_R(ν)), for κ = ν + 1_R.
+   - Here ∏_{i∈R} y_i(ν) = τ^{k(m−1)} T_κ/T_ν.
+   - This is the k = 1 bookkeeping of §2, done for all k at once.
+3. **The anti-involution ϑ.** Let M_{μν} := P̂_ν(ζ_μ), which is symmetric by Macdonald VI (6.6). Set ϑ(A) := M^{-1} A^T M in P̂-coordinates.
+   - ϑ is an involutive anti-automorphism.
+   - From Macdonald's duality proof of Pieri (M𝔈_k = Λ_kM), ϑ(e_k(X)) = e_k(Y) and ϑ(e_k(Y)) = e_k(X), hence ϑ(f(X)) = f(Y) for every symmetric f.
+4. **Conclusion.** Steps 1–3 show that ϑ maps the X-side formula to τ^{C(k,2)} × (the Y-side formula). Hence
+
+   **(N) for k ⟺ ϑ(O_k) = O_k.**
+
+   - k = 1 holds because both sides are the same commutator, [D_1, e_1].
+   - For k ≥ 2 one needs relations between nested commutators of p_r(X) and p_r(Y). These are the elliptic-Hall / spherical-DAHA relations. Termwise symmetry u_{λ,ρ} ↦ u_{ρ,λ} is false (single-part check), so the sum over λ, ρ is essential.
+
+**3.4 A uniqueness route (sketched, not closed).** Let W := 𝒩^{-1}(O_k − target)𝒩. Then:
+- W commutes with e_1 (because O_k commutes with O_1);
+- W(1) = 0;
+- by stability plus the m ≤ k+1 cases (from ι), W·P_κ ∈ span{P_λ : ℓ(λ) ≥ k+2}.
+
+If one could also show that O_k is supported on vertical k-strips in the P-basis, a dominance-triangular elimination would plausibly force W = 0. Neither the support claim nor the elimination order is proved.
+
 **Attempts at general k (all failed, kept as data).**
 - (a) **Induction on m via ι-duality (x ↦ 1/x maps E_k ↔ E_{m−k}), stability and commutativity.** This kills the defect Y_k := E_k − prediction on ℚ[e_1, e_{m−1}, e_m]. That would give (N) for **m ≤ 3**, graded SKETCHED: the ι-relation for the 𝒩-side (P_ν(1/x) = e_m^{−N}P_{ν^c}, T_{ν^c} ∝ t^{−(m−1)|ν|}s^{−(N−1)|ν|}T_ν) was derived by hand and not machine-checked. It leaves a scalar ambiguity starting at m = 4: Y′_2(e_2) = c·e_4, and ι-duality is tautological on c.
 - (b) **Commutators [D_k, e_k].** These produce the mixed operators O_k[e_i h_l], not O_k.
@@ -193,7 +228,8 @@ Form (b) follows from (N) by the same limit argument.
 | (KF) | check_KF.py | n+k ≤ 4, m=4, (s,t)=(3/7,−5/2) | 14/14 |
 | (b) Q-Pieri top coefficient | testb2.py | n+k ≤ 5 symbolic | 136/136 |
 | (N) ∇-form | nabla_test.py | λ ⊢ n ≤ 3 symbolic | 6/6 (q=s); q=1/s fails |
-| (N) P-form | N_check.py | n+k ≤ 6, (3/7,−5/2) | see N_check_6.log |
+| (N) P-form | N_check.py | n+k ≤ 5, (5/11, 7/3) | **26/26, 0 fail** (complete) |
+| (N) P-form | N_check.py | n+k ≤ 6, (3/7,−5/2) | 25/25 OK, 0 fail, through all n+k ≤ 5 and (n,k) ∈ {(0,6),(1,5),(2,4)}; the n=3,k=3 / n=4 / n=5 rows were still running at write-up (N_check_6.log) |
 | ω-duality of Ψ | sym_test2.py | n ≤ 4 | FAILS (dead end) |
 
 ## 7. Gaps
