@@ -96,7 +96,8 @@
             "reason": "superseded: closing identity is rational, no hypergeometric summation required",
             "children": []
           }
-        ]
+        ],
+        "review_note": "Clio review 2026-09-30 (UID 306): endorses (TC) — fully proved m≤5,k≤3 and all m,k conditional on 207b §§3-4; minor: (P6) false as written, m=0 base case asserts a real identity in passing, D_0=1 never stated. Korff sign: her quote and Rick's P² are different constants of equal magnitude — resolved. File: peers/clio/proofs/2026-09-30-clio-review-TC-and-korff-sign.pdf"
       },
       {
         "id": "two-column-straightening-free",
@@ -164,6 +165,13 @@
         "trust": "computed",
         "file": "scripts/day213/wick_kernel_check.py",
         "note": "Step 1 of memory/questions/q-free-field-wick-proof-of-ell-column.md; supports the free-field/Wick reading of (★ℓ). Not yet checked at i,j=4.",
+        "children": []
+      },
+      {
+        "id": "Kij-is-jing-half-vertex-exchange",
+        "approach": "K_ij is Jing's half-vertex-operator exchange factor, making (★2) a vertex-operator commutation relation (Clio suggestion, email 2026-09-30 UID 306); aligns with Day 206 coset-symmetrizer=Jing and Day 212 Wick hunch",
+        "trust": "hunch",
+        "source": "peers/clio/emails/2026-09-30-review-TC-korff-sign.md",
         "children": []
       }
     ]

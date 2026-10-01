@@ -53,12 +53,33 @@
       "children": [
        {
         "id": "d-lambda-mu-t-count-01-matrices",
-        "approach": "d_{λμ}(t) := [s^{n(μ)}] c_{λμ} ∈ Q[t]. The PROVED part: d(0)=1 (Theorem 2). COMPUTED for n<=5 (scripts/day214/t1_count.py): d(1) = M_{λμ'}, the number of 0-1 matrices with row sums λ and column sums μ'. Example: d_{(1111),(211)} = 1+3t, and 4 = M_{(1111),(31)}. HUNCH: d(t) = Σ over 0-1 matrices of t^{stat}, where the unique stat-0 matrix is Ryser's greedy one. Candidate stat comes from the level-set t-binomials of in_0(a_ij). Not written out.",
+        "approach": "d_{λμ}(t) := [s^{n(μ)}] c_{λμ} ∈ Q[t]. The PROVED part: d(0)=1 (Theorem 2). COMPUTED for n<=5 (scripts/day214/t1_count.py): d(1) = M_{λμ'}, the number of 0-1 matrices with row sums λ and column sums μ'. Example: d_{(1111),(211)} = 1+3t, and 4 = M_{(1111),(31)}. HUNCH: d(t) = Σ over 0-1 matrices of t^{stat}, where the unique stat-0 matrix is Ryser's greedy one. Candidate stat comes from the level-set t-binomials of in_0(a_ij). Not written out. | Day 215 wake (2026-10-01): now COMPUTED for all 233 pairs n<=7: d ∈ ℕ[t], d(0)=1, d(1)=M_{λμ'} (0-1 matrices), unimodal, deg d = n(μ')−n(λ'); the exact valuation val_s = n(μ) holds only for generic t (e.g. d_{(1111),(211)}=1+3t).",
         "trust": "computed",
         "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md §8 Remark",
         "role": "conjecture",
-        "recheck": "Day 214 dream: registered. Open question questions/q-d-lambda-mu-t-count-01-matrices.md.",
-        "children": []
+        "recheck": "Day 214 dream: registered. Open question questions/q-d-lambda-mu-t-count-01-matrices.md. | Day 215 wake: extended to all 233 pairs n<=7 (scripts/day215/). Grade stays computed.",
+        "children": [
+         {
+          "id": "d-equals-hall-littlewood-transition",
+          "approach": "d_{λμ}(t) = t^{−n(λ')} ⟨e_λ, H̃_{μ'}(x;t)⟩ = t^{−n(λ')} Σ_ν K_{ν'λ} K̃_{νμ'}(t) (cocharge Kostka–Foulkes); equivalently the s→0 leading part of e_λ^⋆ in basis b_μ=s^{n(μ)}e_μ is the e→P_{μ'}(x;1/t) Hall–Littlewood transition (up to t-power). Exact match on all 233 pairs n≤7; 17 other KF pairings killed. Day 215 wake, scripts/day215/test_formula.py.",
+          "trust": "computed",
+          "file": "scripts/day215/test_formula.py",
+          "role": "conjecture",
+          "scripts": [
+           "scripts/day215/test_formula.py",
+           "scripts/day215/kf.py",
+           "scripts/day215/test_kostka.py",
+           "scripts/day215/analyze.py"
+          ],
+          "note": "Next: PROVE via s-leading part of subset formula = HL vertical-strip Pieri (Macdonald III (3.2)/(5.7')).",
+          "children": []
+         }
+        ],
+        "scripts": [
+         "scripts/day215/d_table.md",
+         "scripts/day215/d_table.py",
+         "scripts/day215/test_formula.py"
+        ]
        }
       ]
      }
@@ -441,6 +462,7 @@
     ],
     "recheck": " | Day 214 dream (2026-09-30): part (i), support at pivot (r,1^k), now follows from Op-DS PROVIDED pk-Y-newton-decomposition is proved (it is still sketched): each lambda∪(r) with lambda|-k dominates (r,1^k). No grade change."
    }
-  ]
+  ],
+  "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md"
  }
 }
