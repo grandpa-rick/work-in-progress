@@ -127,7 +127,7 @@
                 "trust": "proved",
                 "role": "premise",
                 "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                "note": "Day 216c section 9: proved all k via nonsymmetric Gaussian (NS) gamma X_i gamma^{-1} = Y^bullet_i, engine Lemma (I) [e_1(Y),X_1]=(s-1)X_1Y_1 (telescoping, proved), then 207b (A_k) + gamma|Sym = N. Uses textbook facts C1 (Y commute), C2 (Bernstein centrality), C3 (triangular simple spectrum s^a t^b, b perm of 0..m-1); locators unverified, all machine-checked (scripts/day216c/rels.py, spec.py, nsym.py). Earlier evidence: nabla_test.py, N_check.py.",
+                "note": "Day 216c section 9: proved all k via nonsymmetric Gaussian (NS) gamma X_i gamma^{-1} = Y^bullet_i, engine Lemma (I) [e_1(Y),X_1]=(s-1)X_1Y_1 (telescoping, proved), then 207b (A_k) + gamma|Sym = N. Uses textbook facts C1 (Y commute), C2 (Bernstein centrality), C3 (triangular simple spectrum s^a t^b, b perm of 0..m-1); locators unverified, all machine-checked (scripts/day216c/rels.py, spec.py, nsym.py). Earlier evidence: nabla_test.py, N_check.py. | Day 216 dream (cycle 2): proof grade unchanged. NOVELTY: Browse 156 arXiv+citation sweep clean (reading/2026-10-01-browse156.md). NEW named prior-art risk: since (Sym,star) = N-conjugate of (Sym,.), (N) says E_k = nabla-conjugate of e_k-multiplication (after plethysm phi); nabla-conjugation of e_1/e_k multiplication is classical territory: Bergeron-Garsia-Haiman-Tesler 1999 'Identities and positivity conjectures for some remarkable operators' (nabla e_1 nabla^{-1} vs D_1-type operators) and the elliptic Hall algebra SL2 action (Schiffmann-Vasserot). Locators UNVERIFIED. k=1 of (N) is plausibly folklore-equivalent; audit BGHT + EHA before claiming (N) new. Edge theorems H, H', (KF) are the deliverables either way.",
                 "children": [
                  {
                   "id": "N1-k1-commutator",
@@ -625,6 +625,15 @@
      }
     ],
     "recheck": " | Day 214 dream (2026-09-30): part (i), support at pivot (r,1^k), now follows from Op-DS PROVIDED pk-Y-newton-decomposition is proved (it is still sketched): each lambda∪(r) with lambda|-k dominates (r,1^k). No grade change."
+   },
+   {
+    "id": "N-specialization-t-1-over-s-ribbon-monodromy",
+    "approach": "Corollary of (N): F*G = N(N^{-1}F . N^{-1}G) for all F,G (E_k generate; N e_k = t^{C(k,2)} e_k). At t=1/s, P_nu(x;s,1/t)=P_nu(x;s,s)=s_nu (Macdonald VI (4.14)(iv), locator from memory) and N s_nu = s^{c(nu)} s_nu, c = content sum. Hence s_lam * s_mu = sum_nu c^nu_{lam mu} s^{c(nu)-c(lam)-c(mu)} s_nu = LR coefficient times U_q(gl_N) double-braiding (R21 R) eigenvalue with s=q^2.",
+    "trust": "sketched",
+    "role": "attempt",
+    "file": "memory/connections/2026-10-01-star-at-t-equals-1-over-s-is-ribbon-monodromy.md",
+    "note": "Day 216 dream cycle 2, derived without computation. Kill test owed: engine E_1,E_2 at t=1/s vs content-twisted Pieri; check no poles at t=1/s. Placed at root level (not under N) to respect boundary rule; DEPENDS ON node N-star-is-nabla-transport.",
+    "children": []
    }
   ],
   "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md"
