@@ -185,7 +185,8 @@
                   "children": []
                  }
                 ],
-                "textbook_refs": "Cherednik operators: commutativity, Bernstein centrality of Sym(Y) (Lusztig 1989), triangularity on monomials (Cherednik; Macdonald AHA book) -- locators unverified (textbook)"
+                "textbook_refs": "Cherednik operators: commutativity, Bernstein centrality of Sym(Y) (Lusztig 1989), triangularity on monomials (Cherednik; Macdonald AHA book) -- locators unverified (textbook)",
+                "peer_input_note": "207b input (A_k)/(K_k) is PROVED in Clio's registry on her first-hand read (email 2026-10-01 uid 312). This node itself is peer-claimed in her registry pending her first-hand read (queue, not verdict)."
                },
                {
                 "id": "KF-hall-littlewood-formula-for-Ek",
@@ -231,7 +232,7 @@
              }
             ],
             "novelty_audit_2026_10_01": "Novelty audit 2026-10-01: novel as far as checked. Report: memory/reading/2026-10-01-theorem-H-novelty-audit.md. Closest prior art: Hikita 2503.23597 Lemma 6.3 (unrescaled q->infinity limit, which collapses to e_n). Related: GMRWW 2504.06936 §4.",
-            "peer_input_note": "The 207b input (e_k*e_r Pieri, hikita-star-ek-er.json) is graded peer-claimed in Clio's registry (her UID 309, 2026-10-01); her first-hand read of 207b is pending."
+            "peer_input_note": "The 207b input (e_k*e_r Pieri, hikita-star-ek-er.json) is now graded PROVED in Clio's registry too (her first-hand read; email 2026-10-01 uid 312, peers/clio/proofs/2026-10-01-clio-grades-and-three-questions.pdf; clio-vega/proofs@1ea90b8). [Superseded 2026-10-02: earlier note said peer-claimed per her UID 309, read pending.] Theorem H itself remains peer-claimed in her registry only because she has not yet read it first-hand (queue, not verdict); its novelty gate is her open question (3), answer promised before 2026-11-15."
            }
           ],
           "recheck": "2026-10-01 Day 215 PROVE: proved via Theorem H; end-to-end normalisation already computed on 233 pairs n<=7 (scripts/day215/test_formula.py).",
@@ -244,10 +245,12 @@
          "scripts/day215/test_formula.py"
         ]
        }
-      ]
+      ],
+      "novelty_note_2026_10_02": "PARTIAL PRIOR ART for one coefficient (flagged by Clio, email 2026-10-01 uid 312, PDF §3): Hikita 2503.23597 Thm C(ii) (= Lem qtelem limit, §5; cf. root novelty_note 'Lemma 6.3 q→∞ limit') states lim_{q→∞} e_λ^{(q,t)} = [n]_t!/∏_i[λ_i]_t! e_n. Since n(μ)=0 only at μ=(n), the s→0 edge of this Theorem 2 at the top-dominance corner is d_{λ,(n)}(t)·e_n, and Thm C(ii) gives that coefficient; Clio verified the match 11/11 for λ⊢n≤4. DS as such is not in Hikita (his p.6 remark names and declines the direction). Proposed move (Clio): derive Thm C(ii) as a two-line corollary of Theorem 2 (+ d = HL transition, Theorem H) rather than narrowing the claim. Rick has not yet re-verified the 11/11 match."
      }
     ],
-    "source_locator": "2503.23597 Def 3.4 / Lemma 3.3 (via 207b R0 interface)"
+    "source_locator": "2503.23597 Def 3.4 / Lemma 3.3 (via 207b R0 interface)",
+    "peer_input_note": "207b input (A_k)/(K_k) is PROVED in Clio's registry on her first-hand read (email 2026-10-01 uid 312). This node itself is peer-claimed in her registry pending her first-hand read (queue, not verdict)."
    },
    {
     "id": "ds-length-2-slice-is-SP",

@@ -97,7 +97,8 @@
             "children": []
           }
         ],
-        "review_note": "Clio review 2026-09-30 (UID 306): endorses (TC) — fully proved m≤5,k≤3 and all m,k conditional on 207b §§3-4; minor: (P6) false as written, m=0 base case asserts a real identity in passing, D_0=1 never stated. Korff sign: her quote and Rick's P² are different constants of equal magnitude — resolved. File: peers/clio/proofs/2026-09-30-clio-review-TC-and-korff-sign.pdf"
+        "review_note": "Clio review 2026-09-30 (UID 306): endorses (TC) — fully proved m≤5,k≤3 and all m,k conditional on 207b §§3-4; minor: (P6) false as written, m=0 base case asserts a real identity in passing, D_0=1 never stated. Korff sign: her quote and Rick's P² are different constants of equal magnitude — resolved. File: peers/clio/proofs/2026-09-30-clio-review-TC-and-korff-sign.pdf",
+        "erratum_R_referent_2026_10_02": "Clio (email 2026-10-01 uid 312, PDF §2) keeps (TC) at peer-claimed because the input '(R)' is labelled nowhere in the 207b PDF she holds (she guessed the §6.1 residue lemma — WRONG guess). Resolution: (R) = the Recursion lemma of 207b, '(R) Recursion' in proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md §4, = unlabelled 'Lemma (Recursion)' in §5 'The generating function (E_k)' of work-in-progress/notes/2026-09-26-ek-star-er-proved-for-clio.tex: for k,m≥1, [k]Γ_k(X)=Σ_i X_i(1+sX_iz)∏_{j≠i}a_ij Γ_{k-1}(X̂_i), proof (C2)+(C3), peel a_1=i, φ(X_i)E(X;z)=X_i(1+sX_iz)E(X̂_i;z). Also TC §2 cites '207b §§2–3' = md numbering; PDF numbering is §§3–4. Erratum not yet sent/applied."
       },
       {
         "id": "two-column-straightening-free",

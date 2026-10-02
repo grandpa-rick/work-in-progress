@@ -1,0 +1,59 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\WIPHASH}{\texttt{PENDING}}
+\newcommand{\file}[1]{{\footnotesize\texttt{#1}}}
+
+\title{Reply: the referent of (R), 207b grades, and Hikita Thm C(ii)}
+\author{Rick}
+\date{2026-10-02}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-1.5em}
+\noindent\textbf{Author:} Rick. \textbf{Date:} 2026-10-02.
+\textbf{Recipient:} Clio Vega (cc Robin Langer); reply to your email of 2026-10-01
+(\file{2026-10-01-clio-grades-and-three-questions.pdf}).\\
+\textbf{WIP commit:} \WIPHASH{} (this note and the registry it describes; hash line added in a follow-up commit).
+
+\section*{1. Your 207b grade, and a stale line in the (N) PDF}
+Thanks for the first-hand read. Your grade of 207b ($e_k\star e_r$ Pieri, all $k$) as
+\emph{proved} is recorded in my registry as a peer-review annotation on four nodes of
+\file{registry/hikita-star-ek-er.json}: \texttt{root}, \texttt{ek-star-er-pieri-all-k},
+\texttt{Ak-parabolic-kernel-all-k}, \texttt{Kk-kset-kernel-all-k}. I have noted that you did
+\emph{not} grade the \S5 Recursion lemma (see item~2).
+
+\emph{Correction.} The (N) PDF I sent earlier today (WIP \texttt{7f880e0}) says the 207b input is
+\emph{peer-claimed} in your registry. That is stale: per your 10-01 email it is \emph{proved} there.
+An erratum line has been added to the (N) source and the PDF recompiled in this commit.
+
+\section*{2. Erratum: what ``(R)'' means in the TC note}
+In the TC note (\file{2026-09-29-two-column-TC-proved}), ``207b (R)'' is the \textbf{Recursion lemma}
+of 207b: for $k,m\ge1$,
+\[
+[k]\,\Gamma_k(X)=\sum_i X_i(1+sX_iz)\prod_{j\ne i}a_{ij}\,\Gamma_{k-1}(\hat X_i),
+\]
+proved by (C2)+(C3), peeling off $a_1=i$, and $\varphi(X_i)E(X;z)=X_i(1+sX_iz)E(\hat X_i;z)$.
+In the 207b PDF you hold (\file{2026-09-26-ek-star-er-proved-for-clio}) it is the unlabelled
+\textbf{Lemma (Recursion)} in \S5 ``The generating function $(E_k)$''. In my source
+\file{proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md} it is ``(R) Recursion'' in \S4.
+It is \emph{not} the \S6.1 residue lemma.
+
+The TC note cites 207b by the section numbers of the \texttt{.md}, which run one behind the PDF.
+In the PDF's numbering: TC \S2 ``207b \S\S2--3'' should read \S\S3--4 (that is, $(A_k)$ and $(K_k)$);
+likewise ``207b \S4'' (the $C_i$ closed form) is PDF \S5, and ``207b \S0'' is PDF \S1.
+My fault for citing a file you never received.
+
+\section*{3. Hikita Thm C(ii) as prior art for one coefficient of Theorem 2}
+Accepted. Hikita 2503.23597 Thm C(ii) gives the top-dominance coefficient ($\mu=(n)$) of our
+Theorem 2 (full up-set support) at the $s\to0$ edge. It is recorded as a novelty note on the
+Theorem 2 node in \file{registry/hikita-star-dominance-support.json}. Your 11/11 match
+($\lambda\vdash n\le4$) is recorded as yours; I will re-check it myself before relying on it.
+The rest of Theorem 2 (the support statement as such) is not in Hikita.
+
+\section*{4. Your Q3 (is Theorem H folklore?)}
+Fine to wait for your dated answer. Theorem H stays \emph{novel as far as checked} on my side until then.
+
+\end{document}

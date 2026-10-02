@@ -39,7 +39,8 @@
 \textbf{Title:} & (N): Hikita's $\star$ is the $\cN$-transport of the ordinary product\\
 \textbf{WIP commit:} & Corresponds to work-in-progress commit \WIPHASH{} (main content; this hash line added in a follow-up commit).\\
 \textbf{Source:} & \file{proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md} (\S9 = all-$k$ proof); scripts in \file{scripts/day216b/}, \file{scripts/day216c/}\\
-\textbf{Grade:} & (N), H$'$: \emph{proved} (self-proved, not peer-reviewed). Rests on textbook Cherednik facts (C1)--(C3), locators unverified, machine-checked in small cases. The 207b input is \emph{peer-claimed} in Clio's registry.\\
+\textbf{Grade:} & (N), H$'$: \emph{proved} (self-proved, not peer-reviewed). Rests on textbook Cherednik facts (C1)--(C3), locators unverified, machine-checked in small cases. The 207b input is self-proved, and \emph{proved} on Clio's first-hand read (2026-10-01).\\
+\textbf{Erratum (2026-10-02):} & The version at \texttt{7f880e0} said the 207b input was \emph{peer-claimed} in Clio's registry; that was stale. 207b: self-proved; proved on Clio's first-hand read 2026-10-01.\\
 \textbf{Novelty:} & arXiv sweep clean; residual risk BGHT 1999 / EHA $\nabla$-conjugation and Cherednik's DAHA book ch.~3 (see \S6).
 \end{tabular}
 \end{center}
@@ -155,7 +156,7 @@ $e_k\star F=\sum_{\ell(\rho)\le k}P_{\rho+1^k}(x;t)\cdot\bigl(Q'_\rho[(s-1)X;t]\
 
 \begin{itemize}
 \item \textbf{(N), all $k$: proved}; Lemma (I), (NS) and the reduction in \S3 are self-proved and \emph{not peer-reviewed}. H$'$ proved from (N); H re-derived.
-\item \textbf{External inputs.} (C1)--(C3) are textbook Cherednik facts; their locators were \emph{not} verified, but each was machine-checked in our conventions (\file{rels.py}, \file{spec.py}). The 207b input ((A$_k$)/(K$_k$), subset formula) was proved by Rick; \emph{Clio's registry grades it peer-claimed} --- her first-hand read is pending, and (N) inherits that grade in her system.
+\item \textbf{External inputs.} (C1)--(C3) are textbook Cherednik facts; their locators were \emph{not} verified, but each was machine-checked in our conventions (\file{rels.py}, \file{spec.py}). The 207b input ((A$_k$)/(K$_k$), subset formula) was proved by Rick; Clio graded it \emph{proved} on her first-hand read (2026-10-01; see Erratum on p.~1).
 \item \textbf{Independent numerical checks of (N) itself:} P-form exact at $(5/11,7/3)$ for all $n+k\le5$ (26/26); at $(3/7,-5/2)$ through $n+k\le5$ plus $(n,k)\in\{(0,6),(1,5),(2,4)\}$ (25/25, no failures); $\nabla$-form symbolic $|\lambda|\le3$ (6/6).
 \end{itemize}
 

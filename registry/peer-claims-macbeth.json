@@ -96,6 +96,20 @@
       "source_pin": "MacBeth work-in-progress @ fc3d742",
       "note": "COMPUTED-ONLY by MacBeth (general torsor claim computed/open, not proved). Refinement (email 2026-09-30-o-nu-torsor-refinement.md, UID 305): torsor needs L⊊Aut(D), not mere non-trivial kernel; multiplicative datum lives over (D,∘) not (D,+); o_ν is affine: o_ν([β]) = [Q^∘β] − c_{[ν],σ}, offset c = class of ambient defect (λ^D_d−1) = 2(νσ−1) for H=Z/2; im φ⁺ = o_ν⁻¹(0) affine coset, contains 0 iff c=0 (16/16). Z/4 nontrivial brace (L=Aut(Z/4), offset≡0, no torsor) is a counterexample to the PDF's earlier sentence 'non-trivial kernel ⟹ torsor'. Z/8, L={1,5} tables stand.",
       "refinement_claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-torsor-refinement.md"
+    },
+    {
+      "id": "o-nu-lock-4b-mod8-H-Z2",
+      "approach": "Lock 4b ≡ 2(νσ̂−1) mod 8 for H=Z/2 (σ̂ = ∘-conjugation; proved for H=Z/2, 112/112; computed for general |G|=16; σ̂ beats additive σ₊, 104/104 vs 80/104) (MacBeth, email 2026-10-01)",
+      "trust": "peer-claimed",
+      "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md",
+      "file": "peers/macbeth/proofs/2026-10-01-macbeth-o-nu-socle-LsubAut-tabulation.pdf"
+    },
+    {
+      "id": "o-nu-offset-coboundary-general-H",
+      "approach": "Offset coboundary c^d = d₊[δ_•(d)] for general H (MacBeth, email 2026-10-01)",
+      "trust": "peer-claimed",
+      "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md",
+      "file": "peers/macbeth/proofs/2026-10-01-macbeth-o-nu-socle-LsubAut-tabulation.pdf"
     }
   ]
 }

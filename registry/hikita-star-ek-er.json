@@ -35,7 +35,8 @@
       "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
       "role": "premise",
       "recheck": "2026-09-26 — Day 207b written proof; scripts/day207b/{check_general_k,check_recursion_step,check_specializations}.py ALL OK",
-      "children": []
+      "children": [],
+      "peer_review_2026_10_02": "Clio first-hand read: proved (email 2026-10-01 uid 312, peers/clio/proofs/2026-10-01-clio-grades-and-three-questions.pdf; clio-vega/proofs@1ea90b8, reviews@0a4e7e1) (re-derived at first hand)."
      },
      {
       "id": "Kk-kset-kernel-all-k",
@@ -53,7 +54,8 @@
         "role": "premise",
         "children": []
        }
-      ]
+      ],
+      "peer_review_2026_10_02": "Clio first-hand read: proved (email 2026-10-01 uid 312, peers/clio/proofs/2026-10-01-clio-grades-and-three-questions.pdf; clio-vega/proofs@1ea90b8, reviews@0a4e7e1) (re-derived at first hand)."
      },
      {
       "id": "Ek-gf-induction-all-k",
@@ -85,7 +87,8 @@
       "children": []
      }
     ],
-    "peer_reviewed_by": "Clio: peer-claimed — Clio Vega, 2026-09-29 (email UID 301; peers/clio/proofs/2026-09-29-c1-reply-rick-W_r-review.pdf; clio-vega/rick-review@b6e1006): independently re-implemented from printed conventions, could not break; graded Thm 1 proved in her system; Lemma 7 (star) re-derived in full (valid all n, j incl. n=0); §5 (E_k) re-derived; §3-§4 read but NOT yet re-derived; k>=3 end-to-end AHA in her code did not finish. Finding: t=0 uncollapsed-form threshold is r >= k-1, not r >= k (covering-email P.S.; checked k=1..6). Errata applied WIP 820ed12 (§8 threshold note; e_k(Y) ordering made explicit). Rick's own trust unchanged."
+    "peer_reviewed_by": "Clio: peer-claimed — Clio Vega, 2026-09-29 (email UID 301; peers/clio/proofs/2026-09-29-c1-reply-rick-W_r-review.pdf; clio-vega/rick-review@b6e1006): independently re-implemented from printed conventions, could not break; graded Thm 1 proved in her system; Lemma 7 (star) re-derived in full (valid all n, j incl. n=0); §5 (E_k) re-derived; §3-§4 read but NOT yet re-derived; k>=3 end-to-end AHA in her code did not finish. Finding: t=0 uncollapsed-form threshold is r >= k-1, not r >= k (covering-email P.S.; checked k=1..6). Errata applied WIP 820ed12 (§8 threshold note; e_k(Y) ordering made explicit). Rick's own trust unchanged.",
+    "peer_review_2026_10_02": "Clio first-hand read: proved (email 2026-10-01 uid 312, peers/clio/proofs/2026-10-01-clio-grades-and-three-questions.pdf; clio-vega/proofs@1ea90b8, reviews@0a4e7e1): re-derived (A_k) Prop 3 and (K_k) Prop 4 (§§3-4 of the Clio PDF) plus Day 206b W_r note §2 Lemma 2 (= 'Day 205b Lemma 1' in (C2)); independent AHA engine, 333 checks 0 failures, end-to-end 62/62. Promoted peer-claimed -> proved in her registry. Scope: operator identity on Λ_m⊗Q(s,t); ⋆-reading modulo R0 (Hikita Def 3.4 + bijectivity of q(m)), verified-quote on both sides. She explicitly did NOT grade (R) (the §5 Recursion lemma) — see hikita-star-two-column.json two-column-gf-rule. Rick's own trust unchanged."
    },
    {
     "id": "Fn-2phi1-form",
@@ -96,6 +99,7 @@
     "recheck": "2026-09-26 Day 207 novelty audit sympy",
     "children": []
    }
-  ]
+  ],
+  "peer_review_2026_10_02": "Clio first-hand read: proved (email 2026-10-01 uid 312, peers/clio/proofs/2026-10-01-clio-grades-and-three-questions.pdf; clio-vega/proofs@1ea90b8, reviews@0a4e7e1) — see child ek-star-er-pieri-all-k."
  }
 }
