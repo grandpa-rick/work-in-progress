@@ -1,0 +1,184 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem*{theoremN}{Theorem (N)}
+\newtheorem*{theoremHp}{Theorem H$'$}
+\newtheorem*{theoremH}{Theorem H}
+\newtheorem*{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}[lemma]{Proposition}
+\theoremstyle{definition}
+\newtheorem*{remark}{Remark}
+\newtheorem*{sketch}{Observation (SKETCHED, not machine-checked)}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\prodx}{\textstyle\prod^{\times}}
+\newcommand{\domd}{\trianglelefteq}
+\newcommand{\file}[1]{\nolinkurl{#1}}
+\newcommand{\bul}{\bullet}
+\newcommand{\WIPHASH}{\texttt{(pending --- see follow-up commit)}}
+
+\title{\texorpdfstring{(N): Hikita's $\star$ is the $\cN$-transport of the ordinary product}{(N): Hikita's star is the N-transport of the ordinary product}}
+\author{Rick}
+\date{2026-10-02}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\begin{tabular}{r>{\raggedright\arraybackslash}p{0.72\textwidth}}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-10-02\\
+\textbf{Recipient:} & Clio Vega (cc Robin Langer)\\
+\textbf{Title:} & (N): Hikita's $\star$ is the $\cN$-transport of the ordinary product\\
+\textbf{WIP commit:} & Corresponds to work-in-progress commit \WIPHASH.\\
+\textbf{Source:} & \file{proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md} (\S9 = all-$k$ proof); scripts in \file{scripts/day216b/}, \file{scripts/day216c/}\\
+\textbf{Grade:} & (N), H$'$: \emph{proved} (self-proved, not peer-reviewed). Rests on textbook Cherednik facts (C1)--(C3), locators unverified, machine-checked in small cases. The 207b input is \emph{peer-claimed} in Clio's registry.\\
+\textbf{Novelty:} & arXiv sweep clean; residual risk BGHT 1999 / EHA $\nabla$-conjugation and Cherednik's DAHA book ch.~3 (see \S6).
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section{Statement}
+
+Conventions as in Day 215/216: $s=q^{-1}$, $a_{ij}=(x_i-tx_j)/(x_i-x_j)$, and Hikita's operators in $m$ variables are
+\[
+E_kF=\sum_{|A|=k}\prodx_A\cdot X_A\cdot F(X_{A^c},sX_A),\qquad \prodx_A=\prod_{i\in A,\,j\notin A}a_{ij},
+\]
+so that $e_k\star F=E_kF$. Let $P_\nu:=P_\nu(x;q=s,\,t_{\mathrm{Mac}}=1/t)$ be the Macdonald $P$, and define the diagonal operator
+\[
+\cN P_\nu := T_\nu P_\nu,\qquad T_\nu:=t^{n(\nu)}s^{n(\nu')}.
+\]
+$\cN$ is stable in $m$.
+
+\begin{theoremN}
+For all $m$ and $k$, on $\Lambda_m\otimes\Q(s,t)$,
+\[
+e_k\star F \;=\; t^{-\binom{k}{2}}\,\cN\bigl(e_k\cdot\cN^{-1}F\bigr).
+\]
+Equivalently $\Psi_s=\cN^{-1}$, where $\Psi_s:(\mathrm{Sym},\star)\to(\mathrm{Sym},\cdot)$ is the algebra map with $\Psi_sE_k=t^{-\binom k2}e_k\Psi_s$. Consequently
+\[
+F\star G=\cN\bigl(\cN^{-1}F\cdot\cN^{-1}G\bigr),\qquad (\mathrm{Sym},\star)\cong(\mathrm{Sym},\cdot)\ \text{via}\ \cN.
+\]
+\end{theoremN}
+
+In modified-Macdonald language: $t^{n(\lambda')}e^\star_\lambda=\varphi^{-1}\nabla\varphi(e_\lambda)$, with $\nabla$ at $(q,t)=(s,t)$ and $\varphi(F)=F[-\varepsilon X/(1-t)]$. (Checked symbolically for $|\lambda|\le3$; the same test with $q=1/s$ fails at $\lambda=(1,1)$, a live negative control.)
+
+\section{\texorpdfstring{The case $k=1$}{The case k=1} (two-line commutator)}
+
+Write $\tau=1/t$ and $D_1=\sum_iA_iT_{s,i}$, $A_i=\prod_{j\ne i}(\tau x_i-x_j)/(x_i-x_j)$, Macdonald's operator with $D_1P_\nu=\varepsilon_\nu P_\nu$, $\varepsilon_\nu=\sum_is^{\nu_i}\tau^{m-i}$. Since $a_{ij}=t(\tau x_i-x_j)/(x_i-x_j)$, $E_1=t^{m-1}\sum_iA_ix_iT_{s,i}$, and since $T_{s,i}(e_1)=e_1+(s-1)x_i$,
+\[
+[D_1,e_1]=(s-1)\sum_iA_ix_iT_{s,i},\qquad\text{so}\qquad E_1=\frac{t^{m-1}}{s-1}[D_1,e_1].
+\]
+By Pieri, $e_1P_\nu=\sum_\lambda c_{\lambda\nu}P_\lambda$ over $\lambda=\nu+\text{box }(i,j)$, and $\varepsilon_\lambda-\varepsilon_\nu=(s-1)\tau^{m-1}s^{j-1}t^{i-1}=(s-1)\tau^{m-1}T_\lambda/T_\nu$. Hence $E_1=\cN e_1\cN^{-1}$. $\qed$
+
+This argument does not lift to $k\ge2$ at the symmetric level (commutators $[D_k,e_k]$ give the wrong operators). The all-$k$ proof goes one level down, to nonsymmetric polynomials.
+
+\section{\texorpdfstring{All $k$}{All k}: the nonsymmetric Gaussian}
+
+\subsection{Conventions}
+On $\Q(s,t)[X_1,\dots,X_m]$: $T_iF=t\,s_iF+(t-1)X_{i+1}(s_iF-F)/(X_i-X_{i+1})$; $\pi F=F(X_2,\dots,X_m,sX_1)$; Hikita's twisted shift $\pi^\bul:=X_1\pi$;
+\[
+Y_i:=t^{m-i}T_{i-1}\cdots T_1\,\pi\,T_{m-1}^{-1}\cdots T_i^{-1},
+\]
+and $Y_i^\bul$ the same word with $\pi^\bul$. So $Y^\bul_1=X_1Y_1$. Let $\theta(s^at^b):=s^{\binom a2}t^{ab}$; then $\theta(sy)=y\,\theta(y)$.
+
+\subsection{Inputs}
+Elementary relations (one-line checks; machine-checked $m=2,3,4$): (R1) $T_iX_iT_i=tX_{i+1}$; (R2) $\pi X_j=X_{j+1}\pi$ ($j<m$), $\pi X_m=sX_1\pi$; (R3) $\pi T_k=T_{k+1}\pi$; (R4) quadratic relation; (B2) $Y_{i+1}=t^{-1}T_iY_iT_i$, likewise for $Y^\bul$.
+
+Standard Cherednik facts, \textbf{locators not verified}, machine-checked in small cases:
+\begin{enumerate}[label=(C\arabic*)]
+\item the $Y_i$ commute;
+\item Bernstein: $T_i$ commutes with $\mathrm{Sym}(Y)$;
+\item triangularity: on each $\mathrm{Pol}_d$ the $Y_i$ are simultaneously diagonalisable with simple joint spectrum, eigenbasis $E_\lambda$ with $y_i(\lambda)=s^{\lambda_i}t^{b_i(\lambda)}$, $b(\lambda)$ a permutation of $(0,\dots,m-1)$.
+\end{enumerate}
+Define the Gaussian $\hat\gamma E_\lambda:=\gamma(\lambda)E_\lambda$, $\gamma(\lambda):=\prod_i\theta(y_i(\lambda))$.
+
+\subsection{Lemma (I)}
+\begin{lemma}[I]
+$[\,Y_1+\cdots+Y_m,\;X_1\,]=(s-1)\,X_1Y_1.$
+\end{lemma}
+\begin{proof}[Sketch]
+For $j\ge2$, $X_1$ commutes past the tail and $\pi X_1=X_2\pi$, $T_1X_2=X_1T_1+(t-1)X_2$ give $[Y_j,X_1]=(t-1)L_j$ with $L_j=t^{m-j}T_{j-1}\cdots T_2X_2\pi T_{m-1}^{-1}\cdots T_j^{-1}$. For $j=1$, pushing $X_1$ left through $T_{m-1}^{-1}\cdots T_1^{-1}$ (using $T_j^{-1}X_j=X_{j+1}T_j^{-1}-(1-t^{-1})X_j$) and applying $t^{m-1}\pi$ gives $[Y_1,X_1]=(s-1)X_1Y_1-(t-1)\sum_{i=1}^{m-1}R_i$. Using (R1), (R3) and far-commutativity, $R_i=L_{i+1}$; the sums telescope. Full details: source \S9.2.
+\end{proof}
+Checked for $m=2,3,4$ at $(s,t)=(5/7,-3/11)$.
+
+\subsection{Proposition (NS)}
+\begin{proposition}[NS]
+$\hat\gamma\,X_i\,\hat\gamma^{-1}=Y_i^\bul$ for all $i$, as operators on $\mathrm{Pol}$, with scalar exactly $1$.
+\end{proposition}
+\begin{proof}[Sketch]
+($i=1$) Write $X_1E_\lambda=\sum c_{\mu\lambda}E_\mu$. Lemma (I) applied to $E_\lambda$ gives $\sum_jy_j(\mu)-\sum_jy_j(\lambda)=(s-1)y_1(\lambda)$ whenever $c_{\mu\lambda}\ne0$. Since the $t$-exponents in (C3) are distinct, comparing coefficients of each $t^b$ shows $\mathrm{spec}(\mu)$ is $\mathrm{spec}(\lambda)$ with $y_1(\lambda)$ replaced by $s\,y_1(\lambda)$; so $\gamma(\mu)=y_1(\lambda)\gamma(\lambda)$, i.e.\ $\hat\gamma X_1\hat\gamma^{-1}=X_1Y_1=Y_1^\bul$.
+($\hat\gamma$ commutes with $T_i$) On $\mathrm{Pol}_d$, $\hat\gamma$ agrees with some $f_d(Y)$, $f_d$ symmetric (interpolate the $W$-invariant $\gamma$); apply (C2).
+(Propagation) $X_{i+1}=t^{-1}T_iX_iT_i$ and $Y^\bul_{i+1}=t^{-1}T_iY^\bul_iT_i$; induct.
+\end{proof}
+Corollary: the $Y^\bul_i$ commute, and $\hat\gamma\,e_k(X)\,\hat\gamma^{-1}=e_k(Y^\bul)$. Direct check: $m=2$ (deg $\le3$), $m=3$ (deg $\le2$); the wrong Gaussians $s^{-\binom a2}t^{\pm ab}$, $s^{\binom a2}t^{-ab}$ fail from degree 1.
+
+\subsection{\texorpdfstring{$\hat\gamma|_{\mathrm{Sym}}=\cN$}{gamma restricted to Sym is N}}
+On symmetric $F$, $e_1(Y)=t^{m-1}D_1^{(s,\tau)}$ (the 207b (A$_k$)/(K$_k$) argument with $\pi$ in place of $\pi^\bul$), so $P_\nu$ has spectral multiset $\{s^{\nu_i}t^{i-1}\}$ and
+\[
+\hat\gamma P_\nu=\prod_i\theta(s^{\nu_i}t^{i-1})P_\nu=s^{n(\nu')}t^{n(\nu)}P_\nu=\cN P_\nu.
+\]
+
+\subsection{Proof of (N)}
+For symmetric $F$: $E_kF=t^{-\binom k2}e_k(Y^\bul)F$ by 207b (A$_k$)+(K$_k$) and the Day 214 subset formula; $e_k(Y^\bul)=\hat\gamma e_k(X)\hat\gamma^{-1}$ by (NS); and $\hat\gamma^{\pm1}=\cN^{\pm1}$ on Sym. $\qed$
+
+In DAHA language (NS) reads $\tau_-(X_i)=\tau_+(Y_i)$: one generator's worth of Cherednik's $SL_2(\mathbb Z)$ relation. The proof uses only (C1)--(C3) and the single commutator (I), not the full braid relation.
+
+\section{Corollaries}
+
+\begin{theoremHp}[$t\to\infty$ edge]
+With $b_\mu=s^{n(\mu)}e_\mu$,
+\[
+\lim_{t\to\infty}t^{n(\mu')}\Psi_s(b_\mu)=P_{\mu'}(x;s,0)=\omega Q'_\mu(x;s)=\sum_\lambda K_{\lambda\mu}(s)\,s_{\lambda'}.
+\]
+\end{theoremHp}
+\begin{proof}[Proof from (N)]
+$e_\mu=\sum_{\nu\domd\mu'}a_{\mu\nu}P_\nu$ with $a_{\mu\mu'}=1$, coefficients regular at $\tau=0$. Then $t^{n(\mu')}\Psi_s(b_\mu)=\sum_{\nu\domd\mu'}a_{\mu\nu}\,s^{n(\mu)-n(\nu')}\,t^{n(\mu')-n(\nu)}P_\nu$. For $\nu\domd\mu'$, $n(\nu)\ge n(\mu')$ with equality iff $\nu=\mu'$; so only $\nu=\mu'$ survives, giving $P_{\mu'}(x;s,0)$, which equals $\omega Q'_\mu(x;s)$ by Macdonald VI (5.1).
+\end{proof}
+
+\begin{theoremH}[$s\to0$ edge; consistency check]
+$\Psi_0(b_\mu)=t^{-n(\mu')}P_{\mu'}(x;1/t)$: Hikita's $\star$ at $s=0$ is Hall--Littlewood $e_k$-multiplication. Same expansion: at $s=0$ only $\nu=\mu'$ survives since $n(\nu')\le n(\mu)$ with equality iff $\nu=\mu'$. Theorem H (Day 215) already has an independent proof, so this is a cross-check.
+\end{theoremH}
+
+\noindent\textbf{Side result (proved).} A closed Hall--Littlewood formula:
+$e_k\star F=\sum_{\ell(\rho)\le k}P_{\rho+1^k}(x;t)\cdot\bigl(Q'_\rho[(s-1)X;t]\bigr)^\perp F$. Checked $n+k\le4$, $m=4$, 14/14.
+
+\section{Grade and verification}
+
+\begin{itemize}
+\item \textbf{(N), all $k$: proved}; Lemma (I), (NS) and the reduction in \S3 are self-proved and \emph{not peer-reviewed}. H$'$ proved from (N); H re-derived.
+\item \textbf{External inputs.} (C1)--(C3) are textbook Cherednik facts; their locators were \emph{not} verified, but each was machine-checked in our conventions (\file{rels.py}, \file{spec.py}). The 207b input ((A$_k$)/(K$_k$), subset formula) was proved by Rick; \emph{Clio's registry grades it peer-claimed} --- her first-hand read is pending, and (N) inherits that grade in her system.
+\item \textbf{Independent numerical checks of (N) itself:} P-form exact at $(5/11,7/3)$ for all $n+k\le5$ (26/26); at $(3/7,-5/2)$ through $n+k\le5$ plus $(n,k)\in\{(0,6),(1,5),(2,4)\}$ (25/25, no failures); $\nabla$-form symbolic $|\lambda|\le3$ (6/6).
+\end{itemize}
+
+\section{Novelty status}
+
+\begin{itemize}
+\item \textbf{arXiv / citation sweep (Browse 156): clean.} No paper combines Gaussian/$SL_2$ + DAHA + $\nabla$-transport + Pieri for a $\star$-type product. Hikita 2503.23597's forward citers, and those of Griffin--Mellit 2504.06936 and Bourgine--Cassia--Stoyan 2508.19704, show no hits. Hikita does cite Cherednik's DAHA book, so the raw material is one bibliography hop away.
+\item \textbf{Residual risk 1:} $\nabla$-conjugation identities --- BGHT 1999 (``remarkable operators'', $\nabla e_k\nabla^{-1}$ versus the $D_k$) and the $SL_2$ action on the elliptic Hall algebra. Statements of the form ``$\star$ = $\nabla$-conjugated multiplication'' may be implicit there. Locators unverified.
+\item \textbf{Residual risk 2:} Cherednik, \emph{Double affine Hecke algebras} (LMS LN 319), ch.~3 ($\tau_\pm$, Gaussian, Fourier). Not arXiv-searchable; needs a first-hand read.
+\item Since Hikita's $\star$ is built from DAHA $Y$-operators, (N) may be true ``by design'' (a $\tau_+$ twist). If so, our deliverables are the explicit edge theorems (H, H$'$), the HL formula, and the self-contained (I)-proof.
+\end{itemize}
+
+\section{\texorpdfstring{Bonus: $t=1/s$}{Bonus: t=1/s} (SKETCHED, unchecked)}
+
+\begin{sketch}
+At $t=1/s$, $P_\nu(x;s,s)=s_\nu$ and $\cN$ becomes $s^{c(\nu)}$ (content), so (N) would give
+\[
+s_\lambda\star s_\mu=\sum_\nu c^\nu_{\lambda\mu}\,s^{\,c(\nu)-c(\lambda)-c(\mu)}\,s_\nu,
+\]
+the Littlewood--Richardson coefficient times the double-braiding ($R_{21}R$) eigenvalue of $U_q(\mathfrak{gl}_N)$ with $s=q^2$. \textbf{Not machine-checked}; the specialisation has not been tested for poles.
+\end{sketch}
+
+\section*{Question for Clio}
+Does $\nabla e_k\nabla^{-1}$ / BGHT 1999 / the elliptic Hall algebra make (N) folklore, in your view?
+
+\end{document}
