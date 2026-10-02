@@ -1,0 +1,101 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\WIPHASH}{\texttt{(pending)}}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\nablaN}{{\nabla^{(N)}}}
+
+\title{(N) is folklore-implicit: the Di Francesco--Kedem dictionary}
+\author{Rick}
+\date{2026-10-02}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-1.5em}
+\noindent\textbf{Author:} Rick. \textbf{Date:} 2026-10-02.
+\textbf{Recipient:} Clio Vega (cc Robin Langer).\\
+\textbf{WIP commit:} \WIPHASH{} (this note plus the registry annotations it describes; the hash line was added in a follow-up commit).
+
+\medskip
+\noindent\textbf{Summary.} Our Theorem (N) says that Hikita's $\star$ is the $\N$-transport of the ordinary product:
+\[
+E_k = t^{-\binom k2}\,\N e_k \N^{-1},\qquad \N P_\nu(x;s,1/t)=t^{n(\nu)}s^{n(\nu')}P_\nu(x;s,1/t).
+\]
+For all $k$ it follows in about three lines from results \emph{stated} in Di Francesco--Kedem,
+arXiv:1704.00154 (\emph{CMP} 369 (2019) 867--928), hereafter [DFK].
+[DFK] never state it for $k\ge2$, so our verdict is \textbf{folklore-implicit}.
+This note gives the dictionary, the derivation with locators, the caveats, what remains ours, and a proposed reframing of the FPSAC story.
+
+\section*{1. Dictionary}
+[DFK] use $\Gamma_i f=f(\dots,qx_i,\dots)$ and generalized Macdonald operators (their (1.5))
+\[
+M_{\alpha;n}=\sum_{|I|=\alpha}x_I^n\prod_{i\in I,\,j\notin I}\frac{tx_i-x_j}{x_i-x_j}\,\Gamma_I .
+\]
+They set $\eta=\exp(-\sum_i \mathrm{Log}(Y_i)^2/2\,\mathrm{Log}\,q)$ and $\nablaN:=\eta^{-1}$
+(Lemma~2.13, Rem.~2.14, (4.14)), with
+$\nablaN P_\lambda=C_N\,t^{(N-1)|\lambda|/2-n(\lambda)}q^{|\lambda|/2+n(\lambda')}P_\lambda$.
+Under
+\[
+(q,t)_{\rm DFK}=(s,\,1/t):
+\]
+\begin{itemize}
+\item $P_\lambda^{\rm DFK}=P_\lambda(x;s,1/t)$ and $\Gamma_i=T_{s,i}$;
+\item $t_{\rm DFK}^{-n(\lambda)}q^{n(\lambda')}=t^{n(\lambda)}s^{n(\lambda')}$, so $\N$ is the pure-eigenvalue part of $\nablaN$; the extra factors $C_N$ and $(t_{\rm DFK}^{(N-1)/2}q^{1/2})^{\deg}$ are a scalar and a grading;
+\item $t_{\rm DFK}x_i-x_j=t^{-1}(x_i-tx_j)$, hence $E_k=t^{k(N-k)}M_{k;1}\big|_{t_{\rm DFK}=1/t}$.
+\end{itemize}
+
+\section*{2. The three-line derivation}
+\begin{enumerate}
+\item By (6.5) and (6.8), $u_{0,j}=\frac{q^{j/2}}{1-q^j}p_j(X)$ and $u_{j,0}=\frac{q^{j/2}}{1-q^j}p_j(Y)$ carry the same normalisation.
+So $e_k(X)=\Phi_k(u_{0,\bullet})$ and $e_k(Y)=\Phi_k(u_{\bullet,0})$ with the same polynomial $\Phi_k$.
+\item The $SL_2(\mathbb Z)$ action (6.3) has $U u_{0,j}=u_{j,j}=T u_{j,0}$, with $U\mapsto\tau_-$ and $T\mapsto\tau_+$.
+Hence $\tau_-(e_k(X))=\Phi_k(u_{\bullet,\bullet})=\tau_+(e_k(Y))$.
+\item By Lemma~2.13 and Rem.~2.14, $\tau_-=\mathrm{Ad}\,\nablaN$.
+By Lemma~2.16 and Thm~2.17, $\tau_+(e_k(Y))|_{\rm Sym}\propto M_{k;1}$.
+Therefore $\nablaN e_k\nablaN^{-1}\propto M_{k;1}$; translated through \S1, this is (N).
+\end{enumerate}
+\emph{Numerical check} (\file{scripts/day217dfk/dfk_check.py}).
+We took $N=3$, exact arithmetic, $(q,t)_{\rm DFK}=(3/7,-5/2)$, and every $P_\lambda$ with $|\lambda|+k\le4$.
+With the pure eigenvalue $t^{-n}q^{n'}$, we found $\nabla e_k\nabla^{-1}=t_{\rm DFK}^{-k(N-k)-\binom k2}M_{k;1}$ for $k=1,2,3$; this is exactly (N) after the dictionary.
+With the full $\eta^{-1}$ we found $\eta^{-1}e_k(X)\eta=\gamma^{-1}e_k(Y)\gamma$ on ${\rm Sym}_N$, with no scalar.
+Negative control: the opposite conjugation $\nabla^{-1}e_k\nabla$ is \emph{not} proportional to $M_{k;1}$.
+
+\section*{3. Caveats}
+\begin{itemize}
+\item {[DFK]} never write step~2 or the conclusion for $k\ge2$. In \S6.3 they conjugate only by $T$, never by $U$.
+Their $k=1$ statement, Rem.~6.2 ($\nablaN u_{a,b}\nablaN^{-1}=u_{a+b,b}$), rests on the Schiffmann--Vasserot $SL_2$-equivariance of the EHA$\to$spherical DAHA map. They quote this from SV11/Che05 rather than prove it.
+\item The literal proof of their Lemma~2.13 (apply the anti-involution $\varepsilon$ to Lemma~2.12) yields $\mathrm{Ad}\,\eta$, not $\mathrm{Ad}\,\eta^{-1}$: $\varepsilon(\gamma^{-1}\varepsilon(b)\gamma)=\eta b\eta^{-1}$. Our numerics confirm that the \emph{stated} direction $\eta^{-1}$ is the one that produces $M_{k;1}$.
+\item The case $k=1$ is also in BGHT 1999, (I.12)(iii): $\nabla e_1\nabla^{-1}=-D_1$ (plethystic, infinitely many variables).
+For general $k$, BGLX arXiv:1405.0316, Conj.~2.1, identifies $\nabla e_k\nabla^{-1}$ with Negut's $N_{k,k}$ (plethystic). We have not checked its later status.
+\item Hikita 2503.23597 never mentions $\nabla$. His Def.~3.4 already \emph{defines} $\star$ as transport by $\mathsf q(F)=F(Y)\bullet1$, so the content of (N) is ``$\mathsf q=\nablaN$ up to normalisation''.
+\end{itemize}
+
+\section*{4. What remains ours}
+\begin{enumerate}
+\item[(i)] The \textbf{elementary, self-contained proof}. It uses Lemma~(I), $[e_1(Y),X_1]=(s-1)X_1Y_1$, and the nonsymmetric Gaussian $\hat\gamma X_i\hat\gamma^{-1}=Y_i^\bullet$. It avoids EHA/SV11 entirely. [DFK] contain no nonsymmetric statement of this kind and nothing like Lemma~(I).
+\item[(ii)] The \textbf{identification with Hikita's $\star$}. Neither side states it.
+\item[(iii)] The \textbf{edge theorems}:
+\begin{itemize}
+\item H: as $s\to0$, $\star$ becomes Hall--Littlewood $e_k$-Pieri in the rescaled basis $b_\mu$;
+\item H$'$: as $t\to\infty$, the limit is q-Whittaker, $P_{\mu'}(x;s,0)=\omega Q'_\mu$;
+\item the $t=1/s$ content-twisted Littlewood--Richardson line. It is now proved as a corollary of (N) and checked computationally in 41/41 cases (\file{scripts/day217/fast.py}). Its novelty is also weak.
+\end{itemize}
+H and H$'$ are 3-line corollaries of (N), so they are now also derivable from [DFK]. Their novelty rests on the explicit identification of the limits, not on the transport.
+\end{enumerate}
+The registry is annotated accordingly (\file{registry/hikita-star-dominance-support.json}, field \texttt{novelty\_2026\_10\_02} on nodes \texttt{N-star-is-nabla-transport}, \texttt{theorem-H-s0-star-is-HL-pieri}, \texttt{theorem-H-prime-t-infinity-q-whittaker}). Trust grades are unchanged.
+
+\section*{5. Proposed reframing of the FPSAC story}
+We propose to stop presenting (N) as the headline.
+\begin{itemize}
+\item \textbf{Lead with the explicit edges}: H (HL), H$'$ (q-Whittaker), (KF), and dominance support (DS) with its exact up-set and the zeta-function limit at $s=t=0$.
+\item \textbf{Cite [DFK] for the transport}. State (N) as ``Hikita's level-one twist is Cherednik's $\tau_+$, so $\star$ is the $\nablaN$-transport of the ordinary product [DFK, Thm~2.17, L2.12--2.13, Rem.~2.14, (4.14)]; cf.\ BGHT (I.12)(iii)''.
+\item \textbf{Offer our proof as an elementary alternative}: Lemma~(I) and the nonsymmetric Gaussian, which avoid the EHA.
+\end{itemize}
+The story becomes ``explicit degenerations of a $\nabla$-twisted product''.
+
+\medskip
+\noindent\textbf{Request.} Please check the dictionary in \S1, in particular $(q,t)_{\rm DFK}=(s,1/t)$ and $E_k=t^{k(N-k)}M_{k;1}$, and the $\eta$ vs.\ $\eta^{-1}$ wrinkle in \S3. You can skip a from-scratch novelty hunt on $\N$.
+\end{document}
