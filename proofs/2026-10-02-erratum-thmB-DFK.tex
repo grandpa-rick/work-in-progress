@@ -1,0 +1,111 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\Ht}{\widetilde{H}}
+\newcommand{\Kt}{\widetilde{K}}
+\newcommand{\file}[1]{\nolinkurl{#1}}
+\newcommand{\WIPHASH}{\texttt{(pending)}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\title{\texorpdfstring{Erratum: Theorem B of the $(s,t)$-square is Di Francesco--Kedem 1505.01657 Cor~5.18}{Erratum: Theorem B of the (s,t)-square is Di Francesco-Kedem 1505.01657 Cor 5.18}}
+\author{Rick}
+\date{2026-10-02}
+
+\begin{document}
+\begin{center}\large\bfseries Erratum: Theorem B of the $(s,t)$-square is Di Francesco--Kedem 1505.01657 Cor.~5.18\end{center}
+\vspace{-0.5em}
+\begin{center}
+\begin{tabular}{r>{\raggedright\arraybackslash}p{0.72\textwidth}}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-10-02\\
+\textbf{Recipient:} & Clio Vega (cc Robin Langer)\\
+\textbf{Title:} & Erratum: Theorem B of the $(s,t)$-square is Di Francesco--Kedem 1505.01657 Cor~5.18\\
+\textbf{Corrects:} & \file{proofs/2026-10-02-st-square-closed.pdf}, WIP content commit \texttt{dd35498} (sent to you earlier today).\\
+\textbf{WIP commit:} & This erratum's content is work-in-progress commit \WIPHASH{} (grandpa-rick/work-in-progress); this hash line was added in a follow-up commit.\\
+\textbf{Check script:} & \file{scripts/day217dfk/dfk1505_check.py}
+\end{tabular}
+\end{center}
+
+\paragraph{The correction.} The PDF at \texttt{dd35498} presented Theorem B (the $t=0$ edge) as new and asked whether you had seen it. It is not new. Both the operator and the identity
+\[
+e^\star_\mu\big|_{t=0}=s^{n(\mu)}P_{\mu'}(x;1/s,0)=\omega\Ht_\mu(x;s)=\sum_\lambda \Kt_{\lambda\mu}(s)\,s_{\lambda'},
+\]
+\[
+E_k\big|_{t=0}=\sum_{|A|=k}\prod_{i\in A,\,j\notin A}\frac{x_i}{x_i-x_j}\,X_A\,T_{s,A},
+\]
+are in P.~Di Francesco and R.~Kedem, \emph{Difference equations for graded characters from quantum cluster algebra}, arXiv:1505.01657 (Transformation Groups 2018). The first equality is their Cor.~5.18. The second is a textbook identity. \textbf{That question is withdrawn.}
+
+\section*{1. What DFK state (read first-hand)}
+Notation: $N=r+1$ variables, $z_I=\prod_{i\in I}z_i$, $a_I(z)=\prod_{i\in I,\,j\notin I}\frac{z_i}{z_i-z_j}$ (eq.~(1.1)), $\Gamma_I=\prod_{i\in I}\Gamma_i$, $\Gamma_i:z_i\mapsto qz_i$ ((5.2)--(5.3)).
+\begin{itemize}
+\item[(5.15)] $M_{\alpha,n}=\sum_{I\subset[1,r+1],\,|I|=\alpha}(z_I)^n\,a_I(z)\,\Gamma_I$, once the condition $z_1\cdots z_{r+1}=1$ is dropped.
+\item[(5.16)] $M_{\alpha,n}M_{\beta,p}=q^{\min(\alpha,\beta)(p-n)}M_{\beta,p}M_{\alpha,n}$. In particular the $M_{\alpha,1}$ commute.
+\item[(5.25)] (Level~1 of Cor.~5.8, (5.18).) $\chi_{\mathbf n}(q^{-1},z)=q^{-\frac12\sum n^{(\alpha)}\min(\alpha,\beta)n^{(\beta)}+\frac12\sum\alpha n^{(\alpha)}}\prod_{\alpha=1}^r(M_{\alpha,1})^{n^{(\alpha)}}\,1$.
+\item[(5.27)] (Cor.~5.18.) ``$\chi_{\mathbf n}(q^{-1},z)=\lim_{t\to\infty}P^{q,t}_\lambda(z)=P^{q^{-1},0}_\lambda(z)$'', where $\lambda_i=n^{(i)}+\dots+n^{(r)}$.
+\end{itemize}
+Rem.~5.20 also identifies the $M_{\alpha,1}$ with the Kirillov--Noumi raising operators in the limit $t\to\infty$.
+
+\section*{2. Dictionary}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+DFK 1505.01657 & ours (\texttt{dd35498})\\
+\midrule
+$q$ & $s$\\
+$z_1,\dots,z_{r+1}$ & $x_1,\dots,x_N$\\
+$M_{k,1}$ & $E_k|_{t=0}$ (same coefficient $a_A$, same shift $\Gamma_A=T_{s,A}$, same factor $X_A$)\\
+$n^{(\alpha)}$ & multiplicity of $\alpha$ as a part of $\mu$\\
+$\lambda$ & $\mu'$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Since $\sum_{\alpha,\beta}n^{(\alpha)}\min(\alpha,\beta)n^{(\beta)}=\sum_k\mu_k'^2$ and $\sum_\alpha\alpha n^{(\alpha)}=|\mu|$, the prefactor in (5.25) is $q^{-n(\mu)}$. So (5.25) and (5.27) say literally
+\[
+\prod_i M_{\mu_i,1}\cdot 1=q^{n(\mu)}P_{\mu'}(z;q^{-1},0)\qquad(N=r+1,\ \mu_1\le r),
+\]
+which is the first equality of Theorem B. The bound $\mu_1\le r$ is removed by taking $N$ large.
+
+\section*{3. The bridge identity}
+Macdonald, \emph{Symmetric Functions and Hall Polynomials}, Ch.~VI (5.1) (our (M5)): with the plain involution $\omega$,
+\[
+P_\lambda(x;q,0)=\omega\,Q'_{\lambda'}(x;q).
+\]
+With $\lambda=\mu'$ and $\Ht_\mu(x;q)=q^{n(\mu)}Q'_\mu(x;q^{-1})=\sum_\lambda\Kt_{\lambda\mu}(q)s_\lambda$, this gives $q^{n(\mu)}P_{\mu'}(x;q^{-1},0)=\omega\Ht_\mu(x;q)$, the second equality of Theorem B. The HL-$Q$ versus $Q'$ mismatch I suspected does not arise. The duality $\omega_{q,t}P_\lambda(q,t)=Q_{\lambda'}(t,q)$ uses the twisted $\omega_{q,t}$, not the plain $\omega$.
+
+\section*{4. Computer check}
+The script \file{scripts/day217dfk/dfk1505_check.py} works in $N=4$ with symbolic $q$. For all 11 partitions $\mu$ with $|\mu|\le4$ it checks that the DFK product $\prod_iM_{\mu_i,1}\cdot1$ equals each of the following:
+\begin{itemize}
+\item[(a)] $q^{n(\mu)}P_{\mu'}(z;1/q,0)$, with $P$ computed independently as a $D_1$-eigenvector at generic $(q,t)$ and then $t\to0$;
+\item[(b)] $\sum_\lambda\Kt_{\lambda\mu}(q)s_{\lambda'}$, from hard-coded Kostka--Foulkes polynomials;
+\item[(c)] our $E_k$-product at $t=0$, implemented separately.
+\end{itemize}
+Result: \textbf{11/11 true} for (a), (b), (c) and (a)$=$(b). Example: $e_1\star e_1|_{t=0}=q\,h_2+e_2$.
+
+Negative control: replace (a) by $P_{\mu'}(z;q,0)$, without the inversion $q\mapsto1/q$. This is false for 7 of the 11 partitions. The 4 that pass are the one-row $\mu=(n)$, where $P_{(1^n)}=e_n$ does not depend on $q$ and $n(\mu)=0$.
+
+\section*{5. Updated novelty position}
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lY@{}}
+\toprule
+Item & Status\\
+\midrule
+Theorem B ($t=0$ edge) & \textbf{Known.} Cite DFK 1505.01657 (5.15), (5.25), Cor.~5.18 (5.27), together with Macdonald VI (5.1). Our contribution is only its placement as the $t=0$ edge of the $t$-deformed $\star$, and a different derivation (from (N) plus triangularity).\\
+Theorem A ($s=\infty$ edge $\to$ HL $P_{\mu'}(x;t)$) & Clean as checked. DFK 1505/1606/1704/2112/2303 contain no Hall--Littlewood, and their edge is always $t\to\infty$.\\
+Lemma R (reflection) & Clean as checked.\\
+Prop.~C (collapse coefficient) & Clean as checked.\\
+(N) ($\star$ is $\nabla$-transport) & Folklore-implicit (DFK 1704.00154; see also the 2112.09798 introduction).\\
+\midrule
+Residual risk & Kirillov--Noumi 1999 (raising operators, including a possible $q\to\infty$ HL limit), and DFK arXiv:2112.09798 and 1908.00806. None of these has been read first-hand.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\paragraph{Revised question.} Have you seen Theorem A anywhere? It states that $s^{-n(\mu)}e^\star_\mu\to P_{\mu'}(x;t)$ (Hall--Littlewood) as $s\to\infty$, i.e.\ the $q\to\infty$ limit at finite $t$ of the $t$-deformed DFK/Kirillov--Noumi operators $M_{k;1}(q,t)$.
+
+\end{document}
