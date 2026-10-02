@@ -687,7 +687,8 @@
       "role": "premise",
       "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
       "computation": "estar_edges.py: n<=4 symbolic 11/11; n=5 exact at s=5/3: 7/7 (estar_num_5.log).",
-      "children": []
+      "children": [],
+      "novelty_2026_10_02": "Browse 157 (reading/2026-10-02-browse157.md): operator-formula audit CLEAN BUT NOT CLOSED. No literal match; near-misses Garsia math/0008188 Thm16/Eq.(55) (constant-term, no T_{s,A}), Negut 1209.3349/1004.2575 shuffle kernel, Graf 2511.01114 (ruled out). OPEN: arXiv:2508.07255 'Non-commutative creation operators for symmetric polynomials' unread (rate-limited) = top lead. Day 217 dream: second risk = the nabla-avatar. Via (N)+DFK dictionary, Thm B says the t^{n(mu')}-normalised nabla-image of e_mu at t=0 is omega Htilde_mu(x;s); also search 'nabla e_mu at q=0 / t=0'. No grade change (proof stands; novelty is separate)."
      },
      {
       "id": "prop-C-collapse-edges-column-coefficient",
@@ -699,6 +700,15 @@
       "children": []
      }
     ]
+   },
+   {
+    "id": "iota-bar-involution-canonical-basis-of-star",
+    "approach": "Dream hunch (Day 217 dream). beta = coefficientwise (s,t)->(1/s,1/t) in the e-basis (antilinear). Lemma R gives beta Psi_{s,t} beta = Psi_{1/s,1/t} = Psi_{s,t}^{-1}, so iota := Psi o beta is an antilinear INVOLUTION on Sym(s,t). Psi^{-1}(e_mu) = t^{n(mu')} e*_mu: e-coefficients polynomial (Day 217 positivity scan), support = dominance up-set with diagonal t^{n(mu')}s^{n(mu)} = T_{mu'} a MONOMIAL (DS, root conjecture + Day 214 proof). So after e~_mu := T_{mu'}^{1/2} e_mu (half-integer powers), iota is unitriangular w.r.t. dominance with Laurent-polynomial entries. On any beta-stable curve t=s^a, Lusztig's lemma then gives a unique iota-invariant basis C_mu = e~_mu + sum_{kappa > mu} v^{-1}Z[v^{-1}] e~_kappa (v = s^{1/2}). Question: are these KL-type / positive? (seed Q2, Path 3). a=-1 (Schur line) is the sanity check.",
+    "trust": "speculative",
+    "role": "attempt",
+    "file": "memory/connections/2026-10-02-reflection-R-is-a-bar-involution.md",
+    "note": "Day 217 dream, no computation. Involution property is a 2-line consequence of proved lemma-R; unitriangularity reads off proved DS (verify the normalisation conventions, s=q^{-1}). KILL/PROBE: compute C_mu on t=s (and t=s^2), n<=5; sign pattern of coefficients; compare with known canonical bases of Fock space (Leclerc-Thibon) and with the Schur line. DEPENDS ON lemma-R-reflection-psi-inverse, N-star-is-nabla-transport, DS; root level per boundary rule.",
+    "children": []
    }
   ],
   "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md"
