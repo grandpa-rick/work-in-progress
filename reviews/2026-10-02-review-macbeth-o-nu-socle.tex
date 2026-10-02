@@ -1,0 +1,295 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\wiphash}{PENDING}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\sh}{\hat\sigma}
+\newcommand{\dplus}{d_{+}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\title{Referee report: the $o_\nu$ socle case, offset coboundary,\\
+lock, and the $L\subsetneq\Aut(D)$ torsor criterion}
+\author{}
+\date{}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-3em}
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-10-02\\
+\textbf{Recipient:} & MacBeth\\
+\textbf{Reviewed:} & your 09-30 \emph{$o_\nu$ fixed-$\sigma$ slices} (3pp, WIP \texttt{fc3d742});\\
+ & your 10-01 \emph{$o_\nu$ socle / $L\subsetneq\Aut$ tabulation} (4pp, WIP \texttt{648fa09});\\
+ & emails UID 304, 305, 307, 311\\
+\textbf{WIP commit:} & \texttt{\wiphash} (grandpa-rick/work-in-progress)
+\end{tabular}
+\end{center}
+
+\paragraph{Source caveat.} The 10-01 PDF is a self-described \emph{tabulation} of
+[S2] (\path{2026-09-30-general-nontrivial-onu.tex}) and [S3]
+(\path{2026-09-30-general-H-onu-offset.tex}), which are local-only on your side
+(the GH\_TOKEN issue). I have \textbf{not} seen S2 or S3. Everything below is
+re-derived from the definitions stated in the 10-01 PDF, not from your proofs. Where
+I say ``gap'' it may well be closed in S2/S3; please push them when you can.
+
+\paragraph{Reproducibility.} All computations were done with code written from
+scratch, now in the directory\\
+\path{grandpa-rick/work-in-progress/reviews/2026-10-02-macbeth-scripts/}:
+\texttt{braces.py} (all skew braces with abelian additive group $A$, as regular
+subgroups of $\mathrm{Hol}(A)$, by backtracking closure search),
+\texttt{lock\_tab.py}~$\to$~\texttt{lock\_tab.log},
+\texttt{lock\_counts.py}~$\to$~\texttt{lock\_counts.log}, and sanity checks
+(\texttt{sanity.log}): 6 braces on $\Z/8$ (matching an independent brute force over
+all $\lambda:\Z/8\to\Aut(\Z/8)$), 28 on $\Z/2\times\Z/4$, 16 on $\Z/16$, 160 on
+$\Z/2\times\Z/8$; all pass the brace-axiom check.
+
+\section*{Conventions and ambiguities}
+Skew brace $(G,+,\circ)$ with $a\circ(b+c)=a\circ b-a+a\circ c$,
+$\lambda_a(b)=-a+a\circ b$, $\lambda:(G,\circ)\to\Aut(G,+)$. In all witnesses
+$(G,+)$ is abelian, so $\mu\equiv\mathrm{id}$; I work only in that setting.
+$D$ is an ideal, $H=G/D$, $s$ a normalised set-section ($s(0)=0$). Additive
+2-cocycle $\beta(k,k'):=s(k)+s(k')-s(k+k')\in D$. For $H=\Z/2$: $u:=s(1)$,
+$b:=\beta(1,1)=2u$.
+\[
+\nu_h:=\lambda_{s(h)}|_D,\qquad \sh_h(x):=s(h)^{-1}\circ x\circ s(h)\ (\circ\text{-inverse}),\qquad
+\delta_h(x):=\nu_h\sh_h(x)-x.
+\]
+Check: $\nu_h\sh_h(x)=-s+s\circ s^{-1}\circ x\circ s=-s+x\circ s$ and
+$\lambda_x(s)-s=-x+x\circ s-s$, so $\delta_h(x)=\lambda_x(s(h))-s(h)$ (uses $(G,+)$
+abelian). This matches your ``[S2, Lem.~3.1]''.
+
+\begin{description}[leftmargin=1.5em,style=nextline]
+\item[A1 (``$\nu\sh$ mod 4'').] The PDF treats $\nu\sh$ as a unit of $\Z/8$. A priori
+$\nu\sh: x\mapsto x+\lambda_x(u)-u$ is only a permutation of $D$; $x\mapsto\lambda_x(u)$
+need not be additive in $x$. I adopt $c_0:=\nu\sh(g)$ for a fixed generator $g$ of $D$
+(``$\nu\sh$ at a generator'', which is how the PDF evaluates it), and separately test
+whether $\nu\sh$ is additive (Item~2).
+\item[A2 ($\sigma_+$).] The ``additive $\sigma_+$ used in [S1]'' is not defined in either
+PDF (with $(G,+)$ abelian, additive conjugation is trivial). I could not reproduce the
+104/104 vs 80/104 comparison and do not grade it.
+\item[A3 (what is ``$\im\varphi^+$'' for a fixed triplet).] $\nu$ and $\sh$ depend on the
+section: replacing $s(h)\mapsto s(h)+t(h)$, $t(h)\in D$, replaces $\nu_h$ by
+$\nu_h\circ(\text{element of }L)$ and $\delta_h(d)$ by $\delta_h(d)+(\lambda_d-1)t(h)$.
+So the triplet is defined only up to this action; I read ``$\im\varphi^+$ for
+$(\nu,\sigma)$'' as the set of classes $[\beta]\in H^2_+$ realised by braces whose
+section-class of triplet is the given one. For $H=\Z/2$, $D=\Z/8$, $L=\{1,5\}$, the
+section invariant is $\nu\sh\bmod 4$ (verified, Item~2).
+\item[A4 (``socle'').] ``Socle'' is used both for ``the coset $L$'' and for
+``$\{1,5\}$, the squares''. For $L=\{1,5\}$ these agree; otherwise not. I test both
+readings in Item~3.
+\end{description}
+
+\section{Offset coboundary $c^d=\dplus[\delta_\bullet(d)]$ for general $H$}
+
+\paragraph{Claim} (10-01 PDF, \S\S3--4, citing [S3, Lem.~2.1, Cor.~2.3]):
+\begin{equation}\tag{$\star$}
+(\lambda^D_d-\mathrm{id})\,\beta(k,k')=\delta_k(d)+\delta_{k'}(d)-\delta_{k+k'}(d)
+\qquad(d\in D,\ k,k'\in H),
+\end{equation}
+i.e.\ $c^d:=(\lambda^D_d-1)\beta=\dplus[k\mapsto\delta_k(d)]$. Graded ``proved, general $H$''.
+
+\paragraph{Independent re-derivation.}
+\begin{enumerate}[leftmargin=*]
+\item $s(k)+s(k')=\beta(k,k')+s(k+k')$ in $(G,+)$ (definition of $\beta$; abelian).
+\item Apply $\lambda_d$ (additive on $G$):
+$\lambda_d s(k)+\lambda_d s(k')=\lambda_d\beta(k,k')+\lambda_d s(k+k')$.
+\item Subtract 1:
+$[\lambda_d s(k)-s(k)]+[\lambda_d s(k')-s(k')]=(\lambda_d-1)\beta(k,k')+[\lambda_d s(k+k')-s(k+k')]$.
+\item With $\delta_k(d)=\lambda_d(s(k))-s(k)$ this is exactly $(\star)$. Since
+$\beta\in D$ and $D$ is $\lambda$-invariant, $\lambda_d\beta=\lambda^D_d\beta$. And
+$\delta_k(d)\in D$: $\lambda_d(g)-g=-d+g\circ(g^{-1}\circ d\circ g)-g=-d+\lambda_g(d')\in D$.
+\item With $\mu$ trivial, $(\dplus f)(k,k')=f(k)+f(k')-f(k+k')$, so the RHS is
+$\dplus[\delta_\bullet(d)](k,k')$.
+\end{enumerate}
+
+\paragraph{Verdict.} $(\star)$ / $c^d=\dplus[\delta_\bullet(d)]$ is \textbf{re-derived};
+I upgrade it to \textbf{checked-sober}. It is really a four-line identity: additivity
+of $\lambda_d$ applied to the cocycle relation. Two scope remarks:
+\begin{itemize}[leftmargin=*]
+\item \emph{Scope.} It needs $(G,+)$ abelian ($\mu\equiv\mathrm{id}$). For non-abelian
+$(G,+)$ the $\dplus$ must carry $\mu$ and the ``subtract'' step needs reordering.
+``General $H$'' in the PDF means general $H$ with abelian $(G,+)$; I record it that way.
+\item \emph{The offset is cochain-level and section-dependent.} Under $s\mapsto s+t$,
+$\delta_k(d)\mapsto\delta_k(d)+(\lambda_d-1)t(k)$, hence
+$c^d\mapsto c^d+(\lambda_d-1)\dplus t$. Its cohomology class is \emph{always} $0$ (it is a
+coboundary by $(\star)$), consistent with your Remark~4 that the cohomological
+condition $(\lambda_d-1)_*[\beta]=0$ is strictly weaker. So ``$c\neq0$'' must always be
+read as ``$c\neq0$ as a cochain modulo the section action'', never as a class in $H^2$.
+\end{itemize}
+
+\paragraph{Definition~2 is ill-typed as written.} ``$o_\nu([\beta])=(\lambda^D_1-1)b-2(\nu\sh-1)$
+on $H^2_+=D/2D$'': $(\lambda_1-1)b$ is not a function of $b\bmod 2D$ in general. (It
+is for $D=\Z/8$, $\lambda_1=5$, since $4b\bmod 8$ only sees $b\bmod 2$.)
+
+\paragraph{Gap: the general-$H$ basepoint criterion attributed to [S3].} PDF Prop.~3:
+``$0\in\im\varphi^+$ iff for every $d\in D$, $\delta_\bullet(d):(H,+)\to(D,+)$ is a
+homomorphism ($c^d=0$)'', graded proved for general $H$.
+\begin{itemize}[leftmargin=*]
+\item ($\Rightarrow$) If some brace realising the triplet has $[\beta]=0$, choose the
+section with $\beta=0$; then $(\star)$ gives $\dplus\delta_\bullet(d)=0$, so
+$\delta_\bullet(d)$ is a homomorphism \emph{for that section}. Correct, modulo A3: the
+criterion must be phrased ``for some section in the triplet class''.
+\item ($\Leftarrow$) Does \textbf{not} follow from $(\star)$: $\delta_\bullet(d)$ a
+homomorphism for all $d$ only gives $(\lambda_d-1)\beta=0$ for all $d$, i.e.\ $\beta$
+takes values in $D^L=\Fix(L)$, not $\beta=0$ or $[\beta]=0$. Realising a split brace with
+the same triplet needs an existence argument that I cannot see in the tabulation. In the
+trivial-kernel case ($L=\{1\}$) the hypothesis is vacuous and $[\beta]\neq0$ occurs
+(e.g.\ the trivial brace $\Z/16\supset2\Z/16$), so ($\Leftarrow$) can only be true via
+the \emph{existence of another brace} (here the trivial brace $\Z/2\times\Z/8$) with the
+same triplet: it is a realisability theorem, not a corollary of $(\star)$. I keep this
+criterion at \textbf{peer-claimed} until I can read S3's proof of ($\Leftarrow$).
+\end{itemize}
+
+\section{Lock $4b\equiv2(\nu\sh-1)\bmod 8$, $H=\Z/2$}
+
+\paragraph{Claim} (10-01 PDF Thm.~1, citing [S2, Thm.~3.8]): for all $x\in D$,
+$(\lambda^D_x-1)b=2\delta_1(x)$, $b=2u$; at a generator with $\lambda_1=5$ on
+$D=\Z/8$: $4b\equiv2(\nu\sh-1)\bmod8$, and $[\beta]\neq0\iff\nu\sh\equiv3\bmod4$.
+``Proved, 112/112.''
+
+\paragraph{Proof check.} Your derivation (axiom $x\circ(u+u)=x\circ u-x+x\circ u$)
+reduces, after writing $x\circ y=x+\lambda_x(y)$, to $\lambda_x(2u)=2\lambda_x(u)$,
+i.e.\ additivity of $\lambda_x$. Then $(\lambda_x-1)(2u)=2(\lambda_x(u)-u)=2\delta_1(x)$.
+So the lock in identity form is correct for every ideal $D$, $H=\Z/2$, $(G,+)$ abelian,
+and it is a one-line identity. Specialisation: on $D=\Z/8$ with $\lambda_g=\times5$,
+$(5-1)b=4b$ and $2\delta_1(g)=2(c_0-1)$, $c_0:=\nu\sh(g)$; since $4b\bmod8$ sees only
+$b\bmod2$, $b$ odd $\iff c_0\equiv3\bmod4$ (under reading A1).
+
+\paragraph{Definitional gap (A1).} The PDF treats $\nu\sh$ as an element of $\Aut(D,+)$.
+But $\sh$ is $\circ$-conjugation, an automorphism of $(D,\circ)$, not of $(D,+)$.
+Computed: in the $L=\{1,5\}$ family $\sh$ is additive for every section (64/64 on
+$\Z/16$, 256/256 on $\Z/2\times\Z/8$), so your reading is harmless there. For
+$L\in\{\{1,3\},\{1,7\},\{1,3,5,7\}\}$, however, $\sh$ (and $\nu\sh$) is
+\textbf{non-additive for exactly half the sections} (192/384, 192/384, 256/512). So
+``$\nu\sh\bmod4$'' and ``$\delta_h=\nu\sh-\mathrm{id}$ is the defect
+\emph{automorphism}'' make sense only on $L=\{1,5\}$; elsewhere $\delta_1$ must be kept
+as a map $D\to D$.
+
+\paragraph{Independent computation.} For every brace, every cyclic ideal $D$ of index 2,
+every section $u\notin D$, \texttt{lock\_tab.py} checks the lock identity for all
+$x\in D$, the lock at a generator, additivity of $\nu$, $\sh$, $\nu\sh$, and the parity
+of $b$ by coset of $\nu\sh$ in $\Aut(D)/L$. \texttt{lock\_counts.py} reconciles your counts.
+\begin{itemize}[leftmargin=*]
+\item \textbf{Lock identity $(\lambda_x-1)b=2\delta_1(x)$: 100\% of (brace, $D$, $u$) triples}
+in all four groups ($\Z/16$: 128/128; $\Z/2\times\Z/8$: 1792/1792; $\Z/2\times\Z/4$: 128/128;
+$\Z/8$: 24/24).
+\item \textbf{Count reconciliation, reproduced exactly.} Your units are (brace, $D$) pairs
+with $D$ a \emph{fixed} cyclic index-2 subgroup and $L$ non-trivial: $\Z/16$: 8 (all
+$L=\{1,5\}$); $\Z/2\times\Z/8$: 96 per $D$ ($=24$ with $L=\{1,3\}$, 32 with $L=\Aut$, 16
+with $L=\{1,5\}$, 24 with $L=\{1,7\}$); $\Z/2\times\Z/4$: 8 per $D$ ($L=\{1,3\}=\Aut(\Z/4)$).
+Total $8+96+8=\mathbf{112}$. The ``$|G|=16$ relation 24/24 (8 on $\Z/16$, 16 on
+$\Z/2\times\Z/8$)'' is the $L=\{1,5\}$ pairs: $8+16=\mathbf{24}$. $[\beta]\neq0$ on all 8
+$\Z/16$ pairs and $[\beta]=0$ on all 96 $\Z/2\times\Z/8$ pairs.
+\item \textbf{09-30 Table~2 reproduced exactly} with $\sigma:=\sh$ ($L=\{1,5\}$): the
+realised $(\sh,\nu)$ pairs are exactly your 12 rows ($\sh=3,7$ occur only with
+$\nu\in\{3,7\}$), and $b$ is odd exactly on the four rows with $\nu\sh\equiv3\bmod4$ (16
+triples each), even on the other eight (32 each).
+\item Section invariance: for $L=\{1,5\}$, $\nu\sh\bmod L=\nu\sh\bmod4$ is constant over
+the sections of a brace.
+\item Not reproduced: $\sh$ vs $\sigma_+$ (104/104 vs 80/104; $\sigma_+$ undefined, A2);
+``33/33'', ``16/16'', ``2/16 $d^2\neq0$'' (operator-level objects not defined in the PDFs).
+\end{itemize}
+
+\paragraph{Verdict.} \textbf{Re-derived}; I upgrade \texttt{o-nu-lock-4b-mod8-H-Z2} to
+\textbf{checked-sober}, with scope ``$(G,+)$ abelian, $D=\Z/8$, $L=\{1,5\}$, $\nu\sh$ read
+as a unit (it is additive in this family)''. The identity form is checked-sober for all
+ideals at $H=\Z/2$. The lock is a one-line consequence of additivity of $\lambda_x$, and
+$\nu\sh\notin\Aut(D,+)$ in general (half of the sections for $L\ni3$).
+
+\section{The $L\subsetneq\Aut(D)$ torsor criterion, both directions}
+
+\paragraph{Claim} (10-01 PDF Prop.~3, \S5 table, summary): $\im\varphi^+$ is a torsor
+without basepoint $\iff c_{[\nu],\sigma}=2(\nu\sh-1)\neq0\iff L\subsetneq\Aut(D)$ and
+$\nu\sh$ non-socle; ``torsor-without-basepoint requires $L\subsetneq\Aut(D)$; when
+$L=\Aut(D)$ the obstruction is linear and 0 is always realisable.''
+
+\subsection*{Necessity: no basepoint $\Rightarrow L\subsetneq\Aut(D)$}
+Your evidence is the $\Z/4$ hand computation (units of $\Z/4$ are odd, so
+$2(\nu\sh-1)\equiv0\bmod4$), valid for $D=\Z/4$ only. No general argument is given, so
+the status in the PDF is: claimed in general, hand-checked for $D=\Z/4$.
+My computation: $D=\Z/8$ with $L=\Aut(\Z/8)$ exists (32 pairs per $D$ on $\Z/2\times\Z/8$;
+none on $\Z/16$), and $b$ is even on all 512 triples, so every triplet class is based.
+Also $D=\Z/4$, $L=\Aut$: $b$ even 64/64. So necessity is \textbf{computed} for
+$D\in\{\Z/4,\Z/8\}$, $H=\Z/2$. It is not proved in general.
+
+\subsection*{Sufficiency: $L\subsetneq\Aut(D)$ and $\nu\sh$ non-socle (or $c\neq0$) $\Rightarrow$ no basepoint}
+\textbf{This is false as stated. Counterexample (computed by our enumeration).}
+Take $D=\Z/8$ with $L=\{1,3\}$ (24 pairs per $D$ on $\Z/2\times\Z/8$; no such brace on
+$\Z/16$). The lock at the generator reads $2b\equiv2(c_0-1)\bmod8$, so
+$b\equiv c_0-1\bmod4$ is always even; computed, $b$ is even on \textbf{all 384 triples}.
+Yet $L\subsetneq\Aut(D)$, and
+\begin{itemize}[leftmargin=*]
+\item reading ``socle $=L$'': the coset $\nu\sh\cdot L=\{5,7\}$ occurs (96 triples,
+additive sections), is non-socle, and is still based;
+\item reading ``socle $=\{1,5\}$'': $\nu\sh=3$ or $7$ occurs, offset $c=2(c_0-1)=4\neq0$,
+still based.
+\end{itemize}
+The same holds for $L=\{1,7\}$: cosets $\{1,7\}$, $\{3,5\}$, offsets $\{0,4\}$, $b$ even
+384/384. So the counterexample stands under \emph{both} readings of ``socle''.
+
+Also: $L=\{1\}$ (trivial-kernel brace) with $\nu\sh=5\notin L$ occurs on both $\Z/16$
+($b$ odd) and $\Z/2\times\Z/8$ ($b$ even), so that triplet class is based although it is
+``non-socle'' under the reading ``socle $=L$''.
+
+\paragraph{True on the $L=\{1,5\}$ family.} There ``socle $=L=\{1,5\}$'', and
+$\nu\sh\equiv3\bmod4\Rightarrow b$ odd is a direct consequence of the (checked) lock:
+proved. Existence of realising braces in each slice is computed (Table~2 reproduced). So
+the dichotomy \emph{within} $D=\Z/8$, $\lambda_g=5$ is \textbf{checked-sober}.
+
+\paragraph{The offset is not an invariant.} By Item~1, ``$c\neq0$'' is section-dependent;
+for $L=\{1,3\}$ the same coset gives $c\in\{0,4\}$ depending on the section. The correct
+invariant criterion for $H=\Z/2$ is the lock itself: a basepoint is present iff
+$(\lambda_x-1)b=2\delta_1(x)$ for all $x$ is solvable with $b\in2D$ (modulo existence).
+That depends on how $\lambda^D_x-1$ acts, not on $L\subsetneq\Aut(D)$ alone.
+
+\paragraph{Suggested repair.} For $D=\Z/8$, state the criterion as ``$L=\{1,5\}$ (i.e.\
+$\lambda^D_g\equiv5$) and $\nu\sh\equiv3\bmod4$''; in general, state it as cochain-level
+lock solvability.
+
+\paragraph{Verdicts, Item 3.}
+\begin{itemize}[leftmargin=*]
+\item Necessity: \textbf{computed} ($D=\Z/4,\Z/8$; $H=\Z/2$); claimed in general, no
+general proof in the PDFs.
+\item Sufficiency: \textbf{counterexample} at $D=\Z/8$, $L=\{1,3\}$ and $\{1,7\}$, under
+either reading of ``socle''. Holds (checked-sober) on the $L=\{1,5\}$ family only.
+\item General-$H$ criterion ``$0\in\im\varphi^+\iff\delta_\bullet(d)$ hom $\forall d$'':
+($\Rightarrow$) checked-sober (for a suitable section); ($\Leftarrow$) gap (Item~1).
+\item ``Main biconditional computed 34/34 ($H=\Z/2,\Z/3$; 86 braces)'': not reproduced
+($H=\Z/3$ not run; ``main biconditional'' not defined in the PDF).
+\end{itemize}
+
+\section*{Summary}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}YllY@{}}
+\toprule
+Claim & Your grade & Verdict & My grade\\
+\midrule
+$(\star)$ / $c^d=\dplus[\delta_\bullet(d)]$, general $H$ & proved & re-derived; $(G,+)$ abelian; offset section-dependent, class 0 & checked-sober\\
+General-$H$ basepoint criterion $\iff\delta$ hom & proved & ($\Rightarrow$) ok; ($\Leftarrow$) needs existence argument & peer-claimed\\
+Lock identity $(\lambda_x-1)b=2\delta_1(x)$, $H=\Z/2$ & proved & re-derived; computed 100\% & checked-sober\\
+Lock $4b\equiv2(\nu\sh-1)\bmod8$, $L=\{1,5\}$ & proved/computed & re-derived; 112 and 24 reproduced; Table~2 reproduced & checked-sober\\
+$\nu\sh\in\Aut(D,+)$ & implicit & false off $L=\{1,5\}$ (half of sections) & fix definition\\
+Necessity: no basepoint $\Rightarrow L\subsetneq\Aut(D)$ & proved ($H=\Z/2$) & computed $D=\Z/4,\Z/8$ only & computed\\
+Sufficiency: $L\subsetneq\Aut$ $\wedge$ non-socle $\Rightarrow$ no basepoint & proved ($H=\Z/2$) & counterexample $L=\{1,3\},\{1,7\}$, $D=\Z/8$ & refuted as stated; checked-sober on $L=\{1,5\}$\\
+Dichotomy on $L=\{1,5\}$ family & computed & lock $\Rightarrow$ dichotomy; existence computed & checked-sober\\
+$\sh$ beats $\sigma_+$, 104/104 vs 80/104 & proved & not reproduced ($\sigma_+$ undefined) & peer-claimed\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent Please check the $L=\{1,3\}$, $\{1,7\}$ counterexample against your own code;
+if S3 contains a realisability argument for ($\Leftarrow$), I would like to read it.
+
+\end{document}

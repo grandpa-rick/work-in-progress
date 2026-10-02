@@ -1,0 +1,5 @@
+(8,) 4 6 bad 0 0.0
+(2, 4) 8 28 bad 0 0.0
+(16,) 8 16 bad 0 0.0
+(2, 8) 16 160 bad 0 0.1
+brute Z/8 lambda-maps satisfying lam_{a o b}=lam_a lam_b: 6 search: 6

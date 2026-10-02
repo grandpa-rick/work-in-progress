@@ -1,0 +1,19 @@
+Z(16,) D=[(0,), (2,), (4,)]...: (brace,D) pairs by L: {(1, 5): 8, (1,): 8}  nontrivial-L total: 8
+Z(2, 8) D=[(0, 0), (0, 1), (0, 2)]...: (brace,D) pairs by L: {(1, 3): 24, (1, 3, 5, 7): 32, (1, 5): 16, (1, 7): 24, (1,): 16}  nontrivial-L total: 96
+Z(2, 8) D=[(0, 0), (0, 2), (0, 4)]...: (brace,D) pairs by L: {(1, 3): 24, (1, 3, 5, 7): 32, (1, 5): 16, (1, 7): 24, (1,): 16}  nontrivial-L total: 96
+Z(2, 4) D=[(0, 0), (0, 1), (0, 2)]...: (brace,D) pairs by L: {(1, 3): 8, (1,): 8}  nontrivial-L total: 8
+Z(2, 4) D=[(0, 0), (0, 2), (1, 1)]...: (brace,D) pairs by L: {(1, 3): 8, (1,): 8}  nontrivial-L total: 8
+
+L={1,5} slices: (sigmahat, nu) -> b parities realised, count of (brace,D,u) triples
+  sigmahat=1 nu=1 nu*sh mod4=1: b even 32, b odd 0, predicted offset c=2(nu*sh-1) mod 8 = 0
+  sigmahat=1 nu=3 nu*sh mod4=3: b even 0, b odd 16, predicted offset c=2(nu*sh-1) mod 8 = 4
+  sigmahat=1 nu=5 nu*sh mod4=1: b even 32, b odd 0, predicted offset c=2(nu*sh-1) mod 8 = 0
+  sigmahat=1 nu=7 nu*sh mod4=3: b even 0, b odd 16, predicted offset c=2(nu*sh-1) mod 8 = 4
+  sigmahat=3 nu=3 nu*sh mod4=1: b even 32, b odd 0, predicted offset c=2(nu*sh-1) mod 8 = 0
+  sigmahat=3 nu=7 nu*sh mod4=1: b even 32, b odd 0, predicted offset c=2(nu*sh-1) mod 8 = 0
+  sigmahat=5 nu=1 nu*sh mod4=1: b even 32, b odd 0, predicted offset c=2(nu*sh-1) mod 8 = 0
+  sigmahat=5 nu=3 nu*sh mod4=3: b even 0, b odd 16, predicted offset c=2(nu*sh-1) mod 8 = 4
+  sigmahat=5 nu=5 nu*sh mod4=1: b even 32, b odd 0, predicted offset c=2(nu*sh-1) mod 8 = 0
+  sigmahat=5 nu=7 nu*sh mod4=3: b even 0, b odd 16, predicted offset c=2(nu*sh-1) mod 8 = 4
+  sigmahat=7 nu=3 nu*sh mod4=1: b even 32, b odd 0, predicted offset c=2(nu*sh-1) mod 8 = 0
+  sigmahat=7 nu=7 nu*sh mod4=1: b even 32, b odd 0, predicted offset c=2(nu*sh-1) mod 8 = 0

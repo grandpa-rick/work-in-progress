@@ -1,0 +1,43 @@
+=== (G,+)=Z(16,), |D|=8: 16 braces (labelled regular subgroups)
+  L=(1,): braces=8 (brace,D) pairs=8 (brace,D,u) triples=64
+     lock_all 64/64, lock_at_gen 64/64, nu unit 64, sigmahat unit 64, nu*sh additive 64, nsh=nu*sh 64
+     nsh-coset (1,): b even 0, b odd 32, offset 2(c0-1) values [0]
+     nsh-coset (5,): b even 0, b odd 32, offset 2(c0-1) values [0]
+  L=(1, 5): braces=8 (brace,D) pairs=8 (brace,D,u) triples=64
+     lock_all 64/64, lock_at_gen 64/64, nu unit 64, sigmahat unit 64, nu*sh additive 64, nsh=nu*sh 64
+     nsh-coset (3, 7): b even 0, b odd 64, offset 2(c0-1) values [4]
+=== (G,+)=Z(2, 8), |D|=8: 160 braces (labelled regular subgroups)
+  L=(1,): braces=28 (brace,D) pairs=32 (brace,D,u) triples=256
+     lock_all 256/256, lock_at_gen 256/256, nu unit 256, sigmahat unit 256, nu*sh additive 256, nsh=nu*sh 256
+     nsh-coset (1,): b even 128, b odd 0, offset 2(c0-1) values [0]
+     nsh-coset (5,): b even 128, b odd 0, offset 2(c0-1) values [0]
+  L=(1, 3): braces=44 (brace,D) pairs=48 (brace,D,u) triples=384
+     lock_all 384/384, lock_at_gen 384/384, nu unit 384, sigmahat unit 192, nu*sh additive 192, nsh=nu*sh 192
+     nsh-coset (1, 3): b even 96, b odd 0, offset 2(c0-1) values [0, 4]
+     nsh-coset (5, 7): b even 96, b odd 0, offset 2(c0-1) values [0, 4]
+     nsh-coset None: b even 192, b odd 0, offset 2(c0-1) values []
+  L=(1, 3, 5, 7): braces=48 (brace,D) pairs=64 (brace,D,u) triples=512
+     lock_all 512/512, lock_at_gen 512/512, nu unit 512, sigmahat unit 256, nu*sh additive 256, nsh=nu*sh 256
+     nsh-coset (1, 3, 5, 7): b even 256, b odd 0, offset 2(c0-1) values [0, 4]
+     nsh-coset None: b even 256, b odd 0, offset 2(c0-1) values []
+  L=(1, 5): braces=28 (brace,D) pairs=32 (brace,D,u) triples=256
+     lock_all 256/256, lock_at_gen 256/256, nu unit 256, sigmahat unit 256, nu*sh additive 256, nsh=nu*sh 256
+     nsh-coset (1, 5): b even 256, b odd 0, offset 2(c0-1) values [0]
+  L=(1, 7): braces=44 (brace,D) pairs=48 (brace,D,u) triples=384
+     lock_all 384/384, lock_at_gen 384/384, nu unit 384, sigmahat unit 192, nu*sh additive 192, nsh=nu*sh 192
+     nsh-coset (1, 7): b even 96, b odd 0, offset 2(c0-1) values [0, 4]
+     nsh-coset (3, 5): b even 96, b odd 0, offset 2(c0-1) values [0, 4]
+     nsh-coset None: b even 192, b odd 0, offset 2(c0-1) values []
+=== (G,+)=Z(8,), |D|=4: 6 braces (labelled regular subgroups)
+  L=(1,): braces=6 (brace,D) pairs=6 (brace,D,u) triples=24
+     lock_all 24/24, lock_at_gen 24/24, nu unit 24, sigmahat unit 24, nu*sh additive 24, nsh=nu*sh 24
+     nsh-coset (1,): b even 0, b odd 16, offset 2(c0-1) values [0]
+     nsh-coset (3,): b even 0, b odd 8, offset 2(c0-1) values [0]
+=== (G,+)=Z(2, 4), |D|=4: 28 braces (labelled regular subgroups)
+  L=(1,): braces=12 (brace,D) pairs=16 (brace,D,u) triples=64
+     lock_all 64/64, lock_at_gen 64/64, nu unit 64, sigmahat unit 64, nu*sh additive 64, nsh=nu*sh 64
+     nsh-coset (1,): b even 32, b odd 0, offset 2(c0-1) values [0]
+     nsh-coset (3,): b even 32, b odd 0, offset 2(c0-1) values [0]
+  L=(1, 3): braces=12 (brace,D) pairs=16 (brace,D,u) triples=64
+     lock_all 64/64, lock_at_gen 64/64, nu unit 64, sigmahat unit 64, nu*sh additive 64, nsh=nu*sh 64
+     nsh-coset (1, 3): b even 64, b odd 0, offset 2(c0-1) values [0]

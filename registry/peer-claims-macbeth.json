@@ -90,26 +90,46 @@
     {
       "id": "o-nu-torsor-dichotomy-Z8-L15",
       "approach": "Torsor dichotomy for |G|=16, D=Z/8, L={1,5}: basepoint present ⟺ νσ≡1 (mod 4); torsor ([β]=0 unavailable) ⟺ νσ≡3 (mod 4) (MacBeth, email 2026-09-30)",
-      "trust": "peer-claimed",
+      "trust": "checked-sober",
       "claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
       "file": "peers/macbeth/proofs/2026-09-30-macbeth-o-nu-fixed-sigma-slices.pdf",
       "source_pin": "MacBeth work-in-progress @ fc3d742",
       "note": "COMPUTED-ONLY by MacBeth (general torsor claim computed/open, not proved). Refinement (email 2026-09-30-o-nu-torsor-refinement.md, UID 305): torsor needs L⊊Aut(D), not mere non-trivial kernel; multiplicative datum lives over (D,∘) not (D,+); o_ν is affine: o_ν([β]) = [Q^∘β] − c_{[ν],σ}, offset c = class of ambient defect (λ^D_d−1) = 2(νσ−1) for H=Z/2; im φ⁺ = o_ν⁻¹(0) affine coset, contains 0 iff c=0 (16/16). Z/4 nontrivial brace (L=Aut(Z/4), offset≡0, no torsor) is a counterexample to the PDF's earlier sentence 'non-trivial kernel ⟹ torsor'. Z/8, L={1,5} tables stand.",
-      "refinement_claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-torsor-refinement.md"
+      "refinement_claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-torsor-refinement.md",
+      "recheck": "Rick sober re-derivation 2026-10-02: within D=Z/8, λ_g=5 (L={1,5}) the dichotomy νσ̂≡3 mod 4 ⟺ b odd follows directly from the checked lock; existence of realising braces in each slice computed (09-30 Table 2 reproduced exactly). Restricted to L={1,5}; general L⊊Aut sufficiency is FALSE (see o-nu-torsor-sufficiency-counterexample-L13-L17). peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md"
     },
     {
       "id": "o-nu-lock-4b-mod8-H-Z2",
       "approach": "Lock 4b ≡ 2(νσ̂−1) mod 8 for H=Z/2 (σ̂ = ∘-conjugation; proved for H=Z/2, 112/112; computed for general |G|=16; σ̂ beats additive σ₊, 104/104 vs 80/104) (MacBeth, email 2026-10-01)",
-      "trust": "peer-claimed",
+      "trust": "checked-sober",
       "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md",
-      "file": "peers/macbeth/proofs/2026-10-01-macbeth-o-nu-socle-LsubAut-tabulation.pdf"
+      "file": "peers/macbeth/proofs/2026-10-01-macbeth-o-nu-socle-LsubAut-tabulation.pdf",
+      "recheck": "Rick sober re-derivation 2026-10-02: identity form (λ_x−1)b=2δ_1(x) is one line from additivity of λ_x (all ideals, H=Z/2, (G,+) abelian); counts 112 and 24 and 09-30 Table 2 reproduced independently (lock identity 100% of triples on Z/8, Z/16, Z/2×Z/4, Z/2×Z/8); scope of mod-8 form: D=Z/8, L={1,5}, νσ̂ additive there. peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
+      "review_note": "νσ̂ ∉ Aut(D,+) in general: non-additive for half the sections when L ∋ 3 (192/384, 192/384, 256/512). σ̂ vs σ₊ 104/104 vs 80/104 NOT reproduced (σ₊ undefined) — that sub-claim stays peer-claimed."
     },
     {
       "id": "o-nu-offset-coboundary-general-H",
       "approach": "Offset coboundary c^d = d₊[δ_•(d)] for general H (MacBeth, email 2026-10-01)",
-      "trust": "peer-claimed",
+      "trust": "checked-sober",
       "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md",
-      "file": "peers/macbeth/proofs/2026-10-01-macbeth-o-nu-socle-LsubAut-tabulation.pdf"
+      "file": "peers/macbeth/proofs/2026-10-01-macbeth-o-nu-socle-LsubAut-tabulation.pdf",
+      "recheck": "Rick sober re-derivation 2026-10-02: 4-line identity from additivity of λ_d; scope (G,+) abelian; offset section-dependent, class 0. peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
+      "review_note": "General-H basepoint criterion '0∈im φ⁺ ⟺ δ_•(d) hom ∀d': (⇒) checked-sober for a suitable section; (⇐) GAP (not a consequence of (⋆), needs realisability argument; S3 unseen) — stays peer-claimed. Definition 2 o_ν ill-typed on D/2D in general."
+    },
+    {
+      "id": "o-nu-torsor-sufficiency-counterexample-L13-L17",
+      "approach": "Counterexample (Rick) to MacBeth 10-01 torsor sufficiency 'L⊊Aut(D) ∧ νσ̂ non-socle (c≠0) ⇒ no basepoint': D=Z/8 in (G,+)=Z/2×Z/8, H=Z/2, L={1,3} or {1,7}: b even on all 384/384 (brace,D,u) triples (lock gives b≡c₀−1 mod 4), though non-socle cosets / offset c=4 occur — fails under both readings of 'socle' (=L or ={1,5})",
+      "trust": "computed",
+      "claimed_by": "Rick — peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
+      "file": "scripts/day217-macbeth/lock_tab.log",
+      "pdf": "work-in-progress/reviews/2026-10-02-review-macbeth-o-nu-socle.pdf"
+    },
+    {
+      "id": "o-nu-torsor-necessity",
+      "approach": "Torsor necessity: no basepoint ⇒ L⊊Aut(D) (MacBeth 10-01; hand-checked by MacBeth at D=Z/4 only). Rick computed for H=Z/2, D=Z/4 (L=Aut: b even 64/64) and D=Z/8 (L=Aut(Z/8): b even 512/512); no general proof",
+      "trust": "computed",
+      "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md; computed by Rick — peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
+      "file": "scripts/day217-macbeth/lock_tab.log"
     }
   ]
 }
