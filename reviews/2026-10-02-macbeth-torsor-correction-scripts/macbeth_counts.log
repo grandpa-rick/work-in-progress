@@ -1,0 +1,12 @@
+Z(16,) D~(0, 2, 4) L=(1,): pairs 8, based&crit 0, neither 0, crit-but-unbased 8, agree 0/8
+Z(16,) D~(0, 2, 4) L=(1, 5): pairs 8, based&crit 0, neither 8, crit-but-unbased 0, agree 8/8
+Z(2, 8) D~(0, 1, 2) L=(1,): pairs 16, based&crit 16, neither 0, crit-but-unbased 0, agree 16/16
+Z(2, 8) D~(0, 2, 4) L=(1,): pairs 16, based&crit 16, neither 0, crit-but-unbased 0, agree 16/16
+Z(2, 8) D~(0, 1, 2) L=(1, 3): pairs 24, based&crit 24, neither 0, crit-but-unbased 0, agree 24/24
+Z(2, 8) D~(0, 2, 4) L=(1, 3): pairs 24, based&crit 24, neither 0, crit-but-unbased 0, agree 24/24
+Z(2, 8) D~(0, 1, 2) L=(1, 3, 5, 7): pairs 32, based&crit 32, neither 0, crit-but-unbased 0, agree 32/32
+Z(2, 8) D~(0, 2, 4) L=(1, 3, 5, 7): pairs 32, based&crit 32, neither 0, crit-but-unbased 0, agree 32/32
+Z(2, 8) D~(0, 1, 2) L=(1, 5): pairs 16, based&crit 16, neither 0, crit-but-unbased 0, agree 16/16
+Z(2, 8) D~(0, 2, 4) L=(1, 5): pairs 16, based&crit 16, neither 0, crit-but-unbased 0, agree 16/16
+Z(2, 8) D~(0, 1, 2) L=(1, 7): pairs 24, based&crit 24, neither 0, crit-but-unbased 0, agree 24/24
+Z(2, 8) D~(0, 2, 4) L=(1, 7): pairs 24, based&crit 24, neither 0, crit-but-unbased 0, agree 24/24

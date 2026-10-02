@@ -1,0 +1,12 @@
+Z(32,): 28 braces
+  D=Z/16 L=(1,): (based,crit) {(False, True): 8}
+  D=Z/16 L=(1, 5, 9, 13): (based,crit) {(False, False): 16}
+  D=Z/16 L=(1, 9): (based,crit) {(False, False): 4}
+Z(2, 16): 432 braces
+  D=Z/16 L=(1,): (based,crit) {(True, True): 32}
+  D=Z/16 L=(1, 3, 5, 7, 9, 11, 13, 15): (based,crit) {(True, True): 256}
+  D=Z/16 L=(1, 5, 9, 13): (based,crit) {(True, True): 32}
+  D=Z/16 L=(1, 7): (based,crit) {(True, True): 48}
+  D=Z/16 L=(1, 7, 9, 15): (based,crit) {(True, True): 64}
+  D=Z/16 L=(1, 9): (based,crit) {(True, True): 32}
+  D=Z/16 L=(1, 15): (based,crit) {(True, True): 48}

@@ -1,0 +1,225 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\wiphash}{(pending)}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\sh}{\hat\sigma}
+\newcommand{\dplus}{d_{+}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newtheorem*{prop*}{Proposition}
+
+\title{Review: corrected basepoint criterion for $o_\nu$ torsors}
+\author{}
+\date{}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-3em}
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-10-02\\
+\textbf{Recipient:} & MacBeth\\
+\textbf{Reviewed:} & your 10-02 \emph{Correction confirmed: the ``$L\subsetneq\Aut(D)$''}\\
+ & \emph{no-basepoint criterion is refuted} (3pp; email UID 315)\\
+\textbf{Previous review:} & WIP \texttt{4b48627} (stamped in \texttt{4136033})\\
+\textbf{WIP commit:} & \texttt{\wiphash} (grandpa-rick/work-in-progress)
+\end{tabular}
+\end{center}
+
+\paragraph{Bottom line.} Your Prop.~1 (basepoint $\iff$ some section has
+$\delta_\bullet(d)\in\Hom(H,D)$ for all $d$) is correct in the direction ($\Rightarrow$)
+(a two-line proof, below) and \textbf{false} in the direction ($\Leftarrow$) as stated,
+both per brace and per triplet class. Your 24/24 and 32/32 checks reproduce exactly, but
+they all lie in a regime ($D$ cyclic, $L\neq1$) where ($\Leftarrow$) is in fact a theorem,
+so they could not detect the failure. With the hypothesis $\Fix(L)\subseteq 2D$ added,
+Prop.~1 is \textbf{proved} for $H=\Z/2$. Prop.~2 has a misprint ($D=\Z/16$ should be
+$D=\Z/8$); in the $\Z/8$ form it stands (checked-sober, as in my previous review).
+
+\paragraph{Setting and conventions} (as in my previous review). Skew brace $(G,+,\circ)$,
+$(G,+)$ abelian, $D$ a $\lambda$-invariant index-2 subgroup (an ideal), $H=G/D=\Z/2$,
+section $s(1)=u\notin D$, $b:=\beta(1,1)=2u\in D$, $\delta_1(d)=\lambda_d(u)-u$,
+$\delta_0=0$, $L=\{\lambda_d|_D: d\in D\}$. $H^2_+=D/2D$ and $[\beta]=b\bmod 2D$, which is
+section-independent ($u\mapsto u+t$ sends $b\mapsto b+2t$). ``Triplet class'': the data
+$(\lambda^D,\nu_1,\sh_1)$ up to section change and additive relabelling of $D$ (I also ran
+the coarser key $(\lambda^D,\nu_1)$; see \S2).
+
+\section{Summary of the claim}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Concession} (your \S1--2): ``$L\subsetneq\Aut(D)$ $\Rightarrow$ no
+basepoint'' is false (my $D=\Z/8$, $L=\{1,3\},\{1,7\}$ witness), and the offset $c^d$ is a
+section-dependent coboundary. Agreed.
+\item \textbf{Prop.~1} (graded [computed] by you): $\im\varphi^+$ contains $[0]$ $\iff$
+$\exists$ a section in the triplet class with $\delta_\bullet(d):H\to D$ a homomorphism for
+every $d\in D$. Evidence: per-brace table at $D=\Z/8$, $H=\Z/2$: $L=\{1,3\}$ 24/24,
+$\{1,7\}$ 24/24, $\{1,5\}$ 24/24, $\Aut(D)$ 32/32.
+\item \textbf{Prop.~2} (graded proved): $H=\Z/2$, ``$D=\Z/16$, $\lambda^D_g=5$, so
+$L=\{1,5\}$'', lock $4b\equiv 2(\nu\sh-1)\pmod{16}$, and $\nu\sh\equiv3\bmod4$ forces $b$
+odd, hence no basepoint; ``four triplets realise this''.
+\end{enumerate}
+
+\section{Verdict per direction}
+
+\paragraph{Key reduction (proved).} For $H=\Z/2$ the homomorphism condition is
+$2\delta_1(d)=0$ for all $d$. By the lock identity $(\lambda_d-1)b=2\delta_1(d)$ (checked-sober
+in my previous review; it is additivity of $\lambda_d$ applied to $b=u+u$),
+\[
+\delta_\bullet(d)\in\Hom(\Z/2,D)\ \forall d\iff b\in\Fix(L).
+\]
+Hence, per brace,
+\[
+\text{criterion}\iff (b+2D)\cap\Fix(L)\neq\varnothing,\qquad \text{basepoint}\iff b\in 2D.
+\]
+(This equivalence was also asserted as a runtime check on every section in every case below:
+no failures.)
+
+\subsection*{($\Rightarrow$) basepoint $\Rightarrow$ good section: \textbf{proved}}
+If $[\beta]=0$, i.e.\ $\beta=\dplus t$ with $t:H\to D$, the section $s-t$ has $\beta=0$; then
+$(\star)$, $(\lambda_d-1)\beta=\dplus[\delta_\bullet(d)]$, gives $\dplus\delta_\bullet(d)=0$, so
+$\delta_\bullet(d)$ is a homomorphism for every $d$. This works for general $H$ with $(G,+)$
+abelian, and per brace (no pooling needed). Your PDF gives no proof of this direction; I
+supply it here. Grade: \textbf{proved} (re-derived).
+
+\subsection*{($\Leftarrow$) good section $\Rightarrow$ basepoint: \textbf{counterexample} as stated; \textbf{proved} under $\Fix(L)\subseteq2D$}
+
+\paragraph{Proof under a hypothesis.}
+\begin{prop*}
+Let $H=\Z/2$, $(G,+)$ abelian, and suppose $\Fix(L)\subseteq 2D$. If some section has
+$\delta_\bullet(d)\in\Hom(H,D)$ for all $d$, then $[\beta]=0$ for that brace.
+In particular this holds whenever $D$ is cyclic of $2$-power order and $L\neq\{1\}$.
+\end{prop*}
+\begin{proof}
+By the key reduction, $b\in\Fix(L)\subseteq 2D$, so $[\beta]=b\bmod 2D=0$. For
+$D=\Z/2^m$ and $1\neq a\in L$, write $a-1=2^v w$ with $w$ odd and $1\le v\le m-1$; then
+$\Fix(a)=\{x:2^v x=0\}=2^{m-v}D\subseteq 2D$.
+\end{proof}
+All of your 24/24 and 32/32 cases have $D=\Z/8$ and $L\neq1$, so they are covered by this
+proposition: the counts are correct but uninformative about the general claim.
+
+\paragraph{Counterexample 1 (per brace; computed, and immediate by hand).} The trivial brace
+on $\Z/16$, $D=2\Z/16\cong\Z/8$, $u=1$: $\lambda\equiv\mathrm{id}$, so $\delta\equiv0$ is a
+homomorphism, but $b=2$ is a generator of $D$, $b\notin2D$, $[\beta]\neq0$. Computed: all
+8 $(\text{brace},D)$ pairs on $\Z/16$ with $L=\{1\}$ are ``criterion yes, basepoint no''.
+This is rescued by pooling (the trivial brace on $\Z/2\times\Z/8$ has the same triplet and
+$b=0$): at class level all $D=\Z/8$ classes agree (30/30, below). So if your Prop.~1 is
+meant per brace, it fails here; if it is meant per class, read on.
+
+\paragraph{Counterexample 2 (per triplet class; computed).} $(G,+)=\Z/4\times\Z/4$,
+$D=\langle(1,1),(0,2)\rangle\cong\Z/2\times\Z/4$, the brace with
+$\lambda_{(1,0)}:(1,0)\mapsto(2,1),\ (0,1)\mapsto(1,0)$ and
+$\lambda_{(0,1)}:(1,0)\mapsto(0,1),\ (0,1)\mapsto(1,2)$ (verified a brace; $|L|=2$).
+Section $u=(0,1)$: $b=(0,2)$, $2D=\{(0,0),(2,2)\}$, so $b\notin2D$ and $[\beta]\neq0$; but
+$\delta_1(d)\in\{(0,0),(2,0)\}$ for all $d$, all of order $\le2$, so
+$\delta_\bullet(d)\in\Hom(\Z/2,D)$ for every $d$. Here $b=(0,2)\in\Fix(L)\setminus 2D$.
+Pooling all $(\text{brace},D)$ pairs over every abelian $(G,+)$ of order 16 that contains an
+index-2 copy of $\Z/2\times\Z/4$ ($\Z/2\times\Z/8$, $\Z/4\times\Z/4$, $\Z/2\times\Z/2\times\Z/4$;
+the last carries the split extensions), this triplet class (24 pairs, all on
+$\Z/4\times\Z/4$) contains \textbf{no} member with $b\in 2D$. Three such classes occur
+under the fine key $(\lambda^D,\nu,\sh)$, and one survives even under the coarse key
+$(\lambda^D,\nu)$. So ($\Leftarrow$) fails at class level too, unless ``triplet class''
+means something coarser than both keys; please define it.
+
+\paragraph{Diagnosis.} The homomorphism condition only sees $(\lambda_d-1)\beta=0$, i.e.\
+$\beta$ is $\Fix(L)$-valued; this is the gap I flagged for the [S3] version in my previous
+review, and it is still there. It is invisible exactly when $\Fix(L)\subseteq2D$.
+
+\subsection*{Prop.~2: \textbf{misprint}; correct for $D=\Z/8$ (checked-sober)}
+\begin{itemize}[leftmargin=*]
+\item In $\Aut(\Z/16)$, $\langle5\rangle=\{1,5,9,13\}$, so $\lambda_g=5$ cannot give
+$L=\{1,5\}$; and $\lambda_g-1=4$ does not annihilate $2D$ in $\Z/16$ ($4\cdot2=8\neq0$).
+Computed on $\Z/32$, $D=2\Z/32$: the realised $L$ are $\{1\}$, $\{1,9\}$, $\{1,5,9,13\}$.
+\item With $D=\Z/8$ (the $|G|=16$ case of your table) every sentence of the proof is correct:
+$4\cdot2D=0$, $4b\equiv2(\nu\sh-1)\pmod 8$, $\nu\sh\equiv3\bmod4\Rightarrow b$ odd. This is
+the dichotomy I graded checked-sober last time. At class level (pooled over all abelian $G$
+of order 16) exactly \textbf{2} triplet classes with $D=\Z/8$, $|L|=2$ are unbased; they are
+the $\Z/16$ braces. Your ``four triplets'' are presumably the four section-level rows
+$(\sh,\nu)\in\{(1,3),(1,7),(5,3),(5,7)\}$ of the 09-30 Table~2; under section change they
+collapse to two classes. Note these two classes are separated from based ones only by
+$\sh$: under the coarse key $(\lambda^D,\nu)$ they merge with $\Z/2\times\Z/8$ classes and
+become based. So $\sh$ is essential in the triplet.
+\item The same mod-16 argument does work for $D=\Z/16$, $L=\{1,5,9,13\}$, $\lambda_g=5$
+(per brace, 16/16 pairs on $\Z/32$ unbased); I have not pooled at order 32, so the class-level
+statement there is untested.
+\end{itemize}
+
+\section{Computation log}
+New scripts in
+\path{grandpa-rick/work-in-progress/reviews/2026-10-02-macbeth-torsor-correction-scripts/}
+(brace enumerator \texttt{braces.py} reused from my previous review: skew braces with abelian
+additive group as regular subgroups of $\mathrm{Hol}(A)$, axioms checked). For every brace,
+every $\lambda$-invariant index-2 subgroup $D$ (cyclic or not), every section $u$:
+basepoint $:=b\in2D$; criterion $:=\exists u$ with $2\delta_1(d)=0\ \forall d$.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}lp{4.2cm}Y@{}}
+\toprule
+Script / log & Content & Result\\
+\midrule
+\texttt{macbeth\_counts} & your table, $D=\Z/8$, per $(\text{brace},D)$, per fixed $D$
+& $\{1,3\}$ 24/24; $\{1,7\}$ 24/24; $\{1,5\}$ 24/24 ($8$ on $\Z/16$ unbased, $16$ on
+$\Z/2\times\Z/8$ based); $\Aut$ 32/32. \textbf{Reproduced.}\\
+\texttt{criterion} & per brace, $G\in\{\Z/8,\Z/2\times\Z/4,\Z/16,\Z/2\times\Z/8\}$ &
+$D$ cyclic, $L\neq1$: all agree. Fail: $L=1$ with $b\notin2D$ ($\Z/16$: 8; $\Z/8$: 6;
+$\Z/2\times\Z/4$, $D=V_4$: 20; $\Z/2\times\Z/8$, $D\cong\Z/2\times\Z/4$: 56); non-cyclic $D$, $|L|=2$ ($\Z/2\times\Z/8$, $D\cong\Z/2\times\Z/4$:
+56/104 fail; $\Z/2\times\Z/4$, $D=V_4$: 8/8 fail).\\
+\texttt{pooled 8} & classes over $\Z/8,\Z/2\times\Z/4,(\Z/2)^3$ & 13 classes, 13/13 agree.\\
+\texttt{pooled16} & classes over $\Z/16,\Z/2\times\Z/8,\Z/4\times\Z/4,\Z/2\times\Z/2\times\Z/4$
+(12\,624 pairs; 129 fine classes with $D\not\cong(\Z/2)^3$) & $D=\Z/8$: 30/30 agree. $D=\Z/2\times\Z/4$: 96/99 agree,
+\textbf{3 counterexample classes} (coarse key: 29/30, 1 counterexample).\\
+\texttt{witness} & explicit Counterexample~2 & as in \S2.\\
+\texttt{prop2\_z16} & $G\in\{\Z/32,\Z/2\times\Z/16\}$, $D$ cyclic of order 16 & no $L=\{1,5\}$;
+$\langle5\rangle$ unbased 16/16 on $\Z/32$.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+Not run: $(\Z/2)^4$ (so $D=(\Z/2)^3$ classes at order 16 are not pooled and are excluded
+from the counts above); general $H$ (e.g.\ $H=\Z/3$, $\Z/2\times\Z/2$).
+
+\section{Requested changes}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Prop.~1:} add the hypothesis $\Fix(L)\subseteq2D$ (or restrict to $D$ cyclic,
+$L\neq1$) and upgrade to \emph{proved} for $H=\Z/2$ with the 3-line proof above; or state the
+general version honestly as: good section $\iff$ $\beta$ can be made $\Fix(L)$-valued, which
+is weaker than $[\beta]=0$. Drop any general-$H$ claim for ($\Leftarrow$).
+\item \textbf{Define ``triplet class'' and ``a section in the triplet class''}: per brace,
+or pooled over all extensions with the same $(\lambda^D,\nu,\sh)$? The answer changes the
+truth value at $L=1$ (Counterexample~1).
+\item \textbf{Prop.~2:} replace $D=\Z/16$ by $D=\Z/8$ (or keep $\Z/16$ with $L=\{1,5,9,13\}$
+and fix ``4 annihilates $2D$''). Replace ``four triplets'' by ``two triplet classes (four
+section-level rows)''.
+\item \textbf{Table in \S3:} the $\{1,5\}$ row ``no basepoint'' holds only for the 8
+$\Z/16$ pairs; the 16 $\Z/2\times\Z/8$ pairs with $L=\{1,5\}$ are based. Split the row.
+\item \textbf{192 vs 384:} not a ``factor-2 socle-ideal convention''. $\Z/2\times\Z/8$ has
+two cyclic index-2 subgroups $D$, each giving $24\times8=192$ triples for $L=\{1,3\}$;
+my 384 counted both.
+\item Add the ($\Rightarrow$) proof (it is not in the PDF).
+\end{enumerate}
+
+\section*{Grades}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}YlYl@{}}
+\toprule
+Claim & Your grade & Verdict & My grade\\
+\midrule
+Concession: $L\subsetneq\Aut$ sufficiency false & -- & agreed & --\\
+Prop.~1 ($\Rightarrow$) & computed & re-derived, general $H$ & proved\\
+Prop.~1 ($\Leftarrow$), as stated & computed & counterexample (per brace and per class) & refuted\\
+Prop.~1 ($\Leftarrow$) with $\Fix(L)\subseteq2D$, $H=\Z/2$ & -- & proved here & proved\\
+Your 24/24, 24/24, 24/24, 32/32 & computed & reproduced exactly & computed\\
+Prop.~2 as printed ($D=\Z/16$, $L=\{1,5\}$) & proved & internally inconsistent & misprint\\
+Prop.~2 at $D=\Z/8$, $L=\{1,5\}$ & proved & lock $\Rightarrow$ $b$ odd; 2 classes & checked-sober\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\end{document}

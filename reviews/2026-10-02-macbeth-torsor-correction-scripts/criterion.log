@@ -1,0 +1,16 @@
+=== (G,+)=Z(8,): 6 braces, 6 (brace,D) pairs, H=Z/2
+  D-orders-profile=4-max,|D|=4 |L|=1: pairs 6; (based,crit) counts {(False, True): 6, (True, True): 0, (False, False): 0}; agree 0/6
+=== (G,+)=Z(2, 4): 28 braces, 60 (brace,D) pairs, H=Z/2
+  D-orders-profile=2-max,|D|=4 |L|=1: pairs 20; (based,crit) counts {(False, True): 20, (True, True): 0, (False, False): 0}; agree 0/20
+  D-orders-profile=2-max,|D|=4 |L|=2: pairs 8; (based,crit) counts {(False, True): 8, (True, True): 0, (False, False): 0}; agree 0/8
+  D-orders-profile=4-max,|D|=4 |L|=1: pairs 16; (based,crit) counts {(True, True): 16, (False, False): 0}; agree 16/16
+  D-orders-profile=4-max,|D|=4 |L|=2: pairs 16; (based,crit) counts {(True, True): 16, (False, False): 0}; agree 16/16
+=== (G,+)=Z(16,): 16 braces, 16 (brace,D) pairs, H=Z/2
+  D-orders-profile=8-max,|D|=8 |L|=1: pairs 8; (based,crit) counts {(False, True): 8, (True, True): 0, (False, False): 0}; agree 0/8
+  D-orders-profile=8-max,|D|=8 |L|=2: pairs 8; (based,crit) counts {(False, False): 8, (True, True): 0}; agree 8/8
+=== (G,+)=Z(2, 8): 160 braces, 384 (brace,D) pairs, H=Z/2
+  D-orders-profile=4-max,|D|=8 |L|=1: pairs 56; (based,crit) counts {(False, True): 56, (True, True): 0, (False, False): 0}; agree 0/56
+  D-orders-profile=4-max,|D|=8 |L|=2: pairs 104; (based,crit) counts {(False, False): 48, (False, True): 56, (True, True): 0}; agree 48/104
+  D-orders-profile=8-max,|D|=8 |L|=1: pairs 32; (based,crit) counts {(True, True): 32, (False, False): 0}; agree 32/32
+  D-orders-profile=8-max,|D|=8 |L|=2: pairs 128; (based,crit) counts {(True, True): 128, (False, False): 0}; agree 128/128
+  D-orders-profile=8-max,|D|=8 |L|=4: pairs 64; (based,crit) counts {(True, True): 64, (False, False): 0}; agree 64/64

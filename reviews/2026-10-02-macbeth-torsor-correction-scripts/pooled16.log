@@ -1,0 +1,19 @@
+  (G,+)=Z(16,): 16 braces, 16 (brace,D) pairs
+  (G,+)=Z(2, 8): 160 braces, 384 (brace,D) pairs
+  (G,+)=Z(4, 4): 880 braces, 1968 (brace,D) pairs
+  (G,+)=Z(2, 2, 4): 3152 braces, 10256 (brace,D) pairs
+=== |G|=16: 172 triplet classes
+  D=(2, 2, 2) |L|=1: classes 9, (based,crit) {(False, True): 9, (True, True): 0, (False, False): 0}, agree 0/9
+  D=(2, 2, 2) |L|=2: classes 19, (based,crit) {(False, True): 19, (True, True): 0, (False, False): 0}, agree 0/19
+  D=(2, 2, 2) |L|=4: classes 14, (based,crit) {(False, True): 14, (True, True): 0, (False, False): 0}, agree 0/14
+  D=(2, 2, 2) |L|=8: classes 1, (based,crit) {(False, True): 1, (True, True): 0, (False, False): 0}, agree 0/1
+  D=(2, 4) |L|=1: classes 18, (based,crit) {(True, True): 18, (False, False): 0}, agree 18/18
+  D=(2, 4) |L|=2: classes 55, (based,crit) {(False, False): 6, (True, True): 46, (False, True): 3}, agree 52/55
+  D=(2, 4) |L|=4: classes 25, (based,crit) {(False, False): 1, (True, True): 24}, agree 25/25
+  D=(2, 4) |L|=8: classes 1, (based,crit) {(True, True): 1, (False, False): 0}, agree 1/1
+  D=(8,) |L|=1: classes 8, (based,crit) {(True, True): 8, (False, False): 0}, agree 8/8
+  D=(8,) |L|=2: classes 18, (based,crit) {(False, False): 2, (True, True): 16}, agree 18/18
+  D=(8,) |L|=4: classes 4, (based,crit) {(True, True): 4, (False, False): 0}, agree 4/4
+  MISMATCH class: ((2, 4), 2, [(4, 4)], 24, False, True)
+  MISMATCH class: ((2, 4), 2, [(4, 4)], 48, False, True)
+  MISMATCH class: ((2, 4), 2, [(4, 4)], 24, False, True)

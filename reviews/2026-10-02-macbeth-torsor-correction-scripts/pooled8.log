@@ -1,0 +1,8 @@
+  (G,+)=Z(8,): 6 braces, 6 (brace,D) pairs
+  (G,+)=Z(2, 4): 28 braces, 60 (brace,D) pairs
+  (G,+)=Z(2, 2, 2): 232 braces, 448 (brace,D) pairs
+=== |G|=8: 13 triplet classes
+  D=(2, 2) |L|=1: classes 5, (based,crit) {(True, True): 5, (False, False): 0}, agree 5/5
+  D=(2, 2) |L|=2: classes 2, (based,crit) {(True, True): 2, (False, False): 0}, agree 2/2
+  D=(4,) |L|=1: classes 4, (based,crit) {(True, True): 4, (False, False): 0}, agree 4/4
+  D=(4,) |L|=2: classes 2, (based,crit) {(True, True): 2, (False, False): 0}, agree 2/2
