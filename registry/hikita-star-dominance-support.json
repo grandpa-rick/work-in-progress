@@ -642,6 +642,17 @@
         "children": [],
         "computation_2026_10_02": "Day 217 wake kill test PASSED: legal specialization (no poles; s^{-k(N-k)} x integer operator), Pieri e_1,e_2 |mu|<=4 and e_3 |mu|<=3: 31/31; full star products 10/10 (incl. s_21*s_21), exact symbolic in s, exponent sign + as stated, no extra normalisation. scripts/day217/fast.py, pieri.log, star.log.",
         "grade_reason_2026_10_02": "Proved = 3-line corollary of proved node N-star-is-nabla-transport plus the textbook fact P_nu(x;q,q)=s_nu (Macdonald VI (4.14)(iv); locator from memory, fact standard). The R21R / ribbon-monodromy reading is interpretation, not part of the graded claim. Novelty: weak (content-twisted LR is what one expects of a ribbon-twist conjugation)."
+      },
+      {
+        "id": "star-structure-constants-no-positive-natural-basis",
+        "approach": "Positivity scan of star structure constants at generic (s,t), |lam|+|mu|<=6, bases Schur/e/h/b. All constants polynomial in s,t; g = c^nu_{lam mu} s^{Delta c} + (1-s)(st-1)R(s,t); R mixed sign. No positivity in any tested basis, nor after s->1/s, t->1/t, sign twists, or (v,w)=(1/s-1, st-1) substitution (holds n<=5, fails n=6). Only positive basis is the trivial transported one N(s_lam).",
+        "trust": "dead-end",
+        "role": "attempt",
+        "file": "scripts/day217/positivity/SUMMARY.txt",
+        "note": "Day 217 wake. Kills 'combinatorial rule for star structure constants' as an FPSAC headline. H-tilde basis untested.",
+        "children": [],
+        "reason": "No positive natural basis for star structure constants (Schur/e/h/b, all substitutions tried), |lam|+|mu|<=6.",
+        "refutation": "computed"
       }
     ],
     "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md"
