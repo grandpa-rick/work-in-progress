@@ -1,0 +1,260 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem*{lemmaR}{Lemma R (reflection)}
+\newtheorem*{theoremA}{Theorem A ($s=\infty$ edge)}
+\newtheorem*{theoremB}{Theorem B ($t=0$ edge)}
+\newtheorem*{propC}{Proposition C (collapse coefficient)}
+\newtheorem*{corC}{Corollary C$'$ (the four collapse limits)}
+\newtheorem*{corD}{Corollary D (operator form (b) of H$'$)}
+\newtheorem*{squareT}{Square Theorem (assembly)}
+\theoremstyle{definition}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\domd}{\trianglelefteq}
+\newcommand{\sdomd}{\triangleleft}
+\newcommand{\file}[1]{\nolinkurl{#1}}
+\newcommand{\Ht}{\widetilde{H}}
+\newcommand{\Kt}{\widetilde{K}}
+\newcommand{\qbin}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+\newcommand{\WIPHASH}{\texttt{(pending)}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\title{\texorpdfstring{The $(s,t)$-square closed: Hikita's $\star$ on all four edges}{The (s,t)-square closed: Hikita's star on all four edges}}
+\author{Rick}
+\date{2026-10-02}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\begin{tabular}{r>{\raggedright\arraybackslash}p{0.72\textwidth}}
+\textbf{Author:} & Rick\\
+\textbf{Date:} & 2026-10-02\\
+\textbf{Recipient:} & Clio Vega (cc Robin Langer)\\
+\textbf{Title:} & The $(s,t)$-square closed: Hikita's $\star$ on all four edges\\
+\textbf{WIP commit:} & Content corresponds to work-in-progress commit \WIPHASH{} (grandpa-rick/work-in-progress); this hash line was added in a follow-up commit.\\
+\textbf{Source:} & \file{proofs/2026-10-02-day217e-boundary-of-the-st-square.md}; scripts in \file{scripts/day217e/}\\
+\textbf{Grade:} & Lemma R, Theorems A, B, Prop.~C, Cor.~D: \emph{proved} (self-proved, not peer-reviewed), conditional on (N) (Day 216c; your review pending) and on Macdonald-book locators recalled from memory. Machine-checked in small cases (\S8).\\
+\textbf{Novelty:} & (N) itself is folklore-implicit (Di Francesco--Kedem, arXiv:1704.00154). What is claimed here is only the explicit edge identifications in Hikita's $\star$-monomial basis. Theorem B in particular may be known in disguise; see \S9.
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\noindent\textbf{Summary.} Theorems H (edge $s=0$) and H$'$ (edge $t=\infty$) described $\star$ through the family $\Psi(b_\mu)$. That family \emph{collapses} onto $e_n$ on the other two edges. The missing edges are carried by the other family, the $\star$-monomials $e^\star_\mu=e_{\mu_1}\star\cdots\star e_{\mu_\ell}$. The swap is a symmetry: $P(x;q,t)=P(x;1/q,1/t)$ gives $\Psi_{1/s,1/t}=\Psi_{s,t}^{-1}$. The point reflection of the square through $(1,1)$ therefore sends H to a new Theorem A ($s=\infty$: Hall--Littlewood $P_{\mu'}(x;t)$) and H$'$ to a new Theorem B ($t=0$: $e^\star_\mu=\omega\Ht_\mu(x;s)$, cocharge Kostka--Foulkes).
+
+\section{Setup}
+
+As in the (N) PDF: $s=q^{-1}$, and Hikita's operators are
+\[
+E_kF=\sum_{|A|=k}\prod_{i\in A,\,j\notin A}\frac{x_i-tx_j}{x_i-x_j}\;X_A\;F(X_{A^c},sX_A),\qquad e_k\star F:=E_kF.
+\]
+\begin{itemize}[nosep]
+\item $e^\star_\mu:=e_{\mu_1}\star\cdots\star e_{\mu_\ell}=E_{\mu_1}\cdots E_{\mu_\ell}(1)$ ($\star$ is commutative).
+\item $b_\mu:=s^{n(\mu)}e_\mu$ (ordinary product).
+\item $\Psi=\Psi_{s,t}:(\mathrm{Sym},\star)\to(\mathrm{Sym},\cdot)$ is the algebra isomorphism with $\Psi(e^\star_\mu)=t^{-n(\mu')}e_\mu$.
+\item $P_\nu:=P_\nu(x;s,1/t)$ (Macdonald), $T_\nu:=t^{n(\nu)}s^{n(\nu')}$, and $\cN P_\nu=T_\nu P_\nu$.
+\item \textbf{(N)} (Day 216c): $\Psi=\cN^{-1}$.
+\end{itemize}
+
+\paragraph{Standard facts (Macdonald, SFHP 2nd ed.; locators from memory).}
+\begin{enumerate}[label=(M\arabic*),nosep]
+\item $P_\nu(x;q,t)=P_\nu(x;q^{-1},t^{-1})$ [VI (4.14)(iv)].
+\item $P_\nu(x;0,t)=P_\nu(x;t)$ (HL); $P_\nu(x;q,1)=m_\nu$; $P_\nu(x;1,t)=e_{\nu'}$; $P_\nu(x;q,q)=s_\nu$ [VI (4.14)].
+\item \emph{Regularity.} By the tableau formula VI (7.13$'$), the $m$-coefficients of $P_\nu$ are sums of products of factors $b_\mu(s)/b_\lambda(s)$, each equal to
+\[\frac{(1-q^{a_\mu}t^{l_\mu+1})(1-q^{a_\lambda+1}t^{l_\lambda})}{(1-q^{a_\mu+1}t^{l_\mu})(1-q^{a_\lambda}t^{l_\lambda+1})}.\]
+At $q=0$ each denominator factor becomes $1$ or $1-t^{l+1}$; at $t=0$ it becomes $1$ or $1-q^{a+1}$. So $P_\nu$ is regular at $q=0$ (generic $t$) and at $t=0$ (generic $q$).
+\item \emph{Unitriangularity.} $P_\nu=m_\nu+\sum_{\kappa\sdomd\nu}(\cdots)m_\kappa$ and $e_\mu=m_{\mu'}+\sum_{\kappa\sdomd\mu'}(\cdots)m_\kappa$. Hence $e_\mu=\sum_{\nu\domd\mu'}\alpha_{\mu\nu}P_\nu$ with $\alpha_{\mu\mu'}=1$, and by (M3) each $\alpha_{\mu\nu}(q,t)$ is regular at $q=0$ and at $t=0$.
+\item $P_\lambda(x;q,0)=\omega Q'_{\lambda'}(x;q)$, where $Q'_\mu(x;q)=\sum_\lambda K_{\lambda\mu}(q)s_\lambda$ (Day 216b \S4, from VI (5.1)).
+\end{enumerate}
+Finally, $n(\cdot)$ is strictly order-reversing on dominance: $\nu\sdomd\kappa\Rightarrow n(\nu)>n(\kappa)$.
+
+\section{The reflection lemma}
+
+\begin{lemmaR}
+$\Psi_{1/s,1/t}=\Psi_{s,t}^{-1}$; equivalently $\cN_{1/s,1/t}=\cN_{s,t}^{-1}$.
+\end{lemmaR}
+\begin{proof}
+$\cN_{1/s,1/t}$ is diagonal on $P_\nu(x;1/s,t)$, which equals $P_\nu(x;s,1/t)$ by (M1). Its eigenvalue is $T_\nu(1/s,1/t)=t^{-n(\nu)}s^{-n(\nu')}=T_\nu(s,t)^{-1}$. Now apply (N) at both points.
+\end{proof}
+
+\paragraph{R-duality.} Using $\cN(e_\mu)=t^{n(\mu')}e^\star_\mu$:
+\[
+\Psi_{s,t}(b_\mu)=s^{n(\mu)}\cN_{1/s,1/t}(e_\mu)=s^{n(\mu)}t^{-n(\mu')}\;e^\star_\mu\big|_{(1/s,1/t)}.
+\]
+So the reflection $R:(s,t)\mapsto(1/s,1/t)$ exchanges the edges $s=0\leftrightarrow s=\infty$ and $t=\infty\leftrightarrow t=0$. It also exchanges the families $b\leftrightarrow e^\star$.
+
+\paragraph{Master function.} Put $F_\mu(s,t):=\cN_{s,t}(e_\mu)=\sum_{\nu\domd\mu'}\alpha_{\mu\nu}T_\nu P_\nu$. Then
+\[
+e^\star_\mu(s,t)=t^{-n(\mu')}F_\mu(s,t),\qquad \Psi_{s,t}(b_\mu)=s^{n(\mu)}F_\mu(1/s,1/t).
+\]
+
+\section{Termwise valuation}
+
+On the support $\nu\domd\mu'$ we have
+\[
+T_\nu/T_{\mu'}=t^{\,n(\nu)-n(\mu')}\,s^{-(n(\mu)-n(\nu'))}.
+\]
+Both exponents are $\ge0$, and each vanishes iff $\nu=\mu'$. Consequently:
+\begin{itemize}[nosep]
+\item As $t\to0$ or $s\to\infty$, the term $\nu=\mu'$ dominates \emph{uniquely}. These are the good edges for $F_\mu$.
+\item As $t\to\infty$ or $s\to0$, the term $\nu=1^n$ dominates uniquely. These are the collapse edges, provided $\alpha_{\mu,1^n}\neq0$ there (Prop.~C).
+\end{itemize}
+For $\Psi(b_\mu)$ the roles flip: $s=0$ and $t=\infty$ are good (Theorems H, H$'$), while $s=\infty$ and $t=0$ collapse.
+
+\section{\texorpdfstring{Theorem A: the $s=\infty$ edge}{Theorem A: the s = infinity edge}}
+
+\begin{theoremA}
+For every $\mu$, as $s\to\infty$ with $t$ generic and fixed,
+\[
+s^{-n(\mu)}\;e_{\mu_1}\star\cdots\star e_{\mu_\ell}\;\longrightarrow\;P_{\mu'}(x;t)\qquad\text{(Hall--Littlewood $P$, parameter $t$).}
+\]
+\end{theoremA}
+\begin{proof}
+\begin{enumerate}[nosep]
+\item Let $q=1/s$. By (M1), $P_\nu=P_\nu(x;q,t)$ and $\alpha_{\mu\nu}=\alpha_{\mu\nu}(q,t)$, which is regular at $q=0$ by (M4).
+\item $e^\star_\mu=\sum_{\nu\domd\mu'}\alpha_{\mu\nu}(q,t)\,t^{n(\nu)-n(\mu')}s^{n(\nu')}P_\nu(x;q,t)$.
+\item Multiply by $s^{-n(\mu)}$. The $\nu$-term carries $s^{n(\nu')-n(\mu)}$, which tends to $0$ for $\nu\ne\mu'$ (the exponent is $\le-1$ by \S3) and equals $1$ at $\nu=\mu'$. All other factors stay bounded as $q\to0$, by (M3) and (M4).
+\item The limit is $\alpha_{\mu\mu'}(0,t)P_{\mu'}(x;0,t)=P_{\mu'}(x;t)$, by (M4) and (M2).\qedhere
+\end{enumerate}
+\end{proof}
+\begin{remark}
+Via R-duality, Theorem A at $(s,t)$ is literally Theorem H at $(1/s,1/t)$.
+\end{remark}
+
+\section{\texorpdfstring{Theorem B: the $t=0$ edge}{Theorem B: the t = 0 edge}}
+
+\begin{theoremB}
+For every $\mu$, $e^\star_\mu$ is regular at $t=0$, and
+\[
+e_{\mu_1}\star\cdots\star e_{\mu_\ell}\big|_{t=0}
+= s^{n(\mu)}P_{\mu'}(x;1/s,0)
+= s^{n(\mu)}\,\omega Q'_\mu(x;1/s)
+=\sum_\lambda \Kt_{\lambda\mu}(s)\,s_{\lambda'}
+=\omega\Ht_\mu(x;s).
+\]
+Here $\Kt_{\lambda\mu}(q)=q^{n(\mu)}K_{\lambda\mu}(1/q)$ is the cocharge Kostka--Foulkes polynomial and \mbox{$\Ht_\mu(x;q)=\sum_\lambda\Kt_{\lambda\mu}(q)s_\lambda$} is the modified Hall--Littlewood function.
+\end{theoremB}
+\begin{proof}
+\begin{enumerate}[nosep]
+\item As in Theorem A with $q=1/s$: $e^\star_\mu=\sum_{\nu\domd\mu'}\alpha_{\mu\nu}(q,t)\,t^{n(\nu)-n(\mu')}s^{n(\nu')}P_\nu(x;q,t)$.
+\item For generic $s$, both $\alpha$ and $P$ are regular at $t=0$ (M3, M4). The $t$-exponents $n(\nu)-n(\mu')$ are $\ge0$, with equality only at $\nu=\mu'$ (\S3).
+\item At $t=0$ this gives $e^\star_\mu=\alpha_{\mu\mu'}(q,0)\,s^{n(\mu)}P_{\mu'}(x;q,0)=s^{n(\mu)}P_{\mu'}(x;1/s,0)$.
+\item By (M5), $P_{\mu'}(x;q,0)=\omega Q'_\mu(x;q)=\sum_\lambda K_{\lambda\mu}(q)s_{\lambda'}$. Substitute $q=1/s$ and multiply by $s^{n(\mu)}$.\qedhere
+\end{enumerate}
+\end{proof}
+\begin{remark}
+Via R-duality, Theorem B at $(s,t)$ is Theorem H$'$ at $(1/s,1/t)$.
+
+\emph{Examples.} $e_1\star e_1|_{t=0}=s\,h_2+e_2=s_{11}+s\,s_2$ (checked by hand from $\cN$). At $s=1$: $\sum_\lambda K_{\lambda\mu}s_{\lambda'}=e_\mu$, consistent with $\star=\cdot$ at $s=1$.
+\end{remark}
+
+\section{Proposition C: the collapse edges}
+
+\begin{propC}
+For all $(q,T)$,
+\[
+[P_{1^n}(x;q,T)]\,e_\mu=\qbin{n}{\mu_1,\dots,\mu_\ell}_T\;\frac{\prod_i(q;T)_{\mu_i}}{(q;T)_n}=:c_\mu(q,T).
+\]
+\end{propC}
+\begin{proof}
+\begin{enumerate}[nosep]
+\item By orthogonality (VI (4.7)), $[P_{1^n}]f=\langle f,P_{1^n}\rangle_{q,T}/\langle P_{1^n},P_{1^n}\rangle_{q,T}$, and $P_{1^n}=e_n$ by (M2).
+\item $\langle\cdot,\cdot\rangle_{q,T}$ is diagonal on power sums, with weights multiplicative in the parts, and the $p_r$ are primitive. So $\langle fg,h\rangle=\langle f\otimes g,\Delta h\rangle$.
+\item Since $\Delta e_n=\sum_{a+b=n}e_a\otimes e_b$, degree matching gives $\langle e_\mu,e_n\rangle=\prod_i\langle e_{\mu_i},e_{\mu_i}\rangle$.
+\item $\langle e_r,e_r\rangle=1/b_{1^r}(q,T)$ with $b_{1^r}=(T;T)_r/(q;T)_r$ (VI (4.11), (6.19)).
+\item Hence $c_\mu=\prod_i\bigl[(q;T)_{\mu_i}/(T;T)_{\mu_i}\bigr]\cdot(T;T)_n/(q;T)_n$.\qedhere
+\end{enumerate}
+\end{proof}
+\noindent Specialisations: $c_\mu(0,T)=\qbin{n}{\mu}_T$; $c_\mu(q,0)=(1-q)^{\ell(\mu)-1}$; $c_\mu(1,T)=0$ for $\ell\ge2$.
+
+\begin{corC}
+\begin{itemize}[nosep]
+\item ($s=\infty$) $s^{-n(\mu)}\Psi(b_\mu)\to t^{-\binom n2}\qbin{n}{\mu}_t\,e_n$.
+\item ($t=0$) $t^{\binom n2}\Psi(b_\mu)\to s^{n(\mu)-\ell(\mu)+1}(s-1)^{\ell(\mu)-1}\,e_n$.
+\item ($s=0$) $e^\star_\mu|_{s=0}=\qbin{n}{\mu}_t\,e_n$. In particular $e_a\star e_r|_{s=0}=\qbin{a+r}{a}_t e_{a+r}$; this is the $q\to\infty$ Gaussian limit, matching Hikita Thm C(ii).
+\item ($t=\infty$) $t^{n(\mu')-\binom n2}e^\star_\mu\to(1-s)^{\ell(\mu)-1}e_n$.
+\end{itemize}
+\end{corC}
+\begin{proof}
+Each limit follows from \S3 (unique dominant term $\nu=1^n$) together with Prop.~C, using (M3)/(M4) regularity in the relevant parameter. For example, as $s\to\infty$, with $q=1/s$,\[\Psi(b_\mu)=\sum_\nu\alpha_{\mu\nu}(q,t)\,s^{n(\mu)-n(\nu')}t^{-n(\nu)}P_\nu(x;q,t).\] The top $s$-power is carried by $\nu=1^n$, with coefficient $\alpha_{\mu,1^n}(0,t)=\qbin{n}{\mu}_t$.
+\end{proof}
+So the $b$-family is rank one on $s=\infty$ and $t=0$, and the $\star$-monomial family is rank one on $s=0$ and $t=\infty$. Neither family sees the whole square; together they do.
+
+\section{\texorpdfstring{Corollary D: operator form (b) of H$'$}{Corollary D: operator form (b) of H'}}
+
+\begin{corD}
+Let $M^{(k)}_{\nu\mu}(s,t):=[b_\nu]\,E_kb_\mu$. Then $\deg_tM^{(k)}_{\nu\mu}\le n(\nu')-n(\mu')-\binom k2$. The coefficient of $t^{n(\nu')-n(\mu')-\binom k2}$ is $\psi_{\nu/\mu}(s)$, the HL $Q$-Pieri coefficient (Macdonald III (5.7)--(5.8)), when $\nu/\mu$ is a horizontal $k$-strip, and is $0$ otherwise.
+\end{corD}
+\begin{proof}
+\begin{enumerate}[nosep]
+\item Let $\beta_\mu(t):=t^{n(\mu')}\Psi(b_\mu)$. Applying $\Psi$ to $E_kb_\mu=\sum_\nu M_{\nu\mu}b_\nu$, and using $\Psi E_k=t^{-\binom k2}e_k\Psi$, gives
+\[e_k\beta_\mu=\sum_\nu M_{\nu\mu}\,t^{\binom k2+n(\mu')-n(\nu')}\beta_\nu.\]
+\item By H$'$, $\beta_\nu(t)\to\omega Q'_\nu(x;s)$ as $t\to\infty$, and these limits form a basis. So the coordinate functionals converge too (the inverse of a rational matrix converging to an invertible one converges).
+\item Hence $M_{\nu\mu}t^{\binom k2+n(\mu')-n(\nu')}\to[Q'_\nu]\,h_kQ'_\mu$.
+\item From $Q_\mu q_k=\sum_\nu\psi_{\nu/\mu}(s)Q_\nu$ (III (5.7)) and $q_k=h_k[(1-s)X]$, the plethysm $X\mapsto X/(1-s)$ gives $h_kQ'_\mu=\sum_\nu\psi_{\nu/\mu}(s)Q'_\nu$.
+\item A rational $f(t)$ with $t^{-d}f(t)$ convergent as $t\to\infty$ has $\deg f\le d$, and its $t^d$ coefficient is the limit.\qedhere
+\end{enumerate}
+\end{proof}
+This upgrades the operator form (b) of H$'$ from computed (136/136, $n+k\le5$) to proved. It also explains why the $P$-Pieri guess $\varphi$ failed: the limit basis is $Q'$, not $P$.
+
+\section{Square Theorem (assembly) and verification}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}l Y Y l@{}}
+\toprule
+line & $\star$ becomes & basis statement & source\\
+\midrule
+$s=0$ & HL product (param $1/t$) & $\Psi(b_\mu)=t^{-n(\mu')}P_{\mu'}(x;1/t)$ & Thm H\\
+$t=\infty$ & $q$-Whittaker (param $s$) & $t^{n(\mu')}\Psi(b_\mu)\to P_{\mu'}(x;s,0)=\omega Q'_\mu(x;s)$ & Thm H$'$\\
+$s=\infty$ & HL product (param $t$) & $s^{-n(\mu)}e^\star_\mu\to P_{\mu'}(x;t)$ & \textbf{Thm A}\\
+$t=0$ & modified HL / cocharge & $e^\star_\mu=\omega\Ht_\mu(x;s)=s^{n(\mu)}P_{\mu'}(x;1/s,0)$ & \textbf{Thm B}\\
+$s=1$ & ordinary product & $e_\lambda\star e_\mu=e_{\lambda\cup\mu}$ & DS / (N)\\
+$t=1/s$ & content-twisted LR & $s_\lambda\star s_\mu=\sum c^\nu_{\lambda\mu}s^{c(\nu)-c(\lambda)-c(\mu)}s_\nu$ & (N), Day 216\\
+$t=1$ & $n(\cdot')$-twisted monomial & $m_\lambda\star m_\mu=\sum_\nu[m_\nu](m_\lambda m_\mu)\,s^{n(\nu')-n(\lambda')-n(\mu')}m_\nu$ & (N)+(M2)\\
+\bottomrule
+\end{tabularx}
+\end{center}
+The reflection $R$ swaps H$\leftrightarrow$A and H$'\leftrightarrow$B, and it preserves the lines $s=1$, $t=1$ and $t=1/s$. The corners are consistent. For example, at $(\infty,0)$ with $\mu=(1,1)$: $s^{-1}(e_1\star e_1)|_{t=0}=h_2+s^{-1}e_2\to s_2=P_2(x;0)$.
+
+\paragraph{Verification log.} Scripts are in \file{scripts/day217e/}. The ``Hikita'' data are computed directly from the operators $E_k$; the Macdonald $P$ come from an independent Gram--Schmidt.
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}Y l Y@{}}
+\toprule
+claim & script & range / result\\
+\midrule
+Thm A & \file{estar_edges.py}, \file{estar_edges_num.py} & all $\mu\vdash n\le4$ symbolic (11/11); $n=5$ exact at $t=3/7$ (7/7)\\
+Thm B & same & $n\le4$ symbolic (11/11); $n=5$ exact at $s=5/3$ (7/7)\\
+negative control: A with $P_{\mu'}(x;1/t)$ & \file{estar_edges.py} & fails on $(11),(21),(111)$, as it should\\
+Cor.~C$'$, $e^\star$ collapse at $s=0$, $t=\infty$ & \file{estar_collapse.py} & $n\le5$: 36/36\\
+Prop.~C & \file{column_coeff.py} & $n\le4$ symbolic: 11/11\\
+Cor.~C$'$, $\Psi(b)$ collapse at $s=\infty$, $t=0$ & \file{edges.py} & $n\le5$: 36/36 (exponent and coefficient)\\
+Cor.~D & \file{testb2.py} (Day 216) & $n+k\le5$: 136/136\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Honesty: gaps and novelty}
+\begin{itemize}
+\item Everything rests on (N), which is proved (Day 216c) modulo textbook Cherednik facts. \textbf{Your review of the (N) PDF is still pending.}
+\item The Macdonald locators (VI (4.14)(iv), (7.13$'$), (4.7), (4.11), (6.19); III (5.7), (2.10)) were recalled from memory and \textbf{not} re-verified this session. The (M3) regularity argument depends on the shape of the $b_\lambda(s)$ factors. As an independent sanity check, the computed limits exist and match for $n\le5$.
+\item \textbf{Novelty.} (N) is folklore-implicit: Di Francesco--Kedem (arXiv:1704.00154) have Hikita-type $E_k$ as their $M_{k;1}$ in a $\nabla$-conjugation dictionary. Theorems A and B are $R$-reflections of H and H$'$, so they inherit that status. The only claim here is the \emph{explicit} edge identifications in Hikita's $\star$-monomial basis, together with the collapse coefficient (Prop.~C) and Cor.~D.
+\item Theorem B looks like a cousin of Jing / Garsia-type creation operators for modified Hall--Littlewood functions. At $t=0$, $E_k=\sum_A\prod_{i\in A,j\notin A}\frac{x_i}{x_i-x_j}X_AT_{s,A}$. A literature audit by operator formula is still to be done.
+\end{itemize}
+
+\section{Question for you}
+Have you seen Theorem B in the $\nabla$ form, namely that the normalised $\nabla e_\mu$ at $t=0$ (or $q=0$) equals $\omega\Ht_\mu$, anywhere (Garsia--Haiman school, Haglund's book)? Through (N) and the DFK dictionary, Theorem B reads ``$T$-normalised $\nabla e_\mu$ at the degenerate parameter equals $\omega\Ht_\mu$''. If you have seen it, Theorems A and B are restatements, and any write-up should lead with the identification rather than the theorems.
+
+\end{document}
