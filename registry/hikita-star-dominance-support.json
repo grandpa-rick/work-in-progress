@@ -699,12 +699,13 @@
               {
                 "id": "s1-first-order-star-is-biderivation",
                 "approach": "B(f,g)=∂_s(f⋆g)|_{s=1} is symmetric and a biderivation of (Sym,·) (⇒ carré du champ Γ_L of a 2nd-order L?). Checked on all e-monomial triples total degree ≤5 at t∈{3/5,−2} (18/18 Leibniz each) and ≤4 at t=2/3 (5/5), s symbolic. Logs proofs/scripts/day220/bider_*.log. Fitted B(e1,e_b)=e1e_b−[b+1]_t e_{b+1}.",
-                "trust": "computed",
+                "trust": "proved",
                 "role": "attempt",
-                "file": "proofs/scripts/day220/biderivation.py",
+                "file": "proofs/2026-10-03-day220-s1-carre-du-champ.md",
                 "date": "2026-10-03",
-                "note": "Registered Day 220 wake as child of e1-power-star-residual-positive (s=1 companion: v>=l(lam)-l(mu) valuation side observation). Logs: proofs/scripts/day220/bider_t2_3_d4.log, bider_t3_5_d5.log, bider_tm2_d5.log.",
-                "children": []
+                "note": "Registered Day 220 wake as child of e1-power-star-residual-positive (s=1 companion: v>=l(lam)-l(mu) valuation side observation). Logs: proofs/scripts/day220/bider_t2_3_d4.log, bider_t3_5_d5.log, bider_tm2_d5.log. | Day 220 PROVE: PROVED (Thm 1). (s-1)-coefficient of E_k is D_k=sum_A c_A X_A Delta_A (Euler op on A), a derivation; B(f,g)=sum_k d_{e_k}f D_k g = sum M_kl d_k f d_l g, M_kl=D_k e_l symmetric (commutativity). L=1/2 sum M_kl d_k d_l; at t=1 L=sum_i binom(theta_i,2) from (N).",
+                "children": [],
+                "recheck": "2026-10-03 proof in proofs/2026-10-03-day220-s1-carre-du-champ.md §1"
               }
             ]
           }
@@ -773,6 +774,101 @@
         "computation": "Day 218 wake probe scripts/day218/iota_probe.py; outputs iota_probe_out.txt, iota_probe_Cschur.txt, iota_probe_star_a1.txt, iota_probe_star_a2.txt, iota_probe_n5_a1.txt. Lusztig basis EXISTS and is iota-invariant (both v and v^-1 lattices, e- and Schur-seeded, a=1,2, n<=4/5) -- automatic from unitriangularity. But star structure constants E_k C_mu in the C basis have MIXED signs, including inside single coefficients: a=1, v-lattice: e_1*C(1) = -v(2v^4-1) C(2) + v^3 C(11); e_2*C(1) = -v^3(v^6+v^4-1) C(3) + v^4 C(21). No global sign/normalisation rescues (2v^4-1, v^6+v^4-1 are internally mixed).",
         "reason": "Canonical basis exists trivially, but star structure constants in it have internally mixed signs (a=1,2; e/Schur seeds; n<=5): scripts/day218/iota_probe_star_a1.txt. Positivity, the only point, fails.",
         "refutation": "computed"
+      },
+      {
+        "id": "s1-block-valuation-law-day220",
+        "approach": "s=1 edge: E_k=sum_p (s-1)^p E_k^(p), E_k^(p)=sum_A c_A X_A binom(Delta_A,p) is a differential op of order p. Polarization (p+1-fold commutator=0) => each step glues <=p old blocks; Day 214 degree count per block => Thm A: v_{s-1}(c_{lam mu}) >= l(lam)-kappa(lam,mu) (kappa = max # compatible blocks with mu^i dominating lam^i). Implies v>=max(1,l(lam)-l(mu)) (PROVE.md Q2) and re-proves DS support. Thm B: equality on coarsenings via gr/merge histories; merge weights W_k(J)=(-1)^p at t=0 (roots-of-unity + Weyl CT + Murnaghan-Nakayama). Thm C (exact): v = l(lam)-kappa(lam,mu) over Q(t) for all mu>=lam, via t=0 edge (217e Thm B: e*|_{t=0}=omega Htilde) + Macdonald III (2.15) raising operators: each transfer edge costs exactly one (s-1) with sign -1, no cancellation; E_min = l-kappa (component bound + path tree on indecomposable blocks); specialization t=0 -> generic.",
+        "trust": "proved",
+        "role": "attempt",
+        "file": "proofs/2026-10-03-day220-s1-carre-du-champ.md",
+        "date": "2026-10-03",
+        "recheck": "2026-10-03 hostile re-read in-session (steps 3,5 of Thm B re-derived); numerics: proofs/scripts/day220/val_n6_t*.log, history_lead.py 132/132",
+        "sources": [
+          "2503.23597"
+        ],
+        "children": [
+          {
+            "id": "thmA-premise-subset-formula-taylor",
+            "approach": "Taylor pieces of subset formula: F(X_{A^c},sX_A)=s^{Delta_A}F exact; E_k^(p) preserves Lambda_N (coefficient comparison in Q(t)(x)[s]); order <=p on Q(t)(x).",
+            "trust": "proved",
+            "role": "premise",
+            "file": "proofs/2026-10-03-day220-s1-carre-du-champ.md",
+            "children": []
+          },
+          {
+            "id": "thmA-premise-day214-degree-lemmas",
+            "approach": "Day 214 Lemmas 1.1, 1.2, 2.1 (degree count), adapted: binom(Delta_A,p) does not enlarge monomial support.",
+            "trust": "proved",
+            "role": "premise",
+            "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
+            "children": []
+          },
+          {
+            "id": "thmB-coarsening-exact-valuation",
+            "approach": "mu coarsening of lam => v=l(lam)-l(mu) exactly (generic t and t=0); Lead(0)=(-1)^m #tight merge histories.",
+            "trust": "proved",
+            "role": "attempt",
+            "file": "proofs/2026-10-03-day220-s1-carre-du-champ.md",
+            "recheck": "2026-10-03 in-session hostile pass; history_lead.py reproduces 132/132 logged leads at n=6, t in {3/5,7/3,-2}",
+            "children": []
+          },
+          {
+            "id": "thmC-block-law-exact",
+            "approach": "Thm C: v(c_{lam mu}) = l(lam)-kappa(lam,mu) exactly (generic t and t=0). Proof via t=0 edge + raising operators (see parent). Evidence: 35/35 n<=5 symbolic t; 53/53 n=6 at t=3/5, 7/3; 84/84 n=4..6 at t=0; t=-2 has 7 zeros of a_{l-kappa}.",
+            "trust": "proved",
+            "role": "attempt",
+            "file": "proofs/2026-10-03-day220-s1-carre-du-champ.md",
+            "children": [
+              {
+                "id": "thmC-premise-217e-thmB-t0-edge",
+                "approach": "Day 217e Theorem B: e*_mu|_{t=0} = omega Htilde_mu(x;s) (proved from (N); (N) Cherednik locators flagged unverified by Clio).",
+                "trust": "proved",
+                "role": "premise",
+                "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
+                "children": []
+              },
+              {
+                "id": "thmC-premise-macdonald-raising-operators",
+                "approach": "Macdonald III (2.15) Q_lam = prod_{i<j}(1-R_ij)/(1-tR_ij) q_lam; plethysm X/(1-t) sends q_r->h_r.",
+                "trust": "proved",
+                "role": "premise",
+                "file": "proofs/2026-10-03-day220-s1-carre-du-champ.md",
+                "children": [],
+                "textbook_locator": "Macdonald, Symmetric Functions and Hall Polynomials, 2nd ed., III (2.15) (textbook; not in arXiv sources index)"
+              }
+            ],
+            "recheck": "2026-10-03 cold re-derivation in-session of steps 2-5 (raising-operator convention, finiteness, component bound, path tree strictness, specialization); numerics val_n*_t0.log + raising_t0.py",
+            "textbook_locator": "Macdonald, Symmetric Functions and Hall Polynomials, 2nd ed., III (2.15) (textbook; not in arXiv sources index)"
+          },
+          {
+            "id": "thmW-merge-weight-closed-form",
+            "approach": "Thm W: W_k(J)=(-1)^p [n]_t prod_j [k]_{t^j}/[k]_t. Proof: (KF) top symbol -> W=(-1)^{d-p} sum_rho <Q'_rho,p_J> lin_e P_{rho+1^k}; Lemma lin_e P_lam = (-1)^{n-k}[n]/[k] P_{lam-1^k}(1..t^{k-1}) from Macdonald III.7 Ex2 + III.2 Ex1; Cauchy. Consequence: Thm B at every t>0. Independent computer check 68/68 n<=7 (zeta-point formula).",
+            "trust": "proved",
+            "role": "attempt",
+            "file": "proofs/2026-10-03-day220-s1-carre-du-champ.md",
+            "children": [
+              {
+                "id": "thmW-premise-KF",
+                "approach": "(KF) E_kF = sum_rho P_{rho+1^k}(x;t) (Q'_rho[(s-1)X;t])^perp F (Day 216b §1).",
+                "trust": "proved",
+                "role": "premise",
+                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                "children": []
+              }
+            ],
+            "recheck": "2026-10-03 single in-session derivation + hand check P_21 and n=2 Ex2; computed 68/68 (merge_weights_check_n8.log). NOT yet cold re-read."
+          },
+          {
+            "id": "prove-md-equality-max1-refuted",
+            "approach": "PROVE.md guess v = max(1, l(lam)-l(mu)) exactly.",
+            "trust": "dead-end",
+            "role": "attempt",
+            "reason": "False at n=6 at generic t: (2,2,2)->(5,1),(4,1,1),(3,3) have v=2 (predicted by Thm A kappa=1 before the run). Lower bound survives (Thm A).",
+            "refutation": "computed",
+            "file": "proofs/scripts/day220/val_n6_t3_5.log",
+            "children": []
+          }
+        ]
       }
     ],
     "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md"
