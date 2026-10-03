@@ -330,6 +330,11 @@ All scripts are in `proofs/scripts/day220/`. Grades: computed.
 - Walk-through, λ = (1,1,1), μ = (3). There are two tight histories: either part 1 merges {1},{1} at once, giving
   W_1(1,1) = [3], or part 2 merges {1} and then part 1 merges {2}, giving W_1(1)W_1(2) = (−[2])(−[3]). Lead = [3](2+t).
   At t = 0 this is 2 = #H, matching (−1)²·2.
+- `raising_t0.py` (Theorem C's t = 0 mechanism, independent of the subset engine): it computes c_{λμ}(s,0) =
+  [h_μ]H̃_λ by raising operators. On every pair n = 4–6 (`raising_t0.log`, **84/84**) it matches the subset-formula
+  engine's t = 0 valuation AND leading coefficient. It also confirms v = E_min = ℓ − κ and lead = (−1)^{E_min}N.
+  As a side effect, this cross-checks Day 217e Theorem B to first nonvanishing order.
+- n = 7 at t = 3/5 (partial, run still going): 42/42 pairs logged so far satisfy v = ℓ − κ, including 3 strict cases.
 - (Background, see the end of this file for status) n = 7 at t = 3/5; Conjecture W through n = 8; DS-from-(N) n = 5.
 
 ## 7. Gaps and honest grades
