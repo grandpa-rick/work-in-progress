@@ -1,0 +1,137 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\WIPHASH}{\texttt{PENDING}}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\Kt}{\widetilde K}
+\newcommand{\dom}{\trianglerighteq}
+\newcommand{\domle}{\trianglelefteq}
+
+\title{DS from (N): dominance support and the exact $s$-valuation as a corollary of the $\N$-transport}
+\author{Rick}
+\date{2026-10-03}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-1.5em}
+\noindent\textbf{Author:} Rick. \textbf{Date:} 2026-10-03.
+\textbf{Recipient:} Clio Vega (cc Robin Langer).\\
+\textbf{WIP commit:} this note corresponds to commit \WIPHASH{} (the source commit; the hash line was added in a follow-up commit).
+Source: \file{proofs/2026-10-02-day218-DS-from-N.md}; script \file{scripts/day218b/ds_from_N.py}.
+
+\medskip
+\noindent\textbf{Summary.} You predicted that the DS valuation $\mathrm{val}_s c_{\lambda\mu}=n(\mu)$ would fall out of (N).
+It does. Support, lead, exact valuation and a closed formula for the lowest coefficient
+\[
+d_{\lambda\mu}(t)=\sum_\rho t^{n(\rho)-n(\lambda')}\,\Kt_{\rho\mu'}(t)\,K_{\rho'\lambda}
+\]
+follow from (N) in about 15 lines. The minimal $s$-order is attained by a single term, so there is no cancellation.
+(N) does \emph{not} see polynomiality of $c_{\lambda\mu}$ or regularity at $t=0$, so the elementary Day~214 proof is still needed for the integrality half.
+Computer checks are complete for $n\le4$; $n=5$ is in progress.
+
+\section*{0. Conventions}
+\begin{itemize}
+\item $E_kF=\sum_{|A|=k}\prod_{i\in A,j\notin A}\frac{x_i-tx_j}{x_i-x_j}\,X_A\,F(X_{A^c},sX_A)$; \ $e^\star_\lambda:=E_{\lambda_1}\cdots E_{\lambda_\ell}(1)=\sum_\mu c_{\lambda\mu}e_\mu$; \ $n(\lambda)=\sum(i-1)\lambda_i$.
+\item $P_\nu:=P_\nu(x;q=s,t_{\rm Mac}=\tau)$ with $\tau:=1/t$; \ $T_\nu:=t^{n(\nu)}s^{n(\nu')}$; \ $\N P_\nu=T_\nu P_\nu$.
+\item \textbf{(N)} (Day 216c, proved modulo the Cherednik facts C1--C3): $E_k=t^{-\binom k2}\N e_k\N^{-1}$. Since $\N(1)=1$,
+\[
+\text{(0.1)}\qquad e^\star_\lambda=t^{-\sum\binom{\lambda_i}{2}}\N(e_\lambda)=t^{-n(\lambda')}\N(e_\lambda).
+\]
+That is, $\Psi=\N^{-1}$ with $\Psi(e^\star_\lambda)=t^{-n(\lambda')}e_\lambda$. The input to $\N$ is $e_\lambda$, not $e^\star_\lambda$.
+\item $\R:=\mathbb Q(t)[s]_{(s)}$, rational functions in $s$ over $\mathbb Q(t)$ regular at $s=0$; $\mathrm{val}_s$ is taken in $\mathbb Q(t)(s)$.
+\end{itemize}
+
+\section*{1. Two triangular change-of-basis matrices}
+\textbf{Lemma 1 ($P$ in $e$).} Write $P_\nu=\sum_\mu B_{\nu\mu}e_\mu$. Then $B_{\nu\mu}\ne0\Rightarrow\mu\dom\nu'$; $B_{\nu\nu'}=1$; $B_{\nu\mu}\in\R$; and $B_{\nu\mu}|_{s=0}$ is the $e$-expansion of Hall--Littlewood $P_\nu(x;\tau)$.
+
+\noindent\emph{Proof.} (1) $P_\nu=m_\nu+\sum_{\kappa\lhd\nu}u_{\nu\kappa}m_\kappa$ (Macdonald VI (4.7)).
+(2) By Day 214 Lemma 1.1, $\mathrm{span}\{m_\kappa:\kappa\domle\nu\}=\mathrm{span}\{e_\mu:\mu\dom\nu'\}$ with unitriangular integer transition ($m_\nu=e_{\nu'}+$higher). This gives the support and the $1$.
+(3) Regularity at $s=0$: by the combinatorial formula (VI (7.13$'$)), $P_\nu=\sum_T\psi_Tx^T$ with $\psi_T$ a product of ratios $b_\lambda(\square)/b_\mu(\square)$, $b_\lambda(\square;q,t)=(1-q^at^{l+1})/(1-q^{a+1}t^l)$. At $q=s$ every factor $1-s^{a+1}\tau^l$ and $1-s^a\tau^{l+1}$ is a unit or a nonzero element of $\R$ (for $a=0$, $1-\tau^{l+1}\neq0$). So $u_{\nu\kappa}\in\R$.
+(4) $P_\nu(x;0,\tau)$ is HL $P_\nu(x;\tau)$ (VI (4.14)(iii)). $\square$
+
+\smallskip
+\noindent\textbf{Lemma 2 ($e$ in $P$).} Write $e_\lambda=\sum_\nu A_{\lambda\nu}P_\nu$. Then $A_{\lambda\nu}\ne0\Rightarrow\nu\domle\lambda'$; $A_{\lambda\lambda'}=1$; $A_{\lambda\nu}\in\R$; $A_{\lambda\nu}|_{s=0}=a^{HL}_{\lambda\nu}(\tau)$, the coefficient of HL $P_\nu(x;\tau)$ in $e_\lambda$.
+
+\noindent\emph{Proof.} Ordering rows by $\nu$ and columns by $\mu'$, $B$ is unitriangular over $\R$, so $A=B^{-1}$ is too, and $A(0)=B(0)^{-1}$. $\square$
+
+\smallskip
+\noindent\textbf{Lemma 3 (HL coefficient).} $a^{HL}_{\lambda\nu}(\tau)=\sum_\rho K_{\rho\nu}(\tau)K_{\rho'\lambda}$ (Kostka--Foulkes times Kostka). Consequently
+(a) $a^{HL}_{\lambda\nu}(0)=K_{\nu'\lambda}$, which is $>0$ iff $\nu\domle\lambda'$;
+(b) $\deg_\tau a^{HL}_{\lambda\nu}\le n(\nu)-n(\lambda')$, and the $\tau^{n(\nu)-n(\lambda')}$ coefficient is the leading coefficient of $K_{\lambda'\nu}(\tau)$, equal to $1$ when $\nu\domle\lambda'$.
+
+\noindent\emph{Proof.} (1) $Q'_\nu(x;\tau):=Q_\nu[X/(1-\tau);\tau]$ is Hall-dual to $P_\nu(x;\tau)$ by the HL Cauchy identity (Macdonald III (4.4)), and $Q'_\nu=\sum_\rho K_{\rho\nu}(\tau)s_\rho$ (III \S7).
+(2) $a^{HL}_{\lambda\nu}=\langle e_\lambda,Q'_\nu\rangle=\sum_\rho K_{\rho\nu}(\tau)\langle e_\lambda,s_\rho\rangle$ and $\langle e_\lambda,s_\rho\rangle=K_{\rho'\lambda}$.
+(3) (a): $K_{\rho\nu}(0)=\delta_{\rho\nu}$, and $K_{\nu'\lambda}>0$ iff $\nu'\dom\lambda$.
+(4) (b): $K_{\rho\nu}(\tau)\ne0$ only if $\rho\dom\nu$; it is monic of degree $n(\nu)-n(\rho)$ (charge attains its maximum at exactly one tableau; Macdonald III \S6, locator not re-verified). $K_{\rho'\lambda}\ne0$ forces $\rho\domle\lambda'$, so $n(\rho)\ge n(\lambda')$ with equality only at $\rho=\lambda'$; that term has coefficient $1\cdot K_{\lambda\lambda}=1$. $\square$
+
+\section*{2. The theorem}
+\noindent\textbf{Theorem (DS from N).} Assume (N). For all $\lambda,\mu$:
+\[
+\text{(2.1)}\qquad c_{\lambda\mu}=t^{-n(\lambda')}\sum_{\nu:\ \lambda\domle\nu'\domle\mu}A_{\lambda\nu}\,s^{n(\nu')}t^{n(\nu)}\,B_{\nu\mu}.
+\]
+Consequently:
+\begin{itemize}
+\item[\textbf{(S)}] $c_{\lambda\mu}\ne0$ only if $\mu\dom\lambda$.
+\item[\textbf{(L)}] $c_{\lambda\lambda}=s^{n(\lambda)}$.
+\item[\textbf{(Val)}] For $\mu\dom\lambda$, $c_{\lambda\mu}\in s^{n(\mu)}\R$, and
+\[
+d_{\lambda\mu}(t):=[s^{n(\mu)}]c_{\lambda\mu}=t^{n(\mu')-n(\lambda')}a^{HL}_{\lambda\mu'}(1/t)=\sum_\rho t^{n(\rho)-n(\lambda')}\Kt_{\rho\mu'}(t)K_{\rho'\lambda},
+\]
+where $\Kt_{\rho\nu}(t):=t^{n(\nu)-n(\rho)}K_{\rho\nu}(1/t)$ is cocharge Kostka--Foulkes.
+\item[\textbf{(D)}] $d_{\lambda\mu}\in\mathbb Z[t]$ with $d_{\lambda\mu}(0)=1$. Hence $\mathrm{val}_sc_{\lambda\mu}=n(\mu)$ \emph{exactly}, and the support of $e^\star_\lambda$ is \emph{exactly} the up-set $\{\mu\dom\lambda\}$. With Lascoux--Sch\"utzenberger positivity, $d_{\lambda\mu}\in\mathbb N[t]$ and $d_{\lambda\mu}(1)=\sum_\rho K_{\rho\mu'}K_{\rho'\lambda}=\langle h_{\mu'},e_\lambda\rangle=M_{\lambda\mu'}$ (number of 0-1 matrices).
+\item[\textbf{(V)}] $c_{\lambda\mu}|_{s=1}=\delta_{\lambda\mu}$, given the $s=1$ facts quoted below.
+\end{itemize}
+
+\noindent\emph{Proof.}
+\begin{enumerate}
+\item \textbf{(2.1).} By (0.1) and Lemmas 1--2, $e^\star_\lambda=t^{-n(\lambda')}\sum_\nu A_{\lambda\nu}T_\nu P_\nu=t^{-n(\lambda')}\sum_{\nu,\mu}A_{\lambda\nu}T_\nu B_{\nu\mu}e_\mu$; a term is nonzero only if $\nu\domle\lambda'$ and $\mu\dom\nu'$, i.e.\ $\lambda\domle\nu'\domle\mu$.
+\item \textbf{(S)} is immediate from $\lambda\domle\nu'\domle\mu$.
+\item \textbf{(L).} For $\mu=\lambda$ only $\nu'=\lambda$ survives: $t^{-n(\lambda')}\cdot1\cdot s^{n(\lambda)}t^{n(\lambda')}\cdot1=s^{n(\lambda)}$.
+\item \textbf{(Val).} $n$ is strictly order-reversing on dominance ($n(\rho)=\sum_i(|\rho|-\rho_1-\dots-\rho_i)$), so $\nu'\domle\mu$ gives $n(\nu')\ge n(\mu)$, with equality only if $\nu'=\mu$. Since $A,B\in\R$, every term of (2.1) lies in $s^{n(\mu)}\R$ and every term with $\nu\ne\mu'$ lies in $s^{n(\mu)+1}\R$. Hence
+\[
+c_{\lambda\mu}\equiv t^{-n(\lambda')}A_{\lambda\mu'}(0)\,s^{n(\mu)}t^{n(\mu')}B_{\mu'\mu}(0)=s^{n(\mu)}t^{n(\mu')-n(\lambda')}a^{HL}_{\lambda\mu'}(\tau)\pmod{s^{n(\mu)+1}}.
+\]
+Lemma 3 and $t^{n(\mu')-n(\lambda')}K_{\rho\mu'}(1/t)=t^{n(\rho)-n(\lambda')}\Kt_{\rho\mu'}(t)$ give the Kostka sum.
+\textbf{No cancellation is possible}: the minimal $s$-order is reached by exactly one $\nu$, so the cancellation worry does not arise at the diagonal.
+\item \textbf{(D).} Each $t^{n(\rho)-n(\lambda')}\Kt_{\rho\mu'}(t)$ is a polynomial since $n(\rho)\ge n(\lambda')$ whenever $K_{\rho'\lambda}\ne0$. Only $\rho=\lambda'$ has nonzero constant term, namely $\Kt_{\lambda'\mu'}(0)=$ lead coefficient of $K_{\lambda'\mu'}=1$ (Lemma 3(b)), times $K_{\lambda\lambda}=1$; so $d(0)=1$. (Nonvanishing alone already follows from Lemma 3(a) at $\tau=0$: $a^{HL}_{\lambda\mu'}(0)=K_{\mu\lambda}>0$.) $d(1)=\sum_\rho K_{\rho\mu'}K_{\rho'\lambda}=\langle h_{\mu'},e_\lambda\rangle=M_{\lambda\mu'}$ (Macdonald I (6.6)).
+\item \textbf{(V).} $P_\nu(x;q,\tau)$ is regular at $q=1$ with $P_\nu(x;1,\tau)=e_{\nu'}$ (VI (4.14)(vi); regularity via integrality of $J_\nu$, VI \S8, locator not re-verified). So $B(1)$ is the permutation matrix $\nu\mapsto\nu'$, $A(1)$ its inverse, $T_\nu|_{s=1}=t^{n(\nu)}$, and $c(1)=t^{-n(\lambda')}t^{n(\lambda')}\delta=\delta$. $\square$
+\end{enumerate}
+
+\noindent\textbf{Operator form (Op-DS), support and lead.} Apply the same argument to $E_ke_\mu=t^{-\binom k2}\N e_k\N^{-1}e_\mu$:
+$\N^{-1}e_\mu\in\mathrm{span}\{P_\nu:\nu\domle\mu'\}$; $e_kP_\nu\in\mathrm{span}\{P_\kappa:\kappa\domle\nu+1^k\domle(\mu\cup k)'\}$ (Macdonald Pieri VI (6.24), or monomial triangularity), with $P_{(\mu\cup k)'}$-coefficient $1$ coming from $\nu=\mu'$ alone.
+So the support is $\{\rho\dom\mu\cup k\}$ and the lead is $t^{-\binom k2}T_{(\mu\cup k)'}/T_{\mu'}=s^{n(\mu\cup k)-n(\mu)}=s^{\sum_i\min(\mu_i,k)}$, using $n((\mu\cup k)')-n(\mu')=\binom k2$. Not checked separately by script; the Day 214 Op-DS check covers the statement itself.
+
+\section*{3. What (N) does \emph{not} give}
+\begin{itemize}
+\item \textbf{Polynomiality.} (N) yields only $c_{\lambda\mu}\in\mathbb Q(t)(s)\cap s^{n(\mu)}\R$. The cancellation of the Macdonald denominators $1-s^{a+1}\tau^l$ needed for $c_{\lambda\mu}\in\mathbb Q[s,t]$ is invisible from (N). It is a genuine extra fact, supplied by the Gauss-lemma argument of Day 214 (\S4/\S8.1).
+\item \textbf{Regularity at $t=0$.} $c_{\lambda\mu}(s,0)=s^{n(\mu)}(1+s\mathbb Q[s])$ needs regularity at $t=0$ ($\tau=\infty$), which (N) does not see. Day 214 Thm~2(b) remains the proof.
+\end{itemize}
+Our reading is that integrality comes from the operator side, in the spirit of the Kirillov--Noumi (1999) raising operators, not from the transport. So the elementary Day~214 proof is still needed for the integrality half.
+
+\medskip
+\noindent\textbf{Further caveats (kept from the source).}
+(1) \emph{Grade inheritance.} Everything here inherits the grade of (N): proved modulo the Cherednik facts (C1)--(C3) (textbook, locators unverified) and 207b's $(A_k)/(K_k)$. Day 214's DS proof uses only 207b and elementary degree counts, so it is the \emph{more elementary} proof; this note is a second proof plus a structural explanation, not a replacement.
+(2) \emph{Textbook locators not re-verified:} VI (7.13$'$); VI (4.14)(iii),(vi); III \S6--7 (Kostka--Foulkes degree/monic/charge, Hall-duality of $Q'$); integrality of $J$ for $q=1$ regularity. The script checks their consequences in the range below, not the statements in general.
+(3) \emph{Novelty.} The $d$-formula is the Day 215 ``$d$ = HL/cocharge $t$-count'' statement, now \emph{derived} rather than observed. It is $\langle e_\lambda,\cdot\rangle$ applied to a modified HL function; expect it to be folklore-adjacent once (N) is known.
+
+\section*{4. Verification}
+\file{scripts/day218b/ds_from_N.py N} runs over every $\lambda\vdash n\le N$ and checks symbolically in $s,t$: (2.1) against Hikita's $e^\star_\lambda$ from the operator matrices; support, unitriangularity and $s$-integrality of $A,B$; regularity of $B$ at $s=1$ and $P(1,\tau)=e_{\nu'}$; exact valuation $n(\mu)$ and $d=t^Da^{HL}(1/t)$; the Kostka--Foulkes formula for $d$ (with $K(t)$ computed independently as the Schur$\to$HL matrix); $d\in\mathbb N[t]$, $d(0)=1$, $d(1)=M_{\lambda\mu'}$; $a^{HL}(\tau=0)>0$; off-up-set zeros; (V).
+
+\smallskip
+\noindent\textbf{Results} (\file{ds_from_N_5.log}): $n=1$: 15 OK; $n=2$: 60 OK; $n=3$: 150 OK; $n=4$: 375 OK; 0 BAD throughout.
+\textbf{Checks are complete for $n\le4$} (375/375 at $n=4$ with the full check set).
+The first $n=5$ run was truncated; it has been relaunched and is \textbf{in progress}. No $n=5$ result is claimed here. $n=6$ has not been attempted (Gram--Schmidt over $\mathbb Q(q,T)$ is slow).
+
+\section*{5. A dead end: the $\iota$ canonical basis}
+We tried the antilinear involution $\iota=\Psi\circ\beta$, where $\beta$ is $(s,t)\mapsto(1/s,1/t)$ on $e$-coefficients; it is an involution because $\Psi_{1/s,1/t}=\Psi_{s,t}^{-1}$, and DS supplies unitriangularity. We hoped for a Lusztig-type canonical basis of $(\mathrm{Sym},\star)$ with positive structure constants. Lusztig's lemma does produce a basis, since existence is formal. But the $\star$ structure constants in that basis have \textbf{mixed signs}, so there is no positivity and the idea is \textbf{dead}. We record it only for honesty.
+
+\section*{6. Two questions for you}
+\begin{enumerate}
+\item[(a)] Do you know whether Kirillov--Noumi (1999) states the $q\to\infty$ limit that we call Theorem~A: on the $s=\infty$ edge of $\star$, $s^{-n(\mu)}e_{\mu_1}\star\cdots\star e_{\mu_\ell}\to P_{\mu'}(x;t)$ (Hall--Littlewood)? (Theorem~B, the $t=0$ edge, is already Di Francesco--Kedem 1505.01657 Cor.~5.18, as per my erratum.)
+\item[(b)] What is your current review status of (N)? Unread, in progress, or checked? If checked, are there any steps you would downgrade?
+\end{enumerate}
+\end{document}
