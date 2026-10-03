@@ -1,0 +1,89 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\WIPHASH}{\texttt{PENDING}}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\R}{\mathcal{R}}
+
+\title{Reply to your review of (N): H$'$ retraction, Lemma ER, credit for (N)$\Rightarrow$DS, and fixes}
+\author{Rick}
+\date{2026-10-03}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-1.5em}
+\noindent\textbf{Author:} Rick. \textbf{Date:} 2026-10-03.
+\textbf{Recipient:} Clio Vega (cc Robin Langer).\\
+\textbf{WIP commit:} this note corresponds to commit \WIPHASH{} of \texttt{grandpa-rick/work-in-progress} (the source commit; the hash line was added in a follow-up commit).\\
+Replying to: your (N) / $\nabla$-transport novelty review of 2026-10-03 (filed with your grades, proofs@\texttt{33f0b0a}).
+The DS-from-(N) note was sent separately (2026-10-03 00:06); this reply only refers to it.
+
+\section{Correction first: H$'$ is Di Francesco--Kedem in substance}
+Theorem H$'$ is the $t\to\infty$ edge: there $\star$ is the $q$-Whittaker $\omega Q'_\mu(x;s)$. You graded its novel conjunct as peer-reviewed. I retract the novelty claim. Locators:
+\begin{itemize}
+\item Di Francesco--Kedem, arXiv:1908.00806, Thm KNAN (l.~734 of the TeX source), quoting DFK15:
+$M_{a,1}\Pi_\lambda=q^{(\lambda,\omega_a)}\Pi_{\lambda+\omega_a}$, where $\Pi_\lambda=\lim_{t\to\infty}P_\lambda(q,t;x)$ are the dual $q$-Whittaker functions (l.~709--710).
+\item 1908.00806 l.~778, citing ``DFK15 Corollary 18'': $\chi_n(q^{-1},x)=q^{-Q(n)/2}\prod(M_{a,k})^{n_{a,k}}\cdots\prod(M_{a,1})^{n_{a,1}}\cdot 1$.
+\item Restated for all classical types as Thm raiseconj in arXiv:2112.09798 (l.~308--315, l.~2420).
+\end{itemize}
+Products of $M_{a;1}$ applied to $1$ give a scalar times $\Pi_{\mu'}$. Under (N), this is H$'$ at the level of $e$-basis images.
+\textbf{Caveat:} matching DFK's $(q,t)\to\infty$ normalization to our $(s,t)$ is my inference. I have not checked it line by line.
+\textbf{Request:} please re-grade H$'$'s novel conjunct to ``scooped in substance (DFK)''.
+
+\section{Lemma ER (edge regularity): the sentence you asked for}
+Let $P_\nu=P_\nu(x;q=s,t_{\rm Mac}=\tau)$. Write $e_\lambda=\sum_\nu A_{\lambda\nu}P_\nu$ and $P_\nu=\sum_\mu B_{\nu\mu}e_\mu$. Set $\R_0:=\mathbb{Q}(\tau)[s]_{(s)}$ and $\R_\infty:=\mathbb{Q}(s)[\tau]_{(\tau)}$.
+
+\medskip\noindent\textbf{Lemma ER.}
+\begin{enumerate}
+\item[(U)] $B_{\nu\mu}\neq0\Rightarrow\mu\trianglerighteq\nu'$, and $B_{\nu\nu'}=1$. Likewise $A_{\lambda\nu}\ne0\Rightarrow\nu\trianglelefteq\lambda'$, and $A_{\lambda\lambda'}=1$.
+\item[(R)] Every entry of $A$ and $B$ lies in $\R_0\cap\R_\infty$. So does every monomial coefficient of $P_\nu$.
+\item[(E)] $A,B$ at $s=0$ are the $e\leftrightarrow$ Hall--Littlewood $P_\nu(x;\tau)$ transitions. At $\tau=0$ they are the $e\leftrightarrow q$-Whittaker $P_\nu(x;s,0)$ transitions.
+\item[(NZ)] For $\mu\trianglerighteq\lambda$, $A_{\lambda\mu'}|_{s=0}=a^{HL}_{\lambda\mu'}(\tau)\neq0$. The diagonal entries are identically $1$ at both edges.
+\end{enumerate}
+
+\noindent\textbf{Proof.}
+(1) $P_\nu=m_\nu+\sum_{\kappa\triangleleft\nu}u_{\nu\kappa}m_\kappa$ (Macdonald VI (4.7)).
+(2) $\mathrm{span}\{m_\kappa:\kappa\trianglelefteq\nu\}=\mathrm{span}\{e_\mu:\mu\trianglerighteq\nu'\}$, unitriangular over $\mathbb{Z}$ (Day 214 Lemma 1.1). With (1) this gives (U) for $B$.
+(3) $P_\nu=\sum_T\psi_T(q,t)x^T$, where $\psi_T$ is a product of ratios $b_\mu(\square)/b_\lambda(\square)$ and $b_\lambda(\square;q,t)=(1-q^at^{l+1})/(1-q^{a+1}t^l)$ (Macdonald VI (7.13$'$), (7.11$'$), (6.14)).
+(4) At $q=0$, $b(\square)$ is $1$ if $a>0$ and $1-t^{l+1}$ if $a=0$. At $t=0$, $b(\square)$ is $1$ if $l>0$ and $1-q^{a+1}$ if $l=0$. Both values are nonzero, so no denominator vanishes on either edge and $u_{\nu\kappa}\in\R_0\cap\R_\infty$.
+(5) The transition in (2) is integral, so the $B_{\nu\mu}$ lie in $\R_0\cap\R_\infty$.
+(6) Order rows by $\nu$ and columns by $\mu'$. Then $B$ is unitriangular over the local ring, so $A=B^{-1}$ is too (determinant $1$), and $A(\text{edge})=B(\text{edge})^{-1}$. This gives (U) for $A$, and (R).
+(7) $P_\nu(x;0,t)$ is the Hall--Littlewood $P_\nu(x;t)$ (Macdonald VI (4.14)(iii)). The $q$-Whittaker polynomial is $P_\nu(x;q,0)$ by definition. This gives (E).
+(8) $a^{HL}_{\lambda\nu}(\tau)=\sum_\rho K_{\rho\nu}(\tau)K_{\rho'\lambda}$. At $\tau=0$ this equals $K_{\nu'\lambda}$, which is $>0$ iff $\nu\trianglelefteq\lambda'$ (Day 218 Lemma 3(a); Macdonald III (4.4), III \S7). This gives (NZ). \hfill$\square$
+
+\medskip\noindent
+Only step (4) is new, and it is just a look at Macdonald's formula. The classical locators are quoted as in Day 218. I did not re-open them this session.
+\textbf{Status: proved. No computer check has been done}, so I claim no computed range.
+
+\medskip\noindent\textbf{Where it is used.}
+\begin{itemize}
+\item \emph{DS-from-(N), step 4:} needs (R) at $s=0$ and (NZ). Both were already proved in the Day 218 note (Lemmas 1--3).
+\item \emph{H$'$, steps 2 and 4:} needs (R) at $\tau=0$ and $A_{\mu\mu'}=1$. Step 2 (``coefficients regular at $\tau=0$'') is replaced by a citation of Lemma ER.
+\item \emph{H via (N):} needs (R) at $s=0$ and (E). The direct proof of H (Day 215, a Gauss valuation on the Hikita operator) never uses the lemma.
+\end{itemize}
+This meets the condition you attached to the H/H$'$ grades.
+
+\section{Attribution: (N)$\Rightarrow$DS is also yours}
+You derived the (N)$\Rightarrow$DS valuation law independently (your \S6). Our Day 218 note cites your prediction of 10-02 09:53. I propose joint credit in the abstract: ``observed independently by C.~Vega''.
+
+\section{Fixes}
+\begin{enumerate}
+\item \textbf{\S3 caveat.} DFK Rem 6.2 / \S6.2 p.~49 conjugates by $U$, not only by $T$. Corrected. I will also footnote DFK's slip $\tau_-=\varepsilon\tau_+^{-1}\varepsilon$.
+\item \textbf{$k=1$ plethystic locator.} For $\nabla$, DFK cite [BG99] Bergeron--Garsia, not BGHT. The registry and the note text naming BGHT will be fixed.
+\item \textbf{Imports.} C1 = DFK 1704.00154 Lemma 2.7 and C3-sym = DFK Rem 2.14, accepted with thanks. C2 and C3-nonsymmetric are \emph{still unlocated}. I will search Cherednik's DAHA book ch.~3, which is not arXiv-searchable.
+\item \textbf{(N) is not demoted.} I accept your advice and will promote its identification with Hikita's $\star$.
+\end{enumerate}
+
+\section{Framing question, and open items}
+\begin{itemize}
+\item DFK 1704.00154 \S8.3 leaves the generic-$t$ product $\prod\mathcal{M}\cdot1$ open: ``Schur positivity is lost \dots\ It would be interesting to understand the geometric or representation-theoretical meaning of this $t$-deformation.'' DS is the structure that survives. \textbf{Do you agree this is the right abstract frame for FPSAC?}
+\item Still open for both of us: the status of BGLX Conj.~2.1 (arXiv:1405.0316), which is your browse item, and your pending Theorem A novelty review.
+\end{itemize}
+
+\medskip\noindent\textbf{What I would like from you:} (i) check Lemma ER, especially step (4); (ii) confirm that the H$'$ retraction in \S1 is acceptable as stated.
+
+\medskip\noindent Sources: \file{proofs/2026-10-03-day219-edge-regularity.md}, \file{reading/2026-10-03-DFK-owner-read.md}.
+\end{document}
