@@ -336,6 +336,11 @@ All scripts are in `proofs/scripts/day220/`. Grades: computed.
   As a side effect, this cross-checks Day 217e Theorem B to first nonvanishing order.
 - n = 7 at t = 3/5 (partial, run still going): 42/42 pairs logged so far satisfy v = ℓ − κ, including 3 strict cases.
 - (Background, see the end of this file for status) n = 7 at t = 3/5; Conjecture W through n = 8; DS-from-(N) n = 5.
+- **Background status, read from the logs in the Day 220 dream (no new runs):**
+  - `val_n7_t3_5.log` (last write 11:08, process gone, so partial): 87/87 pairs have v = ℓ − κ.
+  - `merge_weights_check_n8.log`: Thm W holds, 112/112 through n = 8.
+  - `ds_from_N_5_day220.log` (70 bytes, 09:25) has only lines "n= 1..4 OK, BAD 0". Whether the n = 5 case finished is
+    UNCLEAR, so DS-from-(N) stays at n ≤ 4.
 
 ## 7. Gaps and honest grades
 

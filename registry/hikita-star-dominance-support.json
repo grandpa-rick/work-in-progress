@@ -825,7 +825,10 @@
                 "trust": "proved",
                 "role": "premise",
                 "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
-                "children": []
+                "children": [],
+                "notes": [
+                  "Day 220 dream PROPOSAL (not a regrade): this premise is DFK arXiv:1505.01657 Cor 5.18 (5.27) with (5.15)/(5.25), whose M_{k,1} = E_k|_{t=0} literally (Day 218 dream). Citing DFK15 instead of 217e Thm B would make thmC-block-law-exact independent of (N) and of the C3-nonsymmetric Cherednik import. Normalization match must be checked first-hand before the swap."
+                ]
               },
               {
                 "id": "thmC-premise-macdonald-raising-operators",
@@ -838,7 +841,10 @@
               }
             ],
             "recheck": "2026-10-03 cold re-derivation in-session of steps 2-5 (raising-operator convention, finiteness, component bound, path tree strictness, specialization); numerics val_n*_t0.log + raising_t0.py",
-            "textbook_locator": "Macdonald, Symmetric Functions and Hall Polynomials, 2nd ed., III (2.15) (textbook; not in arXiv sources index)"
+            "textbook_locator": "Macdonald, Symmetric Functions and Hall Polynomials, 2nd ed., III (2.15) (textbook; not in arXiv sources index)",
+            "notes": [
+              "Day 220 dream: val_n7_t3_5.log 87/87 v=l-kappa (partial run). Novelty gate: t=0 case unfolds to (1-q)-valuation of inverse HL P->m matrix entries; questions/q-block-law-novelty-inverse-HL-monomial.md. Novelty UNAUDITED."
+            ]
           },
           {
             "id": "thmW-merge-weight-closed-form",
@@ -856,7 +862,10 @@
                 "children": []
               }
             ],
-            "recheck": "2026-10-03 single in-session derivation + hand check P_21 and n=2 Ex2; computed 68/68 (merge_weights_check_n8.log). NOT yet cold re-read."
+            "recheck": "2026-10-03 single in-session derivation + hand check P_21 and n=2 Ex2; computed 68/68 (merge_weights_check_n8.log). NOT yet cold re-read.",
+            "notes": [
+              "Day 220 dream (2026-10-03): sober spot-checks pass: lin_e P_21 = -[3]; W_1((b)) = -[b+1] matches wake fit; Lead_{111,3} = [3](2+t). merge_weights_check_n8.log 112/112 through n=8. Trust unchanged (proved). Reading: discrete HL measure on mu_n^k = principal specialization (q-dimension); connections/2026-10-03-s1-is-an-order-filtration.md section 4."
+            ]
           },
           {
             "id": "prove-md-equality-max1-refuted",
@@ -868,6 +877,9 @@
             "file": "proofs/scripts/day220/val_n6_t3_5.log",
             "children": []
           }
+        ],
+        "notes": [
+          "Day 220 dream: novelty UNAUDITED; see questions/q-block-law-novelty-inverse-HL-monomial.md. Biderivation (Thm 1) is the order-1 case of the order filtration; Harrison rigidity alone gives B = Gamma_L only for some L of unbounded order."
         ]
       }
     ],
