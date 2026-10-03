@@ -695,7 +695,18 @@
             "role": "attempt",
             "file": "scripts/day219/residual_check.out",
             "note": "Registered Day 219 dream from wake output. Basis: e-basis structure constants c_{lam mu} of e*_lam (Hikita operator mats_N5), off-diagonal, n<=5: 35 pairs, 30 have R with all-positive (s,t)-coefficients, 5 mixed (e.g. (2,2)->(4)); all lam=1^n rows positive. Side observation (computed, same file): the (1-s)-adic valuation v of c_{lam mu} equals max(1, l(lam)-l(mu)) in every row -- an s=1 companion to DS's val_s=n(mu) at s=0, unproved, untested beyond n=5.",
-            "children": []
+            "children": [
+              {
+                "id": "s1-first-order-star-is-biderivation",
+                "approach": "B(f,g)=∂_s(f⋆g)|_{s=1} is symmetric and a biderivation of (Sym,·) (⇒ carré du champ Γ_L of a 2nd-order L?). Checked on all e-monomial triples total degree ≤5 at t∈{3/5,−2} (18/18 Leibniz each) and ≤4 at t=2/3 (5/5), s symbolic. Logs proofs/scripts/day220/bider_*.log. Fitted B(e1,e_b)=e1e_b−[b+1]_t e_{b+1}.",
+                "trust": "computed",
+                "role": "attempt",
+                "file": "proofs/scripts/day220/biderivation.py",
+                "date": "2026-10-03",
+                "note": "Registered Day 220 wake as child of e1-power-star-residual-positive (s=1 companion: v>=l(lam)-l(mu) valuation side observation). Logs: proofs/scripts/day220/bider_t2_3_d4.log, bider_t3_5_d5.log, bider_tm2_d5.log.",
+                "children": []
+              }
+            ]
           }
         ],
         "reason": "No positive natural basis for star structure constants (Schur/e/h/b, all substitutions tried), |lam|+|mu|<=6.",
