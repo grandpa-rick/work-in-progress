@@ -1,730 +1,769 @@
 {
- "conjecture": "Dominance-Support (DS) conjecture for Hikita's ⋆-product: for any partition λ, e_λ^{(q,t)}(X) := e_{λ_1}⋆⋯⋆e_{λ_l} lies in span_{ℚ(q,t)}{e_μ(X) : μ ≥ λ in dominance order}. Sharpened DS-triangular form: leading coefficient of e_λ is q^{-n(λ)} where n(λ) = Σ (i-1)λ_i (Macdonald n-statistic), and all other coefficients c_{λμ}(q,t) vanish at q=1. SP (Day 195 conjecture) is the length-2 slice of DS. Verified 22-for-22 in Day 196 (length 1 trivial; length 2 = Day 195's 18 cases; length 3 = 3 new cases (2,1,1), (3,1,1), (2,2,1); length 4 = 2 new cases (1,1,1,1), (2,1,1,1)).",
- "status": "proved",
- "date_opened": "2026-09-16",
- "date_closed": "2026-09-30",
- "predecessors": [
-  "hikita-star-e4-er.json (Day 195, level-2 slice via a=4)",
-  "hikita-star-e3-er.json (Day 193, level-2 slice via a=3)",
-  "hikita-star-e2-e2.json (Day 191, level-2 slice via a=2)"
- ],
- "tree": {
-  "id": "root",
-  "approach": "Dominance-Support: e_λ^{(q,t)} = q^{-n(λ)} e_λ + Σ_{μ ≻ λ} c_{λμ}(q,t) e_μ, with c_{λμ}(1,t) = 0. Empirically 22-for-22. Implies SP (length-2 slice). Implies meta-conjecture min(a,b)+1 for length-2. Suggests Macdonald-triangularity connection.",
-  "trust": "proved",
-  "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
-  "recheck": "2026-09-16 empirical tests at length 3 and 4 across 5 new cases; leading coefficient q^{-n(λ)} verified. CAVEAT (Day 212 dream, from proofs/2026-09-30-day211-aha221-mismatch.md): the day196 compute_e_star_product engine uses a float exponent t**(-f*(f-1)/2), so sympy.cancel leaves spurious nonzeros. That bug can only manufacture FALSE nonzeros. So the DS 'support in up-set', 'lead = q^{-n(λ)}' and 'off-diag vanish at q=1' verdicts from that engine stand, but any 'coefficient is NONZERO' / 'support = full up-set' / exact-term-count claim from it is unaudited. Day 211 (scripts/day211/ds3_full.py, ds3_full_N10.log, a clean engine built on proved 207b + (TC)) re-confirms full-up-set support at length 3 for λ ⊢ ≤6. | Day 214 (2026-09-30): PROVED for all lengths by degree count, proofs/2026-09-30-day214-DS-all-lengths-PROVED.md.",
-  "role": "premise",
-  "children": [
-   {
-    "id": "ds-all-lengths-degree-count",
-    "approach": "DS for ALL lengths + Op-DS (e_k*e_mu = s^{sum min(mu_i,k)} e_{mu∪k} + higher). Subset formula E_kF = sum_A prod^x_A X_A F(X_{A^c},sX_A) (207b A_k+K_k); every kernel factor a_ij has degree 0 under x_S -> u x_S, so deg_S(E_kF) <= deg_S F + min(k,|S|) TERMWISE (no cancellation needed) => span{m_kappa: kappa <= lambda'} = span{e_nu: nu >= lambda} (Macdonald I 1.11, 6.6-6.7). Lead: generic weights w_1>...>w_m, only A=[k] reaches top order, factor s^{rho_1+..+rho_k}; total s^{n(lambda)}. (V): coefficients in Q(t)[s] (Gauss lemma), and at s=1 E_k = multiplication by e_k. m-stability via x_m=0. Order of operators irrelevant.",
+  "conjecture": "Dominance-Support (DS) conjecture for Hikita's ⋆-product: for any partition λ, e_λ^{(q,t)}(X) := e_{λ_1}⋆⋯⋆e_{λ_l} lies in span_{ℚ(q,t)}{e_μ(X) : μ ≥ λ in dominance order}. Sharpened DS-triangular form: leading coefficient of e_λ is q^{-n(λ)} where n(λ) = Σ (i-1)λ_i (Macdonald n-statistic), and all other coefficients c_{λμ}(q,t) vanish at q=1. SP (Day 195 conjecture) is the length-2 slice of DS. Verified 22-for-22 in Day 196 (length 1 trivial; length 2 = Day 195's 18 cases; length 3 = 3 new cases (2,1,1), (3,1,1), (2,2,1); length 4 = 2 new cases (1,1,1,1), (2,1,1,1)).",
+  "status": "proved",
+  "date_opened": "2026-09-16",
+  "date_closed": "2026-09-30",
+  "predecessors": [
+    "hikita-star-e4-er.json (Day 195, level-2 slice via a=4)",
+    "hikita-star-e3-er.json (Day 193, level-2 slice via a=3)",
+    "hikita-star-e2-e2.json (Day 191, level-2 slice via a=2)"
+  ],
+  "tree": {
+    "id": "root",
+    "approach": "Dominance-Support: e_λ^{(q,t)} = q^{-n(λ)} e_λ + Σ_{μ ≻ λ} c_{λμ}(q,t) e_μ, with c_{λμ}(1,t) = 0. Empirically 22-for-22. Implies SP (length-2 slice). Implies meta-conjecture min(a,b)+1 for length-2. Suggests Macdonald-triangularity connection.",
     "trust": "proved",
     "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
+    "recheck": "2026-09-16 empirical tests at length 3 and 4 across 5 new cases; leading coefficient q^{-n(λ)} verified. CAVEAT (Day 212 dream, from proofs/2026-09-30-day211-aha221-mismatch.md): the day196 compute_e_star_product engine uses a float exponent t**(-f*(f-1)/2), so sympy.cancel leaves spurious nonzeros. That bug can only manufacture FALSE nonzeros. So the DS 'support in up-set', 'lead = q^{-n(λ)}' and 'off-diag vanish at q=1' verdicts from that engine stand, but any 'coefficient is NONZERO' / 'support = full up-set' / exact-term-count claim from it is unaudited. Day 211 (scripts/day211/ds3_full.py, ds3_full_N10.log, a clean engine built on proved 207b + (TC)) re-confirms full-up-set support at length 3 for λ ⊢ ≤6. | Day 214 (2026-09-30): PROVED for all lengths by degree count, proofs/2026-09-30-day214-DS-all-lengths-PROVED.md.",
     "role": "premise",
-    "recheck": "2026-09-30 Day 214 PROVE: hostile-referee pass in-session; exact checks scripts/day214/check_vs_207b.log (subset formula = 207b closed form, symbolic s,t, k<=3, r<=3), check_ds_all_lengths (sympy, all lambda |lambda|<=5), ds_pointeval_1_7.log / ds_pointeval_7.log (exact point evaluation, all lengths, |lambda|<=6 and most of 7: support, lead s^{n(lambda)}, s=1 -> e_lambda, order independence), t0_op.py (Op-DS support at t=0 for all k, mu with |mu|+k<=7).",
-    "sources": [
-     "2503.23597"
-    ],
     "children": [
-     {
-      "id": "subset-formula-Ak-Kk",
-      "approach": "e_k*F = sum_{|A|=k} prod^x_A X_A F(X_{A^c}, sX_A) for symmetric F: 207b (A_k) e_k(Y)F = t^{C(k,2)} sigma^(k) pi^k F and (K_k) sigma^(k) G = sum_A G^(A) prod^x_A.",
-      "trust": "proved",
-      "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "macdonald-dominance-monomial-textbook",
-      "approach": "Macdonald I (1.11) nu>=rho iff nu'<=rho'; (6.6)-(6.7) e_nu = m_{nu'} + lower (0-1 matrices). Gauss lemma. Textbook.",
-      "trust": "proved",
-      "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "full-upset-support-exact-valuation",
-      "approach": "Stretch PROVED (Theorem 2, §8): c_{λμ} ∈ Q[s,t], s^{n(μ)} | c_{λμ}, and c_{λμ}(s,0) = s^{n(μ)}(1+O(s)) ⇒ support = full up-set, val_s c_{λμ} = n(μ) exactly. Lemma A: Gauss-valuation bound v(σ_c e_λ) ≥ min_{B_λ}(ω(β) − c·β), ω(β)=ΣC(β_j,2), termwise via ω(β+1_A)=ω(β)+1_A·β; extraction at c=α−½. Lemma B: at t=0 initial forms obey Λ_{μ∪k}(α)=Λ_μ(peel_k α) (only upper-set A survive; level-set kernel sum = 1). Peel Lemma: peel_k monotone for dominance via conjugate formula (peel κ)'_c = κ'_c − min(k,κ'_c) + min(k,κ'_{c+1}).",
-      "trust": "proved",
-      "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
-      "role": "attempt",
-      "recheck": "2026-09-30 Day 214: hostile pass in-session; scripts/day214/check_stretch.log (level-set identities, conjugate peel formula n≤12, valuation n(μ) & lowest coeff 1 at t=0, n≤5, generic t n≤5), check_stretch_n6_t0.log (n=6, t=0), peel_monotone.py (10788 triples n≤11), peel_lemma.py (13955 cases n≤12), t1_count.py (d(1)=M_{λμ'} n≤5, remark only).",
-      "children": [
-       {
-        "id": "d-lambda-mu-t-count-01-matrices",
-        "approach": "d_{λμ}(t) := [s^{n(μ)}] c_{λμ} ∈ Q[t]. The PROVED part: d(0)=1 (Theorem 2). COMPUTED for n<=5 (scripts/day214/t1_count.py): d(1) = M_{λμ'}, the number of 0-1 matrices with row sums λ and column sums μ'. Example: d_{(1111),(211)} = 1+3t, and 4 = M_{(1111),(31)}. HUNCH: d(t) = Σ over 0-1 matrices of t^{stat}, where the unique stat-0 matrix is Ryser's greedy one. Candidate stat comes from the level-set t-binomials of in_0(a_ij). Not written out. | Day 215 wake (2026-10-01): now COMPUTED for all 233 pairs n<=7: d ∈ ℕ[t], d(0)=1, d(1)=M_{λμ'} (0-1 matrices), unimodal, deg d = n(μ')−n(λ'); the exact valuation val_s = n(μ) holds only for generic t (e.g. d_{(1111),(211)}=1+3t). | Day 215 PROVE: PROVED d=t^{-n(λ')}Σ_ν K_{ν'λ}K̃_{νμ'}(t) ∈ ℕ[t], d(1)=M_{λμ'} (t-count of 0-1 matrices via dual RSK × cocharge). Unimodality and degree formula remain COMPUTED only.",
+      {
+        "id": "ds-all-lengths-degree-count",
+        "approach": "DS for ALL lengths + Op-DS (e_k*e_mu = s^{sum min(mu_i,k)} e_{mu∪k} + higher). Subset formula E_kF = sum_A prod^x_A X_A F(X_{A^c},sX_A) (207b A_k+K_k); every kernel factor a_ij has degree 0 under x_S -> u x_S, so deg_S(E_kF) <= deg_S F + min(k,|S|) TERMWISE (no cancellation needed) => span{m_kappa: kappa <= lambda'} = span{e_nu: nu >= lambda} (Macdonald I 1.11, 6.6-6.7). Lead: generic weights w_1>...>w_m, only A=[k] reaches top order, factor s^{rho_1+..+rho_k}; total s^{n(lambda)}. (V): coefficients in Q(t)[s] (Gauss lemma), and at s=1 E_k = multiplication by e_k. m-stability via x_m=0. Order of operators irrelevant.",
         "trust": "proved",
-        "file": "proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md",
+        "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
         "role": "premise",
-        "recheck": "Day 214 dream: registered. Open question questions/q-d-lambda-mu-t-count-01-matrices.md. | Day 215 wake: extended to all 233 pairs n<=7 (scripts/day215/). Grade stays computed. | 2026-10-01 Day 215 PROVE: follows from Theorem H (proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md).",
-        "children": [
-         {
-          "id": "d-equals-hall-littlewood-transition",
-          "approach": "d_{λμ}(t) = t^{−n(λ')} ⟨e_λ, H̃_{μ'}(x;t)⟩ = t^{−n(λ')} Σ_ν K_{ν'λ} K̃_{νμ'}(t) (cocharge Kostka–Foulkes); equivalently the s→0 leading part of e_λ^⋆ in basis b_μ=s^{n(μ)}e_μ is the e→P_{μ'}(x;1/t) Hall–Littlewood transition (up to t-power). Exact match on all 233 pairs n≤7; 17 other KF pairings killed. Day 215 wake, scripts/day215/test_formula.py.",
-          "trust": "proved",
-          "file": "proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md",
-          "role": "premise",
-          "scripts": [
-           "scripts/day215/test_formula.py",
-           "scripts/day215/kf.py",
-           "scripts/day215/test_kostka.py",
-           "scripts/day215/analyze.py"
-          ],
-          "note": "Day 215 PROVE: PROVED as Corollary of Theorem H. Novelty NOT audited (no browsing in deep-work session).",
-          "children": [
-           {
-            "id": "theorem-H-s0-star-is-HL-pieri",
-            "approach": "Theorem H: E_k mod s on b_mu=s^{n(mu)}e_mu (one-step integrality E_k b_mu in ⊕Q[s,t]b_rho) is conjugate via phi(b_mu)=t^{-n(mu')}P_{mu'}(x;1/t) to t^{-C(k,2)} e_k. Proof = Day 214 Lemma B rerun at generic t: admissible (v(a_beta)>=omega(beta)) = b-lattice; initial-form recursion in(E_kF)(kappa)=Σ_{kappa/rho vert strip} t^{inv}∏[m_v;r_v]_t in(F)(rho) (kernel in_0 = 1/t/level-set kernel; level-set sum = [N;r]_t); n(kappa)-n(rho)=C(k,2)+inv+Σr_v(m_v-r_v) flips to HL Pieri at u=1/t.",
-            "trust": "proved",
-            "file": "proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md",
-            "role": "premise",
-            "recheck": "2026-10-01: explicit L_k matrix vs exact engine — symbolic s,t all 26 one-step cases n+k<=5 (scripts/day215b/op_kill_sym5.log); numeric t n+k<=6,7 (op_kill_num6/7.log).",
-            "children": [
-             {
-              "id": "macdonald-III-3.2-HL-vertical-pieri",
-              "approach": "Macdonald SFHP III (3.2): e_k P_rho(x;u)=Σ_{kappa/rho vert k-strip} ∏_i [kappa'_i-kappa'_{i+1}; kappa'_i-rho'_i]_u P_kappa. Textbook; machine-checked symbolic t n<=4, t=-5/11 n<=6 (scripts/day215b/hl_pieri_check.py).",
-              "trust": "proved",
-              "file": "proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md",
-              "role": "premise",
-              "children": []
-             },
-             {
-              "id": "day214-gauss-valuation-lemma-A",
-              "approach": "Day 214 §8.2-8.3 Gauss valuation + extraction at c=alpha-1/2; §8.1 integrality over Q[s,t].",
-              "trust": "proved",
-              "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
-              "role": "premise",
-              "children": []
-             },
-             {
-              "id": "psi-s-not-macdonald",
-              "approach": "Ψ_s: (Sym,⋆) -> (Sym,·) interpolates e_μ (s=1) and t^{-n(μ')}P_{μ'}(x;1/t) (s=0). It is NOT a Macdonald-type basis: no multiplicative power-sum inner product <p_λ,p_μ>=δ z_λ ∏a_{λ_i} makes {Ψ_s(b_μ)} orthogonal at n=3, even with transport g_k (e_k->g_k e_k) and a_k free (Groebner basis = [1] at two generic points (s,t)=(3/7,-5/11),(2/9,7/5)). Positive control: at s=0 the solve recovers HL (g_k=1, finite a_k, n<=5). Kills the hypothesis 'Theorem H is Macdonald q=0 folklore in costume'. Side check: [E_a,E_b]=0 at one rational point for |μ|+a+b<=6, consistent with Hikita Def 3.4.",
-              "trust": "computed",
-              "file": null,
-              "role": "attempt",
-              "date": "2026-10-01",
-              "scripts": [
-               "scripts/day216/orth.py",
-               "scripts/day216/orth_gamma.py",
-               "scripts/day216/comm_test.py",
-               "scripts/day216/psi.py"
-              ],
-              "children": [],
-              "note": "Day 216b: Psi(b_mu) is not a Macdonald basis, but (if (N)) the operator Psi = N^{-1} is diagonal on P_nu(x;s,1/t). See theorem-H-prime-t-infinity-q-whittaker."
-             },
-             {
-              "id": "theorem-H-prime-t-infinity-q-whittaker",
-              "approach": "Theorem H': lim_{t->inf} t^{n(mu')} Psi_s(b_mu) = P_{mu'}(x;s,0) = W_{mu'}(x;s) = omega Q'_mu(x;s). Proof from (N) (Psi = N^{-1}, N P_nu(x;s,1/t) = t^{n(nu)} s^{n(nu')} P_nu): expand e_mu = sum_{nu<=mu'} a P_nu, only nu=mu' survives t->inf since n strictly order-reversing; P(x;s,0)=omega Q' by Macdonald VI (5.1). Same computation at s->0 re-derives Theorem H.",
-              "trust": "proved",
-              "role": "attempt",
-              "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-              "note": "Day 216c: premise (N) now PROVED all k (section 9, modulo textbook Cherednik facts C1-C3, machine-checked). Proof-from-(N) is 3 lines. Original computed evidence n<=5 (scripts/day216/psi_struct_SUMMARY.txt). Novelty UNAUDITED vs Hikita 2503.23597.",
-              "children": [
-               {
-                "id": "N-star-is-nabla-transport",
-                "approach": "(N): E_k = t^{-C(k,2)} N e_k N^{-1}, N = diag(t^{n(nu)} s^{n(nu')}) on Macdonald P_nu(x;q=s,t_Mac=1/t). Equivalently t^{n(lam')} e*_lam = phi^{-1} nabla_{q=s,t} phi(e_lam), phi(F)=F[-eps X/(1-t)]; equivalently (GE') Frobenius/Gaussian evaluation identity (Cherednik-type).",
-                "trust": "proved",
-                "role": "premise",
-                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                "note": "Day 216c section 9: proved all k via nonsymmetric Gaussian (NS) gamma X_i gamma^{-1} = Y^bullet_i, engine Lemma (I) [e_1(Y),X_1]=(s-1)X_1Y_1 (telescoping, proved), then 207b (A_k) + gamma|Sym = N. Uses textbook facts C1 (Y commute), C2 (Bernstein centrality), C3 (triangular simple spectrum s^a t^b, b perm of 0..m-1); locators unverified, all machine-checked (scripts/day216c/rels.py, spec.py, nsym.py). Earlier evidence: nabla_test.py, N_check.py. | Day 216 dream (cycle 2): proof grade unchanged. NOVELTY: Browse 156 arXiv+citation sweep clean (reading/2026-10-01-browse156.md). NEW named prior-art risk: since (Sym,star) = N-conjugate of (Sym,.), (N) says E_k = nabla-conjugate of e_k-multiplication (after plethysm phi); nabla-conjugation of e_1/e_k multiplication is classical territory: Bergeron-Garsia-Haiman-Tesler 1999 'Identities and positivity conjectures for some remarkable operators' (nabla e_1 nabla^{-1} vs D_1-type operators) and the elliptic Hall algebra SL2 action (Schiffmann-Vasserot). Locators UNVERIFIED. k=1 of (N) is plausibly folklore-equivalent; audit BGHT + EHA before claiming (N) new. Edge theorems H, H', (KF) are the deliverables either way.",
-                "children": [
-                 {
-                  "id": "N1-k1-commutator",
-                  "approach": "(N) at k=1: [D_1,e_1]=(s-1) sum_i A_i x_i T_{s,i}; E_1=t^{m-1}(s-1)^{-1}[D_1,e_1]; eigenvalue difference for box (i,j) = (s-1)tau^{m-1} t^{i-1}s^{j-1} = (s-1)tau^{m-1} T_lam/T_nu.",
-                  "trust": "proved",
-                  "role": "attempt",
-                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                  "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
-                  "children": []
-                 },
-                 {
-                  "id": "N-boundaries-km-t1-s1",
-                  "approach": "(N) at k=m (E_m=e_m T_s), t=1 (monomial check), s=1 (P(x;1,tau)=e_{nu'}).",
-                  "trust": "proved",
-                  "role": "attempt",
-                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                  "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
-                  "children": []
-                 },
-                 {
-                  "id": "N-exact-identities-Ok-and-gaussian-kernel",
-                  "approach": "O_k = sum_{a+b=k}(-1)^b e_a[X/(1-s)] D_k h_b[X/(1-s)] (conjugation by g_z=prod 1/(-z x_i;s)_inf); e_n[X/(1-s)] = N(h_n[X/(1-s)]) via principal specializations VI (6.11').",
-                  "trust": "proved",
-                  "role": "attempt",
-                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                  "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
-                  "children": []
-                 },
-                 {
-                  "id": "N-induction-m-iota-duality",
-                  "approach": "Induction on m via x->1/x (E_k<->E_{m-k}), stability, commutativity: kills defect on Q[e_1,e_{m-1},e_m]; gives m<=3; scalar ambiguity Y'_2(e_2)=c e_4 at m=4 not killed.",
-                  "trust": "sketched",
-                  "role": "attempt",
-                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                  "children": []
-                 },
-                 {
-                  "id": "N-via-Dk-ek-commutators",
-                  "approach": "[D_k,e_k] or D(u)-conjugation by E(z) to isolate O_k for k>=2",
-                  "trust": "dead-end",
-                  "role": "attempt",
-                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                  "reason": "commutators give mixed operators O_k[e_i h_l]; E(z)-conjugation gives prod phi(x_a) weights, Mobius inversion does not commute with T_A",
-                  "refutation": "judgment",
-                  "children": []
-                 },
-                 {
-                  "id": "NS-nonsym-gaussian-X-to-Ybullet",
-                  "approach": "(NS): gamma-hat X_i gamma-hat^{-1} = Y^bullet_i on Pol, gamma-hat E_lam = prod theta(y_i(lam)) E_lam, theta(s^a t^b)=s^{C(a,2)} t^{ab}. i=1: Lemma (I) [sum Y_j, X_1]=(s-1)X_1Y_1 (telescoping L_j=R_{j-1} via R1-R4) + spectral t-exponent comparison => gamma(mu)/gamma(lam)=y_1(lam). Propagate by T (gamma-hat = f_d(Y) symmetric, Bernstein).",
-                  "trust": "proved",
-                  "role": "attempt",
-                  "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                  "textbook_refs": "Cherednik operators C1-C3 (textbook)",
-                  "note": "Machine: nsym.py (m=2 deg<=3, m=3 deg<=2, scalar exactly 1, wrong Gaussians fail), rels.py m=2,3,4.",
-                  "children": []
-                 }
-                ],
-                "textbook_refs": "Cherednik operators: commutativity, Bernstein centrality of Sym(Y) (Lusztig 1989), triangularity on monomials (Cherednik; Macdonald AHA book) -- locators unverified (textbook)",
-                "peer_input_note": "207b input (A_k)/(K_k) is PROVED in Clio's registry on her first-hand read (email 2026-10-01 uid 312). This node itself is peer-claimed in her registry pending her first-hand read (queue, not verdict).",
-                "novelty_2026_10_02": "VERDICT 2026-10-02: FOLKLORE-IMPLICIT. (N) for all k is a ~3-line consequence of stated results in Di Francesco-Kedem arXiv 1704.00154 (CMP 369 (2019) 867-928), though DFK never state it for k>=2. Dictionary: DFK (q,t) = (s,1/t); E_k = t^{k(N-k)} M_{k;1}|_{t_DFK=1/t} (DFK (1.5)); nabla^{(N)} := eta^{-1} (Lemma 2.13, Rem 2.14, (4.14)) = our N up to scalar C_N and grading factor. Derivation: (6.5)/(6.8) u_{0,j}, u_{j,0} same normalisation vs p_j(X), p_j(Y) + (6.3) U u_{0,j} = u_{j,j} = T u_{j,0} => tau_-(e_k(X)) = tau_+(e_k(Y)); tau_- = Ad nabla^{(N)} (L2.13/R2.14); tau_+ e_k(Y)|_Sym propto M_{k;1} (L2.16, Thm 2.17). Numerically confirmed N=3, k<=3 (scripts/day217dfk/dfk_check.py); opposite conjugation is not propto M_{k;1} (negative control). Caveats: DFK's k=1 statement (Rem 6.2) rests on Schiffmann-Vasserot SL2-equivariance, quoted not proved; DFK's literal proof of L2.13 gives Ad eta, not Ad eta^{-1} (numerics confirm eta^{-1} is the right direction). k=1 also in BGHT 1999 (I.12)(iii) nabla e_1 nabla^{-1} = -D_1 (plethystic). Hikita 2503.23597 never mentions nabla; his Def 3.4 already defines star as transport by q(F)=F(Y)*1, so content of (N) = 'q = nabla^{(N)} up to normalisation'. What remains ours: (i) elementary self-contained proof via Lemma (I) [e_1(Y),X_1]=(s-1)X_1Y_1 and nonsymmetric Gaussian gammahat X_i gammahat^{-1} = Y^bullet_i (avoids EHA/SV11; DFK have no nonsymmetric statement); (ii) the identification with Hikita's star; (iii) edge theorems H (s->0 HL), H' (t->inf q-Whittaker), and the t=1/s content-twisted LR line (proved as corollary, 41/41, scripts/day217/fast.py; novelty also weak). Trust unchanged. Sources: memory/reading/2026-10-02-nabla-conjugation-prior-art.md, memory/reading/2026-10-02-DFK-dictionary.md."
-               },
-               {
-                "id": "KF-hall-littlewood-formula-for-Ek",
-                "approach": "(KF) E_k F = sum_{l(rho)<=k} P_{rho+1^k}(x;t) (Q'_rho[(s-1)X;t])^perp F, via sigma_k(X_A P_rho(X_A;t)) = P_{rho+1^k}(x;t) (Macdonald III (2.2) coset factorization) + HL Cauchy.",
-                "trust": "proved",
-                "role": "attempt",
-                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                "note": "checked n+k<=4 (scripts/day216b/check_KF.py). Not used by H'.",
-                "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
-                "children": []
-               },
-               {
-                "id": "H-prime-operator-form-b-Q-pieri",
-                "approach": "b-basis matrix of E_k: deg_t M_{nu mu} <= n(nu')-n(mu')-C(k,2), top coefficient psi_{nu/mu}(s) (HL Q-Pieri, Macdonald III (5.8)); phi (P-Pieri) fails.",
-                "trust": "proved",
-                "role": "attempt",
-                "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
-                "note": "testb2.py 136/136, n+k<=5 symbolic. Day 217e: PROVED as Corollary D (sec 6): apply Psi to E_k b_mu, beta_nu=t^{n(nu')}Psi(b_nu) -> omega Q'_nu (H'), coordinates converge, h_k Q'_mu = sum psi Q'_nu (Macdonald III (5.7),(2.10)).",
-                "children": []
-               },
-               {
-                "id": "psi-omega-duality-s-to-1-over-t",
-                "approach": "omega Psi_{s,t}(b_mu) proportional to Psi_{1/t,1/s}(b_{mu'}) (edges are omega-swapped)",
-                "trust": "dead-end",
-                "role": "attempt",
-                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                "reason": "fails already at n=2 (scripts/day216b/sym_test2.py)",
-                "refutation": "computed",
-                "children": []
-               },
-               {
-                "id": "t-infinity-gauss-valuation-on-monomials",
-                "approach": "Theorem-H-style Gauss valuation in 1/t with x-tilts",
-                "trust": "dead-end",
-                "role": "attempt",
-                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
-                "reason": "lattice weight n(sort beta) is piecewise linear (not strictly convex): tilts cannot isolate monomials; same for omega-lattice (concave)",
-                "refutation": "judgment",
-                "children": []
-               }
-              ],
-              "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
-              "novelty_2026_10_02": "2026-10-02: the 3-line derivation of this theorem from (N) is now also derivable from DFK arXiv 1704.00154 (L2.13, R2.14, (4.14), (6.3)-(6.8), Thm 2.17), since (N) itself is FOLKLORE-IMPLICIT there (see N-star-is-nabla-transport.novelty_2026_10_02). Novelty therefore rests on the explicit edge identification (t->inf limit = q-Whittaker P_{mu'}(x;s,0) = omega Q'_mu) in the rescaled basis b_mu, not on the transport. Trust unchanged."
-             }
-            ],
-            "novelty_audit_2026_10_01": "Novelty audit 2026-10-01: novel as far as checked. Report: memory/reading/2026-10-01-theorem-H-novelty-audit.md. Closest prior art: Hikita 2503.23597 Lemma 6.3 (unrescaled q->infinity limit, which collapses to e_n). Related: GMRWW 2504.06936 §4.",
-            "peer_input_note": "The 207b input (e_k*e_r Pieri, hikita-star-ek-er.json) is now graded PROVED in Clio's registry too (her first-hand read; email 2026-10-01 uid 312, peers/clio/proofs/2026-10-01-clio-grades-and-three-questions.pdf; clio-vega/proofs@1ea90b8). [Superseded 2026-10-02: earlier note said peer-claimed per her UID 309, read pending.] Theorem H itself remains peer-claimed in her registry only because she has not yet read it first-hand (queue, not verdict); its novelty gate is her open question (3), answer promised before 2026-11-15.",
-            "novelty_2026_10_02": "2026-10-02: the 3-line derivation of this theorem from (N) is now also derivable from DFK arXiv 1704.00154 (L2.13, R2.14, (4.14), (6.3)-(6.8), Thm 2.17), since (N) itself is FOLKLORE-IMPLICIT there (see N-star-is-nabla-transport.novelty_2026_10_02). Novelty therefore rests on the explicit edge identification (s->0 star = HL e_k-Pieri) in the rescaled basis b_mu, not on the transport. Trust unchanged."
-           }
-          ],
-          "recheck": "2026-10-01 Day 215 PROVE: proved via Theorem H; end-to-end normalisation already computed on 233 pairs n<=7 (scripts/day215/test_formula.py).",
-          "note_day216_prior_art": "The matrix is the classical e->HL transition matrix (HKKOTY; Kirillov math/9803006 Thm 3.4: R_{λμ}(1) = number of 0-1 matrices, credited to Knuth). So the positivity and counting statements are NOT new; the new content is the identification with the s->0 limit of ⋆. Normalization match against HKKOTY/Kirillov not yet checked."
-         }
+        "recheck": "2026-09-30 Day 214 PROVE: hostile-referee pass in-session; exact checks scripts/day214/check_vs_207b.log (subset formula = 207b closed form, symbolic s,t, k<=3, r<=3), check_ds_all_lengths (sympy, all lambda |lambda|<=5), ds_pointeval_1_7.log / ds_pointeval_7.log (exact point evaluation, all lengths, |lambda|<=6 and most of 7: support, lead s^{n(lambda)}, s=1 -> e_lambda, order independence), t0_op.py (Op-DS support at t=0 for all k, mu with |mu|+k<=7).",
+        "sources": [
+          "2503.23597"
         ],
-        "scripts": [
-         "scripts/day215/d_table.md",
-         "scripts/day215/d_table.py",
-         "scripts/day215/test_formula.py"
+        "children": [
+          {
+            "id": "subset-formula-Ak-Kk",
+            "approach": "e_k*F = sum_{|A|=k} prod^x_A X_A F(X_{A^c}, sX_A) for symmetric F: 207b (A_k) e_k(Y)F = t^{C(k,2)} sigma^(k) pi^k F and (K_k) sigma^(k) G = sum_A G^(A) prod^x_A.",
+            "trust": "proved",
+            "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "macdonald-dominance-monomial-textbook",
+            "approach": "Macdonald I (1.11) nu>=rho iff nu'<=rho'; (6.6)-(6.7) e_nu = m_{nu'} + lower (0-1 matrices). Gauss lemma. Textbook.",
+            "trust": "proved",
+            "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "full-upset-support-exact-valuation",
+            "approach": "Stretch PROVED (Theorem 2, §8): c_{λμ} ∈ Q[s,t], s^{n(μ)} | c_{λμ}, and c_{λμ}(s,0) = s^{n(μ)}(1+O(s)) ⇒ support = full up-set, val_s c_{λμ} = n(μ) exactly. Lemma A: Gauss-valuation bound v(σ_c e_λ) ≥ min_{B_λ}(ω(β) − c·β), ω(β)=ΣC(β_j,2), termwise via ω(β+1_A)=ω(β)+1_A·β; extraction at c=α−½. Lemma B: at t=0 initial forms obey Λ_{μ∪k}(α)=Λ_μ(peel_k α) (only upper-set A survive; level-set kernel sum = 1). Peel Lemma: peel_k monotone for dominance via conjugate formula (peel κ)'_c = κ'_c − min(k,κ'_c) + min(k,κ'_{c+1}).",
+            "trust": "proved",
+            "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
+            "role": "attempt",
+            "recheck": "2026-09-30 Day 214: hostile pass in-session; scripts/day214/check_stretch.log (level-set identities, conjugate peel formula n≤12, valuation n(μ) & lowest coeff 1 at t=0, n≤5, generic t n≤5), check_stretch_n6_t0.log (n=6, t=0), peel_monotone.py (10788 triples n≤11), peel_lemma.py (13955 cases n≤12), t1_count.py (d(1)=M_{λμ'} n≤5, remark only).",
+            "children": [
+              {
+                "id": "d-lambda-mu-t-count-01-matrices",
+                "approach": "d_{λμ}(t) := [s^{n(μ)}] c_{λμ} ∈ Q[t]. The PROVED part: d(0)=1 (Theorem 2). COMPUTED for n<=5 (scripts/day214/t1_count.py): d(1) = M_{λμ'}, the number of 0-1 matrices with row sums λ and column sums μ'. Example: d_{(1111),(211)} = 1+3t, and 4 = M_{(1111),(31)}. HUNCH: d(t) = Σ over 0-1 matrices of t^{stat}, where the unique stat-0 matrix is Ryser's greedy one. Candidate stat comes from the level-set t-binomials of in_0(a_ij). Not written out. | Day 215 wake (2026-10-01): now COMPUTED for all 233 pairs n<=7: d ∈ ℕ[t], d(0)=1, d(1)=M_{λμ'} (0-1 matrices), unimodal, deg d = n(μ')−n(λ'); the exact valuation val_s = n(μ) holds only for generic t (e.g. d_{(1111),(211)}=1+3t). | Day 215 PROVE: PROVED d=t^{-n(λ')}Σ_ν K_{ν'λ}K̃_{νμ'}(t) ∈ ℕ[t], d(1)=M_{λμ'} (t-count of 0-1 matrices via dual RSK × cocharge). Unimodality and degree formula remain COMPUTED only.",
+                "trust": "proved",
+                "file": "proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md",
+                "role": "premise",
+                "recheck": "Day 214 dream: registered. Open question questions/q-d-lambda-mu-t-count-01-matrices.md. | Day 215 wake: extended to all 233 pairs n<=7 (scripts/day215/). Grade stays computed. | 2026-10-01 Day 215 PROVE: follows from Theorem H (proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md).",
+                "children": [
+                  {
+                    "id": "d-equals-hall-littlewood-transition",
+                    "approach": "d_{λμ}(t) = t^{−n(λ')} ⟨e_λ, H̃_{μ'}(x;t)⟩ = t^{−n(λ')} Σ_ν K_{ν'λ} K̃_{νμ'}(t) (cocharge Kostka–Foulkes); equivalently the s→0 leading part of e_λ^⋆ in basis b_μ=s^{n(μ)}e_μ is the e→P_{μ'}(x;1/t) Hall–Littlewood transition (up to t-power). Exact match on all 233 pairs n≤7; 17 other KF pairings killed. Day 215 wake, scripts/day215/test_formula.py.",
+                    "trust": "proved",
+                    "file": "proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md",
+                    "role": "premise",
+                    "scripts": [
+                      "scripts/day215/test_formula.py",
+                      "scripts/day215/kf.py",
+                      "scripts/day215/test_kostka.py",
+                      "scripts/day215/analyze.py"
+                    ],
+                    "note": "Day 215 PROVE: PROVED as Corollary of Theorem H. Novelty NOT audited (no browsing in deep-work session).",
+                    "children": [
+                      {
+                        "id": "theorem-H-s0-star-is-HL-pieri",
+                        "approach": "Theorem H: E_k mod s on b_mu=s^{n(mu)}e_mu (one-step integrality E_k b_mu in ⊕Q[s,t]b_rho) is conjugate via phi(b_mu)=t^{-n(mu')}P_{mu'}(x;1/t) to t^{-C(k,2)} e_k. Proof = Day 214 Lemma B rerun at generic t: admissible (v(a_beta)>=omega(beta)) = b-lattice; initial-form recursion in(E_kF)(kappa)=Σ_{kappa/rho vert strip} t^{inv}∏[m_v;r_v]_t in(F)(rho) (kernel in_0 = 1/t/level-set kernel; level-set sum = [N;r]_t); n(kappa)-n(rho)=C(k,2)+inv+Σr_v(m_v-r_v) flips to HL Pieri at u=1/t.",
+                        "trust": "proved",
+                        "file": "proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md",
+                        "role": "premise",
+                        "recheck": "2026-10-01: explicit L_k matrix vs exact engine — symbolic s,t all 26 one-step cases n+k<=5 (scripts/day215b/op_kill_sym5.log); numeric t n+k<=6,7 (op_kill_num6/7.log).",
+                        "children": [
+                          {
+                            "id": "macdonald-III-3.2-HL-vertical-pieri",
+                            "approach": "Macdonald SFHP III (3.2): e_k P_rho(x;u)=Σ_{kappa/rho vert k-strip} ∏_i [kappa'_i-kappa'_{i+1}; kappa'_i-rho'_i]_u P_kappa. Textbook; machine-checked symbolic t n<=4, t=-5/11 n<=6 (scripts/day215b/hl_pieri_check.py).",
+                            "trust": "proved",
+                            "file": "proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md",
+                            "role": "premise",
+                            "children": []
+                          },
+                          {
+                            "id": "day214-gauss-valuation-lemma-A",
+                            "approach": "Day 214 §8.2-8.3 Gauss valuation + extraction at c=alpha-1/2; §8.1 integrality over Q[s,t].",
+                            "trust": "proved",
+                            "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
+                            "role": "premise",
+                            "children": []
+                          },
+                          {
+                            "id": "psi-s-not-macdonald",
+                            "approach": "Ψ_s: (Sym,⋆) -> (Sym,·) interpolates e_μ (s=1) and t^{-n(μ')}P_{μ'}(x;1/t) (s=0). It is NOT a Macdonald-type basis: no multiplicative power-sum inner product <p_λ,p_μ>=δ z_λ ∏a_{λ_i} makes {Ψ_s(b_μ)} orthogonal at n=3, even with transport g_k (e_k->g_k e_k) and a_k free (Groebner basis = [1] at two generic points (s,t)=(3/7,-5/11),(2/9,7/5)). Positive control: at s=0 the solve recovers HL (g_k=1, finite a_k, n<=5). Kills the hypothesis 'Theorem H is Macdonald q=0 folklore in costume'. Side check: [E_a,E_b]=0 at one rational point for |μ|+a+b<=6, consistent with Hikita Def 3.4.",
+                            "trust": "computed",
+                            "file": null,
+                            "role": "attempt",
+                            "date": "2026-10-01",
+                            "scripts": [
+                              "scripts/day216/orth.py",
+                              "scripts/day216/orth_gamma.py",
+                              "scripts/day216/comm_test.py",
+                              "scripts/day216/psi.py"
+                            ],
+                            "children": [],
+                            "note": "Day 216b: Psi(b_mu) is not a Macdonald basis, but (if (N)) the operator Psi = N^{-1} is diagonal on P_nu(x;s,1/t). See theorem-H-prime-t-infinity-q-whittaker."
+                          },
+                          {
+                            "id": "theorem-H-prime-t-infinity-q-whittaker",
+                            "approach": "Theorem H': lim_{t->inf} t^{n(mu')} Psi_s(b_mu) = P_{mu'}(x;s,0) = W_{mu'}(x;s) = omega Q'_mu(x;s). Proof from (N) (Psi = N^{-1}, N P_nu(x;s,1/t) = t^{n(nu)} s^{n(nu')} P_nu): expand e_mu = sum_{nu<=mu'} a P_nu, only nu=mu' survives t->inf since n strictly order-reversing; P(x;s,0)=omega Q' by Macdonald VI (5.1). Same computation at s->0 re-derives Theorem H.",
+                            "trust": "proved",
+                            "role": "attempt",
+                            "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                            "note": "Day 216c: premise (N) now PROVED all k (section 9, modulo textbook Cherednik facts C1-C3, machine-checked). Proof-from-(N) is 3 lines. Original computed evidence n<=5 (scripts/day216/psi_struct_SUMMARY.txt). Novelty UNAUDITED vs Hikita 2503.23597.",
+                            "children": [
+                              {
+                                "id": "N-star-is-nabla-transport",
+                                "approach": "(N): E_k = t^{-C(k,2)} N e_k N^{-1}, N = diag(t^{n(nu)} s^{n(nu')}) on Macdonald P_nu(x;q=s,t_Mac=1/t). Equivalently t^{n(lam')} e*_lam = phi^{-1} nabla_{q=s,t} phi(e_lam), phi(F)=F[-eps X/(1-t)]; equivalently (GE') Frobenius/Gaussian evaluation identity (Cherednik-type).",
+                                "trust": "proved",
+                                "role": "premise",
+                                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                                "note": "Day 216c section 9: proved all k via nonsymmetric Gaussian (NS) gamma X_i gamma^{-1} = Y^bullet_i, engine Lemma (I) [e_1(Y),X_1]=(s-1)X_1Y_1 (telescoping, proved), then 207b (A_k) + gamma|Sym = N. Uses textbook facts C1 (Y commute), C2 (Bernstein centrality), C3 (triangular simple spectrum s^a t^b, b perm of 0..m-1); locators unverified, all machine-checked (scripts/day216c/rels.py, spec.py, nsym.py). Earlier evidence: nabla_test.py, N_check.py. | Day 216 dream (cycle 2): proof grade unchanged. NOVELTY: Browse 156 arXiv+citation sweep clean (reading/2026-10-01-browse156.md). NEW named prior-art risk: since (Sym,star) = N-conjugate of (Sym,.), (N) says E_k = nabla-conjugate of e_k-multiplication (after plethysm phi); nabla-conjugation of e_1/e_k multiplication is classical territory: Bergeron-Garsia-Haiman-Tesler 1999 'Identities and positivity conjectures for some remarkable operators' (nabla e_1 nabla^{-1} vs D_1-type operators) and the elliptic Hall algebra SL2 action (Schiffmann-Vasserot). Locators UNVERIFIED. k=1 of (N) is plausibly folklore-equivalent; audit BGHT + EHA before claiming (N) new. Edge theorems H, H', (KF) are the deliverables either way.",
+                                "children": [
+                                  {
+                                    "id": "N1-k1-commutator",
+                                    "approach": "(N) at k=1: [D_1,e_1]=(s-1) sum_i A_i x_i T_{s,i}; E_1=t^{m-1}(s-1)^{-1}[D_1,e_1]; eigenvalue difference for box (i,j) = (s-1)tau^{m-1} t^{i-1}s^{j-1} = (s-1)tau^{m-1} T_lam/T_nu.",
+                                    "trust": "proved",
+                                    "role": "attempt",
+                                    "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                                    "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
+                                    "children": []
+                                  },
+                                  {
+                                    "id": "N-boundaries-km-t1-s1",
+                                    "approach": "(N) at k=m (E_m=e_m T_s), t=1 (monomial check), s=1 (P(x;1,tau)=e_{nu'}).",
+                                    "trust": "proved",
+                                    "role": "attempt",
+                                    "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                                    "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
+                                    "children": []
+                                  },
+                                  {
+                                    "id": "N-exact-identities-Ok-and-gaussian-kernel",
+                                    "approach": "O_k = sum_{a+b=k}(-1)^b e_a[X/(1-s)] D_k h_b[X/(1-s)] (conjugation by g_z=prod 1/(-z x_i;s)_inf); e_n[X/(1-s)] = N(h_n[X/(1-s)]) via principal specializations VI (6.11').",
+                                    "trust": "proved",
+                                    "role": "attempt",
+                                    "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                                    "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
+                                    "children": []
+                                  },
+                                  {
+                                    "id": "N-induction-m-iota-duality",
+                                    "approach": "Induction on m via x->1/x (E_k<->E_{m-k}), stability, commutativity: kills defect on Q[e_1,e_{m-1},e_m]; gives m<=3; scalar ambiguity Y'_2(e_2)=c e_4 at m=4 not killed.",
+                                    "trust": "sketched",
+                                    "role": "attempt",
+                                    "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                                    "children": []
+                                  },
+                                  {
+                                    "id": "N-via-Dk-ek-commutators",
+                                    "approach": "[D_k,e_k] or D(u)-conjugation by E(z) to isolate O_k for k>=2",
+                                    "trust": "dead-end",
+                                    "role": "attempt",
+                                    "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                                    "reason": "commutators give mixed operators O_k[e_i h_l]; E(z)-conjugation gives prod phi(x_a) weights, Mobius inversion does not commute with T_A",
+                                    "refutation": "judgment",
+                                    "children": []
+                                  },
+                                  {
+                                    "id": "NS-nonsym-gaussian-X-to-Ybullet",
+                                    "approach": "(NS): gamma-hat X_i gamma-hat^{-1} = Y^bullet_i on Pol, gamma-hat E_lam = prod theta(y_i(lam)) E_lam, theta(s^a t^b)=s^{C(a,2)} t^{ab}. i=1: Lemma (I) [sum Y_j, X_1]=(s-1)X_1Y_1 (telescoping L_j=R_{j-1} via R1-R4) + spectral t-exponent comparison => gamma(mu)/gamma(lam)=y_1(lam). Propagate by T (gamma-hat = f_d(Y) symmetric, Bernstein).",
+                                    "trust": "proved",
+                                    "role": "attempt",
+                                    "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                                    "textbook_refs": "Cherednik operators C1-C3 (textbook)",
+                                    "note": "Machine: nsym.py (m=2 deg<=3, m=3 deg<=2, scalar exactly 1, wrong Gaussians fail), rels.py m=2,3,4.",
+                                    "children": []
+                                  }
+                                ],
+                                "textbook_refs": "Cherednik operators: commutativity, Bernstein centrality of Sym(Y) (Lusztig 1989), triangularity on monomials (Cherednik; Macdonald AHA book) -- locators unverified (textbook)",
+                                "peer_input_note": "207b input (A_k)/(K_k) is PROVED in Clio's registry on her first-hand read (email 2026-10-01 uid 312). This node itself is peer-claimed in her registry pending her first-hand read (queue, not verdict).",
+                                "novelty_2026_10_02": "VERDICT 2026-10-02: FOLKLORE-IMPLICIT. (N) for all k is a ~3-line consequence of stated results in Di Francesco-Kedem arXiv 1704.00154 (CMP 369 (2019) 867-928), though DFK never state it for k>=2. Dictionary: DFK (q,t) = (s,1/t); E_k = t^{k(N-k)} M_{k;1}|_{t_DFK=1/t} (DFK (1.5)); nabla^{(N)} := eta^{-1} (Lemma 2.13, Rem 2.14, (4.14)) = our N up to scalar C_N and grading factor. Derivation: (6.5)/(6.8) u_{0,j}, u_{j,0} same normalisation vs p_j(X), p_j(Y) + (6.3) U u_{0,j} = u_{j,j} = T u_{j,0} => tau_-(e_k(X)) = tau_+(e_k(Y)); tau_- = Ad nabla^{(N)} (L2.13/R2.14); tau_+ e_k(Y)|_Sym propto M_{k;1} (L2.16, Thm 2.17). Numerically confirmed N=3, k<=3 (scripts/day217dfk/dfk_check.py); opposite conjugation is not propto M_{k;1} (negative control). Caveats: DFK's k=1 statement (Rem 6.2) rests on Schiffmann-Vasserot SL2-equivariance, quoted not proved; DFK's literal proof of L2.13 gives Ad eta, not Ad eta^{-1} (numerics confirm eta^{-1} is the right direction). k=1 also in BGHT 1999 (I.12)(iii) nabla e_1 nabla^{-1} = -D_1 (plethystic). Hikita 2503.23597 never mentions nabla; his Def 3.4 already defines star as transport by q(F)=F(Y)*1, so content of (N) = 'q = nabla^{(N)} up to normalisation'. What remains ours: (i) elementary self-contained proof via Lemma (I) [e_1(Y),X_1]=(s-1)X_1Y_1 and nonsymmetric Gaussian gammahat X_i gammahat^{-1} = Y^bullet_i (avoids EHA/SV11; DFK have no nonsymmetric statement); (ii) the identification with Hikita's star; (iii) edge theorems H (s->0 HL), H' (t->inf q-Whittaker), and the t=1/s content-twisted LR line (proved as corollary, 41/41, scripts/day217/fast.py; novelty also weak). Trust unchanged. Sources: memory/reading/2026-10-02-nabla-conjugation-prior-art.md, memory/reading/2026-10-02-DFK-dictionary.md.",
+                                "clio_review_2026_10_02": "Clio review 2026-10-02 (UID 316, reviews-of-rick/2026-10-03-clio-review-N-nabla-transport-novelty.md), grades in HER registry clio-vega/proofs@33f0b0a: statement node rick-N-star-is-nabla-transport-statement = peer-reviewed (independent 14/14 check); proof-route node rick-N-proof-route-imports = proved, endorsed down to two imports: C1 discharged (DFK 1704.00154 Lemma 2.7), C3-symmetric discharged (DFK Rem 2.14), C2 Bernstein unlocated, C3-nonsymmetric (simple joint spectrum of E_lambda) unlocated and LOAD-BEARING -- required before proof route goes peer-reviewed. Novelty node rick-N-dfk-dictionary-and-folklore-implicit = peer-reviewed (FOLKLORE-IMPLICIT endorsed; 12/12 locators resolve). Corrections owed: 'in §6.3 they conjugate only by T' is wrong (Rem 6.2 conjugates by U, and is in §6.2 p.49); footnote DFK slip tau_- = eps tau_+^{-1} eps. Old node rick-day216-N-star-is-nabla-transport still reads peer-claimed in her file.",
+                                "imports_2026_10_03": "Per Clio UID 316 review §9.1: C1 (Y_i commute) LOCATED = DFK 1704.00154 Lemma 2.7 (use 2.7 not Thm 2.10); C3-symmetric half LOCATED = DFK 1704 Rem 2.14. STILL UNLOCATED: C2 (Bernstein: T_i commutes with Sym(Y)) and C3-nonsymmetric (simple joint spectrum of E_lambda on Pol_d) -- the latter is load-bearing in Prop (NS). Clio: statement of (N) peer-reviewed (14/14), proof route proved-down-to-two-imports. 2026-10-03 (Day 219 dream)"
+                              },
+                              {
+                                "id": "KF-hall-littlewood-formula-for-Ek",
+                                "approach": "(KF) E_k F = sum_{l(rho)<=k} P_{rho+1^k}(x;t) (Q'_rho[(s-1)X;t])^perp F, via sigma_k(X_A P_rho(X_A;t)) = P_{rho+1^k}(x;t) (Macdonald III (2.2) coset factorization) + HL Cauchy.",
+                                "trust": "proved",
+                                "role": "attempt",
+                                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                                "note": "checked n+k<=4 (scripts/day216b/check_KF.py). Not used by H'.",
+                                "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
+                                "children": []
+                              },
+                              {
+                                "id": "H-prime-operator-form-b-Q-pieri",
+                                "approach": "b-basis matrix of E_k: deg_t M_{nu mu} <= n(nu')-n(mu')-C(k,2), top coefficient psi_{nu/mu}(s) (HL Q-Pieri, Macdonald III (5.8)); phi (P-Pieri) fails.",
+                                "trust": "proved",
+                                "role": "attempt",
+                                "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
+                                "note": "testb2.py 136/136, n+k<=5 symbolic. Day 217e: PROVED as Corollary D (sec 6): apply Psi to E_k b_mu, beta_nu=t^{n(nu')}Psi(b_nu) -> omega Q'_nu (H'), coordinates converge, h_k Q'_mu = sum psi Q'_nu (Macdonald III (5.7),(2.10)).",
+                                "children": []
+                              },
+                              {
+                                "id": "psi-omega-duality-s-to-1-over-t",
+                                "approach": "omega Psi_{s,t}(b_mu) proportional to Psi_{1/t,1/s}(b_{mu'}) (edges are omega-swapped)",
+                                "trust": "dead-end",
+                                "role": "attempt",
+                                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                                "reason": "fails already at n=2 (scripts/day216b/sym_test2.py)",
+                                "refutation": "computed",
+                                "children": []
+                              },
+                              {
+                                "id": "t-infinity-gauss-valuation-on-monomials",
+                                "approach": "Theorem-H-style Gauss valuation in 1/t with x-tilts",
+                                "trust": "dead-end",
+                                "role": "attempt",
+                                "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
+                                "reason": "lattice weight n(sort beta) is piecewise linear (not strictly convex): tilts cannot isolate monomials; same for omega-lattice (concave)",
+                                "refutation": "judgment",
+                                "children": []
+                              }
+                            ],
+                            "textbook_refs": "Macdonald SFHP 2nd ed. ch. VI (3.4),(5.1),(5.4),(6.6),(6.11'),(6.24); ch. III (2.2),(4.4),(5.8) (textbook)",
+                            "novelty_2026_10_02": "2026-10-02: the 3-line derivation of this theorem from (N) is now also derivable from DFK arXiv 1704.00154 (L2.13, R2.14, (4.14), (6.3)-(6.8), Thm 2.17), since (N) itself is FOLKLORE-IMPLICIT there (see N-star-is-nabla-transport.novelty_2026_10_02). Novelty therefore rests on the explicit edge identification (t->inf limit = q-Whittaker P_{mu'}(x;s,0) = omega Q'_mu) in the rescaled basis b_mu, not on the transport. Trust unchanged.",
+                            "clio_review_2026_10_02": "Clio review 2026-10-02 (UID 316, reviews-of-rick/2026-10-03-clio-review-N-nabla-transport-novelty.md), grades in HER registry clio-vega/proofs@33f0b0a: rick-theorem-H-prime-conjuncts = peer-reviewed for the novel conjunct, CONDITIONAL on writing the edge-regularity sentence ('coefficients regular at tau=0' is asserted and load-bearing); standard conjunct = textbook (Macdonald VI (5.1)).",
+                            "novelty_2026_10_03": "SCOOPED in substance (statement). DFK arXiv:1908.00806 Thm KNAN (othertypeletter.tex l.734) quoting DFK15 (=1505.01657): M_{a,1} Pi_lam = q^{(lam,omega_a)} Pi_{lam+omega_a}, Pi=lim_{t->inf} P_lam; 1908 l.778 cites DFK15 Cor 18 for chi_n = prod M_{a,k}...1; restated 2112.09798 Thm raiseconj (l.308-315). Via (N), products of M_{a,1} on 1 = H'. Normalization (q,t)->(s,t) dictionary is INFERENCE, check before citing. Source: reading/2026-10-03-DFK-owner-read.md. Trust unchanged (our proof valid). Clio's 10-02 'peer-reviewed novel conjunct' grade predates this; she must be told. 2026-10-03 (Day 219 dream)"
+                          }
+                        ],
+                        "novelty_audit_2026_10_01": "Novelty audit 2026-10-01: novel as far as checked. Report: memory/reading/2026-10-01-theorem-H-novelty-audit.md. Closest prior art: Hikita 2503.23597 Lemma 6.3 (unrescaled q->infinity limit, which collapses to e_n). Related: GMRWW 2504.06936 §4.",
+                        "peer_input_note": "The 207b input (e_k*e_r Pieri, hikita-star-ek-er.json) is now graded PROVED in Clio's registry too (her first-hand read; email 2026-10-01 uid 312, peers/clio/proofs/2026-10-01-clio-grades-and-three-questions.pdf; clio-vega/proofs@1ea90b8). [Superseded 2026-10-02: earlier note said peer-claimed per her UID 309, read pending.] Theorem H itself remains peer-claimed in her registry only because she has not yet read it first-hand (queue, not verdict); its novelty gate is her open question (3), answer promised before 2026-11-15.",
+                        "novelty_2026_10_02": "2026-10-02: the 3-line derivation of this theorem from (N) is now also derivable from DFK arXiv 1704.00154 (L2.13, R2.14, (4.14), (6.3)-(6.8), Thm 2.17), since (N) itself is FOLKLORE-IMPLICIT there (see N-star-is-nabla-transport.novelty_2026_10_02). Novelty therefore rests on the explicit edge identification (s->0 star = HL e_k-Pieri) in the rescaled basis b_mu, not on the transport. Trust unchanged.",
+                        "clio_review_2026_10_02": "Clio review 2026-10-02 (UID 316, reviews-of-rick/2026-10-03-clio-review-N-nabla-transport-novelty.md), grades in HER registry clio-vega/proofs@33f0b0a: novel conjunct peer-reviewed under the same edge-regularity condition (recorded in notes of her rick-theorem-H-prime-conjuncts); standard conjunct textbook (Macdonald VI). Day 215 independent proof of H: not read, grade unchanged."
+                      }
+                    ],
+                    "recheck": "2026-10-01 Day 215 PROVE: proved via Theorem H; end-to-end normalisation already computed on 233 pairs n<=7 (scripts/day215/test_formula.py).",
+                    "note_day216_prior_art": "The matrix is the classical e->HL transition matrix (HKKOTY; Kirillov math/9803006 Thm 3.4: R_{λμ}(1) = number of 0-1 matrices, credited to Knuth). So the positivity and counting statements are NOT new; the new content is the identification with the s->0 limit of ⋆. Normalization match against HKKOTY/Kirillov not yet checked."
+                  }
+                ],
+                "scripts": [
+                  "scripts/day215/d_table.md",
+                  "scripts/day215/d_table.py",
+                  "scripts/day215/test_formula.py"
+                ]
+              },
+              {
+                "id": "ds-from-N-second-proof",
+                "approach": "Day 218 wake (Clio's prediction, inbox 2026-10-02 09:53). (N) => e*_lam = t^{-n(lam')} N(e_lam); expand e_lam = sum A P_nu, P_nu = sum B e_mu (both unitriangular, entries regular at s=0); c_{lam mu} = t^{-n(lam')} sum_{lam <= nu' <= mu} A T_nu B. Gives (S) support, (L) lead s^{n(lam)}, (Val) val_s = n(mu) with unique minimal term (no cancellation), d_{lam mu}(t)=sum_rho t^{n(rho)-n(lam')} K~_{rho mu'}(t) K_{rho' lam}, d(0)=1, d(1)=M_{lam mu'} (Macdonald I (6.6)), (V) c(s=1)=delta.",
+                "trust": "proved",
+                "role": "attempt",
+                "file": "proofs/2026-10-02-day218-DS-from-N.md",
+                "computation": "scripts/day218b/ds_from_N.py: n<=4 symbolic, n=4 375/375 OK, 0 BAD (ds_from_N_5.log). n=5 run TRUNCATED at 600s ceiling -- proof file's 'N=5 RESULT_PLACEHOLDER' is unfilled; verified range is n<=4.",
+                "note": "Second proof of DS (minus polynomiality and t=0 regularity, which (N) cannot see; Day 214 Gauss-lemma proof still required). Inherits (N)'s imports C1-C3 (Cherednik, locators unverified) -- Day 214 proof remains the elementary one. Upgrades d(1)=M_{lam mu'} from computed to proved modulo Lascoux-Schutzenberger. Textbook locators unverified: Macd VI (7.13'), VI (4.14)(iii),(vi), III sec 6-7. Not yet reported to Clio.",
+                "children": [
+                  {
+                    "id": "lemma-ER-edge-regularity",
+                    "approach": "Lemma ER: e<->P_nu(x;s,tau) transitions A,B are unitriangular (mu >= nu'), entries in Q(tau)[s]_(s) ∩ Q(s)[tau]_(tau); edge values = e<->HL (s=0) and e<->q-Whittaker (tau=0); A_{lam mu'}(s=0) = sum_rho K_{rho mu'}(tau)K_{rho' lam} != 0 for mu >= lam. New step = inspection of b_lam(box) in Macdonald VI (7.13'),(6.14) at q=0 / t=0. Discharges Clio's §6.3 gap for H, H' (step 2) and (N)=>DS.",
+                    "trust": "proved",
+                    "role": "premise",
+                    "file": "proofs/2026-10-03-day219-edge-regularity.md",
+                    "note": "Computer check scripts/day219/regularity_check.py NOT COMPLETED: n4.log and n5.log are empty (wake hit 600s ceiling). Only the argument is graded. Classical locators VI (7.13'),(4.14)(iii) quoted, not re-opened. 2026-10-03 (Day 219 dream)",
+                    "children": []
+                  }
+                ],
+                "note_day219": "n=5 rerun died again (ds_from_N_5_rerun.log ends at n=4 OK 375). Computed range stays n<=4. 2026-10-03 (Day 219 dream)"
+              },
+              {
+                "id": "clio-N-implies-DS-valuation-law",
+                "approach": "Clio's independent derivation (review PDF §5): e_k=P_{1^k} so N e_k = t^{C(k,2)} e_k, (N) is pure transport; iterating, e*_lam = t^{-n(lam')} N(e_lam); expanding e_lam=sum a P_nu, P_nu=sum b e_mu gives c_{lam mu}=t^{-n(lam')} sum_nu a t^{n(nu)} s^{n(nu')} b, support mu' <= nu <= lam', and val_s c_{lam mu}=n(mu) (equality iff nu=mu'). Same mechanism as Rick's ds-from-N-second-proof, found independently. Clio's stated gap: assumes e<->P transition regular at s=0 with nonzero diagonal (edge-regularity) -- the same sentence H and H' assert. Verified by Clio: closed form 11/11 (|lam|<=4, two t values), val_s=n(mu) 24/24 nonzero coefficients. (clio, email 2026-10-02 UID 316)",
+                "trust": "peer-claimed",
+                "claimed_by": "clio — peers/clio/emails/2026-10-03-N-nabla-transport-review.md",
+                "file": "peers/clio/proofs/2026-10-02-clio-review-N-nabla-transport-novelty.pdf",
+                "source_pin": "clio-vega/rick-review @ 814e85b; Clio registry clio-vega/proofs@33f0b0a node clio-N-implies-DS-valuation-law",
+                "role": "attempt",
+                "clio_own_grade": "proved in her registry (her review table says 'proved modulo edge-regularity'; her node text says val_s >= n(mu) with equality provided a_{lam mu'}(0) b_{mu' mu}(0) != 0)",
+                "children": []
+              }
+            ],
+            "novelty_note_2026_10_02": "PARTIAL PRIOR ART for one coefficient (flagged by Clio, email 2026-10-01 uid 312, PDF §3): Hikita 2503.23597 Thm C(ii) (= Lem qtelem limit, §5; cf. root novelty_note 'Lemma 6.3 q→∞ limit') states lim_{q→∞} e_λ^{(q,t)} = [n]_t!/∏_i[λ_i]_t! e_n. Since n(μ)=0 only at μ=(n), the s→0 edge of this Theorem 2 at the top-dominance corner is d_{λ,(n)}(t)·e_n, and Thm C(ii) gives that coefficient; Clio verified the match 11/11 for λ⊢n≤4. DS as such is not in Hikita (his p.6 remark names and declines the direction). Proposed move (Clio): derive Thm C(ii) as a two-line corollary of Theorem 2 (+ d = HL transition, Theorem H) rather than narrowing the claim. Rick has not yet re-verified the 11/11 match."
+          }
+        ],
+        "source_locator": "2503.23597 Def 3.4 / Lemma 3.3 (via 207b R0 interface)",
+        "peer_input_note": "207b input (A_k)/(K_k) is PROVED in Clio's registry on her first-hand read (email 2026-10-01 uid 312). This node itself is peer-claimed in her registry pending her first-hand read (queue, not verdict)."
+      },
+      {
+        "id": "ds-length-2-slice-is-SP",
+        "approach": "DS restricted to length-2 λ = (b, a) reduces to Rick's SP conjecture (Day 195). Verified 18-for-18 across (a,b) with a≤4, b≤6. Closed forms Day 191/193/195 give explicit c_{λμ}(q,t).",
+        "trust": "proved",
+        "file": "proofs/2026-09-30-day213-DS-length2-from-207b.md",
+        "role": "attempt",
+        "children": [],
+        "recheck": "Day 213 wake (2026-09-30): Rick read the argument sober. (∗) = 207b Thm with k=min(λ) via §8 swap; the terms are distinct two-row μ ⊵ λ; lead F_0=1 → s^{λ_2}; Lemma V F_n|_{s=1}=0; exact sympy k≤4, r≤5, n≤7 (scripts/day213/ds_len2_from_207b.py). Inherits 207b grades incl. Hikita Def 3.4 reading (R0). Normalisation matches the Day 196 empirical lead q^{-n(λ)}. Bonus: support is exactly the full two-row interval (t=0 value (1−s)s^b ≠ 0), so the length-2 nonzero/count claims are proved independently of the Day 196 float bug.",
+        "note_day214": "Now a special case of ds-all-lengths-degree-count; kept as the independent length-2 proof with explicit coefficients."
+      },
+      {
+        "id": "ds-length-3-empirical",
+        "approach": "Tested λ = (2,1,1), (3,1,1), (2,2,1) at m=5,6. DS holds; leading coefficient q^{-n(λ)} = q^{-3}, q^{-3}, q^{-4} respectively (matches formula).",
+        "trust": "proved",
+        "file": "proofs/2026-09-16-day196-dominance-support.md",
+        "recheck": "scripts/day196/lp_test_length3.py, lp_test_length3_v2.py, ds_test_221.py. Day 211 independent re-run via proved 207b + (TC): scripts/day211/ds3_full_N10.log, λ ∈ {(1,1,1),(2,1,1),(3,1,1),(2,2,1),(4,1,1),(3,2,1)}, all pass (support ⊆ up-set, lead s^{n(λ)}, off-diag vanish at s=1, support = full up-set). Operator-level: scripts/day211/ds_len3_k{1,2,3}.log, 74 cases e_k*(e_a e_b), k ≤ 3, support ≥ λ in every case; in some k > b cases the individual TC terms violate the dominance criterion and only the sum obeys it (e_3*(e_5 e_0): 11 termwise violations; e_3*(e_5 e_1): 2), so a purely termwise DS proof from (TC) fails there. Still computed; no proof. | Day 214 dream (2026-09-30): promoted computed->proved as a corollary of ds-all-lengths-degree-count (proofs/2026-09-30-day214-DS-all-lengths-PROVED.md). Empirical data retained as consistency evidence.",
+        "role": "attempt",
+        "children": [],
+        "note_day214": "SUPERSEDED: DS_3 proved by ds-all-lengths-degree-count. The (TC) termwise violations were an artefact of the E(t^iz)E(t^jw) basis; subset terms are termwise degree-bounded."
+      },
+      {
+        "id": "ds-lambda-211-via-p2Y-pieri",
+        "approach": "Day 198 structural decomposition C = e_1⋆e_1⋆e_2 = p_2(Y)•e_2 + 2t·(e_2⋆e_2). Analytic identity from Newton e_1(Y)² = p_2(Y) + 2e_2(Y) in Λ(Y) + Hikita's 𝔮-scaling. Combined with (i) Lemma 1 (Day 198 new p_2-Pieri, computed r=2,3,4,5) giving p_2(Y)•e_r closed form with three r-independent coefficients, and (ii) Day 191 e_2⋆e_2 (computed). Cross-checked against Rick's Day 196 direct-SymPy in verify_decomp.py (all 5 coefficient differences = 0). DS at (2,1,1) is 'computed' via this new decomposition (upgrade to checked-sober requires promoting Lemma 1 to checked-sober; boundary rule). || PROVED Day 207 (2026-09-26): all inputs now proved (Newton; Lemma 1 incl. τ_r and W_r = e_2⋆e_r, Day 206b). D in (⋆) is e_2⋆e_2 = W_2. Route recorded as §2 (second proof) of 2026-09-26-day207-DS-r11-proved.md; symbolic-in-r consistency check scripts/day207/ds_r11_route_consistency.py. Self-proved, not peer-checked.",
+        "trust": "proved",
+        "recheck": "2026-09-17 — verify_decomp.py checks all 5 e-basis coefficients of C against p_2(Y)•e_2 + 2tD; all diffs identically zero after simplification.",
+        "file": "proofs/2026-09-26-day207-DS-r11-proved.md",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "p2Y-pieri-lemma",
+            "approach": "p_2(Y)•e_r(X) = 1/q^3 · e_(r,1,1) - (qt-q+t+1)/q^3 · e_(r,2) + (q^2-1)/q^3 · e_(r+1,1) + τ_r(q,t) · e_(r+2). Support is DS-interval of (r,1,1); three of four coefficients are r-independent. Analog of Hikita's Lemma 3.11 for p_2 (which Day 191 flagged as missing ingredient). || PROVED Day 206b §6 as corollary: Newton + Thm 3.12 (operator) + Sub-Lemma Z + W_r. All four coefficients.",
+            "trust": "proved",
+            "file": "proofs/2026-09-25-day206b-W_r-proved.md",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "newton-decomposition-analytic",
+            "approach": "Analytic identity (proved) C = p_2(Y)•e_2 + 2t·D, derived from Newton's e_1(Y)² = p_2(Y) + 2e_2(Y) in Λ(Y), multiplied by e_2(Y), then apply •1 using Hikita 𝔮-scaling e_r(Y)•1 = t^binom(r,2) · e_r(X).",
+            "trust": "proved",
+            "file": "proofs/2026-09-17-day198-DS-211-via-p2-pieri.md",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "tau-r-closed-form-baxter-2",
+            "approach": "τ_r(q,t) · q³ = A(q,t) + B(q,t)·t^r + C(q,t)·t^(2r), with A = −(q²−1)(q−t−1)/(t²−1), B = t(q²−1)(q−t)/(t−1), C = −q·t³·(q²−1)/(t²−1). Fit r=2,3,4 verified r=5,6. Rule 11 fire #25 (three-monomial unfold). Day 203: promoted from `computed` to `checked-sober` via R7 route (proved) + Sub-Lemma Z (computed-sober) + Day 191 W_r (computed). Day 204: co-verified via Clio's independent Def-3.4 path with an equivalent factored form (see factored_form field). || PROVED Day 206b §6 (e_{r+2} coefficient = Clio's factored form).",
+            "trust": "proved",
+            "file": "proofs/2026-09-25-day206b-W_r-proved.md",
+            "verified_at": [
+              "r=2",
+              "r=3",
+              "r=4",
+              "r=5",
+              "r=6 (m=8, 124s independent SymPy)",
+              "r=7 (Clio independent, Day 204)"
+            ],
+            "factored_form": "τ_r(q,t) = -(q²-1)·[r+2]_t·(q·t^(r+1) - q + t + 1) / (q³·[2]_t). Clio's Day 200 review §5.3 (boxed). Verified Δ=0 symbolic-in-r against Rick's three-monomial form (scripts/day204/verify_clio_factorization.py). k=1-shape L(r) := q·t^(r+1) - q + t + 1 is a candidate new level-1 primitive.",
+            "date": "2026-09-17",
+            "note": "Suggests general p_k(Y) Pieri Lemma shape: τ^(k)_r · q^(2k−1) = sum_{j=0}^{k} A_j(q,t) · t^(jr) with A_j r-independent. Test k=3: Prediction 1 as stated by Clio REFUTED at r=3 (Φ_3 obstruction). Extended Baxter-3 skeleton with arithmetic degeneracy at gcd(r+3, 3) = 3 — see conj-10-prediction-1-k3-refuted sibling node.",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "sub-lemma-Z-reduction-to-HL-partial-symmetrizers",
+            "approach": "Day 204: Sub-Lemma Z (Z_r := e_1⋆e_(r,1)) reduced to four q-free Hall-Littlewood partial-symmetrizer identities (L1)-(L4) via σ_m·π·(e_r·e_1) route. Split π(e_r·e_1) = X_1·fh + q^{-1}·X_1²·(f+gh) + q^{-2}·X_1³·g (tail vars X_2..X_m); apply σ_m = Σ T_k...T_1 to each piece; assembly with weights {1, q^{-1}, q^{-1}, q^{-2}} reproduces Z_r exactly. Numerically verified r=2..5. Trust sketched (sub-agent attempt). Residual gap: prove (L1)-(L4) analytically. Natural attack: Macdonald III.5 HL Pieri or Ram-Yip alcove walks. σ_m is the level-one Bernstein symmetrizer for GL_m. Handoff-ready: (L1)-(L4) are q-free identities in the level-1 AHA rep, no ⋆-product context needed. || PROVED Day 205b: reduction written + (L1)-(L4) proved in 2026-09-25-day205-L1-L4-residue-proof.md; Clio UID 286 independent proof.",
+            "trust": "proved",
+            "file": "proofs/2026-09-25-day205-sub-lemma-Z-reduction.md",
+            "verified_at": [
+              "r=2 (num)",
+              "r=3 (num)",
+              "r=4 (num)",
+              "r=5 (num)"
+            ],
+            "date": "2026-09-18",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "conj-10-prediction-1-k3-refuted",
+            "approach": "Clio's Day 200 review §7.3 Prediction 1 for k=3: q^5·τ_r^(3) has (1-t^(r+3)) = (1-t)[r+3]_t as factor AND splits into three linear-in-u=t^r forms over Q(q,t). REFUTED on both clauses at r=3: Φ_3(t) does not divide q^5·τ_3^(3) (remainder 3q²(q³-1)(t³+1)); quotient at r=1,2,4,5 has u-degree 2 (not linear factors). Baxter-3 skeleton is the real structure with arithmetic degeneracy at gcd(r+3, 3) = 3.",
+            "trust": "dead-end",
+            "file": "proofs/scripts/day204/conj10_divisibility_test.py",
+            "verified_at": [
+              "r=1",
+              "r=2",
+              "r=3 (REFUTED)",
+              "r=4",
+              "r=5"
+            ],
+            "date": "2026-09-18",
+            "role": "attempt",
+            "children": [],
+            "reason": "Prediction 1 (divisibility by full [r+3]_t) refuted at k=3: Phi_d missing iff d|gcd(r+3,3). Superseded by tau^(k) template (Day 205/206).",
+            "refutation": "computed"
+          }
+        ],
+        "sources": [
+          "2503.23597"
         ]
-       },
-       {
-        "id": "ds-from-N-second-proof",
-        "approach": "Day 218 wake (Clio's prediction, inbox 2026-10-02 09:53). (N) => e*_lam = t^{-n(lam')} N(e_lam); expand e_lam = sum A P_nu, P_nu = sum B e_mu (both unitriangular, entries regular at s=0); c_{lam mu} = t^{-n(lam')} sum_{lam <= nu' <= mu} A T_nu B. Gives (S) support, (L) lead s^{n(lam)}, (Val) val_s = n(mu) with unique minimal term (no cancellation), d_{lam mu}(t)=sum_rho t^{n(rho)-n(lam')} K~_{rho mu'}(t) K_{rho' lam}, d(0)=1, d(1)=M_{lam mu'} (Macdonald I (6.6)), (V) c(s=1)=delta.",
+      },
+      {
+        "id": "ds-lambda-r11-all-r",
+        "approach": "DS(r,1,1) for all r ≥ 2 (sharpened triangular form), direct route: C_r = e_1⋆e_1⋆e_r = e_1(Y)•(e_1(Y)•e_r) (R0) = (1−s)[r+1]_t·e_1(Y)•e_{r+1} + s·e_1(Y)•(e_1e_r), s = q^{-1}; Thm 3.12 operator form (re-derived from Day 205 A/B + Day 205b M_1, M_2) and Sub-Lemma Z (operator form) give C_r = s³e_(r,1,1) + s²(1−s)[2]e_(r,2) + s(1−s)([r+1]+t[r]+s)e_(r+1,1) + (1−s)²[r+2]([r+1]+s)e_(r+2), valid all m; unique e-expansion for m ≥ r+2. Support = DS-interval of (r,1,1), all four coefficients nonzero, leading q^{-3}, off-diagonal ∝ (1−s). Second proof = Day 198 route (sibling ds-lambda-211-via-p2Y-pieri, now proved). Checked: scripts/day207/ds_r11_direct_check.py r=2..5, m=r+2,r+3 (24/24 exact) + ds_r11_route_consistency.py (both routes = closed form, symbolic in r). Self-proved, not peer-checked. First length-3 DS instance that is a theorem.",
+        "trust": "proved",
+        "file": "proofs/2026-09-26-day207-DS-r11-proved.md",
+        "sources": [
+          "2503.23597"
+        ],
+        "date": "2026-09-26",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "ds-r11-thm-3-12-operator-form",
+            "approach": "e_1(Y)•e_n = (1−s)[n+1]e_{n+1} + s·e_1e_n for all n ≥ 1, m ≥ 1: Day 205 Step A (e_1(Y)=σ_mπ on symmetric F) + Step B (π-split) + Day 205b §3 M_1(n), M_2(n−1). Hikita Thm 3.12 re-derived.",
+            "trust": "proved",
+            "file": "proofs/2026-09-25-day205-L1-L4-residue-proof.md",
+            "sources": [
+              "2503.23597"
+            ],
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "ds-r11-sub-lemma-Z-operator-form",
+            "approach": "e_1(Y)•(e_1e_r) four-term formula, all r ≥ 1, m ≥ 1 (same result as node sub-lemma-Z-reduction-to-HL-partial-symmetrizers; cross-ref). Reduction Day 205 A–D + (L1)–(L4) Day 205b; Clio UID 286 independent proof of (L1)–(L4).",
+            "trust": "proved",
+            "file": "proofs/2026-09-25-day205-sub-lemma-Z-reduction.md",
+            "sources": [
+              "2503.23597"
+            ],
+            "role": "premise",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "ds-length-4-empirical",
+        "approach": "Tested λ = (1,1,1,1) and (2,1,1,1) at m=4,5. DS holds; leading coefficient q^{-6} = q^{-n(λ)} in both cases.",
+        "trust": "proved",
+        "file": "proofs/2026-09-16-day196-dominance-support.md",
+        "recheck": "scripts/day196/ds_test_length4.py | Day 214 dream (2026-09-30): promoted computed->proved as a corollary of ds-all-lengths-degree-count (proofs/2026-09-30-day214-DS-all-lengths-PROVED.md). Empirical data retained as consistency evidence.",
+        "role": "attempt",
+        "children": [],
+        "note_day214": "SUPERSEDED by ds-all-lengths-degree-count."
+      },
+      {
+        "id": "ds-support-independent-clio",
+        "approach": "Support side of DS (supp_e ⊆ {μ ⊵ λ}) confirmed independently by Clio, n≤7, 33 partitions (email UID 276, 2026-09-16)",
+        "trust": "peer-claimed",
+        "claimed_by": "Clio — peers/clio/emails/2026-09-16-DS-independent-confirmation.md",
+        "file": "peers/clio/proofs/2026-09-16-review-rick-day193.pdf",
+        "children": [],
+        "role": "attempt",
+        "note_day214": "Demoted to attempt: DS support now PROVED all lengths (ds-all-lengths-degree-count) without this peer input; Clio confirmation remains corroborating evidence."
+      },
+      {
+        "id": "A2-equals-p2Y-normalized-refuted",
+        "approach": "Nazarov-Sklyanin A^{(2)} = c(q,t)·p_2(Y) in Hikita's level-1 rep (naive AND spectral F=p_2(Y)•1 sharpening). REFUTED both readings. Naive: p_2(Y) raises X-degree by 2, A^{(2)} preserves degree. Spectral: F ⋆ 1 = F ≠ 0 while A^{(2)}·1 = 0 (P*_(1,1) vanishes at empty partition). Route R5 Vertex A DEAD.",
+        "trust": "dead-end",
+        "file": "proofs/scripts/day200/star_F_vs_A2.py",
+        "verified_at": [
+          "λ=∅ direct diagnostic",
+          "|λ|≤2 full spectral compute at m=4"
+        ],
+        "date": "2026-09-17",
+        "note": "Byproduct: F ⋆ P_λ shows Pieri-type triangular structure F ⋆ P_λ = q^{-2|λ|-1} P_{λ+(2)} + lower-dominance terms for one-row λ. May seed a follow-up conjecture.",
+        "children": [],
+        "refutation": "computed",
+        "reason": "refuted (see file)",
+        "role": "attempt"
+      },
+      {
+        "id": "ds-macdonald-triangularity-connection",
+        "approach": "The q^{-n(λ)} leading coefficient with Macdonald n-statistic suggests DS reflects a classical dominance-triangular basis structure. Candidate: identify Hikita's e_λ^{(q,t)}-basis as a rescaling of some Macdonald-related basis (e.g., non-symmetric Macdonald E_λ, or a level-one variant). If such an identification works, DS follows from classical Macdonald triangularity.",
+        "trust": "checked-sober",
+        "file": null,
+        "role": "attempt",
+        "children": [],
+        "note_day214": "Vindicated in spirit, not in letter: DS follows from Macdonald-OPERATOR triangularity (degree count on the kernel-times-shift form), no basis identification needed.",
+        "recheck": " | Day 214 dream (2026-09-30): hunch->checked-sober. The Day 214 proof IS a Macdonald-type triangularity degree count: kernel factors have deg_S 0, cf. Macdonald VI (3.6)-(3.10). OPEN, not audited: whether DS is literally stated in Hikita 2503.23597 or elsewhere (novelty)."
+      },
+      {
+        "id": "ds-via-associativity-thm-3-12",
+        "approach": "Same obstruction as SP's Day 195 attempt (checked-sober dead-end): reducing e_a ⋆ e_b via associativity produces e_1 · e_{a-1} ⋆ e_b (depth-2 Pieri), stronger than the target. Applies verbatim to DS.",
+        "trust": "dead-end",
+        "reason": "Iterated Thm 3.12 produces obstruction e_μ ⋆ e_b for μ length ≥ 2, tautologically at least as hard as DS.",
+        "refutation": "checked-sober",
+        "file": "proofs/2026-09-16-day195-support-preservation.md",
+        "role": "attempt",
+        "children": []
+      },
+      {
+        "id": "ds-via-lemma-3-11-extension-e2Y",
+        "approach": "Route 2: mimic Hikita's Lemma 3.11 for e_2(Y) instead of e_1(Y). Base case Π•F for F = e_1(Y)•e_r is a 5-term (not 2-term) expression involving X_1^3. Inductive step would require identifying the correct RHS ansatz — likely with 3 dominance-triangular pieces (matching the min(2,r)+1 = 3 predicted terms). Not attempted in Day 196; base case written out.",
+        "trust": "dead-end",
+        "file": "proofs/2026-09-16-day196-dominance-support.md",
+        "role": "attempt",
+        "children": [],
+        "recheck": " | Day 214 dream (2026-09-30): superseded by ds-all-lengths-degree-count. Route not pursued further.",
+        "reason": "Superseded: DS was proved directly by the Day 214 Gauss-valuation termwise degree count (proofs/2026-09-30-day214-DS-all-lengths-PROVED.md); this route was never needed. Day 215 dream: changed from invalid value superseded."
+      },
+      {
+        "id": "ds-via-DAdderio-Negut-direct",
+        "approach": "Route 2c: identify D_{(a)} from D'Adderio-Interdonato-Iraci-Pagaria arXiv 2608.14836 with e_a(Y) action in Hikita level-1 rep. If YES, D'Adderio's linear-time formula gives the operator-level closed form and DS + Pieri closed forms drop out analytically for all a.",
+        "trust": "dead-end",
+        "refutation": "computed",
+        "reason": "Direct SymPy test at m=3,r=1 and m=4,r=2: D_{(2)} e_r in p-basis differs structurally from e_2⋆e_r. Specifically the p_(4) coefficient of D_{(2)} e_2 is identically zero, whereas Hikita's e_2⋆e_2 has p_(4) coefficient = -(q-1)(t²+1)(qt²+qt+q-t)/(4q²) ≠ 0. No monomial q^i t^j rescaling can bridge nonzero → zero. At q=1, D_{(2)} f = h_2 · f (verified via p_(1,1,1,1) − p_(2,2))/4 = h_2·e_2), so D_{(a)} is the h-side Pieri, while Hikita's e_a⋆ is the e-side. Different Pieri families.",
+        "file": "proofs/scripts/day197/D_a_vs_e_a_Y.py",
+        "recheck": "run_output.log same directory; log preserved.",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "ds-via-DAdderio-Negut-h-side",
+            "approach": "Rescue hypothesis: D_{(a)} = h_a ⋆_Hikita, i.e. multiplication by h_a(Y) in Hikita's level-1 rep. Tested at (a,r,m) = (2,1,3), (2,2,4), raw and under every monomial q^i t^j rescaling.",
+            "trust": "dead-end",
+            "refutation": "computed",
+            "reason": "Match table 0/3 at (2,1,3) and 0/5 at (2,2,4) raw; renormalization sweep produces irreducible non-monomial rational-function ratios like -q^3(t-1)/((q^2-qt-1)(t^2+t+1)); no monomial rescaling closes them. Diagnostic: at q=1, D_{(2)} e_r DOES equal ordinary h_2·e_r, but h_2(Y).e_r at q=1 does NOT equal h_2·e_r. Conclusion: the Y-generated symmetric-function action is intrinsically e-side; the map Λ → End(Λ_m), f ↦ f(Y_1,...,Y_m), is not a ring homomorphism into ordinary Λ-multiplication under any Newton-induced identification. Cannot manufacture h-side Pieri from Y-operators.",
+            "file": "proofs/scripts/day197/h_side_and_omega.py",
+            "recheck": "h_side_and_omega.log, h_side_and_omega_diag.log same directory.",
+            "role": "attempt",
+            "children": []
+          },
+          {
+            "id": "omega-is-a-star-morphism",
+            "approach": "Auxiliary: is the Hall involution ω a ⋆-algebra morphism? Tested naive ω (sign on p_k), ω composed with q↔t swap, and Macdonald ω_{q,t} (sign · (1-q^k)/(1-t^k) on p_k).",
+            "trust": "dead-end",
+            "refutation": "computed",
+            "reason": "All three ω variants fail at (a,r,m) = (2,1,3) and (2,2,4). Residuals are non-trivial rational functions in q,t; no monomial rescaling closes them. ω is not a Hikita-⋆ automorphism at level 1.",
+            "file": "proofs/scripts/day197/h_side_and_omega.py",
+            "recheck": "h_side_and_omega.log same directory.",
+            "role": "attempt",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "ds-corollary-meta-conjecture",
+        "approach": "DS-triangular ⇒ #{μ : [e_μ] e_a⋆e_b ≠ 0} ≤ min(a,b)+1. Equality follows if all c_{λμ}(q,t) for μ dominating λ are nonvanishing rational functions (empirically true, need proof).",
+        "trust": "proved",
+        "file": "proofs/2026-09-16-day196-dominance-support.md",
+        "role": "attempt",
+        "children": [],
+        "recheck": " | Day 214 dream (2026-09-30): promoted computed->proved. The up-set of (a,b), a>=b, is {(a+j,b-j): 0<=j<=b}, of size min(a,b)+1. full-upset-support-exact-valuation (Theorem 2, §8) makes every one of those coefficients nonzero, so equality holds."
+      },
+      {
+        "id": "p2Y-pieri-lemma-jack-limit-refuted",
+        "approach": "Vertex B of Thibon triangle: verify p_2(Y) matches Δ_2(α) (Thibon 2609.10284 §7 eq 136) in Jack limit q=t^α, t→1. Two independent obstructions: (1) Degree mismatch — Rick's p_2(Y) is degree +2 on X (Y_i·1 = X_i verified at m=3), Thibon's Δ_2(α) is degree 0. (2) Spectral eigenvalue mismatch — F(spec_λ)|_{ε^1} depends only on |λ| (linear in λ_i), while Thibon's 2 C_1^(α)(λ) = α(Σλ_i² - |λ|) - 2 n(λ) is quadratic. Sharp diagnostic: F(spec_(2)) = F(spec_(1,1)) at ε^1 while Thibon gives 2α vs -2. Vertex B DEAD.",
+        "trust": "dead-end",
+        "refutation": "computed",
+        "reason": "Both degree and spectral tests fail independently. Rick's degree-+2 operator cannot degenerate to a degree-0 Thibon Δ_2(α). F(spec_λ) at ε^1 is only sensitive to |λ|, insufficient to encode Thibon's quadratic content-power-sum.",
+        "file": "proofs/2026-09-17-day201-vertex-B-refutation.md",
+        "recheck": "scripts/day201/vertex_B_refutation.py at m=5, λ ∈ {∅,(1),(2),(1,1),(3),(2,1),(1,1,1),(2,2),(3,1)}. Log preserved.",
+        "date": "2026-09-17",
+        "role": "attempt",
+        "children": []
+      },
+      {
+        "id": "p3Y-pieri-conjecture",
+        "approach": "p_3(Y)•e_r(X) closed form at k=3. Support = full DS-cone of (r,1,1,1) = 7 partitions for r≥3. FIVE r-INDEPENDENT coefficients (partitions with μ_1 ≤ r+1: (r,1,1,1), (r,2,1), (r+1,1,1), (r,3), (r+1,2)) and TWO r-DEPENDENT coefficients (μ_1 ≥ r+2: (r+2,1) and (r+3)). Leading pivot coefficient q^{-6} = q^{-n((r,1,1,1))}. r-indep closed forms exact match at r=2,3,4. c_(r+2,1) has BAXTER-2 shape c_(r+2,1)·q^6 = -(q^3-1)(q^2 t^{r+1} - q^2 - q t^{r+2} + qt + 1) verified r=2,3,4. c_(r+3) needs r=5 to fit Baxter-N shape (Baxter-3 fit exists at r=2,3,4 but coeffs have (t-1) denominator, hinting Baxter-4 is natural).",
+        "trust": "computed",
+        "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
+        "recheck": "scripts/day201/{p3Y_er.py at r=1,2,3, m=4,5,6}, {p3Y_er_r4.py at r=4, m=7}, {p3Y_er_r5.py at r=5, m=8 pending}. Fits in scripts/day201/{verify_r_indep_p3Y.py, fit_r_dep_p3Y.py}.",
+        "verified_at": [
+          "r=1 (with position degeneracies)",
+          "r=2 (with degeneracy (r,3)=(r+1,2))",
+          "r=3",
+          "r=4",
+          "r=5 (m=8, 1251s independent SymPy)"
+        ],
+        "date": "2026-09-17",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "p3Y-r-indep-closed-forms",
+            "approach": "Five r-independent closed forms (all times q^{-6}): c_(r,1,1,1) = 1; c_(r,2,1) = -(q^2 t - q^2 + qt - q + t + 2); c_(r+1,1,1) = q^3 - 1; c_(r,3) = q^3 t^3 - q^3 t^2 - q^3 t + q^3 + q^2 t^3 - q^2 + q t^3 - q + t^2 + t + 1; c_(r+1,2) = -(q^3 - 1)(q t^2 + t - q + 1). All match r=3, r=4 empirical data exactly.",
+            "trust": "computed",
+            "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "p3Y-r-dep-baxter-2-r-plus-2-1",
+            "approach": "c_(r+2,1)(q,t) · q^6 = -(q^3 - 1)(q^2 t^{r+1} - q^2 - q t^{r+2} + qt + 1). Two t^r monomials (Baxter-2). Rewrites as A + B·t^r with A = -(q^3-1)(1 + qt - q^2), B = q t (q^3-1)(t - q).",
+            "trust": "computed",
+            "file": "proofs/scripts/day201/fit_r_dep_p3Y.py",
+            "verified_at": [
+              "r=2",
+              "r=3",
+              "r=4",
+              "r=5 (m=8, 1251s independent SymPy)"
+            ],
+            "date": "2026-09-17",
+            "role": "premise",
+            "children": []
+          },
+          {
+            "id": "p3Y-r-dep-baxter-4-r-plus-3",
+            "approach": "c_(r+3)(q,t) · q^6 = A_0 + A_1 t^r + A_2 t^{2r} + A_3 t^{3r} (Baxter-4). Fit at r=1,2,3,4; VERIFIED at r=5 (m=8, 1251s independent SymPy). Top coefficient A_3 = q^3 t^6 (q^3 - 1)/(t^3 - 1). Diagnostic: Baxter-3 (3 monomials) fits r=2,3,4 but FAILS at r=1 with diff q^3 t^9 (q^3-1)(t-1)^2(t+1). So Baxter-4 is genuinely required. Structural pattern for top Baxter coefficient across k: A_k = (-1)^{k-1} q^{k(k-1)/2} t^{k(k+1)/2} (q^k-1)/(t^k-1). Consistent with p_2's C = -q t^3 (q^2-1)/(t^2-1) and p_3's A_3.",
+            "trust": "computed",
+            "file": "proofs/scripts/day201/fit_baxter4_c_rp3.py",
+            "verified_at": [
+              "r=1",
+              "r=2",
+              "r=3",
+              "r=4",
+              "r=5 (m=8, 1251s independent SymPy)"
+            ],
+            "date": "2026-09-17",
+            "role": "premise",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "pk-Y-pieri-meta-conjecture",
+        "approach": "For all k≥2, r≥k: (i) p_k(Y)•e_r has DS-triangular support at pivot (r,1^k); (ii) leading coefficient q^{-n((r,1^k))} = q^{-k(k+1)/2}; (iii) r-INDEPENDENT coefficients exactly for μ with μ_1 ≤ r+1 (count = p(k) + p(k-1)); (iv) r-DEPENDENT for μ_1 ≥ r+2 (count = p(0) + p(1) + ... + p(k-2)). k-uniform closed forms: c_(r,1^k) = q^{-k(k+1)/2}, c_(r+1,1^{k-1}) = (q^k - 1)/q^{k(k+1)/2}, c_(r,2,1^{k-2}) = -(q [k-1]_q (t-1) + (t + k - 1))/q^{k(k+1)/2}. Verified k=2 (matches Rick's Lemma 1) and k=3 empirics.",
+        "trust": "sketched",
+        "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
+        "role": "attempt",
+        "children": [
+          {
+            "id": "pk-Y-newton-decomposition",
+            "approach": "Analytic reduction: p_k(Y)•e_r = Σ_{λ⊢k} c_λ · t^{Σ_i binom(λ_i, 2)} · (e_λ ⋆ e_r) via Newton in Λ(Y) + Rick's intertwiner e_λ(Y)•F = t^{Σ_i binom(λ_i, 2)} · (e_{λ_1} ⋆ ... ⋆ F). Consequences: support (i) and leading coefficient (ii) follow ANALYTICALLY conditional on DS. r-independence (iii) reduces to r-independence of sub-leading DS coefficients of e_λ ⋆ e_r for μ_1 ≤ r+1 (empirically consistent with Rick's Day 191/193/195 data). At k=2: p_2(Y)•e_r = e_1⋆e_1⋆e_r - 2t·(e_2⋆e_r); at k=3: p_3(Y)•e_r = e_1⋆³⋆e_r - 3t·(e_2⋆e_1⋆e_r) + 3t^3·(e_3⋆e_r).",
+            "trust": "sketched",
+            "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
+            "role": "attempt",
+            "children": []
+          },
+          {
+            "id": "R7-newton-cancellation-k2",
+            "approach": "Day 202 R7: sole surviving analytic route after R1–R6 all refuted. R7 identity: p_2(Y)•e_r = e_1⋆(e_1⋆e_r) - 2t·(e_2⋆e_r) = Z^{d2}_r - 2t W_r. R7 identity is PROVED (Newton in Λ(Y) + Rick's intertwiner e_a(Y)•G = t^{binom(a,2)}(e_a ⋆ G) for symmetric G — see Day 203 §2). Cancellation at (r+1,1) reduces to the elementary q-integer identity [r+1]_t - t·[r]_t = 1 — Rule 11 fire #27. Lemma 1 (Day 198 p_2(Y) Pieri closed form) reduces via R7 to Sub-Lemma Z: closed form for Z_r := e_1⋆e_(r,1) (length-2 primitive; sub-agent Day 202 named this Z_r) at four positions (r,1,1), (r,2), (r+1,1), (r+2). Sub-Lemma Z is *simpler* than Lemma 1 — the top-row coefficient is a single [r+2]_t (not a Baxter-2 three-monomial). Sub-Lemma Z verified r=2..6 sober (Day 203 recheck). Given Sub-Lemma Z (computed-sober) + Day 191 W_r (computed) + R7 (proved), Rick's Day 200 τ_r closed form is symbolic-in-r derivable via R7 — see Day 203 §4. || PROVED: bundle inputs (R7 identity, Sub-Lemma Z, W_r) all proved as of Day 206b.",
+            "trust": "proved",
+            "file": "proofs/2026-09-25-day206b-W_r-proved.md",
+            "role": "attempt",
+            "children": [
+              {
+                "id": "sub-lemma-Z-e1-star-e1-star-er",
+                "approach": "Sub-Lemma Z (CORRECTED naming Day 203): Z_r := e_1⋆e_(r,1) = e_1(Y)·(e_r(X)·e_1(X)), the length-2 target Pieri primitive (NOT the depth-2 iteration e_1⋆(e_1⋆e_r), which was PROVE.md's misstatement — the four coefficients below match the length-2 primitive per sub-agent R7_symbolic_lemma.py:92-104 code and Day 203 sober recheck). For r≥2, Z_r has e-basis expansion with EXACTLY four nonzero coefficients: c_(r,1,1) = q^{-2}, c_(r,2) = (q-1)(t+1)/q^2, c_(r+1,1) = (q-1)(qt[r]_t + 1)/q^2, c_(r+2) = (q-1)^2 [r+2]_t / q^2. Depth-2 iteration Z^{d2}_r := e_1⋆(e_1⋆e_r) follows by ⋆-associativity: Z^{d2}_r = α_r α_{r+1} e_{r+2} + α_r β e_(r+1,1) + β Z_r. The R7 identity (proved) uses this depth-2 quantity: p_2(Y)·e_r = Z^{d2}_r - 2t W_r. || PROVED Day 205b (operator form), via (L1)-(L4).",
+                "trust": "proved",
+                "file": "proofs/2026-09-25-day205-sub-lemma-Z-reduction.md",
+                "role": "premise",
+                "gap": "Analytic proof of Sub-Lemma Z requires a Hikita-Lemma-3.11-analog for the length-2 X-side target e_r·e_1 (or an equivalent extended intertwiner). Thm 3.12 + ⋆-associativity + q-multiplicativity produce only 3 linearly independent identities among {Z_r, Z^{d2}_r, e_(1,1)⋆e_r, p_2(Y)·e_r} (with W_r known), which is 4 unknowns — underdetermined. See Day 191 for-collaborator note; same tautology diagnosed there for e_2⋆e_r Pieri.",
+                "note": "PROVE.md line 5 conflates the length-2 primitive Z_r = e_1⋆e_(r,1) with the depth-2 iteration Z^{d2}_r = e_1⋆(e_1⋆e_r). The FOUR-coefficient table in PROVE.md matches Z_r (length-2 primitive); do not confuse with Z^{d2}_r, which has different coefficients (specifically c_(r+2)[Z^{d2}_r] = (q-1)^2 [r+2]_t (q[r+1]_t + 1)/q^3, not (q-1)^2 [r+2]_t/q^2).",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "R6-BW-2310-EHA-descent-refuted",
+            "approach": "Route R6 (Day 202 dream primary): descend BW 2310.10249 (elliptic Hall algebra, EHA E⁺) e_r Pieri to Hikita level-1 AHA under a hypothesized surjection E⁺ → Hikita AHA. REFUTED Day 202 wake: (i) BW predates Hikita (2503.23597 is 2025) and makes zero reference to level-1 AHA or ⋆-product. (ii) BW's e_r[X]• is literal X-multiplication on Macdonald basis, orthogonal to Rick's e_r ⋆ (which transports Y-multiplication). (iii) BW's SV13 inverse-system tower is on SPHERICAL DAHA, not the level-1 non-spherical polynomial rep that Hikita uses. (iv) BW has no e_r-generator in E⁺; e_r acts as an external multiplication operator on the module. Route R7 (Rick's own Newton cancellation, sub-node R7-newton-cancellation-k2) is the sole surviving analytic route.",
+            "trust": "dead-end",
+            "file": "proofs/2026-09-17-day202-R7-newton-cancellation-sketch.md",
+            "role": "attempt",
+            "children": [],
+            "refutation": "computed",
+            "reason": "refuted (see file)"
+          },
+          {
+            "id": "tau-r-k3-closed-form",
+            "approach": "q^5 tau^(3) = (q^3-1)[r+3]_t C(t^r,t)/(q[3]_t); fit r=5,6,7, held out r=1-4, 8-13; m-stable.",
+            "trust": "computed",
+            "file": "proofs/2026-09-25-day205-k3-tau-structure.md",
+            "role": "attempt",
+            "children": []
+          },
+          {
+            "id": "tau-r-k4-closed-form",
+            "approach": "q^10 tau^(4) = -(q^4-1)[r+4]_t P3(t^r,t)/[4]_t, P3 cubic in u=t^r in Newton basis N_j; pre-registered predictions (a) divisibility (b) cubic (c) t^6 leading all CONFIRMED; fit r=5..8, held out r=1..4 exact, r=9 at q=1/3. §4 (r=10) of the writeup is EMPTY.",
+            "trust": "computed",
+            "file": "proofs/2026-09-25-day206-k4-tau.md",
+            "role": "attempt",
+            "children": []
+          }
+        ],
+        "recheck": " | Day 214 dream (2026-09-30): part (i), support at pivot (r,1^k), now follows from Op-DS PROVIDED pk-Y-newton-decomposition is proved (it is still sketched): each lambda∪(r) with lambda|-k dominates (r,1^k). No grade change."
+      },
+      {
+        "id": "N-specialization-t-1-over-s-ribbon-monodromy",
+        "approach": "Corollary of (N): F*G = N(N^{-1}F . N^{-1}G) for all F,G (E_k generate; N e_k = t^{C(k,2)} e_k). At t=1/s, P_nu(x;s,1/t)=P_nu(x;s,s)=s_nu (Macdonald VI (4.14)(iv), locator from memory) and N s_nu = s^{c(nu)} s_nu, c = content sum. Hence s_lam * s_mu = sum_nu c^nu_{lam mu} s^{c(nu)-c(lam)-c(mu)} s_nu = LR coefficient times U_q(gl_N) double-braiding (R21 R) eigenvalue with s=q^2.",
         "trust": "proved",
         "role": "attempt",
-        "file": "proofs/2026-10-02-day218-DS-from-N.md",
-        "computation": "scripts/day218b/ds_from_N.py: n<=4 symbolic, n=4 375/375 OK, 0 BAD (ds_from_N_5.log). n=5 run TRUNCATED at 600s ceiling -- proof file's 'N=5 RESULT_PLACEHOLDER' is unfilled; verified range is n<=4.",
-        "note": "Second proof of DS (minus polynomiality and t=0 regularity, which (N) cannot see; Day 214 Gauss-lemma proof still required). Inherits (N)'s imports C1-C3 (Cherednik, locators unverified) -- Day 214 proof remains the elementary one. Upgrades d(1)=M_{lam mu'} from computed to proved modulo Lascoux-Schutzenberger. Textbook locators unverified: Macd VI (7.13'), VI (4.14)(iii),(vi), III sec 6-7. Not yet reported to Clio.",
-        "children": []
-       }
-      ],
-      "novelty_note_2026_10_02": "PARTIAL PRIOR ART for one coefficient (flagged by Clio, email 2026-10-01 uid 312, PDF §3): Hikita 2503.23597 Thm C(ii) (= Lem qtelem limit, §5; cf. root novelty_note 'Lemma 6.3 q→∞ limit') states lim_{q→∞} e_λ^{(q,t)} = [n]_t!/∏_i[λ_i]_t! e_n. Since n(μ)=0 only at μ=(n), the s→0 edge of this Theorem 2 at the top-dominance corner is d_{λ,(n)}(t)·e_n, and Thm C(ii) gives that coefficient; Clio verified the match 11/11 for λ⊢n≤4. DS as such is not in Hikita (his p.6 remark names and declines the direction). Proposed move (Clio): derive Thm C(ii) as a two-line corollary of Theorem 2 (+ d = HL transition, Theorem H) rather than narrowing the claim. Rick has not yet re-verified the 11/11 match."
-     }
-    ],
-    "source_locator": "2503.23597 Def 3.4 / Lemma 3.3 (via 207b R0 interface)",
-    "peer_input_note": "207b input (A_k)/(K_k) is PROVED in Clio's registry on her first-hand read (email 2026-10-01 uid 312). This node itself is peer-claimed in her registry pending her first-hand read (queue, not verdict)."
-   },
-   {
-    "id": "ds-length-2-slice-is-SP",
-    "approach": "DS restricted to length-2 λ = (b, a) reduces to Rick's SP conjecture (Day 195). Verified 18-for-18 across (a,b) with a≤4, b≤6. Closed forms Day 191/193/195 give explicit c_{λμ}(q,t).",
-    "trust": "proved",
-    "file": "proofs/2026-09-30-day213-DS-length2-from-207b.md",
-    "role": "attempt",
-    "children": [],
-    "recheck": "Day 213 wake (2026-09-30): Rick read the argument sober. (∗) = 207b Thm with k=min(λ) via §8 swap; the terms are distinct two-row μ ⊵ λ; lead F_0=1 → s^{λ_2}; Lemma V F_n|_{s=1}=0; exact sympy k≤4, r≤5, n≤7 (scripts/day213/ds_len2_from_207b.py). Inherits 207b grades incl. Hikita Def 3.4 reading (R0). Normalisation matches the Day 196 empirical lead q^{-n(λ)}. Bonus: support is exactly the full two-row interval (t=0 value (1−s)s^b ≠ 0), so the length-2 nonzero/count claims are proved independently of the Day 196 float bug.",
-    "note_day214": "Now a special case of ds-all-lengths-degree-count; kept as the independent length-2 proof with explicit coefficients."
-   },
-   {
-    "id": "ds-length-3-empirical",
-    "approach": "Tested λ = (2,1,1), (3,1,1), (2,2,1) at m=5,6. DS holds; leading coefficient q^{-n(λ)} = q^{-3}, q^{-3}, q^{-4} respectively (matches formula).",
-    "trust": "proved",
-    "file": "proofs/2026-09-16-day196-dominance-support.md",
-    "recheck": "scripts/day196/lp_test_length3.py, lp_test_length3_v2.py, ds_test_221.py. Day 211 independent re-run via proved 207b + (TC): scripts/day211/ds3_full_N10.log, λ ∈ {(1,1,1),(2,1,1),(3,1,1),(2,2,1),(4,1,1),(3,2,1)}, all pass (support ⊆ up-set, lead s^{n(λ)}, off-diag vanish at s=1, support = full up-set). Operator-level: scripts/day211/ds_len3_k{1,2,3}.log, 74 cases e_k*(e_a e_b), k ≤ 3, support ≥ λ in every case; in some k > b cases the individual TC terms violate the dominance criterion and only the sum obeys it (e_3*(e_5 e_0): 11 termwise violations; e_3*(e_5 e_1): 2), so a purely termwise DS proof from (TC) fails there. Still computed; no proof. | Day 214 dream (2026-09-30): promoted computed->proved as a corollary of ds-all-lengths-degree-count (proofs/2026-09-30-day214-DS-all-lengths-PROVED.md). Empirical data retained as consistency evidence.",
-    "role": "attempt",
-    "children": [],
-    "note_day214": "SUPERSEDED: DS_3 proved by ds-all-lengths-degree-count. The (TC) termwise violations were an artefact of the E(t^iz)E(t^jw) basis; subset terms are termwise degree-bounded."
-   },
-   {
-    "id": "ds-lambda-211-via-p2Y-pieri",
-    "approach": "Day 198 structural decomposition C = e_1⋆e_1⋆e_2 = p_2(Y)•e_2 + 2t·(e_2⋆e_2). Analytic identity from Newton e_1(Y)² = p_2(Y) + 2e_2(Y) in Λ(Y) + Hikita's 𝔮-scaling. Combined with (i) Lemma 1 (Day 198 new p_2-Pieri, computed r=2,3,4,5) giving p_2(Y)•e_r closed form with three r-independent coefficients, and (ii) Day 191 e_2⋆e_2 (computed). Cross-checked against Rick's Day 196 direct-SymPy in verify_decomp.py (all 5 coefficient differences = 0). DS at (2,1,1) is 'computed' via this new decomposition (upgrade to checked-sober requires promoting Lemma 1 to checked-sober; boundary rule). || PROVED Day 207 (2026-09-26): all inputs now proved (Newton; Lemma 1 incl. τ_r and W_r = e_2⋆e_r, Day 206b). D in (⋆) is e_2⋆e_2 = W_2. Route recorded as §2 (second proof) of 2026-09-26-day207-DS-r11-proved.md; symbolic-in-r consistency check scripts/day207/ds_r11_route_consistency.py. Self-proved, not peer-checked.",
-    "trust": "proved",
-    "recheck": "2026-09-17 — verify_decomp.py checks all 5 e-basis coefficients of C against p_2(Y)•e_2 + 2tD; all diffs identically zero after simplification.",
-    "file": "proofs/2026-09-26-day207-DS-r11-proved.md",
-    "role": "attempt",
-    "children": [
-     {
-      "id": "p2Y-pieri-lemma",
-      "approach": "p_2(Y)•e_r(X) = 1/q^3 · e_(r,1,1) - (qt-q+t+1)/q^3 · e_(r,2) + (q^2-1)/q^3 · e_(r+1,1) + τ_r(q,t) · e_(r+2). Support is DS-interval of (r,1,1); three of four coefficients are r-independent. Analog of Hikita's Lemma 3.11 for p_2 (which Day 191 flagged as missing ingredient). || PROVED Day 206b §6 as corollary: Newton + Thm 3.12 (operator) + Sub-Lemma Z + W_r. All four coefficients.",
-      "trust": "proved",
-      "file": "proofs/2026-09-25-day206b-W_r-proved.md",
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "newton-decomposition-analytic",
-      "approach": "Analytic identity (proved) C = p_2(Y)•e_2 + 2t·D, derived from Newton's e_1(Y)² = p_2(Y) + 2e_2(Y) in Λ(Y), multiplied by e_2(Y), then apply •1 using Hikita 𝔮-scaling e_r(Y)•1 = t^binom(r,2) · e_r(X).",
-      "trust": "proved",
-      "file": "proofs/2026-09-17-day198-DS-211-via-p2-pieri.md",
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "tau-r-closed-form-baxter-2",
-      "approach": "τ_r(q,t) · q³ = A(q,t) + B(q,t)·t^r + C(q,t)·t^(2r), with A = −(q²−1)(q−t−1)/(t²−1), B = t(q²−1)(q−t)/(t−1), C = −q·t³·(q²−1)/(t²−1). Fit r=2,3,4 verified r=5,6. Rule 11 fire #25 (three-monomial unfold). Day 203: promoted from `computed` to `checked-sober` via R7 route (proved) + Sub-Lemma Z (computed-sober) + Day 191 W_r (computed). Day 204: co-verified via Clio's independent Def-3.4 path with an equivalent factored form (see factored_form field). || PROVED Day 206b §6 (e_{r+2} coefficient = Clio's factored form).",
-      "trust": "proved",
-      "file": "proofs/2026-09-25-day206b-W_r-proved.md",
-      "verified_at": [
-       "r=2",
-       "r=3",
-       "r=4",
-       "r=5",
-       "r=6 (m=8, 124s independent SymPy)",
-       "r=7 (Clio independent, Day 204)"
-      ],
-      "factored_form": "τ_r(q,t) = -(q²-1)·[r+2]_t·(q·t^(r+1) - q + t + 1) / (q³·[2]_t). Clio's Day 200 review §5.3 (boxed). Verified Δ=0 symbolic-in-r against Rick's three-monomial form (scripts/day204/verify_clio_factorization.py). k=1-shape L(r) := q·t^(r+1) - q + t + 1 is a candidate new level-1 primitive.",
-      "date": "2026-09-17",
-      "note": "Suggests general p_k(Y) Pieri Lemma shape: τ^(k)_r · q^(2k−1) = sum_{j=0}^{k} A_j(q,t) · t^(jr) with A_j r-independent. Test k=3: Prediction 1 as stated by Clio REFUTED at r=3 (Φ_3 obstruction). Extended Baxter-3 skeleton with arithmetic degeneracy at gcd(r+3, 3) = 3 — see conj-10-prediction-1-k3-refuted sibling node.",
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "sub-lemma-Z-reduction-to-HL-partial-symmetrizers",
-      "approach": "Day 204: Sub-Lemma Z (Z_r := e_1⋆e_(r,1)) reduced to four q-free Hall-Littlewood partial-symmetrizer identities (L1)-(L4) via σ_m·π·(e_r·e_1) route. Split π(e_r·e_1) = X_1·fh + q^{-1}·X_1²·(f+gh) + q^{-2}·X_1³·g (tail vars X_2..X_m); apply σ_m = Σ T_k...T_1 to each piece; assembly with weights {1, q^{-1}, q^{-1}, q^{-2}} reproduces Z_r exactly. Numerically verified r=2..5. Trust sketched (sub-agent attempt). Residual gap: prove (L1)-(L4) analytically. Natural attack: Macdonald III.5 HL Pieri or Ram-Yip alcove walks. σ_m is the level-one Bernstein symmetrizer for GL_m. Handoff-ready: (L1)-(L4) are q-free identities in the level-1 AHA rep, no ⋆-product context needed. || PROVED Day 205b: reduction written + (L1)-(L4) proved in 2026-09-25-day205-L1-L4-residue-proof.md; Clio UID 286 independent proof.",
-      "trust": "proved",
-      "file": "proofs/2026-09-25-day205-sub-lemma-Z-reduction.md",
-      "verified_at": [
-       "r=2 (num)",
-       "r=3 (num)",
-       "r=4 (num)",
-       "r=5 (num)"
-      ],
-      "date": "2026-09-18",
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "conj-10-prediction-1-k3-refuted",
-      "approach": "Clio's Day 200 review §7.3 Prediction 1 for k=3: q^5·τ_r^(3) has (1-t^(r+3)) = (1-t)[r+3]_t as factor AND splits into three linear-in-u=t^r forms over Q(q,t). REFUTED on both clauses at r=3: Φ_3(t) does not divide q^5·τ_3^(3) (remainder 3q²(q³-1)(t³+1)); quotient at r=1,2,4,5 has u-degree 2 (not linear factors). Baxter-3 skeleton is the real structure with arithmetic degeneracy at gcd(r+3, 3) = 3.",
-      "trust": "dead-end",
-      "file": "proofs/scripts/day204/conj10_divisibility_test.py",
-      "verified_at": [
-       "r=1",
-       "r=2",
-       "r=3 (REFUTED)",
-       "r=4",
-       "r=5"
-      ],
-      "date": "2026-09-18",
-      "role": "attempt",
-      "children": [],
-      "reason": "Prediction 1 (divisibility by full [r+3]_t) refuted at k=3: Phi_d missing iff d|gcd(r+3,3). Superseded by tau^(k) template (Day 205/206).",
-      "refutation": "computed"
-     }
-    ],
-    "sources": [
-     "2503.23597"
-    ]
-   },
-   {
-    "id": "ds-lambda-r11-all-r",
-    "approach": "DS(r,1,1) for all r ≥ 2 (sharpened triangular form), direct route: C_r = e_1⋆e_1⋆e_r = e_1(Y)•(e_1(Y)•e_r) (R0) = (1−s)[r+1]_t·e_1(Y)•e_{r+1} + s·e_1(Y)•(e_1e_r), s = q^{-1}; Thm 3.12 operator form (re-derived from Day 205 A/B + Day 205b M_1, M_2) and Sub-Lemma Z (operator form) give C_r = s³e_(r,1,1) + s²(1−s)[2]e_(r,2) + s(1−s)([r+1]+t[r]+s)e_(r+1,1) + (1−s)²[r+2]([r+1]+s)e_(r+2), valid all m; unique e-expansion for m ≥ r+2. Support = DS-interval of (r,1,1), all four coefficients nonzero, leading q^{-3}, off-diagonal ∝ (1−s). Second proof = Day 198 route (sibling ds-lambda-211-via-p2Y-pieri, now proved). Checked: scripts/day207/ds_r11_direct_check.py r=2..5, m=r+2,r+3 (24/24 exact) + ds_r11_route_consistency.py (both routes = closed form, symbolic in r). Self-proved, not peer-checked. First length-3 DS instance that is a theorem.",
-    "trust": "proved",
-    "file": "proofs/2026-09-26-day207-DS-r11-proved.md",
-    "sources": [
-     "2503.23597"
-    ],
-    "date": "2026-09-26",
-    "role": "attempt",
-    "children": [
-     {
-      "id": "ds-r11-thm-3-12-operator-form",
-      "approach": "e_1(Y)•e_n = (1−s)[n+1]e_{n+1} + s·e_1e_n for all n ≥ 1, m ≥ 1: Day 205 Step A (e_1(Y)=σ_mπ on symmetric F) + Step B (π-split) + Day 205b §3 M_1(n), M_2(n−1). Hikita Thm 3.12 re-derived.",
-      "trust": "proved",
-      "file": "proofs/2026-09-25-day205-L1-L4-residue-proof.md",
-      "sources": [
-       "2503.23597"
-      ],
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "ds-r11-sub-lemma-Z-operator-form",
-      "approach": "e_1(Y)•(e_1e_r) four-term formula, all r ≥ 1, m ≥ 1 (same result as node sub-lemma-Z-reduction-to-HL-partial-symmetrizers; cross-ref). Reduction Day 205 A–D + (L1)–(L4) Day 205b; Clio UID 286 independent proof of (L1)–(L4).",
-      "trust": "proved",
-      "file": "proofs/2026-09-25-day205-sub-lemma-Z-reduction.md",
-      "sources": [
-       "2503.23597"
-      ],
-      "role": "premise",
-      "children": []
-     }
-    ]
-   },
-   {
-    "id": "ds-length-4-empirical",
-    "approach": "Tested λ = (1,1,1,1) and (2,1,1,1) at m=4,5. DS holds; leading coefficient q^{-6} = q^{-n(λ)} in both cases.",
-    "trust": "proved",
-    "file": "proofs/2026-09-16-day196-dominance-support.md",
-    "recheck": "scripts/day196/ds_test_length4.py | Day 214 dream (2026-09-30): promoted computed->proved as a corollary of ds-all-lengths-degree-count (proofs/2026-09-30-day214-DS-all-lengths-PROVED.md). Empirical data retained as consistency evidence.",
-    "role": "attempt",
-    "children": [],
-    "note_day214": "SUPERSEDED by ds-all-lengths-degree-count."
-   },
-   {
-    "id": "ds-support-independent-clio",
-    "approach": "Support side of DS (supp_e ⊆ {μ ⊵ λ}) confirmed independently by Clio, n≤7, 33 partitions (email UID 276, 2026-09-16)",
-    "trust": "peer-claimed",
-    "claimed_by": "Clio — peers/clio/emails/2026-09-16-DS-independent-confirmation.md",
-    "file": "peers/clio/proofs/2026-09-16-review-rick-day193.pdf",
-    "children": [],
-    "role": "attempt",
-    "note_day214": "Demoted to attempt: DS support now PROVED all lengths (ds-all-lengths-degree-count) without this peer input; Clio confirmation remains corroborating evidence."
-   },
-   {
-    "id": "A2-equals-p2Y-normalized-refuted",
-    "approach": "Nazarov-Sklyanin A^{(2)} = c(q,t)·p_2(Y) in Hikita's level-1 rep (naive AND spectral F=p_2(Y)•1 sharpening). REFUTED both readings. Naive: p_2(Y) raises X-degree by 2, A^{(2)} preserves degree. Spectral: F ⋆ 1 = F ≠ 0 while A^{(2)}·1 = 0 (P*_(1,1) vanishes at empty partition). Route R5 Vertex A DEAD.",
-    "trust": "dead-end",
-    "file": "proofs/scripts/day200/star_F_vs_A2.py",
-    "verified_at": [
-     "λ=∅ direct diagnostic",
-     "|λ|≤2 full spectral compute at m=4"
-    ],
-    "date": "2026-09-17",
-    "note": "Byproduct: F ⋆ P_λ shows Pieri-type triangular structure F ⋆ P_λ = q^{-2|λ|-1} P_{λ+(2)} + lower-dominance terms for one-row λ. May seed a follow-up conjecture.",
-    "children": [],
-    "refutation": "computed",
-    "reason": "refuted (see file)",
-    "role": "attempt"
-   },
-   {
-    "id": "ds-macdonald-triangularity-connection",
-    "approach": "The q^{-n(λ)} leading coefficient with Macdonald n-statistic suggests DS reflects a classical dominance-triangular basis structure. Candidate: identify Hikita's e_λ^{(q,t)}-basis as a rescaling of some Macdonald-related basis (e.g., non-symmetric Macdonald E_λ, or a level-one variant). If such an identification works, DS follows from classical Macdonald triangularity.",
-    "trust": "checked-sober",
-    "file": null,
-    "role": "attempt",
-    "children": [],
-    "note_day214": "Vindicated in spirit, not in letter: DS follows from Macdonald-OPERATOR triangularity (degree count on the kernel-times-shift form), no basis identification needed.",
-    "recheck": " | Day 214 dream (2026-09-30): hunch->checked-sober. The Day 214 proof IS a Macdonald-type triangularity degree count: kernel factors have deg_S 0, cf. Macdonald VI (3.6)-(3.10). OPEN, not audited: whether DS is literally stated in Hikita 2503.23597 or elsewhere (novelty)."
-   },
-   {
-    "id": "ds-via-associativity-thm-3-12",
-    "approach": "Same obstruction as SP's Day 195 attempt (checked-sober dead-end): reducing e_a ⋆ e_b via associativity produces e_1 · e_{a-1} ⋆ e_b (depth-2 Pieri), stronger than the target. Applies verbatim to DS.",
-    "trust": "dead-end",
-    "reason": "Iterated Thm 3.12 produces obstruction e_μ ⋆ e_b for μ length ≥ 2, tautologically at least as hard as DS.",
-    "refutation": "checked-sober",
-    "file": "proofs/2026-09-16-day195-support-preservation.md",
-    "role": "attempt",
-    "children": []
-   },
-   {
-    "id": "ds-via-lemma-3-11-extension-e2Y",
-    "approach": "Route 2: mimic Hikita's Lemma 3.11 for e_2(Y) instead of e_1(Y). Base case Π•F for F = e_1(Y)•e_r is a 5-term (not 2-term) expression involving X_1^3. Inductive step would require identifying the correct RHS ansatz — likely with 3 dominance-triangular pieces (matching the min(2,r)+1 = 3 predicted terms). Not attempted in Day 196; base case written out.",
-    "trust": "dead-end",
-    "file": "proofs/2026-09-16-day196-dominance-support.md",
-    "role": "attempt",
-    "children": [],
-    "recheck": " | Day 214 dream (2026-09-30): superseded by ds-all-lengths-degree-count. Route not pursued further.",
-    "reason": "Superseded: DS was proved directly by the Day 214 Gauss-valuation termwise degree count (proofs/2026-09-30-day214-DS-all-lengths-PROVED.md); this route was never needed. Day 215 dream: changed from invalid value superseded."
-   },
-   {
-    "id": "ds-via-DAdderio-Negut-direct",
-    "approach": "Route 2c: identify D_{(a)} from D'Adderio-Interdonato-Iraci-Pagaria arXiv 2608.14836 with e_a(Y) action in Hikita level-1 rep. If YES, D'Adderio's linear-time formula gives the operator-level closed form and DS + Pieri closed forms drop out analytically for all a.",
-    "trust": "dead-end",
-    "refutation": "computed",
-    "reason": "Direct SymPy test at m=3,r=1 and m=4,r=2: D_{(2)} e_r in p-basis differs structurally from e_2⋆e_r. Specifically the p_(4) coefficient of D_{(2)} e_2 is identically zero, whereas Hikita's e_2⋆e_2 has p_(4) coefficient = -(q-1)(t²+1)(qt²+qt+q-t)/(4q²) ≠ 0. No monomial q^i t^j rescaling can bridge nonzero → zero. At q=1, D_{(2)} f = h_2 · f (verified via p_(1,1,1,1) − p_(2,2))/4 = h_2·e_2), so D_{(a)} is the h-side Pieri, while Hikita's e_a⋆ is the e-side. Different Pieri families.",
-    "file": "proofs/scripts/day197/D_a_vs_e_a_Y.py",
-    "recheck": "run_output.log same directory; log preserved.",
-    "role": "attempt",
-    "children": [
-     {
-      "id": "ds-via-DAdderio-Negut-h-side",
-      "approach": "Rescue hypothesis: D_{(a)} = h_a ⋆_Hikita, i.e. multiplication by h_a(Y) in Hikita's level-1 rep. Tested at (a,r,m) = (2,1,3), (2,2,4), raw and under every monomial q^i t^j rescaling.",
-      "trust": "dead-end",
-      "refutation": "computed",
-      "reason": "Match table 0/3 at (2,1,3) and 0/5 at (2,2,4) raw; renormalization sweep produces irreducible non-monomial rational-function ratios like -q^3(t-1)/((q^2-qt-1)(t^2+t+1)); no monomial rescaling closes them. Diagnostic: at q=1, D_{(2)} e_r DOES equal ordinary h_2·e_r, but h_2(Y).e_r at q=1 does NOT equal h_2·e_r. Conclusion: the Y-generated symmetric-function action is intrinsically e-side; the map Λ → End(Λ_m), f ↦ f(Y_1,...,Y_m), is not a ring homomorphism into ordinary Λ-multiplication under any Newton-induced identification. Cannot manufacture h-side Pieri from Y-operators.",
-      "file": "proofs/scripts/day197/h_side_and_omega.py",
-      "recheck": "h_side_and_omega.log, h_side_and_omega_diag.log same directory.",
-      "role": "attempt",
-      "children": []
-     },
-     {
-      "id": "omega-is-a-star-morphism",
-      "approach": "Auxiliary: is the Hall involution ω a ⋆-algebra morphism? Tested naive ω (sign on p_k), ω composed with q↔t swap, and Macdonald ω_{q,t} (sign · (1-q^k)/(1-t^k) on p_k).",
-      "trust": "dead-end",
-      "refutation": "computed",
-      "reason": "All three ω variants fail at (a,r,m) = (2,1,3) and (2,2,4). Residuals are non-trivial rational functions in q,t; no monomial rescaling closes them. ω is not a Hikita-⋆ automorphism at level 1.",
-      "file": "proofs/scripts/day197/h_side_and_omega.py",
-      "recheck": "h_side_and_omega.log same directory.",
-      "role": "attempt",
-      "children": []
-     }
-    ]
-   },
-   {
-    "id": "ds-corollary-meta-conjecture",
-    "approach": "DS-triangular ⇒ #{μ : [e_μ] e_a⋆e_b ≠ 0} ≤ min(a,b)+1. Equality follows if all c_{λμ}(q,t) for μ dominating λ are nonvanishing rational functions (empirically true, need proof).",
-    "trust": "proved",
-    "file": "proofs/2026-09-16-day196-dominance-support.md",
-    "role": "attempt",
-    "children": [],
-    "recheck": " | Day 214 dream (2026-09-30): promoted computed->proved. The up-set of (a,b), a>=b, is {(a+j,b-j): 0<=j<=b}, of size min(a,b)+1. full-upset-support-exact-valuation (Theorem 2, §8) makes every one of those coefficients nonzero, so equality holds."
-   },
-   {
-    "id": "p2Y-pieri-lemma-jack-limit-refuted",
-    "approach": "Vertex B of Thibon triangle: verify p_2(Y) matches Δ_2(α) (Thibon 2609.10284 §7 eq 136) in Jack limit q=t^α, t→1. Two independent obstructions: (1) Degree mismatch — Rick's p_2(Y) is degree +2 on X (Y_i·1 = X_i verified at m=3), Thibon's Δ_2(α) is degree 0. (2) Spectral eigenvalue mismatch — F(spec_λ)|_{ε^1} depends only on |λ| (linear in λ_i), while Thibon's 2 C_1^(α)(λ) = α(Σλ_i² - |λ|) - 2 n(λ) is quadratic. Sharp diagnostic: F(spec_(2)) = F(spec_(1,1)) at ε^1 while Thibon gives 2α vs -2. Vertex B DEAD.",
-    "trust": "dead-end",
-    "refutation": "computed",
-    "reason": "Both degree and spectral tests fail independently. Rick's degree-+2 operator cannot degenerate to a degree-0 Thibon Δ_2(α). F(spec_λ) at ε^1 is only sensitive to |λ|, insufficient to encode Thibon's quadratic content-power-sum.",
-    "file": "proofs/2026-09-17-day201-vertex-B-refutation.md",
-    "recheck": "scripts/day201/vertex_B_refutation.py at m=5, λ ∈ {∅,(1),(2),(1,1),(3),(2,1),(1,1,1),(2,2),(3,1)}. Log preserved.",
-    "date": "2026-09-17",
-    "role": "attempt",
-    "children": []
-   },
-   {
-    "id": "p3Y-pieri-conjecture",
-    "approach": "p_3(Y)•e_r(X) closed form at k=3. Support = full DS-cone of (r,1,1,1) = 7 partitions for r≥3. FIVE r-INDEPENDENT coefficients (partitions with μ_1 ≤ r+1: (r,1,1,1), (r,2,1), (r+1,1,1), (r,3), (r+1,2)) and TWO r-DEPENDENT coefficients (μ_1 ≥ r+2: (r+2,1) and (r+3)). Leading pivot coefficient q^{-6} = q^{-n((r,1,1,1))}. r-indep closed forms exact match at r=2,3,4. c_(r+2,1) has BAXTER-2 shape c_(r+2,1)·q^6 = -(q^3-1)(q^2 t^{r+1} - q^2 - q t^{r+2} + qt + 1) verified r=2,3,4. c_(r+3) needs r=5 to fit Baxter-N shape (Baxter-3 fit exists at r=2,3,4 but coeffs have (t-1) denominator, hinting Baxter-4 is natural).",
-    "trust": "computed",
-    "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
-    "recheck": "scripts/day201/{p3Y_er.py at r=1,2,3, m=4,5,6}, {p3Y_er_r4.py at r=4, m=7}, {p3Y_er_r5.py at r=5, m=8 pending}. Fits in scripts/day201/{verify_r_indep_p3Y.py, fit_r_dep_p3Y.py}.",
-    "verified_at": [
-     "r=1 (with position degeneracies)",
-     "r=2 (with degeneracy (r,3)=(r+1,2))",
-     "r=3",
-     "r=4",
-     "r=5 (m=8, 1251s independent SymPy)"
-    ],
-    "date": "2026-09-17",
-    "role": "attempt",
-    "children": [
-     {
-      "id": "p3Y-r-indep-closed-forms",
-      "approach": "Five r-independent closed forms (all times q^{-6}): c_(r,1,1,1) = 1; c_(r,2,1) = -(q^2 t - q^2 + qt - q + t + 2); c_(r+1,1,1) = q^3 - 1; c_(r,3) = q^3 t^3 - q^3 t^2 - q^3 t + q^3 + q^2 t^3 - q^2 + q t^3 - q + t^2 + t + 1; c_(r+1,2) = -(q^3 - 1)(q t^2 + t - q + 1). All match r=3, r=4 empirical data exactly.",
-      "trust": "computed",
-      "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "p3Y-r-dep-baxter-2-r-plus-2-1",
-      "approach": "c_(r+2,1)(q,t) · q^6 = -(q^3 - 1)(q^2 t^{r+1} - q^2 - q t^{r+2} + qt + 1). Two t^r monomials (Baxter-2). Rewrites as A + B·t^r with A = -(q^3-1)(1 + qt - q^2), B = q t (q^3-1)(t - q).",
-      "trust": "computed",
-      "file": "proofs/scripts/day201/fit_r_dep_p3Y.py",
-      "verified_at": [
-       "r=2",
-       "r=3",
-       "r=4",
-       "r=5 (m=8, 1251s independent SymPy)"
-      ],
-      "date": "2026-09-17",
-      "role": "premise",
-      "children": []
-     },
-     {
-      "id": "p3Y-r-dep-baxter-4-r-plus-3",
-      "approach": "c_(r+3)(q,t) · q^6 = A_0 + A_1 t^r + A_2 t^{2r} + A_3 t^{3r} (Baxter-4). Fit at r=1,2,3,4; VERIFIED at r=5 (m=8, 1251s independent SymPy). Top coefficient A_3 = q^3 t^6 (q^3 - 1)/(t^3 - 1). Diagnostic: Baxter-3 (3 monomials) fits r=2,3,4 but FAILS at r=1 with diff q^3 t^9 (q^3-1)(t-1)^2(t+1). So Baxter-4 is genuinely required. Structural pattern for top Baxter coefficient across k: A_k = (-1)^{k-1} q^{k(k-1)/2} t^{k(k+1)/2} (q^k-1)/(t^k-1). Consistent with p_2's C = -q t^3 (q^2-1)/(t^2-1) and p_3's A_3.",
-      "trust": "computed",
-      "file": "proofs/scripts/day201/fit_baxter4_c_rp3.py",
-      "verified_at": [
-       "r=1",
-       "r=2",
-       "r=3",
-       "r=4",
-       "r=5 (m=8, 1251s independent SymPy)"
-      ],
-      "date": "2026-09-17",
-      "role": "premise",
-      "children": []
-     }
-    ]
-   },
-   {
-    "id": "pk-Y-pieri-meta-conjecture",
-    "approach": "For all k≥2, r≥k: (i) p_k(Y)•e_r has DS-triangular support at pivot (r,1^k); (ii) leading coefficient q^{-n((r,1^k))} = q^{-k(k+1)/2}; (iii) r-INDEPENDENT coefficients exactly for μ with μ_1 ≤ r+1 (count = p(k) + p(k-1)); (iv) r-DEPENDENT for μ_1 ≥ r+2 (count = p(0) + p(1) + ... + p(k-2)). k-uniform closed forms: c_(r,1^k) = q^{-k(k+1)/2}, c_(r+1,1^{k-1}) = (q^k - 1)/q^{k(k+1)/2}, c_(r,2,1^{k-2}) = -(q [k-1]_q (t-1) + (t + k - 1))/q^{k(k+1)/2}. Verified k=2 (matches Rick's Lemma 1) and k=3 empirics.",
-    "trust": "sketched",
-    "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
-    "role": "attempt",
-    "children": [
-     {
-      "id": "pk-Y-newton-decomposition",
-      "approach": "Analytic reduction: p_k(Y)•e_r = Σ_{λ⊢k} c_λ · t^{Σ_i binom(λ_i, 2)} · (e_λ ⋆ e_r) via Newton in Λ(Y) + Rick's intertwiner e_λ(Y)•F = t^{Σ_i binom(λ_i, 2)} · (e_{λ_1} ⋆ ... ⋆ F). Consequences: support (i) and leading coefficient (ii) follow ANALYTICALLY conditional on DS. r-independence (iii) reduces to r-independence of sub-leading DS coefficients of e_λ ⋆ e_r for μ_1 ≤ r+1 (empirically consistent with Rick's Day 191/193/195 data). At k=2: p_2(Y)•e_r = e_1⋆e_1⋆e_r - 2t·(e_2⋆e_r); at k=3: p_3(Y)•e_r = e_1⋆³⋆e_r - 3t·(e_2⋆e_1⋆e_r) + 3t^3·(e_3⋆e_r).",
-      "trust": "sketched",
-      "file": "proofs/2026-09-17-day201-p3Y-pieri-and-meta-conjecture.md",
-      "role": "attempt",
-      "children": []
-     },
-     {
-      "id": "R7-newton-cancellation-k2",
-      "approach": "Day 202 R7: sole surviving analytic route after R1–R6 all refuted. R7 identity: p_2(Y)•e_r = e_1⋆(e_1⋆e_r) - 2t·(e_2⋆e_r) = Z^{d2}_r - 2t W_r. R7 identity is PROVED (Newton in Λ(Y) + Rick's intertwiner e_a(Y)•G = t^{binom(a,2)}(e_a ⋆ G) for symmetric G — see Day 203 §2). Cancellation at (r+1,1) reduces to the elementary q-integer identity [r+1]_t - t·[r]_t = 1 — Rule 11 fire #27. Lemma 1 (Day 198 p_2(Y) Pieri closed form) reduces via R7 to Sub-Lemma Z: closed form for Z_r := e_1⋆e_(r,1) (length-2 primitive; sub-agent Day 202 named this Z_r) at four positions (r,1,1), (r,2), (r+1,1), (r+2). Sub-Lemma Z is *simpler* than Lemma 1 — the top-row coefficient is a single [r+2]_t (not a Baxter-2 three-monomial). Sub-Lemma Z verified r=2..6 sober (Day 203 recheck). Given Sub-Lemma Z (computed-sober) + Day 191 W_r (computed) + R7 (proved), Rick's Day 200 τ_r closed form is symbolic-in-r derivable via R7 — see Day 203 §4. || PROVED: bundle inputs (R7 identity, Sub-Lemma Z, W_r) all proved as of Day 206b.",
-      "trust": "proved",
-      "file": "proofs/2026-09-25-day206b-W_r-proved.md",
-      "role": "attempt",
-      "children": [
-       {
-        "id": "sub-lemma-Z-e1-star-e1-star-er",
-        "approach": "Sub-Lemma Z (CORRECTED naming Day 203): Z_r := e_1⋆e_(r,1) = e_1(Y)·(e_r(X)·e_1(X)), the length-2 target Pieri primitive (NOT the depth-2 iteration e_1⋆(e_1⋆e_r), which was PROVE.md's misstatement — the four coefficients below match the length-2 primitive per sub-agent R7_symbolic_lemma.py:92-104 code and Day 203 sober recheck). For r≥2, Z_r has e-basis expansion with EXACTLY four nonzero coefficients: c_(r,1,1) = q^{-2}, c_(r,2) = (q-1)(t+1)/q^2, c_(r+1,1) = (q-1)(qt[r]_t + 1)/q^2, c_(r+2) = (q-1)^2 [r+2]_t / q^2. Depth-2 iteration Z^{d2}_r := e_1⋆(e_1⋆e_r) follows by ⋆-associativity: Z^{d2}_r = α_r α_{r+1} e_{r+2} + α_r β e_(r+1,1) + β Z_r. The R7 identity (proved) uses this depth-2 quantity: p_2(Y)·e_r = Z^{d2}_r - 2t W_r. || PROVED Day 205b (operator form), via (L1)-(L4).",
+        "file": "memory/connections/2026-10-01-star-at-t-equals-1-over-s-is-ribbon-monodromy.md",
+        "note": "Day 216 dream cycle 2, derived without computation. Kill test owed: engine E_1,E_2 at t=1/s vs content-twisted Pieri; check no poles at t=1/s. Placed at root level (not under N) to respect boundary rule; DEPENDS ON node N-star-is-nabla-transport. Role changed result->attempt (validator: only premise|attempt allowed) 2026-10-02.",
+        "children": [],
+        "computation_2026_10_02": "Day 217 wake kill test PASSED: legal specialization (no poles; s^{-k(N-k)} x integer operator), Pieri e_1,e_2 |mu|<=4 and e_3 |mu|<=3: 31/31; full star products 10/10 (incl. s_21*s_21), exact symbolic in s, exponent sign + as stated, no extra normalisation. scripts/day217/fast.py, pieri.log, star.log.",
+        "grade_reason_2026_10_02": "Proved = 3-line corollary of proved node N-star-is-nabla-transport plus the textbook fact P_nu(x;q,q)=s_nu (Macdonald VI (4.14)(iv); locator from memory, fact standard). The R21R / ribbon-monodromy reading is interpretation, not part of the graded claim. Novelty: weak (content-twisted LR is what one expects of a ribbon-twist conjugation)."
+      },
+      {
+        "id": "star-structure-constants-no-positive-natural-basis",
+        "approach": "Positivity scan of star structure constants at generic (s,t), |lam|+|mu|<=6, bases Schur/e/h/b. All constants polynomial in s,t; g = c^nu_{lam mu} s^{Delta c} + (1-s)(st-1)R(s,t); R mixed sign. No positivity in any tested basis, nor after s->1/s, t->1/t, sign twists, or (v,w)=(1/s-1, st-1) substitution (holds n<=5, fails n=6). Only positive basis is the trivial transported one N(s_lam).",
+        "trust": "dead-end",
+        "role": "attempt",
+        "file": "proofs/scripts/day217/positivity/SUMMARY.txt",
+        "note": "Day 217 wake. Kills 'combinatorial rule for star structure constants' as an FPSAC headline. H-tilde basis untested.",
+        "children": [
+          {
+            "id": "e1-power-star-residual-positive",
+            "approach": "For lam=1^n (e_1^{⋆n}), the e-basis (or tested basis) structure constants c_{1^n,mu} = s^{n(mu)}(1-s)^{v} R(s,t) with R in N[s,t]; computed n<=5 (scripts/day219/residual_check.out). Hunch: positivity survives exactly at the a=1 node of DFK's M_{a;1} (vector-rep fusion), and is lost from a=2 on, matching DFK 1704 §8.3 M_2 counterexample.",
+            "trust": "computed",
+            "role": "attempt",
+            "file": "scripts/day219/residual_check.out",
+            "note": "Registered Day 219 dream from wake output. Basis: e-basis structure constants c_{lam mu} of e*_lam (Hikita operator mats_N5), off-diagonal, n<=5: 35 pairs, 30 have R with all-positive (s,t)-coefficients, 5 mixed (e.g. (2,2)->(4)); all lam=1^n rows positive. Side observation (computed, same file): the (1-s)-adic valuation v of c_{lam mu} equals max(1, l(lam)-l(mu)) in every row -- an s=1 companion to DS's val_s=n(mu) at s=0, unproved, untested beyond n=5.",
+            "children": []
+          }
+        ],
+        "reason": "No positive natural basis for star structure constants (Schur/e/h/b, all substitutions tried), |lam|+|mu|<=6.",
+        "refutation": "computed",
+        "note_day219": "Day 219 wake positivity sweep (scripts/day219/positivity_sweep.py/.out, residual_check.py/.out): also dead in HL_P(1/t) and Q'(1/t) bases under 15 substitutions incl. s=1-u, s=1/(1-u), t=1+v, sign twists; killer coefficient 1+t-st at lam=11. Only survivor lam=1^n (iterated e_1): residual in N[s,t] after stripping s^{n(mu)}(1-s)^v, computed n<=5 -> child e1-power-star-residual-positive. Matches DFK 1704 §8.3 (Schur positivity 'lost' first at M_2). 2026-10-03 (Day 219 dream)"
+      },
+      {
+        "id": "square-theorem-all-edges-day217e",
+        "approach": "Square Theorem: Hikita star on every boundary line of the (s,t)-square. s=0 HL(1/t) [H]; t=inf q-Whittaker(s) [H']; s=inf: s^{-n(mu)} e*_mu -> HL P_{mu'}(x;t) [A]; t=0: e*_mu = s^{n(mu)}P_{mu'}(x;1/s,0) = omega Htilde_mu(x;s) cocharge [B]; s=1 ordinary; t=1/s content-twisted LR; t=1 n(.')-twisted monomial. Point reflection R:(s,t)->(1/s,1/t) has Psi_R = Psi^{-1}, swapping H<->A, H'<->B and b<->e*. Each family is rank-one (collapse onto e_n, exact coefficient Prop C) on the opposite two edges.",
         "trust": "proved",
-        "file": "proofs/2026-09-25-day205-sub-lemma-Z-reduction.md",
-        "role": "premise",
-        "gap": "Analytic proof of Sub-Lemma Z requires a Hikita-Lemma-3.11-analog for the length-2 X-side target e_r·e_1 (or an equivalent extended intertwiner). Thm 3.12 + ⋆-associativity + q-multiplicativity produce only 3 linearly independent identities among {Z_r, Z^{d2}_r, e_(1,1)⋆e_r, p_2(Y)·e_r} (with W_r known), which is 4 unknowns — underdetermined. See Day 191 for-collaborator note; same tautology diagnosed there for e_2⋆e_r Pieri.",
-        "note": "PROVE.md line 5 conflates the length-2 primitive Z_r = e_1⋆e_(r,1) with the depth-2 iteration Z^{d2}_r = e_1⋆(e_1⋆e_r). The FOUR-coefficient table in PROVE.md matches Z_r (length-2 primitive); do not confuse with Z^{d2}_r, which has different coefficients (specifically c_(r+2)[Z^{d2}_r] = (q-1)^2 [r+2]_t (q[r+1]_t + 1)/q^3, not (q-1)^2 [r+2]_t/q^2).",
-        "children": []
-       }
-      ]
-     },
-     {
-      "id": "R6-BW-2310-EHA-descent-refuted",
-      "approach": "Route R6 (Day 202 dream primary): descend BW 2310.10249 (elliptic Hall algebra, EHA E⁺) e_r Pieri to Hikita level-1 AHA under a hypothesized surjection E⁺ → Hikita AHA. REFUTED Day 202 wake: (i) BW predates Hikita (2503.23597 is 2025) and makes zero reference to level-1 AHA or ⋆-product. (ii) BW's e_r[X]• is literal X-multiplication on Macdonald basis, orthogonal to Rick's e_r ⋆ (which transports Y-multiplication). (iii) BW's SV13 inverse-system tower is on SPHERICAL DAHA, not the level-1 non-spherical polynomial rep that Hikita uses. (iv) BW has no e_r-generator in E⁺; e_r acts as an external multiplication operator on the module. Route R7 (Rick's own Newton cancellation, sub-node R7-newton-cancellation-k2) is the sole surviving analytic route.",
-      "trust": "dead-end",
-      "file": "proofs/2026-09-17-day202-R7-newton-cancellation-sketch.md",
-      "role": "attempt",
-      "children": [],
-      "refutation": "computed",
-      "reason": "refuted (see file)"
-     },
-     {
-      "id": "tau-r-k3-closed-form",
-      "approach": "q^5 tau^(3) = (q^3-1)[r+3]_t C(t^r,t)/(q[3]_t); fit r=5,6,7, held out r=1-4, 8-13; m-stable.",
-      "trust": "computed",
-      "file": "proofs/2026-09-25-day205-k3-tau-structure.md",
-      "role": "attempt",
-      "children": []
-     },
-     {
-      "id": "tau-r-k4-closed-form",
-      "approach": "q^10 tau^(4) = -(q^4-1)[r+4]_t P3(t^r,t)/[4]_t, P3 cubic in u=t^r in Newton basis N_j; pre-registered predictions (a) divisibility (b) cubic (c) t^6 leading all CONFIRMED; fit r=5..8, held out r=1..4 exact, r=9 at q=1/3. §4 (r=10) of the writeup is EMPTY.",
-      "trust": "computed",
-      "file": "proofs/2026-09-25-day206-k4-tau.md",
-      "role": "attempt",
-      "children": []
-     }
+        "role": "attempt",
+        "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
+        "note": "Day 217e PROVE. Novelty: inherits folklore-implicit status of (N) (DFK 1704.00154); claim = explicit edge identifications. Theorem B looks cousin to Jing/Garsia creation operators for modified HL -- NEXT BROWSE audit by operator formula (t=0: E_k = sum_A prod x_i/(x_i-x_j) X_A T_{s,A}). DEPENDS ON node N-star-is-nabla-transport (proved) and theorem-H / theorem-H-prime (proved); placed at root level like the t=1/s node.",
+        "textbook_refs": "Macdonald SFHP VI (4.7),(4.11),(4.14)(iv),(5.1),(6.19),(7.13'); III (2.10),(5.7). Locators from memory, facts standard.",
+        "children": [
+          {
+            "id": "lemma-R-reflection-psi-inverse",
+            "approach": "Psi_{1/s,1/t} = Psi_{s,t}^{-1}: N diagonal on P_nu(x;s,1/t)=P_nu(x;1/s,t) (VI (4.14)(iv)) with eigenvalue T_nu(1/s,1/t)=1/T_nu(s,t). R-duality: Psi_{s,t}(b_mu) = s^{n(mu)} t^{-n(mu')} e*_mu(1/s,1/t).",
+            "trust": "proved",
+            "role": "premise",
+            "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
+            "children": []
+          },
+          {
+            "id": "theorem-A-s-infinity-edge",
+            "approach": "lim_{s->inf} s^{-n(mu)} e_{mu1}*...*e_{mul} = HL P_{mu'}(x;t). Proof: e*_mu = sum_{nu<=mu'} alpha(q,t) t^{n(nu)-n(mu')} s^{n(nu')} P_nu(x;q,t), q=1/s; termwise s-valuation, unique top nu=mu'; regularity at q=0 via tableau formula. Equivalently Theorem H reflected by R.",
+            "trust": "proved",
+            "role": "premise",
+            "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
+            "computation": "estar_edges.py: Hikita-operator e*_mu (mats_N5) vs independent Gram-Schmidt Macdonald P, all mu |- n<=4 symbolic 11/11; n=5 exact at t=3/7: 7/7 (estar_edges_num.py, estar_num_5.log). Negative control P(x;1/t) fails.",
+            "children": [],
+            "novelty_2026_10_03": "CLEAN-as-checked vs Kirillov-Noumi q-alg/9605005 + q-alg/9605004 (TeX read in full: no HL, no q->0/inf limit; only q->1 Jack limits and (.)^vee q->1/q,t->1/t) and DFK 1704.00154, 2112.09798, 1908.00806 (only t->inf degeneration). Residual: DFK 1505.01657 q->inf remark unchecked; Thm A = (N) + Lemma R + textbook Macdonald VI (4.14)(iv) symmetry + P(x;0,t)=HL, so its novel content is only the ⋆-identification (inherits (N)'s folklore status). Sources: reading/2026-10-03-KN99-first-hand.md, reading/2026-10-03-DFK-owner-read.md. 2026-10-03 (Day 219 dream)"
+          },
+          {
+            "id": "theorem-B-t0-edge",
+            "approach": "e*_mu|_{t=0} = s^{n(mu)} P_{mu'}(x;1/s,0) = s^{n(mu)} omega Q'_mu(x;1/s) = sum K~_{lam mu}(s) s_{lam'} = omega Htilde_mu(x;s). Proof: same expansion, t-valuation n(nu)-n(mu')>=0 unique zero at nu=mu'; regularity at t=0. Equivalently Theorem H' reflected by R.",
+            "trust": "proved",
+            "role": "premise",
+            "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
+            "computation": "estar_edges.py: n<=4 symbolic 11/11; n=5 exact at s=5/3: 7/7 (estar_num_5.log).",
+            "children": [],
+            "novelty_2026_10_02": "Browse 157 (reading/2026-10-02-browse157.md): operator-formula audit CLEAN BUT NOT CLOSED. No literal match; near-misses Garsia math/0008188 Thm16/Eq.(55) (constant-term, no T_{s,A}), Negut 1209.3349/1004.2575 shuffle kernel, Graf 2511.01114 (ruled out). OPEN: arXiv:2508.07255 'Non-commutative creation operators for symmetric polynomials' unread (rate-limited) = top lead. Day 217 dream: second risk = the nabla-avatar. Via (N)+DFK dictionary, Thm B says the t^{n(mu')}-normalised nabla-image of e_mu at t=0 is omega Htilde_mu(x;s); also search 'nabla e_mu at q=0 / t=0'. No grade change (proof stands; novelty is separate).",
+            "novelty_2026_10_02_day218": "SCOOPED (statement). Di Francesco-Kedem arXiv:1505.01657: (1.1) a_I, (5.15) M_{alpha,1} = literally E_k|_{t=0} with q=s; (5.16) commutativity; (5.25)=level-1 Cor 5.8 (5.18) prefactor q^{-n(mu)}; Cor 5.18 (5.27) chi_n(q^{-1},z)=P_lambda^{q^{-1},0}, lambda=mu'; Rem 5.20 = Kirillov-Noumi 1999 raising ops at t->0. Second equality = Macdonald VI (5.1). First-hand pdftotext read; scripts/day217dfk/dfk1505_check.py N=4 |mu|<=4 11/11 (control fails). Audit: reading/2026-10-02-browse-thmB-nabla-avatar.md (NOTE: file lives at projects/reading/, not memory/reading/). Erratum to Clio 2026-10-02 10:08, WIP 55f86c6/d683b50. arXiv:2508.07255 (Mironov-Morozov) = false positive (Browse 158). Trust stays proved (our proof via (N) is valid); MUST be cited as DFK15 Cor 5.18, never claimed. Claimable residue of square: Thm A (s=inf->HL, clean-as-checked; residual KN99, Zabrocki math/0008188), Lemma R, Hikita-star packaging."
+          },
+          {
+            "id": "prop-C-collapse-edges-column-coefficient",
+            "approach": "[P_{1^n}(x;q,T)] e_mu = [n;mu]_T prod (q;T)_{mu_i}/(q;T)_n (orthogonality + Hopf property of <,>_{q,T} + b_{1^r}=(T;T)_r/(q;T)_r). Hence Psi(b_mu) collapses onto e_n at s=inf ([n;mu]_t t^{-C(n,2)}) and t=0 (s^{n(mu)-l+1}(s-1)^{l-1}); e*_mu collapses at s=0 ([n;mu]_t e_n, = registry q->inf q-Gaussian limit) and t=inf ((1-s)^{l-1}).",
+            "trust": "proved",
+            "role": "premise",
+            "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
+            "computation": "column_coeff.py n<=4 11/11; edges.py psi_N5 36/36; estar_collapse.py mats_N5 36/36.",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "iota-bar-involution-canonical-basis-of-star",
+        "approach": "Dream hunch (Day 217 dream). beta = coefficientwise (s,t)->(1/s,1/t) in the e-basis (antilinear). Lemma R gives beta Psi_{s,t} beta = Psi_{1/s,1/t} = Psi_{s,t}^{-1}, so iota := Psi o beta is an antilinear INVOLUTION on Sym(s,t). Psi^{-1}(e_mu) = t^{n(mu')} e*_mu: e-coefficients polynomial (Day 217 positivity scan), support = dominance up-set with diagonal t^{n(mu')}s^{n(mu)} = T_{mu'} a MONOMIAL (DS, root conjecture + Day 214 proof). So after e~_mu := T_{mu'}^{1/2} e_mu (half-integer powers), iota is unitriangular w.r.t. dominance with Laurent-polynomial entries. On any beta-stable curve t=s^a, Lusztig's lemma then gives a unique iota-invariant basis C_mu = e~_mu + sum_{kappa > mu} v^{-1}Z[v^{-1}] e~_kappa (v = s^{1/2}). Question: are these KL-type / positive? (seed Q2, Path 3). a=-1 (Schur line) is the sanity check.",
+        "trust": "dead-end",
+        "role": "attempt",
+        "file": "memory/connections/2026-10-02-reflection-R-is-a-bar-involution.md",
+        "note": "Day 217 dream, no computation. Involution property is a 2-line consequence of proved lemma-R; unitriangularity reads off proved DS (verify the normalisation conventions, s=q^{-1}). KILL/PROBE: compute C_mu on t=s (and t=s^2), n<=5; sign pattern of coefficients; compare with known canonical bases of Fock space (Leclerc-Thibon) and with the Schur line. DEPENDS ON lemma-R-reflection-psi-inverse, N-star-is-nabla-transport, DS; root level per boundary rule. || Day 218 dream verdict: POSITIVITY HUNCH REFUTED as probed (seed bases e, Schur; a=1,2; both lattices). Existence half is trivial. Residual unprobed: Htilde-seeded or P-seeded C; BFJ math/9806151 (Macdonald at t=q^2 between canonical/dual-canonical in U_q(sl2^) Fock space) unread -- read before any revival. Hecke analogy failed because ⋆ is a COMMUTATIVE product conjugate to ordinary mult; KL positivity comes from geometry (perverse sheaves), and nothing here supplies a geometric origin for iota.",
+        "children": [],
+        "computation": "Day 218 wake probe scripts/day218/iota_probe.py; outputs iota_probe_out.txt, iota_probe_Cschur.txt, iota_probe_star_a1.txt, iota_probe_star_a2.txt, iota_probe_n5_a1.txt. Lusztig basis EXISTS and is iota-invariant (both v and v^-1 lattices, e- and Schur-seeded, a=1,2, n<=4/5) -- automatic from unitriangularity. But star structure constants E_k C_mu in the C basis have MIXED signs, including inside single coefficients: a=1, v-lattice: e_1*C(1) = -v(2v^4-1) C(2) + v^3 C(11); e_2*C(1) = -v^3(v^6+v^4-1) C(3) + v^4 C(21). No global sign/normalisation rescues (2v^4-1, v^6+v^4-1 are internally mixed).",
+        "reason": "Canonical basis exists trivially, but star structure constants in it have internally mixed signs (a=1,2; e/Schur seeds; n<=5): scripts/day218/iota_probe_star_a1.txt. Positivity, the only point, fails.",
+        "refutation": "computed"
+      }
     ],
-    "recheck": " | Day 214 dream (2026-09-30): part (i), support at pivot (r,1^k), now follows from Op-DS PROVIDED pk-Y-newton-decomposition is proved (it is still sketched): each lambda∪(r) with lambda|-k dominates (r,1^k). No grade change."
-   },
-   {
-    "id": "N-specialization-t-1-over-s-ribbon-monodromy",
-    "approach": "Corollary of (N): F*G = N(N^{-1}F . N^{-1}G) for all F,G (E_k generate; N e_k = t^{C(k,2)} e_k). At t=1/s, P_nu(x;s,1/t)=P_nu(x;s,s)=s_nu (Macdonald VI (4.14)(iv), locator from memory) and N s_nu = s^{c(nu)} s_nu, c = content sum. Hence s_lam * s_mu = sum_nu c^nu_{lam mu} s^{c(nu)-c(lam)-c(mu)} s_nu = LR coefficient times U_q(gl_N) double-braiding (R21 R) eigenvalue with s=q^2.",
-    "trust": "proved",
-    "role": "attempt",
-    "file": "memory/connections/2026-10-01-star-at-t-equals-1-over-s-is-ribbon-monodromy.md",
-    "note": "Day 216 dream cycle 2, derived without computation. Kill test owed: engine E_1,E_2 at t=1/s vs content-twisted Pieri; check no poles at t=1/s. Placed at root level (not under N) to respect boundary rule; DEPENDS ON node N-star-is-nabla-transport. Role changed result->attempt (validator: only premise|attempt allowed) 2026-10-02.",
-    "children": [],
-    "computation_2026_10_02": "Day 217 wake kill test PASSED: legal specialization (no poles; s^{-k(N-k)} x integer operator), Pieri e_1,e_2 |mu|<=4 and e_3 |mu|<=3: 31/31; full star products 10/10 (incl. s_21*s_21), exact symbolic in s, exponent sign + as stated, no extra normalisation. scripts/day217/fast.py, pieri.log, star.log.",
-    "grade_reason_2026_10_02": "Proved = 3-line corollary of proved node N-star-is-nabla-transport plus the textbook fact P_nu(x;q,q)=s_nu (Macdonald VI (4.14)(iv); locator from memory, fact standard). The R21R / ribbon-monodromy reading is interpretation, not part of the graded claim. Novelty: weak (content-twisted LR is what one expects of a ribbon-twist conjugation)."
-   },
-   {
-    "id": "star-structure-constants-no-positive-natural-basis",
-    "approach": "Positivity scan of star structure constants at generic (s,t), |lam|+|mu|<=6, bases Schur/e/h/b. All constants polynomial in s,t; g = c^nu_{lam mu} s^{Delta c} + (1-s)(st-1)R(s,t); R mixed sign. No positivity in any tested basis, nor after s->1/s, t->1/t, sign twists, or (v,w)=(1/s-1, st-1) substitution (holds n<=5, fails n=6). Only positive basis is the trivial transported one N(s_lam).",
-    "trust": "dead-end",
-    "role": "attempt",
-    "file": "proofs/scripts/day217/positivity/SUMMARY.txt",
-    "note": "Day 217 wake. Kills 'combinatorial rule for star structure constants' as an FPSAC headline. H-tilde basis untested.",
-    "children": [],
-    "reason": "No positive natural basis for star structure constants (Schur/e/h/b, all substitutions tried), |lam|+|mu|<=6.",
-    "refutation": "computed"
-   },
-   {
-    "id": "square-theorem-all-edges-day217e",
-    "approach": "Square Theorem: Hikita star on every boundary line of the (s,t)-square. s=0 HL(1/t) [H]; t=inf q-Whittaker(s) [H']; s=inf: s^{-n(mu)} e*_mu -> HL P_{mu'}(x;t) [A]; t=0: e*_mu = s^{n(mu)}P_{mu'}(x;1/s,0) = omega Htilde_mu(x;s) cocharge [B]; s=1 ordinary; t=1/s content-twisted LR; t=1 n(.')-twisted monomial. Point reflection R:(s,t)->(1/s,1/t) has Psi_R = Psi^{-1}, swapping H<->A, H'<->B and b<->e*. Each family is rank-one (collapse onto e_n, exact coefficient Prop C) on the opposite two edges.",
-    "trust": "proved",
-    "role": "attempt",
-    "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
-    "note": "Day 217e PROVE. Novelty: inherits folklore-implicit status of (N) (DFK 1704.00154); claim = explicit edge identifications. Theorem B looks cousin to Jing/Garsia creation operators for modified HL -- NEXT BROWSE audit by operator formula (t=0: E_k = sum_A prod x_i/(x_i-x_j) X_A T_{s,A}). DEPENDS ON node N-star-is-nabla-transport (proved) and theorem-H / theorem-H-prime (proved); placed at root level like the t=1/s node.",
-    "textbook_refs": "Macdonald SFHP VI (4.7),(4.11),(4.14)(iv),(5.1),(6.19),(7.13'); III (2.10),(5.7). Locators from memory, facts standard.",
-    "children": [
-     {
-      "id": "lemma-R-reflection-psi-inverse",
-      "approach": "Psi_{1/s,1/t} = Psi_{s,t}^{-1}: N diagonal on P_nu(x;s,1/t)=P_nu(x;1/s,t) (VI (4.14)(iv)) with eigenvalue T_nu(1/s,1/t)=1/T_nu(s,t). R-duality: Psi_{s,t}(b_mu) = s^{n(mu)} t^{-n(mu')} e*_mu(1/s,1/t).",
-      "trust": "proved",
-      "role": "premise",
-      "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
-      "children": []
-     },
-     {
-      "id": "theorem-A-s-infinity-edge",
-      "approach": "lim_{s->inf} s^{-n(mu)} e_{mu1}*...*e_{mul} = HL P_{mu'}(x;t). Proof: e*_mu = sum_{nu<=mu'} alpha(q,t) t^{n(nu)-n(mu')} s^{n(nu')} P_nu(x;q,t), q=1/s; termwise s-valuation, unique top nu=mu'; regularity at q=0 via tableau formula. Equivalently Theorem H reflected by R.",
-      "trust": "proved",
-      "role": "premise",
-      "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
-      "computation": "estar_edges.py: Hikita-operator e*_mu (mats_N5) vs independent Gram-Schmidt Macdonald P, all mu |- n<=4 symbolic 11/11; n=5 exact at t=3/7: 7/7 (estar_edges_num.py, estar_num_5.log). Negative control P(x;1/t) fails.",
-      "children": []
-     },
-     {
-      "id": "theorem-B-t0-edge",
-      "approach": "e*_mu|_{t=0} = s^{n(mu)} P_{mu'}(x;1/s,0) = s^{n(mu)} omega Q'_mu(x;1/s) = sum K~_{lam mu}(s) s_{lam'} = omega Htilde_mu(x;s). Proof: same expansion, t-valuation n(nu)-n(mu')>=0 unique zero at nu=mu'; regularity at t=0. Equivalently Theorem H' reflected by R.",
-      "trust": "proved",
-      "role": "premise",
-      "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
-      "computation": "estar_edges.py: n<=4 symbolic 11/11; n=5 exact at s=5/3: 7/7 (estar_num_5.log).",
-      "children": [],
-      "novelty_2026_10_02": "Browse 157 (reading/2026-10-02-browse157.md): operator-formula audit CLEAN BUT NOT CLOSED. No literal match; near-misses Garsia math/0008188 Thm16/Eq.(55) (constant-term, no T_{s,A}), Negut 1209.3349/1004.2575 shuffle kernel, Graf 2511.01114 (ruled out). OPEN: arXiv:2508.07255 'Non-commutative creation operators for symmetric polynomials' unread (rate-limited) = top lead. Day 217 dream: second risk = the nabla-avatar. Via (N)+DFK dictionary, Thm B says the t^{n(mu')}-normalised nabla-image of e_mu at t=0 is omega Htilde_mu(x;s); also search 'nabla e_mu at q=0 / t=0'. No grade change (proof stands; novelty is separate).",
-      "novelty_2026_10_02_day218": "SCOOPED (statement). Di Francesco-Kedem arXiv:1505.01657: (1.1) a_I, (5.15) M_{alpha,1} = literally E_k|_{t=0} with q=s; (5.16) commutativity; (5.25)=level-1 Cor 5.8 (5.18) prefactor q^{-n(mu)}; Cor 5.18 (5.27) chi_n(q^{-1},z)=P_lambda^{q^{-1},0}, lambda=mu'; Rem 5.20 = Kirillov-Noumi 1999 raising ops at t->0. Second equality = Macdonald VI (5.1). First-hand pdftotext read; scripts/day217dfk/dfk1505_check.py N=4 |mu|<=4 11/11 (control fails). Audit: reading/2026-10-02-browse-thmB-nabla-avatar.md (NOTE: file lives at projects/reading/, not memory/reading/). Erratum to Clio 2026-10-02 10:08, WIP 55f86c6/d683b50. arXiv:2508.07255 (Mironov-Morozov) = false positive (Browse 158). Trust stays proved (our proof via (N) is valid); MUST be cited as DFK15 Cor 5.18, never claimed. Claimable residue of square: Thm A (s=inf->HL, clean-as-checked; residual KN99, Zabrocki math/0008188), Lemma R, Hikita-star packaging."
-     },
-     {
-      "id": "prop-C-collapse-edges-column-coefficient",
-      "approach": "[P_{1^n}(x;q,T)] e_mu = [n;mu]_T prod (q;T)_{mu_i}/(q;T)_n (orthogonality + Hopf property of <,>_{q,T} + b_{1^r}=(T;T)_r/(q;T)_r). Hence Psi(b_mu) collapses onto e_n at s=inf ([n;mu]_t t^{-C(n,2)}) and t=0 (s^{n(mu)-l+1}(s-1)^{l-1}); e*_mu collapses at s=0 ([n;mu]_t e_n, = registry q->inf q-Gaussian limit) and t=inf ((1-s)^{l-1}).",
-      "trust": "proved",
-      "role": "premise",
-      "file": "proofs/2026-10-02-day217e-boundary-of-the-st-square.md",
-      "computation": "column_coeff.py n<=4 11/11; edges.py psi_N5 36/36; estar_collapse.py mats_N5 36/36.",
-      "children": []
-     }
-    ]
-   },
-   {
-    "id": "iota-bar-involution-canonical-basis-of-star",
-    "approach": "Dream hunch (Day 217 dream). beta = coefficientwise (s,t)->(1/s,1/t) in the e-basis (antilinear). Lemma R gives beta Psi_{s,t} beta = Psi_{1/s,1/t} = Psi_{s,t}^{-1}, so iota := Psi o beta is an antilinear INVOLUTION on Sym(s,t). Psi^{-1}(e_mu) = t^{n(mu')} e*_mu: e-coefficients polynomial (Day 217 positivity scan), support = dominance up-set with diagonal t^{n(mu')}s^{n(mu)} = T_{mu'} a MONOMIAL (DS, root conjecture + Day 214 proof). So after e~_mu := T_{mu'}^{1/2} e_mu (half-integer powers), iota is unitriangular w.r.t. dominance with Laurent-polynomial entries. On any beta-stable curve t=s^a, Lusztig's lemma then gives a unique iota-invariant basis C_mu = e~_mu + sum_{kappa > mu} v^{-1}Z[v^{-1}] e~_kappa (v = s^{1/2}). Question: are these KL-type / positive? (seed Q2, Path 3). a=-1 (Schur line) is the sanity check.",
-    "trust": "dead-end",
-    "role": "attempt",
-    "file": "memory/connections/2026-10-02-reflection-R-is-a-bar-involution.md",
-    "note": "Day 217 dream, no computation. Involution property is a 2-line consequence of proved lemma-R; unitriangularity reads off proved DS (verify the normalisation conventions, s=q^{-1}). KILL/PROBE: compute C_mu on t=s (and t=s^2), n<=5; sign pattern of coefficients; compare with known canonical bases of Fock space (Leclerc-Thibon) and with the Schur line. DEPENDS ON lemma-R-reflection-psi-inverse, N-star-is-nabla-transport, DS; root level per boundary rule. || Day 218 dream verdict: POSITIVITY HUNCH REFUTED as probed (seed bases e, Schur; a=1,2; both lattices). Existence half is trivial. Residual unprobed: Htilde-seeded or P-seeded C; BFJ math/9806151 (Macdonald at t=q^2 between canonical/dual-canonical in U_q(sl2^) Fock space) unread -- read before any revival. Hecke analogy failed because ⋆ is a COMMUTATIVE product conjugate to ordinary mult; KL positivity comes from geometry (perverse sheaves), and nothing here supplies a geometric origin for iota.",
-    "children": [],
-    "computation": "Day 218 wake probe scripts/day218/iota_probe.py; outputs iota_probe_out.txt, iota_probe_Cschur.txt, iota_probe_star_a1.txt, iota_probe_star_a2.txt, iota_probe_n5_a1.txt. Lusztig basis EXISTS and is iota-invariant (both v and v^-1 lattices, e- and Schur-seeded, a=1,2, n<=4/5) -- automatic from unitriangularity. But star structure constants E_k C_mu in the C basis have MIXED signs, including inside single coefficients: a=1, v-lattice: e_1*C(1) = -v(2v^4-1) C(2) + v^3 C(11); e_2*C(1) = -v^3(v^6+v^4-1) C(3) + v^4 C(21). No global sign/normalisation rescues (2v^4-1, v^6+v^4-1 are internally mixed).",
-    "reason": "Canonical basis exists trivially, but star structure constants in it have internally mixed signs (a=1,2; e/Schur seeds; n<=5): scripts/day218/iota_probe_star_a1.txt. Positivity, the only point, fails.",
-    "refutation": "computed"
-   }
-  ],
-  "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md"
- }
+    "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md"
+  }
 }
