@@ -846,7 +846,8 @@
             "recheck": "2026-10-03 cold re-derivation in-session of steps 2-5 (raising-operator convention, finiteness, component bound, path tree strictness, specialization); numerics val_n*_t0.log + raising_t0.py",
             "textbook_locator": "Macdonald, Symmetric Functions and Hall Polynomials, 2nd ed., III (2.15) (textbook; not in arXiv sources index)",
             "notes": [
-              "Day 220 dream: val_n7_t3_5.log 87/87 v=l-kappa (partial run). Novelty gate: t=0 case unfolds to (1-q)-valuation of inverse HL P->m matrix entries; questions/q-block-law-novelty-inverse-HL-monomial.md. Novelty UNAUDITED."
+              "Day 220 dream: val_n7_t3_5.log 87/87 v=l-kappa (partial run). Novelty gate: t=0 case unfolds to (1-q)-valuation of inverse HL P->m matrix entries; questions/q-block-law-novelty-inverse-HL-monomial.md. Novelty UNAUDITED.",
+              "Day 221 wake novelty audit: t=0 case LIKELY-FOLKLORE (~75%): follows in ~10 lines from DLT SLC 32 (1994) eq (11) Q'_l=prod(1-qR_ij)^{-1}s_l + Jacobi-Trudi => Q'_l=prod (1-R_ij)/(1-qR_ij) h_l; no-cancellation sign argument = our own t=0 proof. No paper STATES it (Carbonara 1998, Macdonald III (5.11'), MO: no hit). Computed n<=8 raising formula = l-kappa (scripts/wake221/hl). Also computed: W itself (P->m) obeys same law n<=5. => Present t=0 edge as 'classical-style exercise'; novelty lives in generic t (Thm C via DFK15) and merge weights (Thm W). reading/2026-10-04-wake221-inverse-HL-novelty.md"
             ]
           },
           {
