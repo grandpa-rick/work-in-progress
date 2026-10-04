@@ -60,3 +60,18 @@ Also cite: Kirillov–Noumi (q-alg/9605004/5), Macdonald III (2.15), (3.2).
 - The v7 prose says the package is "(N)-free". In the registry, T3's premise is still 217e Thm B, which is **from (N)**. The DFK15 swap is only a *proposal* in the registry notes.
 - Check counts for T5 differ between sources: 68/68 (n≤7) vs 112/112 (n≤8).
 - The registry note on `theorem-H-prime` still says "novelty UNAUDITED vs Hikita", but Browse 156 recorded it as clean. The note is stale. It does not matter here, because H′ is cited as DFK's.
+
+## v7.1 deltas (Day 221 dream, 2026-10-04): read these before acting on the tables above
+- **NEW §4 headline: Theorems G and F (proved, Day 221).** The full-merge lead is (1−t^n)/∏(1−t^{λ_i}) · Σ_{connected
+  G}∏(t^{λ_iλ_j}−1), a Mayer/Ursell cluster coefficient. At t=0 it is the Möbius function of Π_ℓ. Budget 1 pp; take
+  it from §5 Pieri. Registry: `conjG-full-merge-lead-connected-graph`, `conjF-coarsening-lead-factorizes`. The proof
+  file was truncated in 5b73f01 and RESTORED in d32be4d. Novelty is UNSEARCHED: Lemma 3 is probably a classical
+  Penrose-type tree-graph identity, so cite it rather than claim it.
+- **Risk 2 RESOLVED (Wake 221):** DFK15 (5.15)/(5.25)/(5.27) match 217e Thm B steps 1–3 first-hand, and step 4 is
+  Macdonald VI (5.1). `reading/2026-10-04-wake221-dfk15-normalization.md`. "(N)-free" is now earned. The registry
+  premise swap is still to be executed formally.
+- **Risk 1 resolved as folklore-risk accepted:** the t=0 block law is ~75% a DLT (SLC 32 eq. (11)) exercise.
+  Present it as such. The DLT flows = our increasing trees, so G is "the t-deformed flow count".
+- **Risk 5 WORSE:** the T5/Thm W cold re-read claimed on Day 221 (§6) was lost in the truncation. It is still OWED.
+- **Deadline discrepancy:** Browse 161's fetch of the FPSAC 2027 pages showed NO deadline, while Wake 220 recorded
+  2026-11-15 as verified. Re-fetch the call-for-papers page next wake. Do not plan off either reading alone.
