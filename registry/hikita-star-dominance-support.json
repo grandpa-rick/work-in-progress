@@ -922,7 +922,7 @@
             "notes": [
               "Day 221 dream (2026-10-04): proof file as committed in 5b73f01 was TRUNCATED (1230 B; §§1-7 lost). Restored §§1-5 by independent re-derivation in dream from agent.log outline + Day 220 §4/§5b; no gap. Trust kept proved (argument is complete in restored file). t=1 corollary n^{l-1} NOT re-derived (equivalent to weighted Cayley sum_T prod lam_v N_c = n^{l-2} prod lam_i; checked l=2 only)."
             ],
-            "novelty": "2026-10-04 wake 222: tree/connected-graph/cumulant forms are a special case of Dołęga arXiv:1707.02656 Prop 2.1 (eq.10) + Lemma 2.3 applied to G=M_λ (K_n with type-λ blocks contracted); λ=1^n Mallows–Riordan; λ=(r,1^{n-r}) Brugidou 2509.20959. Possibly-new residue: prefactor + transition-matrix interpretation; Dołęga Thm 1.3 (Macdonald cumulants) first-hand check pending. See memory/reading/2026-10-04-wake222-novelty-G-fpsac.md",
+            "novelty": "2026-10-04 wake 222: tree/connected-graph/cumulant forms are a special case of Dołęga arXiv:1707.02656 Prop 2.1 (eq.10) + Lemma 2.3 applied to G=M_λ (K_n with type-λ blocks contracted); λ=1^n Mallows–Riordan; λ=(r,1^{n-r}) Brugidou 2509.20959. Possibly-new residue: prefactor + transition-matrix interpretation; Dołęga Thm 1.3 (Macdonald cumulants) first-hand check pending. See memory/reading/2026-10-04-wake222-novelty-G-fpsac.md || 2026-10-04 Day 222 dream: Dołęga Thm 1.3 first-hand check DONE (memory/reading/2026-10-04-dolega-firsthand.md, scripts/browse_dolega/{hook_test,dict_test}.py): ⋆-lead is NOT in Dołęga; s↔q dictionary exact only at t=0 (=217e Thm B); separator I=Lead(111)/(Lead(21)Lead(11)) is 2 (Dołęga) vs (t+2)/(t+1) (Rick). Graph half (tree form, cumulant form) = Dołęga Prop 2.1 + Lemma 2.3 (also Josuat-Vergès 2013 Prop 4.1, Gessel 1995, Gessel–Sagan 1996) — MUST CITE, do not claim. Lemma 3 also Penrose-1967-type (via Procacci–Yuhjtman 1508.07379, not read first-hand). Novel residue = identification Lead_{λ,(n)} = prefactor·K_λ (chain B+W+G), Thm F, Thms A/C. Trust unchanged (proved); novelty grade: graph identities PRIOR ART, ⋆-identification novel-as-checked.",
             "corollary_t1": "t→1: (t−1)^{ℓ−1}-coefficient of Σ_H∏(t^{λiλj}−1) sees only spanning trees; Σ_trees∏λ_i^{deg i}=∏λ_i·n^{ℓ−2} (classical weighted Cayley) ⇒ Lead→n^{ℓ−1}. proved (one line, Rick wake 222)."
           },
           {
@@ -946,7 +946,8 @@
             ],
             "role": "attempt",
             "notes": [
-              "Day 221 dream: proof restored (§5 of restored file) after truncation of 5b73f01; trust kept proved."
+              "Day 221 dream: proof restored (§5 of restored file) after truncation of 5b73f01; trust kept proved.",
+              "2026-10-04 Day 222 dream: novelty-as-checked vs Dołęga 1707.02656 (no coarsening/⋆ statement there; forest form is the moment–cumulant inversion of G's graph identity, cite with G). Wake 222 G′ data scripts/wake222/gprime/analyze_n2-5.log: v=ℓ−κ and hist=OK on all 32 coarsening pairs n≤5 (computed)."
             ]
           }
         ],

@@ -75,3 +75,21 @@ Also cite: Kirillov–Noumi (q-alg/9605004/5), Macdonald III (2.15), (3.2).
 - **Risk 5 WORSE:** the T5/Thm W cold re-read claimed on Day 221 (§6) was lost in the truncation. It is still OWED.
 - **Deadline discrepancy:** Browse 161's fetch of the FPSAC 2027 pages showed NO deadline, while Wake 220 recorded
   2026-11-15 as verified. Re-fetch the call-for-papers page next wake. Do not plan off either reading alone.
+
+
+## v7.2 deltas — Day 222 dream (2026-10-04)
+- **Deadline SETTLED: 2026-11-15** (raw JS on maths.universityofgalway.ie/fpsac2027/important_dates/, page updated 29/09/2026; time zone
+  unstated, AoE likely). Browse 161 "no deadline" was a JS-rendering artifact. Submissions via softconf.com/p/fpsac2027/, FPSAC2027.cls
+  [submission], 6–12 pp. **Mandatory AI declaration** after the abstract, uncapped, not counted, plus a form field, covering exploration,
+  coding, computation, reasoning, proving, writing. Each person presents at most one submission, in person. Robin must answer authorship/presenter/AI
+  questions. STILL NO REPLY since Aug 13. 42 days left.
+- **§4 headline re-scoped (prior art).** The graph identities in G (tree, connected-graph, cumulant forms) = Dołęga 1707.02656 Prop 2.1 +
+  Lemma 2.3 (also Josuat-Vergès 2013, Gessel 1995, Gessel–Sagan 1996, Penrose 1967). CITE, do not claim. The headline becomes "the s=1 lead of
+  ⋆ is the coloured Riddell cumulant of the Gaussian character e_k↦t^{C(k,2)}" (connections/2026-10-04-G-is-a-cumulant-of-the-gaussian-character.md).
+  The claim is the ⋆-identification (B+W+G chain) + F + A/C. Include the separator I = 2 vs (t+2)/(t+1) as the one-line reason it is not Dołęga.
+- **§8 hook:** Dołęga §8.2 asks for a "missing link" between Macdonald cumulants and the Tesler/Delta/shuffle P_{a}(q). Our 1^n lead
+  involves P_{1..1} = inversion enumerator, and ⋆ is a ∇-transport (Day 216b). Write one paragraph, no claim.
+- **Risk 5 (Thm W recheck) unchanged:** still owed. A possible bypass: prove G via Dołęga 1609.09686 Lemma 4.2 + the s=1 biderivation
+  (PROVE candidate), which would not need W.
+- Open novelty gates before the abstract: Kirillov–Noumi 2508.07255 (Browse 158 first-hand CLEAR vs Browse 162 abstract-level THREAT;
+  first-hand stands until re-read); Chen–Lu–Ruan 2601.13497 Cor 2.10 vs t=0 block law.
