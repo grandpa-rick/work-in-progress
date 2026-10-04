@@ -1,0 +1,182 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\WIPHASH}{\texttt{d32be4d}}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\Lead}{\mathrm{Lead}}
+\newtheorem*{lemma1}{Lemma 1 (histories are increasing forests)}
+\newtheorem*{lemma2}{Lemma 2 (Theorem W telescopes)}
+\newtheorem*{lemma3}{Lemma 3 (tree--graph identity, generic weights)}
+\newtheorem*{thmG}{Theorem G}
+\newtheorem*{thmF}{Theorem F}
+
+\title{The full-merge lead is a connected-graph cumulant\\(Theorems G and F)}
+\author{Rick}
+\date{2026-10-04}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-1.5em}
+\noindent\textbf{Author:} Rick. \textbf{Date:} 2026-10-04.
+\textbf{Recipient:} Clio Vega (cc Robin Langer).\\
+\textbf{WIP commit:} \WIPHASH{} of \texttt{grandpa-rick/work-in-progress}. This is the latest commit touching the source
+file \file{proofs/2026-10-05-day221-lead-cumulant.md}, and this PDF is a faithful transcription of that file.\\
+\textbf{Registry grades:} nodes \texttt{conjG} and \texttt{conjF} are \emph{proved}. No one else has read them yet,
+and \textbf{novelty has not been searched} (see \S8).
+
+\paragraph{Provenance note.} The proof file committed in WIP \texttt{5b73f01} was accidentally truncated to about
+1.2\,KB: the header, a list of scripts and \S8 survived, and \S\S1--7 were lost. This PDF is the restored version,
+which I re-derived from scratch in commit \texttt{d32be4d} from the session outline and the Day~220 proofs of Theorems~B
+and~W. That makes it a second derivation, not the original text. The text of the Day~220 Theorem~W cold re-check
+(old \S6) was also lost and has \emph{not} been restored. Theorem~W is graded proved on its own Day~220 proof
+(\file{proofs/2026-10-03-day220-s1-carre-du-champ.md} \S5b), but its independent re-read is still owed.
+
+\section*{0. Setup (from Day 220 \S4)}
+Let $\lambda=(\lambda_1,\dots,\lambda_\ell)\vdash n$, with parts indexed by positions $[\ell]$. Let $\mu$ be a
+coarsening of $\lambda$, and put $m=\ell(\lambda)-\ell(\mu)$. Define $\Lead_{\lambda\mu}(t):=[(s-1)^m]\,c_{\lambda\mu}$.
+By Theorem~B (Day~220; proved, and it does not use (N)),
+\[
+\Lead_{\lambda\mu}=\sum_{\text{tight histories }H\text{ ending at }\mu}\ \prod_{\text{merge steps}} W_k(J).
+\]
+A history processes positions $\ell,\ell-1,\dots,1$ in turn. At position $i$, where $k=\lambda_i$, it either opens a new
+block or merges with $p\ge1$ existing blocks of sizes $J=(j_1,\dots,j_p)$, producing one block of size $k+|J|$. By
+Theorem~W (Day~220 \S5b),
+\[
+W_k(J)=(-1)^p\,[k+|J|]_t\,\frac{\prod_{j\in J}[k]_{t^j}}{[k]_t}.
+\]
+Opening a block has weight $1$, which is also $W_k(\emptyset)$.
+
+\section*{1. Lemma 1}
+\begin{lemma1}
+Histories correspond bijectively to increasing forests on $[\ell]$, and the final blocks are the trees.
+\end{lemma1}
+\begin{proof}
+When position $i$ merges with existing blocks, make $i$ the parent of each of those blocks' current roots. Every existing
+block was built only from positions $>i$, so every edge goes from a smaller label to a larger one. A history therefore
+gives an increasing forest on $[\ell]$, and its trees are the final blocks. Conversely, an increasing forest determines
+the history: at step $i$, merge exactly the subtrees rooted at the children of $i$. Those subtrees are complete by then,
+because all their labels are $>i$. So the correspondence is a bijection. Histories ending in a single block are
+increasing trees, and there are $(\ell-1)!$ of them. A tight history needs $\sum p=m$, which is automatic: each edge is
+one unit of $p$, and a forest with $\ell(\mu)$ trees has $\ell-\ell(\mu)$ edges.
+\end{proof}
+
+\section*{2. Lemma 2}
+\begin{lemma2}
+For a vertex $v$, let $N_v$ be the $\lambda$-mass of its subtree. For an increasing tree with root mass $n$,
+\[
+\prod_v W=\frac{1-t^n}{\prod_i(1-t^{\lambda_i})}\prod_{\text{edges }v\to c}\bigl(t^{\lambda_vN_c}-1\bigr).
+\]
+\end{lemma2}
+\begin{proof}
+The merge at $v$ has $k=\lambda_v$ and $J=(N_c)_{c\text{ child of }v}$, so $k+|J|=N_v$. Then
+\[
+\prod_v W=(-1)^{\#\text{edges}}\prod_v\frac{[N_v]_t}{[\lambda_v]_t}\cdot\prod_{\text{edges }v\to c}[\lambda_v]_{t^{N_c}}.
+\]
+Here $[N_v]_t/[\lambda_v]_t=(1-t^{N_v})/(1-t^{\lambda_v})$ and
+$[\lambda_v]_{t^{N_c}}=(1-t^{\lambda_vN_c})/(1-t^{N_c})$. Every non-root $c$ appears exactly once as a child, so its
+factor $(1-t^{N_c})$ cancels, leaving only the root's $(1-t^n)$. The claim follows from
+$(-1)^{\#\text{edges}}\prod(1-x)=\prod(x-1)$. Leaves have $N_v=\lambda_v$, which gives the factor $1$, consistent with
+opening a block.
+\end{proof}
+
+\section*{3. Lemma 3}
+\begin{lemma3}
+For indeterminates $x_{ij}=x_{ji}$ ($i\ne j$ in $[\ell]$),
+\[
+\sum_{\text{increasing trees }T\text{ on }[\ell]}\ \prod_{\text{edges }v\to c}\Bigl(\prod_{j\in T_c}x_{vj}-1\Bigr)
+=\sum_{\text{connected graphs }G\text{ on }[\ell]}\ \prod_{e\in G}(x_e-1),
+\]
+where $T_c$ is the vertex set of the subtree at $c$.
+\end{lemma3}
+\begin{proof}
+Map a connected graph $G$ to a tree recursively. The root is $\min V=1$. The components $C_1,\dots,C_r$ of $G-1$ become
+the child subtrees, with their minima as children, and we recurse on each $G[C_a]$. Each $C_a$ is connected, so the
+recursion is defined. Because every child is the minimum of its subtree, the result is increasing. Every increasing tree
+arises this way, since its child subtrees are nested set partitions with minimum roots.
+
+Fix $T$ and sum over the graphs $G$ that map to it. At each vertex $v$, the edges from $v$ into the child set $T_c$ form
+an arbitrary \emph{nonempty} subset $S\subseteq T_c$. It must be nonempty because $T_c$ has to be attached to $v$. It is
+otherwise free, because the edges from $v$ to $T_c$ do not change the component structure inside $T_c$. There are no
+edges between different child sets, since they are different components of $G[T_v]-v$. The edges inside $T_c$ are
+accounted for by the recursion. Hence the fibre sum factors, and for each edge $v\to c$
+\[
+\sum_{\emptyset\ne S\subseteq T_c}\ \prod_{j\in S}(x_{vj}-1)=\prod_{j\in T_c}x_{vj}-1.\qedhere
+\]
+\end{proof}
+\noindent\emph{Specialization.} Setting $x_{ij}=t^{\lambda_i\lambda_j}$ gives $\prod_{j\in T_c}x_{vj}=t^{\lambda_vN_c}$.
+
+\section*{4. Theorem G}
+\begin{thmG}
+For $\lambda\vdash n$ with $\ell\ge2$,
+\[
+\Lead_{\lambda,(n)}(t)=\frac{1-t^n}{\prod_i(1-t^{\lambda_i})}\,K_\lambda(t),\qquad
+K_\lambda:=\sum_{G\text{ connected on }[\ell]}\ \prod_{ij\in G}\bigl(t^{\lambda_i\lambda_j}-1\bigr).
+\]
+\end{thmG}
+\begin{proof}
+Apply Lemma~1 restricted to trees, then Lemma~2, then Lemma~3 with the specialization.
+\end{proof}
+By the exponential formula, $K_\lambda$ is the connected part (joint cumulant) of
+$t^{e_2(\lambda)}=\prod_{i<j}\bigl(1+(t^{\lambda_i\lambda_j}-1)\bigr)$, i.e.\ the logarithm of a group-like element in
+the graph Hopf algebra.
+
+\paragraph{Corollaries.}
+\begin{itemize}
+\item $\lambda=1^n$: the prefactor is $[n]_t/(1-t)^{n-1}$, and
+$K=\sum_{\text{conn}}(t-1)^{|E|}=(t-1)^{n-1}I_n(t)$, where $I_n$ is the Mallows--Riordan tree inversion enumerator.
+So $\Lead=(-1)^{n-1}[n]_t\,I_n(t)$.
+\item $t=0$: every edge factor is $-1$, so $\sum_{\text{conn}}(-1)^{|E|}=(-1)^{\ell-1}(\ell-1)!$. Alternatively, count
+the trees directly.
+\item $t\to1$: with $\varepsilon=1-t$, the tree form gives
+$\Lead\to(-1)^{\ell-1}\,\frac{n}{\prod\lambda_i}\sum_T\prod_{\text{edges }v\to c}\lambda_vN_c$. The claimed value
+$(-1)^{\ell-1}n^{\ell-1}$ is equivalent to $\sum_T\prod\lambda_vN_c=n^{\ell-2}\prod\lambda_i$, a weighted Cayley
+identity. It checks at $\ell=2$ (giving $\lambda_1\lambda_2$). The general case is a claim from the PROVE session that
+is \emph{not re-derived here}; please check it before citing.
+\item Sign: for $0<t<1$ the prefactor is positive and each of the $\ell-1$ edge factors is negative. For $t>1$ the
+prefactor has sign $(-1)^{\ell-1}$ and the edge factors are positive. Either way
+$\operatorname{sgn}\Lead=(-1)^{\ell-1}$ for all $t>0$, $t\ne1$.
+\end{itemize}
+
+\section*{5. Theorem F}
+\begin{thmF}
+For $\mu$ a coarsening of $\lambda$,
+\[
+\Lead_{\lambda\mu}=\sum_{\substack{\text{set partitions }\pi\text{ of }[\ell]\\\text{with sorted block sums}=\mu}}\ \prod_{B\in\pi}\Lead_{\lambda_B,(|\lambda_B|)},
+\]
+where a singleton block contributes $1$. There is no interleaving factor.
+\end{thmF}
+\begin{proof}
+By Lemma~1, increasing forests correspond to a set partition together with an increasing tree on each block. The
+weight is a product over the trees, and by Lemma~2 each tree's weight depends only on its own parts. Sum.
+\end{proof}
+
+\section*{6. Theorem W sober re-check --- lost}
+The original \S6 was a line-by-line re-derivation of Day~220 \S5b: signs, top-symbol count, Macdonald III.7 Ex.~2 at
+$n=2$, III.2 Ex.~1 multiplicities, and Cauchy. It was lost in the truncation. The session log records ``no gap'', but the
+text no longer exists, so the re-check should be treated as unrecorded.
+
+\section*{7. Computation (scripts survive)}
+\begin{itemize}
+\item \file{scripts/day221/tree_identity.py} $\to$ \file{tree_identity.log}: Lemma~3 with random rational generic
+$x_{ij}$, 15/15 ($\ell=2..6$). The history sum (Theorem~W weights) equals the Theorem~G closed form in exact symbolic $t$
+(SymPy), \textbf{37/37 for all $\lambda\vdash n\le7$ with $\ell\ge2$}.
+\item \file{scripts/day221/tree_identity_n8.py} $\to$ \file{tree_identity_n8.log}: history $=$ telescoped tree form
+(Lemma~2) $=$ Theorem~G, in exact rationals at $t\in\{3/5,7/3,-2,2\}$, for all $\lambda\vdash n\le8$ with
+$2\le\ell\le6$: \textbf{220/220}.
+\item Earlier wake data: G 58/58 ($n\le8$); F 123/123 ($n\le7$); subset-engine agreement 32/32 and 132/132.
+\end{itemize}
+
+\section*{8. Gaps}
+\begin{itemize}
+\item G and F have no gaps beyond their premises: Theorem~B (proved, does not use (N)), Theorem~W (proved; the re-check
+text was lost, see \S6) and (KF) (proved, Day~216b).
+\item The $t=1$ corollary value is not re-derived here.
+\item Novelty has not been searched. Lemma~3 looks classical (a tree--graph / Penrose-type decomposition; Gessel--Wang /
+Mallows--Riordan at uniform weights), so the new content would be identifying the leading coefficient of $\star$ with
+it. Search targets: ``connected graphs'' with weight $t^{ab}-1$ and the prefactor $(1-t^n)/\prod(1-t^{\lambda_i})$;
+coloured inversion enumerators; $q$-Cayley.
+\end{itemize}
+
+\end{document}
