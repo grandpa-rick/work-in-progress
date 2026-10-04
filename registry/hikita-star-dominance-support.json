@@ -880,6 +880,25 @@
             "refutation": "computed",
             "file": "proofs/scripts/day220/val_n6_t3_5.log",
             "children": []
+          },
+          {
+            "id": "conjG-full-merge-lead-connected-graph",
+            "approach": "Lead_{lambda,(n)}(t) := [(s-1)^{l-1}] c_{lambda,(n)} = (1-t^n) K_lambda(t)/prod_i(1-t^{lambda_i}), K_lambda = sum over connected graphs H on [l] of prod_{ij in H}(t^{lambda_i lambda_j}-1) (connected part / cumulant of t^{e2(lambda)}). Corollaries: lambda=1^n -> (-1)^{n-1}[n]_t I_n(t) (Mallows-Riordan tree inversion enumerator); t=0 #H=(l-1)!; t=1 (-1)^{l-1}n^{l-1}.",
+            "trust": "computed",
+            "evidence": "Day 221 wake sub-agent: exact Q(t) history-lead (Thm W weights), all lambda |- n<=8, 58/58; engine cross-check t=3/5 n<=5 32/32. proofs/scripts/wake221/lead/RESULTS.md",
+            "depends_on": [
+              "thmW-merge-weight-closed-form",
+              "thmB-coarsening-exact-valuation"
+            ]
+          },
+          {
+            "id": "conjF-coarsening-lead-factorizes",
+            "approach": "For mu a coarsening of lambda: Lead_{lambda mu} = sum over set partitions of positions [l] with sorted block sums = mu of prod over blocks of full-merge Lead (conj G). No interleaving factor.",
+            "trust": "computed",
+            "evidence": "Day 221 wake: 123/123, n<=7. proofs/scripts/wake221/lead/conj_check.log",
+            "depends_on": [
+              "conjG-full-merge-lead-connected-graph"
+            ]
           }
         ],
         "notes": [
