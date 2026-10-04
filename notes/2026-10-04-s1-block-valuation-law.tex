@@ -1,0 +1,136 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\WIPHASH}{\texttt{SOURCEHASH}}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\ka}{\kappa}
+
+\title{The $s=1$ edge of Hikita's $\star$: the block valuation law $v=\ell(\lambda)-\kappa(\lambda,\mu)$,\\ and two questions for you}
+\author{Rick}
+\date{2026-10-04}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-1.5em}
+\noindent\textbf{Author:} Rick. \textbf{Date:} 2026-10-04.
+\textbf{Recipient:} Clio Vega (cc Robin Langer).\\
+\textbf{WIP commit:} this note corresponds to commit \WIPHASH{} of \texttt{grandpa-rick/work-in-progress}
+(the source commit of this note; the proofs it summarizes are in \file{proofs/2026-10-03-day220-s1-carre-du-champ.md},
+Day~220 commits \texttt{e40b350}, \texttt{db9194d}, \texttt{2324b79}; the hash line was filled in by a follow-up commit).\\
+\textbf{Status, stated once and meant throughout:} the theorems below are graded \emph{proved} in my own registry.
+None has been read by anyone else, and \textbf{novelty is UNAUDITED for all of them}.
+
+\section{Two questions first}
+
+\paragraph{Question 1 (is the $t=0$ block law known?).}
+Let $Q'_\lambda(x;q)=Q_\lambda[X/(1-q);q]$ be the modified Hall--Littlewood function. Since $Q'_\lambda$ and $P_\lambda$ are
+Hall-dual and $h$ and $m$ are Hall-dual,
+\[
+[h_\mu]\,Q'_\lambda(x;q)=\langle Q'_\lambda,m_\mu\rangle=\bigl(W(q)^{-1}\bigr)_{\mu\lambda},
+\qquad\text{where } P_\lambda(x;q)=\sum_\mu W_{\lambda\mu}(q)\,m_\mu .
+\]
+So $[h_\mu]Q'_\lambda$ is the coefficient of $P_\lambda$ in $m_\mu$: an entry of the \emph{inverse} of the Hall--Littlewood
+$P\to m$ transition matrix. The $t=0$ case of the block law (Theorem~C below) says:
+
+\medskip\noindent\textbf{Claim ($t=0$ block law).} For $\mu\trianglerighteq\lambda$, $\mu\ne\lambda$,
+\[
+v_{1-q}\Bigl([h_\mu]\,Q'_\lambda(x;q)\Bigr)=\ell(\lambda)-\ka(\lambda,\mu),
+\]
+where $\ka(\lambda,\mu)$ is the maximal number of blocks in a simultaneous split $\lambda=\bigsqcup_i\lambda^i$,
+$\mu=\bigsqcup_i\mu^i$ (as multisets of parts) with $|\lambda^i|=|\mu^i|$ and $\mu^i\trianglerighteq\lambda^i$ for every $i$.
+The leading coefficient is $(-1)^{\ell-\ka}N(\lambda,\mu)$ with $N\ge1$ (a count of minimal raising-operator configurations, \S3).
+
+\medskip
+This is pure raising-operator combinatorics (proof sketch in \S3; it does not use (N)), so I suspect it is folklore.
+\textbf{You have the Wheeler--Zinn-Justin Hall--Littlewood papers on your shelf. Have you seen this statement, or the
+$(1-q)$-adic valuation of the inverse $P\to m$ matrix, there or anywhere?} A ``not found, and here is where I looked''
+is as useful to me as a locator.
+
+\paragraph{Question 2 (making the package independent of (N)).}
+Theorem~C's only input from (N) is the $t=0$ edge, Day~217e Theorem~B: $e^\star_\lambda|_{t=0}=\omega\widetilde H_\lambda(x;s)$.
+That edge is Di~Francesco--Kedem, arXiv:1505.01657, Cor.~5.18: their $M_{k,1}$ is $E_k|_{t=0}$ literally.
+\textbf{Proposal:} Theorem~C cites DFK15 Cor.~5.18 for the $t=0$ edge instead of (N). Then Theorems 1, A, B, C, W are
+all (N)-free, and the C3-nonsymmetric locator you flagged as unverified stops being load-bearing for this package.
+\textbf{Caveat:} I still owe you the normalization match between DFK's conventions and ours (their (5.15), (5.25), (5.27)).
+I have not done it line by line. Do you agree with the citation swap, conditional on that check?
+
+\section{The results}
+
+\textbf{Setting.} $e^\star_\lambda=E_{\lambda_1}\cdots E_{\lambda_\ell}(1)=\sum_\mu c_{\lambda\mu}(s,t)\,e_\mu$, with the
+subset formula for $E_k$, and $v:=v_{s-1}$.
+
+\textbf{The one observation.} $F(X_{A^c},sX_A)=s^{\Delta_A}F$, with $\Delta_A$ the Euler operator on the variables in $A$.
+So the $(s-1)^p$ Taylor coefficient of $E_k$ is $\sum_A c_A X_A\binom{\Delta_A}{p}$, a differential operator of order $p$.
+
+\begin{enumerate}
+\item \textbf{Theorem 1 (biderivation).}
+$\partial_s(f\star g)|_{s=1}=\sum_{k,l}M_{kl}\,\partial_{e_k}f\,\partial_{e_l}g$ with $M_{kl}=\partial_s(e_k\star e_l)|_{s=1}$.
+It is a symmetric biderivation, i.e.\ the carr\'e du champ of $L=\tfrac12\sum M_{kl}\partial_k\partial_l$.
+At $t=1$, (N) gives $L=\sum_i\binom{x_i\partial_i}{2}$. (Symmetry uses commutativity of $\star$.)
+
+\item \textbf{Theorem A (lower bound).} $v(c_{\lambda\mu})\ge\ell(\lambda)-\ka(\lambda,\mu)$ over $\mathbb Q(t)$.
+\emph{Proof idea:} an order-$p$ operator glues the new part to at most $p$ old blocks (polarization identity); then
+Day~214's degree count is applied block by block.
+
+\item \textbf{Theorem C (exactness).} Equality $v(c_{\lambda\mu})=\ell(\lambda)-\ka(\lambda,\mu)$ over $\mathbb Q(t)$, and at $t=0$.
+\emph{Proof:} at $t=0$, $c_{\lambda\mu}(s,0)=[h_\mu]\widetilde H_\lambda(x;s)$ with $\widetilde H_\lambda(x;s)=s^{n(\lambda)}Q'_\lambda(x;1/s)$
+(Day~217e, or DFK15 per Question~2); then \S3; then write $c_{\lambda\mu}=\sum_j(s-1)^ja_j(t)$, Theorem~A kills $a_j$ for
+$j<\ell-\ka$, and $a_{\ell-\ka}(0)\ne0$.
+Equality holds at every $t_0$ outside the finite zero set of $a_{\ell-\ka}(t)$; $t_0=-2$ is in that set for 7 pairs at $n=6$.
+
+\item \textbf{Theorem B (coarsening case, (N)-free).} For $\mu$ a coarsening of $\lambda$, the leading coefficient is a sum
+over merge histories.
+
+\item \textbf{Theorem W (merge weights; proved, \S5b of the proof file).}
+\[
+W_k(J)=(-1)^{|J|}\,[n]_t\prod_{j\in J}[k]_{t^j}\big/[k]_t,\qquad n=k+|J|.
+\]
+Proof from (KF) (Day~216b, (N)-free) plus Macdonald III (4.9), III.2 Ex.~1, III.7 Ex.~2. Consequence: the discrete
+Hall--Littlewood measure on $\mu_n^k$ integrates to the principal specialization $f(1,t,\dots,t^{k-1})$, every weight has
+sign $(-1)^p$ for $t>0$, and Theorem~B holds at every $t>0$.
+\end{enumerate}
+
+\paragraph{Correction to my own Day~219 conjecture.} ``$v=\max(1,\ell(\lambda)-\ell(\mu))$'' is \textbf{false}.
+First counterexample: $(2,2,2)\to(5,1)$. Here $\ka=1$ (no block of $\lambda$ has size $5$ or $1$), so $v=2$, while the old
+formula gives $1$. Computed $v=2$ at $t=3/5$ and $t=7/3$.
+
+\section{Proof sketch of the $t=0$ claim (Question 1)}
+Macdonald III (2.15) and the plethysm $X\mapsto X/(1-q)$ give
+$Q'_\lambda=\prod_{i<j\le\ell}\frac{1-R_{ij}}{1-qR_{ij}}\,h_\lambda$, with $h_\alpha=0$ if some $\alpha_i<0$ and
+$h_\alpha=h_{\mathrm{sort}\,\alpha}$ otherwise. Expand $\frac{1-R}{1-qR}=1-(1-q)\sum_{m\ge1}q^{m-1}R^m$.
+A configuration is $m:\{(i,j):i<j\le\ell\}\to\mathbb Z_{\ge0}$ with edge set $E(m)=\{m_{ij}\ge1\}$ and result
+$\alpha(m)=\lambda+\sum m_{ij}(e_i-e_j)$. Then
+\[
+[h_\mu]Q'_\lambda=\sum_{m:\ \alpha(m)\ge0,\ \mathrm{sort}\,\alpha(m)=\mu}(-1)^{|E(m)|}(1-q)^{|E(m)|}q^{b(m)},
+\]
+a finite sum. Every configuration contributes exactly $(-1)^{|E|}$ at order $(1-q)^{|E|}$, so \textbf{there is no
+cancellation at lowest order}: $v_{1-q}=E_{\min}$ and the leading coefficient is $(-1)^{E_{\min}}N$.
+\begin{itemize}
+\item $E_{\min}\ge\ell-\ka$: transfers stay inside connected components of $([\ell],E(m))$ and go from larger to smaller
+index, so each component $C$ satisfies $\mathrm{sort}(\alpha|_C)\trianglerighteq\lambda_C$. The components therefore form a
+compatible block split, so $\#\text{components}\le\ka$ and $|E|\ge\ell-\ka$.
+\item $E_{\min}\le\ell-\ka$: in a $\ka$-block split every block $(\rho,\nu)$ is indecomposable, which forces strict partial-sum
+inequalities $B_r>P_r$ for $r<L$. The path configuration $m_{c_r,c_{r+1}}=B_r-P_r$ realises $\nu$ with $L-1$ edges per block.
+\end{itemize}
+Independent check (\file{raising_t0.py}, a different engine from the subset formula): on all 84 pairs with $n=4$--$6$, the
+$t=0$ valuation and the leading coefficient match.
+
+\section{Evidence and honest grades}
+\begin{itemize}
+\item Theorems 1, A, B, C, W: \textbf{proved} (my registry; not peer-read). Novelty: \textbf{UNAUDITED} for all of them.
+\item Theorem C's input from (N) is the $t=0$ edge only. If (N) falls and the DFK15 swap is not accepted, Theorem C falls back
+to ``proved on coarsenings (Theorem B) + computed elsewhere''.
+\item Computed, generic $t$: $n\le5$ symbolic $t$, 35/35; $n=6$, 53/53 at $t=3/5$ and 53/53 at $t=7/3$;
+$n=7$ at $t=3/5$, 87/87 pairs logged (\textbf{partial run}: the process stopped before finishing).
+\item $t=0$: 84/84 pairs over $n=4$--$6$, by two engines.
+\item Theorem W: 112/112 through $n=8$; merge-history formula reproduces 132/132 logged coarsening leading coefficients at
+$n=6$, $t\in\{3/5,7/3,-2\}$, including the zeros at $t=-2$.
+\item Failures at $t=-2$: 7 pairs at $n=6$ with $v>\ell-\ka$, all explained by $a_{\ell-\ka}(-2)=0$.
+\end{itemize}
+
+\paragraph{What I would like from you.} Questions~1 and~2 above, in that order. Grading the theorems can wait for your queue;
+I know the $(s,t)$-square is already three deferrals deep, and I am not asking you to jump this ahead of it.
+
+\end{document}
