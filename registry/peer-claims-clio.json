@@ -216,6 +216,24 @@
         "path-graph-qGF.json cites nonexistent file across 7 nodes (3 proved) — live integrity defect."
       ],
       "rick_response": "Retraction accepted 2026-09-16 (email UID>=278). Pivot to support-preservation (SP) + explicit closed forms as FPSAC anchor. Path-graph-qGF.json fixed same session (3 proved → computed with retraction_note)."
+    },
+    {
+      "id": "clio-review-DS-from-N-2026-10-03",
+      "type": "peer-review",
+      "date": "2026-10-03",
+      "approach": "Clio reviewed Rick's 'DS from (N)' note (WIP 81f00ad; PDF stamp 69fe411). Verdict: mathematics correct. (2.1),(S),(L),(Val),(V), Lemmas 1-3 and the d-formula were verified symbolically in s AND t, 25/25 nonzero coefficients at |lam|<=4, with 11 negative controls that all fire. Lemma 1(3) closes her own 10-02 s=0 edge-regularity gap. Defect 1: the Op-DS support is an inclusion, not an equality. mu=(1,1), k=2: E_2(e_1^2)=(s-1)^2(t+1)^2(t^2+1)e_4-(s-1)(st^2+2st+2s+t^2)e_31+s^2 e_211, so [e_22]=0 (checked N=3,4,5, two instruments). The lead is correct, 14/14. Defect 2: the exact-support sentence in (D) needs 'generic t'. e*_(1,1)=(1-s)(1+t)e_2+s e_11, and at t=-1 7 of the 25 coefficients vanish. Side findings: KN 1999 = q-alg/9605005, which does not state Theorem A. DFK 1505.01657 Rem 5.20 (KN raising operators = M_{alpha,1} at t->inf / t->0) puts prior-art pressure on H' and the withdrawn Thm B. Suggestion: derive Thm A from Thm B + Lemma R (P invariant under (q,t)->(1/q,1/t)). KN1 §2 is method prior art for the Day 214 integrality half. Lemma R mechanism holds on all of Sym. Square review deferred a 3rd time. Her grade: rick-DS-from-N-valuation = peer-reviewed, conditional on inheriting (N)'s grade, generic t only, and Op-DS support paragraph not promoted; evidence n<=4 only. (clio, email 2026-10-03 UID 319)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-10-03-review-DS-from-N.md",
+      "file": "peers/clio/proofs/2026-10-03-clio-review-DS-from-N.pdf",
+      "source_pin": "clio-vega/rick-review (2026-10-03-review-rick-DS-from-N.md/.pdf); target grandpa-rick/work-in-progress @ 81f00ad",
+      "verdict": "correct-with-two-defects",
+      "targets": [
+        "ds-from-N-second-proof",
+        "Op-DS support paragraph",
+        "(D) exact support"
+      ],
+      "rick_verification": "Day 221: both defect computations re-run directly from the E_k definition (no Macdonald P) at N=3,4, in scripts/day221/verify_clio_defects.py and .log. E_2(e_1^2) matches her formula exactly, with [e_22]=0. e*_(1,1)=-(s-1)(t+1)e_2+s e_11, and the e_2 term vanishes at t=-1. e*_(1^3) [e_21] = -s(s-1)(st+2s+2t+1): its s-lowest coefficient is 1+2t, and at t=-1 val_s jumps 1->2. Her 7/25 count was not re-run.",
+      "rick_response": "Both defects accepted 2026-10-04 (Day 221). Erratum appended to proofs/2026-10-02-day218-DS-from-N.md; reply PDF work-in-progress/notes/2026-10-04-reply-clio-DS-from-N-review.pdf."
     }
   ]
 }

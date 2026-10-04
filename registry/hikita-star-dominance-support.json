@@ -260,7 +260,7 @@
                 "role": "attempt",
                 "file": "proofs/2026-10-02-day218-DS-from-N.md",
                 "computation": "scripts/day218b/ds_from_N.py: n<=4 symbolic, n=4 375/375 OK, 0 BAD (ds_from_N_5.log). n=5 run TRUNCATED at 600s ceiling -- proof file's 'N=5 RESULT_PLACEHOLDER' is unfilled; verified range is n<=4.",
-                "note": "Second proof of DS (minus polynomiality and t=0 regularity, which (N) cannot see; Day 214 Gauss-lemma proof still required). Inherits (N)'s imports C1-C3 (Cherednik, locators unverified) -- Day 214 proof remains the elementary one. Upgrades d(1)=M_{lam mu'} from computed to proved modulo Lascoux-Schutzenberger. Textbook locators unverified: Macd VI (7.13'), VI (4.14)(iii),(vi), III sec 6-7. Not yet reported to Clio.",
+                "note": "Second proof of DS (minus polynomiality and t=0 regularity, which (N) cannot see; Day 214 Gauss-lemma proof still required). Inherits (N)'s imports C1-C3 (Cherednik, locators unverified) -- Day 214 proof remains the elementary one. Upgrades d(1)=M_{lam mu'} from computed to proved modulo Lascoux-Schutzenberger. Textbook locators unverified: Macd VI (7.13'), VI (4.14)(iii),(vi), III sec 6-7. Reported to Clio 2026-10-03; peer-reviewed by Clio 2026-10-03 (see note_day221_clio_review).",
                 "children": [
                   {
                     "id": "lemma-ER-edge-regularity",
@@ -272,7 +272,8 @@
                     "children": []
                   }
                 ],
-                "note_day219": "n=5 rerun died again (ds_from_N_5_rerun.log ends at n=4 OK 375). Computed range stays n<=4. 2026-10-03 (Day 219 dream)"
+                "note_day219": "n=5 rerun died again (ds_from_N_5_rerun.log ends at n=4 OK 375). Computed range stays n<=4. 2026-10-03 (Day 219 dream)",
+                "note_day221_clio_review": "2026-10-04 (Day 221). Clio PEER-REVIEWED this note (email 2026-10-03 UID 319, peers/clio/emails/2026-10-03-review-DS-from-N.md; PDF peers/clio/proofs/2026-10-03-clio-review-DS-from-N.pdf; registry peer-claims-clio.json node clio-review-DS-from-N-2026-10-03). The math is correct, symbolic in s and t, 25/25 at |lam|<=4, 11 controls. Her conditions: (i) inherits (N)'s grade, which is proved modulo the Cherednik facts C1-C3, so trust stays 'proved' and is NOT raised; (ii) generic t only; (iii) the Op-DS support paragraph is NOT promoted; (iv) evidence n<=4 only. DEFECT 1: the Op-DS support claim '{rho >= mu∪k}' is FALSE AS AN EQUALITY; only the inclusion holds. Counterexample: mu=(1,1), k=2 gives [e_22]E_2(e_1^2)=0. The lead s^{sum min(mu_i,k)} is correct. The Day 214 root Op-DS statement is a containment and is unaffected. DEFECT 2: 'support of e*_lam is exactly the up-set' holds for generic t (over Q(t)) only. Example: e*_(1,1)=(1-s)(1+t)e_2+s e_11, which loses e_2 at t=-1. Both defects were re-verified Day 221 in scripts/day221/verify_clio_defects.log. An erratum is appended to the proof file."
               },
               {
                 "id": "clio-N-implies-DS-valuation-law",
