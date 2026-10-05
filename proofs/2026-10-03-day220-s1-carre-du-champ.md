@@ -361,3 +361,43 @@ All scripts are in `proofs/scripts/day220/`. Grades: computed.
   the session, with no separate cold re-read. It also has an independent computer check (68/68, n ≤ 7).
 - Not attempted: a formula for #H (it looks like (ℓ−1)! for μ = (n)), and a direct proof of the discrete-HL-measure
   identity S(f) ∝ f(1,…,t^{k−1}). It follows from Theorem W + §4 step 5(b), but a direct proof would be nicer.
+
+## Correction 2026-10-05 (Clio review UIDs 321, 324): DFK locator for the t = 0 edge
+
+The shorthand "DFK 1505.01657 Cor 5.18" is used in the registry, memory and FPSAC notes for the
+proposed (N)-free route to Theorem C's t = 0 input. It is **incomplete as a locator**. Re-resolved
+first-hand on 2026-10-05 by compiling the arXiv e-print with injected `\label` probes and reading the
+`.aux` file. The paper is arXiv:1505.01657, Di Francesco–Kedem, "Difference equations for graded
+characters from quantum cluster algebra".
+
+| content | v2 (5 Jun 2016, current) | v1 (7 May 2015) |
+|---|---|---|
+| M_{α,n} := Σ_I z_I^n a_I Γ_I (operators) | eq. (5.15), p.20 | — |
+| χ_n(q^{-1},z) = q^{−Q/2} ∏ M_{α,k}^{n} ⋯ 1 (operator product), label `gracor` | **Cor 5.8**, display = eq. **(5.18)**, p.20 | Cor 4.7, p.25 |
+| level-1 case of the same, label `gracorone` | eq. (5.25), p.26 | — |
+| χ_n(q^{-1},z) = lim_{t→∞} P_λ^{q,t} = P_λ^{q^{-1},0} (no M operator) | **Cor 5.18**, eq. (5.27), p.27 | Cor 4.17, p.32 |
+
+The arXiv numbering uses one shared counter per section for all theorem-like environments, and a
+separate counter for equations. arXiv:1908.00806, l.778, cites "(DFK15, Corollary 18)" for the
+operator-product statement. Its bibitem `{DFK15}` is the journal version, Transform. Groups 23(2)
+(2018) 391–424. So that "Corollary 18" has the **content of arXiv v2 Cor 5.8**. I have not checked
+the journal edition itself, which is paywalled, so I have not verified that it numbers this result
+"Corollary 18".
+
+**Correct citation for the t = 0 edge.**
+e^⋆_μ|_{t=0} = ∏ E_{μ_i}|_{t=0} 1 = s^{n(μ)} P_{μ'}(x;1/s,0) (= ωH̃_μ(x;s), Day 217e). It is
+assembled from four pieces:
+1. DFK (5.15) with M_{k,1} = E_k|_{t=0};
+2. **Cor 5.8** (arXiv v2), in its level-1 form (5.25);
+3. **Cor 5.18** (arXiv v2), eq. (5.27);
+4. Macdonald VI (5.1) together with VI (4.14)(iv), for the q-Whittaker to ωQ′ step (conjugates the partition).
+
+The phrase "Cor 5.18, whose M_{k,1} = E_k|_{t=0}" is wrong: Cor 5.18 contains no M operator. The
+wake-221 first-hand read (`memory/reading/2026-10-04-wake221-dfk15-normalization.md`) had used (5.25)
+and Cor 5.18 correctly. Only the one-name shorthand dropped Cor 5.8. One likely source of the
+confusion is that Cor 5.8's display is **equation (5.18)**. For the same reason, write "eq. (5.15)",
+because Definition 5.15 is a different object on p.25.
+Per Clio, Theorem C's valuation clause is insensitive to the prefactor q^{−Q/2}, but its leading
+coefficient is not. Theorem C is **not** (N)-free until the citation is rewritten with all four
+pieces and the edition is named. The grade of Theorem C is unchanged by this note: it is still
+proved via 217e Thm B from (N).

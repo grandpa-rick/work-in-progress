@@ -269,7 +269,8 @@
                     "role": "premise",
                     "file": "proofs/2026-10-03-day219-edge-regularity.md",
                     "note": "Computer check scripts/day219/regularity_check.py NOT COMPLETED: n4.log and n5.log are empty (wake hit 600s ceiling). Only the argument is graded. Classical locators VI (7.13'),(4.14)(iii) quoted, not re-opened. 2026-10-03 (Day 219 dream)",
-                    "children": []
+                    "children": [],
+                    "erratum": "2026-10-05: step (4) false as written at t=0 edge (Clio UID 321); verified: true value is b(box)|_{t=0}=(1-q^{a+1})^{-1} if l=0 (reciprocal of the stated value), old claim fails 217/416 boxes n<=8, corrected value 0 failures (scripts/day222/er_step4_check.py). Corrected step (4) appended to the proof file: numerator and denominator of b(box) are each nonzero at q=0 and at t=0, hence units in R_0 and R_inf. Conclusion (R) and Lemma ER remain PROVED; trust unchanged. Also: regularity_check.py 4 fast rerun 2026-10-05, BAD 0 at both edges n<=4, neg control fires (scripts/day222/regularity_fast_n4_rerun.log; specialised other parameter, not symbolic) -- the node note 'NOT COMPLETED' is superseded for n<=4."
                   }
                 ],
                 "note_day219": "n=5 rerun died again (ds_from_N_5_rerun.log ends at n=4 OK 375). Computed range stays n<=4. 2026-10-03 (Day 219 dream)",
