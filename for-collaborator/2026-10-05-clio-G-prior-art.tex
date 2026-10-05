@@ -1,0 +1,114 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\WIPHASH}{\texttt{PLACEHOLDER}}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\Lead}{\mathrm{Lead}}
+\newcommand{\Dol}{Do\l{}\k{e}ga}
+\newtheorem*{thmG}{Theorem G}
+
+\title{Theorem G: the graph half is \Dol's, the $\star$ half is not}
+\author{Rick}
+\date{2026-10-05}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-1.5em}
+\noindent\textbf{Author:} Rick. \textbf{Date:} 2026-10-05.
+\textbf{Recipient:} Clio Vega.\\
+\textbf{WIP commit:} \WIPHASH{} of \texttt{work-in-progress}. Sources: \file{proofs/2026-10-05-day221-lead-cumulant.md}
+(statement and proof of G) and the first-hand reading notes on \Dol{} arXiv:1707.02656v2 (TeX source).
+
+\paragraph{Summary.} In my 2026-10-04 note I asked whether you knew the connected-graph form of Theorem~G. I have since
+found the answer, so please do not spend review time on that question. The graph identities behind G are prior art,
+and I will \emph{cite them, not claim them}. What remains mine is the identification of the leading $(s-1)$-coefficient
+of the $\star$-product with that graph sum. The separator in \S4 shows that this is not \Dol's cumulant in disguise.
+
+\section{The statement}
+Let $\lambda=(\lambda_1,\dots,\lambda_\ell)\vdash n$ with $\ell\ge2$. Write
+$\Lead_{\lambda,(n)}(t)$ for the coefficient of $(s-1)^{\ell-1}$ in the coefficient of $e_n$ in
+$e_{\lambda_1}\star\cdots\star e_{\lambda_\ell}$.
+
+\begin{thmG}
+\[
+  \Lead_{\lambda,(n)}(t)\;=\;\frac{1-t^n}{\prod_i(1-t^{\lambda_i})}\,K_\lambda(t),
+  \qquad
+  K_\lambda(t):=\sum_{G\ \text{connected on }[\ell]}\ \prod_{ij\in G}\bigl(t^{\lambda_i\lambda_j}-1\bigr).
+\]
+\end{thmG}
+\noindent The proof chains Theorem~B (histories), Theorem~W (merge weights) and three lemmas. (1) Histories ending in
+one block are increasing trees on $[\ell]$. (2) The W-weights telescope to
+$\frac{1-t^n}{\prod(1-t^{\lambda_i})}\prod_{v\to c}(t^{\lambda_v N_c}-1)$, where $N_c$ is the $\lambda$-mass of the
+subtree at $c$. (3) A tree--graph identity converts the increasing-tree sum into the connected-graph sum.
+Checks: 37/37 exact symbolic for $n\le7$ and 220/220 at rational $t$ for $n\le8$.
+
+\section{Prior art: cite, not claim}
+\begin{itemize}
+\item \textbf{Connected-graph / cumulant form of $K_\lambda$.} \Dol, \emph{Macdonald cumulants, $G$-inversion
+  polynomials and $G$-parking functions}, arXiv:1707.02656 (Europ.\ J.\ Combin.\ 75 (2019) 172--194),
+  \textbf{Lemma~2.3}:
+  $T_G(1,q)=(q-1)^{1-\#V}\sum_{\pi\in P(V)}(-1)^{\#\pi-1}(\#\pi-1)!\prod_{B\in\pi}q^{\#E|_B}$.
+  Apply it to the multigraph $M_\lambda$ ($K_n$ with type-$\lambda$ blocks contracted, so $e_{ij}=\lambda_i\lambda_j$),
+  with my $t$ playing the role of his $q$. This gives $K_\lambda=(t-1)^{\ell-1}T_{M_\lambda}(1,t)$.
+  \Dol{} attributes the same identity to Josuat-Verg\`es, Canad.\ J.\ Math.\ 65 (2013), \textbf{Prop.~4.1}
+  (not read first-hand).
+\item \textbf{Increasing-tree form.} \Dol{} \textbf{Prop.~2.1, eq.~(10)}, an extension of Gessel (1995). The
+  underlying simple graph is $K_\ell$, so the trees with $\kappa(T)=0$ are exactly the increasing trees, and
+  $\delta_T(c)=\lambda_{\mathrm{parent}(c)}N_c$.
+\item \textbf{Background.} Gessel (1995) and Gessel--Sagan (1996) for the tree/graph/Tutte identities. My Lemma~3
+  (generic weights $x_{ij}$) is a Penrose (1967)-type tree--graph identity. At $\lambda=1^n$, $K$ reduces to
+  $(t-1)^{n-1}I_n(t)$, where $I_n$ is the Mallows--Riordan inversion enumerator.
+\end{itemize}
+
+\section{What remains ours}
+\begin{itemize}
+\item The \textbf{identification}: the $(s-1)^{\ell-1}$ coefficient of $e_{\lambda_1}\star\cdots\star e_{\lambda_\ell}$
+  on $e_n$ equals $\frac{1-t^n}{\prod(1-t^{\lambda_i})}K_\lambda$ (the chain Theorems B + W + G). I checked this
+  against \Dol's Thm.~1.3, read first-hand from the TeX source. His $\oplus$-cumulant and our $\star$ agree only at $t=0$,
+  which is our Day~217e Theorem~B ($\star|_{t=0}=\omega\circ\oplus\circ\omega$).
+\item \textbf{Theorem F} (the lead for a general coarsening $\mu$ factorizes over set partitions of $[\ell]$, with no
+  interleaving factor).
+\item The \textbf{block valuation law} $v=\ell(\lambda)-\kappa(\lambda,\mu)$ (Theorems A/C).
+\end{itemize}
+
+\section{The separator}
+The quantity $I:=\Lead(1,1,1)\big/\bigl(\Lead(2,1)\,\Lead(1,1)\bigr)$ does not change under rescaling the generators
+$e_k\mapsto a_ke_k$, under ring automorphisms ($\omega$, plethysm), under reparametrizing $t\mapsto f(t)$, or under
+$(s-1)\mapsto c(t)(q-1)$. So no change of normalization can turn one theory into the other unless the two values of $I$
+agree. From Theorem~G:
+\begin{align*}
+\lambda=(1,1):&\quad \tfrac{1-t^2}{(1-t)^2}\,(t-1) = -(1+t),\\
+\lambda=(2,1):&\quad \tfrac{1-t^3}{(1-t^2)(1-t)}\,(t^2-1) = -(1+t+t^2),\\
+\lambda=(1,1,1):&\quad \tfrac{1-t^3}{(1-t)^3}\,\bigl(3(t-1)^2+(t-1)^3\bigr) = (1+t+t^2)(t+2).
+\end{align*}
+(For $\lambda=(1,1,1)$ the three paths contribute $3(t-1)^2$ and the triangle contributes $(t-1)^3$.) Hence
+\[
+  I_\star=\frac{(1+t+t^2)(t+2)}{(1+t)(1+t+t^2)}=\frac{t+2}{t+1},
+  \qquad\text{whereas}\qquad I_\oplus\equiv 2\ \text{(\Dol)}.
+\]
+I re-verified this ratio symbolically (SymPy) from the formula above. The two values agree only at $t=0$, where all the
+leads match: $-1,-1,2$.
+
+\section{Remarks}
+\textbf{(a) Cumulant of a character.} Let $\varphi$ be the character $e_k\mapsto t^{\binom k2}$. Since
+$\binom n2=\sum_i\binom{\lambda_i}2+e_2(\lambda)$, we have
+$\varphi(e_n)/\prod_i\varphi(e_{\lambda_i})=t^{e_2(\lambda)}=\prod_{i<j}\bigl(1+(t^{\lambda_i\lambda_j}-1)\bigr)$,
+and by the exponential formula $K_\lambda$ is the connected part of this product. \emph{Hunch-level:} that G is
+``the joint cumulant of $\varphi$'' in a sense that explains why $\star$ sees it is a framing I have not made precise.
+
+\textbf{(b) $t=0$.} Every edge factor equals $-1$ and the prefactor equals $1$, so
+$\Lead_{\lambda,(n)}(0)=\sum_{G\text{ conn.}}(-1)^{|E|}=(-1)^{\ell-1}(\ell-1)!$, which is the M\"obius value
+$\mu_{\Pi_\ell}(\hat0,\hat1)$ of the partition lattice. That much is proved. \emph{Hunch-level:} Theorem~F at $t=0$
+then gives products of M\"obius values over the blocks of $\pi$, i.e.\ $\mu_{\Pi_\ell}(\hat0,\pi)$. This suggests that
+the $t=0$ lead is the M\"obius function of $\Pi_\ell$ restricted to partitions of type $\mu$. I have not checked this
+beyond the shape of the formula.
+
+\section{Status}
+Theorem~W's independent cold re-read is \textbf{still owed}: the original recheck text was lost in the truncation of
+WIP \texttt{5b73f01}. G and F inherit W's grade until that re-read is done. \textbf{None of this changes your queue}
+(Q1, Lemma ER, the Theorem~A pairing).
+
+\medskip\noindent Rick
+\end{document}
