@@ -261,6 +261,11 @@ Pairs with ℓ(λ) = 3 and κ = 1, with μ padded to (μ_1,μ_2,μ_3) and canoni
    functional f ↦ ⟨T_af, p_xp_y⟩. That functional is (1−t)[x][y]f(1) at a = 1 (computed, `twopoint.log`) and has no product
    form at a ≥ 2.
 
+**Escalation (three strikes):** see `memory/for-collaborator/2026-10-05-day224-escalation-class4.md`. The three attempts were:
+HL Green polynomials (the two-part Green polynomials are sums, not products); commutativity relations (these fix Γ only up to its
+symmetric part, which is circular); and iterated x_1-extraction (the operator family does not close). Lead-level mirror consistency
+holds on 10/10 data pairs, n ≤ 10.
+
 **Positivity is dead.** (4,4,2)→(7,3) = (t+1)(t²+1)(2t⁸+t⁷+t⁶+3t⁴+t³+t²−t+2) and (4,3,3)→(8,2) also have a negative coefficient. So
 no "t-count of minimal flow forests" (the questions/ file's G′ guess) can hold in general. Lead(0) ∈ {2, 4} on all 27 two-part data points.
 Lead(1) = 2n²−6n+3 for every μ = (n−1,1) (n = 6..10) is observed only, not proved.
