@@ -976,7 +976,7 @@
           },
           {
             "id": "conjGprime-general-mu-lead",
-            "approach": "Conj G′: closed form of Lead_{λμ} for general (non-coarsening) μ. Day 224: reduced (Thm 6.1) to connected κ=1 leads; at v=2 these are ℓ=3 triples, closed in classes 1–3 (coarsening-in-disguise / μ~(n−1,1) / λ∋1), OPEN in class 4 (smallest (3,3,3)→(7,2)). The three n=6 PROVE targets are proved.",
+            "approach": "Conj G′: closed form of Lead_{λμ} for general (non-coarsening) μ. Day 224: reduced (Thm 6.1) to connected κ=1 leads. Day 225: ALL ℓ=3 κ=1 leads closed (Thm 4.2, two-point formula Thm 2.5) ⇒ every v=2 lead closed via Thm 6.1 (Cor 4.3). Open: v≥3 connected leads (ℓ≥4, κ=1).",
             "trust": "in-progress",
             "file": "proofs/2026-10-06-day224-Gprime-second-order.md",
             "role": "attempt",
@@ -1024,11 +1024,67 @@
               },
               {
                 "id": "gprime-v2-class4-open",
-                "approach": "ℓ=3 κ=1 v=2 leads whose orbit has no rep with a part 1 and μ not ~(n−1,1): 16 pairs n≤12, smallest (3,3,3)→(7,2). Missing: off-diagonal part of Γ_a (a≥2) / 2-point functional ⟨T_a f, p_xp_y⟩. Thm 4.1(b) gives an exact recursion but no closed form.",
-                "trust": "in-progress",
-                "file": "proofs/2026-10-06-day224-Gprime-second-order.md",
-                "role": "attempt",
-                "children": []
+                "approach": "ℓ=3 κ=1 v=2 leads, class 4 (smallest (3,3,3)→(7,2)), and in fact ALL ℓ=3 κ=1 two-part μ: Thm 4.2 = Prop 5.1 + Thm 1.5 + Thm 7.1 + two-point formula Thm 2.5. Kill test (3,3,3)→(7,2) exact; 16/16 open pairs n≤12 (48/48 exact evals at t=2,3,−1/2); 27 pairs n≤10 × 3 orderings 81/81.",
+                "trust": "proved",
+                "file": "proofs/2026-10-07-day225-class4-hopf-route.md",
+                "role": "premise",
+                "children": [
+                  {
+                    "id": "ct-adjoint-formula-thm11",
+                    "approach": "Thm 1.1: φ_a⟨T_a g,F⟩_t = CT[Z g(z) F(1/z) K], K=∏_{i<j}(z_j−z_i)/(z_j−tz_i). Proof: Cauchy evaluation ⟨G,q_α⟩_t=[y^α]G; raising-op CT for ⟨G,Q_λ⟩_t; K=Δκ symmetrization; b_λ/v_λ=(1−t)^a at ℓ=a. Computed 24/24 vs engine.",
+                    "trust": "proved",
+                    "file": "proofs/2026-10-07-day225-class4-hopf-route.md",
+                    "role": "premise",
+                    "textbook_refs": "Macdonald SFHP 2nd ed. ch. III (1.4),(2.1)-(2.2),(2.12),(2.15),(4.4),(4.9) (textbook; numbers quoted from memory, verify)",
+                    "children": []
+                  },
+                  {
+                    "id": "two-point-string-formula-thm25",
+                    "approach": "Thm 2.5: closed ⟨T_a g,p_xp_y⟩ for all symmetric g: generating fn S(u)=Σ1/(uz_i−1), iterated residues ⇒ t-strings (Lemma 2.1), string weight (−1)^{A−1}φ_{A−1}q^A (Lemma 2.2), interaction = shuffle identity (Lemma 2.4), Taylor at w=u/v=0. 229/229 exact a≤5 (formula_raw.log).",
+                    "trust": "proved",
+                    "file": "proofs/2026-10-07-day225-class4-hopf-route.md",
+                    "role": "premise",
+                    "children": [
+                      {
+                        "id": "shuffle-identity-lemma24",
+                        "approach": "Sh_{A,B}(w)=qbin(A+B,A)t^{−AB}(1−w)(1−t^{B−A}w)/((1−t^{−A}w)(1−t^Bw)); last-letter recursion + 1-line identity Y(1−X)(1−w/X)+(1−Y)(1−Yw)=(1−XY)(1−wY/X). Sympy-checked.",
+                        "trust": "proved",
+                        "file": "proofs/2026-10-07-day225-class4-hopf-route.md",
+                        "role": "premise",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "nonsym-one-point-lemma31",
+                    "approach": "Bonus (not load-bearing): CT[h Z z_1^{−n} K]=(−1)^{a−1}φ_{a−1}h(π_a) for ANY polynomial h; top-down elimination + telescoping. Third proof of Thm 1.5 (also Cor 2.3).",
+                    "trust": "proved",
+                    "file": "proofs/2026-10-07-day225-class4-hopf-route.md",
+                    "role": "attempt",
+                    "children": []
+                  },
+                  {
+                    "id": "hopf-split-XY-route",
+                    "approach": "Wake 225 plan: split T_a over X⊔Y (⟨ΔG,p_x⊗p_y⟩), A=A_X⊔A_Y.",
+                    "trust": "dead-end",
+                    "role": "attempt",
+                    "reason": "pieces rational in u with region-dependent expansions; no product collapse. Superseded by t-string residue decomposition (Thm 2.5), whose pieces are summed as Taylor coefficients at w=0 with no ambiguity.",
+                    "refutation": "computed",
+                    "children": [],
+                    "file": "proofs/2026-10-07-day225-class4-hopf-route.md"
+                  },
+                  {
+                    "id": "wake-two-string-leading-hunch",
+                    "approach": "Hunch: out_i = t^{(a−i)(x−i)}Σ⟨T_if1,p_x⟩⟨T_{a−i}f2,p_y⟩.",
+                    "trust": "dead-end",
+                    "role": "attempt",
+                    "reason": "only ≈ the G_{A,y−B}/((1−t^A)(1−t^B)) term of Thm 2.5; misses interaction series κΣ(t^{−Am}−t^{Bm})w^m and one-string term; fails on primitive inputs (p2 at (2,2)).",
+                    "refutation": "proved",
+                    "children": [],
+                    "file": "proofs/2026-10-07-day225-class4-hopf-route.md"
+                  }
+                ],
+                "note": "id kept for continuity; class 4 is CLOSED as of Day 225 PROVE. Not yet checked-sober (cold recheck owed: Lemma 2.4 + coefficient extraction)."
               },
               {
                 "id": "gprime-flow-forest-positive-count",
@@ -1042,9 +1098,9 @@
               },
               {
                 "id": "gamma-a-offdiagonal-closed-form",
-                "approach": "Closed e-expansion of the off-diagonal part of Γ_a(e_b,e_c) for a≥2 (would close class 4). Diagonal part is explicit via D_a; a=1 has none.",
-                "trust": "in-progress",
-                "file": "proofs/2026-10-06-day224-Gprime-second-order.md",
+                "approach": "Closed e-expansion of the off-diagonal part of Γ_a(e_b,e_c) for a≥2 (would close class 4). Diagonal part is explicit via D_a; a=1 has none. | Day 225: closed — the only unknown in [e_xe_y]Γ_a is [e_xe_y]T_a(p_bp_c), given by Thm 2.5 + Lemma 4.1.",
+                "trust": "proved",
+                "file": "proofs/2026-10-07-day225-class4-hopf-route.md",
                 "role": "attempt",
                 "children": []
               }
