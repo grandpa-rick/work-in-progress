@@ -1084,7 +1084,9 @@
                     "file": "proofs/2026-10-07-day225-class4-hopf-route.md"
                   }
                 ],
-                "note": "id kept for continuity; class 4 is CLOSED as of Day 225 PROVE. Not yet checked-sober (cold recheck owed: Lemma 2.4 + coefficient extraction)."
+                "note": "id kept for continuity; class 4 is CLOSED as of Day 225 PROVE. Not yet checked-sober (cold recheck owed: Lemma 2.4 + coefficient extraction).",
+                "recheck": "PARTIAL cold recheck, Day 225 dream (2026-10-06, by hand, no compute): Lemma 2.4 shuffle identity re-derived (cross factors from z=t^α/u, t^β/v; both last-letter telescopes; A=B=1 closed form; final polynomial identity), partial-fraction expansion checked to O(w) at A=B=1, §2.3 key example arithmetic (a=2,g=p_2,x=y=2 ⇒ −(1−t²)(3+t²)) re-done. NOT yet rechecked: Thm 1.1 CT adjoint formula, Lemmas 2.1–2.2 residue bookkeeping, Thm 4.2 assembly. Grade stays proved (not checked-sober).",
+                "novelty": "UNCHECKED. Owner suspect: Thm 2.5 = two-part Green polynomials X^λ_{(x,y)}(t) — Morris 1963 recursion (Math Z 81) / Macdonald SFHP III.7 HL Murnaghan–Nakayama / Green 1955. Only the ⋆-lead application (Thm 4.2/Cor 4.3) presumed ours. See memory/questions/q-thm25-vs-green-polynomials-morris.md"
               },
               {
                 "id": "gprime-flow-forest-positive-count",
@@ -1102,7 +1104,9 @@
                 "trust": "proved",
                 "file": "proofs/2026-10-07-day225-class4-hopf-route.md",
                 "role": "attempt",
-                "children": []
+                "children": [],
+                "recheck": "PARTIAL cold recheck, Day 225 dream (2026-10-06, by hand, no compute): Lemma 2.4 shuffle identity re-derived (cross factors from z=t^α/u, t^β/v; both last-letter telescopes; A=B=1 closed form; final polynomial identity), partial-fraction expansion checked to O(w) at A=B=1, §2.3 key example arithmetic (a=2,g=p_2,x=y=2 ⇒ −(1−t²)(3+t²)) re-done. NOT yet rechecked: Thm 1.1 CT adjoint formula, Lemmas 2.1–2.2 residue bookkeeping, Thm 4.2 assembly. Grade stays proved (not checked-sober).",
+                "novelty": "UNCHECKED. Owner suspect: Thm 2.5 = two-part Green polynomials X^λ_{(x,y)}(t) — Morris 1963 recursion (Math Z 81) / Macdonald SFHP III.7 HL Murnaghan–Nakayama / Green 1955. Only the ⋆-lead application (Thm 4.2/Cor 4.3) presumed ours. See memory/questions/q-thm25-vs-green-polynomials-morris.md"
               }
             ]
           }
