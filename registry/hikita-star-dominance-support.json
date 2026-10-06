@@ -1053,7 +1053,8 @@
                         "role": "premise",
                         "children": []
                       }
-                    ]
+                    ],
+                    "novelty_wake226": "Wake 226 (2026-10-06): dictionary Phi_a(P_rho;x,y)=(1-t^x)(1-t^y)X^lambda_{(x,y)}(t)/b_lambda, lambda=rho+1^a, COMPUTED 350/350 symbolic |lambda|<=8, 590/590 numeric |lambda|<=9 (scripts/day226/). So Thm 2.5 = closed formula for ALL two-part Green polynomials. Literature: NOVEL-AS-CHECKED; Jing-Liu 2104.04411 (read in full) says no explicit formula known, their MN rule gives a straightening sum not two strings; Green's Hall-poly expansion closed only for y<=2 (textbook). NOT read first-hand: Morris 1963 (Math Z 80, not 81), Macdonald III.7, Green 1955, Kirillov, Garsia-Procesi. Report memory/reading/2026-10-06-wake226-thm25-vs-green-morris.md. Cite Jing-Liu as ancestor of Thm 1.1."
                   },
                   {
                     "id": "nonsym-one-point-lemma31",
