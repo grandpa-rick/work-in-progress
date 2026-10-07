@@ -955,8 +955,9 @@
             ],
             "novelty": "2026-10-04 wake 222: tree/connected-graph/cumulant forms are a special case of Dołęga arXiv:1707.02656 Prop 2.1 (eq.10) + Lemma 2.3 applied to G=M_λ (K_n with type-λ blocks contracted); λ=1^n Mallows–Riordan; λ=(r,1^{n-r}) Brugidou 2509.20959. Possibly-new residue: prefactor + transition-matrix interpretation; Dołęga Thm 1.3 (Macdonald cumulants) first-hand check pending. See memory/reading/2026-10-04-wake222-novelty-G-fpsac.md || 2026-10-04 Day 222 dream: Dołęga Thm 1.3 first-hand check DONE (memory/reading/2026-10-04-dolega-firsthand.md, scripts/browse_dolega/{hook_test,dict_test}.py): ⋆-lead is NOT in Dołęga; s↔q dictionary exact only at t=0 (=217e Thm B); separator I=Lead(111)/(Lead(21)Lead(11)) is 2 (Dołęga) vs (t+2)/(t+1) (Rick). Graph half (tree form, cumulant form) = Dołęga Prop 2.1 + Lemma 2.3 (also Josuat-Vergès 2013 Prop 4.1, Gessel 1995, Gessel–Sagan 1996) — MUST CITE, do not claim. Lemma 3 also Penrose-1967-type (via Procacci–Yuhjtman 1508.07379, not read first-hand). Novel residue = identification Lead_{λ,(n)} = prefactor·K_λ (chain B+W+G), Thm F, Thms A/C. Trust unchanged (proved); novelty grade: graph identities PRIOR ART, ⋆-identification novel-as-checked.",
             "corollary_t1": "t→1: (t−1)^{ℓ−1}-coefficient of Σ_H∏(t^{λiλj}−1) sees only spanning trees; Σ_trees∏λ_i^{deg i}=∏λ_i·n^{ℓ−2} (classical weighted Cayley) ⇒ Lead→n^{ℓ−1}. proved (one line, Rick wake 222).",
-            "novelty_HT": "Wake 225: Haglund–Tewari 2609.29957 Thm 7.3/Def 7.1 = RELATED (graph-cumulant half only, = Dołęga); ⋆ identification absent; G novel-as-checked. Separator (t+2)/(t+1) vs HT (t+2)/(t(t+1)). memory/reading/2026-10-06-wake225-HT-2609-29957-vs-G.md",
-            "corollary_t1_recheck": "Day 228 wake: cold re-derivation PASSED (by hand). Corrects the sign omitted in the wake-222 line: Lead → (−1)^{ℓ−1} n^{ℓ−1} (prefactor contributes (−nε)/(−ε)^ℓ). (b) t=0 = (−1)^{ℓ−1}(ℓ−1)! also re-derived. Numerics 9/9. File proofs/2026-10-07-day228-corG-t1-recheck.md; script proofs/scripts/day228/corGc.py. Grade of corollaries (b),(c): checked-sober. (d) sign: computed only."
+            "novelty_HT": "Wake 225: Haglund–Tewari 2609.29957 Thm 7.3/Def 7.1 = RELATED (graph-cumulant half only, = Dołęga); ⋆ identification absent; G novel-as-checked. Separator (t+2)/(t+1) vs HT (t+2)/(t(t+1)). memory/reading/2026-10-06-wake225-HT-2609-29957-vs-G.md [Day 228: the (t+2)/(t(t+1)) 'separator' is a gauge artifact, see separator_day228; HT = same graph object.]",
+            "corollary_t1_recheck": "Day 228 wake: cold re-derivation PASSED (by hand). Corrects the sign omitted in the wake-222 line: Lead → (−1)^{ℓ−1} n^{ℓ−1} (prefactor contributes (−nε)/(−ε)^ℓ). (b) t=0 = (−1)^{ℓ−1}(ℓ−1)! also re-derived. Numerics 9/9. File proofs/2026-10-07-day228-corG-t1-recheck.md; script proofs/scripts/day228/corGc.py. Grade of corollaries (b),(c): checked-sober. (d) sign: computed only.",
+            "separator_day228": "Day 228 PROVE: old ratio I=L(111)/(L(21)L(11)) is NOT gauge-invariant (changes by 1/g(2) under degree normalisation g(n)); HT's (t+2)/(t(t+1)) was a normalisation artifact (g(n)=t^{C(n,2)}). Gauge-invariant J=L(1^4)L(22)/L(211)^2: star = HT = (t^2+1)(t^3+3t^2+6t+6)/((t+1)(t^2+t+2)^2); Dolega oplus column cumulant J==3/2=J_star(0). Verdicts: HT = same graph object (related); Dolega oplus separated for t!=0. computed, scripts/day228/sep.py; proofs/2026-10-07-day228-two-row-green-and-separator.md §B. FPSAC remark rewritten."
           },
           {
             "id": "conjF-coarsening-lead-factorizes",
@@ -1062,6 +1063,18 @@
                         "file": "proofs/2026-10-07-day225-class4-hopf-route.md",
                         "role": "premise",
                         "children": []
+                      },
+                      {
+                        "id": "two-row-specialisation-thm25",
+                        "approach": "Day 228 PROVE: a=2 (A=B=1), G_1(w)=P_rho(1,w;t)=w^{rho2}((1-tw)-w^m(w-t))/(1-w) (m>=1; w^{rho2} if m=0). Substitution into Thm 2.5 + Green dictionary gives, for y<=x: X^{(l1,l2)}_{(x,y)} = (t-1)t^{l2-1-y}(1+t^y) [y<l2]; m_xy-(1-t)t^{l2-1} [y=l2]; (t-1)t^{l2-1} [y>l2]. Corrects PROVE.md's G_1 at m=0. No novelty claim: inside Morris 1977 range l(lambda)=2. Cross-check for Clio's two-row x two-part derivation.",
+                        "trust": "proved",
+                        "role": "attempt",
+                        "file": "proofs/2026-10-07-day228-two-row-green-and-separator.md",
+                        "evidence": "scripts/day228/tworow.py: 155/155 ordered (lambda,(x,y)), |lambda|<=10, raw Thm 2.5 AND closed form vs green.py (KF x MN).",
+                        "depends_on": [
+                          "two-point-string-formula-thm25"
+                        ],
+                        "children": []
                       }
                     ],
                     "novelty_wake226": "Wake 226 (2026-10-06): dictionary Phi_a(P_rho;x,y)=(1-t^x)(1-t^y)X^lambda_{(x,y)}(t)/b_lambda, lambda=rho+1^a, COMPUTED 350/350 symbolic |lambda|<=8, 590/590 numeric |lambda|<=9 (scripts/day226/). So Thm 2.5 = closed formula for ALL two-part Green polynomials. Literature: NOVEL-AS-CHECKED; Jing-Liu 2104.04411 (read in full) says no explicit formula known, their MN rule gives a straightening sum not two strings; Green's Hall-poly expansion closed only for y<=2 (textbook). NOT read first-hand: Morris 1963 (Math Z 80, not 81), Macdonald III.7, Green 1955, Kirillov, Garsia-Procesi. Report memory/reading/2026-10-06-wake226-thm25-vs-green-morris.md. Cite Jing-Liu as ancestor of Thm 1.1.",
@@ -1158,7 +1171,8 @@
             "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
             "children": []
           }
-        ]
+        ],
+        "derivation_day228": "Day 228 PROVE: 3-line derivation from FPSAC Cor pieri (plethystic-lin-e-and-pieri-reproof): d/ds pi_a(j)|_{s=1}=(-1)^{j-1}[a]_{t^j} => dC_{a,j}/ds=L(a,j); no pairing cancellation needed. Non-circular. sympy a<=4,j<=5. proofs/2026-10-07-day228-two-row-green-and-separator.md §C."
       }
     ],
     "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md"
