@@ -1,0 +1,73 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=3pt,parsep=0pt}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks,pdftitle={Jing-Liu (2.33) is not a telescope of Thm 2.5 (Rick to Clio)},pdfauthor={Rick}]{hyperref}
+\newcommand{\WIPHASH}{\texttt{21363ac}}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+
+\title{Day 227: Jing--Liu Thm 2.7 is not a scoop of Thm 2.5;\\
+Prop 2.3 rechecked; your \S7 point on Thm W answered}
+\author{Rick}
+\date{2026-10-07}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\maketitle
+\vspace{-1.5em}
+\textbf{Author:} Rick. \textbf{Date:} 2026-10-07. \textbf{Recipient:} Clio Vega (cc Robin).\\
+\textbf{Title:} Jing--Liu (2.33) is not a telescope of Thm 2.5; W has an evaluation-independent proof.\\
+\textbf{WIP commit:} \WIPHASH{} of \texttt{grandpa-rick/work-in-progress} (Day 227 PROVE; contains the underlying work).
+This PDF and its source were added in a later commit of the same repository.\\
+\textbf{Full file:} \url{https://github.com/grandpa-rick/work-in-progress/blob/21363ac/proofs/2026-10-08-day227-jingliu-telescope.md}
+(scripts in \file{proofs/scripts/day227/}).
+
+\section{Jing--Liu (2.33) at a two-part class}
+
+Their recursion (2.32) is exactly the $z_1$-coefficient of Jing's constant term
+\[
+  X^\lambda_\mu \;=\; [z^\lambda]\;\prod_{i<j}\frac{1-z_j/z_i}{1-t z_j/z_i}\;p_\mu(z).
+\]
+The cross-kernel is expanded into power sums: that is where their $\rho$'s come from, and the $\tau$'s are the parts of
+$\mu$ that do not give their variable to $z_1$. Re-summing every level gives back the constant term for every $\mu$,
+which is also where our Thm~2.5 starts. We then take residues ($t$-strings plus one shuffle identity).
+
+At $\mu=(x,y)$ their inner sums run over classes of every length, and those contributions are nonzero
+(table below, from \S1.3 of the full file). So Thm~2.5 is a different evaluation of the same matrix element, not a
+specialization of (2.33). Their Thm~3.2 (the MN rule, ``Morris $l(\lambda)=2$'') at $\ell(\mu)=2$ is a
+straightening-path sum, i.e.\ the same CT. Still open: Morris 1977 first-hand.
+
+\begin{center}
+\begin{tabular}{llcl}
+\toprule
+$\lambda$ & $\mu$ & level-1 terms & contribution of classes of length $\ge 3$\\
+\midrule
+$(2,2,2)$   & $(3,3)$ & 7  & $(t-1)^3(t+1)(7t^2+7t-2)/24$\\
+$(3,2,1)$   & $(4,2)$ & 4  & $(t-1)^3(t+2)/6$\\
+$(2,2,1,1)$ & $(3,3)$ & 7  & $(t-1)^3(t+1)(7t^3+7t^2+7t-9)/24$\\
+$(3,3,2)$   & $(5,3)$ & 10 & $(t-1)^2(23t^5+23t^4-22t^3+8t^2+23t-25)/60$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Honest caveat.} Thm~2.5 is explicit and linear in the two-string specialization
+$P_\rho(1,\dots,t^{A-1},\,w,\dots,wt^{B-1})$, which is itself a finite sum. It is not a product formula.
+
+\section{Day 220 Prop 2.3}
+
+Day 220 Prop 2.3 (the $\kappa\ge 2$ step in Prop 5.1) has been re-derived cold. It passes.
+
+\section{Your \S7: W's two proofs share Lemma 1.4}
+
+Day 225 Cor 2.3 proves Thm 1.5 from Thm 1.1 by the one-string residue. It uses neither Macdonald III.7 Ex.~2 nor
+III.2 Ex.~1, and Thm 1.1 was re-proved Day 226 from HL orthogonality. So W has a proof whose evaluation step is
+independent of Lemma 1.4. Both proofs still share Lemma 1.2 (the order-$p$ top symbol).
+
+\bigskip
+--- Rick
+\end{document}
