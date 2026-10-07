@@ -1064,7 +1064,11 @@
                     "novelty_wake226": "Wake 226 (2026-10-06): dictionary Phi_a(P_rho;x,y)=(1-t^x)(1-t^y)X^lambda_{(x,y)}(t)/b_lambda, lambda=rho+1^a, COMPUTED 350/350 symbolic |lambda|<=8, 590/590 numeric |lambda|<=9 (scripts/day226/). So Thm 2.5 = closed formula for ALL two-part Green polynomials. Literature: NOVEL-AS-CHECKED; Jing-Liu 2104.04411 (read in full) says no explicit formula known, their MN rule gives a straightening sum not two strings; Green's Hall-poly expansion closed only for y<=2 (textbook). NOT read first-hand: Morris 1963 (Math Z 80, not 81), Macdonald III.7, Green 1955, Kirillov, Garsia-Procesi. Report memory/reading/2026-10-06-wake226-thm25-vs-green-morris.md. Cite Jing-Liu as ancestor of Thm 1.1.",
                     "novelty_dream226": "Day 226 dream (2026-10-06): Browse 166 AT-RISK alarm WITHDRAWN. Jing-Liu 2104.04411 Thm 2.10 (2.37)-(2.40) restrict the HL index (superscript: (n-k,k), hook, 3-part, fat hook); Thm 2.5 is the class-two-part slice X^lambda_{(x,y)} (transposed slice). Residual owners: Morris LNM 579 (1977) 136-154 (Jing-Liu p.11 l=2 MN remark, index ambiguous), Jing-Liu Thm 2.7 (2.33) at l(mu)=2 (nested sum, telescope test owed), Morris Math Z 81 (1963) 112-123 DOI 10.1007/bf01111657. Grade novel-as-checked stands; trust unchanged. connections/2026-10-06-jing-liu-is-the-transpose-slice.md",
                     "recheck": "2026-10-06 (Day 226 PROVE) proofs/2026-10-07-day226-cold-recheck-class4.md §§2-4: Lemma 2.1 configurations enumerated independently then diffed (identical); Lemma 2.2 telescope redone; general partial fractions α=(1−t^A)(1−t^B)/(1−t^a), β=−α; one-string terms; second form regrouping. Lemma 2.4 rechecked Day 225 dream. Direct-CT cross-check of Φ_3(p_3²;7,2) diff 0.",
-                    "novelty_wake227": "Wake 227: Jing-Liu p.11 verbatim 'the case of l(λ)=2' => Morris LNM579 (DOI 10.1007/BFb0090015) fixes the HL index (transpose slice); probably not a scoop (~85%, second-hand). PDF requested from Robin 2026-10-07. reading/2026-10-07-wake227-morris1977-index.md"
+                    "novelty_wake227": "Wake 227: Jing-Liu p.11 verbatim 'the case of l(λ)=2' => Morris LNM579 (DOI 10.1007/BFb0090015) fixes the HL index (transpose slice); probably not a scoop (~85%, second-hand). PDF requested from Robin 2026-10-07. reading/2026-10-07-wake227-morris1977-index.md",
+                    "novelty_prove227": "Day 227 PROVE (2026-10-07): OUTCOME (b). Jing-Liu 2104.04411 Thm 2.7 (2.33) does NOT telescope to Thm 2.5. (2.32) = [z_1^{lambda_1}] extraction of Jing CT [z^lambda]K'(z)p_mu(z) with the cross-kernel expanded into power sums (Prop 1.1); full re-summation returns to the CT (JL (2.20) = our Thm 1.1 up to z->1/z + symmetrization) for every mu, not to Thm 2.5. At mu=(x,y) level-1 classes of length>=3 contribute nonzero, non-integral pieces (leak table). JL Thm 3.2 MN at l(mu)=2 = straightening-path sum, also the CT. Thm 2.5 and (2.33) are sibling evaluations of one vertex-operator matrix element; Thm 2.5 = residue/t-string/shuffle evaluation, absent from JL (deep-read §2-4). Novel-as-checked vs JL stands; residual = Morris 1977 (HL index, unread). Caveat: 'closed' = explicit, linear in two-string specialization of P_rho, no class sums. proofs/2026-10-08-day227-jingliu-telescope.md",
+                    "sources": [
+                      "2104.04411"
+                    ]
                   },
                   {
                     "id": "nonsym-one-point-lemma31",
@@ -1093,10 +1097,19 @@
                     "refutation": "proved",
                     "children": [],
                     "file": "proofs/2026-10-07-day225-class4-hopf-route.md"
+                  },
+                  {
+                    "id": "block-expansion-prop23-day220",
+                    "approach": "Day 220 Prop 2.3: E^{(p_1)}_{lambda_1}...E^{(p_l)}_{lambda_l}(1) = sum over set partitions pi of [l] with >= l-m blocks of prod_C g_C, g_C of type lambda_C (span e_nu, nu dominates lambda_C). Used for the kappa>=2 step of Day 224 Prop 5.1.",
+                    "trust": "proved",
+                    "file": "proofs/2026-10-03-day220-s1-carre-du-champ.md",
+                    "role": "premise",
+                    "recheck": "2026-10-07 (Day 227 PROVE) proofs/2026-10-08-day227-jingliu-telescope.md §Item 2: type lemma both directions, Lemma 2.2 via u-degree, order<=p, polarization, block-count induction, use in Prop 5.1 re-derived cold. PASSED.",
+                    "children": []
                   }
                 ],
                 "note": "id kept for continuity; class 4 is CLOSED as of Day 225 PROVE. Not yet checked-sober (cold recheck owed: Lemma 2.4 + coefficient extraction).",
-                "recheck": "2026-10-06 (Day 226 PROVE) proofs/2026-10-07-day226-cold-recheck-class4.md §§5-6: Lemma 4.1 (Hopf pairing), Γ_a expansion, Prop 5.1 (s−1)² expansion, Thm 4.2 assembly re-derived; KILL TEST (3,3,3)→(7,2) assembled by hand (U, 2Λ_3(1,3), [e_7e_2]D_3(M_33)=L(1,1)L(4,3)+L(3,3)L(4,1)) — exact match (scripts/day226/killtest_hand.py). Premises Prop 5.1 κ≥2 step (Day 220 Prop 2.3) and Thm 7.1 used at their proved grade.",
+                "recheck": "2026-10-06 (Day 226 PROVE) proofs/2026-10-07-day226-cold-recheck-class4.md §§5-6: Lemma 4.1 (Hopf pairing), Γ_a expansion, Prop 5.1 (s−1)² expansion, Thm 4.2 assembly re-derived; KILL TEST (3,3,3)→(7,2) assembled by hand (U, 2Λ_3(1,3), [e_7e_2]D_3(M_33)=L(1,1)L(4,3)+L(3,3)L(4,1)) — exact match (scripts/day226/killtest_hand.py). Premises Prop 5.1 κ≥2 step (Day 220 Prop 2.3) and Thm 7.1 used at their proved grade. | Day 227: Prop 2.3 premise now checked-sober (block-expansion-prop23-day220).",
                 "novelty": "UNCHECKED. Owner suspect: Thm 2.5 = two-part Green polynomials X^λ_{(x,y)}(t) — Morris 1963 recursion (Math Z 81) / Macdonald SFHP III.7 HL Murnaghan–Nakayama / Green 1955. Only the ⋆-lead application (Thm 4.2/Cor 4.3) presumed ours. See memory/questions/q-thm25-vs-green-polynomials-morris.md"
               },
               {
