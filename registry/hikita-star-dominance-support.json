@@ -1108,9 +1108,9 @@
                     "children": []
                   }
                 ],
-                "note": "id kept for continuity; class 4 is CLOSED as of Day 225 PROVE. Not yet checked-sober (cold recheck owed: Lemma 2.4 + coefficient extraction).",
+                "note": "id kept for continuity; class 4 is CLOSED as of Day 225 PROVE. Cold recheck PASSED Day 226 PROVE (see recheck); Day 220 Prop 2.3 premise rechecked Day 227. [Day 227 dream: stale recheck-owed text replaced.]",
                 "recheck": "2026-10-06 (Day 226 PROVE) proofs/2026-10-07-day226-cold-recheck-class4.md §§5-6: Lemma 4.1 (Hopf pairing), Γ_a expansion, Prop 5.1 (s−1)² expansion, Thm 4.2 assembly re-derived; KILL TEST (3,3,3)→(7,2) assembled by hand (U, 2Λ_3(1,3), [e_7e_2]D_3(M_33)=L(1,1)L(4,3)+L(3,3)L(4,1)) — exact match (scripts/day226/killtest_hand.py). Premises Prop 5.1 κ≥2 step (Day 220 Prop 2.3) and Thm 7.1 used at their proved grade. | Day 227: Prop 2.3 premise now checked-sober (block-expansion-prop23-day220).",
-                "novelty": "UNCHECKED. Owner suspect: Thm 2.5 = two-part Green polynomials X^λ_{(x,y)}(t) — Morris 1963 recursion (Math Z 81) / Macdonald SFHP III.7 HL Murnaghan–Nakayama / Green 1955. Only the ⋆-lead application (Thm 4.2/Cor 4.3) presumed ours. See memory/questions/q-thm25-vs-green-polynomials-morris.md"
+                "novelty": "[Day 227 dream update: Thm 2.5 NOVEL-AS-CHECKED vs Jing-Liu 2104.04411 (deep-read; (2.37) = transposed HL-index slice; (2.33) = sibling CT evaluation, Day 227 PROVE outcome b); residual = Morris LNM579 1977 (HL index per JL p.11, ~85%, unread). See node two-point-string-formula-thm25 novelty_* fields.] ORIGINAL: UNCHECKED. Owner suspect: Thm 2.5 = two-part Green polynomials X^λ_{(x,y)}(t) — Morris 1963 recursion (Math Z 81) / Macdonald SFHP III.7 HL Murnaghan–Nakayama / Green 1955. Only the ⋆-lead application (Thm 4.2/Cor 4.3) presumed ours. See memory/questions/q-thm25-vs-green-polynomials-morris.md"
               },
               {
                 "id": "gprime-flow-forest-positive-count",
@@ -1130,7 +1130,7 @@
                 "role": "attempt",
                 "children": [],
                 "recheck": "2026-10-06 (Day 226 PROVE) proofs/2026-10-07-day226-cold-recheck-class4.md — the closed form of Γ_a off-diagonal (via Thm 2.5) rechecked; see §§2-5.",
-                "novelty": "UNCHECKED. Owner suspect: Thm 2.5 = two-part Green polynomials X^λ_{(x,y)}(t) — Morris 1963 recursion (Math Z 81) / Macdonald SFHP III.7 HL Murnaghan–Nakayama / Green 1955. Only the ⋆-lead application (Thm 4.2/Cor 4.3) presumed ours. See memory/questions/q-thm25-vs-green-polynomials-morris.md"
+                "novelty": "[Day 227 dream update: Thm 2.5 NOVEL-AS-CHECKED vs Jing-Liu 2104.04411 (deep-read; (2.37) = transposed HL-index slice; (2.33) = sibling CT evaluation, Day 227 PROVE outcome b); residual = Morris LNM579 1977 (HL index per JL p.11, ~85%, unread). See node two-point-string-formula-thm25 novelty_* fields.] ORIGINAL: UNCHECKED. Owner suspect: Thm 2.5 = two-part Green polynomials X^λ_{(x,y)}(t) — Morris 1963 recursion (Math Z 81) / Macdonald SFHP III.7 HL Murnaghan–Nakayama / Green 1955. Only the ⋆-lead application (Thm 4.2/Cor 4.3) presumed ours. See memory/questions/q-thm25-vs-green-polynomials-morris.md"
               }
             ]
           }
