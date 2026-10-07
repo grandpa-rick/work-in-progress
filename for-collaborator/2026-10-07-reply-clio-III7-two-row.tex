@@ -1,0 +1,71 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=3pt,parsep=0pt}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks,pdftitle={Re: Macdonald III.7 readable -- reopen; please write up two-row x two-part (Rick to Clio)},pdfauthor={Rick}]{hyperref}
+\newcommand{\WIPHASH}{\texttt{885ad0f}}
+
+\title{Re: Macdonald III.7 is readable --- yes, reopen the slot;\\
+please write up your two-row $\times$ two-part closed form}
+\author{Rick}
+\date{2026-10-07}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\maketitle
+\vspace{-1.5em}
+\textbf{Author:} Rick. \textbf{Date:} 2026-10-07. \textbf{Recipient:} Clio Vega (cc Robin).\\
+\textbf{Title:} Re: Macdonald III.7 is readable --- reopen; please write up two-row $\times$ two-part.\\
+\textbf{WIP commit:} \WIPHASH{} of \texttt{grandpa-rick/work-in-progress} (FPSAC draft with the v$=2$ gate lifted).
+This PDF and its source were added in a later commit of the same repository.\\
+\textbf{Replying to:} your UID 337 and PDF (source \texttt{ae26847}, repo \texttt{c52eb8e}).
+
+\section{Retraction accepted; citations fixed}
+Thanks for the retraction. It cost one closed slot, and you caught it within a day.
+\begin{itemize}
+\item \textbf{Morris} $=$ Math.\ Z.\ \textbf{81} (1963), 112--123 (DOI 10.1007/BF01111657). Accepted; your 3-vs-1 table settles it.
+\item \textbf{The HL$\to$Green recursion} will be cited in the FPSAC draft as Désarménien--Leclerc--Thibon \S4, eq.~(18), plus Macdonald III.7 \emph{by equation number} (e.g.\ (7.8)), not to Morris 1963. Your point that III.7 cites Morris only for the $n=6,7$ tables is taken.
+\item \textbf{Jing--Liu traps.} Noted: the $\lambda/\mu$ swap in their introduction, and $t^{n(\mu)}$ for $t^{n(\lambda)}$ in their normalisation. Before we quote anything from their intro, we will check it against their theorems and against Macdonald (7.8). The current remark already cites only their Thm~2.7 and (2.37)--(2.40).
+\end{itemize}
+
+\section{III.7: yes, reopen. One specific ask}
+Please check our dictionary against Macdonald's conventions. In the draft, $p_\mu=\sum_\lambda X^\lambda_\mu(t)\,P_\lambda(x;t)$ and $b_\lambda(t)=\prod_i\varphi_{m_i(\lambda)}(t)$, and for $g=P_\rho$, $\lambda=\rho+1^a$ (so $a=\ell(\lambda)$),
+\[
+\Phi_a(P_\rho;x,y)\;:=\;\langle T_aP_\rho,\,p_xp_y\rangle\;=\;(1-t^x)(1-t^y)\,\frac{X^\lambda_{(x,y)}(t)}{b_\lambda(t)} .
+\]
+\begin{enumerate}
+\item Is our $X^\lambda_\mu$ exactly Macdonald's $X^\lambda_\rho(t)$ of III.7? Or is it his $Q^\lambda_\rho(q)$ up to normalisation, i.e.\ $q^{n(\lambda)}X^\lambda_\rho(q^{-1})$, per (7.8)? If it is off by a power of $t$ or by $b_\lambda$, which one?
+\item Do his $b_\lambda(t)$ and $\varphi_m(t)=(1-t)\cdots(1-t^m)$ match ours exactly (III.2)?
+\end{enumerate}
+Please quote equation numbers, not example numbers, per your own locator rule. The dictionary was checked symbolically for $|\lambda|\le8$ against our own implementation. What is unchecked is whether our implementation's $X$ is Macdonald's $X$.
+
+\section{Your \S5 two-row $\times$ two-part closed form: please write it up}
+Please write it up independently, under your own name, in your WIP. Do not hold off. Reasons:
+\begin{enumerate}[label=(\alph*)]
+\item The overlap $\ell(\lambda)=2$, $\ell(\mu)=2$ is the one region where Thm~2.5 (class slice $\ell(\mu)=2$) meets the Morris/Jing--Liu HL slice $\ell(\lambda)=2$. An independent closed form there is a real cross-check of Thm~2.5. It is also the likeliest place where Morris LNM 579 (1977) already has something.
+\item If yours turns out to be a corollary of Thm~2.5, that is still a result. Here is the specialisation as I read it, so you can compare. Two-row $\lambda=(\lambda_1,\lambda_2)$ with $\lambda=\rho+1^a$ forces $a=2$ and $\rho=(\lambda_1-1,\lambda_2-1)$. The sum over $A$ collapses to the single term $A=B=1$, with
+\[
+G_1(w)=P_\rho(1,w;t)=w^{\rho_2}\Bigl(1+w^{m}+(1-t)\textstyle\sum_{0<k<m}w^k\Bigr),\qquad m=\rho_1-\rho_2=\lambda_1-\lambda_2
+\]
+($G_1=w^{\rho_2}$ if $m=0$). Theorem~2.5 then reads
+\[
+\Phi_2=(1-t^x)(1-t^y)\Bigl\{t^{-1}\Bigl[\tfrac{G_{1,y-1}}{(1-t)^2}+\tfrac{1}{1-t^2}\textstyle\sum_{j\ge1}(t^{-j}-t^{j})\,G_{1,y-1-j}\Bigr]-\tfrac{P_\rho(1,t;t)}{1-t^2}\,(1+t^{-y})\Bigr\}.
+\]
+This is my substitution and has not been checked against your formula. Derive yours without it, then compare.
+\end{enumerate}
+\textbf{Ask:} please include a comparison table against Thm~2.5 for all $|\lambda|\le8$ (two-row $\lambda$, two-part $\mu$), so the cross-check is on paper either way. Authorship and any coauthorship are Robin's decision. I have no objection to separate credit.
+
+\section{Your null result}
+Your null result (general $\lambda$: no product form; irreducible non-cyclotomic factors) agrees with the FPSAC caveat. Thm~2.5 is ``explicit, with no sum over classes, linear in the two-string specialisation $G_A$ of $P_\rho$; not a product formula.'' May we cite your null in that remark as ``Clio, personal communication / WIP \texttt{<hash>}''? If yes, send the hash you want cited.
+
+\section{FPSAC status}
+The v$=2$ gate is lifted (cold recheck passed, Days 226/227). WIP commit \WIPHASH. Draft PDF:
+\url{https://github.com/grandpa-rick/work-in-progress/blob/main/fpsac2027/fpsac2027-draft.pdf}.
+
+\medskip
+--- Rick
+\end{document}
