@@ -1,0 +1,351 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\tri}{\mathbin{\triangleleft}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\WIPHASH}{PLACEHOLDER}
+\newcommand{\iss}[1]{\textsc{#1}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+
+\title{Review: container-derivative uniqueness and tangent-structure notes (MacBeth 5f1531d)}
+\author{Rick\\[2pt]\small To: MacBeth (Kodamai)}
+\date{2026-10-07}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-07\\
+Recipient: & MacBeth\\
+Reviewed: & \emph{A uniqueness theorem for the container derivative} (13 pp., ``revised 5 Oct'')\\
+          & \emph{The container derivative is a tangent structure} (9 pp., dated 3 Oct)\\
+          & both as attached to your email of 2026-10-06, said to be at your commit \texttt{5f1531d}\\
+WIP commit: & \texttt{\WIPHASH}\\
+Check script: & \texttt{reviews/scripts/2026-10-07-macbeth-checks.py} (sympy, $<$2\,s)
+\end{tabular}
+\end{center}
+
+Labels: \iss{error} (claim false or proof broken), \iss{gap} (missing step that can plausibly be
+filled), \iss{wording}, \iss{minor}. Page numbers are the printed page numbers. ``U'' is the
+uniqueness note and ``E'' is the existence (tangent-structure) note.
+
+\section*{Summary}
+
+\textbf{The mathematical core of U is now right, in the category you now name.} I re-derived
+the counts in finite free $\N$-modules, with $T=(-)\otimes_\N D$, $D=\N\oplus M$, $\operatorname{rank}M=n$:
+$\operatorname{rank}D_2=1+2n$ and $\operatorname{rank}V(\N)=1+n+n^2$. These agree only for
+$n\in\{0,1\}$; see the table in Appendix~A. So the \emph{necessity} half of Theorem~1/18 holds
+there, modulo small gaps.
+
+\textbf{Three things still overstate.}
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item The bridge from $\N$-modules back to $\tri$ and ``the container derivative'' (Lemma~5 and
+everything that leans on it) is still not valid at the level of \emph{morphisms}.
+\item The existence half is cited to E, but E contains no $(-)\otimes W$ statement. E was not
+revised: its PDF CreationDate is 2026-10-03, and your commit message for \texttt{5f1531d} says
+``existence note: already honest \dots\ no change needed''.
+\item U's definition of ``solid'' contradicts its own Definition~2. As literally written, $M=y$ is
+\emph{not} solid.
+\end{enumerate}
+I also think F4 (the $\N\cdot y$ question) can probably be \emph{closed negatively} by the
+canonical-flip axiom (Finding U7). Please check this rather than take my word for it.
+
+\section*{Verdicts}
+\begin{center}\small
+\begin{tabular}{p{5.2cm}p{2.9cm}p{7.2cm}}
+\toprule
+Item & Verdict & Reason (finding)\\\midrule
+U Lemma 5 (three tensors) & proved on objects only & true for shape counts; false as an identification of operations with their morphisms (U1)\\
+U Lemma 7 (rank invariant) & proved & \\
+U Lemma 8 / Thm 9 (finite rigidity) & false as stated; proved after a fix & $\mu|_{M\otimes M}=0$ by Def.~2, so $y$ is not ``solid''; fix: define solidity via $\ell$ (U3)\\
+U Prop 10 ($\N\cdot y$ solid) & not proved in a useful sense & abstract iso only; fails flip compatibility; outside ``finite-rank'' (U7)\\
+U Lemma 12 ($\tri$ preserves pullbacks) & proved, but misapplied & true in Poly; \S6 needs the $\N$-module statement (U5)\\
+U Lemma 13 (three ranks) & proved in $\N$-Mod & not in Poly's linear layer, where $|P'|=1+n$ (U1)\\
+U Thm 14 (converse) & proved-modulo-gap & $p,0$ must be induced by $D$; $T_2=(-)\otimes D_2$ justification; conclusion ``solid'' (U3, U5)\\
+U Thm 1/18, $\N$-module sentence & proved-modulo-gap & necessity OK; existence for $D=W$ not in [11] (U2); ``exactly two \emph{structures}'' needs uniqueness of $+,\ell,c$ (U6)\\
+U Thm 1/18, ``Equivalently \dots\ container derivative'' sentence & not proved as phrased & wrong bridge; and on linear maps $\partial$ is trivial (U1, U4)\\
+E Thm 1/4 (SPoly is a CDC with $\partial$) & proved-modulo-gap & only after ``finitary'' is changed to ``finite-support'' (E1)\\
+E Prop 9 (linear maps $=S\cdot y$) & proved & checked\\
+E Thm 11 (restriction to directed containers) & not proved & sketch: $\mathrm{Poly}/D$ undefined, 2-cells missing (E2)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Scope fix: is it implemented everywhere?}
+\textbf{No.} I grepped the extracted text of both PDFs for the old scope. The old identification
+``$(-)\tri D$ is the dual-number substitution'' is gone from U. What remains are these leftover
+or contradictory statements:
+\begin{enumerate}[label=\textbf{S\arabic*.},leftmargin=*]
+\item \iss{error/wording} U title page, subtitle: ``$\partial$ is the only nontrivial representable
+tangent structure \emph{on finite-support polynomial functors}''. This is the old scope verbatim.
+The theorem is about finite free $\N$-modules.
+\item \iss{error} U p.\,5, Def.~2: ``on a polynomial $p$, base change by $W$ is the dual-number
+substitution $T(p)=p(y+\varepsilon v)\bmod\varepsilon^2$''. Repeated on p.\,5 (l.\,238) and in the
+abstract. This is false. Base change $\N[y]\to W[y]$ sends $y^2\mapsto y^2$. The element
+$y^2+2\varepsilon vy$ is the image of $y^2$ under the \emph{substitution} $y\mapsto y+\varepsilon v$,
+which is a map $\N[y]\to\N[y,v][\varepsilon]/\varepsilon^2$. That is the unit of the adjunction
+between $(-)\otimes W$ and the K\"ahler functor $A\mapsto\operatorname{Sym}_A\Omega_A$, not base
+change of $p$ (script item 1). There is also a type mismatch: in the category of U, the objects are
+modules, and a non-linear polynomial $p$ is neither an object nor a morphism there.
+\item \iss{error} U p.\,5, l.\,241: ``That $T=(-)\otimes W$ is a genuine tangent structure \dots\ is
+the content of [11]''. Also p.\,3 (``representability [11]'') and \S7 (``the full \dots\
+verification is the content of [11]''). E never mentions $\otimes W$, Weil algebras as tangent
+functor, or $\N$-modules. E's tangent category is SPoly, with objects arities $n$ and $T(n)=2n$.
+See U2 for how to repair this.
+\item \iss{wording} U p.\,10, Rem.~15: ``\emph{In Poly} that fibre is a direct coproduct''. U
+p.\,8, Rem.~11: ``whether uniqueness \dots\ fails \emph{over all of Poly} is left open''. Both are
+old-scope phrasing.
+\item \iss{minor} U abstract and Rem.~4 say that on all of Poly ``only $T=\mathrm{id}$ survives''.
+That is shown only for \emph{finite} rank, where $(1+n)^2=1+n$. In honest Poly, infinite $\kappa$
+passes the rank test ($\kappa^2=\kappa$). Say ``only id among finite-rank $D$''.
+\item \iss{wording} Email: ``Attached are the rewritten uniqueness note and its companion existence
+note, incorporating the scope fix''. E is unchanged since 3 Oct. Your own commit message says so,
+so this is a description slip, not a hidden change. Still, Strathclyde listeners will read E as the
+existence half of U's theorem, and it is not (S3).
+\item \iss{error} U p.\,6, ``Why the infinitesimal part is linear'': ``So linearity of $M$ is
+forced, not assumed''. This is the same heuristic my F5 objected to (``no vector-space fibre''; over
+$\N$ there are no vector spaces). Meanwhile Def.~2 \emph{assumes} $M$ finite free, and pp.\,4, 10
+list ``that $M$ is linear'' as a cited framework fact. Of the three, keep the hypothesis. In the
+$\N$-module setting linearity is automatic, so delete the paragraph. F5 is therefore \emph{not}
+incorporated, despite the email.
+\end{enumerate}
+
+\section{Uniqueness note: findings}
+\begin{enumerate}[label=\textbf{U\arabic*.},leftmargin=*]
+\item \iss{error} \textbf{Lemma 5 identifies objects, not categories.} (p.\,6; used in the abstract,
+p.\,2 Thm~1 ``Equivalently'', p.\,4, \S6 preamble p.\,8, \S9.) $(S\cdot y)\tri(T\cdot y)$ and
+$\N^S\otimes\N^T$ both have $|S\times T|$ generators, so the statement is true on objects. But the
+two hom-sets differ:
+\begin{itemize}[leftmargin=1.2em]
+\item A Poly morphism $S\cdot y\to T\cdot y$ is a \emph{function} $S\to T$ (your Lemma~7 proof says
+so).
+\item An $\N$-module map $\N^S\to\N^T$ is an $\N$-matrix.
+\end{itemize}
+The augmentation $W\to\N$, $\varepsilon\mapsto0$, sends a basis element to $0$. It is not a function
+on shapes, so it is not a Poly morphism. Yet it is exactly the map whose fibre gives $|P'|=1+n+n^2$.
+With Poly morphisms, $|P'|=1+n$ (Appendix~A, as in my 10-05 report). So ``we compute with the quick
+substitution formula $\tri$ \dots\ legitimate precisely because every object in sight is linear''
+(p.\,8) is not legitimate: the \emph{morphisms} in sight are not Poly morphisms.
+
+\emph{Repair (I think this is the bridge you want).} Use E's SPoly, not Poly. The subcategory
+$\mathrm{Lin}(\mathrm{SPoly})$ of \emph{linear maps} $n\to m$ consists of $m$-tuples
+$\sum_j S_{ij}\cdot y_j$, i.e.\ $\N$-matrices, with substitution as matrix product. It is
+equivalent to finite free $\N$-modules. The CDC tangent structure of SPoly restricts to it:
+$T(f)=f\times f$ for linear $f$, and $p,0,+,\ell,c$ are all linear. Under this equivalence it is
+exactly $(-)\otimes W$ with $p=(-)\otimes\mathrm{aug}$. So the correct sentence is: ``on the
+subcategory of linear maps of SPoly, the CDC tangent structure is $(-)\otimes W$, and it is one of
+exactly two of this form''. Here $S\cdot y$ appears as a \emph{morphism} ($1\times1$ matrix), not as
+an object, and $\tri$ appears as composition, not as a tensor of objects.
+
+\item \iss{gap} \textbf{Existence in the stated category.} (\S7, p.\,11.) As cited, existence rests
+on [11], which proves something else (S3). It is easy to fill in either of two ways:
+\begin{itemize}[leftmargin=1.2em]
+\item Use the restriction argument in U1. Pullbacks $T_n$ and $V$ in Lin are the same products as in
+SPoly, and the induced maps from linear cones are linear tuples.
+\item Or note directly that on any category of $\N$-modules $A\mapsto A\oplus A$ is the biproduct
+tangent structure of a semiadditive category, with $D[f]=f\pi_2$. For $W$, the canonical
+$v\colon T_2\to V$ is $(a,b,c)\mapsto a+\varepsilon_{\rm in}c+\varepsilon_1\varepsilon_2 b$, which
+is bijective.
+\end{itemize}
+Either way, cite Cockett--Cruttwell for the semiadditive/CDC example, not [11].
+
+\item \iss{error} \textbf{Definition 3 makes $W$ non-solid.} (p.\,5, Def.~2 vs Def.~3; abstract;
+Thm~9 p.\,7; Thm~14 conclusion p.\,10.)
+\begin{itemize}[leftmargin=1.2em]
+\item Def.~2 requires $M\cdot M=0$ in $D$, so the multiplication $\mu\colon M\otimes M\to M$ is the
+zero map.
+\item Def.~3 calls $M$ solid iff $\mu$ is an isomorphism, which holds only for $M=0$.
+\item For $W$: $\mu(\varepsilon\otimes\varepsilon)=\varepsilon^2=0$.
+\end{itemize}
+So ``$M=y$ is solid'' (Thm~9) and ``$\mu$ is an isomorphism in each case'' (Thm~14, last line) are
+false as written. The map that \emph{is} an isomorphism for $W$ is the vertical-lift component
+$\ell_M\colon M\to M_1\otimes M_2$, $\varepsilon\mapsto\varepsilon_1\varepsilon_2$. Universality
+forces exactly this (see U7). I suspect this is what Lanfranchi--Lemay's solidity encodes, but I
+have not re-read their definition, so please check it. With solidity redefined as ``$\ell_M$ is an
+iso'', Lemma~8 and Thm~9 go through unchanged, because only the abstract iso
+$M\otimes M\cong M$ is used.
+
+\item \iss{wording, important for the audience} \textbf{On the linear layer $\partial$ is trivial.}
+(Thm~1 p.\,2, \S1 ``Contribution'' p.\,4, \S8, \S9.)
+\begin{itemize}[leftmargin=1.2em]
+\item On finite free $\N$-modules, $(-)\otimes W$ is $A\mapsto A\oplus A$ and $T(f)=f\oplus f$.
+\item The induced combinator is $D[f]=f\circ\pi_2$. That is your own E Prop.~9: linear maps are
+exactly those with $\partial[f]=f\pi_2$.
+\item None of the one-hole-context content of $\partial$ (the $y^n\mapsto ny^{n-1}$ part) is visible
+in the category where the classification takes place.
+\end{itemize}
+``The container derivative is the only nontrivial representable first-order tangent structure''
+therefore needs the qualifier ``\dots\ whose restriction to linear maps is \dots'', or better, a
+plain statement: ``the tangent structures $(-)\otimes D$ on finite free $\N$-modules are exactly
+$D=\N$ and $D=W$; the second is the restriction of the SPoly/$\partial$ structure''. The Strathclyde
+audience includes the AAGM community, so expect this question first.
+Likewise, ``answers Cockett's question in its strongest form: \dots\ differentiation is the only
+nontrivial way'' (p.\,13) does not follow. Nothing here classifies tangent structures on SPoly
+itself.
+
+\item \iss{gap} \textbf{Theorem 14: hidden hypotheses and the wrong lemma.} (pp.\,8--10.)
+\begin{enumerate}[label=(\roman*),leftmargin=1.5em]
+\item The proof uses that $p=(-)\otimes\mathrm{aug}$ and $0=(-)\otimes\mathrm{unit}$, i.e.\ that
+the bundle data come from $D$. Def.~3 only says that the \emph{functor} is $(-)\otimes D$. A natural
+map $(-)\otimes D\Rightarrow\mathrm{id}$ is any module map $D\to\N$. Make ``representable'' include
+the induced $p$, $0$ (and $+$, $\ell$, $c$), as in Lanfranchi--Lemay.
+\item $T_2=(-)\otimes D_2$ and $V=(-)\otimes P'$ are justified by Lemma~12, which is about pullbacks
+in Poly. In $\N$-Mod you need instead that $A\otimes-$ preserves these particular pullbacks. For $A$
+free this is immediate, since the pullbacks are split coordinate pullbacks.
+\item The computation of $P'$ as a preimage needs that, in a free $\N$-module, an element lies in the
+summand $A\otimes\N$ iff its other coordinates vanish. That is true, and it is worth one sentence:
+it is the ``no subtraction'' point, done properly.
+\end{enumerate}
+Granting (i), the argument is correct. Evaluating at $\N$, ranks are complete invariants, and
+cancellation gives $n^2=n$.
+
+\item \iss{gap/minor} \textbf{``Exactly two'' counts objects $D$, not structures.} (Thm~18, p.\,11.)
+You should also show that, for $D\in\{\N,W\}$, the remaining data $+,\ell,c$ are forced. Over $\N$
+this is quick:
+\begin{itemize}[leftmargin=1.2em]
+\item The unit laws force $+$ to be the fold on $M_1\oplus M_2$.
+\item $\ell_M$ must be an iso $\N\to\N$, hence the identity.
+\item $c$ on $M_1\otimes M_2$ is an involution of $\N$, hence the identity.
+\end{itemize}
+Add the paragraph.
+
+\item \iss{minor} Rem.~16 still says ``solidity coincides with indecomposability''. That was my
+earlier minor point and it is still unsupported. Also, on p.\,3 Lanfranchi--Lemay work on the
+opposite of commutative \emph{algebras} (affine schemes), not ``the opposite of the category of
+modules''. On that side the tangent functor is the exponential $(-)^{\operatorname{Spec}D}$; your
+$(-)\otimes D$ is its left-adjoint/algebra-side avatar (Cockett--Cruttwell's adjoint tangent
+structure). Please say this, because a tangent-category referee will ask.
+
+\item \iss{suggestion; please check} \textbf{F4 looks closable: the canonical flip excludes
+$\N\cdot y$.} (\S5, Rem.~11, Rem.~17.) F4 is honestly marked open in all five places: abstract,
+p.\,3, Rem.~11, Table~1, \S9. That part is fine. But first note that $\N\cdot y$ is not a
+finite-rank module, so F4 lies outside U's own category. It has to be posed on all free
+$\N$-modules. There, the following argument should settle it:
+\begin{enumerate}[label=(\roman*),leftmargin=1.5em]
+\item The axioms that $\ell$ is a bundle map and that $p_T\ell=0p$ force
+$\ell=1\oplus\ell_M$ with $\ell_M\colon M\to M_1\otimes M_2$.
+\item The canonical $v\colon T_2\to V$ is then
+$(a,b,c)\mapsto a+\varepsilon_{\rm in}c+\ell_M(b)$. So universality holds iff $\ell_M$ is an
+isomorphism. This is the correct ``solidity'', and it is stronger than an abstract rank equality.
+\item For a representable structure $c$ is the swap $\sigma$ of $D\otimes D$, and
+Cockett--Cruttwell require $c\ell=\ell$, i.e.\ $\sigma\ell_M=\ell_M$.
+\item Isomorphisms of free $\N$-modules permute bases (the atoms). So $\ell_M(e_k)=e_i\otimes e_j$
+for some $i,j$, and $\sigma\ell_M=\ell_M$ forces $i=j$.
+\item Surjectivity then forces every $e_i\otimes e_j$ to be diagonal, so
+$\operatorname{rank}M\le1$, \emph{for every cardinality}.
+\end{enumerate}
+Script item 4 confirms there is no flip-compatible iso for ranks 2, 3, 4. The Cantor-pairing
+$\ell_M$ for $\N\cdot y$ is not symmetric, so $(-)\otimes(\N\oplus\N^{(\N)})$ is \emph{not} a
+representable tangent structure. If this survives your check:
+\begin{itemize}[leftmargin=1.2em]
+\item Uniqueness holds for free $M$ of any rank.
+\item Prop.~10's ``finiteness is sharp'' becomes an artefact of measuring solidity by an abstract
+iso, and should be withdrawn.
+\item $\N$ has nothing to do with it: the argument is the familiar fact that solid objects have
+symmetric tensor square, which is consistent with Lanfranchi--Lemay's $\mathbb{Z}\ltimes\mathbb{Q}$,
+where $\mathbb{Q}\otimes\mathbb{Q}\cong\mathbb{Q}$ \emph{is} symmetric.
+\end{itemize}
+My caveat: this assumes $c$ is the swap, which is the representable convention. A non-representable
+choice of $c$ on $M_1\otimes M_2$ would have to be the identity there, and I have not checked the
+remaining axioms for that variant. This also gives a second, one-line proof of the finite case, so
+the rank-count converse is not needed for uniqueness. It remains a nice ``no-subtraction'' remark.
+\end{enumerate}
+
+\section{Existence note: findings}
+\begin{enumerate}[label=\textbf{E\arabic*.},leftmargin=*]
+\item \iss{gap (definition)} \textbf{``Finitary'' vs ``finite-support''.} (p.\,3, Def.~2; p.\,2,
+``The result''.) SPoly is defined with \emph{finitary} containers, meaning finite position sets but
+possibly infinitely many shapes. Then $N(F)\notin\N[m_1,\dots]$: for $F=\N\cdot y$,
+$N(F)=\aleph_0\cdot m$. So Def.~3 and Lemma~6 are undefined on part of SPoly. U (p.\,4) defines
+SPoly as \emph{finite-support}, which is inconsistent with E. Restrict E to finite support, i.e.\
+finitely many shapes, each with finitely many positions. Then Lemmas 5--7 are fine. I checked:
+\begin{itemize}[leftmargin=1.2em]
+\item faithfulness, because a polynomial function on $\N^n$ determines its coefficients;
+\item the CD.6 and CD.7 forms as you state them, symbolically on test polynomials (script item 7).
+Your CD.6 with $b$ free is valid, since the second-order term carries the factor $x'=0$.
+\end{itemize}
+The tangent axioms (additive bundle, lift, flip, universality) are all \emph{inherited} from
+Cockett--Cruttwell's CDC$\Rightarrow$tangent result. None is checked directly, which is legitimate.
+Please verify the proposition number ``[5, Prop.~4.7]'' (I did not).
+
+\item \iss{error (labelling)} \textbf{Theorem 11 is a sketch, not a theorem.} (pp.\,7--8.)
+\begin{itemize}[leftmargin=1.2em]
+\item ``$(\mathrm{Poly}/D,\tri_D,y+\varepsilon v)$'' is never defined.
+\item SPoly is built on isomorphism classes, so $T$ has no action on the container
+\emph{morphisms} (2-cells). But comonoid structure maps are 2-cells.
+\item Comonoid preservation is ``borrowed'' from an unspecified 2-functoriality in [6].
+\item Remark~12 itself shows the Set reading fails.
+\end{itemize}
+What is actually proved is that $T$ is functorial for substitution: $T(c\circ d)=T(c)\circ T(d)$,
+which is CD.5. Relabel it as a Proposition-sketch or Conjecture, and move ``the tangent bundle of a
+category lives over the dual numbers'' (abstract, \S6, \S7) out of the headline claims.
+
+\item \iss{minor} E is dated 3 Oct and carries no revision note, so its relation to U's corrected
+scope is invisible to a reader. Add a sentence: ``E's tangent category is SPoly ($T(n)=2n$); its
+restriction to linear maps is U's $(-)\otimes W$ (see U1)''. Also, ``every object is linear, so
+the question is empty'' (p.\,6) is a bit glib: in a CDC $T(A)=A\times A$ by construction, so the
+question is not asked, rather than answered.
+\end{enumerate}
+
+\section{What you can safely say at Strathclyde}
+\begin{enumerate}[leftmargin=*]
+\item Finite-support polynomial functors (SPoly, objects $=$ arities) form a Cartesian differential
+category with combinator the AAGM derivative $\partial$. The proof is by reflection along the
+faithful counting functor into $\N$-polynomials, so SPoly is a tangent category with $T(n)=2n$.
+Honest novelty: near-folklore (``polynomials over a rig''), but a clean statement and a clean proof.
+\item The linear maps of SPoly are exactly the linear containers $S\cdot y$ (Prop.~9). This is the
+non-vacuity check.
+\item On finite free $\N$-modules (equivalently, linear maps of SPoly), the tangent structures of
+the form $(-)\otimes D$, with $D$ augmented square-zero and $p,0$ induced, are exactly $D=\N$
+(trivial) and $D=W$ (the restriction of the $\partial$ structure). The proof is a rank count over a
+rig with no PID and no subtraction. Say ``restriction of the $\partial$ structure'', not
+``$\partial$ is the unique tangent structure on polynomial functors''.
+\item In full $(\mathrm{Poly},\tri)$, right substitution $(-)\tri D$ never gives $\partial$
+($y^2\tri2y=4y^2$). Among finite-rank $D$ only the identity survives.
+\item Open: tangent structures on SPoly itself, which are not classified; the reverse/lens reading;
+and Problem~13.
+\end{enumerate}
+\textbf{Do not say:}
+\begin{itemize}[leftmargin=1.2em]
+\item ``$\partial$ is the only nontrivial tangent structure on finite-support polynomial functors''
+(U subtitle).
+\item ``base change of $p$ by $W$ is $p(y+\varepsilon v)$''.
+\item ``$\otimes$, $\tri$ and Dirichlet coincide on the linear layer'' as a categorical statement.
+\item ``finiteness is sharp'' or ``$\N\cdot y$ is solid'' (see U7).
+\item ``$T$ restricts to directed containers'' as a theorem.
+\item ``Cockett's question answered in its strongest form''.
+\end{itemize}
+
+\appendix
+\section{Computations (script output)}
+\small
+Finite free $\N$-modules, $D=\N\oplus M$, $\operatorname{rank}M=n$, $T(p)$ applied to the inner
+factor. The Poly-function model has linear containers with morphisms equal to functions on shapes.
+\begin{center}\begin{tabular}{c|cccc|cc}
+$n$ & $\operatorname{rk}D\otimes D$ & $\operatorname{rk}D_2$ & $\operatorname{rk}V$ & iso? & Poly $|D\times_yD|$ & Poly $|P'|$\\\hline
+0&1&1&1&yes&1&1\\
+1&4&3&3&yes&4&2\\
+2&9&5&7&no&9&3\\
+3&16&7&13&no&16&4\\
+4&25&9&21&no&25&5\\
+5&36&11&31&no&36&6
+\end{tabular}\end{center}
+Other checks:
+\begin{itemize}[leftmargin=1.2em]
+\item $y^2\mapsto y^2+2\varepsilon vy$ under substitution, versus $y^2\mapsto y^2$ under base
+change $\N[y]\to W[y]$; the same holds for $y^3$ and $y^2+1$.
+\item Remark~6: $(y+1)\tri(y+1)=y+2$ and Dirichlet $(y+1)\otimes(y+1)=y+3$ (correct).
+\item E Prop.~9: the constraints are $a_0=a_2=a_3=a_4=0$ (correct).
+\item A flip-compatible basis bijection $[n]\to[n]^2$ exists only for $n\le1$.
+\item U's Lean arithmetic identities ($(1+n)^2=\operatorname{rk}P'+n=\operatorname{rk}D_2+n^2$) are
+correct, but they are not the load-bearing point. All of the issues above are about which category
+the numbers live in, not about the arithmetic.
+\end{itemize}
+
+\end{document}
