@@ -90,6 +90,13 @@ $e^\star_\lambda=s^{n(\lambda)}e_\lambda+\sum_{\mu\triangleright\lambda}c_{\lamb
 A termwise degree count on the subset formula: for symmetric $P$ let $D_j(P)$ be the maximal total degree in $j$ variables; $E_k$ raises $D_j$ by at most $\min(k,j)$, and $D_j(P)\le\sum_i\min(\rho_i,j)$ for all $j$ characterises $\mathrm{span}\{e_\nu:\nu\trianglerighteq\rho\}$ \cite[I (1.11), (6.6)]{Macdonald95}. \todo{Out of v7.5 scope: keep as background only, or cut to one sentence.}
 \end{proof}
 
+% registry: theorem-H-s0-star-is-HL-pieri + d-equals-hall-littlewood-transition, grade: proved (Clio review 2026-10-06: H novel-as-checked, folklore-adjacent; d = known object)
+\begin{remark}[The $s\to0$ edge; no novelty claim for the matrix]\label{rem:H}
+Since $s=q^{-1}$, the edge $s\to0$ is Hikita's $q\to\infty$, where the unrescaled product degenerates \cite[Lemma~6.3]{Hikita25}. In the basis $b_\mu$, $e_k\star(\cdot)$ preserves $\bigoplus_\mu\mathbb{Q}[s,t]\,b_\mu$, and modulo $s$ it is conjugate, via $b_\mu\mapsto t^{-n(\mu')}P_{\mu'}(x;t^{-1})$, to multiplication by $t^{-\binom k2}e_k$. Consequently the leading coefficients $d_{\lambda\mu}(t):=[s^{n(\mu)}]\,c_{\lambda\mu}$ of \cref{thm:DS} \emph{are the known $e\to$HL transition matrix} of \cite[\S3.2]{Kirillov98}: writing $e_\lambda=\sum_\kappa M(e,P)_{\lambda\kappa}P_\kappa(x;t)$,
+\[ d_{\lambda\mu}(t)=t^{\,n(\mu')-n(\lambda')}\,M(e,P)_{\lambda\mu'}(t^{-1}). \]
+Their positivity and $d_{\lambda\mu}(1)=\#\{0\text{-}1\text{ matrices with row sums }\lambda,\text{ column sums }\mu'\}$ are therefore classical \cite{Kirillov98}; what is new is only the identification of this matrix with the $s$-leading coefficients of $\star$.
+\end{remark}
+
 %% ===================================================================
 \section{The block valuation law at $s=1$}
 %% ===================================================================
@@ -145,7 +152,7 @@ where a history processes $\lambda_\ell,\dots,\lambda_1$, each part $k$ either o
 Pass to $\mathrm{gr}_I\Lam$: non-tight terms land in $I^{\ell-m+1}$; tight steps are multilinear derivations, so only linear parts $g_i\equiv\gamma_ie_{n_i}\bmod I^2$ matter. At $t=0$, a roots-of-unity evaluation, Weyl orthogonality and Murnaghan--Nakayama give $W_k(J)|_{t=0}=(-1)^p$. This proof does not use (N).
 \end{proof}
 
-% registry: thmW-merge-weight-closed-form (second proof: thmW-second-proof-KF-free), grade: proved
+% registry: thmW-merge-weight-closed-form (second proof: thmW-second-proof-KF-free = (KF)-free second proof, shares Lemma 1.4 (per Clio); NOT independent), grade: proved
 \begin{theorem}[Merge weights]\label{thm:W}
 With $n=k+|J|$ and $p=|J|$,
 \[ W_k(J)=(-1)^{p}\,\frac{[n]_t}{[k]_t}\prod_{j\in J}[k]_{t^{j}}. \]
@@ -159,7 +166,7 @@ $W_k(J)=(-1)^{d-p}\lin T_k(p_J)$ with $T_kg:=\sum_{|A|=k}c_AX_Ag(X_A)$. The para
 For $f\in\Lam_k$ homogeneous of degree $d$ and $n=k+d$: $\lin T_k(f)=(-1)^d\frac{[n]_t}{[k]_t}f(1,t,\dots,t^{k-1})$.
 \end{lemma}
 \begin{remark}[Novelty]
-\Cref{lem:linT} is a short corollary of \cite[III.7 Ex.~2, III (2.2)]{Macdonald95}; likely folklore-level, do not headline. \Cref{thm:W}'s cold recheck was done (Day 223 \S4).
+\Cref{lem:linT} is a short corollary of \cite[III.7 Ex.~2, III (2.2)]{Macdonald95}; likely folklore-level, do not headline. \Cref{thm:W}'s cold recheck was done (Day 223 \S4). The proof sketched above avoids the Hall--Littlewood expansion of $E_k$ used in the first proof, but both proofs evaluate $\lin P_\lambda$ by the same lemma, so they are not independent.
 \end{remark}
 
 %% ===================================================================
@@ -311,7 +318,7 @@ $(3,3,3)\to(7,2)$: $\Lead=2t^{13}+3t^{12}+3t^{11}+6t^{10}+6t^9+6t^8+9t^7+6t^6+3t
   \item \textbf{Positivity.} Leads are not $t$-positive (Example above), so no ``$t$-count of minimal flows'' can hold. Is there a signed or cancellation-free model?
   \item \textbf{Cumulant link.} Do{\l}{\k{e}}ga's ``missing link'' between Macdonald cumulants and shuffle-type polynomials \cite{Dolega19}: is the $\star$-lead (a cumulant of $e_k\mapsto t^{\binom k2}$) part of it?
 \end{enumerate}
-\todo{Possible remark on the $s\to0$ edge (Hall--Littlewood multiplication) with NO novelty claim, pending Clio's verdict (v7.5).}
+% The s->0 edge remark is now \cref{rem:H} (after \cref{thm:DS}), per Clio's 2026-10-06 verdict.
 
 \acknowledgements{\todo{Robin; Clio (peer agent) for reviews; per Robin.}}
 
