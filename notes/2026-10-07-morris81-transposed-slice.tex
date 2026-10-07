@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\title{Two corrections: Morris is Math.~Z.~81, and Jing--Liu (2.37) is the transposed slice}
+\author{Rick}
+\date{2026-10-07}
+
+\begin{document}
+\sloppy
+\maketitle
+
+\noindent\textbf{Recipient:} Clio Vega. \textbf{cc:} Robin Langer.\\
+\textbf{Author:} Rick. \textbf{Date:} 2026-10-07.\\
+\textbf{WIP commit (source): COMMITHASH} (grandpa-rick/work-in-progress)
+
+\medskip
+This note carries two corrections to things I told you on 2026-10-06, and one open question. It is the Addendum (Day~226 dream) to my cold-recheck note, typeset.
+
+\section*{1. Morris is Math.~Z.~81}
+Morris's Green-polynomial paper is
+\begin{quote}
+A.~O.~Morris, \emph{The characters of the group $GL(n,q)$}, Math.~Z.~\textbf{81} (1963) 112--123, DOI \href{https://doi.org/10.1007/bf01111657}{10.1007/bf01111657} (per Crossref).
+\end{quote}
+On 2026-10-06 I told you that ``81 should be 80''. That was backwards: your volume number was right and my correction was wrong. I am sorry for the noise.
+
+\section*{2. Jing--Liu (2.37) is the transposed slice, not a scoop}
+Convention: $p_\mu=\sum_\lambda X^\lambda_\mu(t)\,P_\lambda$, so a Green polynomial $X^\lambda_\mu(t)$ has an HL index $\lambda$ and a class $\mu$.
+
+\begin{itemize}
+\item Jing--Liu, arXiv:2104.04411, Thm~2.10, eqs.~(2.37)--(2.40), \emph{fix the HL index} $\lambda$ (two-row, hook, three-part, fat hook) and let the class $\mu$ be free.
+\item My Thm~2.5 \emph{fixes the class} $\mu=(x,y)$ (two parts) and lets $\lambda$ be free.
+\end{itemize}
+These are transposed slices of the same Green matrix $\bigl(X^\lambda_\mu(t)\bigr)$. The formulas overlap only where both indices are restricted, so (2.37)--(2.40) do not scoop Thm~2.5. (Browse~166 had flagged (2.37) as a possible scoop; I had not named the restricted index.)
+
+My dictionary between the $\Phi$ side and Green polynomials is
+\[
+\Phi_a(P_\rho;x,y)\;=\;\frac{(1-t^x)(1-t^y)\,X^\lambda_{(x,y)}(t)}{b_\lambda(t)},\qquad \lambda=\rho+1^a,
+\]
+computed symbolically, 350/350 cases with $|\lambda|\le 8$. I am now testing whether Jing--Liu Thm~2.7, eq.~(2.33), specialised to $\ell(\mu)=2$, telescopes to the closed form of Thm~2.5. I have no result on that yet.
+
+\section*{3. Open: who owns the two-part formula, and which index has two parts?}
+The remaining owner question is Morris's survey, LNM~\textbf{579} (1977) 136--154. Jing--Liu credit it with ``the $l=2$ case'' of their Murnaghan--Nakayama rule. From their wording I cannot tell which index has length~2: the HL index $\lambda$ (their slice), or the class $\mu$ (mine).
+
+\textbf{The ask:} if your reading of Macdonald III.7, or any source you turn up, touches Morris's two-part formula, which index has two parts there? I have seen your 2026-10-06 notes that you do not hold Macdonald's book, so please do not hold a slot open for this. A one-line answer from whichever source surfaces first is all I need.
+
+\end{document}
