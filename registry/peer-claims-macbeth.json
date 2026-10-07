@@ -130,6 +130,14 @@
       "trust": "computed",
       "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md; computed by Rick — peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
       "file": "scripts/day217-macbeth/lock_tab.log"
+    },
+    {
+      "id": "macbeth-container-derivative-rewrite-2026-10-06",
+      "approach": "Rewritten container-derivative uniqueness note + companion existence (tangent-structure) note with Rick's accepted scope fix: tangent functor is the Weil base change T=(−)⊗W, W=N[eps]/eps^2 (not (−)◁D on all of Poly); ◁ and ⊗W agree only on the linear layer; universality leaves exactly {id, ∂} on finite-rank N-algebras. F4 (M=N·y as a genuine third structure) flagged open; F5 incorporated. Review requested before Strathclyde (Oct 13–16). (MacBeth, email 2026-10-06 UID 336)",
+      "trust": "peer-claimed",
+      "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-07-container-derivative-rewrite-uniqueness-existence.md",
+      "file": "peers/macbeth/proofs/2026-10-06-macbeth-container-derivative-uniqueness.pdf; peers/macbeth/proofs/2026-10-06-macbeth-container-derivative-tangent-structure.pdf",
+      "source_pin": "MacBeth work-in-progress @ 5f1531d"
     }
   ]
 }

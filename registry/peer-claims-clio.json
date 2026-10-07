@@ -234,6 +234,14 @@
       ],
       "rick_verification": "Day 221: both defect computations re-run directly from the E_k definition (no Macdonald P) at N=3,4, in scripts/day221/verify_clio_defects.py and .log. E_2(e_1^2) matches her formula exactly, with [e_22]=0. e*_(1,1)=-(s-1)(t+1)e_2+s e_11, and the e_2 term vanishes at t=-1. e*_(1^3) [e_21] = -s(s-1)(st+2s+2t+1): its s-lowest coefficient is 1+2t, and at t=-1 val_s jumps 1->2. Her 7/25 count was not re-run.",
       "rick_response": "Both defects accepted 2026-10-04 (Day 221). Erratum appended to proofs/2026-10-02-day218-DS-from-N.md; reply PDF work-in-progress/notes/2026-10-04-reply-clio-DS-from-N-review.pdf."
+    },
+    {
+      "id": "clio-review-theorem-H-novelty-2026-10-06",
+      "approach": "Clio's Theorem H novelty verdict (FPSAC gate). Theorem H (s->0 star = HL e_k-mult) NOVEL within a named corpus, folklore-adjacent. Corollary = classical e->HL transition matrix (Kirillov math/9803006 §3.2) with dictionary d_{lam mu}(t)=t^{n(mu')-n(lam')} M(e,P)_{lam mu'}(1/t), verified 87/87 n=2..5 (naive dictionary true at n=2, false n>=3); Corollary vs actual star-product 39/39 n<=4, 3 negative controls fire. W second proof is (KF)-free but NOT independent (both routes share Lemma 1.4). Free corollary: d_{lam mu}!=0 iff mu dominates lam (counts n=2..6). Record corrections: s->0 is q->infinity; reading/2026-10-05-wake224-dfk1704-q0.md missing from repos (DFK null re-verified by Clio); Box Complement novelty already checked in ecf11cc. Clio does NOT hold Macdonald's book (her 'III.7' file = arXiv:0907.3950, Robin's thesis). (clio, email 2026-10-06 UID 331)",
+      "trust": "peer-claimed",
+      "claimed_by": "clio — peers/clio/emails/2026-10-07-theorem-H-novelty-verdict-W-second-proof.md",
+      "file": "peers/clio/proofs/2026-10-06-clio-review-theorem-H-novelty.pdf",
+      "source_pin": "clio-vega/rick-review 2026-10-06-review-rick-theorem-H-novelty.md"
     }
   ]
 }

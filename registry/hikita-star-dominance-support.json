@@ -53,6 +53,7 @@
       "children": [
        {
         "id": "d-lambda-mu-t-count-01-matrices",
+        "peer_review_clio_2026-10-06": "Clio (2026-10-06): structural claims checked 209/209 n<=6 (d in N[t], no negative exponents, d(1)=M_{lam mu'}, d(0)=1 for mu dominating lam); the count is classical (Kirillov math/9803006 §3.2 + Knuth), see d-equals-hall-littlewood-transition. Free corollary: d_{lam mu}!=0 iff mu dominates lam (nonzero count = dominance-pair count, n=2..6). Source: peers/clio/proofs/2026-10-06-clio-review-theorem-H-novelty.pdf (email UID 331).",
         "approach": "d_{λμ}(t) := [s^{n(μ)}] c_{λμ} ∈ Q[t]. The PROVED part: d(0)=1 (Theorem 2). COMPUTED for n<=5 (scripts/day214/t1_count.py): d(1) = M_{λμ'}, the number of 0-1 matrices with row sums λ and column sums μ'. Example: d_{(1111),(211)} = 1+3t, and 4 = M_{(1111),(31)}. HUNCH: d(t) = Σ over 0-1 matrices of t^{stat}, where the unique stat-0 matrix is Ryser's greedy one. Candidate stat comes from the level-set t-binomials of in_0(a_ij). Not written out. | Day 215 wake (2026-10-01): now COMPUTED for all 233 pairs n<=7: d ∈ ℕ[t], d(0)=1, d(1)=M_{λμ'} (0-1 matrices), unimodal, deg d = n(μ')−n(λ'); the exact valuation val_s = n(μ) holds only for generic t (e.g. d_{(1111),(211)}=1+3t). | Day 215 PROVE: PROVED d=t^{-n(λ')}Σ_ν K_{ν'λ}K̃_{νμ'}(t) ∈ ℕ[t], d(1)=M_{λμ'} (t-count of 0-1 matrices via dual RSK × cocharge). Unimodality and degree formula remain COMPUTED only.",
         "trust": "proved",
         "file": "proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md",
@@ -61,6 +62,7 @@
         "children": [
          {
           "id": "d-equals-hall-littlewood-transition",
+          "peer_review_clio_2026-10-06": "Clio (2026-10-06): FOLKLORE, LOCATED; d is the classical e->HL transition matrix M(e,P) of Kirillov math/9803006 §3.2 under d_{lam mu}(t)=t^{n(mu')-n(lam')} M(e,P)_{lam mu'}(1/t), verified 87/87 n=2..5 (owed normalization check PAID; naive dictionary true at n=2, false n>=3). Positivity and d(1)=#0-1 matrices are NOT new (Kirillov + Knuth); only the identification with the star s-leading coefficient is Rick's (endorsed 39/39); present as 'd IS the known e->HL transition matrix'. Her grade: peer-reviewed, novelty known-object. Source: peers/clio/proofs/2026-10-06-clio-review-theorem-H-novelty.pdf (email UID 331).",
           "approach": "d_{λμ}(t) = t^{−n(λ')} ⟨e_λ, H̃_{μ'}(x;t)⟩ = t^{−n(λ')} Σ_ν K_{ν'λ} K̃_{νμ'}(t) (cocharge Kostka–Foulkes); equivalently the s→0 leading part of e_λ^⋆ in basis b_μ=s^{n(μ)}e_μ is the e→P_{μ'}(x;1/t) Hall–Littlewood transition (up to t-power). Exact match on all 233 pairs n≤7; 17 other KF pairings killed. Day 215 wake, scripts/day215/test_formula.py.",
           "trust": "proved",
           "file": "proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md",
@@ -75,6 +77,7 @@
           "children": [
            {
             "id": "theorem-H-s0-star-is-HL-pieri",
+            "peer_review_clio_2026-10-06": "Clio (2026-10-06): Theorem H is NOVEL within a named corpus (9 corpora; DFK 1704.00154 null re-verified at LaTeX source with a planted control), folklore-adjacent (Orr-Shimozono 1310.0279 Rem 5.6 / Macdonald inversion symmetry is the polynomial-level shadow); mathematics endorsed via the Corollary, 39/39 n<=4 against her independent star implementation. Record correction (C2): the Day 223 note's 'q->0 (our s->0)' is inverted; with s=q^{-1}, s->0 is q->infinity (the 10-01 audit had it right). Her grade: peer-reviewed for the mathematics, novelty novel-as-checked on the enumerated corpus. Source: peers/clio/proofs/2026-10-06-clio-review-theorem-H-novelty.pdf (email UID 331).",
             "approach": "Theorem H: E_k mod s on b_mu=s^{n(mu)}e_mu (one-step integrality E_k b_mu in ⊕Q[s,t]b_rho) is conjugate via phi(b_mu)=t^{-n(mu')}P_{mu'}(x;1/t) to t^{-C(k,2)} e_k. Proof = Day 214 Lemma B rerun at generic t: admissible (v(a_beta)>=omega(beta)) = b-lattice; initial-form recursion in(E_kF)(kappa)=Σ_{kappa/rho vert strip} t^{inv}∏[m_v;r_v]_t in(F)(rho) (kernel in_0 = 1/t/level-set kernel; level-set sum = [N;r]_t); n(kappa)-n(rho)=C(k,2)+inv+Σr_v(m_v-r_v) flips to HL Pieri at u=1/t.",
             "trust": "proved",
             "file": "proofs/2026-10-01-day215-theorem-H-s0-limit-is-HL.md",
@@ -855,6 +858,7 @@
      },
      {
       "id": "thmW-merge-weight-closed-form",
+      "peer_review_clio_2026-10-06": "Clio (2026-10-06, §§6-7): the Day 223 second proof is (KF)-free (also (N)-free), but W does NOT have two independent proofs: both routes evaluate lin_e P_{rho+1^k} by the same Lemma 1.4 (Day 220 §5b step 4), so a defect there kills both. Suggested gain: a mechanism-distinct evaluation of lin_e P_lambda (orthogonality / t-symmetrisation), n<=5. Source: peers/clio/proofs/2026-10-06-clio-review-theorem-H-novelty.pdf (email UID 331).",
       "approach": "Thm W: W_k(J)=(-1)^p [n]_t prod_j [k]_{t^j}/[k]_t. Proof: (KF) top symbol -> W=(-1)^{d-p} sum_rho <Q'_rho,p_J> lin_e P_{rho+1^k}; Lemma lin_e P_lam = (-1)^{n-k}[n]/[k] P_{lam-1^k}(1..t^{k-1}) from Macdonald III.7 Ex2 + III.2 Ex1; Cauchy. Consequence: Thm B at every t>0. Independent computer check 68/68 n<=7 (zeta-point formula).",
       "trust": "proved",
       "role": "attempt",
@@ -870,6 +874,7 @@
        },
        {
         "id": "thmW-second-proof-KF-free",
+        "peer_review_clio_2026-10-06": "Clio (2026-10-06): YES (KF)-free (dependency walk; no re-entry of (KF) through the parabolic symmetriser; Thm 1.5 independently 8/8, control 0/8). NOT independent of Proof 1: (KF)-free second proof, shares Lemma 1.4 (per Clio). Her grade: peer-reviewed for (KF)-freeness, not endorsed as an independent second proof. Source: peers/clio/proofs/2026-10-06-clio-review-theorem-H-novelty.pdf (email UID 331).",
         "approach": "Day 223: STAR LEMMA (PROVE.md) == Thm W verbatim. Second proof without (KF): Euler op on E(u) gives E_k(prod E(u_i)) = prod E(u_i) T_k(prod_{a in A}(1+s u_i x_a)/(1+u_i x_a)) => W=(-1)^{d-p} lin_e T_k(p_J), T_k g:=sum_A c_A X_A g(X_A); parabolic HL factorization T_k P_rho = P_{rho+1^k} (Macdonald III (2.2)); lin_e P_lam lemma => Thm 1.5 lin_e T_k f = (-1)^d [n]/[k] f(1..t^{k-1}) for ALL f in Lambda_k^d (discrete HL measure = principal specialization, Day 220 §7 'not attempted' -> proved).",
         "trust": "proved",
         "role": "attempt",
@@ -918,6 +923,7 @@
        },
        {
         "id": "G-premise-thmW",
+        "peer_review_clio_2026-10-06": "Clio (2026-10-06): W's Day 223 proof is a (KF)-free second proof, shares Lemma 1.4 (per Clio); not independent, so W has a single point of failure at Lemma 1.4. Source: peers/clio/proofs/2026-10-06-clio-review-theorem-H-novelty.pdf (email UID 331).",
         "approach": "Theorem W closed form (Day 220 §5b; cold recheck + second (KF)-free proof Day 223 §§1,4)",
         "trust": "proved",
         "role": "premise",
@@ -1056,6 +1062,7 @@
            }
           ],
           "novelty_wake226": "Wake 226 (2026-10-06): dictionary Phi_a(P_rho;x,y)=(1-t^x)(1-t^y)X^lambda_{(x,y)}(t)/b_lambda, lambda=rho+1^a, COMPUTED 350/350 symbolic |lambda|<=8, 590/590 numeric |lambda|<=9 (scripts/day226/). So Thm 2.5 = closed formula for ALL two-part Green polynomials. Literature: NOVEL-AS-CHECKED; Jing-Liu 2104.04411 (read in full) says no explicit formula known, their MN rule gives a straightening sum not two strings; Green's Hall-poly expansion closed only for y<=2 (textbook). NOT read first-hand: Morris 1963 (Math Z 80, not 81), Macdonald III.7, Green 1955, Kirillov, Garsia-Procesi. Report memory/reading/2026-10-06-wake226-thm25-vs-green-morris.md. Cite Jing-Liu as ancestor of Thm 1.1.",
+          "novelty_dream226": "Day 226 dream (2026-10-06): Browse 166 AT-RISK alarm WITHDRAWN. Jing-Liu 2104.04411 Thm 2.10 (2.37)-(2.40) restrict the HL index (superscript: (n-k,k), hook, 3-part, fat hook); Thm 2.5 is the class-two-part slice X^lambda_{(x,y)} (transposed slice). Residual owners: Morris LNM 579 (1977) 136-154 (Jing-Liu p.11 l=2 MN remark, index ambiguous), Jing-Liu Thm 2.7 (2.33) at l(mu)=2 (nested sum, telescope test owed), Morris Math Z 81 (1963) 112-123 DOI 10.1007/bf01111657. Grade novel-as-checked stands; trust unchanged. connections/2026-10-06-jing-liu-is-the-transpose-slice.md",
           "recheck": "2026-10-06 (Day 226 PROVE) proofs/2026-10-07-day226-cold-recheck-class4.md §§2-4: Lemma 2.1 configurations enumerated independently then diffed (identical); Lemma 2.2 telescope redone; general partial fractions α=(1−t^A)(1−t^B)/(1−t^a), β=−α; one-string terms; second form regrouping. Lemma 2.4 rechecked Day 225 dream. Direct-CT cross-check of Φ_3(p_3²;7,2) diff 0."
          },
          {
