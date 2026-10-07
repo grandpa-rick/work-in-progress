@@ -185,8 +185,10 @@ $K_\lambda$ is the connected part (joint cumulant) of $t^{e_2(\lambda)}=\prod_{i
 % registry: conjG-full-merge-lead-connected-graph (corollaries; corollary_t1 field), grade: proved
 \begin{corollary}\label{cor:G}
 (a) $\lambda=1^n$: $\Lead=(-1)^{n-1}[n]_t\,I_n(t)$ with $I_n$ the tree inversion enumerator \cite{MallowsRiordan68}. (b) $t=0$: $\Lead=(-1)^{\ell-1}(\ell-1)!$. (c) $t\to1$: $\Lead\to(-1)^{\ell-1}n^{\ell-1}$ (weighted Cayley). (d) $\operatorname{sgn}\Lead=(-1)^{\ell-1}$ for all $t>0$, $t\neq1$.
-\todo{(c): the Day 221 proof file says ``not re-derived here; check before citing'', while the registry field \texttt{corollary\_t1} says proved (one line, wake 222). Re-derive before submission.}
 \end{corollary}
+\begin{proof}[Proof of (b), (c)]
+At $t=0$ every edge weight is $-1$ and $\sum_{H\text{ conn.}}(-1)^{|H|}=(-1)^{\ell-1}(\ell-1)!$. As $t\to1$, with $\varepsilon=t-1$, only spanning trees contribute to the $\varepsilon^{\ell-1}$ term of $K_\lambda$, and $\sum_T\prod_{ij\in T}\lambda_i\lambda_j=(\prod_i\lambda_i)\,n^{\ell-2}$ (weighted Cayley); the prefactor is $(-n\varepsilon)/((-\varepsilon)^\ell\prod\lambda_i)\cdot(1+O(\varepsilon))$.
+\end{proof}
 \begin{remark}[Prior art --- graph half]
 The tree, connected-graph and cumulant forms of $K_\lambda$ are a special case of Do{\l}{\k{e}}ga \cite[Prop.~2.1, Lemma~2.3]{Dolega19} (Tutte polynomial $T(1,t)$ of the graph $M_\lambda$), cf.\ also \cite{GesselSagan96,MallowsRiordan68}; step (3) is a Penrose-type tree--graph identity \cite{Penrose67}. \textbf{Must cite, not claim.} Ours: the identification of the $\star$-lead with prefactor$\cdot K_\lambda$ (\cref{thm:coarse,thm:W,thm:G}) and \cref{thm:F,thm:blockmult}. Separator: $\Lead_{111}/(\Lead_{21}\Lead_{11})$-type ratio $I=(t+2)/(t+1)$ here versus $2$ in Do{\l}{\k{e}}ga's $\oplus$ and $(t+2)/(t(t+1))$ in Haglund--Tewari \cite[Thm.~7.3]{HaglundTewari26} (RELATED, not scooped; first-hand, wake 225). \todo{State the separator precisely (which normalisation of $I$).}
 \end{remark}
@@ -252,7 +254,7 @@ Support by \cref{thm:DS}; strip $y$ columns by \cref{cor:column} (valid for comp
 %% ===================================================================
 \section{Second order: every valuation-$2$ lead}
 %% ===================================================================
-\todo{v7.5 gate: this section may be a \emph{Theorem} only if (i) the cold recheck of Day 225 finishes (done by hand: Lemma 2.4, partial fractions, key example; OWED: Thm 1.1 CT formula, Lemmas 2.1--2.2 residue bookkeeping, Thm 4.2 assembly), and (ii) the wording cites Green/Morris data. Otherwise demote \cref{thm:v2,cor:v2} to a Remark.}
+% v7.5 gate lifted wake 228: cold recheck PASSED (Day 226: Thm 1.1, Lemmas 2.1--2.2, Thm 2.5, Thm 4.2 kill test; Day 227: Prop 2.3); Green wording per Day 227 §1.4.
 
 By \cref{thm:blockmult}, valuation-$2$ leads reduce to connected leads with $\ell(\lambda)=3$, $\kappa=1$; by \cref{cor:column} to two-part $\mu$. Put $T_ag:=\sum_{|A|=a}c_AX_Ag(X_A)$ for $g\in\Lam_a$, and
 \[ \Gamma_a(e_b,e_c):=E_a^{(2)}(e_be_c)-e_bE_a^{(2)}(e_c)-e_cE_a^{(2)}(e_b)=\sum_{1\le r\le b,\ 1\le q\le c}(-1)^{r+q}e_{b-r}e_{c-q}\,T_a(p_rp_q). \]
@@ -271,7 +273,7 @@ $T_ag$ restricted to $a$ variables is $Zg$ and lies in $\mathrm{span}\{P_\mu:\el
 \end{proof}
 
 % registry: two-point-string-formula-thm25 (+ shuffle-identity-lemma24), grade: proved
-\begin{theorem}[Two-point formula]\label{thm:2pt}\novpend
+\begin{theorem}[Two-point formula]\label{thm:2pt}
 Let $g\in\Lam_a$ be homogeneous of degree $d$, $n=a+d$, $x,y\ge1$, $x+y=n$, and $\Phi_a(g;x,y):=\langle T_ag,p_xp_y\rangle$. For $1\le A\le a-1$ put $B=a-A$ and $G_A(w)=\sum_kG_{A,k}w^k:=g(1,t,\dots,t^{A-1},w,wt,\dots,wt^{B-1})$. Then
 \begin{multline*}
 \Phi_a(g;x,y)=(-1)^a(1-t^x)(1-t^y)\Biggl\{\sum_{A=1}^{a-1}t^{-AB}\Bigl[\frac{G_{A,y-B}}{(1-t^A)(1-t^B)}+\frac{1}{1-t^a}\sum_{m\ge1}(t^{-Am}-t^{Bm})\,G_{A,y-B-m}\Bigr]\\
@@ -283,11 +285,11 @@ Insert $S(u)=\sum_i1/(uz_i-1)$ into \cref{thm:CT} and take iterated residues: ev
 \[ \mathrm{Sh}_{A,B}(w)=\qbin{A+B}{A}\,t^{-AB}\,\frac{(1-w)(1-t^{B-A}w)}{(1-t^{-A}w)(1-t^Bw)},\qquad w=u/v, \]
 proved by a last-letter recursion. Take Taylor coefficients at $w=0$.
 \end{proof}
-\begin{remark}[Prior art --- \novpend]
-For $g=P_\rho$, \cref{thm:2pt} computes two-part Green-polynomial data $X^{\rho+1^a}_{(x,y)}(t)$; the $t$-strings are the Frobenius orbits of a torus of type $(x,y)$. Suspected owners: Morris's recursion \cite{Morris63}, \cite[III.7]{Macdonald95}, \cite{Green55}. Wording must be ``via two-part Green data''; never ``new Green formula'' unless the search is clean. \todo{Gate: memory/questions/q-thm25-vs-green-polynomials-morris.md (OPEN).}
+\begin{remark}[Relation to Green polynomials]
+Write $p_\mu=\sum_\lambda X^\lambda_\mu(t)P_\lambda(x;t)$. For $g=P_\rho$ and $\lambda=\rho+1^a$ one has $\Phi_a(P_\rho;x,y)=(1-t^x)(1-t^y)X^{\lambda}_{(x,y)}(t)/b_\lambda(t)$, so \cref{thm:2pt} evaluates Green polynomials at two-part classes; the two $t$-strings are the Frobenius orbits of a maximal torus of type $(x,y)$ \cite{Green55}. \Cref{thm:CT} is Jing's constant-term expression for the matrix element $\langle Q_\lambda,p_\mu\rangle$ \cite{Jing91}. Jing and Liu \cite[Thm.~2.7]{JingLiu21} expand the same matrix element as a nested sum valid for all $\mu$, extracting one variable at a time; at two-part $\mu$ that sum does not close up, since its inner sums run over classes of arbitrary length. Their closed forms \cite[(2.37)--(2.40)]{JingLiu21} restrict the Hall--Littlewood index $\lambda$, not the class $\mu$; the case $\ell(\lambda)=2$ goes back to Morris \cite{Morris77}.\footnote{We have not seen \cite{Morris77} first-hand; its scope is as described in \cite[p.~11]{JingLiu21}.} We evaluate by residues instead, and at $\ell(\mu)=2$ the poles organise into two $t$-strings. The formula is explicit, with no sum over classes, and linear in the two-string specialisation $G_A$ of $g$; for general $\rho$, $G_A$ is itself a finite (branching) sum, so \cref{thm:2pt} is not a product formula.
 \end{remark}
 
-% registry: gprime-v2-class4-open (Day 225 Thm 4.2; node id historical, class 4 CLOSED), grade: proved (NOT checked-sober; partial cold recheck)
+% registry: gprime-v2-class4-open (Day 225 Thm 4.2; node id historical, class 4 CLOSED), grade: proved, cold recheck PASSED Day 226 (+ Prop 2.3 Day 227)
 \begin{theorem}[Closed $\ell=3$, $\kappa=1$ leads]\label{thm:v2}
 Let $\lambda=(a,b,c)$ be any ordering of a length-$3$ partition, $\mu=(x,y)$ with $\kappa(\lambda,\mu)=1$, $n=x+y$, $m_{xy}=2$ if $x=y$ and $1$ otherwise. Put $\Lambda_a(r,q):=\lin T_a(p_rp_q)=(-1)^{r+q}\frac{[a+r+q]}{[a]}[a]_{t^r}[a]_{t^q}$ and $U_a(b,c;x,y):=\bigl((-1)^n\Phi_a(p_bp_c;x,y)-\Lambda_a(b,c)\bigr)/m_{xy}$. Then
 \begin{multline*}
@@ -299,14 +301,14 @@ with $D_a$ the derivation $D_a(e_j)=M_{aj}$ of \cref{prop:M}.
 \begin{proof}[Proof idea]
 \Cref{prop:reduce}; in the expansion of $\Gamma_a$ only terms with $r=b$ or $q=c$ survive $[e_xe_y]$; single-$e$ parts come from \cref{lem:linT}, and $\langle G,p_xp_y\rangle=(-1)^n(m_{xy}[e_xe_y]G+\lin G)$ converts \cref{thm:2pt} into $U_a$.
 \end{proof}
-% registry: gprime-v2-class4-open (Cor 4.3) + block-multiplicativity-thm61, grade: proved (NOT checked-sober)
+% registry: gprime-v2-class4-open (Cor 4.3) + block-multiplicativity-thm61, grade: proved (Thm 4.2 inputs rechecked Day 226/227)
 \begin{corollary}\label{cor:v2}
 Every lead at valuation $2$ ($\kappa=\ell-2$, any $\ell$) has a closed formula: by \cref{thm:blockmult} it is a sum of products of pair leads (\cref{prop:M}) and $\ell=3$, $\kappa=1$ leads (\cref{thm:G}, \cref{cor:column}, \cref{thm:v2}).
 \end{corollary}
 \begin{example}
 $(3,3,3)\to(7,2)$: $\Lead=2t^{13}+3t^{12}+3t^{11}+6t^{10}+6t^9+6t^8+9t^7+6t^6+3t^5+9t^4+6t^3+3t+4$ (agrees with direct computation). Leads are \emph{not} positive in general: $(4,4,2)\to(7,3)$ has $\Lead=(t+1)(t^2+1)(2t^8+t^7+t^6+3t^4+t^3+t^2-t+2)$.
 \end{example}
-\todo{Verification sentence: report computer checks once, e.g.\ $16/16$ class-4 pairs $n\le12$ and $27$ pairs $\times3$ orderings $n\le10$.}
+\paragraph{Computer checks.} All statements in this section were checked against an independent implementation of Hikita's subset formula: \cref{thm:v2} on all $16$ class-$4$ pairs with $n\le12$ and on $27$ pairs in all $3$ orderings with $n\le10$; \cref{thm:2pt} in $229$ cases ($a\le5$); and the Green-polynomial dictionary symbolically for $|\lambda|\le8$ and numerically for $|\lambda|\le9$.
 
 %% ===================================================================
 \section{Open problems}
