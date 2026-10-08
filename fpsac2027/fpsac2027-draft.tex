@@ -50,7 +50,7 @@
 \section{Introduction}
 %% ===================================================================
 
-Hikita~\cite{Hikita25} defined a commutative, associative product $\star$ on $\Lam_{q,t}$ by transporting the ordinary product through the level-one polynomial representation of the affine Hecke algebra; we always say \emph{Hikita's} $\star$. We write $s:=q^{-1}$. At $s=1$, $\star$ is the ordinary product, and at $s=0$ (after rescaling) it degenerates to a Hall--Littlewood product (\cref{rem:H}). Di Francesco and Kedem~\cite{DFK19} observed that the associated $t$-deformed graded characters lose Schur positivity at generic $t$, and positivity of $\star$-structure constants fails in every natural basis we tried. \emph{Positivity is lost, but structure is not.} This abstract shows that the structure survives in the $(s-1)$-adic filtration.
+Hikita~\cite{Hikita25} defined a commutative, associative product $\star$ on symmetric functions over $\mathbb{Q}(q,t)$ by transporting the ordinary product through the level-one polynomial representation of the affine Hecke algebra; we always say \emph{Hikita's} $\star$. We write $s:=q^{-1}$. At $s=1$, $\star$ is the ordinary product, and at $s=0$ (after rescaling) it degenerates to a Hall--Littlewood product (\cref{rem:H}). Di Francesco and Kedem~\cite{DFK19} observed that the associated $t$-deformed graded characters lose Schur positivity at generic $t$, and positivity of $\star$-structure constants fails in every natural basis we tried. \emph{Positivity is lost, but structure is not.} This abstract shows that the structure survives in the $(s-1)$-adic filtration.
 
 We expand the structure constants of $e^\star_\lambda:=e_{\lambda_1}\star\cdots\star e_{\lambda_\ell}=\sum_\mu c_{\lambda\mu}(s,t)\,e_\mu$ around $s=1$. The point of departure is Hikita's formula for $e_k\star(\cdot)$ as a sum over $k$-subsets (\cref{prop:subset}). In it, $s$ enters only through an Euler operator, so the $(s-1)^p$ Taylor piece of $e_k\star(\cdot)$ is a differential operator of order $p$, which can glue at most $p$ existing blocks of parts to a new part. This gives a lower bound on the valuation; exactness is settled at $t=0$, where $e^\star_\lambda$ is a modified Hall--Littlewood function and no cancellation occurs. Main results:
 \begin{itemize}
@@ -62,7 +62,7 @@ We expand the structure constants of $e^\star_\lambda:=e_{\lambda_1}\star\cdots\
 \end{itemize}
 At valuation $1$ the leads are governed by pairing with $p_n$, evaluated by a principal specialisation, i.e.\ one $t$-string $1,t,\dots,t^{k-1}$ (\cref{lem:linT}); at valuation $2$ by pairing with $p_xp_y$, where the poles of a constant-term integral fall into two interacting $t$-strings (\cref{thm:2pt}). The full-merge lead is a cumulant: up to a prefactor it is the connected part of the character $e_k\mapsto t^{\binom k2}$. This places $\star$ next to the Macdonald cumulants of Do{\l}{\k{e}}ga~\cite{Dolega19} and Haglund--Tewari~\cite{HaglundTewari26}. Their objects and ours share the graph half (\cref{thm:G} and the remark after it), but a gauge-invariant ratio separates $\star$ from Do{\l}{\k{e}}ga's $\oplus$-cumulants away from $t=0$.
 
-\emph{Organisation.} \Cref{sec:bg} recalls Hikita's product and the dominance support. \Cref{sec:blocklaw} proves the block valuation law and the merge weights. \cref{sec:leads} treats leading coefficients, \cref{sec:box} the Box Complement theorem and the linear coefficient, and \cref{sec:v2} the second order. Proofs are sketched here; full proofs will appear in a longer version.
+Proofs are sketched here; full proofs will appear in a longer version.
 
 %% ===================================================================
 \section{Background: Hikita's product and Hall--Littlewood notation}\label{sec:bg}
@@ -74,11 +74,11 @@ At valuation $1$ the leads are governed by pairing with $p_n$, evaluated by a pr
 
 % registry: subset-formula-Ak-Kk, grade: proved
 \begin{proposition}[Subset formula]\label{prop:subset}
-For $F\in\Lam_N=\mathbb{Q}(s,t)[x_1,\dots,x_N]^{S_N}$, $N\ge\deg$,
+For $F\in\Lam$ and every $N$, in $\Lam_N=\mathbb{Q}(s,t)[x_1,\dots,x_N]^{S_N}$
 \[ e_k\star F=E_kF:=\sum_{|A|=k}c_A\,X_A\,F(X_{A^c},sX_A),\qquad c_A=\prod_{i\in A,\,j\notin A}\frac{x_i-tx_j}{x_i-x_j},\quad X_A=\prod_{i\in A}x_i. \]
 \end{proposition}
 \begin{proof}[Proof idea]
-By \cite[Def.~3.4, Lemma~3.3]{Hikita25}, $e_k\star F=t^{-\binom k2}e_k(Y)\bullet F$, with $Y_i$ the Cherednik operators in $N$ variables. Write $e_k(Y)$ with increasing indices, and let $\pi F=x_1F(x_2,\dots,x_N,sx_1)$. A Coxeter length count on minimal coset representatives of $S_k\times S_{N-k}$ gives $e_k(Y)F=t^{\binom k2}\sum_{|D|=k}T_{w^D}\,\pi^kF$. For $G$ symmetric in the first $k$ and the last $N-k$ variables, the chain factorisation of this coset sum and the Poincar\'e identity $\sum_{w\in S_k}w\bigl(\prod_{i<j}\frac{x_i-tx_j}{x_i-x_j}\bigr)=[k]_t!$ give $\sum_DT_{w^D}G=\sum_{|A|=k}c_A\,G^{(A)}$, where $G^{(A)}$ places the head variables on $A$.
+By \cite[Def.~3.4, Lemma~3.3]{Hikita25}, $e_k\star F=t^{-\binom k2}e_k(Y)\bullet F$, where $Y_1,\dots,Y_N$ are the Cherednik operators. Order each monomial of $e_k(Y)$ by increasing index, and put $\pi F=x_1F(x_2,\dots,x_N,sx_1)$. A Coxeter length count on minimal coset representatives of $S_k\times S_{N-k}$ gives $e_k(Y)F=t^{\binom k2}\sum_{|D|=k}T_{w^D}\,\pi^kF$. For $G$ symmetric in the first $k$ and the last $N-k$ variables, the chain factorisation of this coset sum and the Poincar\'e identity $\sum_{w\in S_k}w\bigl(\prod_{i<j}\frac{x_i-tx_j}{x_i-x_j}\bigr)=[k]_t!$ give $\sum_DT_{w^D}G=\sum_{|A|=k}c_A\,G^{(A)}$, where $G^{(A)}$ places the head variables on $A$.
 \end{proof}
 
 Write $e^\star_\lambda:=E_{\lambda_1}\cdots E_{\lambda_\ell}(1)=\sum_\mu c_{\lambda\mu}(s,t)\,e_\mu$. The variable $s$ enters only through $F(X_{A^c},sX_A)=s^{\Delta_A}F$, $\Delta_A=\sum_{i\in A}x_i\partial_i$; Taylor expansion at $s=1$ gives
@@ -89,10 +89,10 @@ and $E_k^{(p)}$ is a differential operator of order $\le p$ on $\Lam_N$, with $E
 
 % registry: full-upset-support-exact-valuation (root: DS), grade: proved
 \begin{theorem}[Dominance support; the $s=0$ valuation]\label{thm:DS}
-$e^\star_\lambda=s^{n(\lambda)}e_\lambda+\sum_{\mu\triangleright\lambda}c_{\lambda\mu}e_\mu$ with $c_{\lambda\mu}\in\mathbb{Q}[s,t]$ and $c_{\lambda\mu}|_{s=1}=0$. Moreover $c_{\lambda\mu}\neq0$ for every $\mu\trianglerighteq\lambda$, and the $s$-adic valuation of $c_{\lambda\mu}$ is exactly $n(\mu)$. At $s=t=0$, in the basis $b_\mu=s^{n(\mu)}e_\mu$, $e^\star_\lambda$ is the zeta function of dominance order.
+$e^\star_\lambda=s^{n(\lambda)}e_\lambda+\sum_{\mu\triangleright\lambda}c_{\lambda\mu}e_\mu$ with $c_{\lambda\mu}\in\mathbb{Q}[s,t]$ and $c_{\lambda\mu}|_{s=1}=0$. Moreover $c_{\lambda\mu}\neq0$ for every $\mu\trianglerighteq\lambda$, and the $s$-adic valuation of $c_{\lambda\mu}$ is exactly $n(\mu)$. At $t=0$ the $s$-leading coefficients $[s^{n(\mu)}]c_{\lambda\mu}$ are all $1$: in the basis $b_\mu=s^{n(\mu)}e_\mu$, $e^\star_\lambda$ at $s=t=0$ is the zeta function of dominance order.
 \end{theorem}
 \begin{proof}[Proof idea]
-A termwise degree count on the subset formula: for symmetric $P$ let $D_j(P)$ be the maximal total degree in $j$ variables; $E_k$ raises $D_j$ by at most $\min(k,j)$, and $D_j(P)\le\sum_i\min(\rho_i,j)$ for all $j$ characterises $\mathrm{span}\{e_\nu:\nu\trianglerighteq\rho\}$ \cite[I (1.11), (6.6)]{Macdonald95}.
+A termwise degree count on the subset formula: for symmetric $P$ let $\delta_j(P)$ be the maximal total degree in $j$ variables; $E_k$ raises $\delta_j$ by at most $\min(k,j)$, and $\delta_j(P)\le\sum_i\min(\rho_i,j)$ for all $j$ characterises $\mathrm{span}\{e_\nu:\nu\trianglerighteq\rho\}$ \cite[I (1.11), (6.6)]{Macdonald95}.
 \end{proof}
 
 % registry: theorem-H-s0-star-is-HL-pieri + d-equals-hall-littlewood-transition, grade: proved (Clio review 2026-10-06: H novel-as-checked, folklore-adjacent; d = known object)
@@ -117,7 +117,7 @@ Let $D_k:=E_k^{(1)}$ and $B(f,g):=\partial_s(f\star g)|_{s=1}$. Then $D_k$ is a 
 So $B$ is a symmetric biderivation, the carr\'e du champ of $L=\frac12\sum M_{kl}\partial^2/\partial e_k\partial e_l$.
 \end{theorem}
 \begin{proof}[Proof idea]
-$\binom{\Delta_A}{1}=\Delta_A$ is a derivation and left multiplication by $c_AX_A$ preserves this. Differentiate $f\star g=\sum_\rho a_\rho(s)E_\rho g$ at $s=1$ and use $D_k(1)=0$. Symmetry of $M$ is commutativity of $\star$ \cite{Hikita25}.
+$\binom{\Delta_A}{1}=\Delta_A$ is a derivation and left multiplication by $c_AX_A$ preserves this. Write $f=\sum_\rho a_\rho(s)e^\star_\rho$, differentiate $f\star g=\sum_\rho a_\rho(s)E_\rho g$ at $s=1$, and use $D_k(1)=0$. Symmetry of $M$ is commutativity of $\star$ \cite{Hikita25}.
 \end{proof}
 
 % registry: B-matrix-M_kr-closed-form, grade: proved
@@ -139,7 +139,7 @@ At $t=0$ the leading coefficient is $(-1)^{\ell-\kappa}N(\lambda,\mu)$ with $N(\
 \begin{proof}[Proof idea]
 \emph{Lower bound} (subset formula only): by polarization, an order-$p$ operator glues at most $p$ existing ``blocks'' to the new part, so the $(s-1)^m$ coefficient is a sum of products over $\ge\ell-m$ blocks, each of type $\lambda_C$ by the degree count of \cref{thm:DS}. \emph{Equality}: at $t=0$, $\omega e^\star_\lambda=\widetilde H_\lambda(x;s)=s^{n(\lambda)}Q'_\lambda(x;s^{-1})$, and Macdonald's raising operators $Q'_\lambda(x;u)=\prod_{i<j}\frac{1-R_{ij}}{1-uR_{ij}}h_\lambda$ \cite[III (2.15$'$) with \S5 Ex.~7(a)]{Macdonald95} give $R_{ij}^k$ the coefficient $(u-1)u^{k-1}=-(s-1)s^{-k}$ at $u=s^{-1}$. So every transfer edge costs exactly one $(s-1)$ with sign $-1$, so nothing cancels; the minimum edge count is $\ell-\kappa$ (components $\le\kappa$; a path tree on each indecomposable block). Specialise $t=0\to$ generic.
 \end{proof}
-\begin{remark}[Input at $t=0$; (N)-freeness]\label{rem:t0input}
+\begin{remark}[Input at $t=0$]\label{rem:t0input}
 The $t=0$ edge $e^\star_\mu|_{t=0}=s^{n(\mu)}P_{\mu'}(x;1/s,0)=\omega\widetilde H_\mu(x;s)$ is \textbf{not ours}: it is assembled from \cite{DFK18} eq.~(5.15) (with $M_{k,1}=E_k|_{t=0}$), Cor.~5.8 in its level-one form (5.25), Cor.~5.18 (eq.~(5.27)) (numbering of arXiv:1505.01657v2), and \cite[VI (5.1), (4.14)(iv)]{Macdonald95}. In particular \cref{thm:blocklaw} does not depend on Cherednik's nonsymmetric theory.
 \end{remark}
 \begin{remark}[Novelty]
@@ -150,10 +150,10 @@ We have not found the block law stated anywhere. Its $t=0$ case is classical in 
 \begin{theorem}[Coarsenings: merge-history expansion]\label{thm:coarse}
 Let $\mu\neq\lambda$ be a coarsening of $\lambda$ and $m=\ell(\lambda)-\ell(\mu)$. Then $\val(c_{\lambda\mu})=m$, and $\Lead_{\lambda\mu}(t):=[(s-1)^m]c_{\lambda\mu}$ equals
 \[ \Lead_{\lambda\mu}(t)=\sum_{\text{tight histories }H\text{ ending at }\mu}\ \prod_{\text{merges in }H}W_k(J),\qquad \Lead_{\lambda\mu}(0)=(-1)^m\#\{H\}\neq0, \]
-where a history processes $\lambda_\ell,\dots,\lambda_1$, each part $k$ either opening a block or merging $p\ge1$ existing blocks of sizes $J=(j_1,\dots,j_p)$, and $W_k(J):=\lin\,[\cdots[E_k^{(p)},e_{j_1}],\dots,e_{j_p}](1)$.
+where a (tight) history processes $\lambda_\ell,\dots,\lambda_1$, each part $k$ either opening a block of size $k$ or merging $p\ge1$ existing blocks of sizes $J=(j_1,\dots,j_p)$ into one block of size $k+|J|$ via the order-$p$ piece $E_k^{(p)}$, it ends at $\mu$ if the final block sizes are $\mu$, and $W_k(J):=\lin\,[\cdots[E_k^{(p)},e_{j_1}],\dots,e_{j_p}](1)$.
 \end{theorem}
 \begin{proof}[Proof idea]
-Pass to $\mathrm{gr}_I\Lam$: non-tight terms land in $I^{\ell-m+1}$; tight steps are multilinear derivations, so only linear parts $g_i\equiv\gamma_ie_{n_i}\bmod I^2$ matter. At $t=0$, a roots-of-unity evaluation, Weyl orthogonality and Murnaghan--Nakayama give $W_k(J)|_{t=0}=(-1)^p$. This proof does not use (N).
+Pass to $\mathrm{gr}_I\Lam$: non-tight terms land in $I^{\ell-m+1}$; tight steps are multilinear derivations, so only linear parts $g_i\equiv\gamma_ie_{n_i}\bmod I^2$ matter. At $t=0$, a roots-of-unity evaluation, Weyl orthogonality and Murnaghan--Nakayama give $W_k(J)|_{t=0}=(-1)^p$.
 \end{proof}
 
 % registry: thmW-merge-weight-closed-form (second proof: thmW-second-proof-KF-free = (KF)-free second proof, shares Lemma 1.4 (per Clio); NOT independent), grade: proved
@@ -163,11 +163,11 @@ With $n=k+|J|$ and $p=|J|$,
 Consequently $(-1)^m\Lead_{\lambda\mu}(t)>0$ for coarsenings and every real $t>0$.
 \end{theorem}
 \begin{proof}[Proof idea]
-$W_k(J)=(-1)^{d-p}\lin T_k(p_J)$ with $T_kg:=\sum_{|A|=k}c_AX_Ag(X_A)$. The parabolic factorisation $T_kP_\rho=P_{\rho+1^k}$ \cite[III (2.2)]{Macdonald95} and $\lin P_\lambda=(-1)^{n-k}\frac{[n]}{[k]}P_{\lambda-1^k}(1,t,\dots,t^{k-1})$ (from \cite[III.7 Ex.~2, III.2 Ex.~1]{Macdonald95}) give the ``discrete HL measure = principal specialisation'' identity $\lin T_k f=(-1)^d\frac{[n]}{[k]}f(1,t,\dots,t^{k-1})$ (\cref{lem:linT}); apply it to $f=p_J$.
+$W_k(J)=(-1)^{d-p}\lin T_k(p_J)$, $d=|J|$, with $T_k$ as in \cref{lem:linT}. The parabolic factorisation $T_kP_\rho=P_{\rho+1^k}$ \cite[III (2.2)]{Macdonald95} and $\lin P_\lambda=(-1)^{n-k}\frac{[n]}{[k]}P_{\lambda-1^k}(1,t,\dots,t^{k-1})$ (from \cite[III.7 Ex.~2, III.2 Ex.~1]{Macdonald95}) give the ``discrete HL measure = principal specialisation'' identity $\lin T_k f=(-1)^d\frac{[n]}{[k]}f(1,t,\dots,t^{k-1})$ (\cref{lem:linT}); apply it to $f=p_J$.
 \end{proof}
 % registry: thmW-second-proof-KF-free (Day 223 Thm 1.5), grade: proved
 \begin{lemma}\label{lem:linT}
-For $f\in\Lam_k$ homogeneous of degree $d$ and $n=k+d$: \[\lin T_k(f)=(-1)^d\frac{[n]_t}{[k]_t}f(1,t,\dots,t^{k-1}).\]
+Let $T_kf:=\sum_{|A|=k}c_AX_Af(X_A)$ for $f\in\Lam_k$. For $f$ homogeneous of degree $d$ and $n=k+d$: \[\lin T_k(f)=(-1)^d\frac{[n]_t}{[k]_t}f(1,t,\dots,t^{k-1}).\]
 \end{lemma}
 \begin{remark}[Novelty]
 \Cref{lem:linT} is a short corollary of \cite[III.7 Ex.~2, III (2.2)]{Macdonald95} and is probably known.
@@ -194,8 +194,8 @@ $K_\lambda$ is the connected part (joint cumulant) of $t^{e_2(\lambda)}=\prod_{i
 At $t=0$ every edge weight is $-1$ and $\sum_{H\text{ conn.}}(-1)^{|H|}=(-1)^{\ell-1}(\ell-1)!$. As $t\to1$, with $\varepsilon=t-1$, only spanning trees contribute to the $\varepsilon^{\ell-1}$ term of $K_\lambda$, and $\sum_T\prod_{ij\in T}\lambda_i\lambda_j=(\prod_i\lambda_i)\,n^{\ell-2}$ (weighted Cayley); the prefactor is $(-n\varepsilon)/((-\varepsilon)^\ell\prod\lambda_i)\cdot(1+O(\varepsilon))$.
 \end{proof}
 \begin{remark}[Prior art --- graph half]
-The tree, connected-graph and cumulant forms of $K_\lambda$ are a special case of Do{\l}{\k{e}}ga \cite[Prop.~2.1 and (11), Lemma~2.3]{Dolega19} (Tutte polynomial $T(1,t)$ of the graph $M_\lambda$), cf.\ also \cite{GesselSagan96,MallowsRiordan68}; step (3) is a Penrose-type tree--graph identity \cite{Penrose67}. \textbf{Must cite, not claim.} Ours: the identification of the $\star$-lead with prefactor$\cdot K_\lambda$ (\cref{thm:coarse,thm:W,thm:G}) and \cref{thm:F,thm:blockmult}. Haglund--Tewari's single-row cumulant \cite[Def.~7.1, Thm.~7.3]{HaglundTewari26} (their $q$ is our $t$) is the same graph half: since $\langle\widetilde H_{(m)},e_m\rangle=q^{\binom m2}$, one has $\langle\kappa(\lambda),e_n\rangle=t^{n(\lambda')}(t-1)^{1-\ell}K_\lambda(t)$.
-\emph{Separator.} Full-merge leads $L(\lambda)$ of any such theory are only defined up to the gauge $L(\lambda)\mapsto L(\lambda)\,a^{\ell(\lambda)}g(|\lambda|)\prod_if(\lambda_i)$ (rescaling generators, degree-wise normalisation, rescaling the expansion parameter). The first gauge invariant appears at $n=4$: $J:=L(1^4)L(2,2)/L(2,1,1)^2$ (the exponents of $a$, $g(4)$, $f(1)$ and $f(2)$ all cancel). For $\star$, \cref{thm:G} gives $J=\frac{(t^2+1)(t^3+3t^2+6t+6)}{(t+1)(t^2+t+2)^2}$, and Haglund--Tewari's $\langle\kappa,e_n\rangle$ gives the same value. Do{\l}{\k{e}}ga's $\oplus$-cumulant of columns (lowest $(q-1)$-coefficient of $[g_n]\widetilde H_{\lambda'}$, $g_k=\widetilde H_{1^k}$) gives, by computation, $J\equiv 3/2=J_\star(0)$, whereas $J_\star(1)=1$, the Cayley value. So up to gauge Do{\l}{\k{e}}ga's $\oplus$ is $t$-independent and agrees with $\star$ only at $t=0$, where the leads are partition-lattice M\"obius values (\cref{cor:G}(b)), while Haglund--Tewari's is the same graph object without $\star$.
+The tree, connected-graph and cumulant forms of $K_\lambda$ are a special case of Do{\l}{\k{e}}ga \cite[Prop.~2.1 and (11), Lemma~2.3]{Dolega19} ($K_\lambda=(t-1)^{\ell-1}T(1,t)$ for the Tutte polynomial of the multigraph with $\lambda_i\lambda_j$ edges between $i$ and $j$), cf.\ also \cite{GesselSagan96,MallowsRiordan68}; step (3) is a Penrose-type tree--graph identity \cite{Penrose67}. Ours: the identification of the $\star$-lead with prefactor$\cdot K_\lambda$ (\cref{thm:coarse,thm:W,thm:G}) and \cref{thm:F,thm:blockmult}. Haglund--Tewari's single-row cumulant \cite[Def.~7.1, Thm.~7.3]{HaglundTewari26} (their $q$ is our $t$) is the same graph half: since $\langle\widetilde H_{(m)},e_m\rangle=q^{\binom m2}$, their cumulant $C_\lambda$ satisfies $\langle C_\lambda,e_n\rangle=t^{n(\lambda')}(t-1)^{1-\ell}K_\lambda(t)$.
+\emph{Separator.} Full-merge leads $L(\lambda)$ of any such theory are only defined up to the gauge $L(\lambda)\mapsto L(\lambda)\,a^{\ell(\lambda)}g(|\lambda|)\prod_if(\lambda_i)$ (rescaling generators, degree-wise normalisation, rescaling the expansion parameter). The first gauge invariant appears at $n=4$: $J:=L(1^4)L(2,2)/L(2,1,1)^2$ (the exponents of $a$, $g(4)$, $f(1)$ and $f(2)$ all cancel). For $\star$, \cref{thm:G} gives $J=\frac{(t^2+1)(t^3+3t^2+6t+6)}{(t+1)(t^2+t+2)^2}$, and Haglund--Tewari's $\langle C_\lambda,e_n\rangle$ gives the same value. Do{\l}{\k{e}}ga's $\oplus$-cumulant of columns (lowest $(q-1)$-coefficient of $[g_n]\widetilde H_{\lambda'}$, $g_k=\widetilde H_{1^k}$) gives, by computation, $J\equiv 3/2=J_\star(0)$, whereas $J_\star(1)=1$, the Cayley value. So up to gauge Do{\l}{\k{e}}ga's $\oplus$ is $t$-independent and agrees with $\star$ only at $t=0$, where the leads are partition-lattice M\"obius values (\cref{cor:G}(b)), while Haglund--Tewari's is the same graph object without $\star$.
 \end{remark}
 
 % registry: conjF-coarsening-lead-factorizes, grade: proved
@@ -261,7 +261,7 @@ Support by \cref{thm:DS}; strip $y$ columns by \cref{cor:column} (valid for comp
 %% ===================================================================
 % v7.5 gate lifted wake 228: cold recheck PASSED (Day 226: Thm 1.1, Lemmas 2.1--2.2, Thm 2.5, Thm 4.2 kill test; Day 227: Prop 2.3); Green wording per Day 227 §1.4.
 
-By \cref{thm:blockmult}, valuation-$2$ leads reduce to connected leads with $\ell(\lambda)=3$, $\kappa=1$; by \cref{cor:column} to two-part $\mu$. Put $T_ag:=\sum_{|A|=a}c_AX_Ag(X_A)$ for $g\in\Lam_a$, and
+By \cref{thm:blockmult}, valuation-$2$ leads reduce to connected leads with $\ell(\lambda)=3$, $\kappa=1$; by \cref{cor:column} to two-part $\mu$. With $T_a$ as in \cref{lem:linT}, put
 \[ \Gamma_a(e_b,e_c):=E_a^{(2)}(e_be_c)-e_bE_a^{(2)}(e_c)-e_cE_a^{(2)}(e_b)=\sum_{1\le r\le b,\ 1\le q\le c}(-1)^{r+q}e_{b-r}e_{c-q}\,T_a(p_rp_q). \]
 
 % registry: ell3-kappa1-reduction-and-lambda-contains-1 (Prop 5.1), grade: proved
@@ -271,10 +271,10 @@ If $(a,b,c)$ is any ordering of $\lambda$ and $\kappa(\lambda,\mu)=1$, then $[(s
 
 % registry: ct-adjoint-formula-thm11, grade: proved
 \begin{theorem}[Constant-term adjoint formula]\label{thm:CT}
-For $g\in\Lam_a$, $F\in\Lam$: $\varphi_a(t)\,\langle T_ag,F\rangle_t=\mathrm{CT}\bigl[Z\,g(z)\,F(z_1^{-1},\dots,z_a^{-1})\,K(z)\bigr]$, where $Z=z_1\cdots z_a$ and $K(z)=\prod_{1\le i<j\le a}\frac{z_j-z_i}{z_j-tz_i}$, expanded in $z_i/z_j$ ($i<j$).
+For $g\in\Lam_a$, $F\in\Lam$: $\varphi_a(t)\,\langle T_ag,F\rangle_t=\mathrm{CT}\bigl[Z\,g(z)\,F(z_1^{-1},\dots,z_a^{-1})\,\Omega(z)\bigr]$, where $Z=z_1\cdots z_a$ and $\Omega(z)=\prod_{1\le i<j\le a}\frac{z_j-z_i}{z_j-tz_i}$, expanded in $z_i/z_j$ ($i<j$).
 \end{theorem}
 \begin{proof}[Proof idea]
-$T_ag$ restricted to $a$ variables is $Zg$ and lies in $\mathrm{span}\{P_\mu:\ell(\mu)=a\}$. Evaluate $\langle G,q_\alpha\rangle_t=[y^\alpha]G$ via Cauchy \cite[III (4.2), (4.4), (4.8)--(4.9)]{Macdonald95}, write $\langle G,Q_\lambda\rangle_t$ as a constant term by the raising-operator formula \cite[III (2.15$'$)]{Macdonald95}, and symmetrise $K=\Delta\kappa$ with $\sum_w w(\kappa)=v_a(t)$ \cite[III (1.4)]{Macdonald95}; $Q_\lambda(z^{-1})$ is evaluated by \cite[III (2.1), (2.11)--(2.12)]{Macdonald95}. This is Jing's vertex-operator calculus \cite{Jing91} with the vertex operators hidden.
+$T_ag$ restricted to $a$ variables is $Zg$ and lies in $\mathrm{span}\{P_\mu:\ell(\mu)=a\}$. Evaluate $\langle G,q_\alpha\rangle_t=[y^\alpha]G$ via Cauchy \cite[III (4.2), (4.4), (4.8)--(4.9)]{Macdonald95}, write $\langle G,Q_\lambda\rangle_t$ as a constant term by the raising-operator formula \cite[III (2.15$'$)]{Macdonald95}, and symmetrise $\Omega=\Delta\theta$ with $\sum_w w(\theta)=v_a(t)$ \cite[III (1.4)]{Macdonald95}; $Q_\lambda(z^{-1})$ is evaluated by \cite[III (2.1), (2.11)--(2.12)]{Macdonald95}. This is Jing's vertex-operator calculus \cite{Jing91} with the vertex operators hidden.
 \end{proof}
 
 % registry: two-point-string-formula-thm25 (+ shuffle-identity-lemma24), grade: proved
@@ -293,18 +293,18 @@ proved by a last-letter recursion. Take Taylor coefficients at $w=0$.
 \begin{remark}[Relation to Green polynomials]
 Write $p_\mu=\sum_\lambda X^\lambda_\mu(t)P_\lambda(x;t)$. For $g=P_\rho$ and $\lambda=\rho+1^a$ one has $\Phi_a(P_\rho;x,y)=(1-t^x)(1-t^y)X^{\lambda}_{(x,y)}(t)/b_\lambda(t)$, so \cref{thm:2pt} evaluates Green polynomials at two-part classes; the two $t$-strings are the Frobenius orbits of a maximal torus of type $(x,y)$ \cite{Green55}. \Cref{thm:CT} is Jing's constant-term expression for the matrix element $\langle Q_\lambda,p_\mu\rangle$ \cite{Jing91}, cf.\ \cite[(2.17), (2.20)]{JingLiu21}. Jing and Liu \cite[Thm.~2.7]{JingLiu21} expand the same matrix element as a nested sum valid for all $\mu$, extracting one variable at a time; at two-part $\mu$ that sum does not close up, since its inner sums run over classes of arbitrary length. Their closed forms \cite[Thm.~2.10, (2.37)--(2.40)]{JingLiu21} restrict the Hall--Littlewood index $\lambda$, not the class $\mu$; the case $\ell(\lambda)=2$ goes back to Morris \cite{Morris77}.\footnote{We have not seen \cite{Morris77} first-hand; its scope is as described in \cite[p.~12, before Thm.~3.2]{JingLiu21}.} We evaluate by residues instead, and at $\ell(\mu)=2$ the poles organise into two $t$-strings. The formula is explicit, with no sum over classes, and linear in the two-string specialisation $G_A$ of $g$; for general $\rho$, $G_A$ is itself a finite (branching) sum, so \cref{thm:2pt} is not a product formula.
 \end{remark}
-\begin{example}[Two rows]
-For $a=2$, only $A=B=1$ occurs, and $G_1(w)=P_\rho(1,w;t)=w^{\rho_2}\frac{(1-tw)-w^m(w-t)}{1-w}$ with $m=\rho_1-\rho_2\ge1$ ($G_1=w^{\rho_2}$ if $m=0$). Substituting into \cref{thm:2pt} gives, for $\lambda=(\lambda_1,\lambda_2)$ and $y\le x$,
+\begin{example}[Two rows]\label{ex:tworow}
+For $a=2$, only $A=B=1$ occurs, and $G_1(w)=P_\rho(1,w;t)=w^{\rho_2}\frac{(1-tw)-w^r(w-t)}{1-w}$ with $r=\rho_1-\rho_2\ge1$ ($G_1=w^{\rho_2}$ if $r=0$). Substituting into \cref{thm:2pt} gives, for $\lambda=(\lambda_1,\lambda_2)$, $y\le x$, and $m_{xy}=2$ if $x=y$, $1$ otherwise,
 \[ X^{(\lambda_1,\lambda_2)}_{(x,y)}(t)=\begin{cases}(t-1)\,t^{\lambda_2-1-y}(1+t^{y}), & y<\lambda_2,\\ m_{xy}-(1-t)\,t^{\lambda_2-1}, & y=\lambda_2,\\ (t-1)\,t^{\lambda_2-1}, & y>\lambda_2,\end{cases} \]
 in agreement with a Kostka--Foulkes computation for $|\lambda|\le10$. It also follows directly from $X^\lambda_\rho=\sum_\nu\chi^\nu_\rho K_{\nu\lambda}(t)$ \cite[III (7.6$'$)]{Macdonald95}: for $\lambda=(n-k,k)$ one has $K_{(n-j,j),\lambda}=t^{k-j}$ (one tableau, and $K$ is monic of degree $n(\lambda)-n(\nu)$ \cite[III (6.5)]{Macdonald95}), and $\chi^{(n-j,j)}_\rho=\pi_j-\pi_{j-1}$ with $\pi_j$ the number of $j$-subsets fixed by $\rho$, so $X^\lambda_{(x,y)}=\pi_k+(t-1)\sum_{j<k}t^{k-1-j}\pi_j$. This is the two-part-class case of the range $\ell(\lambda)=2$ treated by Morris. On the diagonal class $(x,y)=\lambda$ it gives $t^{\lambda_2}-t^{\lambda_2-1}+m_{xy}$, which for $\lambda_1>\lambda_2$ with $\lambda_2\ge3$ odd equals $-1$ at $t=-1$ and $1$ at $t=0$. A root in $(-1,0)$ rules out a product of cyclotomic factors and powers of $t$, and Green polynomials at two-part classes admit no product formula even for two rows, as observed independently in~\cite[Thm.~D]{Clio26}.
 \end{example}
 
 % registry: gprime-v2-class4-open (Day 225 Thm 4.2; node id historical, class 4 CLOSED), grade: proved, cold recheck PASSED Day 226 (+ Prop 2.3 Day 227)
 \begin{theorem}[Closed $\ell=3$, $\kappa=1$ leads]\label{thm:v2}
-Let $\lambda=(a,b,c)$ be any ordering of a length-$3$ partition, $\mu=(x,y)$ with $\kappa(\lambda,\mu)=1$, $n=x+y$, $m_{xy}=2$ if $x=y$ and $1$ otherwise. Put \[\Lambda_a(r,q):=\lin T_a(p_rp_q)=(-1)^{r+q}\frac{[a+r+q]}{[a]}[a]_{t^r}[a]_{t^q}\] and $U_a(b,c;x,y):=\bigl((-1)^n\Phi_a(p_bp_c;x,y)-\Lambda_a(b,c)\bigr)/m_{xy}$. Then
+Let $\lambda=(a,b,c)$ be any ordering of a length-$3$ partition, $\mu=(x,y)$ with $\kappa(\lambda,\mu)=1$, $n=x+y$, $m_{xy}$ as in \cref{ex:tworow}. Put \[\Xi_a(r,q):=\lin T_a(p_rp_q)=(-1)^{r+q}\frac{[a+r+q]}{[a]}[a]_{t^r}[a]_{t^q}\] and $U_a(b,c;x,y):=\bigl((-1)^n\Phi_a(p_bp_c;x,y)-\Xi_a(b,c)\bigr)/m_{xy}$. Then
 \begin{multline*}
-[(s-1)^2]\,c_{\lambda\mu}=(-1)^{b+c}U_a(b,c;x,y)+\sum_{\substack{1\le r<b\\ \{b-r,\,a+r+c\}=\{x,y\}}}(-1)^{r+c}\Lambda_a(r,c)\\
-+\sum_{\substack{1\le q<c\\ \{c-q,\,a+b+q\}=\{x,y\}}}(-1)^{b+q}\Lambda_a(b,q)+[e_xe_y]\,D_a(M_{bc}),
+[(s-1)^2]\,c_{\lambda\mu}=(-1)^{b+c}U_a(b,c;x,y)+\sum_{\substack{1\le r<b\\ \{b-r,\,a+r+c\}=\{x,y\}}}(-1)^{r+c}\Xi_a(r,c)\\
++\sum_{\substack{1\le q<c\\ \{c-q,\,a+b+q\}=\{x,y\}}}(-1)^{b+q}\Xi_a(b,q)+[e_xe_y]\,D_a(M_{bc}),
 \end{multline*}
 with $D_a$ the derivation $D_a(e_j)=M_{aj}$ of \cref{prop:M}.
 \end{theorem}
@@ -315,10 +315,10 @@ with $D_a$ the derivation $D_a(e_j)=M_{aj}$ of \cref{prop:M}.
 \begin{corollary}\label{cor:v2}
 Every lead at valuation $2$ ($\kappa=\ell-2$, any $\ell$) has a closed formula: by \cref{thm:blockmult} it is a sum of products of pair leads (\cref{prop:M}) and $\ell=3$, $\kappa=1$ leads (\cref{thm:G}, \cref{cor:column}, \cref{thm:v2}).
 \end{corollary}
-\begin{example}
+\begin{example}\label{ex:v2}
 $(3,3,3)\to(7,2)$: $\Lead=2t^{13}+3t^{12}+3t^{11}+6t^{10}+6t^9+6t^8+9t^7+6t^6+3t^5+9t^4+6t^3+3t+4$ (agrees with direct computation). Leads are \emph{not} positive in general: $(4,4,2)\to(7,3)$ has $\Lead=(t+1)(t^2+1)(2t^8+t^7+t^6+3t^4+t^3+t^2-t+2)$.
 \end{example}
-\paragraph{Computer checks.} All statements in this section were checked against an independent implementation of Hikita's subset formula: \cref{thm:v2} on all $16$ class-$4$ pairs with $n\le12$ and on $27$ pairs in all $3$ orderings with $n\le10$; \cref{thm:2pt} in $229$ cases ($a\le5$); and the Green-polynomial dictionary symbolically for $|\lambda|\le8$ and numerically for $|\lambda|\le9$.
+\paragraph{Computer checks.} All statements in this section were checked against an independent implementation of Hikita's subset formula: \cref{thm:v2} on $16$ pairs with $n\le12$ (both examples among them) and on $27$ pairs in all $3$ orderings with $n\le10$; \cref{thm:2pt} in $229$ cases ($a\le5$); and the Green-polynomial dictionary symbolically for $|\lambda|\le8$ and numerically for $|\lambda|\le9$.
 
 %% ===================================================================
 \section{Open problems}
@@ -326,9 +326,9 @@ $(3,3,3)\to(7,2)$: $\Lead=2t^{13}+3t^{12}+3t^{11}+6t^{10}+6t^9+6t^8+9t^7+6t^6+3t
 \begin{enumerate}
   \item \textbf{Valuation $\ge3$.} Connected leads with $\ell\ge4$, $\kappa=1$. Hierarchy: $v=1\leftrightarrow p_n\leftrightarrow$ one $t$-string (\cref{lem:linT}); $v=2\leftrightarrow p_xp_y\leftrightarrow$ two strings (\cref{thm:2pt}). Does the three-string shuffle sum factor pairwise?
   \item \textbf{Zero set at generic $t$.} At $t=-2$ seven pairs with $n=6$ have $\val>\ell-\kappa$; for coarsenings this is cancellation between histories, e.g.\ $\Lead_{(1,1,1),(3)}=[3]_t(2+t)$. Describe the zero set of $[(s-1)^{\ell-\kappa}]c_{\lambda\mu}$ in $t$.
-  \item \textbf{Counting.} A formula for $N(\lambda,\mu)$ in \cref{thm:blocklaw}; the observed $\Lead_{\lambda,(n-1,1)}(1)=2n^2-6n+3$ (computed only).
-  \item \textbf{Positivity.} Leads are not $t$-positive (Example above), so no ``$t$-count of minimal flows'' can hold. Is there a signed or cancellation-free model?
-  \item \textbf{Cumulant link.} Up to gauge, Do{\l}{\k{e}}ga's column cumulants \cite{Dolega19} are the $t=0$ specialisation of the $\star$-leads (at least for $n=4$, via $J$). Is there a Macdonald-cumulant construction whose leads are the $\star$-leads for all $t$, i.e.\ cumulants of $e_k\mapsto t^{\binom k2}$?
+  \item \textbf{Counting.} A formula for $N(\lambda,\mu)$ in \cref{thm:blocklaw}; for $\ell(\lambda)=3$ and $\mu=(n-1,1)$ with $\kappa=1$ we observe $\Lead_{\lambda\mu}(1)=2n^2-6n+3$, independent of $\lambda$ ($n\le10$; computed only).
+  \item \textbf{Positivity.} Leads are not $t$-positive (\cref{ex:v2}), so no ``$t$-count of minimal flows'' can hold. Is there a signed or cancellation-free model?
+  \item \textbf{Cumulant link.} Is there a Macdonald-cumulant construction whose leads are the $\star$-leads for all $t$, i.e.\ cumulants of $e_k\mapsto t^{\binom k2}$?
 \end{enumerate}
 % The s->0 edge remark is now \cref{rem:H} (after \cref{thm:DS}), per Clio's 2026-10-06 verdict.
 
