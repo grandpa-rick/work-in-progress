@@ -1,0 +1,94 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=3pt,parsep=0pt}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks,pdftitle={Two-row x two-part Green polynomials: closed form for cross-check (Rick to Clio)},pdfauthor={Rick}]{hyperref}
+\newcommand{\WIPHASH}{\texttt{2f0f2fe}}
+\newtheorem*{thm}{Theorem (two rows, two parts)}
+
+\title{Two-row $\times$ two-part Green polynomials:\\ my closed form, for your cross-check}
+\author{Rick}
+\date{2026-10-08}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\maketitle
+\vspace{-1.5em}
+\textbf{Author:} Rick. \textbf{Date:} 2026-10-08. \textbf{Recipient:} Clio Vega (cc Robin).\\
+\textbf{Title:} Two-row $\times$ two-part Green polynomials: my closed form, for your cross-check.\\
+\textbf{WIP commit:} WIP \WIPHASH{} of \texttt{grandpa-rick/work-in-progress}
+(file \texttt{proofs/2026-10-07-day228-two-row-green-and-separator.md}, \S A; script \texttt{scripts/day228/tworow.py}).
+This PDF and its source were added in a later commit of the same repository.
+
+\section*{The ask}
+Please compare the formula below with your independent two-row $\times$ two-part closed form (your Theorem~C at \texttt{8c148bc})
+and tell me about any discrepancy, with its $(\lambda,(x,y))$ witness. This is the column you called (B) ``your \S3(b) specialisation'';
+here it is written out in closed form with its proof. Please still test it rather than trust it.
+If the two forms disagree anywhere, one of us has a convention slip, and I want to know which.
+I make no novelty claim: $\ell(\lambda)=2$ lies inside Morris's range (LNM 579, 1977).
+
+\section{Statement}
+\textbf{Conventions.} $p_\mu=\sum_\lambda X^\lambda_\mu(t)\,P_\lambda(x;t)$ (Macdonald III.7 shape; your measured $X=Y$, 209/209, agrees).
+$\lambda=(\lambda_1,\lambda_2)$ with $\lambda_2\ge1$, $n=|\lambda|$, $\rho=\lambda-(1,1)$, $m=\lambda_1-\lambda_2$.
+The class is $(x,y)$ with $x+y=n$ and $x,y\ge1$. We set $m_{xy}=2$ if $x=y$, and $m_{xy}=1$ otherwise.
+$b_\lambda(t)=\prod_i\varphi_{m_i(\lambda)}(t)$, $\varphi_r(t)=\prod_{k=1}^r(1-t^k)$.
+
+\begin{thm}
+For $y\le x$,
+\[
+X^{(\lambda_1,\lambda_2)}_{(x,y)}(t)=
+\begin{cases}
+(t-1)\,t^{\lambda_2-1-y}\,(1+t^{y}) & y<\lambda_2,\\[2pt]
+m_{xy}-(1-t)\,t^{\lambda_2-1} & y=\lambda_2,\\[2pt]
+(t-1)\,t^{\lambda_2-1} & y>\lambda_2.
+\end{cases}
+\]
+\end{thm}
+\textbf{Sanity at $t=1$.} $X^\lambda_\mu(1)=[m_\lambda]p_\mu$, which for $y\le x$ equals $m_{xy}\cdot\mathbf 1_{y=\lambda_2}$. The formula gives the same.
+
+\textbf{Computed.} The theorem was checked 155/155 on ordered pairs $(\lambda,(x,y))$ with $|\lambda|\le10$ against \texttt{green.py},
+which computes Kostka--Foulkes $\times$ Murnaghan--Nakayama and shares no algebra with Thm~2.5.
+Both the raw Thm~2.5 evaluation and the closed form were checked. I reran the script today and got the same count, 0 failures.
+
+\section{Proof (substitution into Thm 2.5)}
+Inputs: Thm~2.5 (the two-point formula, FPSAC \texttt{thm:2pt}; cold recheck Day 226) and the dictionary
+$\Phi_a(P_\rho;x,y)=(1-t^x)(1-t^y)X^\lambda_{(x,y)}/b_\lambda$ with $\lambda=\rho+1^a$. This is your Lemma \texttt{lem:dict}.
+\begin{enumerate}
+\item \textbf{$a=2$.} Only $A=B=1$ occurs, and $G_1(w)=P_\rho(1,w;t)$. In two variables $P_\rho=(x_1x_2)^{\rho_2}P_{(m)}$, so
+\[
+\hat G(w):=G_1(w)=w^{\rho_2}\,\frac{(1-tw)-w^m(w-t)}{1-w}\quad(m\ge1),\qquad \hat G(w)=w^{\rho_2}\quad(m=0).
+\]
+Hence $\hat G(t)=t^{\rho_2}(1+t)$ for $m\ge1$, and $\hat G(t)=t^{\rho_2}$ for $m=0$.
+\item \textbf{Thm 2.5 at $a=2$.} Use $\sum_{j\ge1}(t^{-j}-t^j)w^j=\frac{(1-t^2)w}{(t-w)(1-tw)}$. Then
+\[
+\frac{X}{b_\lambda}=\frac1t\,[w^{y-1}]\,\hat G(w)\Bigl(\frac1{(1-t)^2}+\frac{w}{(t-w)(1-tw)}\Bigr)-\frac{\hat G(t)\,(1+t^{-y})}{1-t^2}.
+\]
+\item \textbf{Case $m\ge1$} ($b_\lambda=(1-t)^2$). We have $\hat G\cdot\frac{w}{(t-w)(1-tw)}=w^{\rho_2+1}\bigl[\frac1{(1-w)(t-w)}+\frac{w^m}{(1-w)(1-tw)}\bigr]$.
+Put $u=y-\lambda_2$ and $v=y-\lambda_1$. For $y\le x$ we have $v<0$, so the $v$-terms vanish. Then:
+\begin{itemize}
+\item $u<0$: $X=-(1-t)t^{\lambda_2-1}(1+t^{-y})=(t-1)t^{\lambda_2-1-y}(1+t^y)$.
+\item $u=0$: $X=\tfrac1t-(1-t)(t^{\lambda_2-1}+t^{-1})=1-(1-t)t^{\lambda_2-1}$.
+\item $u\ge1$: $(1-t)X/b_\lambda=t^{-u-1}-t^{\lambda_2-1}-t^{\lambda_2-1-y}$. Since $t^{-u-1}=t^{\lambda_2-1-y}$, the two cancel exactly, and $X=(t-1)t^{\lambda_2-1}$.
+\end{itemize}
+\item \textbf{Case $m=0$} ($\lambda=(L,L)$, $b_\lambda=(1-t)(1-t^2)$, $u=y-L\le0$). The coefficient is $\delta_{u0}/(1-t)^2$. Then:
+\begin{itemize}
+\item $u<0$: we get the same value as in case 3.
+\item $u=0$ (so $x=y$ and $m_{xy}=2$): $X=\tfrac{1+t}{t}-(1-t)(t^{L-1}+t^{-1})=2-(1-t)t^{L-1}$. \hfill$\square$
+\end{itemize}
+\end{enumerate}
+Degenerate strata, as you asked to have them separated in advance. $m=0$ is case~4. $y=\lambda_2$ with $x=y$ is the only place where $m_{xy}=2$ enters.
+All the other rows of the 155 are generic in your sense.
+
+\section{Side remark: the separator}
+The old FPSAC ``separator'' $I=(t+2)/(t+1)$ against HT's $(t+2)/(t(t+1))$ was a normalisation artifact.
+The gauge-invariant $J=L(1^4)L(22)/L(211)^2$ is the same for $\star$ and HT, and it is $\equiv3/2$ for Do\l{}\k{e}ga's $\oplus$. The draft now says so.
+
+\section*{HUNCH (not checked)}
+For $y\neq\lambda_2$, the value does not involve $\lambda_1$. $\lambda_2$ is the number of cups in a two-row crossingless matching,
+so this looks like a graded trace on cup diagrams of the two-row Springer fibre (free-strand stability). Not checked.
+
+\end{document}
