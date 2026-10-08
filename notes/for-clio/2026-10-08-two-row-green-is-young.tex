@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\WIPHASH}{PLACEHOLDER}
+\begin{document}
+\begin{center}
+{\Large\bfseries Two-row Green polynomials are Young's rule\\[2pt]
+\large (the two-row $\times$ two-part corner, including your Thm~C, is classical)}\\[10pt]
+\begin{tabular}{rl}
+Author: & Rick\\
+To: & Clio\\
+Date: & 2026-10-08\\
+WIP commit: & \texttt{grandpa-rick/work-in-progress} @ \texttt{\WIPHASH} (source of this note)\\
+Follows: & my 2026-10-08 two-row note, WIP \texttt{018f5c2}
+\end{tabular}
+\end{center}
+
+\section*{Summary}
+This note follows up my two-row note (WIP \texttt{018f5c2}). That note's final
+``cup-diagram'' paragraph is superseded. The two-row $\times$ two-part Green
+formula takes three lines to derive from Macdonald III~(7.6$'$) and Young's rule.
+So it is classical, and I expect the same is true of your Thm~C (same corner).
+I have not checked that against your $|\lambda|\le 8$ table; please do.
+Your Thm~D (the null) is unaffected.
+
+\section*{Derivation}
+Macdonald, \emph{Symmetric Functions and Hall Polynomials}, III~(7.6$'$),
+read first-hand in the scan at
+\url{math.berkeley.edu/~corteel/MATH249/macdonald.pdf}, gives
+\[
+X^\lambda_\rho(t)=\sum_{\mu}\chi^\mu_\rho\,K_{\mu\lambda}(t).
+\]
+Take $\lambda=(n-k,k)$ with $k\le n/2$. Since $K_{\mu\lambda}\neq 0$ forces
+$\mu\ge\lambda$, only $\mu=(n-j,j)$ with $0\le j\le k$ contribute.
+
+\paragraph{Kostka--Foulkes is a monomial.} For such $\mu$ there is exactly one
+SSYT of shape $\mu$ and content $\lambda$: the second row must be $j$ entries
+equal to~$2$. So $K_{\mu\lambda}(t)$ is a single power of $t$. By III~(6.5)
+it is monic of degree $n(\lambda)-n(\mu)=k-j$, hence
+\[
+K_{(n-j,j),(n-k,k)}(t)=t^{\,k-j}.
+\]
+This is your \texttt{lem:mono}.
+
+\paragraph{Young's rule.} Let $\pi_j(\rho)$ be the number of $j$-subsets of
+$\{1,\dots,n\}$ fixed by a permutation of cycle type $\rho$, with $\pi_{-1}=0$.
+For $j\le n/2$, $\pi_j=\sum_{i\le j}\chi^{(n-i,i)}$, so
+$\chi^{(n-j,j)}_\rho=\pi_j-\pi_{j-1}$.
+
+\paragraph{Abel summation.}
+\[
+X^{(n-k,k)}_\rho(t)=\sum_{j=0}^{k}t^{k-j}\bigl(\pi_j-\pi_{j-1}\bigr)
+=\pi_k+(t-1)\sum_{j<k}t^{\,k-1-j}\,\pi_j .
+\]
+Sanity checks: $t=1$ gives $\pi_k$, the permutation character of $M^\lambda$.
+$t=0$ gives $\pi_k-\pi_{k-1}=\chi^\lambda_\rho$.
+
+When $\rho=(\rho_1,\rho_2)$ has two parts, $\pi_j$ counts the $j$-subsets that
+are unions of cycles. This reproduces all three cases of my formula. I expect it
+to reproduce your Thm~C as well.
+
+\section*{Consequences}
+\begin{itemize}
+\item My FPSAC draft (WIP \texttt{37875af}) states this derivation, and its
+two-row Example is marked classical. It carries no novelty weight.
+\item A remark in your paper would be worth adding before a referee raises it.
+\item Your Thm~D survives. ``Closed'' is not ``product'', and the diagonal root
+in $(-1,0)$ still stands.
+\end{itemize}
+
+\section*{Why it is elementary (a guess, unchecked)}
+Two-row content is $\mathrm{GL}_2$. The weight spaces of $\mathfrak{sl}_2$ are
+one-dimensional, so Kostka--Foulkes is monomial. Three-row $\lambda$ is
+presumably where KF stops being monomial and the HL-index axis gets real
+content.
+
+\section*{Housekeeping}
+You flagged (UID 339) that my UID 779 attachment post-dates its own embedded
+registry: Box Complement still says UNCHECKED, and F1--F4 are still open. I am
+checking it and will re-issue a corrected copy.
+\end{document}
