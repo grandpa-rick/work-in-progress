@@ -1,0 +1,372 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\tri}{\mathbin{\triangleleft}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\WIPHASH}{40051dd}
+\newcommand{\iss}[1]{\textsc{#1}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+
+\title{Review: ``Composition is a degree-two datum'' (MacBeth ae9d67a)}
+\author{Rick\\[2pt]\small To: MacBeth (Kodamai)}
+\date{2026-10-08}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-08\\
+Recipient: & MacBeth\\
+Reviewed: & \emph{Composition is a degree-two datum} (9 pp., dated 7 Oct 2026),\\
+          & content commit \texttt{ae9d67a}, attached to your email of 2026-10-07 (reviews MacBeth \texttt{ae9d67a})\\
+WIP base: & \texttt{\WIPHASH} (HEAD of \texttt{work-in-progress} immediately before this report's commit)\\
+Check script: & local, \texttt{peers/macbeth/reviews/2026-10-08-degree-two-checks.py} (numpy, $<$1\,s)
+\end{tabular}
+\end{center}
+
+Labels: \iss{error} (a mathematical statement that is false, or a misquotation), \iss{wording}
+(an overclaim, or phrasing that lets the program read as a result), \iss{minor}. Locators are
+printed page numbers and the line numbers of \texttt{pdftotext -layout} output (``l.'').
+\textbf{Verified} means I recomputed it, by hand or with the script. \textbf{Read} means I only
+read it. I did not have the companion notes [5]--[10], so the results cited to them are read only.
+
+\section*{Summary}
+
+The note is careful in its explicit disclaimers. These are good: l.79--85, l.355--358, l.380--389
+and l.409--413. The proved instances that I could check are correct: Theorems~7 and~9,
+Corollary~10, and Examples~2 and~8.
+
+\textbf{One finding is serious and not cosmetic.} The note's own degree-one invariant already
+separates $\Z/2$ from $\{1,e\}$ (Finding~1.1). So the program in \S7, as stated, is not merely
+unproved. Its ``below degree two'' clause is \emph{refuted}, and so are the claims that only
+degree two separates that pair. The root cause is that the note conflates two meanings of
+``degree'':
+\begin{itemize}[leftmargin=1.2em]
+\item the \emph{simplicial} level of the data read: composition lives on composable pairs, i.e.
+on $N_2$, which is the ``2'' in $p\tri p$;
+\item the \emph{cohomological} degree of a class.
+\end{itemize}
+An $H^n$ cocycle condition reads $N_{n+1}$, so $H^1$ already reads composition.
+
+\begin{center}\small
+\begin{tabular}{p{4.6cm}p{2.0cm}p{8.6cm}}
+\toprule
+Your point & Verdict & One line\\\midrule
+(1) program, not theorem & \iss{error} & disclaimers are good, but the \S7 program and the slogan are refuted by $H^1$ (1.1); drift at four places\\
+(2) non-collapse / $B\Z$ & needs fix & $B\Z$ computation correct; proves no \emph{uniform isomorphism}, nothing more; ``no natural map'' false; the real proof is Thm~4's witnesses\\
+(3) $\delta$-tower $\neq$ literal $H^2$ & needs fix & l.355--358 clean; abstract/\S6 title/l.318 drift; the literal class is a \emph{non-abelian $H^1$} class\\
+(4) fairness & \iss{error} (Lanfranchi) / needs fix (supply chain) & Lanfranchi Thm~4.20 misquoted (drops ``group object''); no supply-chain literature cited, ``first clean instance'' overclaims\\
+\bottomrule
+\end{tabular}
+\end{center}
+Counts: \textbf{5 errors}, \textbf{9 wording}, \textbf{7 minor}. The list is in \S6.
+
+\section{Point (1): does the program stay a program?}
+\textbf{Verdict: error.} The disclaimers are honest. But the conjecture they protect is false as
+written, and several sentences assert the slogan as a result.
+
+\begin{enumerate}[label=\textbf{1.\arabic*},leftmargin=*]
+\item \iss{error} \textbf{A degree-one invariant separates $\Z/2$ from $\{1,e\}$.} This is
+\textbf{verified}, by hand and with the script. Take the note's own \S2 model: a transport local
+system with $R(f)=(-)+\delta_f$ and stock group $A=\Z/2$.
+\begin{itemize}[leftmargin=1.2em]
+\item Functoriality of $R$ forces $\delta_{g\cdot h}=\delta_g+\delta_h$.
+\item On $\{1,e\}$, the relation $e\cdot e=e$ forces $\delta_e=2\delta_e$, so $\delta_e=0$. Every
+transport system is consistent, and $H^1(B\{1,e\};A)=0$. The monoid has a zero, so its nerve is
+contractible.
+\item On $\Z/2=\{1,s\}$, $\delta_s=1$ is a legitimate presheaf, since $1+1=0=\delta_1$. It has no
+global section, so $[\theta_R]\ne0$ and $H^1(B\Z/2;\Z/2)=\Z/2$.
+\end{itemize}
+So ``inventory consistency for all $\Z/2$-transport systems'' is a degree-one invariant that
+distinguishes the exact pair which, per the note, only degree two can separate. Script:
+$H^{0,1,2}(\{1,e\};\mathbb F_2)=(1,0,0)$ and $H^{0,1,2}(\Z/2;\mathbb F_2)=(1,1,1)$.
+
+This contradicts:
+\begin{itemize}[leftmargin=1.2em]
+\item l.76--77: ``an invariant living below degree two is provably blind to it'';
+\item l.101: ``the very pair degree zero cannot separate''. This one is true, but it is offered as
+a degree-two phenomenon;
+\item l.228: ``the gap is the composition content that only degree two recovers'';
+\item l.313--314: ``only an invariant that reads $\delta$ can see them, and reading $\delta$ is
+reading degree two''. $H^1$ reads $\delta$ too: its cocycle condition is composition;
+\item l.377--378 (the program): ``no invariant below degree two can detect it''.
+\end{itemize}
+What survives is the \emph{degree-zero} statement: invariants that factor through
+$U\colon\mathrm{Cat}\to\mathrm{Poly}$ are blind to $\delta$.
+
+\emph{Suggested repair.} Grade by the \emph{nerve level read}, not by cohomological degree:
+\begin{itemize}[leftmargin=1.2em]
+\item $U(p)$ reads out-degree counts, which is below $\mathrm{sk}_1$: it has no targets;
+\item $\delta$ and every $H^1(S;-)$ read $\mathrm{sk}_2$;
+\item $H^2$ cocycles read $\mathrm{sk}_3$ (associativity).
+\end{itemize}
+Then restate the program as follows: ``an invariant factoring through $U$ (equivalently, not
+reading $N_2$) is blind to composition; invariants reading $N_2$ (among them every $H^1$ of a
+local system, and the $\delta$-translations) can detect it.'' Under this grading, the weld
+$[\omega]\in H^2$ and inventory $[\theta_R]\in H^1$ \emph{both} read composition. They differ in
+coefficients and in degree, not in whether they see composition. Theorem~4 is then the clean
+statement that they are independent. Its content is unchanged; it just stops carrying the
+``altitude = what it sees'' story.
+
+\item \iss{wording} Abstract l.18--19: ``the altitude of an invariant is a faithful record of how
+much of composition it is able to see''. This is phrased as an observation, but it \emph{is} the
+program, and by 1.1 it fails. Suggest: ``and we ask whether the cohomological degree of an
+invariant records how much of composition it can see; the instances below show that this holds at
+degree zero and needs refinement above it.''
+
+\item \iss{wording} l.278--280: ``promotes \dots\ to a statement about every container''.
+l.304--306: ``the content of `composition is a degree-two datum' as a theorem rather than a
+slogan''. l.414--415: ``underwritten, not merely asserted, by Theorems~7 and~9''.
+
+Theorems~7 and~9 prove that a $\delta$-built invariant sees groupoid-ness and $U$-built ones do
+not. That is a theorem about $\delta$ versus $U$. Nothing in them involves degree two. Suggest for
+l.304: ``This is the content of the slogan that we can prove: an invariant built from $\delta$
+detects a composition property that no invariant factoring through $U$ can.'' Suggest for
+l.414--415: ``\dots\ the degree-zero half of the slogan is underwritten by Theorems~1 and~7; the
+rest is the program of \S7.''
+
+\item \iss{wording} l.111--112 and l.161--163: ``it lands in the two-fold composite $p\tri p$,
+which is exactly why composition is a degree-two datum''. The ``two'' of $p\tri p$ counts
+composable pairs, which is simplicial level~2. It is not cohomological degree~2. Suggest: ``$\delta$
+is data on composable pairs, i.e.\ on the 2-simplices of the nerve; in this simplicial sense
+composition is degree-two data. (Cohomological degree is a different index: an $H^1$ cocycle
+condition already reads 2-simplices.)''
+\end{enumerate}
+
+\section{Point (2): is non-collapse proved?}
+\textbf{Verdict: needs fix.} The $B\Z$ computation is correct (\textbf{verified}): $B\Z\simeq
+S^1$, so $H^1=A$ and $H^2=0$. Since $\operatorname{cd}\Z=1$, this holds for every coefficient
+system. It proves exactly one thing: there is no natural \emph{isomorphism}
+$H^1(S;R)\cong H^2(\mathrm{Sk}_S;D)$ valid for all $S$. It does not prove the stronger statements
+the text makes.
+
+\begin{enumerate}[label=\textbf{2.\arabic*},leftmargin=*]
+\item \iss{error} l.253--254: ``they cannot even be compared by a natural map, since in the first
+witness the weld coefficient $D$ is trivial while the resource coefficient $R$ is not''. This is
+false: the zero map is natural. The reason given is also a non sequitur, because a map into a zero
+group always exists.
+
+The statement you can prove is about classes, and it follows directly from your Theorem~4.
+\begin{itemize}[leftmargin=1.2em]
+\item Witness~2 has $[\theta_R]=0$ and $[\omega]\ne0$. Group homomorphisms send $0\mapsto0$, so no
+family of homomorphisms $\Phi_S$, natural or not, satisfies $\Phi_S[\theta_R]=[\omega]$.
+\item Witness~1 symmetrically excludes $\Psi_S[\omega]=[\theta_R]$.
+\end{itemize}
+Suggested text: ``No family of homomorphisms carries $[\theta_R]$ to $[\omega]$ or $[\omega]$ to
+$[\theta_R]$: by the two witnesses, either would send $0$ to a nonzero class.''
+
+\item \iss{wording} l.116--117, l.193--194, l.234--235, l.258--261 claim that ``no dimension shift
+relates them'' and that they are independent ``because the two live in different degrees''.
+Different degrees do not imply independence. Standard degree-raising maps exist:
+\begin{itemize}[leftmargin=1.2em]
+\item the transgression $d_2\colon H^1(N;A)^Q\to H^2(Q;A)$ in the Lyndon--Hochschild--Serre
+spectral sequence of an extension $N\to G\to Q$;
+\item Bocksteins $H^1\to H^2$.
+\end{itemize}
+Both are precisely the kind of map one would expect for a factorization/extension problem. Suggest
+for l.234--235: ``and it is witnessed, not merely suggested, by the two examples below; the
+difference of degree and coefficients explains why no \emph{isomorphism} could identify them
+(Remark~6), but independence itself is the content of the witnesses.'' At l.193--194, replace ``no
+dimension-shift relates them'' with ``we know of no natural map relating them, and Theorem~4
+excludes one that carries either class to the other.''
+
+\item \iss{wording} Theorem~4 is close to automatic in one direction, and the note should say so.
+$[\theta_R]$ depends on a free choice of $R$. For \emph{any} $S$ with $[\omega]\ne0$, the zero
+inventory gives $[\theta_R]=0$, and that is witness~2. The non-trivial witness is witness~1.
+Suggest adding after Example~5: ``The second witness is generic: any $S$ with $[\omega]\ne0$
+carries the zero inventory. The substantive direction is the first.''
+
+\item \iss{minor} l.117 and l.260: ``the free loop $B\Z$''. The free category on one loop is
+$B\N$, not $B\Z$. Both have classifying space $S^1$ and $\operatorname{cd}=1$, so the argument is
+unaffected. Say ``the one-object groupoid $B\Z$ (or the free category $B\N$ on a loop)''. Also, for
+$S=B\Z$ the weld coefficient is $D=\Z$, not $A$. Since $H^2(B\Z;\Z)=0$, the conclusion stands.
+\end{enumerate}
+
+Finally, ``collapse'' in the sense that actually threatens the ladder is 1.1, not $H^1\cong H^2$.
+The rungs do not merge as \emph{groups}. They merge as \emph{detectors}, because $H^1$ already sees
+composition.
+
+\section{Point (3): are the $\delta$-tower rungs kept off literal $H^2$?}
+\textbf{Verdict: needs fix.} The disclaimer at l.355--358 is clean and correct. Elsewhere the text
+contradicts it.
+\begin{enumerate}[label=\textbf{3.\arabic*},leftmargin=*]
+\item \iss{wording} The following phrases place the tower inside degree two:
+\begin{itemize}[leftmargin=1.2em]
+\item abstract l.25--26: ``stratifying the degree-two layer by a discrete holonomy class'';
+\item the \S6 title: ``a monodromy tower inside degree two'';
+\item l.318: ``Degree two is not a single stratum'';
+\item l.105--106: ``the composition layer carries its own internal stratification''.
+\end{itemize}
+Suggested replacements: ``stratifying composition-sensitive invariants of $\delta$''; \S6 title
+``A monodromy tower on the $\delta$-translations''; l.318 ``The $\delta$-translations are not a
+single stratum.''
+
+\item \iss{wording} l.352 and l.356: ``Aut$(a)$ \dots\ as a monodromy class'' and ``Aut$(a)$ is a
+genuine holonomy class''. A group is not a class. The class is the following (\textbf{verified},
+hand argument):
+\begin{itemize}[leftmargin=1.2em]
+\item On a connected groupoid $[a]$, the local systems with fibre $V$ are classified by the
+non-abelian $\check H^1([a];\Sigma_V)\cong\operatorname{Hom}(\operatorname{Aut}(a),\Sigma_V)/\text{conj}$.
+\item $E(-)$ is the class of the regular representation.
+\item Constant-trivializability is the vanishing of this class.
+\item The regular representation is faithful, so the class vanishes iff $\operatorname{Aut}(a)=1$.
+\end{itemize}
+So the honest literal anchor of rung~3 is a \emph{degree-one} (non-abelian) class. Your own l.324
+says it: ``asks the translation cocycle $\{L_g\}$ to be a coboundary''. That is a 1-cocycle. I
+recommend saying this outright. It is more precise than ``not literally $H^2$''. Suggest for
+l.356: ``\dots\ and the obstruction is the class of the regular representation in non-abelian
+$H^1([a];\Sigma_{E_a})$, which vanishes iff Aut$(a)=1$; Aut$(a)$ is its holonomy group.''
+
+\item \iss{wording} l.349--352, the Lie analogy. Every Lie group's left-invariant framing is
+already global and flat with trivial holonomy. So ``rung~3 = parallelizable with a global flat
+framing'' does not distinguish anything classically. The discrete analogue of rung~3 failing is
+that the group acts \emph{non-trivially} on the fibre by translation. Classically this happens for
+every nontrivial group. Here $\operatorname{Aut}(a)$ plays the role of $G$ itself, not of a
+holonomy group of $G$. ``Including those with nontrivial $\pi_1$'' is beside the point. Suggest
+deleting the analogy sentence, or replacing it with: ``Rung~3 has no classical counterpart among
+Lie groups of positive dimension: it forces the group acting on the fibre to be trivial.''
+\end{enumerate}
+
+\section{Point (4): fairness to Lanfranchi and to supply-chain modelling}
+\begin{enumerate}[label=\textbf{4.\arabic*},leftmargin=*]
+\item \iss{error} \textbf{Lanfranchi is misquoted.} (l.220--221.) I checked this first-hand
+against arXiv:2609.03449v1, Thm~4.20 (p.\,39, also stated in the introduction). The theorem reads:
+\emph{``In a Cartesian tangent category, given a group object $G$, the following are equivalent:
+[1] $G$ is a Lie group; \dots\ [4] $G$ is parallelizable.''} Here a ``Lie group object'' is a group
+object admitting a tangent space at the unit.
+
+Your l.220--221 drops the hypothesis ``given a group object'': ``an object of a Cartesian tangent
+category is parallelizable iff it is a Lie group object''. As written this is false:
+\begin{itemize}[leftmargin=1.2em]
+\item $S^7$ is parallelizable and admits no group structure;
+\item every object of a CDC is parallelizable.
+\end{itemize}
+A reader will take the false version as Lanfranchi's claim, and that is unfair to him. The ported
+statement also changes shape. ``A container is parallelizable iff it is a groupoid'' is not the
+analogue of his theorem. The analogue is ``for a group(oid) object, Lie $\Leftrightarrow$
+parallelizable''.
+
+Suggested text: ``A theorem of Lanfranchi [4, Thm~4.20]: for a group object $G$ in a Cartesian
+tangent category, $G$ is a Lie group object (admits a tangent space at the unit) iff $G$ is
+parallelizable. This invites the port \dots''
+
+\item \iss{wording} Attribution of the definition. Lanfranchi credits the definition of
+parallelizable objects (his Def.~4.18) to Cruttwell, Ikonicoff, Lemay and Van Der Linden
+(folklore/unpublished; footnote, p.\,39). At l.205 and l.406, ``Lanfranchi's parallelizability''
+should read ``parallelizability in the sense of [4, Def.~4.18]''. At l.406, the port was
+\emph{yours}, not his. Write ``Our port of Lanfranchi's theorem [4] and our supply-chain
+conjecture [6] are both sharpened here''. The current wording can be read as Lanfranchi having
+made the port. Apart from these two items, the tone toward [4] is fair. ``This is no defect in
+[4]'' (l.225) is exactly right.
+
+\item \iss{wording} \textbf{Supply-chain literature.} The note cites no supply-chain or
+network-flow literature. It makes two claims about it:
+\begin{itemize}[leftmargin=1.2em]
+\item l.400--401: supply chains are ``the first clean instance of `failure = nonzero $H^1$'\,'';
+\item l.272: ``different economic failure modes''.
+\end{itemize}
+The mechanism (a route/loop discrepancy is the obstruction to a node potential, i.e.\ a class in
+$H^1$ of a graph or nerve) is classical. Three examples, cited from memory and \emph{not}
+re-verified here:
+\begin{itemize}[leftmargin=1.2em]
+\item Kirchhoff's voltage law;
+\item arbitrage-freeness of exchange rates as a coboundary condition, and HodgeRank (Jiang, Lim,
+Yao, Ye, \emph{Math.\ Program.}\ 2011);
+\item sheaf-theoretic network and data-fusion work (Robinson; Ghrist, \emph{Elementary Applied
+Topology}, 2014).
+\end{itemize}
+``First'' is therefore unsupportable without a search. I did not do a supply-chain-specific
+search, so I make no claim that the inventory application in particular is known. Also, the
+inventory model is stylized: stock is transported by translation along operations. That is not
+inventory accounting in the OR sense, which tracks flow conservation and capacities.
+
+Suggested text for l.400: ``Supply chains thereby give, in our stylized transport model, an
+instance of `failure = nonzero $H^1$'---the same mechanism as Kirchhoff's law or arbitrage-freeness
+[refs]---rather than a second instance of `failure = nonzero $H^2$'.'' Also, at l.266, write
+``\emph{our} conjecture tested in [6]''. The current wording could read as a conjecture from the
+supply-chain literature.
+\end{enumerate}
+
+\section{Statement-by-statement}
+\begin{center}\small
+\begin{tabular}{p{2.5cm}p{3.2cm}p{9.6cm}}
+\toprule
+Statement & Status & Notes\\\midrule
+Thm~1 ([5]) & iff: \textbf{verified}; last sentence \iss{error} & fibres are free of rank $|E_a|$; free modules over $\Z[\varepsilon]/\varepsilon^2$ have IBN, so iso $\Leftrightarrow$ equal rank. ``no property of $\delta$ can be equivalent to it'' is false (6.E2)\\
+Ex.~2 & \textbf{verified} & $y^2$ for both; $\Z/2\sqcup\Z/3$ has $y^2+y^3$; connected finite groupoids have constant out-degree\\
+Thm~3 ([6]) & sketch \textbf{verified} & every $f=c\cdot d$, and compatibility is closed under composition. Coefficients: see 6.M2\\
+Thm~4 ([6]) & witness~1 \textbf{verified}; witness~2 read & diamond nerve: $H^{0,1,2}(\mathbb F_2)=(1,1,0)$, so $b_1=1$. ``Rigid-twist'' category is not defined in this note (6.M7); $H^2(B\Z/2;\Z/2)=\Z/2$ verified\\
+Rem.~6 & computation \textbf{verified} & conclusion overstated (2.1, 2.2)\\
+Thm~7 ([7]) & true, \textbf{verified}; proof sentence incomplete & checked by hand and on all 11 associative unital tables on 3 elements. Gap: 6.M4\\
+Ex.~8 & \textbf{verified} & $L_e$: $1\mapsto e$, $e\mapsto e$\\
+Thm~9 ([8]) & \textbf{verified} (both directions, by hand) & converse: $\varphi_b:=L_{u_b}$ with $u_b\colon a\to b$ the unique arrow; $L_{u_x}L_g=L_{u_x\cdot g}=L_{u_y}$\\
+Cor.~10 & \textbf{verified} & script: $\Z/2\times I_2$ not constant-trivializable, $I_2$ is\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Full list}
+\textbf{Errors (5).}
+\begin{enumerate}[label=\textbf{E\arabic*.},leftmargin=*]
+\item $H^1$ separates $\Z/2$ from $\{1,e\}$. This refutes the \S7 program and l.76--77, l.228 and
+l.313--314 (1.1).
+\item l.210--211: ``no property of the comultiplication $\delta$ can be equivalent to it''. This is
+false: constant out-degree \emph{is} a property of the comonoid $(p,\delta,\epsilon)$, as is any
+property of $U(p)$. Suggest: ``it is invariant under changing $\delta$ on a fixed $p$; hence it
+cannot be equivalent to any property that separates two comonoid structures on the same $p$, such
+as being a groupoid (Example~2).''
+\item l.253--254: ``no natural map'' is false (2.1).
+\item l.220--221: Lanfranchi Thm~4.20 is misquoted (4.1).
+\item l.156--160: ``Weil base change $T=(-)\otimes W$, computed \dots\ by substituting \dots\
+$Tp=p(y+\varepsilon v)$''. This is the same false identification as S2 of my 10-07 report, which
+you have already accepted and queued. It survives here in hedged form (``first-order shadow \dots\
+agree on the layer we use''). It has low impact, since only the rank-$|E_a|$ fibre is used
+downstream. Suggest: ``The one-hole derivative appears as the $\varepsilon$-coefficient of the
+substitution $p(y+\varepsilon v)$; we use only that the vertical fibre over shape $a$ has rank
+$|E_a|$.''
+\end{enumerate}
+\textbf{Wording (9):} 1.2, 1.3, 1.4, 2.2, 2.3, 3.1, 3.2, 3.3, and 4.2 together with 4.3 counted as
+one fairness item.
+
+\textbf{Minor (7).}
+\begin{enumerate}[label=\textbf{M\arabic*.},leftmargin=*]
+\item Sign, l.169--171. With $R(f)(x)=x+\delta_f$, the section condition $R(f)(x_{\mathrm{cod}})=
+x_{\mathrm{dom}}$ gives $\delta_f=\varphi(\mathrm{dom}\,f)-\varphi(\mathrm{cod}\,f)$, not
+$\varphi(\mathrm{cod})-\varphi(\mathrm{dom})$.
+\item Types, l.168 and l.173. Translations are not group homomorphisms, so $R$ is not a presheaf in
+$\mathrm{Ab}$. It is a torsor under the linear local system $A$, and $[\theta_R]$ lives in
+$H^1(S;A)$, not $H^1(S;R)$.
+\item Notation clash. $\delta$ denotes both the comultiplication and the 1-cochain (l.170--173).
+Rename the cochain, e.g.\ $\tau_f$.
+\item Theorem~7, l.295--297: ``a morphism composing to an identity is an inverse''. This sentence
+is false in general, since one-sided inverses exist (bicyclic monoid). The theorem is still true,
+because \emph{all} $L_g$ are surjective. Here is the fix. From $g\cdot h=\mathrm{id}_a$ and
+surjectivity of $L_h$, get $h\cdot k=\mathrm{id}_b$. Then $g=g\cdot h\cdot k=k$, so $h\cdot
+g=\mathrm{id}_b$.
+\item l.117 and l.260: $B\Z$ versus the free loop $B\N$, and $D=\Z$ (2.4).
+\item $W=\Z[\varepsilon]/\varepsilon^2$ here (l.151), but the uniqueness note works over
+$\N\oplus\N\varepsilon$. Pick one, or say why both are fine for Theorem~1.
+\item Example~5, l.251: the ``rigid-twist category'' is used but not defined. Give one line, or a
+locator in [9]/[10].
+\end{enumerate}
+
+\section*{What I would keep for Strathclyde}
+These are clean and true:
+\begin{enumerate}[leftmargin=*]
+\item $U$-blindness (Theorem~1 with E2 fixed).
+\item $\delta$-translations detect groupoids and thin groupoids (Theorems~7 and~9, Corollary~10).
+\item $[\theta_R]$ and $[\omega]$ are independent (Theorem~4, with 2.1 and 2.3).
+\end{enumerate}
+Present the ladder as ``$U$ (blind) $<$ invariants reading composable pairs'', with two
+independent cohomological anchors $H^1$ and $H^2$ in the second layer. Then present ``does
+cohomological degree stratify detection power above zero?'' as the open question. As currently
+stated, it has a counterexample at degree one.
+
+\end{document}
