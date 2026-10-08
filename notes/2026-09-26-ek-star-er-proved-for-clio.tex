@@ -18,7 +18,7 @@
 
 \title[The $e_k\star e_r$ Pieri rule for all $k$]{The $e_k\star e_r$ Pieri rule for all $k$: parabolic kernel, chain factorization, and a one-index $q$-series identity}
 \author{Rick}
-\date{2026-09-26}
+\date{2026-09-26, revised 2026-10-08}
 
 \begin{document}
 
@@ -27,7 +27,7 @@ For every $k\ge1$, $r\ge0$ and every number of variables $m\ge0$, we prove
 \[
 t^{-\binom k2}e_k(Y)\bullet e_r=\sum_{b=0}^{k}s^b\,F_{k-b}(t^{r-b})\,e_b\,e_{r+k-b},\qquad s=q^{-1},
 \]
-with the explicit polynomial $F_n$ defined in \eqref{eq:c} below. Via Hikita's Definition~3.4 and Lemma~3.3 (arXiv:2503.23597), the left side is $e_k\star e_r$. The cases $k=1$ and $k=2$ recover Hikita's Theorem~3.12 and our $W_r$. The cases $k=3$ and $k=4$ recover the Day~193 and Day~195 closed forms, which are now proved for all $r$.
+with the explicit polynomial $F_n$ defined in \eqref{eq:c} below. Via Hikita's Definition~3.4 and Lemma~3.3 (arXiv:2503.23597), the left side is $e_k\star e_r$ (modulo R0; see the revision box). The cases $k=1$ and $k=2$ recover Hikita's Theorem~3.12 and our $W_r$. The cases $k=3$ and $k=4$ recover the Day~193 and Day~195 closed forms, which are now proved for all $r$.
 \end{abstract}
 
 \maketitle
@@ -35,13 +35,27 @@ with the explicit polynomial $F_n$ defined in \eqref{eq:c} below. Via Hikita's D
 \begin{center}
 \begin{tabular}{ll}
 \textbf{Author:} & Rick\\
-\textbf{Date:} & 2026-09-26\\
+\textbf{Date:} & 2026-09-26 (revised 2026-10-08)\\
 \textbf{Recipient:} & Clio\\
 \textbf{Source:} & Corresponds to work-in-progress commit \texttt{7682bfd}\\
 & {\footnotesize(\texttt{proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md}, \texttt{scripts/day207b/})}\\
 \textbf{Revised:} & 2026-09-30: Clio review (UID~301): ordering in $e_k(Y)$; $t=0$ threshold $r\ge k-1$.\\
+& 2026-10-08: Clio review of 2026-10-05 (UID~325/326), F1--F4 below.\\
+\textbf{This revision:} & 2026-10-08, work-in-progress commit \texttt{WIPHASH}\\
 \end{tabular}
 \end{center}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{Revision 2026-10-08.} Clio (review of 2026-10-05) found four losses between the proof source (\texttt{proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md}, ll.~190--210) and the 2026-09-30 PDF, all in the proof of the Step Lemma (\S5). The mathematics was correct in the source; each item below is restored from it. Thanks to Clio.
+\begin{itemize}
+\item[F1.] ``apply Lemma~2'' pointed at this note's Key Lemma. Now reads \emph{Day~205b Lemma~2} (the residue lemma $(1-t)\sum_iX_i^n\prod_{j\ne i}a_{ij}=q_n$, $n\ge1$), stated in place.
+\item[F2.] The hypothesis $g_c(0)=0$ was dropped; without it the $\Omega$-lemma is false (off by $[m]_t$ at $n=0$). Restored, with the check that both pieces of the split vanish at $u=0$.
+\item[F3.] Restored ``coefficientwise in $z$'' (justifying $\Omega$ on $g_c$, which has a pole at $u=-1/\gamma$) and ``for $m=0$ both sides are $0$''.
+\item[F4.] In (b), the manifestly polynomial form $[w^b]P=\sum_{n>b}(\dots)$ is now printed first, with the reason it equals $-\sum_{n\le b}(\dots)$.
+\end{itemize}
+Also restored the label (R) on the Recursion lemma, and the scope of the $\star$-reading (Clio, UID~326): the operator identity of Theorem~\ref{thm:main} is proved; its reading as $e_k\star e_r$ rests on Hikita Def.~3.4/Lemma~3.3 \emph{and} bijectivity of $q_{(m)}$ (R0), which is not proved here.}}
+\medskip
 
 \section{Conventions and statement}
 
@@ -171,7 +185,7 @@ Let $\varphi(u)=u(1+suz)/(1+uz)$. By $(A_k)$ and $(K_k)$,
 \]
 This holds for all $m\ge0$; both sides vanish when $m<k$. Let $T_k$ denote the right side of Theorem~\ref{thm:main}.
 
-\begin{lemma}[Recursion]
+\begin{lemma}[Recursion (R)]
 For $k,m\ge1$,
 \[
 [k]\,\Gamma_k(X)=\sum_iX_i(1+sX_iz)\prod_{j\ne i}a_{ij}\,\Gamma_{k-1}(\hX_i).
@@ -194,18 +208,36 @@ Let $\gamma=t^jz$. Expand
 \[
 e_b(\hX_i)=\sum_c(-X_i)^ce_{b-c},\qquad E(\hX_i;\gamma)=\frac{E(\gamma)}{1+\gamma X_i},
 \]
-and split
+Then the term $N'_{jb}e_b(\hX_i)z^{b-k+1}E(\hX_i;\gamma)$ of $T_{k-1}(\hX_i)$, multiplied by $X_i(1+sX_iz)$, becomes
 \[
+N'_{jb}\,z^{b-k+1}E(\gamma)\sum_c(-1)^ce_{b-c}\,g_c(X_i),\qquad
+g_c(u)=\frac{u^{1+c}(1+suz)}{1+\gamma u},
+\]
+and we split
+\[
+g_c(u)=st^{-j}u^{1+c}+(1-st^{-j})\frac{u^{1+c}}{1+\gamma u},
+\qquad\text{using}\qquad
 \frac{1+suz}{1+\gamma u}=st^{-j}+\frac{1-st^{-j}}{1+\gamma u}.
 \]
-Now apply Lemma~2 in the form $\sum_ig(X_i)\prod_{j\ne i}a_{ij}=(1-t)^{-1}\Omega[g]$, where $\Omega[u^n]=q_n$ for $n\ge1$. Two facts evaluate the result:
+The coefficients $e_{b-c}$ are now fully symmetric, and $g_c(0)=0$; indeed both pieces of the split vanish at $u=0$, since each carries the factor $u^{1+c}$ with $c\ge0$. So \emph{Day~205b Lemma~2} (the residue lemma $(1-t)\sum_iX_i^n\prod_{j\ne i}a_{ij}=q_n$ for $n\ge1$, i.e.\ Macdonald III (2.10); not Lemma~2 of this note) applies \emph{coefficientwise in $z$}:
+\[
+\sum_ig(X_i)\prod_{j\ne i}a_{ij}=(1-t)^{-1}\Omega[g],\qquad \Omega[u^n]:=q_n\quad(n\ge1),\qquad\text{valid for }g(0)=0.
+\]
+Here ``coefficientwise in $z$'' is what licenses applying $\Omega$ to $g_c$, which has a pole at $u=-1/\gamma$: since $\gamma=t^jz$, each coefficient of $z^N$ in $g_c(u)$ is a polynomial in $u$ with zero constant term. The hypothesis $g(0)=0$ is load-bearing: for $g=1$ one gets $(1-t)\sum_i\prod_{j\ne i}a_{ij}=1-t^m$, not $q_0=1$ (off by $[m]_t$). For $m=0$ both sides are $0$ (empty sum on the left; $q_n=0$ for $n\ge1$ on the right). Two facts evaluate the result:
 \begin{enumerate}[label=(\alph*)]
-\item $\sum_c(-1)^ce_{b-c}q_{c+1}=(1-t^{b+1})e_{b+1}$;
-\item $\displaystyle E(\gamma)\sum_c(-1)^ce_{b-c}\,\Omega\!\left[\frac{u^{1+c}}{1+\gamma u}\right]
-=[w^b]\,\frac{E(w)E(t\gamma)-E(\gamma)E(tw)}{w-\gamma}$\\
-$\displaystyle\qquad=-\sum_{n\le b}e_n\gamma^{n-1-b}\bigl(E(t\gamma)-t^nE(\gamma)\bigr).$
+\item \emph{The $s$-part.} $\sum_c(-1)^ce_{b-c}q_{c+1}=(1-t^{b+1})e_{b+1}$; this is $[y^{b+1}]$ of $Q(y)E(-y)=E(-ty)$.
+\item \emph{The pole part.} Since $\sum_c(-1)^ce_{b-c}u^c=[w^b]E(w)/(1+uw)$, and $\Omega[u/((1+wu)(1+\gamma u))]=\sum_{a,p\ge0}(-w)^a(-\gamma)^pq_{1+a+p}=(Q(-\gamma)-Q(-w))/(w-\gamma)$, using $E(x)Q(-x)=E(tx)$ twice gives
+\[
+E(\gamma)\sum_c(-1)^ce_{b-c}\,\Omega\!\left[\frac{u^{1+c}}{1+\gamma u}\right]=[w^b]\,P(w,\gamma),\qquad
+P(w,\gamma):=\frac{E(w)E(t\gamma)-E(\gamma)E(tw)}{w-\gamma}.
+\]
+$P$ is a polynomial, since its numerator vanishes at $w=\gamma$. Writing the numerator as $\sum_ne_nw^n\bigl(E(t\gamma)-t^nE(\gamma)\bigr)$ gives the manifestly polynomial form
+\[
+[w^b]P=\sum_{n>b}e_n\gamma^{n-1-b}\bigl(E(t\gamma)-t^nE(\gamma)\bigr)
+=-\sum_{n\le b}e_n\gamma^{n-1-b}\bigl(E(t\gamma)-t^nE(\gamma)\bigr).
+\]
+The two forms agree because the full sum over $n$ is $\gamma^{-1-b}\bigl(E(\gamma)E(t\gamma)-E(t\gamma)E(\gamma)\bigr)=0$. The second form displays only apparent poles $\gamma^{n-1-b}$; the first shows there are none.
 \end{enumerate}
-For (b), first note that $\Omega[u/((1+wu)(1+\gamma u))]=(Q(-\gamma)-Q(-w))/(w-\gamma)$; then use $E(x)Q(-x)=E(tx)$.
 
 Write $N'_{jb}=s^bt^{-(k-1)j}c(k-1-b,j)$ for the coefficients of $T_{k-1}$, and put $n=k-b'$. The coefficient of $e_{b'}z^{b'-k}E(t^jz)$ on the left side is then $(1-t)^{-1}s^{b'}t^{-kj}$ times
 \[
