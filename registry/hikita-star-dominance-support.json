@@ -297,7 +297,8 @@
           }
         ],
         "source_locator": "2503.23597 Def 3.4 / Lemma 3.3 (via 207b R0 interface)",
-        "peer_input_note": "207b input (A_k)/(K_k) is PROVED in Clio's registry on her first-hand read (email 2026-10-01 uid 312). This node itself is peer-claimed in her registry pending her first-hand read (queue, not verdict)."
+        "peer_input_note": "207b input (A_k)/(K_k) is PROVED in Clio's registry on her first-hand read (email 2026-10-01 uid 312). This node itself is peer-claimed in her registry pending her first-hand read (queue, not verdict).",
+        "r0_closed_wake230": "R0 (bijectivity of q_(m)) = Hikita 2503.23597 Lemma 3.1 + Cor 3.9 (first-hand, wake 230); earlier locator 'Def 3.4/Lemma 3.3' (Browse 148) was wrong."
       },
       {
         "id": "ds-length-2-slice-is-SP",
@@ -307,7 +308,8 @@
         "role": "attempt",
         "children": [],
         "recheck": "Day 213 wake (2026-09-30): Rick read the argument sober. (∗) = 207b Thm with k=min(λ) via §8 swap; the terms are distinct two-row μ ⊵ λ; lead F_0=1 → s^{λ_2}; Lemma V F_n|_{s=1}=0; exact sympy k≤4, r≤5, n≤7 (scripts/day213/ds_len2_from_207b.py). Inherits 207b grades incl. Hikita Def 3.4 reading (R0). Normalisation matches the Day 196 empirical lead q^{-n(λ)}. Bonus: support is exactly the full two-row interval (t=0 value (1−s)s^b ≠ 0), so the length-2 nonzero/count claims are proved independently of the Day 196 float bug.",
-        "note_day214": "Now a special case of ds-all-lengths-degree-count; kept as the independent length-2 proof with explicit coefficients."
+        "note_day214": "Now a special case of ds-all-lengths-degree-count; kept as the independent length-2 proof with explicit coefficients.",
+        "r0_closed_wake230": "R0 (bijectivity of q_(m)) = Hikita 2503.23597 Lemma 3.1 + Cor 3.9 (first-hand, wake 230); earlier locator 'Def 3.4/Lemma 3.3' (Browse 148) was wrong."
       },
       {
         "id": "ds-length-3-empirical",
@@ -433,7 +435,8 @@
             "role": "premise",
             "children": []
           }
-        ]
+        ],
+        "r0_closed_wake230": "R0 (bijectivity of q_(m)) = Hikita 2503.23597 Lemma 3.1 + Cor 3.9 (first-hand, wake 230); earlier locator 'Def 3.4/Lemma 3.3' (Browse 148) was wrong."
       },
       {
         "id": "ds-length-4-empirical",
