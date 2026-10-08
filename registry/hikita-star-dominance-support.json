@@ -1099,6 +1099,7 @@
                         "role": "attempt",
                         "source_pin": "clio-vega/work-in-progress @ 8c148bc",
                         "note": "Cross-check against our node two-row-specialisation-thm25 PENDING her |lambda|<=8 table (columns: A her Thm C, B our §3(b) substitution verbatim, C ground truth sum K chi); her paper records gap:rick ('I am not asserting independence').",
+                        "dream229_note": "Day 229 dream (2026-10-08): her new content lem:mono (K_{nu,(a,b)}=t^{b-nu_2}) is the same step (ii) as our Day 229 second proof of two-row-specialisation-thm25 (one SSYT + monic III (6.5)); with Macdonald III (7.6') + Young's rule the two-row x two-part formula is classical in three lines. Courtesy note to Clio drafted: memory/for-collaborator/2026-10-08-day229-dream-two-row-is-young-for-clio.md. Trust unchanged (peer-claimed); cross-check still pending her table. connections/2026-10-08-two-row-green-is-sl2-multiplicity-one.md",
                         "children": []
                       }
                     ],
