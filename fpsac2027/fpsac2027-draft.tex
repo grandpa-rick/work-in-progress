@@ -68,13 +68,13 @@ At valuation $1$ the leads are governed by pairing with $p_n$, evaluated by a pr
 \section{Background: Hikita's product and Hall--Littlewood notation}\label{sec:bg}
 %% ===================================================================
 
-\paragraph{Notation.} $\Lam=\mathbb{Q}(t)[e_1,e_2,\dots]$; $I=(e_1,e_2,\dots)$ is the augmentation ideal, so $I^b=\mathrm{span}\{e_\mu:\ell(\mu)\ge b\}$. For $G$ homogeneous of degree $n$, $\lin G:=[e_n]G$. $[m]=[m]_t=(1-t^m)/(1-t)$, $\varphi_m=\prod_{i=1}^m(1-t^i)$, $n(\lambda)=\sum_i(i-1)\lambda_i$, $\trianglerighteq$ is dominance. $P_\lambda(x;t)$, $Q_\lambda=b_\lambda P_\lambda$, $Q'_\lambda$ are the Hall--Littlewood functions of~\cite[Ch.~III]{Macdonald95}, with the Hall pairing $\langle\cdot,\cdot\rangle$ and the HL pairing $\langle p_\lambda,p_\mu\rangle_t=\delta_{\lambda\mu}z_\lambda\prod_i(1-t^{\lambda_i})^{-1}$.
+\paragraph{Notation.} $\Lam=\mathbb{Q}(s,t)[e_1,e_2,\dots]$; $I=(e_1,e_2,\dots)$ is the augmentation ideal, so $I^b=\mathrm{span}\{e_\mu:\ell(\mu)\ge b\}$. For $G$ homogeneous of degree $n$, $\lin G:=[e_n]G$. $[m]=[m]_t=(1-t^m)/(1-t)$, $\varphi_m=\prod_{i=1}^m(1-t^i)$, $n(\lambda)=\sum_i(i-1)\lambda_i$, $\trianglerighteq$ is dominance. $P_\lambda(x;t)$, $Q_\lambda=b_\lambda P_\lambda$, $Q'_\lambda$ are the Hall--Littlewood functions of~\cite[Ch.~III]{Macdonald95}, with the Hall pairing $\langle\cdot,\cdot\rangle$ and the HL pairing $\langle p_\lambda,p_\mu\rangle_t=\delta_{\lambda\mu}z_\lambda\prod_i(1-t^{\lambda_i})^{-1}$.
 
-\paragraph{Hikita's product.} $F\star G:=\mathfrak{q}(\mathfrak{q}^{-1}F\cdot\mathfrak{q}^{-1}G)$, where $\mathfrak q$ is the level-one polynomial representation map $F(Y)\mapsto F(Y)\bullet 1$ of the affine Hecke algebra of $GL_m$, stable in $m$ \cite[\S3.1, Def.~3.4, Cor.~3.10]{Hikita25}. We use $s=q^{-1}$; then Hikita's Pieri rule \cite[Thm.~3.12]{Hikita25} reads $e_1\star e_r=(1-s)[r+1]e_{r+1}+s\,e_1e_r$. Here $[m]=[m]_t$.
+\paragraph{Hikita's product.} $F\star G:=\mathfrak{q}(\mathfrak{q}^{-1}F\cdot\mathfrak{q}^{-1}G)$, where $\mathfrak q$ is the level-one polynomial representation map $F(Y)\mapsto F(Y)\bullet 1$ of the affine Hecke algebra of $GL_m$. By \cite[Lemma~3.1, Cor.~3.9]{Hikita25}, $\mathfrak q$ is a $\mathbb{Q}(q,t)$-linear isomorphism, compatible with $m\to m-1$, so $\star$ is well defined and restricts to $\Lam$ \cite[Def.~3.4, Lemma~3.2, Cor.~3.10]{Hikita25}. All structure constants below lie in $\mathbb{Q}[s,t]$ (\cref{thm:DS}); specialisations in $s$ are specialisations of these. We use $s=q^{-1}$; then Hikita's Pieri rule \cite[Thm.~3.12]{Hikita25} reads $e_1\star e_r=(1-s)[r+1]e_{r+1}+s\,e_1e_r$.
 
 % registry: subset-formula-Ak-Kk, grade: proved
 \begin{proposition}[Subset formula]\label{prop:subset}
-For $F\in\Lam_N=\mathbb{Q}(t)[x_1,\dots,x_N]^{S_N}$, $N\ge\deg$,
+For $F\in\Lam_N=\mathbb{Q}(s,t)[x_1,\dots,x_N]^{S_N}$, $N\ge\deg$,
 \[ e_k\star F=E_kF:=\sum_{|A|=k}c_A\,X_A\,F(X_{A^c},sX_A),\qquad c_A=\prod_{i\in A,\,j\notin A}\frac{x_i-tx_j}{x_i-x_j},\quad X_A=\prod_{i\in A}x_i. \]
 \end{proposition}
 \begin{proof}[Proof idea]
