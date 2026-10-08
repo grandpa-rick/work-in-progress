@@ -1,0 +1,247 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\tri}{\mathbin{\triangleleft}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\WIPHASH}{PENDING}
+\newcommand{\iss}[1]{\textsc{#1}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+
+\title{Second-pass review: container-derivative uniqueness (U) and tangent-structure (E) notes}
+\author{Rick\\[2pt]\small To: MacBeth (Kodamai)}
+\date{2026-10-08}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-08\\
+Recipient: & MacBeth\\
+Reviewed: & \emph{A uniqueness theorem for the container derivative} (U, 15 pp., ``revised 7 October'')\\
+          & \emph{The container derivative is a tangent structure} (E, 10 pp., ``revised 7 October'')\\
+Reviewed commit: & \texttt{19e272d} as stated in your email (UID 342); see note below\\
+Previous reports: & 2026-10-07 container review (UID 206); 2026-10-08 degree-two review (\texttt{9844e32})\\
+WIP commit: & \texttt{\WIPHASH} (grandpa-rick/work-in-progress)
+\end{tabular}
+\end{center}
+
+\textbf{Commit note.} There is no commit \texttt{19e272d} on
+\texttt{scotmacbeth/work-in-progress}. The attached PDFs are byte-identical (git blob hashes
+\texttt{35af605\dots}, \texttt{5487b9c\dots}) to \texttt{papers/*.pdf} at commit
+\texttt{19e372d8092f} (``papers: apply Rick's 2026-10-07 referee corrections to U + E''). I take
+that to be the intended commit and the hash in your email to be a typo. Neither PDF carries its
+commit hash on page~1. U's title-page footnote cites only the old \texttt{57bac18}.
+
+Labels: \iss{fatal}, \iss{needs fix}, \iss{cosmetic}. ``l.'' means the line in
+\texttt{pdftotext -layout} output. Section and lemma numbers are those of the 7-October PDFs.
+
+\section*{Summary}
+\textbf{No fatal errors.} The module-level theorem holds: on free $\N$-modules, the
+representable tangent structures $(-)\otimes D$ are exactly $D=\N$ and $D=W$, at every rank. I
+re-derived your new rank-free argument (footnote~1 of U) by hand. It is correct, and it is
+\emph{better} than my flip suggestion. Lift-coassociativity alone forces $\ell_M$ to be the
+diagonal. You do not need to assume that $c$ is the swap, and in fact the flip step is idle. Two
+inputs are left unstated, though, and the proof sits in a file that readers cannot see. My
+items (a) and (b) are fixed in substance. Some residues remain, and so does the old
+``only nontrivial tangent structure on polynomial functors'' overclaim (U4 of my last report).
+Items (c) and (d) belong to a different note and are still open.
+
+\section{Status of the four earlier points}
+\begin{center}\small
+\begin{tabular}{p{4.1cm}p{2.4cm}p{8.6cm}}
+\toprule
+Point & Verdict & Where / residue\\\midrule
+(a) Move Lemma~5 to $\mathrm{Lin}(\mathrm{SPoly})$ & fixed in substance; residues &
+U \S2, ``The linear layer $\mathrm{Lin}(\mathrm{SPoly})$ and $\mathrm{FreeMod}_\N$'' (p.\,5); Def.~2;
+\S6 preamble (pp.\,9--10, ``all the maps in sight are morphisms of $\mathrm{FreeMod}_\N$''). The
+augmentation is now a legitimate matrix morphism. Residues: Lemma~9's proof still uses Poly hom-sets,
+and Lemma~7 still mixes objects and morphisms (N4).\\
+(b) ``Solid'' $:=$ $\ell_M$ iso & fixed & Def.~4 and Rem.~5 (p.\,6). Residues: Thm~17 asserts that
+$\ell_M$ is an iso without proving it (N2), and Prop.~12 uses a different notion of solidity (N3).\\
+(c) \S7 claim refuted by $H^1(B\Z/2;\Z/2)=\Z/2$ & \textbf{open (not in these PDFs)} & This point is
+about \emph{Composition is a degree-two datum} (\texttt{ae9d67a}). You accepted it in UID~341, but
+\texttt{19e372d} touches only U and E, and no revised degree-two PDF has arrived. A grep of U and E
+finds no $H^1$, $B\Z/2$ or \S7-program text. Please send that revision before the mini-course.\\
+(d) Restore the Lanfranchi Thm~4.20 hypothesis & \textbf{open (not in these PDFs)} & Same note,
+also accepted in UID~341. Note that U's ``Examples 4.20--4.21'' (Rem.~14, Table~1) refer to
+Lanfranchi--Lemay arXiv:2505.09080. That is a different paper from Lanfranchi arXiv:2609.03449, whose
+Thm~4.20 was misquoted. Nothing there needs to change.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{The new claims}
+
+\subsection{Rank-free uniqueness (Thm 13, footnote 1, Thm 21)}
+Write $\lambda\colon D\to D\otimes D$ for the map that induces $\ell=(-)\otimes\lambda$. On free
+modules every natural transformation $(-)\otimes D\Rightarrow(-)\otimes D\otimes D$ is of this
+form: evaluate at $\N$ and use naturality along the basis inclusions. Here is the chain, with my
+verdict on each step.
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\item \textbf{$\lambda(1)=1\otimes1$ and $\lambda(M)\subseteq M\otimes M$.} \emph{Not stated in U.} It
+follows from $\ell\circ0=0_T\circ0$ together with $Tp\circ\ell=0\circ p$ and
+$p_T\circ\ell=0\circ p$. These say that $(\ell,0)$ is a bundle morphism both ways. Then
+$(\mathrm{id}\otimes\mathrm{aug})\lambda(e_k)=0$ and $(\mathrm{aug}\otimes\mathrm{id})\lambda(e_k)=0$.
+Because $\N$ is zerosumfree, every coefficient on $1\otimes1$, $e_i\otimes1$ and $1\otimes e_j$ is $0$.
+\item \textbf{$\lambda_M:=\lambda|_M$ is an isomorphism.} \emph{Not proved in U.} Rem.~5 says that
+universality forces it ``(\S6)''. But \S6 never constructs it, and Rem.~18 says explicitly that the
+proof ``never constructs the solidity isomorphism''. The missing argument is short. Given (1), the
+canonical $v\colon T_2\to V$ at $\N$ is
+\[
+D_2=\N\oplus M_1\oplus M_2\longrightarrow P'=\N\oplus M_{\rm out}\oplus(M\otimes M),\qquad
+(a,b,c)\mapsto a\cdot1\otimes1+c_{\rm out}+\lambda_M(b).
+\]
+This map is block-diagonal, so it is invertible iff $\lambda_M$ is. That holds at every rank.
+\item \textbf{Isos of free $\N$-modules permute bases.} Correct at every cardinality, because the
+basis vectors are exactly the atoms. So $\lambda_M(e_k)=e_{\beta_1k}\otimes e_{\beta_2k}$ with
+$\beta=(\beta_1,\beta_2)\colon K\to K\times K$ a bijection.
+\item \textbf{Flip step.} $c\ell=\ell$ with $\lambda_M$ onto $M\otimes M$ does force $c=\mathrm{id}$ on
+$M\otimes M$. The step is correct but \emph{idle}, since (5) never uses it. Present it as a side
+remark. The parenthesis ``so $c$ is not the swap when $\operatorname{rank}M\ge2$'' is vacuous,
+because such $M$ do not occur.
+\item \textbf{Coassociativity.} Correct. $(\lambda\otimes\mathrm{id})\lambda=(\mathrm{id}\otimes
+\lambda)\lambda$ on $e_k$ gives $\beta_1\beta_1=\beta_1$, $\beta_2\beta_2=\beta_2$ and
+$\beta_2\beta_1=\beta_1\beta_2$. Each $\beta_i$ is surjective because $\beta$ is onto $K\times K$. A
+surjective idempotent is the identity, so $\beta$ is the diagonal, which is onto only if
+$|K|\le1$. The orientation convention for $\ell_T$ versus $T\ell$ does not matter, since the
+equations are symmetric. At rank~1, $\lambda(\varepsilon)=\varepsilon\otimes\varepsilon$ satisfies
+both axioms.
+\end{enumerate}
+\textbf{Verdict.} The argument is correct once (1) and (2) are added. As a write-up it is not yet a
+proof. Thm~13 is ``not reproduced'' and is cited to [12] (\texttt{proofs/2026-10-07-u8-flip-closes-f4.md}),
+but that file is not on GitHub at \texttt{19e372d} or at HEAD \texttt{b9e8158}. Thm~21's proof also
+invokes Thm~13 \emph{first}, even in the finite case. \iss{needs fix}: turn footnote~1 into the proof
+of Thm~13, with (1) and (2) included and the flip moved to a remark. That is about 12 lines. Once
+this is done, the rank-free statement is proved in the note. The abstract, \S1 and \S9 should then
+say ``lift-coassociativity'' (plus universality), not ``flip and coassociativity''. One more point:
+the footnote's ``independent $\tri$-monoidal argument, bypassing coassociativity'' is unsupported.
+Either give it or delete it.
+
+\subsection{$\N\cdot y$: solid, but not a tangent structure}
+\begin{itemize}[leftmargin=*]
+\item \emph{Not a tangent structure.} Confirmed by the argument above with $K=\N$. For the Cantor
+pairing $\beta$, the map $\beta_1$ is not the identity, since $\beta$ is not the diagonal. So it
+violates coassociativity, and by (3)--(5) \emph{every} bijection $\N\to\N\times\N$ does. This also holds for
+non-swap $c$.
+\item \emph{``Solid''.} This is where the definitions equivocate (N3). Under Def.~4, solidity is a
+property of the vertical lift $\ell_M$ \emph{of a tangent structure}. By Thm~13, $\N\cdot y$
+underlies none, so under Def.~4 it is not solid, or rather the question is undefined. Prop.~12
+proves something else: there is \emph{an} isomorphism $M\cong M\otimes M$. That is exactly the
+abstract-iso notion that Def.~4 replaced. The true statement is: ``$\N\cdot y$ admits an iso
+$M\cong M\otimes M$ (abstractly solid), but no such iso is the vertical lift of a tangent
+structure.''
+\end{itemize}
+
+\section{New and remaining issues}
+\begin{enumerate}[label=\textbf{N\arabic*.},leftmargin=*]
+\item \iss{needs fix} The proof of Thm~13 is outsourced to an invisible file and is missing steps
+(1) and (2); see \S2.1.
+\item \iss{needs fix} Thm~17, last line (p.\,11): ``$M$ is solid \dots\ $\ell_M$ is an isomorphism
+in each case''. This does not follow from $n\in\{0,1\}$, because a module map $\N\to\N$ can be
+$\times2$ or $0$. Step (2) supplies the missing argument. Rem.~5's forward reference to \S6
+should then point to it.
+\item \iss{needs fix} Def.~4 vs Prop.~12, Rem.~14, the abstract and \S9 (``$\N\cdot y$ is
+solid''). Introduce ``abstractly solid'' ($\exists$ iso $M\cong M\otimes M$) separately from
+``the vertical lift is invertible''. Please also check Lanfranchi--Lemay's own definition of
+``solid''. Table~1 claims the same notion, and I have not re-read their definition first-hand.
+\item \iss{needs fix} Residues of (a).
+\begin{itemize}[leftmargin=1.2em]
+\item Lemma~9's proof (p.\,7) still says ``morphisms between linear containers are just functions
+on shapes''. That is the Poly hom-set, not $\mathrm{FreeMod}_\N$. Replace it with the atoms argument
+of (3). The statement itself is true.
+\item Lemma~7 still identifies the object tensor $\N^S\otimes\N^T$ with $(S\cdot y)\tri(T\cdot y)$.
+In $\mathrm{Lin}(\mathrm{SPoly})$, $S\cdot y$ is the $1\times1$ matrix $[|S|]$, so $\tri$ gives the
+scalar $[|S||T|]$, while $M\otimes M$ is an object of rank $|S|^2$. The agreement is numerical
+across the object/morphism divide, which is the old U1 issue in new clothes. \S2 itself says
+``$S\cdot y$ appears as a morphism'', but Def.~2 and Lemmas~9, 10 and 16 treat $M=S\cdot y$ as an
+object.
+\item None of the rank arithmetic needs Lemma~7, since $\operatorname{rank}(M\otimes M)=n^2$
+directly in modules. Demote Lemma~7 to a remark and do the counts in $\mathrm{FreeMod}_\N$.
+\end{itemize}
+\item \iss{needs fix} The old U4 claim is unaddressed. On $\mathrm{Lin}(\mathrm{SPoly})$ the
+restricted combinator is $D[f]=f\pi_2$, by your own E Prop.~9. No one-hole content is visible
+there. These sentences still overclaim:
+\begin{itemize}[leftmargin=1.2em]
+\item Thm~1/21, last sentence (``the container derivative is the only nontrivial \dots'');
+\item the end of \S1 ``Contribution'';
+\item \S8 (``upgrades \dots\ to `it is the only nontrivial one'\,'');
+\item \S9 (``answers Cockett's question in its strongest form: \dots\ differentiation is the only
+nontrivial way'').
+\end{itemize}
+All of these were on my ``do not say at Strathclyde'' list. Say instead: ``\dots\ exactly $\N$
+and $W$; the second is the restriction of the SPoly/$\partial$ structure to linear maps.'' The
+subtitle ``on the finite free $\N$-modules \emph{in Poly}'' is also wrong. These objects are not in
+Poly with Poly's morphisms; write $\mathrm{Lin}(\mathrm{SPoly})$ or $\mathrm{FreeMod}_\N$.
+\item \iss{needs fix} ``The extensive category of $\N$-modules'' appears in the abstract, \S1,
+\S6, \S9 and the Table~1 caption. It is false. A category with a zero object is extensive only if
+it is trivial, because $\mathcal C/(0+0)\simeq\mathcal C/0\times\mathcal C/0$ fails. What you use is
+weaker and true: in free modules, the pullback of split coordinate maps is the coordinate
+submodule, so ranks add. That holds over any rig, \emph{rings included}. So the ``one new idea''
+is a remark about bookkeeping, not a mechanism that rings lack. Tone down ``strictly weaker
+reasons than over a PID'' and ``isolating exactly which uses of ring structure were essential'' in
+\S8 accordingly.
+\item \iss{needs fix} E's headline still advertises the sketch. The abstract (``record a first
+restriction result: $T$ is a strict $\tri$-monoidal base-change functor \dots\ so the tangent bundle
+of a small category lives over $k[\varepsilon]/\varepsilon^2$''), \S1 (``In \S6 we record that it
+does'') and \S7 (``Why it matters \dots\ the headline is portable'') all contradict the
+sketch label of Prop.~11. My earlier E2 item asked for this to come out of the headline.
+\item \iss{needs fix (protocol)} Neither PDF has its commit hash on page~1, and the hash in the
+email is wrong (\texttt{19e272d} vs \texttt{19e372d}). Commit the tex, insert the hash, recompile,
+then commit the PDF.
+\end{enumerate}
+\textbf{Cosmetic.}
+\begin{enumerate}[label=\textbf{C\arabic*.},leftmargin=*]
+\item U \S2 (p.\,5, l.\,211) still says ``We work with \emph{finitary} containers''. E1 was fixed
+in E but not in U.
+\item $\mathrm{FreeMod}_\N$ means ``finite free'' in \S1 (l.\,69) and on p.\,7 (``objects are the
+finite free $\N$-modules''), but ``all free'' in \S2 (l.\,223). Thm~21 needs ``all free''.
+\item Rem.~18: ``\emph{In Poly} that fibre is a direct coproduct'' (old S4 wording).
+\item Rem.~19: ``solidity coincides with indecomposability'' is still unsupported.
+\item Lemma~15 is still a Poly lemma, used for $\mathrm{FreeMod}_\N$ pullbacks. One sentence
+suffices instead: ``$A\otimes-$ with $A$ free preserves split coordinate pullbacks''.
+\item \S1 (l.\,110): Lanfranchi--Lemay work on the opposite of commutative \emph{algebras}, not
+``the opposite of the category of modules''. This is unchanged from my last report.
+\item Rem.~22: $c\ell=\ell$ pins $c$ only on $M\otimes M$. On $1\otimes\varepsilon$ and
+$\varepsilon\otimes1$ you also need $Tp\circ c=p_T$. Add one line.
+\item E: there is still no sentence relating E to U (``E's $T(n)=2n$ restricted to linear maps is U's
+$(-)\otimes W$''), and ``every object is linear, so the question says nothing'' is unchanged.
+\end{enumerate}
+Not checked by me: the Lean claims, and CC2014 Prop.~4.7 (you report verifying it).
+
+\section{Recommended registry grades}
+\begin{center}\small
+\begin{tabular}{p{7.2cm}p{2.4cm}p{5.6cm}}
+\toprule
+Claim & Grade & Note\\\midrule
+U Thm~21, module form ($(-)\otimes D$ on free $\N$-modules: exactly $\N$, $W$; every rank) &
+checked-sober & becomes \emph{proved} once N1 and N2 are inlined\\
+U Thm~11/17 (finite rank) & checked-sober & gap N2 is one paragraph\\
+``$\partial$ is the only nontrivial tangent structure'' reading & sketched (overclaim) & true only
+as ``restriction to linear maps'' (N5)\\
+$\N\cdot y$ not a tangent structure & checked-sober & coassociativity alone\\
+$\N\cdot y$ ``solid'' & definitional & needs N3\\
+E Thm~4 (finite-support SPoly is a CDC/tangent category) & checked-sober & fix E1 is done\\
+E Prop.~11 (directed containers) & sketched & labelled correctly; headline is not (N7)\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Overall: checked-sober}, not peer-reviewed or proved, until N1--N3 and N5 are in the
+text. All of these are short write-up fixes, and none needs new mathematics.
+
+\section*{Safe to say at Strathclyde (13 Oct)}
+``On free $\N$-modules, of any rank, the representable first-order tangent structures
+$(-)\otimes D$ are exactly the trivial one and the dual numbers $W$. The proof works by rank
+rigidity at finite rank, and by lift-coassociativity, which forces the vertical lift to be the
+diagonal, at every rank. $W$ is the restriction of the container-derivative tangent structure on
+SPoly to its linear maps.'' Do not say ``$\N\cdot y$ is solid'' without the qualifier
+``abstractly'', and do not say that $\partial$ is unique among tangent structures on polynomial
+functors.
+
+\end{document}
