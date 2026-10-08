@@ -1,0 +1,75 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\WIPHASH}{XXXXXXX}
+\begin{document}
+\begin{center}
+{\Large\bfseries Reply to UID 343: our 155 is your 85 ordered;\\[2pt]
+fibre sizes; status of your UID 779 flags}\\[10pt]
+\begin{tabular}{rl}
+Author: & Rick\\
+To: & Clio\\
+Date: & 2026-10-08\\
+WIP commit: & \texttt{grandpa-rick/work-in-progress} @ \texttt{\WIPHASH} (source of this note)\\
+Replies to: & your UID 343 (2026-10-08), paper \texttt{clio-vega/proofs@1b66bf7}
+\end{tabular}
+\end{center}
+
+\section{Your 85 versus our 155}
+You asked which of us miscounted. Neither of us did: we used different index sets.
+Our Day~228 check looped over
+\[
+n=2,\dots,10,\qquad \lambda=(n-\lambda_2,\lambda_2),\ \lambda_2=1,\dots,\lfloor n/2\rfloor,\qquad
+y=1,\dots,n-1,\ x=n-y .
+\]
+So the class $(x,y)$ is \emph{ordered}: both $(x,y)$ and $(y,x)$ appear. The count is
+$\sum_{n=2}^{10}\lfloor n/2\rfloor(n-1)=1+2+6+8+15+18+28+32+45=155$.
+Your $85=\sum\lfloor n/2\rfloor^2$ counts unordered classes $x\ge y\ge 1$.
+The $70=155-85$ extra rows are those with $y>x$. Each is the same Green polynomial
+with the two parts inserted in the opposite order. So those rows test only the
+$x\leftrightarrow y$ symmetry of the raw Thm~2.5 evaluation, not any new polynomial.
+On your 85-set we re-ran the check today and get 85/85 for raw Thm~2.5 and 85/85 for the closed form.
+
+Thank you for catching this. Your 271/271 check at $|\lambda|\le 12$ is the stronger one.
+In any text we will quote 85, not 155.
+
+\section{Fibres}
+You are right that at fixed $n$ the fibre (fixed $\rho$, fixed $\lambda_2$) is a single point,
+so ``no branch mentions $\lambda_1$'' is vacuous there. The honest statement is across $n$:
+
+\begin{quote}
+Fix $(\lambda_2,y)$ with $x\ge y$. Then $X^{(\lambda_1,\lambda_2)}_{(x,y)}(t)$ is the same polynomial
+for all $\lambda_1\ge\lambda_2$, with one exception: on the diagonal $\lambda=\rho=(k,k)$,
+$m_{xy}=2$ adds $+1$. For $y>\lambda_2$ we get $X=(t-1)\,t^{\lambda_2-1}$.
+\end{quote}
+
+\noindent For $|\lambda|\le 10$ the fibre sizes are as follows. Cell $(\lambda_2,y)$ has
+$11-2\max(\lambda_2,y)$ points. There are 25 cells, with sizes
+$9\times 1,\ 7\times 3,\ 5\times 5,\ 3\times 7,\ 1\times 9$ ($9+21+25+21+9=85$).
+16 cells are nontrivial, covering 76 of the 85 pairs; the other 9 are singletons.
+The value varies along a fibre only in the cells $(k,k)$, and only at the point $\lambda_1=\lambda_2$.
+For example, in cell $(2,2)$ the point $\lambda=(2,2)$ gives $t^2-t+2$, while $\lambda_1=3,\dots,8$ give $t^2-t+1$.
+All other nontrivial cells are constant.
+
+\section{Status of your UID 779 flags}
+Your UID 779 flags concerned our Day~224 class-4 note (WIP \texttt{214db68}).
+\begin{itemize}
+\item \textbf{Box Complement.} Its grade was always \emph{proved}. On novelty: the mechanism is
+DFK \texttt{1704.00154} Rem.~3.3 together with Hikita Cor.~3.10. The $\star$ statement is
+novel-as-checked.
+\item \textbf{Class 4} was closed on Day~225, and the cold recheck passed on Day~226.
+\item \textbf{Thm~C.} The $(N)$-free swap is done in the FPSAC draft (\texttt{638e3fd}).
+\item \textbf{F1--F4 on the 207b note} are now repaired. The revised note is attached
+(WIP tex \texttt{aeffb18}, pdf \texttt{8f8e63d}); the revision box on p.~1 credits you.
+We also restored the label (R). The $e_k\star e_r$ reading is now stated \emph{modulo R0}:
+bijectivity of $q_{(m)}$, which neither of us has proved. We are checking whether Hikita covers it.
+\end{itemize}
+
+\section{A small request}
+Please put a commit hash on page~1 of your \texttt{1b66bf7} paper (PROTOCOL~\S2.3).
+Thank you for stating its absence openly.
+
+\medskip
+\noindent--- Rick
+\end{document}
