@@ -387,7 +387,7 @@ At $t=0$, $(t;t)_n=1$, so every $\alpha_j$ and $c(n,j)$ is regular at $t=0$; $(s
 \noindent In the $(k,r)$-expansion of \cref{cor:pieri-ekr} with $r<k$, the terms with $b>r$ carry negative powers $t^{j(r-b)}$; the argument shows that these cancel once each monomial $e_be_{r+k-b}$ is collected with its partner $b'=r+k-b$.
 
 \begin{remark}[Other forms and earlier cases]
-A second, independent proof of the Pieri rule, in the form $e_k\star e_r=\sum_{y}s^yC_{k-y,r-y}e_{k+r-y}e_y$ with $C_{a,b}=(-1)^b\frac{[a+b]}{[a]}\pi_a(b)$, is given in \cref{sec:box} (\cref{cor:pieri}); it goes through the plethystic linear coefficient of \cref{thm:lin} and the Column Lemma. The two forms agree after collecting terms. The kernel form of $e_k(Y)$ on symmetric functions is classical in spirit (Macdonald's $D$-operators); what is new here is the level-one transfer $\pi^k$, the explicit coefficients, and the $\ell$-column rule.
+A second, independent proof of the Pieri rule, in the form $e_k\star e_r=\sum_{y}s^y\mathcal C_{k-y,r-y}e_{k+r-y}e_y$ with $\mathcal C_{a,b}=(-1)^b\frac{[a+b]}{[a]}\pi_a(b)$, is given in \cref{sec:box} (\cref{cor:pieri}); it goes through the plethystic linear coefficient of \cref{thm:lin} and the Column Lemma. The two forms agree after collecting terms. The kernel form of $e_k(Y)$ on symmetric functions is classical in spirit (Macdonald's $D$-operators); what is new here is the level-one transfer $\pi^k$, the explicit coefficients, and the $\ell$-column rule.
 \end{remark}
 
 %% ===================================================================
@@ -621,7 +621,7 @@ For $k\ge r\ge0$, with $L(a,b):=\dfrac{(1-t^{a+b})(t^{ab}-1)}{(1-t^a)(1-t^b)}$,
 Consequently $[(s-1)^1]e^\star_\lambda=\sum_{i<j}M_{\lambda_i\lambda_j}\,e_{\lambda\setminus\{\lambda_i,\lambda_j\}}$.
 \end{proposition}
 \begin{proof}
-$M_{kr}=[(s-1)^1]\,e_k\star e_r$. Use the form of the Pieri rule in \cref{cor:pieri} (\cref{sec:box}; its proof does not use \cref{prop:M}): $e_k\star e_r=\sum_{y=0}^{r}s^yC_{k-y,r-y}e_{k+r-y}e_y$. Since $\pi_a(b)|_{s=1}=\delta_{b0}$, every $C_{a,b}$ with $b\ge1$ vanishes at $s=1$; so the $y=r$ term $s^re_ke_r$ contributes $r\,e_ke_r$, and the term $y=r-j$, $j\ge1$, contributes $\partial_sC_{a,j}|_{s=1}$ with $a=k-r+j$. Now $\partial_s\pi_a(j)|_{s=1}=[u^j]\sum_{m<a}\frac{ut^m}{1+ut^m}=(-1)^{j-1}[a]_{t^j}$, so $\partial_sC_{a,j}|_{s=1}=-\frac{[a+j]}{[a]}[a]_{t^j}=L(a,j)$. For the second statement, $[(s-1)^1]E_{\lambda_1}\cdots E_{\lambda_\ell}(1)=\sum_i\prod_{j<i}e_{\lambda_j}\,D_{\lambda_i}\bigl(\prod_{j>i}e_{\lambda_j}\bigr)$; expand with the Leibniz rule.
+$M_{kr}=[(s-1)^1]\,e_k\star e_r$. Use the form of the Pieri rule in \cref{cor:pieri} (\cref{sec:box}; its proof does not use \cref{prop:M}): $e_k\star e_r=\sum_{y=0}^{r}s^y\mathcal C_{k-y,r-y}e_{k+r-y}e_y$. Since $\pi_a(b)|_{s=1}=\delta_{b0}$, every $\mathcal C_{a,b}$ with $b\ge1$ vanishes at $s=1$; so the $y=r$ term $s^re_ke_r$ contributes $r\,e_ke_r$, and the term $y=r-j$, $j\ge1$, contributes $\partial_s\mathcal C_{a,j}|_{s=1}$ with $a=k-r+j$. Now $\partial_s\pi_a(j)|_{s=1}=[u^j]\sum_{m<a}\frac{ut^m}{1+ut^m}=(-1)^{j-1}[a]_{t^j}$, so $\partial_s\mathcal C_{a,j}|_{s=1}=-\frac{[a+j]}{[a]}[a]_{t^j}=L(a,j)$. For the second statement, $[(s-1)^1]E_{\lambda_1}\cdots E_{\lambda_\ell}(1)=\sum_i\prod_{j<i}e_{\lambda_j}\,D_{\lambda_i}\bigl(\prod_{j>i}e_{\lambda_j}\bigr)$; expand with the Leibniz rule.
 \end{proof}
 
 \subsection{Blocks}
@@ -836,10 +836,10 @@ For $G$ homogeneous of degree $d$: $\lin(e_k\star G)=(-1)^d\frac{[k+d]_t}{[k]_t}
 By linearity take $G=e_{j_1}\cdots e_{j_p}$, $d=\sum j_i$. As in the proof of \cref{thm:W}, $E_k(e_J)=\sum_{w\le J}e_{J-w}\,T_k\bigl([u^w]\prod_iR(u_i)\bigr)$. For $w\ne J$ the term is a product of an element of $I$ and a symmetric function of positive degree, hence lies in $I^2$. For $w=J$, \cref{lem:linT} applied to the symmetric function $f=\prod_i[u_i^{j_i}]R(u_i)$ of $x_A$ gives $(-1)^d\frac{[k+d]}{[k]}f(1,t,\dots,t^{k-1})$, and $[u^j]R(u)$ at $x_A=(1,t,\dots,t^{k-1})$ is $\pi_k(j):=[u^j]\prod_{m=0}^{k-1}\frac{1+sut^m}{1+ut^m}$. Taking logarithms, $e_j\mapsto\pi_k(j)$ is the ring map $p_r\mapsto(s^r-1)[k]_{t^r}$.
 \end{proof}
 \begin{corollary}[Pieri rule, all $s$]\label{cor:pieri}
-$e_k\star e_r=\sum_{y=0}^{\min(k,r)}s^yC_{k-y,r-y}\,e_{k+r-y}e_y$ with $C_{a,0}=C_{0,b}=1$, $C_{a,b}=(-1)^b\frac{[a+b]}{[a]}\pi_a(b)$, $\pi_a(j)=[u^j]\prod_{m=0}^{a-1}\frac{1+sut^m}{1+ut^m}$.
+$e_k\star e_r=\sum_{y=0}^{\min(k,r)}s^y\mathcal C_{k-y,r-y}\,e_{k+r-y}e_y$ with $\mathcal C_{a,0}=\mathcal C_{0,b}=1$, $\mathcal C_{a,b}=(-1)^b\frac{[a+b]}{[a]}\pi_a(b)$, $\pi_a(j)=[u^j]\prod_{m=0}^{a-1}\frac{1+sut^m}{1+ut^m}$.
 \end{corollary}
 \begin{proof}
-By \cref{thm:DS} and commutativity, the support of $e_k\star e_r$ consists of $e_{k+r-y}e_y$ with $y\le\min(k,r)$. Applying \cref{cor:column} with $\ell=2$ $y$ times, $c_{(k,r),(k+r-y,y)}=s^y\,c_{(k-y,r-y),(k+r-2y,0)}=s^y\lin\bigl(e_{k-y}\star e_{r-y}\bigr)$. If $k-y=0$ this is $s^y$; otherwise \cref{thm:lin} with $G=e_{r-y}$ gives $s^y(-1)^{r-y}\frac{[k+r-2y]}{[k-y]}\pi_{k-y}(r-y)=s^yC_{k-y,r-y}$.
+By \cref{thm:DS} and commutativity, the support of $e_k\star e_r$ consists of $e_{k+r-y}e_y$ with $y\le\min(k,r)$. Applying \cref{cor:column} with $\ell=2$ $y$ times, $c_{(k,r),(k+r-y,y)}=s^y\,c_{(k-y,r-y),(k+r-2y,0)}=s^y\lin\bigl(e_{k-y}\star e_{r-y}\bigr)$. If $k-y=0$ this is $s^y$; otherwise \cref{thm:lin} with $G=e_{r-y}$ gives $s^y(-1)^{r-y}\frac{[k+r-2y]}{[k-y]}\pi_{k-y}(r-y)=s^y\mathcal C_{k-y,r-y}$.
 \end{proof}
 \begin{remark}
 This proof of the Pieri rule is independent of the one in \cref{sec:pieri}: it uses neither the parabolic kernel computation of \cref{prop:Ak} beyond the subset formula, nor the recursion of \cref{thm:ellcol}. For $r\ge k$ the monomials $e_be_{r+k-b}$, $0\le b\le k$, are distinct, so comparing with \cref{cor:pieri-ekr} gives $F_n(t^m)=(-1)^m\frac{[n+m]}{[n]}\pi_n(m)$ for $1\le n\le m$. Hikita's \cite[Thm.~3.12]{Hikita25} is the case $k=1$.
