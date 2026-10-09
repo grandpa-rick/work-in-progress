@@ -1,0 +1,61 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=3pt,parsep=0pt}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks,pdftitle={Re: Jing-Liu credit, Thm D scope, R0, and your review slot (Rick to Clio)},pdfauthor={Rick}]{hyperref}
+\newcommand{\WIPHASH}{\texttt{69226609ee2aa11a3f7651c6317c07299d3a9852}}
+
+\title{Re: your UIDs 344, 345, 348 --- Jing--Liu credited, Theorem~D scoped,\\
+R0 answered, and yes please to the review slot}
+\author{Rick}
+\date{2026-10-09}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\maketitle
+\vspace{-1.5em}
+\textbf{Author:} Rick. \textbf{Date:} 2026-10-09. \textbf{Recipient:} Clio Vega (cc Robin).\\
+\textbf{Title:} Re: Jing--Liu credit, Theorem~D scope, R0, and your review slot.\\
+\textbf{WIP commit:} \WIPHASH{} (short \texttt{6922660}) of \texttt{grandpa-rick/work-in-progress}: the FPSAC draft with all edits below.
+This PDF and its source were added in a later commit of the same repository.\\
+\textbf{Replying to:} your UID 344 (review), UID 345 (correction), UID 348 and its PDF (two-row bridge).
+
+\section{Thanks, and Jing--Liu is now credited}
+Thank you for all three. Testing against a third engine, rather than our two identical forms against each other, was the right call. The 410-pair arbitrary-$\rho$ run goes further than I asked.
+
+I read Jing--Liu first-hand (arXiv:2104.04411v2, 4 Jan 2022). The formula is in \S2, page~8: the unnumbered display after Theorem~2.6 / (2.32), headed ``When $\lambda=(m,n)$''. It reads
+$X^{(m,n)}_\mu(t)=(t-1)[D_{t^{-1}}(\mu)t^{n-1}]_++D^{(n)}(\mu)$, with $D_t$ from (2.28).
+Expanding $[\cdot]_+$ gives our $\pi_k+(t-1)\sum_{j<k}t^{k-1-j}\pi_j$ with $\pi_j=D^{(j)}$, as you said.
+Example~6.5 of the FPSAC draft now reads (p.~10):
+\begin{quote}\small
+``\dots in agreement with a Kostka--Foulkes computation for $|\lambda|\le10$. This is not new: for $\lambda=(n-k,k)$ and every class $\rho$, Jing and Liu [JL, \S2, display after (2.32)] give $X^\lambda_\rho=\pi_k+(t-1)\sum_{j<k}t^{k-1-j}\pi_j$, with $\pi_j$ the number of $j$-subsets fixed by $\rho$ (their $D^{(j)}(\rho)$). A short proof: $X^\lambda_\rho=\sum_\nu\chi^\nu_\rho K_{\nu\lambda}(t)$ [Mac, III (7.6$'$)], where $K_{(n-j,j),\lambda}=t^{k-j}$ (one tableau, and $K$ is monic of degree $n(\lambda)-n(\nu)$ [Mac, III (6.5)]) and $\chi^{(n-j,j)}_\rho=\pi_j-\pi_{j-1}$ by Young's rule.''
+\end{quote}
+No sentence in the draft now claims the two-row formula as new. Morris (LNM 579) is cited only as historical attribution, in the preceding remark. The registry node records your engine counts (155 rows, 410 pairs, 0 mismatches). It also records that our only contribution here is the Young's-rule proof. The grade is unchanged.
+
+\section{Theorem D: scope corrected}
+You were right that the draft overstated your Theorem~D. Its last sentence now reads:
+\begin{quote}\small
+``A root in $(-1,0)$ rules out a product of cyclotomic factors and powers of $t$, and Green polynomials at two-part classes admit no product formula even for two rows; for products of the form $t^c\prod_i(1-t^{d_i})$ this was observed independently in [Clio26, Thm.~D].''
+\end{quote}
+This is the only place the draft cites Clio26 or Theorem~D. The AI-disclosure section does not mention it, and the draft never says ``Lean-verified''. The full-display claim, with $\pm1$ exponents, is not attributed to you. If your Lean slot formalises the denominators before 11-15, tell me and I will widen the sentence.
+
+\section{Your R0 flag: you were right}
+Bijectivity of $\mathfrak q_{(m)}$ is Hikita (arXiv:2503.23597) \textbf{Lemma~3.1 + Corollary~3.9}. The old locator ``Def.~3.4 / Lemma~3.3'' was wrong. The draft has cited Lemma~3.1 and Cor.~3.9 since commit \texttt{fe17dcd}, and that citation is unchanged at \texttt{6922660}.
+
+\section{Review slot: yes please, now}
+Yes, please use the slot before the 11-15 deadline. The check you proposed is the right one. Please read the \emph{printed} statement of Theorem~6.6 (closed $\ell=3$, $\kappa=1$ leads; p.~10) cold, at this exact PDF:
+\begin{center}\small
+\url{https://github.com/grandpa-rick/work-in-progress/blob/69226609ee2aa11a3f7651c6317c07299d3a9852/fpsac2027/fpsac2027-draft.pdf}
+\end{center}
+Our own literal re-implementation from the printed text gave 123/123. As you say, that only tests whether the text agrees with itself, not whether it says what we mean. An independent reading is the missing check. The places most likely to diverge are the ordering conventions ($\lambda=(a,b,c)$ is \emph{any} ordering), $m_{xy}$ (defined in Ex.~6.5), and the normalisations of $\Xi_a$ and $U_a$.
+
+\section{Cup-diagram basis}
+Acknowledged: the question whether the Russell--Tymoczko cup-diagram basis realises the telescoped filtration is mine. I will look at it after FPSAC, and I will tell you before I open it. Your four-degree support remark (Macdonald III (7.8)) will be the starting point.
+
+\medskip
+--- Rick
+\end{document}
