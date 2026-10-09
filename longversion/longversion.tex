@@ -724,21 +724,45 @@ Take $[u_1^{j_1}\cdots u_p^{j_p}]$ and $[(s-1)^p]$. Terms in which some $e_{r_i}
 %% ===================================================================
 \section{Leading coefficients: graph cumulants and blocks}\label{sec:leads}
 %% ===================================================================
-\wip{The proofs in this section are condensed sketches carried over from the extended abstract; full proofs are to be written from the authors' notes, as in \cref{sec:hikita,sec:pieri}.}
+Throughout this section $\mu$ is a coarsening of $\lambda$, $\ell=\ell(\lambda)$, $m=\ell-\ell(\mu)$, and the parts of $\lambda$ are indexed by positions $[\ell]$. Everything rests on \cref{thm:coarse,thm:W}.
+
+\begin{lemma}[Histories are increasing forests]\label{lem:forest}
+Tight histories of $\lambda$ are in bijection with increasing forests on $[\ell]$ (every child larger than its parent): when position $i$ merges existing blocks, $i$ becomes the parent of their roots. The trees are the final blocks, and the orders automatically add up to $\ell-\#\text{trees}$.
+\end{lemma}
+\begin{proof}
+Every existing block at step $i$ was built from positions $>i$, so all edges increase. Conversely, an increasing forest determines the history: at step $i$, merge the subtrees rooted at the children of $i$, which are complete by then. Each edge accounts for one unit of order.
+\end{proof}
+
+\begin{lemma}[Telescoping]\label{lem:telescope}
+For an increasing tree $T$ on a set $C$ of positions, let $N_v$ be the $\lambda$-mass of the subtree at $v$. The product of the merge weights along the history of $T$ is
+\[ \prod_vW_{\lambda_v}\bigl((N_c)_{c\ \text{child of}\ v}\bigr)=\frac{1-t^{|\lambda_C|}}{\prod_{i\in C}(1-t^{\lambda_i})}\prod_{\text{edges }v\to c}\bigl(t^{\lambda_vN_c}-1\bigr). \]
+\end{lemma}
+\begin{proof}
+By \cref{thm:W}, the merge at $v$ contributes $(-1)^{\#\text{children}}\frac{1-t^{N_v}}{1-t^{\lambda_v}}\prod_{c}\frac{1-t^{\lambda_vN_c}}{1-t^{N_c}}$ (a leaf contributes $1$). Every non-root $c$ is a child exactly once, so its factor $1-t^{N_c}$ cancels against its own numerator, leaving the root mass $|\lambda_C|$; and $(-1)^{\#\text{edges}}\prod(1-x)=\prod(x-1)$.
+\end{proof}
+
+\begin{lemma}[Tree--graph identity]\label{lem:treegraph}
+For indeterminates $x_{ij}=x_{ji}$ ($i\ne j\in[\ell]$),
+\[ \sum_{\text{increasing trees }T\text{ on }[\ell]}\ \prod_{\text{edges }v\to c}\Bigl(\prod_{j\in T_c}x_{vj}-1\Bigr)=\sum_{\text{connected graphs }H\text{ on }[\ell]}\ \prod_{e\in H}(x_e-1), \]
+where $T_c$ is the vertex set of the subtree at $c$.
+\end{lemma}
+\begin{proof}
+Map a connected graph $H$ to an increasing tree recursively: the root is $\min V$, the children are the minima of the components of $H-\min V$, and recurse on each component. Fix $T$ and sum over the $H$ mapping to it. At each vertex $v$ and child $c$, the edges from $v$ into $T_c$ form an arbitrary nonempty set $S\subseteq T_c$ (nonempty since $T_c$ must be attached to $v$; otherwise free, since they do not change the components inside $T_c$); there are no edges between different child sets; and the edges inside $T_c$ are accounted for recursively. So the fibre sum factors, and $\sum_{\varnothing\ne S\subseteq T_c}\prod_{j\in S}(x_{vj}-1)=\prod_{j\in T_c}x_{vj}-1$.
+\end{proof}
 
 \begin{theorem}[Full-merge lead]\label{thm:G}
 For $\lambda\vdash n$ with $\ell=\ell(\lambda)\ge2$,
 \[ \Lead_{\lambda,(n)}(t)=\frac{1-t^n}{\prod_i(1-t^{\lambda_i})}\,K_\lambda(t),\qquad K_\lambda(t):=\sum_{H\text{ connected on }[\ell]}\ \prod_{ij\in H}\bigl(t^{\lambda_i\lambda_j}-1\bigr). \]
 $K_\lambda$ is the connected part (joint cumulant) of $t^{e_2(\lambda)}=\prod_{i<j}(1+(t^{\lambda_i\lambda_j}-1))$.
 \end{theorem}
-\begin{proof}[Sketch of proof]
-(1) Tight histories ending in one block are increasing trees on $[\ell]$ (parent = the merging part). (2) With $N_v$ the $\lambda$-mass of the subtree at $v$, \cref{thm:W} telescopes along the tree to $\frac{1-t^n}{\prod(1-t^{\lambda_i})}\prod_{v\to c}(t^{\lambda_vN_c}-1)$. (3) Tree--graph identity: $\sum_{\text{incr.\ trees}}\prod_{v\to c}(\prod_{j\in T_c}x_{vj}-1)=\sum_{\text{conn.\ }H}\prod_{e\in H}(x_e-1)$ for generic $x$, by the minimum-vertex/component decomposition; specialise $x_{ij}=t^{\lambda_i\lambda_j}$.
+\begin{proof}
+By \cref{thm:coarse} with $\mu=(n)$ and \cref{lem:forest}, $\Lead_{\lambda,(n)}$ is a sum over increasing trees on $[\ell]$; by \cref{lem:telescope} each tree contributes $\frac{1-t^n}{\prod_i(1-t^{\lambda_i})}\prod_{v\to c}(t^{\lambda_vN_c}-1)$; and \cref{lem:treegraph} with $x_{ij}=t^{\lambda_i\lambda_j}$, for which $\prod_{j\in T_c}x_{vj}=t^{\lambda_vN_c}$, converts the tree sum into $K_\lambda$. The cumulant statement is the exponential formula.
 \end{proof}
 \begin{corollary}\label{cor:G}
 (a) $\lambda=1^n$: $\Lead=(-1)^{n-1}[n]_t\,I_n(t)$ with $I_n$ the tree inversion enumerator \cite{MallowsRiordan68}. (b) $t=0$: $\Lead=(-1)^{\ell-1}(\ell-1)!$. (c) $t\to1$: $\Lead\to(-1)^{\ell-1}n^{\ell-1}$ (weighted Cayley). (d) $\operatorname{sgn}\Lead=(-1)^{\ell-1}$ for all $t>0$.
 \end{corollary}
 \begin{proof}
-At $t=0$ every edge weight is $-1$ and $\sum_{H\text{ conn.}}(-1)^{|H|}=(-1)^{\ell-1}(\ell-1)!$. As $t\to1$, with $\varepsilon=t-1$, only spanning trees contribute to the $\varepsilon^{\ell-1}$ term of $K_\lambda$, and $\sum_T\prod_{ij\in T}\lambda_i\lambda_j=(\prod_i\lambda_i)\,n^{\ell-2}$ (weighted Cayley); the prefactor is $(-n\varepsilon)/((-\varepsilon)^\ell\prod\lambda_i)\cdot(1+O(\varepsilon))$. (d) is the case $\mu=(n)$, $m=\ell-1$, of the sign statement in \cref{thm:W}: each merge contributes $(-1)^p$ times a positive quantity, $\sum p=m$ along every history, and histories exist.
+(a) For $\lambda=1^n$ the prefactor is $[n]_t/(1-t)^{n-1}$ and $K_\lambda=\sum_{H\text{ conn.}}(t-1)^{|H|}=(t-1)^{n-1}I_n(t)$ \cite{MallowsRiordan68}. (b) At $t=0$ the prefactor is $1$, and in the tree form every edge factor is $-1$; there are $(\ell-1)!$ increasing trees. (c) Put $\varepsilon=t-1$. In $K_\lambda$ only spanning trees contribute to the lowest order $\varepsilon^{\ell-1}$, with $t^{\lambda_i\lambda_j}-1=\lambda_i\lambda_j\varepsilon+O(\varepsilon^2)$, and $\sum_T\prod_{ij\in T}\lambda_i\lambda_j=\sum_T\prod_i\lambda_i^{\deg_T(i)}=(\prod_i\lambda_i)\,n^{\ell-2}$ by the vertex-weighted Cayley formula (each $i$ occurs $\deg_T(i)-1$ times in the Pr\"ufer code). The prefactor is $(-n\varepsilon)/((-\varepsilon)^\ell\prod_i\lambda_i)\cdot(1+O(\varepsilon))$. (d) is the case $\mu=(n)$, $m=\ell-1$, of the sign statement in \cref{thm:W}: each merge contributes $(-1)^p$ times a positive quantity, $\sum p=m$ along every history, and histories exist.
 \end{proof}
 \begin{remark}[Prior art --- graph half]
 The tree, connected-graph and cumulant forms of $K_\lambda$ are a special case of Do{\l}{\k{e}}ga \cite[Prop.~2.1 and (11), Lemma~2.3]{Dolega19} ($K_\lambda=(t-1)^{\ell-1}T(1,t)$ for the Tutte polynomial of the multigraph with $\lambda_i\lambda_j$ edges between $i$ and $j$), cf.\ also \cite{GesselSagan96,MallowsRiordan68}; step (3) is a Penrose-type tree--graph identity \cite{Penrose67}. Ours: the identification of the $\star$-lead with prefactor$\cdot K_\lambda$ (\cref{thm:coarse,thm:W,thm:G}) and \cref{thm:F,thm:blockmult}. Haglund--Tewari's single-row cumulant \cite[Def.~7.1, Thm.~7.3]{HaglundTewari26} (their $q$ is our $t$) is the same graph half: since $\langle\widetilde H_{(m)},e_m\rangle=q^{\binom m2}$, their cumulant $\kappa(\lambda)$ (we write $C_\lambda$) satisfies $\langle C_\lambda,e_n\rangle=t^{n(\lambda')}(t-1)^{1-\ell}K_\lambda(t)$.
@@ -750,8 +774,8 @@ For $\mu$ a coarsening of $\lambda$,
 \[ \Lead_{\lambda\mu}=\sum_{\pi}\ \prod_{B\in\pi}\Lead_{\lambda_B,(|\lambda_B|)}, \]
 summed over set partitions $\pi$ of the positions $[\ell]$ whose sorted block sums equal $\mu$ (singletons contribute $1$). There is no interleaving factor.
 \end{theorem}
-\begin{proof}[Sketch of proof]
-Increasing forests $=$ set partition $\times$ increasing tree per block, and the telescoped weight is local to each tree.
+\begin{proof}
+By \cref{lem:forest}, tight histories ending at $\mu$ are increasing forests whose trees have sorted masses $\mu$, i.e.\ a set partition $\pi$ with block sums $\mu$ together with an increasing tree on each block. By \cref{lem:telescope} the weight is a product over the trees, each depending only on its own parts; summing over the trees on each block gives $\Lead_{\lambda_B,(|\lambda_B|)}$ by \cref{thm:G} (and $1$ for a singleton).
 \end{proof}
 
 \begin{theorem}[Block multiplicativity]\label{thm:blockmult}
@@ -759,8 +783,8 @@ Let $\kappa=\kappa(\lambda,\mu)\ge1$, $\ell=\ell(\lambda)$, $m=\ell-\kappa$. The
 \[ [(s-1)^m]\,c_{\lambda\mu}=\sum_{\pi}\ \sum_{(\nu^C)_{C\in\pi}}\ \prod_{C\in\pi}[(s-1)^{|C|-1}]\,c_{\lambda_C,\nu^C}, \]
 where $\pi$ runs over set partitions of $[\ell]$ into exactly $\kappa$ blocks and $(\nu^C)$ over tuples with $\bigsqcup_C\nu^C=\mu$ and $\nu^C\trianglerighteq\lambda_C$; every factor then has $\kappa(\lambda_C,\nu^C)=1$. With \cref{thm:blocklaw} this is $\Lead_{\lambda\mu}$.
 \end{theorem}
-\begin{proof}[Sketch of proof]
-Expand by polarization into histories; non-tight histories produce $>\kappa$ compatible blocks and vanish by maximality of $\kappa$; tight histories factor block by block and interleave uniquely. Uses commutativity of $\star$ \cite{Hikita25} only to pass from compositions to partitions.
+\begin{proof}
+Expand $[(s-1)^m]e^\star_\lambda=\sum_{\sum p_i=m}E^{(p_1)}_{\lambda_1}\cdots E^{(p_\ell)}_{\lambda_\ell}(1)$ step by step with \cref{lem:polar}, as in \cref{prop:block}: this is a sum over histories $H$ (step $i$ chooses a set $S_i$ of current blocks with $|S_i|\le p_i$), each giving $\prod_{C\in\pi(H)}g^H_C$ with $g^H_C$ of type $\lambda_C$, and $|\pi(H)|=\ell-\sum|S_i|\ge\ell-m=\kappa$, with equality iff $|S_i|=p_i$ for all $i$ (tight). A non-tight term has more than $\kappa$ blocks, so its $e_\mu$-coefficient vanishes by maximality of $\kappa$. In a tight history, step $i$ only acts, through $\delta_{S_i}$, on the blocks it merges; so $g^H_C$ is the function produced by the restricted history on $C$, which is a single-block tight history of the composition $\lambda_C$ (positions of $C$ in their order), since $\sum_{i\in C}|S_i|=|C|-1$. Conversely, single-block tight histories on the blocks of $\pi$ interleave uniquely, by position, into a global tight history. Hence the tight part is $\sum_{|\pi|=\kappa}\prod_{C\in\pi}\mathrm{Conn}(\lambda_C)$, where $\mathrm{Conn}(\lambda_C)$ is the sum over single-block tight histories of $\lambda_C$. Applying the same expansion to $\lambda_C$ with $m=|C|-1$ shows $[e_\nu]\mathrm{Conn}(\lambda_C)=[e_\nu][(s-1)^{|C|-1}]e^\star_{\lambda_C}$ whenever $\kappa(\lambda_C,\nu)=1$. Finally, $[e_\mu]\prod_C\mathrm{Conn}(\lambda_C)=\sum_{(\nu^C)}\prod_C[e_{\nu^C}]\mathrm{Conn}(\lambda_C)$ over tuples with $\bigsqcup_C\nu^C=\mu$; factors with $\nu^C\not\trianglerighteq\lambda_C$ vanish by type, and $\kappa(\lambda_C,\nu^C)\ge2$ would refine $\pi$ to more than $\kappa$ compatible blocks. Commutativity of $\star$ \cite{Hikita25} identifies the coefficients for the composition $\lambda_C$ with those for the sorted partition.
 \end{proof}
 \begin{remark}
 \Cref{thm:F} is the case where each $\nu^C$ is a single part. The factorisation has the shape of a Mayer (cluster) expansion, i.e.\ moment--cumulant inversion of the graph identity in \cref{thm:G}; the $\star$-specific content is that the connected leads are those of \cref{thm:G}, with no interleaving correction.
@@ -770,18 +794,31 @@ Expand by polarization into histories; non-tight histories produce $>\kappa$ com
 %% ===================================================================
 \section{Box Complement and the linear coefficient}\label{sec:box}
 %% ===================================================================
-\wip{The proofs in this section are condensed sketches carried over from the extended abstract; full proofs are to be written from the authors' notes, as in \cref{sec:hikita,sec:pieri}.}
+In this section zero parts are allowed: $\lambda$ is padded with zeros to a prescribed length, $E_0=\mathrm{id}$, and $c_{\lambda\mu}$ refers to the nonzero parts. By \cref{lem:stable}, in $N$ variables (for every $N$, including $N$ below the degree) $e^\star_\lambda(x_1,\dots,x_N)=\sum_\mu c_{\lambda\mu}e_\mu(x_1,\dots,x_N)$, where $e_\mu=0$ if $\mu_1>N$.
 
 \begin{theorem}[Box Complement]\label{thm:box}
 Let $\lambda,\mu$ have at most $\ell$ parts (padded with zeros) and all parts $\le N$; put $N^\ell-\lambda:=(N-\lambda_\ell,\dots,N-\lambda_1)$. Then
 \[ c_{N^\ell-\lambda,\,N^\ell-\mu}(s,t)=s^{N\binom{\ell}{2}-(\ell-1)|\lambda|}\,c_{\lambda\mu}(s,t). \]
 \end{theorem}
-\begin{proof}[Sketch of proof]
-Stability of the subset formula for every $N$ (also $N<$ degree), and an inversion lemma in $N$ variables: for $F=e_N^mG(1/x)$ with $G$ of degree $g$, \[E_{N-k}F=s^{m(N-k)-g}e_N^{m+1}(E_kG)(1/x)\] (substitute $y=1/x$, $B=A^c$). Iterate, and compare coefficients using the identity $e_{N-r}(x)=e_N(x)\,e_r(1/x)$ and \cref{thm:DS} (support has $\le\ell$ parts).
+\begin{lemma}[Inversion]\label{lem:inversion}
+In $N$ variables, let $G$ be homogeneous of degree $g$ and $F(x):=e_N(x)^m\,G(1/x)$. Then
+\[ E_{N-k}F=s^{m(N-k)-g}\,e_N^{m+1}\,(E_kG)(1/x). \]
+\end{lemma}
+\begin{proof}
+Write $y=1/x$ and index the terms of $E_{N-k}$ by the complement $A$ ($|A|=k$) of the $(N-k)$-subset $B$. Then $c_B(x)=\prod_{i\in B,j\in A}\frac{y_j-ty_i}{y_j-y_i}=c_A(y)$; $x_B=e_N(x)\,y_A$; $F|_{x_i\mapsto sx_i\,(i\in B)}=s^{m(N-k)}e_N(x)^m\,G|_{y_i\mapsto s^{-1}y_i\,(i\in B)}$; and by homogeneity $G|_{y_i\mapsto s^{-1}y_i\,(i\in B)}=s^{-g}\,G|_{y_a\mapsto sy_a\,(a\in A)}$. Summing over $A$ gives $s^{m(N-k)-g}e_N^{m+1}\sum_Ac_A(y)y_AG|_{y_a\mapsto sy_a}$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:box}]
+Let $G_j:=E_{\lambda_{\ell-j+1}}\cdots E_{\lambda_\ell}(1)$, of degree $D_j=\lambda_\ell+\dots+\lambda_{\ell-j+1}$, and $F_j:=E_{N-\lambda_{\ell-j+1}}\cdots E_{N-\lambda_\ell}(1)$, in $N$ variables. By \cref{lem:inversion} and induction, $F_j=s^{\sigma_j}e_N^jG_j(1/x)$ with $\sigma_0=0$ and $\sigma_{j+1}=\sigma_j+j(N-\lambda_{\ell-j})-D_j$. Writing $p_i=\lambda_{\ell+1-i}$,
+\[ \sigma_\ell=N\binom\ell2-\sum_i(i-1)p_i-\sum_i(\ell-i)p_i=N\binom\ell2-(\ell-1)|\lambda| . \]
+By commutativity of $\star$, $F_\ell=e^\star_{N^\ell-\lambda}$. Since $e_{N-r}(x)=e_N(x)e_r(1/x)$ in $N$ variables, $e_N^\ell e_\mu(1/x)=e_{N^\ell-\mu}(x)$ for $\ell(\mu)\le\ell$, and every $\mu$ in the support of $e^\star_\lambda$ has $\ell(\mu)\le\ell(\lambda)\le\ell$ (\cref{thm:DS}). Hence $e^\star_{N^\ell-\lambda}=s^{\sigma_\ell}\sum_{\mu_1\le N}c_{\lambda\mu}\,e_{N^\ell-\mu}(x)$. The map $\mu\mapsto N^\ell-\mu$ is a bijection between partitions with at most $\ell$ parts, all $\le N$; every $\nu$ in the support of $e^\star_{N^\ell-\lambda}$ has at most $\ell$ parts; and the $e_\nu$ with $\nu_1\le N$ form a basis of $\Lam_N$. Compare coefficients.
 \end{proof}
 \begin{corollary}[Column Lemma; lead invariance]\label{cor:column}
 $c_{\lambda+1^\ell,\,\mu+1^\ell}=s^{\binom{\ell}{2}}c_{\lambda\mu}$. Hence $\val$ and $\Lead$ are invariant under $(\lambda,\mu)\mapsto(\lambda+1^\ell,\mu+1^\ell)$ and $(\lambda,\mu)\mapsto(N^\ell-\lambda,N^\ell-\mu)$; e.g.\ $(2,2,2)\to(3,3)$ and $(2,2,2)\to(4,1,1)$ have the lead $[3]_t(t+2)$ of $(1,1,1)\to(3)$.
 \end{corollary}
+\begin{proof}
+Complement with $N$ and then with $N+1$: $(N+1)^\ell-(N^\ell-\lambda)=\lambda+1^\ell$, and the exponents add up to $\bigl(N\binom\ell2-(\ell-1)|\lambda|\bigr)+\bigl((N+1)\binom\ell2-(\ell-1)(N\ell-|\lambda|)\bigr)=\binom\ell2$. Since $s^\sigma$ is a unit of $\mathbb{Q}[[s-1]]$ with constant term $1$, valuations and leading coefficients are preserved. For the example, $(2,2,2)\to(4,1,1)$ is $(1,1,1)\to(3,0,0)$ plus a column, and $(2,2,2)\to(3,3)$ is the complement with $N=3$ of $(1,1,1)\to(3,0,0)$; the lead of $(1,1,1)\to(3)$ is $[3]_t(t+2)$ by \cref{thm:G}.
+\end{proof}
 \begin{remark}[Prior art]
 The inversion lemma follows in a few lines from \cite[Rem.~3.3]{DFK19} ($S\Gamma_IS=\Gamma_I^{-1}$ under $x\mapsto x^{-1}$) plus subset complement; stability is \cite[Prop.~3.8, Cor.~3.10]{Hikita25}. We have not found \cref{thm:box} or \cref{cor:column} for $\star$ in the literature.
 \end{remark}
@@ -789,14 +826,17 @@ The inversion lemma follows in a few lines from \cite[Rem.~3.3]{DFK19} ($S\Gamma
 \begin{theorem}[Plethystic linear coefficient]\label{thm:lin}
 For $G$ homogeneous of degree $d$: $\lin(e_k\star G)=(-1)^d\frac{[k+d]_t}{[k]_t}\,G[(s-1)[k]_t]$, where $G\mapsto G[(s-1)[k]_t]$ is the ring map $p_r\mapsto(s^r-1)[k]_{t^r}$.
 \end{theorem}
+\begin{proof}
+By linearity take $G=e_{j_1}\cdots e_{j_p}$, $d=\sum j_i$. As in the proof of \cref{thm:W}, $E_k(e_J)=\sum_{w\le J}e_{J-w}\,T_k\bigl([u^w]\prod_iR(u_i)\bigr)$. For $w\ne J$ the term is a product of an element of $I$ and a symmetric function of positive degree, hence lies in $I^2$. For $w=J$, \cref{lem:linT} applied to the symmetric function $f=\prod_i[u_i^{j_i}]R(u_i)$ of $x_A$ gives $(-1)^d\frac{[k+d]}{[k]}f(1,t,\dots,t^{k-1})$, and $[u^j]R(u)$ at $x_A=(1,t,\dots,t^{k-1})$ is $\pi_k(j):=[u^j]\prod_{m=0}^{k-1}\frac{1+sut^m}{1+ut^m}$. Taking logarithms, $e_j\mapsto\pi_k(j)$ is the ring map $p_r\mapsto(s^r-1)[k]_{t^r}$.
+\end{proof}
 \begin{corollary}[Pieri rule, all $s$]\label{cor:pieri}
 $e_k\star e_r=\sum_{y=0}^{\min(k,r)}s^yC_{k-y,r-y}\,e_{k+r-y}e_y$ with $C_{a,0}=C_{0,b}=1$, $C_{a,b}=(-1)^b\frac{[a+b]}{[a]}\pi_a(b)$, $\pi_a(j)=[u^j]\prod_{m=0}^{a-1}\frac{1+sut^m}{1+ut^m}$.
 \end{corollary}
-\begin{proof}[Sketch of proof]
-Support by \cref{thm:DS}; strip $y$ columns by \cref{cor:column} (valid for compositions) to reduce to $\lin E_{k-y}(e_{r-y})$; evaluate by \cref{thm:lin}, which itself is \cref{lem:linT} applied to the generating function $E_k(\prod_iE(u_i))=\prod_iE(u_i)\,T_k(\prod_i\prod_{a\in A}\frac{1+su_ix_a}{1+u_ix_a})$.
+\begin{proof}
+By \cref{thm:DS} and commutativity, the support of $e_k\star e_r$ consists of $e_{k+r-y}e_y$ with $y\le\min(k,r)$. Applying \cref{cor:column} with $\ell=2$ $y$ times, $c_{(k,r),(k+r-y,y)}=s^y\,c_{(k-y,r-y),(k+r-2y,0)}=s^y\lin\bigl(e_{k-y}\star e_{r-y}\bigr)$. If $k-y=0$ this is $s^y$; otherwise \cref{thm:lin} with $G=e_{r-y}$ gives $s^y(-1)^{r-y}\frac{[k+r-2y]}{[k-y]}\pi_{k-y}(r-y)=s^yC_{k-y,r-y}$.
 \end{proof}
 \begin{remark}
-\Cref{cor:pieri} was first obtained by a different route, a $k$-fold kernel computation; Hikita's \cite[Thm.~3.12]{Hikita25} is the case $k=1$. Explicit rules for $e_k\star e_\lambda$ with $\lambda$ of two or $\ell$ columns will appear in the long version.
+This proof of the Pieri rule is independent of the one in \cref{sec:pieri}: it uses neither the parabolic kernel computation of \cref{prop:Ak} beyond the subset formula, nor the recursion of \cref{thm:ellcol}. For $r\ge k$ the monomials $e_be_{r+k-b}$, $0\le b\le k$, are distinct, so comparing with \cref{cor:pieri-ekr} gives $F_n(t^m)=(-1)^m\frac{[n+m]}{[n]}\pi_n(m)$ for $1\le n\le m$. Hikita's \cite[Thm.~3.12]{Hikita25} is the case $k=1$.
 \end{remark}
 
 
