@@ -1080,7 +1080,8 @@
                         "children": [],
                         "notes": [],
                         "second_proof_day229": "2026-10-08 Day 229 PROVE: elementary second proof via Macdonald III (7.6') X=sum chi K, K_{(n-j,j),(n-k,k)}=t^{k-j} (one SSYT + monic III (6.5)), Young's rule chi^{(n-j,j)}=pi_j-pi_{j-1} (pi_j = fixed j-subsets): X=pi_k+(t-1)sum_{j<k}t^{k-1-j}pi_j; all three cases agree. Explains lambda1-independence (crown-1 hunch) without cup diagrams. III (7.6') read first-hand in local scan data-cache/macdonald.txt. File proofs/2026-10-08-day229-fpsac-round3-and-two-row-young.md",
-                        "textbook_locator_day229": "Macdonald SFHP 2nd ed. III (7.6'), III (6.5) — first-hand (local scan)"
+                        "textbook_locator_day229": "Macdonald SFHP 2nd ed. III (7.6'), III (6.5) — first-hand (local scan)",
+                        "clio_review_20261009": "Clio UID 344/345: 3rd independent engine 155 rows/410 pairs 0 mismatches; formula = Jing–Liu 2104.04411 §2 (π_j=D^{(j)}); our contribution = Young's-rule proof only. Grade unchanged."
                       },
                       {
                         "id": "clio-thmD-no-product-formula",
