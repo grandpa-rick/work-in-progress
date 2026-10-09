@@ -176,3 +176,39 @@ Boundary rule: the validator-style check finds no proved node with a below-bound
 The *proofs* trees, however, differ:
 - `2026-10-07-day228-corG-t1-recheck.md` exists only in work-in-progress/proofs/.
 - `2026-10-08-day229-fpsac-round3-and-two-row-young.md`, `2026-10-08-wake230-two-row-count-reconcile.md` and `2026-09-30-day211-aha221-mismatch.md` exist only in local proofs/.
+
+---
+
+## 5. Long-version status (PROVE 231, 2026-10-09)
+
+`longversion.tex` (amsart, 18 pp, compiles clean, no undefined refs). Hidden label → registry map (kept here, NOT in the .tex):
+
+| LV label | content | registry node(s) (INVENTORY row) | status in LV |
+|---|---|---|---|
+| lem:KL, prop:Ak | Key Lemma, parabolic kernel (A_k) | EK::Ak-parabolic-kernel-all-k (A1) | **full proof** (from 207b §2, re-derived) |
+| lem:sym1 | partial symmetriser closed form (Day 205b Lemma 1) | EK::lemma-1-2-day205b (A3) | **full proof** |
+| prop:Kk | k-set kernel (K_k) | EK::Kk-kset-kernel-all-k (A1) | **full proof** |
+| thm:subset, eq:star-reading | subset formula; ⋆-reading | DS::subset-formula-Ak-Kk, EK::hikita-def34-lemma33-interface (A1, A2) | **full proof** (⋆-reading cited: Hikita Def 3.4/Lemma 3.3; bijectivity Lemma 3.1/Cor 3.9) |
+| lem:peel | recursion (R) / (Rℓ) generic form | EK::Ek-gf-induction-all-k, TC::two-column-R2-recursion (B1, B5) | **full proof** |
+| lem:res | rational Lemma 2′ (residue form of HL kernel) | Day 209 §2 Lemma 2′; EK::lemma-1-2-day205b-2 (A3) | **full proof** |
+| lem:Cj | C_j closed form, D_j recursion | part of EK::ek-star-er-pieri-all-k (B1) | **full proof** |
+| thm:ellcol | ℓ-column rule (★ℓ) | TC::ell-column-rule, TC::ell-column-closing-identity-Z, TC::ell-column-step-map (B7) | **full proof** (212 skeleton; the ℓ=1 case now SUBSUMES 207b's (L)/(★) proof — one proof for all ℓ) |
+| cor:pieri-ekr | e_k⋆e_r Pieri all k | EK::ek-star-er-pieri-all-k, EK::root (B1) | **full proof** (as ℓ=1 of thm:ellcol) |
+| ex:k1, ex:k2 | k=1 (Hikita Thm 3.12), k=2 closed F_2 | E2::e2-star-er-pieri-conjecture (B3), A4 | printed + checked |
+| cor:pieri-t0 | t=0 truncated geometric | E4::hikita-star-t-zero-specialization (B4) | **full proof** |
+| cor:twocol | TC (ℓ=2) + support ≤ ℓ+1 factors | TC::two-column-gf-rule, TC::two-column-straightening-free (B5, B6) | **full proof** |
+| lem:step | step map | TC::ell-column-step-map (B7) | **full proof** |
+| lem:Z | closing identity (Z) | TC::ell-column-closing-identity-Z (B7) | **full proof** |
+| thm:DS | DS + exact up-set support | DS::root, DS::full-upset-support-exact-valuation (B8, B9) | sketch (FPSAC text) — WIP: full proof from 214 |
+| rem:H | s→0 edge, d-matrix | C1, C2 | FPSAC text — WIP: section to hold C1, C5–C10 with proofs from 215/217e |
+| thm:bider … lem:linT | block law package | D1–D8 | sketches (FPSAC text) — WIP |
+| thm:G, cor:G, thm:F, thm:blockmult | leads | D9–D12 | sketches — WIP |
+| thm:box, cor:column, thm:lin, cor:pieri | Box Complement, plethystic lin, Pieri 2nd proof | E1, B2 | sketches — WIP |
+| prop:reduce … ex:v2 | second order | F1–F7 | sketches — WIP |
+
+**"PDF is the claim" checks for §§2–3** (scripts/day231/, re-implemented from the PRINTED statements, independent pointwise subset-formula engine in exact rationals):
+- `check_Y_printed.py` (log): printed T_i, π, Y_i conventions ⇒ t^{-C(k,2)}e_k(Y)F = E_kF for m=3,4, all k, F ∈ {1,e_1,e_2,e_1²,e_1e_2}; Hikita Thm 3.12 recovered. ALL True.
+- `check_pieri_printed.py` (log): cor:pieri-ekr vs engine k≤4, r≤5; support ≤ min(k,r) after collection; cor:pieri-t0 vs engine at t=0, k≤4, r≤5; FPSAC C_{a,b} form == F form (k≤4, r≤5); F_0,F_1,F_2 closed forms (ex:k2). ALL True.
+- `check_ellcol_printed.py` (log): thm:ellcol as an identity Γ_k = T_k at exact random points, ℓ=1,2,3, m≤5, k≤4 (85 cases); cor:twocol explicit V == general V; lem:Z ℓ≤5; lem:Cj; K symmetry. ALL True. Negative control (`neg_control.py`, K_{ij} slots swapped) FAILS as it should.
+
+**Notation clashes to fix when the ported sections are rewritten:** Γ_k (§3 generating function) vs Γ_a (§9 bilinear form); C_I / C_j(x) (§3) vs C_{a,b} (cor:pieri); κ_c (§3 residues) vs κ(λ,μ) (block count).

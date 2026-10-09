@@ -1,0 +1,544 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{anyt/global//global/global}
+  \entry{BjornerBrenti05}{book}{}
+    \name{author}{2}{}{%
+      {{hash=BA}{%
+         family={Bj{\"o}rner},
+         familyi={B\bibinitperiod},
+         given={Anders},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=BF}{%
+         family={Brenti},
+         familyi={B\bibinitperiod},
+         given={Francesco},
+         giveni={F\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{BABF1}
+    \strng{fullhash}{BABF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BB05}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{series}{Graduate Texts in Mathematics}
+    \field{title}{Combinatorics of {C}oxeter Groups}
+    \field{volume}{231}
+    \field{year}{2005}
+  \endentry
+
+  \entry{Clio26}{unpublished}{}
+    \name{author}{1}{}{%
+      {{hash=C}{%
+         family={{Clio (AI agent)}},
+         familyi={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{C1}
+    \strng{fullhash}{C1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{{Cli}26}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{note}{Manuscript}
+    \field{title}{Two-part {G}reen polynomials}
+    \field{year}{2026}
+  \endentry
+
+  \entry{DFK18}{article}{}
+    \name{author}{2}{}{%
+      {{hash=DFP}{%
+         family={Di\bibnamedelima Francesco},
+         familyi={D\bibinitperiod\bibinitdelim F\bibinitperiod},
+         given={Philippe},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=KR}{%
+         family={Kedem},
+         familyi={K\bibinitperiod},
+         given={Rinat},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DFPKR1}
+    \strng{fullhash}{DFPKR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{DFK18}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \verb{eprint}
+    \verb 1505.01657
+    \endverb
+    \field{number}{2}
+    \field{pages}{391\bibrangedash 424}
+    \field{title}{Difference equations for graded characters from quantum
+  cluster algebra}
+    \field{volume}{23}
+    \field{journaltitle}{Transform. Groups}
+    \field{eprinttype}{arXiv}
+    \field{year}{2018}
+  \endentry
+
+  \entry{DFK19}{article}{}
+    \name{author}{2}{}{%
+      {{hash=DFP}{%
+         family={Di\bibnamedelima Francesco},
+         familyi={D\bibinitperiod\bibinitdelim F\bibinitperiod},
+         given={Philippe},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=KR}{%
+         family={Kedem},
+         familyi={K\bibinitperiod},
+         given={Rinat},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DFPKR1}
+    \strng{fullhash}{DFPKR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{DFK19}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \verb{doi}
+    \verb 10.1007/s00220-019-03472-x
+    \endverb
+    \verb{eprint}
+    \verb 1704.00154
+    \endverb
+    \field{number}{3}
+    \field{pages}{867\bibrangedash 928}
+    \field{title}{$(t,q)$-deformed {Q}-systems, {DAHA} and quantum toroidal
+  algebras via generalized {M}acdonald operators}
+    \field{volume}{369}
+    \field{journaltitle}{Comm. Math. Phys.}
+    \field{eprinttype}{arXiv}
+    \field{year}{2019}
+  \endentry
+
+  \entry{DLT94}{article}{}
+    \name{author}{3}{}{%
+      {{hash=DJ}{%
+         family={D{\'e}sarm{\'e}nien},
+         familyi={D\bibinitperiod},
+         given={Jacques},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LB}{%
+         family={Leclerc},
+         familyi={L\bibinitperiod},
+         given={Bernard},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=TJY}{%
+         family={Thibon},
+         familyi={T\bibinitperiod},
+         given={Jean-Yves},
+         giveni={J\bibinithyphendelim Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DJLBTJY1}
+    \strng{fullhash}{DJLBTJY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{DLT94}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{note}{Art.~B32c, 38~pp.}
+    \field{title}{{H}all--{L}ittlewood functions and {K}ostka--{F}oulkes
+  polynomials in representation theory}
+    \field{volume}{32}
+    \field{journaltitle}{S\'em. Lothar. Combin.}
+    \field{year}{1994}
+  \endentry
+
+  \entry{Dolega19}{article}{}
+    \name{author}{1}{}{%
+      {{hash=DM}{%
+         family={Do{\l}{\k{e}}ga},
+         familyi={D\bibinitperiod},
+         given={Maciej},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DM1}
+    \strng{fullhash}{DM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Do{\l}19}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \verb{doi}
+    \verb 10.1016/j.ejc.2018.08.011
+    \endverb
+    \verb{eprint}
+    \verb 1707.02656
+    \endverb
+    \field{pages}{172\bibrangedash 194}
+    \field{title}{Macdonald cumulants, {$G$}-inversion polynomials and
+  {$G$}-parking functions}
+    \field{volume}{75}
+    \field{journaltitle}{European J. Combin.}
+    \field{eprinttype}{arXiv}
+    \field{year}{2019}
+  \endentry
+
+  \entry{Green55}{article}{}
+    \name{author}{1}{}{%
+      {{hash=GJA}{%
+         family={Green},
+         familyi={G\bibinitperiod},
+         given={J.\bibnamedelima A.},
+         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GJA1}
+    \strng{fullhash}{GJA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Gre55}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{pages}{402\bibrangedash 447}
+    \field{title}{The characters of the finite general linear groups}
+    \field{volume}{80}
+    \field{journaltitle}{Trans. Amer. Math. Soc.}
+    \field{year}{1955}
+  \endentry
+
+  \entry{GesselSagan96}{article}{}
+    \name{author}{2}{}{%
+      {{hash=GIM}{%
+         family={Gessel},
+         familyi={G\bibinitperiod},
+         given={Ira\bibnamedelima M.},
+         giveni={I\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=SBE}{%
+         family={Sagan},
+         familyi={S\bibinitperiod},
+         given={Bruce\bibnamedelima E.},
+         giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GIMSBE1}
+    \strng{fullhash}{GIMSBE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{GS96}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{note}{Research Paper 9}
+    \field{number}{2}
+    \field{title}{The {T}utte polynomial of a graph, depth-first search, and
+  simplicial complex partitions}
+    \field{volume}{3}
+    \field{journaltitle}{Electron. J. Combin.}
+    \field{year}{1996}
+  \endentry
+
+  \entry{Hikita25}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=HT}{%
+         family={Hikita},
+         familyi={H\bibinitperiod},
+         given={Tatsuyuki},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HT1}
+    \strng{fullhash}{HT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hik25}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{eprint}
+    \verb 2503.23597
+    \endverb
+    \field{title}{$(q,t)$-Chromatic Symmetric Functions}
+    \field{eprinttype}{arXiv}
+    \field{year}{2025}
+  \endentry
+
+  \entry{HaglundTewari26}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=HJ}{%
+         family={Haglund},
+         familyi={H\bibinitperiod},
+         given={Jim},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=TV}{%
+         family={Tewari},
+         familyi={T\bibinitperiod},
+         given={Vasu},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HJTV1}
+    \strng{fullhash}{HJTV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{HT26}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{eprint}
+    \verb 2609.29957
+    \endverb
+    \field{title}{Theta operators at $t=1$, {M}acdonald cumulants, and {LLT}
+  positivity}
+    \field{eprinttype}{arXiv}
+    \field{year}{2026}
+  \endentry
+
+  \entry{Humphreys90}{book}{}
+    \name{author}{1}{}{%
+      {{hash=HJE}{%
+         family={Humphreys},
+         familyi={H\bibinitperiod},
+         given={James\bibnamedelima E.},
+         giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Cambridge University Press}%
+    }
+    \strng{namehash}{HJE1}
+    \strng{fullhash}{HJE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hum90}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{series}{Cambridge Studies in Advanced Mathematics}
+    \field{title}{Reflection Groups and {C}oxeter Groups}
+    \field{volume}{29}
+    \field{year}{1990}
+  \endentry
+
+  \entry{Jing91}{article}{}
+    \name{author}{1}{}{%
+      {{hash=JN}{%
+         family={Jing},
+         familyi={J\bibinitperiod},
+         given={Naihuan},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JN1}
+    \strng{fullhash}{JN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Jin91}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{pages}{226\bibrangedash 248}
+    \field{title}{Vertex operators and {H}all--{L}ittlewood symmetric
+  functions}
+    \field{volume}{87}
+    \field{journaltitle}{Adv. Math.}
+    \field{year}{1991}
+  \endentry
+
+  \entry{JingLiu21}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=JN}{%
+         family={Jing},
+         familyi={J\bibinitperiod},
+         given={Naihuan},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=LN}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Ning},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JNLN1}
+    \strng{fullhash}{JNLN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{JL21}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \verb{eprint}
+    \verb 2104.04411
+    \endverb
+    \field{title}{The {G}reen polynomials via vertex operators}
+    \field{eprinttype}{arXiv}
+    \field{year}{2021}
+  \endentry
+
+  \entry{Kirillov98}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=KAN}{%
+         family={Kirillov},
+         familyi={K\bibinitperiod},
+         given={Anatol\bibnamedelima N.},
+         giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KAN1}
+    \strng{fullhash}{KAN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Kir98}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{eprint}
+    \verb math/9803006
+    \endverb
+    \field{title}{New combinatorial formula for modified {H}all--{L}ittlewood
+  polynomials}
+    \field{eprinttype}{arXiv}
+    \field{year}{1998}
+  \endentry
+
+  \entry{Macdonald95}{book}{}
+    \name{author}{1}{}{%
+      {{hash=MIG}{%
+         family={Macdonald},
+         familyi={M\bibinitperiod},
+         given={I.\bibnamedelima G.},
+         giveni={I\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Oxford University Press}%
+    }
+    \strng{namehash}{MIG1}
+    \strng{fullhash}{MIG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Mac95}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{edition}{2}
+    \field{title}{Symmetric Functions and {H}all Polynomials}
+    \field{year}{1995}
+  \endentry
+
+  \entry{Morris77}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=MAO}{%
+         family={Morris},
+         familyi={M\bibinitperiod},
+         given={Alun\bibnamedelima O.},
+         giveni={A\bibinitperiod\bibinitdelim O\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{MAO1}
+    \strng{fullhash}{MAO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Mor77}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{booktitle}{Combinatoire et repr\'esentation du groupe sym\'etrique
+  (Strasbourg, 1976)}
+    \verb{doi}
+    \verb 10.1007/BFb0090015
+    \endverb
+    \field{pages}{136\bibrangedash 154}
+    \field{series}{Lecture Notes in Math.}
+    \field{title}{A survey on {H}all--{L}ittlewood functions and their
+  applications to representation theory}
+    \field{volume}{579}
+    \field{year}{1977}
+  \endentry
+
+  \entry{MallowsRiordan68}{article}{}
+    \name{author}{2}{}{%
+      {{hash=MCL}{%
+         family={Mallows},
+         familyi={M\bibinitperiod},
+         given={C.\bibnamedelima L.},
+         giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=RJ}{%
+         family={Riordan},
+         familyi={R\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MCLRJ1}
+    \strng{fullhash}{MCLRJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{MR68}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{pages}{92\bibrangedash 94}
+    \field{title}{The inversion enumerator for labeled trees}
+    \field{volume}{74}
+    \field{journaltitle}{Bull. Amer. Math. Soc.}
+    \field{year}{1968}
+  \endentry
+
+  \entry{Penrose67}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=PO}{%
+         family={Penrose},
+         familyi={P\bibinitperiod},
+         given={Oliver},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \name{editor}{1}{}{%
+      {{hash=BTA}{%
+         family={Bak},
+         familyi={B\bibinitperiod},
+         given={T.\bibnamedelima A.},
+         giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {W. A. Benjamin}%
+    }
+    \strng{namehash}{PO1}
+    \strng{fullhash}{PO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Pen67}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{booktitle}{Statistical Mechanics: Foundations and Applications}
+    \field{pages}{101\bibrangedash 109}
+    \field{title}{Convergence of fugacity expansions for classical systems}
+    \list{location}{1}{%
+      {New York--Amsterdam}%
+    }
+    \field{year}{1967}
+  \endentry
+\enddatalist
+\endinput

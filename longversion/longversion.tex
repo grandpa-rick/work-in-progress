@@ -1,0 +1,627 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!40!black,urlcolor=blue!50!black]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage[backend=bibtex,style=alphabetic,maxbibnames=10]{biblatex}
+\addbibresource{longversion.bib}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+
+%% Visible work-in-progress marker; every occurrence must be resolved before posting.
+\newcommand{\wip}[1]{{\color{red}\textbf{[WIP:} #1\textbf{]}}}
+
+\newcommand{\lin}{\operatorname{lin}_e}
+\newcommand{\Lead}{\operatorname{Lead}}
+\newcommand{\val}{v}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\CT}{\operatorname{CT}}
+\newcommand{\Res}{\operatorname*{Res}}
+\newcommand{\qbin}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}_t}
+\newcommand{\hx}{\hat x}
+
+\title[Hikita's $\star$-product: Pieri rules, dominance and valuations]{Hikita's $\star$-product on symmetric functions:\\ Pieri rules, dominance support, and the $(s-1)$-adic valuation}
+
+\author{Rick (AI agent)}
+\thanks{\wip{Authorship, affiliation, acknowledgements and the AI declaration are to be settled as for the extended abstract.}}
+
+\date{\today}
+
+\begin{document}
+
+\begin{abstract}
+Hikita introduced a two-parameter deformation $\star$ of the product of symmetric functions, obtained by transporting the ordinary product through the level-one polynomial representation of the affine Hecke algebra. We give an explicit rule for $e_k\star(e_{a_1}\cdots e_{a_\ell})$ for all $k$ and $\ell$, in generating-function form; its case $\ell=1$ is a Pieri rule for $e_k\star e_r$ generalising Hikita's rule for $e_1\star e_r$. Writing $e_{\lambda_1}\star\cdots\star e_{\lambda_\ell}=\sum_\mu c_{\lambda\mu}(s,t)e_\mu$, we show that $c_{\lambda\mu}$ is supported exactly on the dominance up-set of $\lambda$ with $s$-adic valuation $n(\mu)$, and that the $(s-1)$-adic valuation of $c_{\lambda\mu}$ is $\ell(\lambda)-\kappa(\lambda,\mu)$, where $\kappa$ is the maximal number of blocks into which $\lambda$ and $\mu$ split compatibly. Leading coefficients factor over blocks into connected pieces; for a full merge the connected piece is a connected-graph cumulant. The coefficients are invariant, up to a power of $s$, under complementation in a box, and all second-order leading coefficients are given in closed form via a residue formula for Green polynomials at two-part classes.
+\end{abstract}
+
+\maketitle
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+%% ===================================================================
+\section{Introduction}\label{sec:intro}
+%% ===================================================================
+
+Hikita~\cite{Hikita25} defined a commutative, associative product $\star$ on symmetric functions over $\mathbb{Q}(q,t)$ by transporting the ordinary product through the level-one polynomial representation of the affine Hecke algebra. We write $s:=q^{-1}$. At $s=1$, $\star$ is the ordinary product. Hikita's Pieri rule \cite[Thm.~3.12]{Hikita25} reads, in our normalisation,
+\[ e_1\star e_r=(1-s)[r+1]_t\,e_{r+1}+s\,e_1e_r . \]
+Di Francesco and Kedem~\cite[\S8.3]{DFK19} observed that the associated $t$-deformed graded characters lose Schur positivity at generic $t$. This paper is about the structure that survives: explicit multiplication rules, triangularity, and valuations.
+
+\subsection*{Pieri rules}
+The operator $e_k\star(\cdot)$ is a sum over $k$-subsets (\cref{thm:subset}),
+\[ e_k\star F=\sum_{|A|=k}\ \prod_{i\in A,\,j\notin A}\frac{x_i-tx_j}{x_i-x_j}\ \prod_{i\in A}x_i\ \cdot F\big|_{x_i\mapsto sx_i\ (i\in A)} . \]
+From it we derive a closed generating function for $e_k\star(e_{a_1}\cdots e_{a_\ell})$ for all $k,\ell$ (\cref{thm:ellcol}). Since the $e_a$ generate, this determines $e_k\star F$ for every $F$. The case $\ell=1$ is a Pieri rule (\cref{cor:pieri-ekr}):
+\[ e_k\star e_r=\sum_{b=0}^{k}s^b\,F_{k-b}(t^{r-b})\,e_b\,e_{r+k-b}, \]
+with explicit polynomials $F_n(w)$, and at $t=0$ the coefficients form a truncated geometric distribution (\cref{cor:pieri-t0}). In the generating function, the $\ell$ columns interact only through a pairwise cross kernel, and the proof closes with a single residue identity (\cref{lem:Z}).
+
+\subsection*{Dominance and valuations}
+\wip{Summary of \cref{sec:DS,sec:edge,sec:blocklaw,sec:leads,sec:box,sec:v2} to be rewritten once those sections are written in full; the statements there are currently those of the extended abstract.}
+
+\subsection*{Organisation}
+\Cref{sec:hikita} sets up Hikita's product and proves the subset formula. \Cref{sec:pieri} contains the Pieri package. \Cref{sec:DS} proves dominance support, and \cref{sec:edge} identifies the $s\to0$ edge. \Cref{sec:blocklaw,sec:leads} treat the expansion at $s=1$, \cref{sec:box} the box symmetry and the linear coefficient, and \cref{sec:v2} the second-order leading coefficients.
+
+%% ===================================================================
+\section{Hikita's product and the subset formula}\label{sec:hikita}
+%% ===================================================================
+
+\subsection{Notation}
+For $m\ge0$ let $\Lam_m:=\mathbb{Q}(s,t)[x_1,\dots,x_m]^{S_m}$ and let $\Lam$ be the ring of symmetric functions over $\mathbb{Q}(s,t)$. We write $e_r$ for the elementary symmetric functions ($e_0=1$, $e_r=0$ for $r<0$), $e_\lambda=e_{\lambda_1}e_{\lambda_2}\cdots$, and
+\[ E(z):=\prod_{i=1}^m(1+x_iz)=\sum_{r\ge0}e_rz^r,\qquad Q(y):=\frac{E(-ty)}{E(-y)}=\prod_{i=1}^m\frac{1-tx_iy}{1-x_iy}=\sum_{n\ge0}q_ny^n, \]
+so that the $q_n$ are the one-row Hall--Littlewood functions of \cite[III (2.10)]{Macdonald95}. For a set $B$ of indices, $E(x_B;z):=\prod_{i\in B}(1+x_iz)$, and $\hx_i$ denotes the variables $x_1,\dots,x_m$ with $x_i$ omitted. We put
+\[ a_{ij}:=\frac{x_i-tx_j}{x_i-x_j},\qquad c_A:=\prod_{i\in A,\ j\notin A}a_{ij},\qquad x_A:=\prod_{i\in A}x_i\qquad(A\subseteq[m]). \]
+Further, $[n]=[n]_t=(1-t^n)/(1-t)$, $[n]_t!=[1][2]\cdots[n]$, $(a;t)_n=\prod_{i=0}^{n-1}(1-at^i)$, $n(\lambda)=\sum_i(i-1)\lambda_i$, and $\trianglerighteq$ is dominance order.
+
+\subsection{The level-one representation and Hikita's product}
+The symmetric group $S_m$ acts on $\mathbb{Q}(s,t)[x_1,\dots,x_m]$ by permuting variables; $s_i$ is the transposition of $x_i$ and $x_{i+1}$. Define operators on $\mathbb{Q}(s,t)(x_1,\dots,x_m)$ by
+\begin{align*}
+T_if&:=t\,s_if+(t-1)\,\frac{x_{i+1}}{x_i-x_{i+1}}\,(s_if-f)\qquad(1\le i\le m-1),\\
+\pi f(x_1,\dots,x_m)&:=x_1\,f(x_2,\dots,x_m,sx_1),\\
+Y_i&:=t^{m-i}\,T_{i-1}\cdots T_1\,\pi\,T_{m-1}^{-1}\cdots T_i^{-1}\qquad(1\le i\le m).
+\end{align*}
+The $T_i$ are Demazure--Lusztig operators; they preserve polynomials, satisfy $(T_i-t)(T_i+1)=0$ and the braid relations, and $T_if=tf$ whenever $s_if=f$. For $1\le k\le m$ put
+\[ e_k(Y):=\sum_{b_1<\dots<b_k}Y_{b_1}Y_{b_2}\cdots Y_{b_k}, \]
+each product taken in increasing order of indices from left to right. (The $Y_i$ commute, but the proof of \cref{thm:subset} does not use this.) Hikita's product $F\star G$ is defined by transporting the product through the map $F(Y)\mapsto F(Y)\bullet1$; by \cite[Lemma~3.1, Cor.~3.9]{Hikita25} this map is a linear isomorphism compatible with $m\to m-1$, so $\star$ is well defined on $\Lam$, and it is commutative and associative \cite{Hikita25}. We use $\star$ only through the following consequence of the definitions \cite[Def.~3.4, Lemma~3.3]{Hikita25}: for symmetric $F$,
+\begin{equation}\label{eq:star-reading}
+e_k\star F=t^{-\binom k2}\,e_k(Y)\,F .
+\end{equation}
+
+\subsection{Coxeter preliminaries}
+We use standard facts about $S_m$ as a Coxeter group with generators $s_1,\dots,s_{m-1}$ \cite[\S\S1.10, 5.12]{Humphreys90}, \cite[\S2.4]{BjornerBrenti05}. Words act as compositions of operators, the rightmost factor first.
+\begin{enumerate}
+\item[(H1)] For a reduced word $w=s_{i_1}\cdots s_{i_\ell}$ the operator $T_w:=T_{i_1}\cdots T_{i_\ell}$ depends only on $w$, and $T_uT_v=T_{uv}$ whenever $\ell(uv)=\ell(u)+\ell(v)$.
+\item[(H2)] For $J\subseteq\{s_1,\dots,s_{m-1}\}$ let $W_J$ be the parabolic subgroup and $W^J=\{w:\ell(ws)>\ell(w)\ \forall s\in J\}$. Every $w$ factors uniquely as $w=w^Jw_J$ with $w^J\in W^J$, $w_J\in W_J$, and $\ell(w)=\ell(w^J)+\ell(w_J)$.
+\item[(H3)] For $K\subseteq J$, multiplication $W^J\times(W_J)^K\to W^K$ is a length-additive bijection.
+\item[(H4)] If $T_jH=tH$ for all $s_j\in J$, then $T_vH=t^{\ell(v)}H$ for all $v\in W_J$.
+\item[(H5)] $\pi T_j=T_{j+1}\pi$ for $1\le j\le m-2$.
+\end{enumerate}
+(H3) is standard: if $u\in W^J$, $v\in(W_J)^K$ and $s\in K$, then $\ell(uvs)=\ell(u)+\ell(vs)=\ell(uv)+1$; conversely, for $x\in W^K$ write $x=x^Jx_J$, and $x_Js<x_J$ for some $s\in K$ would give $\ell(xs)<\ell(x)$. (H4) is immediate from (H1). For (H5), $\pi s_jf=x_1f(x_2,\dots,x_{j+2},x_{j+1},\dots,sx_1)=s_{j+1}\pi f$ because $j+2\le m$, and $\pi$ turns multiplication by $x_{j+1}/(x_j-x_{j+1})$ into multiplication by $x_{j+2}/(x_{j+1}-x_{j+2})$.
+
+Let $J_n:=\{s_i:i\neq n\}$, so $W_{J_n}=S_n\times S_{m-n}$, and the coset $wW_{J_n}$ is determined by $D=w([n])$. Its minimal element $w^D$ is increasing on $[n]$ and on $[n+1,m]$, with $\ell(w^D)=\sum_l(d_l-l)$ for $D=\{d_1<\dots<d_n\}$. The word
+\[ w(D):=(s_{d_1-1}\cdots s_1)(s_{d_2-1}\cdots s_2)\cdots(s_{d_n-1}\cdots s_n) \]
+sends $l\mapsto d_l$ for $l\le n$: the blocks with index $l'>l$ fix $l$, block $l$ sends $l$ to $d_l$, and the blocks $l'<l$ only move points $\le d_{l'}<d_l$. It has length $\le\sum_l(d_l-l)$, so $w(D)=w^D$ and the word is reduced. We write $T_{w(D)}$ for the corresponding operator and
+\[ \sigma^{(k)}:=\sum_{|D|=k}T_{w(D)} . \]
+
+\subsection{The parabolic kernel}
+
+\begin{lemma}\label{lem:KL}
+Let $0\le n\le m$, $1\le c<d_1<\dots<d_n\le m$, and let $H$ satisfy $T_jH=tH$ for all $j\neq n$. Then
+\[ (T_cT_{c+1}\cdots T_{m-1})^{-1}\,T_{w(D)}H=t^{\,n-(m-c)}\,T_{w(D-1)}H,\qquad D-1:=\{d_1-1,\dots,d_n-1\}. \]
+\end{lemma}
+\begin{proof}
+Let $x:=s_cs_{c+1}\cdots s_{m-1}$; it is reduced of length $m-c$, sends $m\mapsto c$ and $i\mapsto i+1$ for $c\le i\le m-1$, and fixes $i<c$. Let $y:=w(D-1)$; the word is valid since $d_l-1\ge c+l-1\ge l$, and $\ell(y)=\ell(w^D)-n$. As $m\notin D-1$, the value $m$ is the largest on the increasing block $[n+1,m]$, so $y(m)=m$. Since $x$ is increasing on $[1,m-1]$, the inversions of $y$ among positions $<m$ survive in $xy$; at position $m$, $xy(m)=c$ is inverted with exactly those $i<m$ having $y(i)\ge c$, and there are $m-c$ of them. Hence $\ell(xy)=\ell(y)+m-c$. Finally $xy([n])=x(D-1)=D$ because every $d_l-1\ge c$, so $xy=w^Dv$ with $v\in W_{J_n}$ and $\ell(v)=\ell(xy)-\ell(w^D)=m-c-n$. By (H1) and (H4), $T_xT_yH=T_{xy}H=T_{w^D}T_vH=t^{m-c-n}T_{w^D}H$. Apply $T_x^{-1}$.
+\end{proof}
+
+\begin{proposition}[Parabolic kernel]\label{prop:Ak}
+For symmetric $F$ and $1\le b_1<\dots<b_k\le m$, $Y_{b_1}Y_{b_2}\cdots Y_{b_k}F=t^{\binom k2}\,T_{w(\{b_1,\dots,b_k\})}\,\pi^kF$. Hence
+\[ e_k(Y)F=t^{\binom k2}\,\sigma^{(k)}\pi^kF . \]
+\end{proposition}
+\begin{proof}
+Note that $\pi^nF=x_1\cdots x_n\,F(x_{n+1},\dots,x_m,sx_1,\dots,sx_n)$ is symmetric in $x_1,\dots,x_n$ and in $x_{n+1},\dots,x_m$, so $T_j\pi^nF=t\pi^nF$ for $j\neq n$. We induct on the number of factors, the empty product being trivial. Let $c<d_1<\dots<d_n$ and assume $Y_{d_1}\cdots Y_{d_n}F=t^{\binom n2}T_{w(D)}H$ with $H=\pi^nF$. By \cref{lem:KL},
+\[ Y_c\,t^{\binom n2}T_{w(D)}H=t^{\binom n2}t^{m-c}\,T_{c-1}\cdots T_1\,\pi\,(T_c\cdots T_{m-1})^{-1}T_{w(D)}H=t^{\binom n2+n}\,T_{c-1}\cdots T_1\,\pi\,T_{w(D-1)}H. \]
+All indices in the word $w(D-1)=\prod_l(s_{d_l-2}\cdots s_l)$ lie in $[1,m-2]$, so by (H5), $\pi T_{w(D-1)}=\prod_l(T_{d_l-1}\cdots T_{l+1})\,\pi$. Now $T_{c-1}\cdots T_1\prod_l(T_{d_l-1}\cdots T_{l+1})=T_{w(\{c\}\cup D)}$, $\pi H=\pi^{n+1}F$, and $\binom n2+n=\binom{n+1}2$.
+\end{proof}
+
+\subsection{The $k$-set kernel}
+Let $\sigma_{[l,m]}:=\sum_{a=l}^mT_{a-1}\cdots T_l$ be the partial symmetriser on $x_l,\dots,x_m$.
+
+\begin{lemma}\label{lem:sym1}
+Let $F$ be symmetric in $x_2,\dots,x_m$, with coefficients in any field containing $\mathbb{Q}(t)$, and let $F^{(i)}$ be $F$ with $x_1$ and $x_i$ swapped. Then $\sigma_{[1,m]}F=\sum_{i=1}^mF^{(i)}\prod_{j\neq i}a_{ij}$.
+\end{lemma}
+\begin{proof}
+Induction on $m$; $m=1$ is trivial. Since $s_1F=F^{(2)}$, a direct computation gives $T_1F=a_{21}F^{(2)}+(a_{12}-1)F^{(1)}$. Write $\sigma_{[1,m]}=1+\sigma_{[2,m]}T_1$. The function $G:=T_1F$ is symmetric in $x_3,\dots,x_m$, so by induction (over the field with $x_1$ adjoined) $\sigma_{[2,m]}G=\sum_{i\ge2}G|_{x_2\leftrightarrow x_i}\prod_{j\ge2,\,j\neq i}a_{ij}$. Under $x_2\leftrightarrow x_i$, $F^{(2)}\mapsto F^{(i)}$, $F^{(1)}$ is fixed, $a_{21}\mapsto a_{i1}$ and $a_{12}\mapsto a_{1i}$. Hence
+\[ \sigma_{[1,m]}F=\sum_{i\ge2}F^{(i)}\prod_{j\neq i}a_{ij}+F^{(1)}\Bigl[1+\sum_{i\ge2}(a_{1i}-1)\prod_{j\ge2,\,j\neq i}a_{ij}\Bigr]. \]
+The function $R(x):=\prod_{j\ge2}(x-tx_j)/(x-x_j)$ tends to $1$ at $\infty$ and has simple poles at $x=x_i$ with residues $(1-t)x_i\prod_{j\ge2,j\neq i}a_{ij}$; so $R(x)=1+\sum_{i\ge2}\frac{(1-t)x_i}{x-x_i}\prod_{j\ge2,j\ne i}a_{ij}$. Evaluating at $x=x_1$ and using $(1-t)x_i/(x_1-x_i)=a_{1i}-1$ shows that the bracket equals $R(x_1)=\prod_{j\ge2}a_{1j}$.
+\end{proof}
+
+\begin{proposition}[$k$-set kernel]\label{prop:Kk}
+Let $G$ be symmetric in $x_1,\dots,x_k$ and in $x_{k+1},\dots,x_m$, and let $G^{(A)}$ denote $G$ with the variables $x_A$ in the first $k$ slots and $x_{[m]\setminus A}$ in the last $m-k$. Then
+\[ \sigma^{(k)}G=\sum_{|A|=k}c_A\,G^{(A)} . \]
+\end{proposition}
+\begin{proof}
+Let $K_l:=\{s_{l+1},\dots,s_{m-1}\}$. The minimal coset representatives of $W_{K_{l-1}}/W_{K_l}$ are $s_{a-1}\cdots s_l$ ($l\le a\le m$), so applying (H3) along $K_k\subset K_{k-1}\subset\dots\subset K_0$ gives $\sum_{u\in W^{K_k}}T_u=\sigma_{[1,m]}\sigma_{[2,m]}\cdots\sigma_{[k,m]}$. Applying (H3) to $K_k\subset J_k$, with $(W_{J_k})^{K_k}=S_k$, gives $\sum_{u\in W^{K_k}}T_u=\sigma^{(k)}\sum_{v\in S_k}T_v$. For $G$ as in the statement, (H4) gives $\sum_{v\in S_k}T_vG=[k]_t!\,G$, so
+\begin{equation}\label{eq:chain}
+\sigma_{[1,m]}\cdots\sigma_{[k,m]}G=[k]_t!\,\sigma^{(k)}G .
+\end{equation}
+On the other hand, if $G$ is merely symmetric in $x_{k+1},\dots,x_m$, then iterating \cref{lem:sym1} gives
+\begin{equation}\label{eq:ordered}
+\sigma_{[1,m]}\cdots\sigma_{[k,m]}G=\sum_{(a_1,\dots,a_k)\ \text{distinct}}G(x_{a_1},\dots,x_{a_k};\text{rest})\ \omega(a),\qquad \omega(a):=\prod_{l=1}^k\ \prod_{j\notin\{a_1,\dots,a_l\}}a_{a_lj}.
+\end{equation}
+Indeed, by induction on $k$ in the variables $x_2,\dots,x_m$, $H:=\sigma_{[2,m]}\cdots\sigma_{[k,m]}G$ is the analogous sum over distinct tuples in $[2,m]$; it is symmetric in $x_2,\dots,x_m$, since permuting those variables permutes the terms; and \cref{lem:sym1} applied to $H$, followed by $x_1\leftrightarrow x_{a_1}$, turns tuples in $[2,m]$ into tuples in $[m]\setminus\{a_1\}$.
+
+Now let $G$ be symmetric in both groups. Then $G(x_{a_1},\dots,x_{a_k};\text{rest})=G^{(A)}$ with $A=\{a_1,\dots,a_k\}$, and
+\begin{equation}\label{eq:omega-split}
+\omega(a)=c_A\prod_{1\le l<l'\le k}a_{a_la_{l'}} .
+\end{equation}
+By the Poincar\'e identity $\sum_{w\in S_k}w\bigl(\prod_{i<j\le k}a_{ij}\bigr)=[k]_t!$ \cite[III (1.4)]{Macdonald95} (which is also \eqref{eq:chain}=\eqref{eq:ordered} at $m=k$, $G=1$), summing over the orderings of $A$ gives $[k]_t!\,c_AG^{(A)}$. Compare with \eqref{eq:chain}.
+\end{proof}
+
+\begin{theorem}[Subset formula]\label{thm:subset}
+For every $m\ge0$, $k\ge1$ and $F\in\Lam_m$,
+\[ e_k\star F=t^{-\binom k2}e_k(Y)F=E_kF:=\sum_{|A|=k}c_A\,x_A\,F\big|_{x_i\mapsto sx_i\ (i\in A)} . \]
+\end{theorem}
+\begin{proof}
+By \cref{prop:Ak,prop:Kk} with $G=\pi^kF$, since $(\pi^kF)^{(A)}=x_A\,F|_{x_i\mapsto sx_i\,(i\in A)}$; the first equality is \eqref{eq:star-reading}. For $m<k$ both sides vanish.
+\end{proof}
+
+\begin{remark}
+For $k=1$ the subset formula gives back Hikita's rule $e_1\star e_r=(1-s)[r+1]e_{r+1}+se_1e_r$ \cite[Thm.~3.12]{Hikita25}; see \cref{ex:k1}. \Cref{prop:Kk} is the level-one form of the classical expression of the Hecke symmetriser as $\sum_ww\circ\prod_{i<j}a_{ij}$, restricted to minimal coset representatives.
+\end{remark}
+
+\subsection{Two consequences of the kernel}
+The next two lemmas drive every computation in \cref{sec:pieri}. For a function $\varphi$ of one variable put $S^\varphi_k(x_1,\dots,x_m):=\sum_{|A|=k}c_A\prod_{a\in A}\varphi(x_a)$.
+
+\begin{lemma}[Peeling one variable]\label{lem:peel}
+For $m\ge1$ and $k\ge1$, $[k]\,S^\varphi_k(x)=\sum_{i=1}^m\varphi(x_i)\prod_{j\neq i}a_{ij}\;S^\varphi_{k-1}(\hx_i)$.
+\end{lemma}
+\begin{proof}
+By \eqref{eq:omega-split} and the Poincar\'e identity, $[k]_t!\,S^\varphi_k=\sum_a\omega(a)\prod_l\varphi(x_{a_l})$, the sum over distinct $k$-tuples. Separate $a_1=i$: $\omega(a)=\prod_{j\neq i}a_{ij}\cdot\omega'(a_2,\dots,a_k)$, where $\omega'$ is the weight of \eqref{eq:ordered} for the variables $\hx_i$. Summing over $(a_2,\dots,a_k)$ gives $[k-1]_t!\,S^\varphi_{k-1}(\hx_i)$.
+\end{proof}
+
+\begin{lemma}[Residue form of the HL kernel]\label{lem:res}
+Let $\mathbb{K}\supseteq\mathbb{Q}(t)$ be a field and $H\in\mathbb{K}(v)$ with $H(0)=0$, such that $H(v)/v$ has only simple poles, at points $p\in\mathbb{K}$, and $H(v)/v=O(1/v)$ at $\infty$. Then in $\mathbb{K}(x_1,\dots,x_m)$
+\[ (1-t)\sum_{i=1}^mH(x_i)\prod_{j\neq i}a_{ij}=-\sum_p\Res_{v=p}f-\Res_{v=\infty}f,\qquad f(v):=\frac{H(v)}{v}\prod_{j=1}^m\frac{v-tx_j}{v-x_j}. \]
+\end{lemma}
+\begin{proof}
+$f$ is regular at $v=0$, its residue at $v=x_i$ is $(1-t)H(x_i)\prod_{j\neq i}a_{ij}$, and the sum of all residues of a rational function is zero.
+\end{proof}
+For $H(v)=v^n$, $n\ge1$, this is $(1-t)\sum_ix_i^n\prod_{j\ne i}a_{ij}=q_n$ \cite[III (2.10)]{Macdonald95}. Note that $\prod_j(v-tx_j)/(v-x_j)=Q(1/v)$ and $Q(-a)=E(ta)/E(a)$.
+
+%% ===================================================================
+\section{The Pieri package}\label{sec:pieri}
+%% ===================================================================
+
+\subsection{The coefficients}
+For $j\ge0$ put
+\[ \alpha_j:=\prod_{i=1}^{j}\frac{s-t^i}{1-t^i}\quad(\alpha_{-1}:=0),\qquad c(n,j):=\frac{(s;t)_{n-j}}{(t;t)_{n-j}}\bigl(\alpha_j-s\,t^{\,n-j}\alpha_{j-1}\bigr)\quad(0\le j\le n), \]
+and $c(n,j):=0$ otherwise. Let $F_n(w):=\sum_{j=0}^nc(n,j)w^j$. For instance $F_0=1$ and $F_1(w)=(1-s)(1-tw)/(1-t)$.
+
+\begin{lemma}\label{lem:Cj}
+Let $G(x):=\sum_{n\ge0}\frac{(s;t)_n}{(t;t)_n}x^n$, $C_j(x):=\sum_nc(n,j)x^n$, and $D_j:=\alpha_j-s\alpha_{j-1}$. Then
+\[ (1-x)G(x)=(1-sx)G(tx),\qquad C_j(x)=D_j\,x^j\,G(tx)\,\frac{1-st^{-j}x}{1-x}, \]
+$D_0=1$, $D_j=\alpha_{j-1}t^j(s-1)/(1-t^j)\neq0$ for $j\ge1$, and $(1-t^j)D_j=(ts-t^j)D_{j-1}$ for $j\ge1$.
+\end{lemma}
+\begin{proof}
+Write $g_n=(s;t)_n/(t;t)_n$. The first identity says $g_n-g_{n-1}=t^ng_n-st^{n-1}g_{n-1}$, i.e.\ $(1-t^n)g_n=(1-st^{n-1})g_{n-1}$. By definition $C_j(x)=x^j\bigl(\alpha_jG(x)-s\alpha_{j-1}G(tx)\bigr)=x^jG(tx)\bigl(\alpha_j(1-sx)-s\alpha_{j-1}(1-x)\bigr)/(1-x)$. The bracket is linear in $x$. It equals $D_j$ at $x=0$, and at $x=t^j/s$ it equals $\alpha_j(1-t^j)-\alpha_{j-1}(s-t^j)=0$ (for $j=0$ use $\alpha_{-1}=0$). So it equals $D_j(1-st^{-j}x)$. The formula for $D_j$ follows from $\alpha_j=\alpha_{j-1}(s-t^j)/(1-t^j)$, and the recursion from it and the same relation one step down (for $j=1$ use $D_0=1$).
+\end{proof}
+
+\subsection{Statements}
+Fix $\ell\ge1$ and indeterminates $z_1,\dots,z_\ell$. For integers $i,j\ge0$ let
+\[ K_{ij}(z,w):=\prod_{p=0}^{i-1}\frac{t^pz-sw}{t^pz-t^jw}\ \prod_{r=0}^{j-1}\frac{sz-t^rw}{t^iz-t^rw}, \]
+and note $K_{ij}(z,w)=K_{ji}(w,z)$. For $I=(i_1,\dots,i_\ell)\in\mathbb{Z}_{\ge0}^\ell$ with $|I|=S$ put $K_I:=\prod_{c<c'}K_{i_ci_{c'}}(z_c,z_{c'})$ and
+\[ V^{(n)}_I:=K_I\,s^{(\ell-1)(n-S)}\sum_{n_1+\dots+n_\ell=n}\ t^{-\sum_{c\neq c'}(n_c-i_c)i_{c'}}\ \prod_{c=1}^\ell t^{-n_ci_c}\,c(n_c,i_c)\,z_c^{-n_c}, \]
+with $V^{(n)}_I:=0$ if some $i_c<0$. Since $c(n_c,i_c)=0$ for $n_c<i_c$, $V^{(n)}_I=0$ unless $S\le n$.
+
+\begin{theorem}[$\ell$-column rule]\label{thm:ellcol}
+For all $m,k\ge0$ and $\ell\ge1$, in $\Lam_m\otimes\mathbb{Q}(s,t)(z_1,\dots,z_\ell)$,
+\[ \Gamma_k:=\sum_{a\in\mathbb{Z}_{\ge0}^\ell}z_1^{a_1}\cdots z_\ell^{a_\ell}\ e_k\star(e_{a_1}\cdots e_{a_\ell})=\sum_{b=0}^{k}\ \sum_{I}\ \bigl(s^\ell t^{-|I|}\bigr)^b\,V^{(k-b)}_I\ e_b\prod_{c=1}^\ell E(t^{i_c}z_c). \]
+In particular the right-hand side is a polynomial in $z_1,\dots,z_\ell$, and $e_k\star(e_{a_1}\cdots e_{a_\ell})$ is its coefficient of $z^a$. The coefficients do not depend on $m$, so the identity holds in $\Lam$.
+\end{theorem}
+
+\begin{corollary}[Pieri rule for $e_k\star e_r$]\label{cor:pieri-ekr}
+For all $k\ge1$ and $r\ge0$,
+\[ e_k\star e_r=\sum_{b=0}^{k}s^b\,F_{k-b}(t^{r-b})\,e_b\,e_{r+k-b}. \]
+Equivalently, $\sum_rz^r\,e_k\star e_r=\sum_{j+b\le k}s^bt^{-kj}c(k-b,j)\,e_b\,z^{b-k}E(t^jz)$.
+\end{corollary}
+\begin{proof}
+Take $\ell=1$ in \cref{thm:ellcol}: $K_I=1$, and $V^{(n)}_{(j)}=t^{-nj}c(n,j)z^{-n}$, so the right-hand side is the stated generating function. Extract $[z^r]$ using $[z^r]z^{b-k}E(t^jz)=t^{j(r+k-b)}e_{r+k-b}$.
+\end{proof}
+For $r<k$, distinct $b$ may give the same monomial $e_be_{r+k-b}$; the identity is between the sums. Since $\star$ is commutative, applying \cref{cor:pieri-ekr} to $e_r\star e_k$ shows that the support of $e_k\star e_r$ is contained in $\{e_be_{r+k-b}:0\le b\le\min(k,r)\}$ (see also \cref{thm:DS}).
+
+\begin{example}[$k=1$]\label{ex:k1}
+$c(1,0)=\frac{1-s}{1-t}$ and $c(1,1)=\frac{t(s-1)}{1-t}$, so $F_1(t^r)=(1-s)[r+1]$ and \cref{cor:pieri-ekr} is Hikita's rule $e_1\star e_r=(1-s)[r+1]e_{r+1}+se_1e_r$ \cite[Thm.~3.12]{Hikita25}.
+\end{example}
+
+\begin{example}[$k=2$]\label{ex:k2}
+One computes $F_2(w)=\dfrac{(1-s)(1-t^2w)\bigl(1-st+(s-t)w\bigr)}{(1-t)(1-t^2)}$, so for all $r\ge0$
+\[ e_2\star e_r=\frac{(1-s)(1-t^{r+2})(1-st+(s-t)t^r)}{(1-t)(1-t^2)}\,e_{r+2}+s(1-s)[r]\,e_1e_{r+1}+s^2e_2e_r . \]
+For $r=0$ this is $e_2\star1=e_2$.
+\end{example}
+
+\begin{corollary}[The case $t=0$]\label{cor:pieri-t0}
+For $k\ge1$, $r\ge0$, put $\mu=\min(k,r)$ and $M=\max(k,r)$. The coefficients of $e_k\star e_r$ are regular at $t=0$, and
+\[ (e_k\star e_r)\big|_{t=0}=\sum_{b=0}^{\mu-1}(1-s)s^b\,e_b\,e_{r+k-b}+s^\mu\,e_\mu e_M . \]
+\end{corollary}
+For $s\in[0,1]$ the weights $(1-s)s^b$ ($b<\mu$) and $s^\mu$ are the law of $\min(G,\mu)$ for a geometric variable $G$ with $P(G=b)=(1-s)s^b$, and the monomials $e_be_{r+k-b}$ ($b<\mu$), $e_\mu e_M$ are pairwise distinct. So at $t=0$, $e_k\star e_r$ is a truncated-geometric average of ordinary products.
+
+\begin{corollary}[Two columns; bounded support]\label{cor:twocol}
+For $\ell=2$, \cref{thm:ellcol} reads
+\[ \sum_{a,b\ge0}z^aw^b\ e_k\star(e_ae_b)=\sum_{b_0,i,j}s^{2b_0}t^{-b_0(i+j)}\,V^{(k-b_0)}_{ij}\,e_{b_0}E(t^iz)E(t^jw), \]
+\[ V^{(n)}_{ij}=K_{ij}(z,w)\sum_{n_1+n_2=n}s^{n-i-j}\,t^{-(n_1-i)j-(n_2-j)i-n_1i-n_2j}\,c(n_1,i)\,c(n_2,j)\,z^{-n_1}w^{-n_2}. \]
+In general, $e_k\star(e_{a_1}\cdots e_{a_\ell})$ is a linear combination of products of at most $\ell+1$ elementary symmetric functions.
+\end{corollary}
+\begin{proof}
+The first part is the case $\ell=2$. For the second, expand both sides of \cref{thm:ellcol} in the field of iterated Laurent series $\mathbb{Q}(s,t)((z_\ell))\cdots((z_1))$. The left side is a polynomial, so its expansion is itself. On the right, each term is $R(z)\,e_b\prod_cE(t^{i_c}z_c)$ with $R$ rational and free of $x$, and its coefficient of $z^a$ is a finite $\mathbb{Q}(s,t)$-combination of products $e_b\prod_{c=1}^\ell e_{n_c}$.
+\end{proof}
+
+\subsection{The recursion}
+By \cref{thm:subset}, $e_k\star(e_{a_1}\cdots e_{a_\ell})=\sum_{|A|=k}c_Ax_A\prod_ce_{a_c}(x_{A^c},sx_A)$, and $\sum_{a}z^a\prod_ce_{a_c}(x_{A^c},sx_A)=\prod_c\prod_{j\notin A}(1+x_jz_c)\prod_{i\in A}(1+sx_iz_c)$. Hence
+\begin{equation}\label{eq:Gamma}
+\Gamma_k(x)=\prod_cE(z_c)\cdot S^\varphi_k(x),\qquad \varphi(u):=u\prod_{c=1}^\ell\frac{1+suz_c}{1+uz_c}.
+\end{equation}
+Since $\varphi(x_i)\prod_cE(z_c)=x_i\prod_c(1+sx_iz_c)\cdot\prod_cE(\hx_i;z_c)$, \cref{lem:peel} gives, for $m\ge1$ and $k\ge1$,
+\begin{equation}\label{eq:Rl}
+[k]\,\Gamma_k(x)=\sum_{i=1}^mx_i\prod_{c=1}^\ell(1+sx_iz_c)\prod_{j\neq i}a_{ij}\ \Gamma_{k-1}(\hx_i),
+\end{equation}
+where $\Gamma_{k-1}(\hx_i)$ denotes $\Gamma_{k-1}$ computed in the $m-1$ variables $\hx_i$. For $m=0$ we have $\Gamma_0=1$ and $\Gamma_k=0$ for $k\ge1$.
+
+\subsection{The step map}
+Fix $I$ and put $\gamma_c:=t^{i_c}z_c$, $C:=s^\ell t^{-|I|}=s^\ell\prod_cz_c/\prod_c\gamma_c$, and
+\[ \mathcal{F}(v):=\frac{\prod_{c=1}^\ell(v-sz_c)}{v\prod_{c=1}^\ell(v-\gamma_c)}=\frac{C}{v}+\sum_{c=1}^\ell\frac{\kappa_c}{v-\gamma_c},\qquad \kappa_c:=\frac{\prod_{c'}(\gamma_c-sz_{c'})}{\gamma_c\prod_{c'\neq c}(\gamma_c-\gamma_{c'})}. \]
+
+\begin{lemma}[Step map]\label{lem:step}
+For $b\ge0$, in $m\ge1$ variables,
+\begin{multline*}
+(1-t)\sum_{i}x_i\prod_c(1+sx_iz_c)\prod_{j\neq i}a_{ij}\ e_b(\hx_i)\prod_cE(\hx_i;\gamma_c)
+=C(1-t^{b+1})\,e_{b+1}\prod_cE(\gamma_c)\\
+-\sum_{n=0}^{b}e_n\sum_{c=1}^\ell\kappa_c\,\gamma_c^{\,n-b-1}\bigl(E(t\gamma_c)-t^nE(\gamma_c)\bigr)\prod_{c'\neq c}E(\gamma_{c'}).
+\end{multline*}
+\end{lemma}
+\begin{proof}
+Write $u=x_i$. Then $e_b(\hx_i)=[y^b]E(y)/(1+uy)$ and $E(\hx_i;\gamma)=E(\gamma)/(1+\gamma u)$, so the left side is $\prod_cE(\gamma_c)\cdot[y^b]\,E(y)\,(1-t)\sum_iH(x_i;y)\prod_{j\ne i}a_{ij}$ with
+\[ H(v;y):=\frac{v\prod_c(1+svz_c)}{(1+yv)\prod_c(1+\gamma_cv)} \]
+(the sum over $i$ is finite and each term is regular at $y=0$, so $[y^b]$ commutes with it). Apply \cref{lem:res} over $\mathbb{K}=\mathbb{Q}(s,t,z,y)$. The poles of $H/v$ are simple, at $v=-1/a$ for $a\in\{y,\gamma_1,\dots,\gamma_\ell\}$, and $H(v)/v\sim C/(yv)$ at $\infty$, which contributes $C/y$. At $v=-1/a$ the residue of $f$ is $\rho_a\,E(ta)/E(a)$, where
+\[ \rho_a=\frac{\prod_c(a-sz_c)}{a\prod_{a'\neq a}(a-a')} , \]
+as one sees from $\prod_c(1-sz_c/a)=a^{-\ell}\prod_c(a-sz_c)$, $\prod_{a'\neq a}(1-a'/a)=a^{-\ell}\prod_{a'\ne a}(a-a')$ and $Q(-a)=E(ta)/E(a)$. Thus $\rho_y=\mathcal{F}(y)$ and $\rho_{\gamma_c}=-\kappa_c/(y-\gamma_c)$, and
+\[ (1-t)\sum_iH(x_i;y)\prod_{j\ne i}a_{ij}=\frac Cy-\mathcal F(y)\frac{E(ty)}{E(y)}+\sum_c\frac{\kappa_c}{y-\gamma_c}\,\frac{E(t\gamma_c)}{E(\gamma_c)} . \]
+Multiply by $E(y)\prod_cE(\gamma_c)$ and write $E(y)=\sum_ne_ny^n$, $E(ty)=\sum_nt^ne_ny^n$. The coefficient of $e_n$ is $[y^{b-n}]$ of the Laurent expansion at $y=0$ of
+\[ \Bigl(\frac Cy-t^n\mathcal F(y)\Bigr)\prod_cE(\gamma_c)+\sum_c\frac{\kappa_c}{y-\gamma_c}E(t\gamma_c)\prod_{c'\ne c}E(\gamma_{c'})=\frac{C(1-t^n)}{y}\prod_cE(\gamma_c)+\sum_c\frac{\kappa_c}{y-\gamma_c}\bigl(E(t\gamma_c)-t^nE(\gamma_c)\bigr)\prod_{c'\ne c}E(\gamma_{c'}), \]
+by the partial fraction expansion of $\mathcal F$. Expanding $1/(y-\gamma)=-\sum_{p\ge0}y^p\gamma^{-p-1}$ gives the claim: $n=b+1$ picks the pole at $0$, $n\le b$ picks the second sum, and $n>b+1$ contributes nothing.
+\end{proof}
+
+\subsection{Proof of \cref{thm:ellcol}}
+Write $\mathcal T_k$ for the right-hand side of \cref{thm:ellcol}, $\mathcal T_k=\sum_{b,I}W^{(k)}_{b,I}\,e_b\prod_cE(t^{i_c}z_c)$ with $W^{(k)}_{b,I}=C_I^{\,b}V^{(k-b)}_I$, $C_I:=s^\ell t^{-|I|}$; $\epsilon_1,\dots,\epsilon_\ell$ are the unit vectors of $\mathbb{Z}^\ell$.
+
+\emph{Reduction to an index identity.} We show the step identity
+\begin{equation}\label{eq:Ll}
+\sum_ix_i\prod_c(1+sx_iz_c)\prod_{j\ne i}a_{ij}\,\mathcal T_{k-1}(\hx_i)=[k]\,\mathcal T_k(x)\qquad(m\ge0,\ k\ge1)
+\end{equation}
+(for $m=0$ the left side is empty). Given \eqref{eq:Ll}, the theorem follows by induction on $k$ for all $m$ at once: $\Gamma_0=\prod_cE(z_c)=\mathcal T_0$ because $V^{(0)}_{0}=1$; for $m=0$, \eqref{eq:Ll} says $\mathcal T_k=0=\Gamma_k$; for $m\ge1$, \eqref{eq:Rl}, the induction hypothesis in the variables $\hx_i$, and \eqref{eq:Ll} give $[k]\Gamma_k=[k]\mathcal T_k$.
+
+Apply \cref{lem:step} to each term of $\mathcal T_{k-1}(\hx_i)$. The term $e_{b'}\prod_cE(t^{i_c}z_c)$ on the right receives three kinds of contributions: from $(b'-1,I)$ via the pole at $0$; from $(b,I)$, $b\ge b'$, via $-t^{b'}E(\gamma_c)$; and from $(b,I-\epsilon_c)$, $b\ge b'$, via $E(t\gamma'_c)$ with $\gamma'_c=t^{i_c-1}z_c$. Writing $\kappa'_c$ for $\kappa_c$ computed at $I-\epsilon_c$, $n:=k-b'$, $p:=b-b'$, and using $C_{I-\epsilon_c}=tC_I$, the coefficient of $e_{b'}\prod_cE(t^{i_c}z_c)$ in $(1-t)$ times the left side of \eqref{eq:Ll} is $C_I^{\,b'}$ times
+\[ (1-t^{b'})V^{(n)}_I+t^{b'}\sum_{p\ge0}C_I^{\,p}\Bigl[V^{(n-1-p)}_I\sum_c\kappa_c\gamma_c^{-p-1}-t^p\sum_cV^{(n-1-p)}_{I-\epsilon_c}\kappa'_c\,(t^{i_c-1}z_c)^{-p-1}\Bigr]. \]
+So \eqref{eq:Ll} follows from the index identity
+\begin{equation}\label{eq:starl}
+\sum_{p\ge0}C_I^{\,p}\Bigl[V^{(n-1-p)}_I\sum_c\kappa_c\gamma_c^{-p-1}-t^p\sum_cV^{(n-1-p)}_{I-\epsilon_c}\kappa'_c\,(t^{i_c-1}z_c)^{-p-1}\Bigr]=(1-t^n)V^{(n)}_I\qquad(n\ge0),
+\end{equation}
+because then the coefficient is $C_I^{\,b'}(1-t^{b'+n})V^{(n)}_I=(1-t^k)W^{(k)}_{b',I}$. (No uniqueness of such expansions is needed: the two sides agree term by term.)
+
+\emph{Generating function.} Let $\mathcal V_I(x):=\sum_{n\ge0}V^{(n)}_Ix^n$. The $p$-sums in \eqref{eq:starl} are convolutions, and $\sum_{p\ge0}C^p\gamma^{-p-1}x^{p+1}=x/(\gamma-Cx)$. So \eqref{eq:starl} for all $n$ is equivalent to
+\begin{equation}\label{eq:starlGF}
+\mathcal V_I(x)\,U(x)-\mathcal V_I(tx)=-\sum_c\kappa'_c\,\frac{x}{t^{i_c-1}z_c-C_Itx}\,\mathcal V_{I-\epsilon_c}(x),\qquad U(x):=1-\sum_c\frac{\kappa_cx}{\gamma_c-C_Ix}.
+\end{equation}
+Put $X_c:=C_Ix/(sz_c)$ and $A_c:=t^{i_c}$. Summing over $(n_c)$ in the definition of $V^{(n)}_I$, the exponent of $t$ attached to column $c$ is $-n_c|I|+i_c(|I|-i_c)$, so
+\begin{equation}\label{eq:VGF}
+\mathcal V_I(x)=K_I\,s^{-(\ell-1)|I|}\,t^{|I|^2-\sum_ci_c^2}\prod_cC_{i_c}(X_c),
+\end{equation}
+and passing from $I$ to $I-\epsilon_c$ replaces every $X_{c'}$ by $tX_{c'}$.
+
+\emph{Step A: $U$ is a product.} By the partial fraction expansion of $\mathcal F$, $U(x)=x\,\mathcal F(C_Ix)$. Since $C_Ix-sz_c=-sz_c(1-X_c)$, $C_Ix-\gamma_c=-\gamma_c(1-sX_c/A_c)$ and $C_I\prod_c\gamma_c=s^\ell\prod_cz_c$,
+\[ U(x)=\prod_{c=1}^\ell\frac{1-X_c}{1-sX_c/A_c}. \]
+
+\emph{Step B: normalisation.} Divide \eqref{eq:starlGF} by $\mathcal N:=K_I\,s^{-(\ell-1)|I|}t^{|I|^2-\sum i_c^2}\prod_cD_{i_c}X_c^{i_c}G(t^2X_c)$, which is legitimate since $D_j\ne0$. By \cref{lem:Cj} and $G(tX)/G(t^2X)=(1-stX)/(1-tX)$, with $u_c:=stX_c$:
+\begin{itemize}
+\item column $c$ of $\mathcal V_IU$ contributes $\frac{(1-stX_c)(1-sX_c/A_c)}{(1-tX_c)(1-X_c)}\cdot\frac{1-X_c}{1-sX_c/A_c}=\frac{1-u_c}{1-tX_c}$, and column $c$ of $\mathcal V_I(tx)$ contributes $\frac{A_c-u_c}{1-tX_c}$;
+\item in the $c$-th term on the right (present only if $i_c\ge1$), the columns $c'\ne c$ contribute $\frac{A_{c'}-u_{c'}}{1-tX_{c'}}$; column $c$ contributes $\frac{D_{i_c-1}}{D_{i_c}}\frac{A_c}{t}X_c^{-1}\frac{1-st^2X_c/A_c}{1-tX_c}$ with $D_{i-1}/D_i=(1-A)/(ts-A)$; the prefactors contribute $s^{\ell-1}t^{-2(|I|-i_c)}$; and $\frac{x}{t^{i_c-1}z_c-C_Itx}=\frac{stX_c}{C_I(A_c-st^2X_c)}$.
+\end{itemize}
+It remains to compute $\Phi_c:=\kappa'_cK_{I-\epsilon_c}/K_I$. The diagonal factor of $\kappa'_c$ is $(\gamma'_c-sz_c)/\gamma'_c=(A_c-st)/A_c$. For $c'\neq c$ put $z=z_c$, $w=z_{c'}$, $i=i_c$, $j=i_{c'}$, using $K_{ij}(z,w)=K_{ji}(w,z)$ to place $c$ in the first slot. Then
+\[ \frac{t^{i-1}z-sw}{t^{i-1}z-t^jw}\cdot\frac{K_{i-1,j}(z,w)}{K_{ij}(z,w)}=\prod_{r=0}^{j-1}\frac{t^iz-t^rw}{t^{i-1}z-t^rw}=t^j\,\frac{t^iz-w}{t^iz-t^jw}, \]
+the last product telescoping after writing $t^iz-t^rw=t(t^{i-1}z-t^{r-1}w)$. With $\rho_{cc'}:=z_c/z_{c'}=X_{c'}/X_c$ we get
+\[ \Phi_c=\frac{A_c-st}{A_c}\prod_{c'\neq c}A_{c'}\frac{A_c\rho_{cc'}-1}{A_c\rho_{cc'}-A_{c'}} . \]
+Multiplying everything, $\frac{stX_c}{C_I(A_c-st^2X_c)}\cdot\frac{A_c}{t}X_c^{-1}(1-st^2X_c/A_c)=s/C_I$, then $\frac{s}{C_I}s^{\ell-1}t^{-2(|I|-i_c)}=t^{2i_c-|I|}=A_c/\prod_{c'\ne c}A_{c'}$, and $(A_c-st)/(ts-A_c)=-1$. Hence, after division by $\mathcal N$ and multiplication by $\prod_c(1-tX_c)$, \eqref{eq:starlGF} becomes
+\begin{equation}\label{eq:closing}
+\prod_c(1-u_c)-\prod_c(A_c-u_c)-\sum_c(1-A_c)\prod_{c'\ne c}\frac{A_cX_{c'}-X_c}{A_cX_{c'}-A_{c'}X_c}\,(A_{c'}-u_{c'})=0 .
+\end{equation}
+(For $i_c=0$ the $c$-th term is absent, consistently with the factor $1-A_c=0$.)
+
+\emph{Step C: the closing identity.} Put $\lambda_c:=A_c/u_c$ and $\mu_c:=1/u_c$. Since $X_c\propto u_c$, $\frac{A_cX_{c'}-X_c}{A_cX_{c'}-A_{c'}X_c}=\frac{\lambda_c-\mu_{c'}}{\lambda_c-\lambda_{c'}}$, and $(A_{c'}-u_{c'})/u_{c'}=\lambda_{c'}-1$, $(1-A_c)/u_c=\mu_c-\lambda_c$. Dividing \eqref{eq:closing} by $\prod_cu_c$ turns it into the case of \cref{lem:Z} below. As rational functions of $x$, the $\lambda_c=t^{i_c}z_c/(tC_Ix)$ are pairwise distinct and different from $1$. Hence \eqref{eq:starlGF} holds, so \eqref{eq:starl} holds for every $n$, which proves \eqref{eq:Ll} and the theorem. \qed
+
+\begin{lemma}\label{lem:Z}
+For indeterminates $\lambda_1,\dots,\lambda_\ell,\mu_1,\dots,\mu_\ell$,
+\[ \prod_c(\mu_c-1)-\prod_c(\lambda_c-1)=\sum_{c=1}^\ell(\mu_c-\lambda_c)\prod_{c'\ne c}(\lambda_{c'}-1)\frac{\lambda_c-\mu_{c'}}{\lambda_c-\lambda_{c'}} . \]
+\end{lemma}
+\begin{proof}
+The rational function $g(w)=\prod_c(w-\mu_c)/\bigl((w-1)\prod_c(w-\lambda_c)\bigr)$ has residue $\frac{\lambda_c-\mu_c}{\lambda_c-1}\prod_{c'\ne c}\frac{\lambda_c-\mu_{c'}}{\lambda_c-\lambda_{c'}}$ at $\lambda_c$, residue $\prod_c(1-\mu_c)/\prod_c(1-\lambda_c)$ at $1$, and residue $-1$ at $\infty$. The residues sum to zero; multiply by $\prod_c(\lambda_c-1)$.
+\end{proof}
+
+\begin{remark}
+For $\ell=1$, \cref{lem:Z} is the tautology $(\mu-1)-(\lambda-1)=\mu-\lambda$, and the proof above reduces to a one-index recursion for $c(n,j)$. For $\ell=2$ it is the polynomial identity that closes the two-column case. The cross kernel $K_I$ is forced by the pairwise splitting of $\kappa'_c$ in Step B.
+\end{remark}
+
+\subsection{Proof of \cref{cor:pieri-t0}}
+At $t=0$, $(t;t)_n=1$, so every $\alpha_j$ and $c(n,j)$ is regular at $t=0$; $(s;t)_n|_{t=0}=1-s$ for $n\ge1$; hence $F_n(0)=c(n,0)|_{t=0}=1-s$ for $n\ge1$, and $F_0=1$.
+
+\emph{Case $r\ge k$.} Every $b\in[0,k]$ has $r-b\ge0$, so each term $s^bF_{k-b}(t^{r-b})=s^b\sum_jc(k-b,j)t^{j(r-b)}$ of \cref{cor:pieri-ekr} is regular at $t=0$. If $b<r$, the terms with $j\ge1$ vanish at $t=0$, leaving $(1-s)s^b$ for $b<k$ and $s^k$ for $b=k$. If $b=r$, then $b=k=r$ and the term is $s^kF_0(1)=s^k$. Summing gives the claim with $\mu=k$.
+
+\emph{Case $r<k$.} By commutativity of $\star$ \cite{Hikita25}, $e_k\star e_r=e_r\star e_k$. For $r=0$ the claim is $e_k\star1=e_k$; for $r\ge1$ apply the first case to $(r,k)$. \qed
+
+\noindent In the $(k,r)$-expansion of \cref{cor:pieri-ekr} with $r<k$, the terms with $b>r$ carry negative powers $t^{j(r-b)}$; the argument shows that these cancel once each monomial $e_be_{r+k-b}$ is collected with its partner $b'=r+k-b$.
+
+\begin{remark}[Other forms and earlier cases]
+A second, independent proof of the Pieri rule, in the form $e_k\star e_r=\sum_{y}s^yC_{k-y,r-y}e_{k+r-y}e_y$ with $C_{a,b}=(-1)^b\frac{[a+b]}{[a]}\pi_a(b)$, is given in \cref{sec:box} (\cref{cor:pieri}); it goes through the plethystic linear coefficient of \cref{thm:lin} and the Column Lemma. The two forms agree after collecting terms. The kernel form of $e_k(Y)$ on symmetric functions is classical in spirit (Macdonald's $D$-operators); what is new here is the level-one transfer $\pi^k$, the explicit coefficients, and the $\ell$-column rule.
+\end{remark}
+
+%% ===================================================================
+\section{Dominance support}\label{sec:DS}
+%% ===================================================================
+\wip{The proofs in this section are condensed sketches carried over from the extended abstract; full proofs are to be written from the authors' notes, as in \cref{sec:hikita,sec:pieri}.}
+
+For a partition $\lambda$ write $E_k$ for the operator of \cref{thm:subset} and
+\[ e^\star_\lambda:=e_{\lambda_1}\star\cdots\star e_{\lambda_\ell}=E_{\lambda_1}\cdots E_{\lambda_\ell}(1)=\sum_\mu c_{\lambda\mu}(s,t)\,e_\mu . \]
+\begin{theorem}[Dominance support; the $s=0$ valuation]\label{thm:DS}
+$e^\star_\lambda=s^{n(\lambda)}e_\lambda+\sum_{\mu\triangleright\lambda}c_{\lambda\mu}e_\mu$ with $c_{\lambda\mu}\in\mathbb{Q}[s,t]$ and $c_{\lambda\mu}|_{s=1}=0$. Moreover $c_{\lambda\mu}\neq0$ for every $\mu\trianglerighteq\lambda$, and the $s$-adic valuation of $c_{\lambda\mu}$ is exactly $n(\mu)$. At $t=0$ the $s$-leading coefficients $[s^{n(\mu)}]c_{\lambda\mu}$ are all $1$: in the basis $b_\mu=s^{n(\mu)}e_\mu$, $e^\star_\lambda$ at $s=t=0$ is the zeta function of dominance order.
+\end{theorem}
+\begin{proof}[Sketch of proof]
+A termwise degree count on the subset formula: for symmetric $P$ let $\delta_j(P)$ be the maximal total degree in $j$ variables; $E_k$ raises $\delta_j$ by at most $\min(k,j)$, and $\delta_j(P)\le\sum_i\min(\rho_i,j)$ for all $j$ characterises $\mathrm{span}\{e_\nu:\nu\trianglerighteq\rho\}$ \cite[I (1.11), (6.6)]{Macdonald95}.
+\end{proof}
+
+
+%% ===================================================================
+\section{The $s\to0$ edge}\label{sec:edge}
+%% ===================================================================
+\wip{To contain, with full proofs: the $s\to0$ conjugacy (stated in the remark below), the remaining edges of the $(s,t)$-square, and the reflection $(s,t)\mapsto(1/s,1/t)$; the $t=0$ and $t\to\infty$ edges are cited, not claimed.}
+
+\begin{remark}[The $s\to0$ edge; no novelty claim for the matrix]\label{rem:H}
+Since $s=q^{-1}$, the edge $s\to0$ is Hikita's $q\to\infty$, where the unrescaled product degenerates \cite[Lemma~6.3]{Hikita25}. In the basis $b_\mu$, $e_k\star(\cdot)$ preserves $\bigoplus_\mu\mathbb{Q}[s,t]\,b_\mu$, and modulo $s$ it is conjugate, via $b_\mu\mapsto t^{-n(\mu')}P_{\mu'}(x;t^{-1})$, to multiplication by $t^{-\binom k2}e_k$. Consequently the leading coefficients $d_{\lambda\mu}(t):=[s^{n(\mu)}]\,c_{\lambda\mu}$ of \cref{thm:DS} \emph{are the known $e\to$HL transition matrix} of \cite[\S3.2]{Kirillov98}: writing $e_\lambda=\sum_\kappa M(e,P)_{\lambda\kappa}P_\kappa(x;t)$,
+\[ d_{\lambda\mu}(t)=t^{\,n(\mu')-n(\lambda')}\,M(e,P)_{\lambda\mu'}(t^{-1}). \]
+Their positivity and $d_{\lambda\mu}(1)=\#\{0\text{-}1\text{ matrices with row sums }\lambda,\text{ column sums }\mu'\}$ are therefore classical \cite[\S3.2]{Kirillov98}; what is new is only the identification of this matrix with the $s$-leading coefficients of $\star$.
+\end{remark}
+
+%% ===================================================================
+\section{The block valuation law at $s=1$}\label{sec:blocklaw}
+%% ===================================================================
+\wip{The proofs in this section are condensed sketches carried over from the extended abstract; full proofs are to be written from the authors' notes, as in \cref{sec:hikita,sec:pieri}.}
+
+In \cref{thm:subset} the variable $s$ enters only through $F|_{x_i\mapsto sx_i\,(i\in A)}=s^{\Delta_A}F$, $\Delta_A=\sum_{i\in A}x_i\partial_i$. Taylor expansion at $s=1$ gives
+\begin{equation}\label{eq:taylor}
+E_k=\sum_{p\ge0}(s-1)^pE_k^{(p)},\qquad E_k^{(p)}=\sum_{|A|=k}c_Ax_A\binom{\Delta_A}{p},
+\end{equation}
+and $E_k^{(p)}$ is a differential operator of order $\le p$ on $\Lam_m$, with $E_k^{(0)}=e_k\cdot$ and $E_k^{(p)}(1)=0$ for $p\ge1$. We write $\lin G:=[e_n]G$ for $G$ homogeneous of degree $n$, $\varphi_m=\prod_{i=1}^m(1-t^i)$, and use the Hall--Littlewood functions $P_\lambda(x;t)$, $Q_\lambda=b_\lambda P_\lambda$, $Q'_\lambda$ of \cite[Ch.~III]{Macdonald95} with the Hall--Littlewood pairing $\langle p_\lambda,p_\mu\rangle_t=\delta_{\lambda\mu}z_\lambda\prod_i(1-t^{\lambda_i})^{-1}$. $I=(e_1,e_2,\dots)$ is the augmentation ideal.
+
+
+\begin{definition}
+For $\lambda,\mu\vdash n$, $\kappa(\lambda,\mu)$ is the largest $r$ such that $\lambda=\lambda^1\sqcup\cdots\sqcup\lambda^r$ and $\mu=\mu^1\sqcup\cdots\sqcup\mu^r$ as multisets of parts, with every block nonempty and $\mu^i\trianglerighteq\lambda^i$ (so $|\mu^i|=|\lambda^i|$); $\kappa=-\infty$ if $\mu\not\trianglerighteq\lambda$. $\mu$ is a \emph{coarsening} of $\lambda$ if $\kappa(\lambda,\mu)=\ell(\mu)$. $\val$ denotes the $(s-1)$-adic valuation.
+\end{definition}
+
+\begin{theorem}[First order is a biderivation]\label{thm:bider}
+Let $D_k:=E_k^{(1)}$ and $B(f,g):=\partial_s(f\star g)|_{s=1}$. Then $D_k$ is a derivation of $\Lam_m$, and
+\[ B(f,g)=\sum_{k,l}M_{kl}\,\frac{\partial f}{\partial e_k}\frac{\partial g}{\partial e_l},\qquad M_{kl}:=D_k(e_l)=B(e_k,e_l)=M_{lk}. \]
+So $B$ is a symmetric biderivation, the carr\'e du champ of $L=\frac12\sum M_{kl}\partial^2/\partial e_k\partial e_l$.
+\end{theorem}
+\begin{proof}[Sketch of proof]
+$\binom{\Delta_A}{1}=\Delta_A$ is a derivation and left multiplication by $c_Ax_A$ preserves this. Write $f=\sum_\rho a_\rho(s)e^\star_\rho$, differentiate $f\star g=\sum_\rho a_\rho(s)E_\rho g$ at $s=1$, and use $D_k(1)=0$. Symmetry of $M$ is commutativity of $\star$ \cite{Hikita25}.
+\end{proof}
+
+\begin{proposition}[The matrix $M$]\label{prop:M}
+For $k\ge r\ge0$, with $L(a,b):=\dfrac{(1-t^{a+b})(t^{ab}-1)}{(1-t^a)(1-t^b)}$,
+\[ M_{kr}=B(e_k,e_r)=r\,e_ke_r+\sum_{j=1}^{r}L(k-r+j,\,j)\,e_{k+j}e_{r-j}. \]
+Consequently $[(s-1)^1]e^\star_\lambda=\sum_{i<j}M_{\lambda_i\lambda_j}\,e_{\lambda\setminus\{\lambda_i,\lambda_j\}}$.
+\end{proposition}
+\begin{proof}[Sketch of proof]
+Differentiate \cref{cor:pieri} (whose proof does not use \cref{prop:M}) at $s=1$. Since $\pi_a(b)|_{s=1}=\delta_{b0}$, only $y=r$ survives at $s=1$, and its derivative is $r\,e_ke_r$. For $y=r-j$, $j\ge1$, put $a=k-r+j$. Then $\partial_s\pi_a(j)|_{s=1}=[u^j]\sum_{m<a}\frac{ut^m}{1+ut^m}=(-1)^{j-1}[a]_{t^j}$, so $\partial_sC_{a,j}|_{s=1}=-\frac{[a+j]}{[a]}[a]_{t^j}=L(a,j)$. The second statement follows from \cref{thm:bider}, since $D_k(1)=0$.
+\end{proof}
+
+\begin{theorem}[Block valuation law]\label{thm:blocklaw}
+For all $\lambda,\mu\vdash n$ and all $t$, $\val(c_{\lambda\mu})\ge\ell(\lambda)-\kappa(\lambda,\mu)$. For $\mu\trianglerighteq\lambda$, $\mu\neq\lambda$, equality holds over $\mathbb{Q}(t)$ and at $t=0$:
+\[ \val(c_{\lambda\mu})=\ell(\lambda)-\kappa(\lambda,\mu). \]
+At $t=0$ the leading coefficient is $(-1)^{\ell-\kappa}N(\lambda,\mu)$ with $N(\lambda,\mu)\ge1$ a count of minimal raising-operator configurations.
+\end{theorem}
+\begin{proof}[Sketch of proof]
+\emph{Lower bound} (subset formula only): by polarization, an order-$p$ operator glues at most $p$ existing ``blocks'' to the new part, so the $(s-1)^m$ coefficient is a sum of products over $\ge\ell-m$ blocks, each of type $\lambda_C$ by the degree count of \cref{thm:DS}. \emph{Equality}: at $t=0$, $\omega e^\star_\lambda=\widetilde H_\lambda(x;s)=s^{n(\lambda)}Q'_\lambda(x;s^{-1})$, and Macdonald's raising operators $Q'_\lambda(x;u)=\prod_{i<j}\frac{1-R_{ij}}{1-uR_{ij}}h_\lambda$ \cite[III (2.15$'$) with \S5 Ex.~7(a)]{Macdonald95} give $R_{ij}^k$ the coefficient $(u-1)u^{k-1}=-(s-1)s^{-k}$ at $u=s^{-1}$. So every transfer edge costs exactly one $(s-1)$ with sign $-1$, so nothing cancels; the minimum edge count is $\ell-\kappa$ (components $\le\kappa$; a path tree on each indecomposable block). Specialise $t=0\to$ generic.
+\end{proof}
+\begin{remark}[Input at $t=0$]\label{rem:t0input}
+The $t=0$ edge $e^\star_\mu|_{t=0}=s^{n(\mu)}P_{\mu'}(x;1/s,0)=\omega\widetilde H_\mu(x;s)$ is \textbf{not ours}: it is assembled from \cite{DFK18} eq.~(5.15) (with $M_{k,1}=E_k|_{t=0}$), Cor.~5.8 in its level-one form (5.25), Cor.~5.18 (eq.~(5.27)) (numbering of arXiv:1505.01657v2), and \cite[VI (5.1), (4.14)(iv)]{Macdonald95}. In particular \cref{thm:blocklaw} does not depend on Cherednik's nonsymmetric theory.
+\end{remark}
+\begin{remark}[Novelty]
+We have not found the block law stated anywhere. Its $t=0$ case is classical in substance: the raising-operator formula follows from \cite[eq.~(11)]{DLT94} and Jacobi--Trudi, after which the valuation count above is a short exercise. What is new is the lower bound for all $t$ (from the subset formula alone), the exactness over $\mathbb{Q}(t)$, and the merge weights below.
+\end{remark}
+
+\begin{theorem}[Coarsenings: merge-history expansion]\label{thm:coarse}
+Let $\mu\neq\lambda$ be a coarsening of $\lambda$ and $m=\ell(\lambda)-\ell(\mu)$. Then $\val(c_{\lambda\mu})=m$, and $\Lead_{\lambda\mu}(t):=[(s-1)^m]c_{\lambda\mu}$ equals
+\[ \Lead_{\lambda\mu}(t)=\sum_{\text{tight histories }H\text{ ending at }\mu}\ \prod_{\text{merges in }H}W_k(J),\qquad \Lead_{\lambda\mu}(0)=(-1)^m\#\{H\}\neq0, \]
+where a (tight) history processes $\lambda_\ell,\dots,\lambda_1$, each part $k$ either opening a block of size $k$ or merging $p\ge1$ existing blocks of sizes $J=(j_1,\dots,j_p)$ into one block of size $k+|J|$ via the order-$p$ piece $E_k^{(p)}$, it ends at $\mu$ if the final block sizes are $\mu$, and $W_k(J):=\lin\,[\cdots[E_k^{(p)},e_{j_1}],\dots,e_{j_p}](1)$.
+\end{theorem}
+\begin{proof}[Sketch of proof]
+Pass to $\mathrm{gr}_I\Lam$: non-tight terms land in $I^{\ell-m+1}$; tight steps are multilinear derivations, so only linear parts $g_i\equiv\gamma_ie_{n_i}\bmod I^2$ matter. At $t=0$, a roots-of-unity evaluation, Weyl orthogonality and Murnaghan--Nakayama give $W_k(J)|_{t=0}=(-1)^p$.
+\end{proof}
+
+\begin{theorem}[Merge weights]\label{thm:W}
+With $n=k+|J|$ and $p=|J|$,
+\[ W_k(J)=(-1)^{p}\,\frac{[n]_t}{[k]_t}\prod_{j\in J}[k]_{t^{j}}. \]
+Consequently $(-1)^m\Lead_{\lambda\mu}(t)>0$ for coarsenings and every real $t>0$.
+\end{theorem}
+\begin{proof}[Sketch of proof]
+$W_k(J)=(-1)^{d-p}\lin T_k(p_J)$, $d=|J|$, with $T_k$ as in \cref{lem:linT}. The parabolic factorisation $T_kP_\rho=P_{\rho+1^k}$ \cite[III (2.2)]{Macdonald95} and $\lin P_\lambda=(-1)^{n-k}\frac{[n]}{[k]}P_{\lambda-1^k}(1,t,\dots,t^{k-1})$ (from \cite[III.7 Ex.~2, III.2 Ex.~1]{Macdonald95}) give the ``discrete HL measure = principal specialisation'' identity $\lin T_k f=(-1)^d\frac{[n]}{[k]}f(1,t,\dots,t^{k-1})$ (\cref{lem:linT}); apply it to $f=p_J$.
+\end{proof}
+\begin{lemma}\label{lem:linT}
+Let $T_kf:=\sum_{|A|=k}c_Ax_Af(x_A)$ for $f\in\Lam_k$. For $f$ homogeneous of degree $d$ and $n=k+d$: \[\lin T_k(f)=(-1)^d\frac{[n]_t}{[k]_t}f(1,t,\dots,t^{k-1}).\]
+\end{lemma}
+\begin{remark}[Novelty]
+\Cref{lem:linT} is a short corollary of \cite[III.7 Ex.~2, III (2.2)]{Macdonald95} and is probably known.
+\end{remark}
+
+
+%% ===================================================================
+\section{Leading coefficients: graph cumulants and blocks}\label{sec:leads}
+%% ===================================================================
+\wip{The proofs in this section are condensed sketches carried over from the extended abstract; full proofs are to be written from the authors' notes, as in \cref{sec:hikita,sec:pieri}.}
+
+\begin{theorem}[Full-merge lead]\label{thm:G}
+For $\lambda\vdash n$ with $\ell=\ell(\lambda)\ge2$,
+\[ \Lead_{\lambda,(n)}(t)=\frac{1-t^n}{\prod_i(1-t^{\lambda_i})}\,K_\lambda(t),\qquad K_\lambda(t):=\sum_{H\text{ connected on }[\ell]}\ \prod_{ij\in H}\bigl(t^{\lambda_i\lambda_j}-1\bigr). \]
+$K_\lambda$ is the connected part (joint cumulant) of $t^{e_2(\lambda)}=\prod_{i<j}(1+(t^{\lambda_i\lambda_j}-1))$.
+\end{theorem}
+\begin{proof}[Sketch of proof]
+(1) Tight histories ending in one block are increasing trees on $[\ell]$ (parent = the merging part). (2) With $N_v$ the $\lambda$-mass of the subtree at $v$, \cref{thm:W} telescopes along the tree to $\frac{1-t^n}{\prod(1-t^{\lambda_i})}\prod_{v\to c}(t^{\lambda_vN_c}-1)$. (3) Tree--graph identity: $\sum_{\text{incr.\ trees}}\prod_{v\to c}(\prod_{j\in T_c}x_{vj}-1)=\sum_{\text{conn.\ }H}\prod_{e\in H}(x_e-1)$ for generic $x$, by the minimum-vertex/component decomposition; specialise $x_{ij}=t^{\lambda_i\lambda_j}$.
+\end{proof}
+\begin{corollary}\label{cor:G}
+(a) $\lambda=1^n$: $\Lead=(-1)^{n-1}[n]_t\,I_n(t)$ with $I_n$ the tree inversion enumerator \cite{MallowsRiordan68}. (b) $t=0$: $\Lead=(-1)^{\ell-1}(\ell-1)!$. (c) $t\to1$: $\Lead\to(-1)^{\ell-1}n^{\ell-1}$ (weighted Cayley). (d) $\operatorname{sgn}\Lead=(-1)^{\ell-1}$ for all $t>0$.
+\end{corollary}
+\begin{proof}
+At $t=0$ every edge weight is $-1$ and $\sum_{H\text{ conn.}}(-1)^{|H|}=(-1)^{\ell-1}(\ell-1)!$. As $t\to1$, with $\varepsilon=t-1$, only spanning trees contribute to the $\varepsilon^{\ell-1}$ term of $K_\lambda$, and $\sum_T\prod_{ij\in T}\lambda_i\lambda_j=(\prod_i\lambda_i)\,n^{\ell-2}$ (weighted Cayley); the prefactor is $(-n\varepsilon)/((-\varepsilon)^\ell\prod\lambda_i)\cdot(1+O(\varepsilon))$. (d) is the case $\mu=(n)$, $m=\ell-1$, of the sign statement in \cref{thm:W}: each merge contributes $(-1)^p$ times a positive quantity, $\sum p=m$ along every history, and histories exist.
+\end{proof}
+\begin{remark}[Prior art --- graph half]
+The tree, connected-graph and cumulant forms of $K_\lambda$ are a special case of Do{\l}{\k{e}}ga \cite[Prop.~2.1 and (11), Lemma~2.3]{Dolega19} ($K_\lambda=(t-1)^{\ell-1}T(1,t)$ for the Tutte polynomial of the multigraph with $\lambda_i\lambda_j$ edges between $i$ and $j$), cf.\ also \cite{GesselSagan96,MallowsRiordan68}; step (3) is a Penrose-type tree--graph identity \cite{Penrose67}. Ours: the identification of the $\star$-lead with prefactor$\cdot K_\lambda$ (\cref{thm:coarse,thm:W,thm:G}) and \cref{thm:F,thm:blockmult}. Haglund--Tewari's single-row cumulant \cite[Def.~7.1, Thm.~7.3]{HaglundTewari26} (their $q$ is our $t$) is the same graph half: since $\langle\widetilde H_{(m)},e_m\rangle=q^{\binom m2}$, their cumulant $\kappa(\lambda)$ (we write $C_\lambda$) satisfies $\langle C_\lambda,e_n\rangle=t^{n(\lambda')}(t-1)^{1-\ell}K_\lambda(t)$.
+\emph{Separator.} Full-merge leads $L(\lambda)$ of any such theory are only defined up to the gauge $L(\lambda)\mapsto L(\lambda)\,a^{\ell(\lambda)}g(|\lambda|)\prod_if(\lambda_i)$ (rescaling generators, degree-wise normalisation, rescaling the expansion parameter). The first gauge invariant appears at $n=4$: $J:=L(1^4)L(2,2)/L(2,1,1)^2$ (the exponents of $a$, $g(4)$, $f(1)$ and $f(2)$ all cancel). For $\star$, \cref{thm:G} gives $J=\frac{(t^2+1)(t^3+3t^2+6t+6)}{(t+1)(t^2+t+2)^2}$, and Haglund--Tewari's $\langle C_\lambda,e_n\rangle$ gives the same value. Do{\l}{\k{e}}ga's $\oplus$-cumulant of columns (lowest $(q-1)$-coefficient of $[g_n]\widetilde H_{\lambda'}$, $g_k=\widetilde H_{1^k}$) gives, by computation, $J\equiv 3/2=J_\star(0)$, whereas $J_\star(1)=1$, the Cayley value. So up to gauge Do{\l}{\k{e}}ga's $\oplus$ is $t$-independent and agrees with $\star$ only at $t=0$, where the leads are partition-lattice M\"obius values (\cref{cor:G}(b)), while Haglund--Tewari's is the same graph object without $\star$.
+\end{remark}
+
+\begin{theorem}[Coarsening leads factor]\label{thm:F}
+For $\mu$ a coarsening of $\lambda$,
+\[ \Lead_{\lambda\mu}=\sum_{\pi}\ \prod_{B\in\pi}\Lead_{\lambda_B,(|\lambda_B|)}, \]
+summed over set partitions $\pi$ of the positions $[\ell]$ whose sorted block sums equal $\mu$ (singletons contribute $1$). There is no interleaving factor.
+\end{theorem}
+\begin{proof}[Sketch of proof]
+Increasing forests $=$ set partition $\times$ increasing tree per block, and the telescoped weight is local to each tree.
+\end{proof}
+
+\begin{theorem}[Block multiplicativity]\label{thm:blockmult}
+Let $\kappa=\kappa(\lambda,\mu)\ge1$, $\ell=\ell(\lambda)$, $m=\ell-\kappa$. Then
+\[ [(s-1)^m]\,c_{\lambda\mu}=\sum_{\pi}\ \sum_{(\nu^C)_{C\in\pi}}\ \prod_{C\in\pi}[(s-1)^{|C|-1}]\,c_{\lambda_C,\nu^C}, \]
+where $\pi$ runs over set partitions of $[\ell]$ into exactly $\kappa$ blocks and $(\nu^C)$ over tuples with $\bigsqcup_C\nu^C=\mu$ and $\nu^C\trianglerighteq\lambda_C$; every factor then has $\kappa(\lambda_C,\nu^C)=1$. With \cref{thm:blocklaw} this is $\Lead_{\lambda\mu}$.
+\end{theorem}
+\begin{proof}[Sketch of proof]
+Expand by polarization into histories; non-tight histories produce $>\kappa$ compatible blocks and vanish by maximality of $\kappa$; tight histories factor block by block and interleave uniquely. Uses commutativity of $\star$ \cite{Hikita25} only to pass from compositions to partitions.
+\end{proof}
+\begin{remark}
+\Cref{thm:F} is the case where each $\nu^C$ is a single part. The factorisation has the shape of a Mayer (cluster) expansion, i.e.\ moment--cumulant inversion of the graph identity in \cref{thm:G}; the $\star$-specific content is that the connected leads are those of \cref{thm:G}, with no interleaving correction.
+\end{remark}
+
+
+%% ===================================================================
+\section{Box Complement and the linear coefficient}\label{sec:box}
+%% ===================================================================
+\wip{The proofs in this section are condensed sketches carried over from the extended abstract; full proofs are to be written from the authors' notes, as in \cref{sec:hikita,sec:pieri}.}
+
+\begin{theorem}[Box Complement]\label{thm:box}
+Let $\lambda,\mu$ have at most $\ell$ parts (padded with zeros) and all parts $\le N$; put $N^\ell-\lambda:=(N-\lambda_\ell,\dots,N-\lambda_1)$. Then
+\[ c_{N^\ell-\lambda,\,N^\ell-\mu}(s,t)=s^{N\binom{\ell}{2}-(\ell-1)|\lambda|}\,c_{\lambda\mu}(s,t). \]
+\end{theorem}
+\begin{proof}[Sketch of proof]
+Stability of the subset formula for every $N$ (also $N<$ degree), and an inversion lemma in $N$ variables: for $F=e_N^mG(1/x)$ with $G$ of degree $g$, \[E_{N-k}F=s^{m(N-k)-g}e_N^{m+1}(E_kG)(1/x)\] (substitute $y=1/x$, $B=A^c$). Iterate, and compare coefficients using the identity $e_{N-r}(x)=e_N(x)\,e_r(1/x)$ and \cref{thm:DS} (support has $\le\ell$ parts).
+\end{proof}
+\begin{corollary}[Column Lemma; lead invariance]\label{cor:column}
+$c_{\lambda+1^\ell,\,\mu+1^\ell}=s^{\binom{\ell}{2}}c_{\lambda\mu}$. Hence $\val$ and $\Lead$ are invariant under $(\lambda,\mu)\mapsto(\lambda+1^\ell,\mu+1^\ell)$ and $(\lambda,\mu)\mapsto(N^\ell-\lambda,N^\ell-\mu)$; e.g.\ $(2,2,2)\to(3,3)$ and $(2,2,2)\to(4,1,1)$ have the lead $[3]_t(t+2)$ of $(1,1,1)\to(3)$.
+\end{corollary}
+\begin{remark}[Prior art]
+The inversion lemma follows in a few lines from \cite[Rem.~3.3]{DFK19} ($S\Gamma_IS=\Gamma_I^{-1}$ under $x\mapsto x^{-1}$) plus subset complement; stability is \cite[Prop.~3.8, Cor.~3.10]{Hikita25}. We have not found \cref{thm:box} or \cref{cor:column} for $\star$ in the literature.
+\end{remark}
+
+\begin{theorem}[Plethystic linear coefficient]\label{thm:lin}
+For $G$ homogeneous of degree $d$: $\lin(e_k\star G)=(-1)^d\frac{[k+d]_t}{[k]_t}\,G[(s-1)[k]_t]$, where $G\mapsto G[(s-1)[k]_t]$ is the ring map $p_r\mapsto(s^r-1)[k]_{t^r}$.
+\end{theorem}
+\begin{corollary}[Pieri rule, all $s$]\label{cor:pieri}
+$e_k\star e_r=\sum_{y=0}^{\min(k,r)}s^yC_{k-y,r-y}\,e_{k+r-y}e_y$ with $C_{a,0}=C_{0,b}=1$, $C_{a,b}=(-1)^b\frac{[a+b]}{[a]}\pi_a(b)$, $\pi_a(j)=[u^j]\prod_{m=0}^{a-1}\frac{1+sut^m}{1+ut^m}$.
+\end{corollary}
+\begin{proof}[Sketch of proof]
+Support by \cref{thm:DS}; strip $y$ columns by \cref{cor:column} (valid for compositions) to reduce to $\lin E_{k-y}(e_{r-y})$; evaluate by \cref{thm:lin}, which itself is \cref{lem:linT} applied to the generating function $E_k(\prod_iE(u_i))=\prod_iE(u_i)\,T_k(\prod_i\prod_{a\in A}\frac{1+su_ix_a}{1+u_ix_a})$.
+\end{proof}
+\begin{remark}
+\Cref{cor:pieri} was first obtained by a different route, a $k$-fold kernel computation; Hikita's \cite[Thm.~3.12]{Hikita25} is the case $k=1$. Explicit rules for $e_k\star e_\lambda$ with $\lambda$ of two or $\ell$ columns will appear in the long version.
+\end{remark}
+
+
+%% ===================================================================
+\section{Second order: every valuation-$2$ lead}\label{sec:v2}
+%% ===================================================================
+\wip{The proofs in this section are condensed sketches carried over from the extended abstract; full proofs are to be written from the authors' notes, as in \cref{sec:hikita,sec:pieri}.}
+
+By \cref{thm:blockmult}, valuation-$2$ leads reduce to connected leads with $\ell(\lambda)=3$, $\kappa=1$; by \cref{cor:column} to two-part $\mu$. With $T_a$ as in \cref{lem:linT}, put
+\[ \Gamma_a(e_b,e_c):=E_a^{(2)}(e_be_c)-e_bE_a^{(2)}(e_c)-e_cE_a^{(2)}(e_b)=\sum_{1\le r\le b,\ 1\le q\le c}(-1)^{r+q}e_{b-r}e_{c-q}\,T_a(p_rp_q). \]
+
+\begin{proposition}\label{prop:reduce}
+If $(a,b,c)$ is any ordering of $\lambda$ and $\kappa(\lambda,\mu)=1$, then $[(s-1)^2]c_{\lambda\mu}=[e_\mu]\bigl(\Gamma_a(e_b,e_c)+D_aD_b(e_c)\bigr)$.
+\end{proposition}
+
+\begin{theorem}[Constant-term adjoint formula]\label{thm:CT}
+For $g\in\Lam_a$, $F\in\Lam$: $\varphi_a(t)\,\langle T_ag,F\rangle_t=\mathrm{CT}\bigl[Z\,g(z)\,F(z_1^{-1},\dots,z_a^{-1})\,\Omega(z)\bigr]$, where $Z=z_1\cdots z_a$ and $\Omega(z)=\prod_{1\le i<j\le a}\frac{z_j-z_i}{z_j-tz_i}$, expanded in $z_i/z_j$ ($i<j$).
+\end{theorem}
+\begin{proof}[Sketch of proof]
+$T_ag$ restricted to $a$ variables is $Zg$ and lies in $\mathrm{span}\{P_\mu:\ell(\mu)=a\}$. Evaluate $\langle G,q_\alpha\rangle_t=[y^\alpha]G$ via Cauchy \cite[III (4.2), (4.4), (4.8)--(4.9)]{Macdonald95}, write $\langle G,Q_\lambda\rangle_t$ as a constant term by the raising-operator formula \cite[III (2.15$'$)]{Macdonald95}, and symmetrise $\Omega=\Delta\theta$ with $\sum_w w(\theta)=v_a(t)$ \cite[III (1.4)]{Macdonald95}; $Q_\lambda(z^{-1})$ is evaluated by \cite[III (2.1), (2.11)--(2.12)]{Macdonald95}. This is Jing's vertex-operator calculus \cite{Jing91} with the vertex operators hidden.
+\end{proof}
+
+\begin{theorem}[Two-point formula]\label{thm:2pt}
+Let $g\in\Lam_a$ be homogeneous of degree $d$, $n=a+d$, $x,y\ge1$, $x+y=n$, and $\Phi_a(g;x,y):=\langle T_ag,p_xp_y\rangle$. For $1\le A\le a-1$ put $B=a-A$ and $G_A(w)=\sum_kG_{A,k}w^k:=g(1,t,\dots,t^{A-1},w,wt,\dots,wt^{B-1})$. Then
+\begin{multline*}
+\Phi_a(g;x,y)=(-1)^a(1-t^x)(1-t^y)\Biggl\{\sum_{A=1}^{a-1}t^{-AB}\Bigl[\frac{G_{A,y-B}}{(1-t^A)(1-t^B)}\\+\frac{1}{1-t^a}\sum_{m\ge1}(t^{-Am}-t^{Bm})\,G_{A,y-B-m}\Bigr]\\
+-\frac{g(1,t,\dots,t^{a-1})}{1-t^a}\sum_{j=0}^{a-1}t^{-jy}\Biggr\}.
+\end{multline*}
+\end{theorem}
+\begin{proof}[Sketch of proof]
+Insert $S(u)=\sum_i1/(uz_i-1)$ into \cref{thm:CT} and take iterated residues: every variable lands on a $t$-string $1/u,t/u,\dots$ or $1/v,t/v,\dots$. A string of length $A$ with base $q$ has weight $(-1)^{A-1}\varphi_{A-1}q^A$, and two strings interact through the shuffle identity
+\[ \mathrm{Sh}_{A,B}(w)=\qbin{A+B}{A}\,t^{-AB}\,\frac{(1-w)(1-t^{B-A}w)}{(1-t^{-A}w)(1-t^Bw)},\qquad w=u/v, \]
+proved by a last-letter recursion. Take Taylor coefficients at $w=0$.
+\end{proof}
+\begin{remark}[Relation to Green polynomials]
+Write $p_\mu=\sum_\lambda X^\lambda_\mu(t)P_\lambda(x;t)$. For $g=P_\rho$ and $\lambda=\rho+1^a$ one has $\Phi_a(P_\rho;x,y)=(1-t^x)(1-t^y)X^{\lambda}_{(x,y)}(t)/b_\lambda(t)$, so \cref{thm:2pt} evaluates Green polynomials at two-part classes; the two $t$-strings are the Frobenius orbits of a maximal torus of type $(x,y)$ \cite{Green55}. \Cref{thm:CT} is Jing's constant-term expression for the matrix element $\langle Q_\lambda,p_\mu\rangle$ \cite{Jing91}, cf.\ \cite[(2.17), (2.20)]{JingLiu21}. Jing and Liu \cite[Thm.~2.7]{JingLiu21} expand the same matrix element as a nested sum valid for all $\mu$, extracting one variable at a time; at two-part $\mu$ that sum does not close up, since its inner sums run over classes of arbitrary length. Their closed forms \cite[Thm.~2.10, (2.37)--(2.40)]{JingLiu21} restrict the Hall--Littlewood index $\lambda$, not the class $\mu$; their Murnaghan--Nakayama rule \cite[Thm.~3.2]{JingLiu21} generalises a formula of Morris \cite{Morris77}\footnote{We have not seen \cite{Morris77} first-hand; its scope is as described in \cite[p.~12, before Thm.~3.2]{JingLiu21}.}, its case $\ell(\lambda)=2$. We evaluate by residues instead, and at $\ell(\mu)=2$ the poles organise into two $t$-strings. The formula is explicit, with no sum over classes, and linear in the two-string specialisation $G_A$ of $g$; for general $\rho$, $G_A$ is itself a finite (branching) sum, so \cref{thm:2pt} is not a product formula.
+\end{remark}
+\begin{example}[Two rows]\label{ex:tworow}
+For $a=2$, only $A=B=1$ occurs, and $G_1(w)=P_\rho(1,w;t)=w^{\rho_2}\frac{(1-tw)-w^r(w-t)}{1-w}$ with $r=\rho_1-\rho_2\ge1$ ($G_1=w^{\rho_2}$ if $r=0$). Substituting into \cref{thm:2pt} gives, for $\lambda=(\lambda_1,\lambda_2)$, $y\le x$, and $m_{xy}=2$ if $x=y$, $1$ otherwise,
+\[ X^{(\lambda_1,\lambda_2)}_{(x,y)}(t)=\begin{cases}(t-1)\,t^{\lambda_2-1-y}(1+t^{y}), & y<\lambda_2,\\ m_{xy}-(1-t)\,t^{\lambda_2-1}, & y=\lambda_2,\\ (t-1)\,t^{\lambda_2-1}, & y>\lambda_2,\end{cases} \]
+in agreement with a Kostka--Foulkes computation for $|\lambda|\le10$. This is not new: for $\lambda=(n-k,k)$ and every class $\rho$, Jing and Liu \cite[\S2, display after (2.32)]{JingLiu21} give $X^\lambda_\rho=\pi_k+(t-1)\sum_{j<k}t^{k-1-j}\pi_j$, with $\pi_j$ the number of $j$-subsets fixed by $\rho$ (their $D^{(j)}(\rho)$). A short proof: $X^\lambda_\rho=\sum_\nu\chi^\nu_\rho K_{\nu\lambda}(t)$ \cite[III (7.6$'$)]{Macdonald95}, where $K_{(n-j,j),\lambda}=t^{k-j}$ (one tableau, and $K$ is monic of degree $n(\lambda)-n(\nu)$ \cite[III (6.5)]{Macdonald95}) and $\chi^{(n-j,j)}_\rho=\pi_j-\pi_{j-1}$ by Young's rule. On the diagonal class $(x,y)=\lambda$ it gives $t^{\lambda_2}-t^{\lambda_2-1}+m_{xy}$, which for $\lambda_1>\lambda_2$ with $\lambda_2\ge3$ odd equals $-1$ at $t=-1$ and $1$ at $t=0$. A root in $(-1,0)$ rules out a product of cyclotomic factors and powers of $t$, and Green polynomials at two-part classes admit no product formula even for two rows; for products of the form $t^c\prod_i(1-t^{d_i})$ this was observed independently in~\cite[Thm.~D]{Clio26}.
+\end{example}
+
+\begin{theorem}[Closed $\ell=3$, $\kappa=1$ leads]\label{thm:v2}
+Let $\lambda=(a,b,c)$ be any ordering of a length-$3$ partition, $\mu=(x,y)$ with $\kappa(\lambda,\mu)=1$, $n=x+y$, $m_{xy}$ as in \cref{ex:tworow}. Put \[\Xi_a(r,q):=\lin T_a(p_rp_q)=(-1)^{r+q}\frac{[a+r+q]}{[a]}[a]_{t^r}[a]_{t^q}\] and $U_a(b,c;x,y):=\bigl((-1)^n\Phi_a(p_bp_c;x,y)-\Xi_a(b,c)\bigr)/m_{xy}$. Then
+\begin{multline*}
+[(s-1)^2]\,c_{\lambda\mu}=(-1)^{b+c}U_a(b,c;x,y)+\sum_{\substack{1\le r<b\\ \{b-r,\,a+r+c\}=\{x,y\}}}(-1)^{r+c}\Xi_a(r,c)\\
++\sum_{\substack{1\le q<c\\ \{c-q,\,a+b+q\}=\{x,y\}}}(-1)^{b+q}\Xi_a(b,q)+[e_xe_y]\,D_a(M_{bc}),
+\end{multline*}
+with $D_a$ the derivation $D_a(e_j)=M_{aj}$ of \cref{prop:M}.
+\end{theorem}
+\begin{proof}[Sketch of proof]
+\Cref{prop:reduce}; in the expansion of $\Gamma_a$ only terms with $r=b$ or $q=c$ survive $[e_xe_y]$; single-$e$ parts come from \cref{lem:linT}, and $\langle G,p_xp_y\rangle=(-1)^n(m_{xy}[e_xe_y]G+\lin G)$ converts \cref{thm:2pt} into $U_a$.
+\end{proof}
+\begin{corollary}\label{cor:v2}
+Every lead at valuation $2$ ($\kappa=\ell-2$, any $\ell$) has a closed formula: by \cref{thm:blockmult} it is a sum of products of pair leads (\cref{prop:M}) and $\ell=3$, $\kappa=1$ leads (\cref{thm:G}, \cref{cor:column}, \cref{thm:v2}).
+\end{corollary}
+\begin{example}\label{ex:v2}
+$(3,3,3)\to(7,2)$: $\Lead=2t^{13}+3t^{12}+3t^{11}+6t^{10}+6t^9+6t^8+9t^7+6t^6+3t^5+9t^4+6t^3+3t+4$ (agrees with direct computation). Leads are \emph{not} positive in general: $(4,4,2)\to(7,3)$ has $\Lead=(t+1)(t^2+1)(2t^8+t^7+t^6+3t^4+t^3+t^2-t+2)$.
+\end{example}
+\paragraph{Computer checks.} All statements in this section were checked against an independent implementation of Hikita's subset formula: \cref{thm:v2} on $16$ pairs with $n\le12$ (both examples among them) and on $27$ pairs in all $3$ orderings with $n\le10$; \cref{thm:2pt} in $229$ cases ($a\le5$); and the Green-polynomial dictionary symbolically for $|\lambda|\le8$ and numerically for $|\lambda|\le9$.
+
+
+%% ===================================================================
+\section{Open problems}\label{sec:open}
+%% ===================================================================
+\begin{enumerate}
+  \item \textbf{Valuation $\ge3$.} Connected leads with $\ell\ge4$, $\kappa=1$. Hierarchy: $v=1\leftrightarrow p_n\leftrightarrow$ one $t$-string (\cref{lem:linT}); $v=2\leftrightarrow p_xp_y\leftrightarrow$ two strings (\cref{thm:2pt}). Does the three-string shuffle sum factor pairwise?
+  \item \textbf{Zero set at generic $t$.} At $t=-2$ seven pairs with $n=6$ have $\val>\ell-\kappa$; for coarsenings this is cancellation between histories, e.g.\ $\Lead_{(1,1,1),(3)}=[3]_t(2+t)$. Describe the zero set of $[(s-1)^{\ell-\kappa}]c_{\lambda\mu}$ in $t$.
+  \item \textbf{Counting.} A formula for $N(\lambda,\mu)$ in \cref{thm:blocklaw}; for $\ell(\lambda)=3$ and $\mu=(n-1,1)$ with $\kappa=1$ we observe $\Lead_{\lambda\mu}(1)=2n^2-6n+3$, independent of $\lambda$ ($n\le10$; computed only).
+  \item \textbf{Positivity.} Leads are not $t$-positive (\cref{ex:v2}), so no ``$t$-count of minimal flows'' can hold. Is there a signed or cancellation-free model?
+  \item \textbf{Cumulant link.} Is there a Macdonald-cumulant construction whose leads are the $\star$-leads for all $t$, i.e.\ cumulants of $e_k\mapsto t^{\binom k2}$?
+\end{enumerate}
+
+\printbibliography
+
+\end{document}
