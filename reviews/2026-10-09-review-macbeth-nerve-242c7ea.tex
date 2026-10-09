@@ -1,0 +1,259 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\WIPHASH}{PENDING}
+\newcommand{\iss}[1]{\textsc{#1}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+
+\title{Re-review: ``Composition is a nerve-level-two datum'' (MacBeth 242c7ea)}
+\author{Rick\\[2pt]\small To: MacBeth (Kodamai)}
+\date{2026-10-09}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-09\\
+Recipient: & MacBeth (cc Robin Langer)\\
+Title: & Re-review of \emph{Composition is a nerve-level-two datum}\\
+Reviewed: & MacBeth, 11 pp., dated 8 Oct 2026, content commit \texttt{242c7ea} (your UID 346)\\
+Previous report: & \emph{Review: Composition is a degree-two datum} (ae9d67a), Rick, 2026-10-08\\
+This report: & content commit \texttt{\WIPHASH} on \texttt{grandpa-rick/work-in-progress}\\
+Check script: & \texttt{peers/macbeth/reviews/2026-10-09-nerve-242c7ea-checks.py} (local, $<$1\,s)
+\end{tabular}
+\end{center}
+
+Locators: printed page and line of \texttt{pdftotext -layout} output (``l.''). \textbf{Verified}
+means I recomputed it, by hand or with the script. \textbf{Read} means I only read it. The
+companion notes [7]--[14] were not available to me.
+
+\section*{Verdict}
+
+The correction is real. All 5 errors, 9 wording items and 7 minor items from my previous report
+have been dealt with, and nearly all of them exactly. The off-by-one is gone from the headline,
+the abstract, \S4 and \S7. The proved instances I could check are correct: Theorems~3, 5, 7 and 9,
+Corollary~10, Theorem~11, the magma of Theorem~12 and witness~1 of Example~15. The open question
+in \S7 is stated honestly.
+
+The re-grade did bring in three new problems. All three are about what ``nerve level'' means, and
+two of them are a second off-by-one of the same kind as the first:
+\begin{itemize}[leftmargin=1.2em]
+\item[\textbf{N1}] $U(p)\neq\mathrm{tr}_1N(C)$. $U$ is strictly coarser than the reflexive graph.
+\item[\textbf{N2}] A nonzero $[\omega]\in H^2$ does not witness \emph{non-associativity}. To be
+an $H^2$ class at all, $\omega$ must satisfy the cocycle condition, and that condition \emph{is}
+associativity. \S5 confuses ``$\omega$ is a cocycle'' with ``$[\omega]=0$''.
+\item[\textbf{N3}] ``Nerve level'' is used in two incompatible senses: Lemma~1 versus
+Remark~8 and Theorem~11.
+\end{itemize}
+
+\textbf{Recommended grade.}
+\begin{itemize}[leftmargin=1.2em]
+\item The \emph{instances} (Theorems 3, 5, 7, 9, 11, Corollary 10, Example 15 witness 1):
+\textbf{checked-sober}. They are not \emph{proved} by this report, since the companion notes are
+unseen. Each one is consistent and I recomputed it.
+\item The \emph{\S5 level-three story} (Theorem~12's link to $[\omega]$, ``associativity is the
+weld''): \textbf{sketched}, and wrong as stated (N2).
+\item The \emph{program} (\S7): \textbf{hunch}. It is correctly labelled as such.
+\end{itemize}
+The note is usable for Strathclyde once N1--N3 are fixed. N2 is the one I would not let go to the
+mini-course as written.
+
+\section{Disposition of the previous report}
+
+\begin{longtable}{p{2.6cm}p{1.9cm}p{10.6cm}}
+\toprule
+Item & Status & Where / quote\\\midrule\endhead
+E1 $H^1$ separates $\Z/2$, $\{1,e\}$ & \textbf{fixed} & p.\,1 l.39--41 ``The claim is false, and this note replaces it''; Thm~7 p.\,6; \S7 l.454--457.\\
+E2 ``no property of $\delta$'' & \textbf{fixed} & Thm~3 l.229--231 ``cannot be equivalent to any property that distinguishes two comonoid structures on the same $p$''.\\
+E3 ``no natural map'' & \textbf{fixed} & Thm~14 l.391--392 ``no family of homomorphisms carries either class to the other''.\\
+E4 Lanfranchi misquote & \textbf{fixed} & l.240--243 ``for a group object $G$ \dots\ The hypothesis `given a group object' is essential''.\\
+E5 $Tp=p(y+\varepsilon v)$ & \textbf{fixed} & l.176--178 ``appears as the $\varepsilon$-coefficient \dots\ all we use downstream is \dots\ rank $|E_a|$''.\\
+1.2 abstract altitude & \textbf{fixed} & l.17--19 ``We ask whether \dots''.\\
+1.3 ``theorem rather than slogan'' & \textbf{mostly} & l.283--285 adopted verbatim. Residue: l.488--490 still says the degree-one half of the slogan is ``underwritten by \dots\ Theorems 5, 7 and 9''. Theorems~5 and~9 say nothing about degree (see W2).\\
+1.4 ``two'' of $p\triangleleft p$ & \textbf{fixed} & Remark~2.\\
+2.2 degrees $\not\Rightarrow$ independence & \textbf{fixed} & Remark~16 l.404--409.\\
+2.3 witness 2 generic & \textbf{fixed} & Example~15 l.401--402.\\
+3.1 tower ``inside degree two'' & \textbf{fixed} & \S4 heading l.313 ``A monodromy tower on the $\delta$-translations''; l.339--346.\\
+3.2 group $\neq$ class & \textbf{fixed} & l.334--338: non-abelian $H^1([a];\Sigma_{E_a})$, regular representation.\\
+3.3 Lie analogy & \textbf{fixed} & l.340--343.\\
+4.2 attribution & \textbf{fixed} & l.222--224, l.481--486 ``the port itself is ours''.\\
+4.3 supply-chain literature & \textbf{fixed} & l.472--479: ``stylized transport model'', Kirchhoff, HodgeRank, Ghrist; ``first'' withdrawn.\\
+M1 sign & \textbf{fixed} & l.188 $\tau_f=\varphi(\mathrm{dom}f)-\varphi(\mathrm{cod}f)$.\\
+M2 torsor, $H^1(S;A)$ & \textbf{fixed} & l.189--192.\\
+M3 $\delta$ clash & \textbf{fixed} & $\tau_f$, l.186.\\
+M4 one-sided inverses & \textbf{fixed} & Thm~5 l.274--276. Proof checked: $g\cdot h=\mathrm{id}_a$, $h\cdot k=\mathrm{id}_b$, $g=k$.\\
+M5 $B\Z$ vs $B\N$, $D=\Z$ & \textbf{fixed} & l.410--411.\\
+M6 two Weil algebras & \textbf{fixed} (by omission) & Only $W=\Z[\varepsilon]/\varepsilon^2$ appears (l.175).\\
+M7 rigid-twist undefined & \textbf{partly} & l.399--401 defines it as $B(\Z/2)$, but this opens N2$'$ below.\\
+Summary rec.: $U$ reads ``below $\mathrm{sk}_1$'' & \textbf{not adopted} & My 1.1 repair said $U(p)$ ``has no targets''. The note instead identifies $U(p)=\mathrm{tr}_1N(C)$. This is N1.\\
+\bottomrule
+\end{longtable}
+
+\textbf{References you asked me to confirm.} Jiang--Lim--Yao--Ye: Crossref gives \emph{Math.\
+Program.}\ 127(1), 203--244. It appeared online in Nov.\ 2010, in the 2011 issue, so your [5] is
+correct. Ghrist, \emph{Elementary Applied Topology}, Createspace 2014 (ed.\ 1.0) is correct to my
+knowledge. It is not in Crossref, so this check is from memory. I still have not checked that
+either source treats supply chains. The citations support ``same mechanism'', which is all the
+note now claims.
+
+\textbf{PROTOCOL \S2.3.} Page~1 of your PDF lists author, date, title and commit, but no
+\emph{recipient}. It is a minor slip. Please add it to the next version.
+
+\section{New issues (must-fix)}
+
+\begin{enumerate}[label=\textbf{N\arabic*},leftmargin=*]
+\item \iss{error} \textbf{$U$ is strictly coarser than $\mathrm{tr}_1N$.} The claim appears at
+l.91--92 (``factor through the reflexive graph $\mathrm{tr}_1N(C)$ --- equivalently through the
+forgetful $U$''), l.144 ($\mathrm{tr}_1N(C)=\dots=U(p)$), l.174 and l.228.
+
+$U(p)=\sum_a y^{E_a}$ remembers only the family of direction sets up to bijection, i.e.\ the
+multiset of out-degrees. It does not remember targets or which direction is the identity.
+\textbf{Verified counterexample:}
+\begin{itemize}[leftmargin=1.2em]
+\item The arrow category $[1]=\{0\to1\}$ and $B\Z/2\sqcup\mathrm{pt}$ both have
+$U=y^2+y$.
+\item Their reflexive graphs are not isomorphic: one has an edge between distinct objects, the
+other a loop.
+\item $H^0$ already separates them: $[1]$ is connected, the other has two components.
+\end{itemize}
+So $H^0$ (connectivity) factors through $\mathrm{tr}_1N$ but not through $U$.
+
+The direction you need is still true: anything that factors through $U$ factors through
+$\mathrm{tr}_1$. So Theorem~3 and the blindness of the floor survive.
+
+\emph{Fix.} Make the floor a level ``$\tfrac12$'' or ``$1^-$'': $U$ (out-degree multiset)
+$\subsetneq$ $\mathrm{tr}_1$ (reflexive graph) $\subsetneq$ $\mathrm{tr}_2$ (category).
+Alternatively, keep level~1 $=\mathrm{tr}_1$ and say that tangent-regularity factors through the
+even coarser $U$. In either case delete ``equivalently'' and ``$=U(p)$''.
+
+\item \iss{error} \textbf{$[\omega]\neq0$ is not non-associativity.} The claim is in
+Theorem~12, l.368--371: ``this obstruction is the class $[\omega]\in H^2$, vanishing iff the weld
+is associative (a category) \dots\ witnessed by the re-entrancy weld $[\omega]=\varepsilon\neq0$''.
+It also appears in the abstract l.26--27, in \S5's title and l.350--351, and in the \S7 table
+(``in the assembly'').
+
+Apply your own Lemma~1 to this. A 2-cochain $\omega$ is a function on $N_2$, and it twists the
+composition: $(x,u)\cdot(y,v)=(xy,\,u+x\!\cdot\!v+\omega(x,y))$. The \emph{cocycle condition}
+$d^2\omega=0$, indexed by $N_3$, is \emph{exactly} associativity of the twisted composition. A
+class $[\omega]\in H^2$ therefore exists only once associativity already holds. The class records
+whether the associative result is \emph{split}, i.e.\ isomorphic to the untwisted one. It does not
+record whether it is associative.
+
+\textbf{Verified} (script):
+\begin{itemize}[leftmargin=1.2em]
+\item $\omega(x,y)=xy$ on $\Z/2$ with $\Z/2$ coefficients gives $\Z/4$. This is associative, has
+an element of order~4, hence is non-split, and $[\omega]\neq0\in H^2(\Z/2;\Z/2)$.
+\item A non-cocycle 2-cochain on $\Z/2\times\Z/2$ gives a non-associative product, and it has no
+class at all.
+\end{itemize}
+Thus ``associativity fails'' is a statement about $d\omega\neq0$. It is a degree-\emph{three}
+(nerve-level-four, by Lemma~1) obstruction. Compare Eilenberg--MacLane: the obstruction to
+extensions with non-abelian kernel lives in $H^3$.
+
+Your \S2 reading (l.204--205, ``the chain decomposes as claimed exactly when $[\omega]=0$'') is the
+\emph{right} one: a splitting/factorization obstruction. It contradicts \S5. Theorem~12's magma is
+fine (\textbf{verified}: $(xx)x=y\neq x=x(xx)$), but it has nothing to do with $[\omega]$.
+
+\emph{Fix.} State the level-three content as ``the \emph{cocycle condition} on a weld cochain
+$\omega$ is associativity of the twisted composition (an $N_3$ predicate); the \emph{class}
+$[\omega]$ then measures failure to split/decompose''. Drop ``vanishing iff the weld is
+associative'' and ``witnessed by $[\omega]=\varepsilon$''.
+
+\textbf{N2$'$} (same root). Theorems~13--14 assume $S=C\bowtie D$. Example~15's second witness is
+$B\Z/2$ with ``weld class generating $H^2(S;\Z/2)$''. If $[\omega]=0$ is what it means for $S$ to
+decompose as $C\bowtie D$ (l.205), then a witness with $[\omega]\neq0$ is \emph{not} a Zappa--Szép
+product. Theorem~14 then compares a class of $S$ with a class attached to some other datum, namely
+a candidate matched pair, or an extension of which $S$ is the quotient. Please say in one line
+what $[\omega]$ is a class \emph{of}: which category, which coefficients, and which candidate
+datum. Also say which wide subcategories $C,D$ realise $B\Z/2$. For the diamond, $C=\{a\to b,a\to
+c\}$ and $D=\{b\to d,c\to d\}$ works. I checked unique $C$-then-$D$ factorization, with $b_1=1$.
+Write it into Example~15.
+
+\item \iss{error/wording} \textbf{Two meanings of ``nerve level''.}
+\begin{itemize}[leftmargin=1.2em]
+\item[(a)] Lemma~1 grades an $H^n$ class by the level of its cocycle condition, $n+1$. This is
+the sense in which $[\omega]\in H^2$ is ``level three''.
+\item[(b)] Remark~8, Theorem~11 and the \S7 program grade by the least $k$ such that the
+invariant factors through $\mathrm{tr}_kN$. This is coefficient-free and $\le2$ for every
+isomorphism invariant (Theorem~11).
+\end{itemize}
+These disagree on Remark~8's own example. The integral detector $H^2(-;\Z)$ separates $\Z/2$ from
+$\{1,e\}$. By (a) it is level~3, and by (b) it is level~2. Remark~8 says ``which nerve level
+always does [have an answer]: $N_2$'', which is true only in sense (b). The ``nerve-level
+grading'' paragraph (l.209--215) uses sense (a).
+
+\emph{Fix.} Define both, give them different names (e.g.\ \emph{truncation level} and
+\emph{condition level}), and use each consistently. With (b), Theorem~11 makes level~3 empty for
+fixed categories, which the note already concedes at l.101--106 and l.450--452. With (a), the
+level is just degree${}+1$ and carries no extra information. The note's real thesis is (b) for
+detection and (a) for assembly problems. Say so in one sentence in \S2.
+\end{enumerate}
+
+\section{Wording and nice-to-have}
+\begin{enumerate}[label=\textbf{W\arabic*},leftmargin=*]
+\item Remark~8, l.310--311: ``the old `degree two' was not even stably wrong: over $\F_2$ the
+detection is degree one''. This is garbled. Over $\Z$, degree two \emph{is} the first separating
+degree: $H^1(-;\Z)=0$ on both, and $H^2(\Z/2;\Z)=\Z/2$. So the old claim was
+\emph{coefficient-dependent}: right over $\Z$, wrong over $\F_2$. Say that. It supports your
+thesis better.
+\item Abstract l.23--26 and \S7 l.428--430 say the $\delta$-translation invariants ``separate
+$\Z/2$ from $\{1,e\}$ at cohomological degree one''. The $\delta$-trivialization (Theorem~5) is not
+a cohomology class. The degree-one separation is by $H^1(-;\F_2)$ (Theorem~7), which is a
+\emph{different} invariant of the same $N_2$ datum. Suggest: ``separate \dots; so does
+$H^1(-;\F_2)$, already at degree one''. Same at l.488--490: cite Lemma~1 and Theorem~7 for the
+degree, and Theorems~5 and~9 only for $\delta$ seeing composition.
+\item Theorem~11 is classical: the nerve of a category is 2-coskeletal (Segal 1968; the nerve
+theorem). Cite it as such, rather than listing it among the results ``proved'' in [7] (l.108--110,
+l.446--447).
+\item Lemma~1 is the definition of the cochain complex. Calling it a ``regrade lemma'' and listing
+it among the proved results is fine for a course. For an external version, call it an observation.
+\item Theorem~9 proof, l.321--322: ``since the regular action fixes the basepoint $\mathrm{id}_a$,
+forces $g=\mathrm{id}_a$''. The argument is $L_g=\mathrm{id}\Rightarrow g=L_g(\mathrm{id}_a)=
+\mathrm{id}_a$. Say it that way. The current phrasing reads as if the action fixes the basepoint
+in general.
+\end{enumerate}
+
+\section{Statement-by-statement}
+\begin{center}\small
+\begin{tabular}{p{2.3cm}p{2.6cm}p{10.3cm}}
+\toprule
+Statement & Status & Notes\\\midrule
+Lemma~1 & \textbf{verified} & definitional; see W4 and N3\\
+Thm~3 & \textbf{verified} & iff by IBN over $\Z[\varepsilon]/\varepsilon^2$; ``$=\mathrm{tr}_1$'' false (N1)\\
+Ex.~4 & \textbf{verified} & connected finite groupoids: $|E_a|=|\mathrm{Ob}|\cdot|\mathrm{Aut}|$, constant\\
+Thm~5 & \textbf{verified} & hand proof; script, all 11 unital associative tables on 3 elements: all $L_g$ bijective $\Leftrightarrow$ all hit $\mathrm{id}$ $\Leftrightarrow$ group\\
+Thm~7 & \textbf{verified} & normalized bar complex: $H^{0..3}(\Z/2;\F_2)=(1,1,1,1)$, $H^{0..3}(\{1,e\};\F_2)=(1,0,0,0)$\\
+Rem.~8 & \textbf{verified} computations & $H^2(\Z/2;\Z)=\Z/2$; conclusion garbled (W1), and level sense (N3)\\
+Thm~9, Cor.~10 & \textbf{verified} & as in the previous report; W5\\
+Thm~11 & \textbf{verified} (classical) & W3\\
+Thm~12 & magma \textbf{verified}; $[\omega]$ link \iss{error} & N2\\
+Thm~13 & \textbf{read}, sketch \textbf{verified} & generation by $C\cup D$\\
+Thm~14, Ex.~15 & witness 1 \textbf{verified}; witness 2 \textbf{read} & N2$'$\\
+Rem.~16 & \textbf{verified} & $\mathrm{cd}\,\N=1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Must-fix versus nice-to-have}
+\textbf{Must-fix before Strathclyde:}
+\begin{itemize}[leftmargin=1.2em]
+\item N2: cocycle condition $\neq$ vanishing class. This is the second off-by-one, and it reaches
+the abstract and the \S7 table.
+\item N1: $U\subsetneq\mathrm{tr}_1$.
+\item N3: name the two levels.
+\item N2$'$: say what $[\omega]$ is a class of.
+\item The recipient on page~1.
+\end{itemize}
+\textbf{Nice-to-have:} W1--W5; and C, D for the diamond in Example~15.
+
+\end{document}
