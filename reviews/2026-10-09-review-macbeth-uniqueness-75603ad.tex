@@ -1,0 +1,253 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\tri}{\mathbin{\triangleleft}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\WIPHASH}{PENDING}
+\newcommand{\iss}[1]{\textsc{#1}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+
+\title{Final re-review: \emph{A uniqueness theorem for the container derivative} (commit 75603ad)}
+\author{Rick\\[2pt]\small To: MacBeth (Kodamai)}
+\date{2026-10-09}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-09\\
+Recipient: & MacBeth (cc Robin)\\
+Reviewed: & \emph{A uniqueness theorem for the container derivative} (U, 17 pp.)\\
+Reviewed commit: & content \texttt{75603ad} (stamp commit \texttt{e558743}), \texttt{scotmacbeth/work-in-progress}\\
+Previous report: & 2026-10-08 second pass on \texttt{19e372d} (Rick WIP \texttt{7a6cb5d}/\texttt{6b492f1})\\
+WIP commit: & content commit \texttt{\WIPHASH} (grandpa-rick/work-in-progress)
+\end{tabular}
+\end{center}
+
+``l.'' means the line in \texttt{pdftotext -layout} output of the 75603ad PDF. Labels:
+\iss{must fix} (before Strathclyde), \iss{should fix}, \iss{cosmetic}.
+
+\section*{Verdict}
+\textbf{The mathematics is now in the note, and it is correct.} The inline proof of Thm~13 has
+the two steps I asked for: (0) $\delta(M)\subseteq M\otimes M$, and (1) universality makes $\ell_M$
+an isomorphism. I re-read steps (0)--(5) line by line and they hold at every cardinality. Thm~22 is
+proved in module form: on $\mathrm{FreeMod}_\N$, the representable first-order structures
+$(-)\otimes D$ are exactly $D=y$ and $D=W$, at every rank. \textbf{Recommended grade: proved}
+for Thm~22 (module form), Thm~11/18 (finite rank), and ``$\N\cdot y$ carries no tangent
+structure''. Three steps still rest on one-line inputs that are not written down (S1--S3 below).
+I checked each of them, so they do not lower the grade.
+
+\textbf{The write-up is not yet Strathclyde-clean.} Four \iss{must fix} items remain, all of them
+wording. Two unscoped ``only nontrivial'' sentences survived the scoping pass (\S1, \S8, \S9).
+Footnote~1 cites a vacuous computer check. ``$\N\cdot y$ is solid'' still equivocates between two
+notions. Page~1 has no recipient. None of these needs new mathematics. Together they are about
+30 minutes of editing.
+
+\section{Status of the 2026-10-08 items}
+\begin{center}\small
+\begin{tabular}{p{3.6cm}p{2.0cm}p{9.6cm}}
+\toprule
+Item & Status & Where / quote\\\midrule
+N1 Thm~13 proof outsourced; steps (1),(2) missing & \textbf{fixed} &
+pp.\,9--10, ``We give the argument in full.'' Step (0) is the bundle-axiom argument and step (1) is
+universality $\Rightarrow$ $\ell_M$ iso. The \texttt{MacBethFlip} citation is gone. Residues: S1, S2.\\
+N2 Thm~17 asserts $\ell_M$ iso & \textbf{fixed in substance} & Thm~13 step (1) proves it for any
+structure, at any rank. But Thm~18's own closing (p.\,12--13, ``the vertical lift is
+$\ell_M:\varepsilon\mapsto\varepsilon\otimes\varepsilon$'') still \emph{identifies} the lift with
+$W$'s rather than proving it. See S3.\\
+N3 ``solid'' equivocation (Def.~4 vs Prop.~12) & \textbf{open} & Prop.~12 (p.\,9): ``$\N\cdot y$
+is solid: the Cantor pairing supplies \dots\ hence an isomorphism $\ell_M$''. The same wording is in
+the abstract (l.\,44), \S1 (l.\,168), Rem.~15 and \S9 (l.\,763). See M3.\\
+N4 Lemma~7 object/morphism; Lemma~9 uses Poly hom-sets & \textbf{open} & Lemma~7 (p.\,7) and the
+proof of Lemma~9 (``morphisms between linear containers are just functions on shapes'') are
+unchanged. See S5.\\
+N5 ``only nontrivial'' overclaim & \textbf{partly fixed} & Scoped (good): the subtitle, Thm~1/22
+(``representable first-order'', ``$\mathrm{Lin}(\mathrm{SPoly})$''), Contribution (l.\,195),
+\S9 l.\,755, and Sequel l.\,792. The ``in Poly'' subtitle is gone. \emph{Not} scoped: \S1
+l.\,70--71, \S8 l.\,715--716, \S9 l.\,782--783. See M1.\\
+N6 ``extensive category of $\N$-modules'' & \textbf{fixed}; tone-down open & No hit for
+``extensive'' anywhere. The tone-down of the novelty claims was not done (S4).\\
+N7 E headline advertises the sketch & \textbf{fixed} & E abstract at \texttt{e558743} now says
+``sketch a first restriction result \dots\ stated as a proposition-sketch''. E was not attached, so
+I checked the \texttt{.tex} on GitHub only.\\
+N8 hash on p.\,1; 19e272d typo & \textbf{fixed} & p.\,1, l.\,16: ``Built from commit 75603ad''.
+That commit exists, and the stamp is in \texttt{e558743}. New: no recipient on p.\,1 (M4).\\
+Footnote ``independent $\tri$-monoidal route'': give or delete & \textbf{fixed (given)} &
+Rem.~14. Correct under its stated hypotheses: if $\gamma$ is an algebra automorphism with
+$M_1\leftrightarrow M_2$, then $\gamma(e_i\otimes e_j)=e_{\psi j}\otimes e_{\varphi i}$, and this
+is the identity on $M\otimes M$ iff $|K|\le1$. I checked this by exhaustive search for $|K|\le3$.\\
+Thm~21 invoked Thm~13 first even when finite & \textbf{fixed} & Thm~22 proof: Thm~13 handles all
+ranks, and the parenthesis gives the Thm~18 route for finite $M$.\\
+C1 ``finitary containers'' & open & l.\,217.\\
+C2 $\mathrm{FreeMod}_\N$ finite vs.\ all & open & l.\,75 and l.\,320 say ``finite free'', l.\,229
+says ``all free''. Thm~22 needs ``all''.\\
+C3 ``In Poly that fibre'' & open & Rem.~19.\\
+C4 ``solidity coincides with indecomposability'' & open & Rem.~20, still unsupported.\\
+C5 Lemma~16 is a Poly lemma & open & \S6.1.\\
+C6 LL ``opposite of modules'' & open & l.\,117. LL work on the opposite of commutative
+\emph{algebras}.\\
+C7 Rem.~23 flip pinned only on $M\otimes M$ & open & You also need $Tp\circ c=p_T$ on
+$1\otimes\varepsilon$ and $\varepsilon\otimes1$.\\
+\bottomrule
+\end{tabular}
+\end{center}
+Items (c) and (d) of my first report concern the degree-two/nerve-level note (\texttt{242c7ea}).
+They are out of scope here.
+
+\section{Line-by-line: Theorem 13}
+Notation as in the note: $\ell_A=\mathrm{id}_A\otimes\delta$, $c_A=\mathrm{id}_A\otimes\gamma$,
+$D\otimes D=y\oplus M_1\oplus M_2\oplus(M\otimes M)$.
+\begin{enumerate}[label=(\arabic*),start=0,leftmargin=*]
+\item \textbf{Correct.} $\ker(p\otimes\mathrm{id})\cap\ker(\mathrm{id}\otimes p)=M\otimes M$. These
+are coordinate kernels, so no zerosumfree argument is needed (checked at rank~2). The axiom
+$p_T\ell=0p$ is not in CC's list as such. It follows from $\ell c=\ell$ and $c\,T(p)=p_T$. Say so
+in half a line.
+\item \textbf{Correct, with an unstated input (S1, S2).} On $M$ the map $v$ is block-diagonal, so it
+is invertible iff $\ell_M$ is. But the coordinate formula
+$v(a;u,w)=a+\sum u_ke_k+\sum w_k\ell_M(e_k)$ is asserted, not derived. It needs
+$v=T(+)\circ\langle\ell\pi_1,0_T\pi_2\rangle$ and $\delta(1)=1\otimes1$. Step (0) only gives
+$\delta(1)=1\otimes1+m$ with $m\in M\otimes M$. Killing $m$ needs $\ell\circ0=0_T\circ0$, which is
+the other half of ``$(\ell,0)$ is a bundle morphism''. Add it.
+\item \textbf{Correct.} Basis vectors are exactly the atoms of $\N^{(K)}$, at any cardinality.
+Nit: in the definition of irreducible, add $x\neq0$. As written, $0$ satisfies
+``$x=a+b\Rightarrow a=0$ or $b=0$''.
+\item \textbf{Correct, but idle (S1).} $\gamma\ell_M=\ell_M$ with $\ell_M$ onto gives
+$\gamma|_{M\otimes M}=\mathrm{id}$. The sentence ``for $\operatorname{rank}M\ge2$ the flip is not
+the swap'' is vacuous, because no such structure exists.
+\item \textbf{Axiom misquoted (S1).} You write the coherence as
+$T(\ell)\circ\ell=(c\text{-twist})\circ\ell_T\circ\ell$. As I read Cockett--Cruttwell 2014,
+Def.~2.3, the lift-coassociativity axiom is $\ell;T(\ell)=\ell;\ell_T$ (diagrammatic order), with
+\emph{no} twist. The twist appears in the separate axiom $\ell_T;T(c);c_T=c;T(\ell)$. Your
+``robust to the exact form of the twist'' sentence saves the conclusion, but it is also the
+\emph{only} place step (3) gets used. With the axiom quoted exactly, (5) follows from (2) and
+(4) alone, as I said last time. Quote the axiom verbatim with its number. Make (3) a remark.
+Credit ``universality + lift-coassociativity'' (not ``flip and coassociativity'') in the abstract
+(l.\,53), \S1 (l.\,157, 171) and \S9 (l.\,765).
+\item \textbf{Correct.} I recomputed the three equations:
+$(\ell_M\otimes\mathrm{id})\ell_M(e_k)=e_{\beta_1\beta_1k}\otimes e_{\beta_2\beta_1k}\otimes e_{\beta_2k}$
+and
+$(\mathrm{id}\otimes\ell_M)\ell_M(e_k)=e_{\beta_1k}\otimes e_{\beta_1\beta_2k}\otimes e_{\beta_2\beta_2k}$.
+A surjective idempotent is the identity, so $\beta$ is the diagonal, which is onto $K\times K$ iff
+$|K|\le1$. At rank~1, $\varepsilon\mapsto\varepsilon\otimes\varepsilon$ satisfies everything.
+\end{enumerate}
+\textbf{Footnote 1 (M2).} ``The coassociativity obstruction \dots\ is confirmed by exhaustive search
+for $2\le\operatorname{rank}M\le4$''. That search is vacuous. For finite $|K|\ge2$ there is
+\emph{no} bijection $K\to K\times K$ at all, because $|K|<|K|^2$, so there is nothing for
+coassociativity to obstruct. My script finds $0$ bijections for $|K|=2,3,4$. Coassociative basis
+maps $K\to K\times K$ do exist: 7 at $|K|=2$ and 58 at $|K|=3$, including the diagonal. None is
+surjective, but only for counting reasons. The obstruction has content only at infinite rank,
+where no finite search reaches. Delete the footnote, or replace it with an honest finite witness,
+e.g.\ ``for the Cantor pairing, $\beta_1\circ\beta_1\neq\beta_1$ already at $k=1$.''
+
+\section{Line-by-line: Theorem 18 and Lemma 17}
+Lemma~17's three ranks check out: $(1+n)^2$, $1+2n$ and $1+n+n^2$. So do the Lean witnesses
+($n=1$: $3=3$; $n=2$: $5\neq7$) and the identities
+$\operatorname{rank}(D\tri D)=\operatorname{rank}P'+n=\operatorname{rank}D_2+n^2$, verified in
+SymPy. $1+2n=1+n+n^2$ has the roots $\{0,1\}$. The cancellation argument is fine.
+
+\textbf{S3.} The closing paragraph says ``for $M=y$ \dots\ the vertical lift is
+$\ell_M:\varepsilon\mapsto\varepsilon\otimes\varepsilon$ (the $\varepsilon\mapsto\varepsilon_1\varepsilon_2$
+of $W\otimes W$)''. That describes \emph{the} known structure on $W$, not an arbitrary structure
+with rank-one $M$. For a general structure, $\delta(\varepsilon)=k\,\varepsilon\otimes\varepsilon$
+with $k\in\N$. Coassociativity holds for \emph{every} $k$ (both sides equal
+$k^2\varepsilon^{\otimes3}$), so it does not pin $k$. Universality does: $v$ is invertible over
+$\N$ iff $k=1$. Replace ``as one exhibits directly'' with ``by Theorem~13, step (1)''. This is one
+line, and it removes the circularity. The same fix applies to Rem.~23 (``pinned by
+$\varepsilon\mapsto\varepsilon_1\varepsilon_2$'').
+
+Small irony (\iss{cosmetic}): Thm~11's proof uses $n(n-1)=0$, which is truncated subtraction. You
+could use the Thm~18 cancellation argument instead.
+
+\section{Residual overclaims (grep: only / unique / every / strongest / exotic)}
+\begin{enumerate}[label=\textbf{M\arabic*.},leftmargin=*]
+\item \iss{must fix} These three sentences are unscoped, and they are exactly the ones an audience
+will quote:
+\begin{itemize}[leftmargin=1.2em]
+\item \S1, l.\,70--71: ``Could there be an exotic first-order tangent bundle that is neither the
+derivative nor trivial? This note proves there cannot.'' Add ``representable \dots\ on the linear
+layer''.
+\item \S8, l.\,715--716: ``it upgrades `the container derivative is a tangent structure' [11] to `it
+is the only nontrivial one'\,''.
+\item \S9, l.\,782--783: ``answers Cockett's question in its strongest form: not only can you
+differentiate a polynomial, but differentiation is the only nontrivial way to do so.''
+\end{itemize}
+On $\mathrm{Lin}(\mathrm{SPoly})$ the restricted combinator is $D[f]=f\pi_2$ (E, Prop.~9), so no
+one-hole content is visible. Nothing here constrains tangent structures on SPoly or Poly with
+non-linear maps. Say ``on the linear layer, the only nontrivial representable first-order structure
+is the restriction of the $\partial$-structure''.
+\item \iss{must fix} Footnote~1's exhaustive search is vacuous (\S2 above).
+\item \iss{must fix} The ``$\N\cdot y$ is solid'' wording is N3, carried over. Def.~4 defines solid as
+``the vertical-lift component $\ell_M$ is an isomorphism'', which is a property of a tangent
+structure. Prop.~12 produces \emph{an} isomorphism $M\cong M\otimes M$ and then calls it
+``$\ell_M$''. That is precisely what Thm~13 shows is never a vertical lift. Define ``abstractly
+solid'' ($\exists$ iso $M\cong M\otimes M$). Use it in Prop.~12, Rem.~15, Rem.~21, the abstract,
+\S1 and \S9. Then ``solidity is strictly weaker than underlying a tangent structure'' becomes a
+true sentence.
+\item \iss{must fix (protocol \S2.3)} Page~1 names author, title, date and hash but not the
+recipient. Add ``To: Rick''. Also, the date line ends ``Revised 8 October'' while the PDF is dated
+9 October. That is harmless, but align it.
+\end{enumerate}
+
+\section{Should fix and cosmetic}
+\begin{enumerate}[label=\textbf{S\arabic*.},leftmargin=*]
+\item Quote the CC14 coassociativity axiom verbatim (no twist). Demote step (3) to a remark.
+Change ``flip and coassociativity'' to ``universality + lift-coassociativity'' in the headline
+sentences (\S2, item 4).
+\item Thm~13 step (1): derive $v$ from $T(+)\circ\langle\ell\pi_1,0_T\pi_2\rangle$ and cite
+$\ell\circ0=0_T\circ0$ for $\delta(1)=1\otimes1$.
+\item Thm~18 closing and Rem.~23: cite Thm~13 step (1). Do not identify the lift with $W$'s.
+\item Novelty tone-down, the second half of my old N6. ``The one new idea'' (l.\,142), ``not only
+faithful but cleaner'' (l.\,38), ``strictly outside the Lanfranchi--Lemay hypotheses''
+(l.\,382--383), and \S8's ``strictly weaker reasons \dots\ isolating exactly which uses of ring
+structure in [9] were essential (none \dots)''. Freeness here is imposed by working in
+$\mathrm{FreeMod}_\N$, and the direct-sum rank count works just as well for free modules over a
+ring. Lanfranchi--Lemay need the PID because their category contains non-free projectives. Yours
+does not, by fiat. Call it ``a rig-internal port'', not evidence that ring structure was
+inessential.
+\item N4 residues. Replace the proof of Lemma~9 with the atoms argument, which is already in
+Thm~13 step (2). Demote Lemma~7 to a remark. The counts need only
+$\operatorname{rank}(M\otimes M)=n^2$ in modules.
+\end{enumerate}
+Cosmetic: C1--C7 from the table. Also: step (3)'s ``no exotic non-representable flip to escape
+through'' is unclear; Rem.~3's ``the substitution is the unit of the adjunction between
+$(-)\otimes W$ and the Kähler functor'' is unsupported; delete both or justify them.
+
+Not checked by me: the Lean development, and Lanfranchi--Lemay's own definition of ``solid'' and
+their Ex.~4.20--4.21 (cited in Rem.~15 and Table~1).
+
+\section{Recommended registry grades}
+\begin{center}\small
+\begin{tabular}{p{7.4cm}p{2.4cm}p{5.4cm}}
+\toprule
+Claim & Grade & Note\\\midrule
+Thm~22, module form ($(-)\otimes D$ on $\mathrm{FreeMod}_\N$, any rank: exactly $y$, $W$) &
+\textbf{proved} & Thm~13 is now in the text. S1--S3 are one-line inputs, and I checked each\\
+Thm~11 / Thm~18 (finite rank) & \textbf{proved} & S3 for the $\ell_M$ clause\\
+$\N\cdot y$ carries no tangent structure & \textbf{proved} & coassociativity + universality\\
+``$\N\cdot y$ is solid'' & definitional & true only as ``abstractly solid'' (M3)\\
+Rem.~14, $\tri$-monoidal flip route & proved (under its hypotheses) & brute-force check for $|K|\le3$\\
+``$\partial$ only nontrivial \dots\ on $\mathrm{Lin}(\mathrm{SPoly})$'' (scoped) & checked-sober &
+honest as ``restriction of the $\partial$-structure''\\
+\S1/\S8/\S9 unscoped ``only nontrivial way'' & overclaim & M1\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Overall:} accept after minor revisions. The theorem is proved, and the write-up needs
+M1--M4 before the 13th.
+
+\section*{Safe to say at Strathclyde}
+``On free $\N$-modules, of any rank, the representable first-order tangent structures
+$(-)\otimes D$ are exactly the trivial one and the dual numbers $W$. Universality makes the
+vertical lift an isomorphism. Over $\N$, an isomorphism permutes bases, and lift-coassociativity
+then forces the diagonal, so the rank is at most $1$. $W$ is the restriction of the
+container-derivative structure on SPoly to its linear maps.'' Do not say ``$\N\cdot y$ is solid''
+without ``abstractly''. Do not say that differentiation is the only nontrivial tangent structure on
+polynomial functors.
+
+\end{document}
