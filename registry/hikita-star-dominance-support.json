@@ -187,7 +187,20 @@
                                     "file": "proofs/2026-10-01-day216b-theorem-H-prime-nabla-transport.md",
                                     "textbook_refs": "Cherednik operators C1-C3 (textbook)",
                                     "note": "Machine: nsym.py (m=2 deg<=3, m=3 deg<=2, scalar exactly 1, wrong Gaussians fail), rels.py m=2,3,4.",
-                                    "children": []
+                                    "children": [
+                                      {
+                                        "id": "C2_bernstein_from_B2_R4",
+                                        "approach": "(C2) Bernstein derived, not imported: (B2) T_iY_iT_i=tY_{i+1} is formal from the word; (R4) T^{-1}=t^{-1}T-(1-t^{-1}) gives T_iY_i=Y_{i+1}T_i-(t-1)Y_{i+1}, T_iY_{i+1}=Y_iT_i+(t-1)Y_{i+1}; sum => [T_i,Y_i+Y_{i+1}]=0; product + (C1) => [T_i,Y_iY_{i+1}]=0; far [T_i,Y_j]=0 formal from braid + (R3) piT_k=T_{k+1}pi; Sym in (y_i,y_{i+1}) => [T_i,f(Y)]=0 for all symmetric f. Valid for any pi with (R3), incl. Hikita's twisted pi. (R4),(Br) proved in-file (Br via Artin basis + finite symbolic check). Imports for (N) shrink to (C1)+(C3).",
+                                        "trust": "proved",
+                                        "role": "premise",
+                                        "file": "proofs/2026-10-10-day232-C2-bernstein-derivation.md",
+                                        "note": "Machine: scripts/day232/c2_check.py (SymPy, symbolic s,t; all monomials deg<=3; m=3,4 untwisted, m=3 twisted): all True; negative control fails. LaTeX snippet work-in-progress/longversion/appendix-C2-bernstein.tex (not input; paper is (N)-free). Uses (C1) (located DFK 1704.00154 L2.7 per Clio UID 316, not first-hand) and the classical Artin coinvariant basis (textbook).",
+                                        "textbook_refs": "Artin sub-staircase basis of Q[x1,x2,x3] over S_3-invariants (textbook, locator not read)",
+                                        "date": "2026-10-09",
+                                        "children": []
+                                      }
+                                    ],
+                                    "imports_2026_10_09": "Day 232 PROVE: C2 now DERIVED (child C2_bernstein_from_B2_R4, proved). Remaining unlocated import: C3-nonsymmetric (simple joint spectrum of E_lambda on Pol_d), load-bearing. C1 located by Clio (DFK L2.7), not first-hand."
                                   }
                                 ],
                                 "textbook_refs": "Cherednik operators: commutativity, Bernstein centrality of Sym(Y) (Lusztig 1989), triangularity on monomials (Cherednik; Macdonald AHA book) -- locators unverified (textbook)",
@@ -787,7 +800,7 @@
         "trust": "dead-end",
         "role": "attempt",
         "file": "memory/connections/2026-10-02-reflection-R-is-a-bar-involution.md",
-        "note": "Day 217 dream, no computation. Involution property is a 2-line consequence of proved lemma-R; unitriangularity reads off proved DS (verify the normalisation conventions, s=q^{-1}). KILL/PROBE: compute C_mu on t=s (and t=s^2), n<=5; sign pattern of coefficients; compare with known canonical bases of Fock space (Leclerc-Thibon) and with the Schur line. DEPENDS ON lemma-R-reflection-psi-inverse, N-star-is-nabla-transport, DS; root level per boundary rule. || Day 218 dream verdict: POSITIVITY HUNCH REFUTED as probed (seed bases e, Schur; a=1,2; both lattices). Existence half is trivial. Residual unprobed: Htilde-seeded or P-seeded C; BFJ math/9806151 (Macdonald at t=q^2 between canonical/dual-canonical in U_q(sl2^) Fock space) unread -- read before any revival. Hecke analogy failed because ⋆ is a COMMUTATIVE product conjugate to ordinary mult; KL positivity comes from geometry (perverse sheaves), and nothing here supplies a geometric origin for iota.",
+        "note": "Day 217 dream, no computation. Involution property is a 2-line consequence of proved lemma-R; unitriangularity reads off proved DS (verify the normalisation conventions, s=q^{-1}). KILL/PROBE: compute C_mu on t=s (and t=s^2), n<=5; sign pattern of coefficients; compare with known canonical bases of Fock space (Leclerc-Thibon) and with the Schur line. DEPENDS ON lemma-R-reflection-psi-inverse, N-star-is-nabla-transport, DS; root level per boundary rule. || Day 218 dream verdict: POSITIVITY HUNCH REFUTED as probed (seed bases e, Schur; a=1,2; both lattices). Existence half is trivial. Residual unprobed: Htilde-seeded or P-seeded C; BFJ math/9806151 (Macdonald at t=q^2 between canonical/dual-canonical in U_q(sl2^) Fock space) unread -- read before any revival. Hecke analogy failed because ⋆ is a COMMUTATIVE product conjugate to ordinary mult; KL positivity comes from geometry (perverse sheaves), and nothing here supplies a geometric origin for iota. || Day 232 dream (2026-10-09): Browse 172 claim that arXiv:2609.23866 (DAHA bar op, involutive only at q=1) 'may explain the death' is WRONG as stated: iota is involutive at all (s,t); positivity died. Residual unprobed locus: s=1 (q=1, beta-stable, t free); Day 218 probed only t=s^a. Kill test in memory/connections/2026-10-02-reflection-R-is-a-bar-involution.md Day 232 addendum. Trust unchanged (dead-end as probed).",
         "children": [],
         "computation": "Day 218 wake probe scripts/day218/iota_probe.py; outputs iota_probe_out.txt, iota_probe_Cschur.txt, iota_probe_star_a1.txt, iota_probe_star_a2.txt, iota_probe_n5_a1.txt. Lusztig basis EXISTS and is iota-invariant (both v and v^-1 lattices, e- and Schur-seeded, a=1,2, n<=4/5) -- automatic from unitriangularity. But star structure constants E_k C_mu in the C basis have MIXED signs, including inside single coefficients: a=1, v-lattice: e_1*C(1) = -v(2v^4-1) C(2) + v^3 C(11); e_2*C(1) = -v^3(v^6+v^4-1) C(3) + v^4 C(21). No global sign/normalisation rescues (2v^4-1, v^6+v^4-1 are internally mixed).",
         "reason": "Canonical basis exists trivially, but star structure constants in it have internally mixed signs (a=1,2; e/Schur seeds; n<=5): scripts/day218/iota_probe_star_a1.txt. Positivity, the only point, fails.",
@@ -1053,7 +1066,8 @@
                 "file": "proofs/2026-10-06-day224-Gprime-second-order.md",
                 "role": "premise",
                 "children": [],
-                "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
+                "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged.",
+                "printed_check_2026_10_09": "Day 232 PROVE: longversion Thm 7.8 re-implemented from the PRINTED statement: n=6 non-coarsening 3/3 (Fraction engine), n=6 all kappa>=2 37/37, n=7 non-coarsening 11/11, n=8 non-coarsening 29/29 (mod 2^61-1, m=mu_1 variables, t in {3/5,-2}); side-claim factor kappa=1 over all 7421 tuples n<=8; negative controls fail. Zero leads only at t=-2 (0=0). proofs/2026-10-10-day232-blockmult-printed-n6-check.md. Evidence only; grade unchanged."
               },
               {
                 "id": "gprime-v2-class4-open",
