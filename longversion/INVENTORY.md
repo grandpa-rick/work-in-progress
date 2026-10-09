@@ -199,7 +199,7 @@ The *proofs* trees, however, differ:
 | cor:twocol | TC (ℓ=2) + support ≤ ℓ+1 factors | TC::two-column-gf-rule, TC::two-column-straightening-free (B5, B6) | **full proof** |
 | lem:step | step map | TC::ell-column-step-map (B7) | **full proof** |
 | lem:Z | closing identity (Z) | TC::ell-column-closing-identity-Z (B7) | **full proof** |
-| thm:DS | DS + exact up-set support | DS::root, DS::full-upset-support-exact-valuation (B8, B9) | sketch (FPSAC text) — WIP: full proof from 214 |
+| thm:DS, cor:opDS, lem:e-m … lem:valB, lem:Ek1, lem:stable | DS + Op-DS + exact up-set support and s-valuation; E_k(1)=e_k; stability | DS::root, DS::ds-all-lengths-degree-count, DS::full-upset-support-exact-valuation, DS::day214-gauss-valuation-lemma-A (B8, B9) | **full proof** (from 214, re-derived; Lemma B level-set sum now via Mac III (1.4) q-binomial instead of the u-leading-term argument; E_k(1)=e_k via Mac III (2.2),(2.8) instead of Hikita Lemma 3.3) |
 | rem:H | s→0 edge, d-matrix | C1, C2 | FPSAC text — WIP: section to hold C1, C5–C10 with proofs from 215/217e |
 | thm:bider … lem:linT | block law package | D1–D8 | sketches (FPSAC text) — WIP |
 | thm:G, cor:G, thm:F, thm:blockmult | leads | D9–D12 | sketches — WIP |
@@ -212,3 +212,4 @@ The *proofs* trees, however, differ:
 - `check_ellcol_printed.py` (log): thm:ellcol as an identity Γ_k = T_k at exact random points, ℓ=1,2,3, m≤5, k≤4 (85 cases); cor:twocol explicit V == general V; lem:Z ℓ≤5; lem:Cj; K symmetry. ALL True. Negative control (`neg_control.py`, K_{ij} slots swapped) FAILS as it should.
 
 **Notation clashes to fix when the ported sections are rewritten:** Γ_k (§3 generating function) vs Γ_a (§9 bilinear form); C_I / C_j(x) (§3) vs C_{a,b} (cor:pieri); κ_c (§3 residues) vs κ(λ,μ) (block count).
+- `check_DS_printed.py` (log, n≤5, t∈{−5/11, 0}; s-polynomials recovered by 26-point interpolation + 2 held-out points): thm:DS support = exact up-set, val_s = n(μ), c_{λλ}=s^{n(λ)}, c|_{s=1}=0 off-diagonal, t=0 lead = 1; cor:opDS; lem:Ek1; lem:stable (m=n vs n+1); rem d_{(1^4),(211)}=1+3t; Peel Lemma n≤10 (5511 triples); level-set q-binomial identity. ALL True.

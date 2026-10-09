@@ -179,6 +179,20 @@ By \cref{prop:Ak,prop:Kk} with $G=\pi^kF$, since $(\pi^kF)^{(A)}=x_A\,F|_{x_i\ma
 For $k=1$ the subset formula gives back Hikita's rule $e_1\star e_r=(1-s)[r+1]e_{r+1}+se_1e_r$ \cite[Thm.~3.12]{Hikita25}; see \cref{ex:k1}. \Cref{prop:Kk} is the level-one form of the classical expression of the Hecke symmetriser as $\sum_ww\circ\prod_{i<j}a_{ij}$, restricted to minimal coset representatives.
 \end{remark}
 
+\begin{lemma}\label{lem:Ek1}
+$E_k(1)=\sum_{|A|=k}c_Ax_A=e_k$.
+\end{lemma}
+\begin{proof}
+Grouping $w\in S_m$ by $w(\{1,\dots,k\})=A$ and applying the Poincar\'e identity to $S_k\times S_{m-k}$ shows that $\sum_{|A|=k}c_Ax_A$ is the Hall--Littlewood function $P_{(1^k)}(x;t)$ as defined in \cite[III (2.1)--(2.2)]{Macdonald95}, and $P_{(1^k)}=e_k$ \cite[III (2.8)]{Macdonald95}.
+\end{proof}
+
+\begin{lemma}[Stability]\label{lem:stable}
+For $F\in\Lam_m$, $(E_kF)|_{x_m=0}=E_k(F|_{x_m=0})$, the right side computed in $m-1$ variables. Hence the $e$-coefficients of any expression built from the $E_k$ and $1$ are independent of $m$ once $m$ is at least the degree.
+\end{lemma}
+\begin{proof}
+Terms with $m\in A$ vanish because of the factor $x_A$; for $m\notin A$, $a_{im}|_{x_m=0}=1$. Restriction $\Lam_m\to\Lam_{m-1}$ maps $e_\nu\mapsto e_\nu$ and is injective in degrees $\le m-1$.
+\end{proof}
+
 \subsection{Two consequences of the kernel}
 The next two lemmas drive every computation in \cref{sec:pieri}. For a function $\varphi$ of one variable put $S^\varphi_k(x_1,\dots,x_m):=\sum_{|A|=k}c_A\prod_{a\in A}\varphi(x_a)$.
 
@@ -375,17 +389,120 @@ A second, independent proof of the Pieri rule, in the form $e_k\star e_r=\sum_{y
 %% ===================================================================
 \section{Dominance support}\label{sec:DS}
 %% ===================================================================
-\wip{The proofs in this section are condensed sketches carried over from the extended abstract; full proofs are to be written from the authors' notes, as in \cref{sec:hikita,sec:pieri}.}
+For a partition $\lambda$ write
+\[ e^\star_\lambda:=e_{\lambda_1}\star\cdots\star e_{\lambda_\ell}=E_{\lambda_1}\cdots E_{\lambda_\ell}(1)=\sum_\mu c_{\lambda\mu}(s,t)\,e_\mu , \]
+with $E_k$ as in \cref{thm:subset}. The proofs below apply the operators $E_{\lambda_i}$ in an arbitrary order, so they use neither commutativity nor associativity of $\star$.
 
-For a partition $\lambda$ write $E_k$ for the operator of \cref{thm:subset} and
-\[ e^\star_\lambda:=e_{\lambda_1}\star\cdots\star e_{\lambda_\ell}=E_{\lambda_1}\cdots E_{\lambda_\ell}(1)=\sum_\mu c_{\lambda\mu}(s,t)\,e_\mu . \]
 \begin{theorem}[Dominance support; the $s=0$ valuation]\label{thm:DS}
 $e^\star_\lambda=s^{n(\lambda)}e_\lambda+\sum_{\mu\triangleright\lambda}c_{\lambda\mu}e_\mu$ with $c_{\lambda\mu}\in\mathbb{Q}[s,t]$ and $c_{\lambda\mu}|_{s=1}=0$. Moreover $c_{\lambda\mu}\neq0$ for every $\mu\trianglerighteq\lambda$, and the $s$-adic valuation of $c_{\lambda\mu}$ is exactly $n(\mu)$. At $t=0$ the $s$-leading coefficients $[s^{n(\mu)}]c_{\lambda\mu}$ are all $1$: in the basis $b_\mu=s^{n(\mu)}e_\mu$, $e^\star_\lambda$ at $s=t=0$ is the zeta function of dominance order.
 \end{theorem}
-\begin{proof}[Sketch of proof]
-A termwise degree count on the subset formula: for symmetric $P$ let $\delta_j(P)$ be the maximal total degree in $j$ variables; $E_k$ raises $\delta_j$ by at most $\min(k,j)$, and $\delta_j(P)\le\sum_i\min(\rho_i,j)$ for all $j$ characterises $\mathrm{span}\{e_\nu:\nu\trianglerighteq\rho\}$ \cite[I (1.11), (6.6)]{Macdonald95}.
+
+\begin{corollary}[Operator form]\label{cor:opDS}
+For $k\ge1$ and every partition $\mu$, $e_k\star e_\mu\in s^{\sum_i\min(\mu_i,k)}e_{\mu\cup k}+\mathrm{span}\{e_\nu:\nu\triangleright\mu\cup k\}$.
+\end{corollary}
+
+We work in $\Lam_m$ with $m\ge n=|\lambda|$; by \cref{lem:stable} this loses nothing.
+
+\subsection{Degrees and dominance}
+\begin{lemma}\label{lem:e-m}
+Let $m\ge n$ and $\rho\vdash n$. Then $\mathrm{span}\{e_\nu:\nu\trianglerighteq\rho'\}=\mathrm{span}\{m_\kappa:\kappa\trianglelefteq\rho\}$ in the degree-$n$ part of $\Lam_m$.
+\end{lemma}
+\begin{proof}
+By \cite[I (6.6), (6.7)]{Macdonald95}, $e_\nu=\sum_\kappa M_{\nu\kappa}m_\kappa$, where $M_{\nu\kappa}$ is the number of $0$-$1$ matrices with row sums $\nu$ and column sums $\kappa$; $M_{\nu\kappa}\ne0$ forces $\kappa\trianglelefteq\nu'$, and $M_{\nu\nu'}=1$. Since $\nu\trianglerighteq\rho'\iff\nu'\trianglelefteq\rho$ \cite[I (1.11)]{Macdonald95}, the left side is contained in the right. Both have dimension $\#\{\kappa\vdash n:\kappa\trianglelefteq\rho\}$, because the $e_\nu$, $\nu\vdash n$, are independent for $m\ge n$.
 \end{proof}
 
+For $S\subseteq[m]$ and nonzero $R\in\mathbb{Q}(s,t)(x)$, let $\deg_SR$ be the degree in $u$ of $R|_{x_i\mapsto ux_i\,(i\in S)}$ (numerator degree minus denominator degree). It is additive on products and satisfies $\deg_S(R_1+R_2)\le\max(\deg_SR_1,\deg_SR_2)$. For a polynomial $P$, $\deg_SP$ is the largest value of $\sum_{i\in S}\alpha_i$ over the monomials $x^\alpha$ of $P$; for symmetric $P$ it depends only on $j=|S|$, and we write $D_j(P)$. Since the $m_\kappa$ have disjoint supports and $D_j(m_\kappa)=\kappa_1+\dots+\kappa_j$:
+
+\begin{lemma}\label{lem:Dj}
+A homogeneous $P\in\Lam_m$ of degree $|\rho|$ lies in $\mathrm{span}\{m_\kappa:\kappa\trianglelefteq\rho\}$ if and only if $D_j(P)\le\rho_1+\dots+\rho_j$ for all $j$.
+\end{lemma}
+
+\begin{lemma}[Degree step]\label{lem:degstep}
+For symmetric $F$ and every $j$, $D_j(E_kF)\le D_j(F)+\min(k,j)$.
+\end{lemma}
+\begin{proof}
+Fix $|S|=j$ and a term $R_A=c_A\,x_A\,F|_{x_i\mapsto sx_i\,(i\in A)}$ of \cref{thm:subset}. Every $a_{ij}$ has $\deg_S a_{ij}=0$: if $i,j$ are both in $S$ or both outside, $a_{ij}$ is homogeneous of degree $0$ in $u$ or constant; otherwise numerator and denominator have degree $1$. Next, $\deg_Sx_A=|A\cap S|\le\min(k,j)$. Rescaling some variables by the constant $s$ does not change $u$-degrees, so the last factor has $\deg_S=D_j(F)$. Since $E_kF$ is a polynomial, its $\deg_S$ is its monomial degree.
+\end{proof}
+
+\subsection{Support, diagonal coefficient, and the value at $s=1$}
+\begin{proof}[Proof of the support statement]
+Starting from $D_j(1)=0$ and applying \cref{lem:degstep} once for each part, $D_j(e^\star_\lambda)\le\sum_i\min(\lambda_i,j)=\lambda'_1+\dots+\lambda'_j$. By \cref{lem:Dj,lem:e-m}, $e^\star_\lambda\in\mathrm{span}\{m_\kappa:\kappa\trianglelefteq\lambda'\}=\mathrm{span}\{e_\nu:\nu\trianglerighteq\lambda\}$. The support part of \cref{cor:opDS} is the same argument with one step, starting from $D_j(e_\mu)=\sum_i\min(\mu_i,j)$.
+\end{proof}
+
+Fix integers $w_1>w_2>\dots>w_m>0$ and for $\rho=(\rho_1\ge\dots\ge\rho_m\ge0)$ put $W(\rho)=\sum_iw_i\rho_i$.
+
+\begin{lemma}\label{lem:weights}
+If $\mathrm{sort}(\alpha)=\kappa\trianglelefteq\rho$, then $\sum_iw_i\alpha_i\le W(\rho)$, with equality only if $\alpha=\rho$. Hence if $P\in\mathrm{span}\{m_\kappa:\kappa\trianglelefteq\rho\}$ has $m_\rho$-coefficient $c$, the coefficient of $u^{W(\rho)}$ in $P(u^{w_1}x_1,\dots,u^{w_m}x_m)$ is $c\,x^\rho$, and no higher power of $u$ occurs.
+\end{lemma}
+\begin{proof}
+$\sum_iw_i\alpha_i\le\sum_iw_i\kappa_i$ by the rearrangement inequality, with equality only if $\alpha=\kappa$ (the $w_i$ are distinct). By Abel summation, $\sum_iw_i\kappa_i=\sum_j(w_j-w_{j+1})(\kappa_1+\dots+\kappa_j)$ with $w_{m+1}:=0$; all weights are positive, so this is at most the same expression for $\rho$, with equality only if $\kappa=\rho$.
+\end{proof}
+
+\begin{lemma}[Lead step]\label{lem:leadstep}
+Let $F\in\mathrm{span}\{m_\kappa:\kappa\trianglelefteq\rho\}$ with $m_\rho$-coefficient $c_F$. Then $E_kF\in\mathrm{span}\{m_\kappa:\kappa\trianglelefteq\rho+1^k\}$, with $m_{\rho+1^k}$-coefficient $s^{\rho_1+\dots+\rho_k}c_F$.
+\end{lemma}
+\begin{proof}
+Membership is \cref{lem:degstep,lem:Dj}. Substitute $x_i\mapsto u^{w_i}x_i$ and expand each term $R_A$ in $u^{-1}$. For $i<j$, $a_{ij}=1+O(u^{-1})$, and for $i>j$, $a_{ij}=t+O(u^{-1})$, so $c_A=t^{\mathrm{inv}(A)}(1+O(u^{-1}))$ with $\mathrm{inv}(A)=\#\{i\in A,j\notin A:i>j\}$. Next, $x_A$ becomes $u^{\sum_{a\in A}w_a}x_A$. Finally, $F|_{x_a\mapsto sx_a\,(a\in A)}$ has the monomials of $F$ with $x^\alpha$ rescaled by $s^{\sum_{a\in A}\alpha_a}$, so by \cref{lem:weights} it is $u^{W(\rho)}\bigl(c_Fs^{\sum_{a\in A}\rho_a}x^\rho+O(u^{-1})\bigr)$. The exponent $W(\rho)+\sum_{a\in A}w_a$ is uniquely maximal for $A=[k]$, where $\mathrm{inv}=0$. So the coefficient of $u^{W(\rho+1^k)}$ in $E_kF$ is $s^{\rho_1+\dots+\rho_k}c_F\,x^{\rho+1^k}$; conclude by \cref{lem:weights} for $\rho+1^k$.
+\end{proof}
+
+\begin{proof}[Proof of the diagonal coefficient]
+Apply the operators in any order. If the parts applied so far form $\mu$, the current function lies in $\mathrm{span}\{m_\kappa:\kappa\trianglelefteq\mu'\}$, and applying $E_k$ multiplies the $m_{\mu'}$-coefficient by $s^{\mu'_1+\dots+\mu'_k}=s^{\sum_i\min(\mu_i,k)}$ (\cref{lem:leadstep}; note $\mu'+1^k=(\mu\cup k)'$). Each unordered pair of parts contributes its minimum once, so the total exponent is $\sum_{i<p}\min(\lambda_i,\lambda_p)=\sum_p(p-1)\lambda_p=n(\lambda)$. By the triangularity in the proof of \cref{lem:e-m}, the only $e_\nu$ with $\nu\trianglerighteq\lambda$ containing $m_{\lambda'}$ is $e_\lambda$, with coefficient $1$. Hence $c_{\lambda\lambda}=s^{n(\lambda)}$. The same computation gives the leading term in \cref{cor:opDS}.
+\end{proof}
+
+\begin{proof}[Proof of integrality and of $c_{\lambda\mu}|_{s=1}=0$]
+Let $V=\prod_{i<j}(x_i-x_j)$. Multiplying the subset formula by $V$ gives
+\[ V\,E_kF=\sum_{|A|=k}\varepsilon_A\prod_{\substack{i<j\\ \text{both in or both out of }A}}(x_i-x_j)\prod_{i\in A,\,j\notin A}(x_i-tx_j)\ x_A\,F|_{x_a\mapsto sx_a\,(a\in A)} ,\qquad\varepsilon_A=\pm1. \]
+If $F\in\mathbb{Q}[s,t][x]$, the right side lies in $\mathbb{Q}[s,t][x]$. As $V$ has content $1$ and $E_kF$ is a polynomial, Gauss's lemma gives $E_kF\in\mathbb{Q}[s,t][x]$. By induction $e^\star_\lambda\in\mathbb{Q}[s,t][x]^{S_m}$, and its $e$-coefficients lie in $\mathbb{Q}[s,t]$. Now set $s=1$ (a ring map on $\mathbb{Q}[s,t][x]$): every $F|_{x_a\mapsto sx_a}$ becomes $F|_{s=1}$, so $V\,(E_kF)|_{s=1}=F|_{s=1}\cdot V\,E_k(1)=V\,e_k\,F|_{s=1}$ by \cref{lem:Ek1}. Hence $(E_kF)|_{s=1}=e_kF|_{s=1}$, $e^\star_\lambda|_{s=1}=e_\lambda$, and $c_{\lambda\mu}|_{s=1}=\delta_{\lambda\mu}$.
+\end{proof}
+
+\subsection{The exact $s$-adic valuation}
+It remains to show that $s^{n(\mu)}$ divides $c_{\lambda\mu}$ and that $(c_{\lambda\mu}/s^{n(\mu)})|_{s=t=0}=1$ for all $\mu\trianglerighteq\lambda$; in particular $c_{\lambda\mu}\ne0$. Put $\omega(\alpha):=\sum_j\binom{\alpha_j}{2}$ for $\alpha\in\mathbb{Z}^m_{\ge0}$ and $B_\mu:=\{\beta:\mathrm{sort}(\beta)\trianglelefteq\mu'\}$, the monomial support of $e^\star_\mu$. Write $e^\star_\lambda=\sum_\beta a^\lambda_\beta x^\beta$; $a^\lambda_\beta$ is symmetric in $\beta$. The source of $s^{n}$ is the identity
+\begin{equation}\label{eq:omega}
+\omega(\beta+1_A)=\omega(\beta)+1_A\cdot\beta .
+\end{equation}
+
+Let $\mathbb{K}=\mathbb{Q}(t)(s^{1/2})$ (or $\mathbb{Q}(s^{1/2})$ when $t=0$) with the $s$-adic valuation $v$, extended to $\mathbb{K}(x)$ by the Gauss valuation $v(\sum a_\beta x^\beta)=\min_\beta v(a_\beta)$. For $c\in(\frac12\mathbb{Z})^m$ let $\sigma_c$ be the automorphism $x_j\mapsto s^{-c_j}x_j$, so that $v(\sigma_cP)=\min_\beta(v(a_\beta)-c\cdot\beta)$.
+
+\begin{lemma}\label{lem:valA}
+For generic $t$, and also at $t=0$, $v(a^\lambda_\alpha)\ge\omega(\alpha)$ for all $\alpha$.
+\end{lemma}
+\begin{proof}
+We show $v(\sigma_ce^\star_\lambda)\ge\min_{\beta\in B_\lambda}(\omega(\beta)-c\cdot\beta)$ for all $c$, by induction along $e^\star_\mu\mapsto E_ke^\star_\mu=e^\star_{\mu\cup k}$, the case $e^\star_\varnothing=1$ being clear. In a term $R_A$: $v(\sigma_ca_{ij})=0$ for generic $t$, and at $t=0$, $v(\sigma_ca_{ij})=\max(c_i,c_j)-c_i\ge0$; $\sigma_cx_A=s^{-c\cdot1_A}x_A$; and $\sigma_c(F|_{x_a\mapsto sx_a\,(a\in A)})=\sigma_{c-1_A}F$. Hence, by induction and \eqref{eq:omega},
+\[ v(\sigma_cR_A)\ge-c\cdot1_A+\min_{\beta\in B_\mu}\bigl(\omega(\beta)-(c-1_A)\cdot\beta\bigr)=\min_{\beta\in B_\mu}\bigl(\omega(\beta+1_A)-c\cdot(\beta+1_A)\bigr), \]
+and $\beta+1_A\in B_{\mu\cup k}$ because the top-$j$ sums grow by at most $\min(j,k)$ and $\mu'+1^k=(\mu\cup k)'$. Now take $c=\alpha-\frac12\mathbf{1}$. Then $\omega(\beta)-c\cdot\beta=\sum_j\bigl((\beta_j-\alpha_j)^2-\alpha_j^2\bigr)/2$ is uniquely minimised over $\mathbb{Z}^m$ at $\beta=\alpha$, so $v(a^\lambda_\alpha)-c\cdot\alpha\ge v(\sigma_ce^\star_\lambda)\ge\omega(\alpha)-c\cdot\alpha$.
+\end{proof}
+
+\begin{proof}[Proof that $s^{n(\mu)}\mid c_{\lambda\mu}$]
+Write $c_{\lambda\nu}=s^{n(\nu)}d_\nu$ and suppose $\delta:=\min_\nu v(d_\nu)<0$. Choose $\mu$ dominance-minimal with $v(d_\mu)=\delta$. The coefficient of $x^{\mu'}$ is $a^\lambda_{\mu'}=\sum_{\nu\trianglelefteq\mu}c_{\lambda\nu}M_{\nu\mu'}$ with $M_{\mu\mu'}=1$. Since $\nu\triangleleft\mu$ implies $n(\nu)>n(\mu)$ (as $n(\nu)=\sum_{i\ge1}(n-\nu_1-\dots-\nu_i)$), every term with $\nu\ne\mu$ has valuation $>n(\mu)+\delta$, so $v(a^\lambda_{\mu'})=n(\mu)+\delta<n(\mu)=\omega(\mu')$, contradicting \cref{lem:valA}. So $d_\nu$ is regular at $s=0$; as $c_{\lambda\nu}\in\mathbb{Q}[s,t]$, $s^{n(\nu)}$ divides $c_{\lambda\nu}$ in $\mathbb{Q}[s,t]$. The same argument at $t=0$ shows $d_\mu|_{s=t=0}=[s^{\omega(\mu')}]\,a^\lambda_{\mu'}|_{t=0}$.
+\end{proof}
+
+For the value at $s=t=0$ we need the initial forms. For $R\in\mathbb{K}(x)$ with $v(R)\ge v_0$, let $\mathrm{in}_{v_0}(R)$ be the image of $s^{-v_0}R$ in the residue field $\mathbb{Q}(x)$; it is additive at a common level and multiplicative. For $\kappa=\mathrm{sort}(\alpha)$ let $\mathrm{peel}_k$ subtract $1$ from the $k$ largest parts.
+
+\begin{lemma}[Peel Lemma]\label{lem:peelmono}
+If $\kappa\trianglelefteq\rho$, $|\kappa|=|\rho|$ and $k\le\ell(\rho)$, then $\mathrm{peel}_k\kappa\trianglelefteq\mathrm{peel}_k\rho$.
+\end{lemma}
+\begin{proof}
+Note $\ell(\kappa)\ge\ell(\rho)\ge k$. Counting parts $\ge c$ gives $(\mathrm{peel}_k\kappa)'_c=\kappa'_c-\min(k,\kappa'_c)+\min(k,\kappa'_{c+1})$, so with $S_C$ the sum of the first $C$ parts and $\kappa'_1\ge k$, $S_C((\mathrm{peel}_k\kappa)')=S_C(\kappa')-k+\min(k,\kappa'_{C+1})$, and likewise for $\rho$. Let $D_C=S_C(\kappa')-S_C(\rho')\ge0$ (by \cite[I (1.11)]{Macdonald95}) and $\bar m(y)=\min(k,y)$. If $\bar m(\kappa'_{C+1})\ge\bar m(\rho'_{C+1})$ we are done. Otherwise $\kappa'_{C+1}<k$ and $\kappa'_{C+1}<\rho'_{C+1}$, and $D_C=D_{C+1}+\rho'_{C+1}-\kappa'_{C+1}\ge\bar m(\rho'_{C+1})-\bar m(\kappa'_{C+1})$. So $(\mathrm{peel}_k\kappa)'\trianglerighteq(\mathrm{peel}_k\rho)'$.
+\end{proof}
+
+\begin{lemma}\label{lem:valB}
+At $t=0$, $\Lambda^0_\lambda(\alpha):=[s^{\omega(\alpha)}]\,a^\lambda_\alpha$ equals $1$ if $\mathrm{sort}(\alpha)\trianglelefteq\lambda'$ and $0$ otherwise.
+\end{lemma}
+\begin{proof}
+Induction along $E_k$; the base case is clear, and $\Lambda^0_{\mu\cup k}(\alpha)=0$ outside $B_{\mu\cup k}$ by the support statement. Let $\mathrm{sort}(\alpha)\trianglelefteq(\mu\cup k)'$, $c=\alpha-\frac12\mathbf1$ and $v_0=\omega(\alpha)-c\cdot\alpha$. By the uniqueness in the proof of \cref{lem:valA}, $\mathrm{in}_{v_0}(\sigma_ce^\star_{\mu\cup k})=\Lambda^0_{\mu\cup k}(\alpha)\,x^\alpha$. If $\alpha-1_A$ has a negative entry or lies outside $B_\mu$, then $v(\sigma_cR_A)>v_0$ by that uniqueness and the term $R_A$ does not contribute. Otherwise, with $\beta_0=\alpha-1_A$, the levels split as in \eqref{eq:omega} and
+\[ \mathrm{in}_{v_0}(\sigma_cR_A)=\mathrm{in}_0(\sigma_cc_A)\cdot\Lambda^0_\mu(\beta_0)\,x^\alpha . \]
+At $t=0$, $\mathrm{in}_0(\sigma_ca_{ij})$ is $1$ if $\alpha_i>\alpha_j$, $0$ if $\alpha_i<\alpha_j$, and $x_i/(x_i-x_j)$ if $\alpha_i=\alpha_j$. So only sets $A$ that are upper sets for $\alpha$ contribute: with $v$ the $k$-th largest entry of $\alpha$ and $L=\{j:\alpha_j=v\}$, $A=\{j:\alpha_j>v\}\sqcup B$ with $B\subseteq L$ of size $r=k-\#\{j:\alpha_j>v\}$. As $\ell(\mathrm{sort}\,\alpha)\ge\ell((\mu\cup k)')\ge k$, $v\ge1$. For all such $A$, $\mathrm{sort}(\alpha-1_A)=\mathrm{peel}_k(\mathrm{sort}\,\alpha)$, and $\Lambda^0_\mu$ is symmetric, so
+\[ \Lambda^0_{\mu\cup k}(\alpha)=\Lambda^0_\mu(\mathrm{peel}_k\,\mathrm{sort}\,\alpha)\cdot\sum_{B\subseteq L,\ |B|=r}\ \prod_{i\in B,\ j\in L\setminus B}\frac{x_i}{x_i-x_j}=\Lambda^0_\mu(\mathrm{peel}_k\,\mathrm{sort}\,\alpha). \]
+The last sum is the case $t=0$ of $\sum_{|B|=r}\prod_{i\in B,j\in L\setminus B}\frac{x_i-tx_j}{x_i-x_j}=\qbin{|L|}{r}$, which follows from the Poincar\'e identity \cite[III (1.4)]{Macdonald95} by grouping $S_{|L|}$ according to the image of $\{1,\dots,r\}$. Finally, by \cref{lem:peelmono} with $\rho=(\mu\cup k)'=\mu'+1^k$, $\mathrm{peel}_k(\mathrm{sort}\,\alpha)\trianglelefteq\mathrm{peel}_k(\mu'+1^k)=\mu'$, so $\Lambda^0_\mu(\mathrm{peel}_k\,\mathrm{sort}\,\alpha)=1$.
+\end{proof}
+
+\begin{proof}[End of proof of \cref{thm:DS}]
+By the last two proofs, $(c_{\lambda\mu}/s^{n(\mu)})|_{s=t=0}=\Lambda^0_\lambda(\mu')=1$ for $\mu\trianglerighteq\lambda$, since $\mu'\trianglelefteq\lambda'$. In particular $c_{\lambda\mu}\neq0$ and its $s$-adic valuation is $n(\mu)$.
+\end{proof}
+
+\begin{remark}
+The leading coefficients $d_{\lambda\mu}(t)=[s^{n(\mu)}]c_{\lambda\mu}$ depend on $t$; for instance $d_{(1^4),(2,1,1)}=1+3t$. They are identified in \cref{rem:H}. The degree count above is the same kind of triangularity argument as for Macdonald's operators \cite[VI (3.6)--(3.10)]{Macdonald95}.
+\end{remark}
 
 %% ===================================================================
 \section{The $s\to0$ edge}\label{sec:edge}
