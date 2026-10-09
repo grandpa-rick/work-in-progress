@@ -587,26 +587,26 @@ The matrix $d_{\lambda\mu}(t)$ is the classical $e\to$Hall--Littlewood transitio
 %% ===================================================================
 \section{The block valuation law at $s=1$}\label{sec:blocklaw}
 %% ===================================================================
-\wip{The proofs in this section are condensed sketches carried over from the extended abstract; full proofs are to be written from the authors' notes, as in \cref{sec:hikita,sec:pieri}.}
 
-In \cref{thm:subset} the variable $s$ enters only through $F|_{x_i\mapsto sx_i\,(i\in A)}=s^{\Delta_A}F$, $\Delta_A=\sum_{i\in A}x_i\partial_i$. Taylor expansion at $s=1$ gives
+\subsection{Taylor pieces}
+We write $\val$ for the $(s-1)$-adic valuation on $\mathbb{Q}(t)[s]$, $I=(e_1,e_2,\dots)$ for the augmentation ideal (so $I^b$ is spanned by the $e_\mu$ with $\ell(\mu)\ge b$), and $\lin G:=[e_n]G$ for $G$ homogeneous of degree $n$; $\lin$ vanishes on $I^2$. For $\rho$ a partition, a homogeneous symmetric function is \emph{of type $\rho$} if it lies in $\mathrm{span}\{e_\nu:\nu\trianglerighteq\rho\}$; by \cref{lem:e-m,lem:Dj} this means $D_j(P)\le\sum_i\min(\rho_i,j)$ for all $j$. For a set $C$ of positions, $\lambda_C$ is the partition formed by the parts $\lambda_i$, $i\in C$.
+
+In \cref{thm:subset} the variable $s$ enters only through $F|_{x_i\mapsto sx_i\,(i\in A)}=s^{\Delta_A}F$, $\Delta_A=\sum_{i\in A}x_i\partial_i$. Since $s^{\Delta_A}x^\alpha=s^{\alpha\cdot1_A}x^\alpha=\sum_p(s-1)^p\binom{\Delta_A}{p}x^\alpha$,
 \begin{equation}\label{eq:taylor}
-E_k=\sum_{p\ge0}(s-1)^pE_k^{(p)},\qquad E_k^{(p)}=\sum_{|A|=k}c_Ax_A\binom{\Delta_A}{p},
+E_k=\sum_{p\ge0}(s-1)^pE_k^{(p)},\qquad E_k^{(p)}=\sum_{|A|=k}c_Ax_A\binom{\Delta_A}{p}.
 \end{equation}
-and $E_k^{(p)}$ is a differential operator of order $\le p$ on $\Lam_m$, with $E_k^{(0)}=e_k\cdot$ and $E_k^{(p)}(1)=0$ for $p\ge1$. We write $\lin G:=[e_n]G$ for $G$ homogeneous of degree $n$, $\varphi_m=\prod_{i=1}^m(1-t^i)$, and use the Hall--Littlewood functions $P_\lambda(x;t)$, $Q_\lambda=b_\lambda P_\lambda$, $Q'_\lambda$ of \cite[Ch.~III]{Macdonald95} with the Hall--Littlewood pairing $\langle p_\lambda,p_\mu\rangle_t=\delta_{\lambda\mu}z_\lambda\prod_i(1-t^{\lambda_i})^{-1}$. $I=(e_1,e_2,\dots)$ is the augmentation ideal.
+As $E_kF$ is a symmetric polynomial in $x$ and $s$ (\cref{thm:DS}), each $E_k^{(p)}$ preserves $\Lam_m$. Since $\binom{\Delta_A}p$ is a polynomial of degree $p$ in a derivation, and multiplication by $c_Ax_A$ preserves this, $E_k^{(p)}$ is a differential operator of order $\le p$: all $(p+1)$-fold commutators $[\cdots[E_k^{(p)},a_0],\dots,a_p]$ with multiplication operators vanish. Moreover $E_k^{(0)}$ is multiplication by $e_k$ (by the proof of \cref{thm:DS}, $(E_kF)|_{s=1}=e_kF|_{s=1}$), and $E_k^{(p)}(1)=0$ for $p\ge1$.
 
-
-\begin{definition}
-For $\lambda,\mu\vdash n$, $\kappa(\lambda,\mu)$ is the largest $r$ such that $\lambda=\lambda^1\sqcup\cdots\sqcup\lambda^r$ and $\mu=\mu^1\sqcup\cdots\sqcup\mu^r$ as multisets of parts, with every block nonempty and $\mu^i\trianglerighteq\lambda^i$ (so $|\mu^i|=|\lambda^i|$); $\kappa=-\infty$ if $\mu\not\trianglerighteq\lambda$. $\mu$ is a \emph{coarsening} of $\lambda$ if $\kappa(\lambda,\mu)=\ell(\mu)$. $\val$ denotes the $(s-1)$-adic valuation.
-\end{definition}
-
+\subsection{First order}
 \begin{theorem}[First order is a biderivation]\label{thm:bider}
-Let $D_k:=E_k^{(1)}$ and $B(f,g):=\partial_s(f\star g)|_{s=1}$. Then $D_k$ is a derivation of $\Lam_m$, and
+Let $D_k:=E_k^{(1)}$ and $B(f,g):=\partial_s(f\star g)|_{s=1}$ for $f,g\in\Lam_m$ with coefficients in $\mathbb{Q}(t)$ (independent of $s$). Then $D_k$ is a derivation of $\Lam_m$, and
 \[ B(f,g)=\sum_{k,l}M_{kl}\,\frac{\partial f}{\partial e_k}\frac{\partial g}{\partial e_l},\qquad M_{kl}:=D_k(e_l)=B(e_k,e_l)=M_{lk}. \]
 So $B$ is a symmetric biderivation, the carr\'e du champ of $L=\frac12\sum M_{kl}\partial^2/\partial e_k\partial e_l$.
 \end{theorem}
-\begin{proof}[Sketch of proof]
-$\binom{\Delta_A}{1}=\Delta_A$ is a derivation and left multiplication by $c_Ax_A$ preserves this. Write $f=\sum_\rho a_\rho(s)e^\star_\rho$, differentiate $f\star g=\sum_\rho a_\rho(s)E_\rho g$ at $s=1$, and use $D_k(1)=0$. Symmetry of $M$ is commutativity of $\star$ \cite{Hikita25}.
+\begin{proof}
+$D_k=\sum_Ac_Ax_A\Delta_A$ is a sum of derivations. By \cref{thm:DS} the $e^\star_\rho$ form a basis whose transition matrix to the $e_\rho$ is unitriangular at $s=1$; write $f=\sum_\rho a_\rho(s)e^\star_\rho$ with $a_\rho$ regular at $s=1$. By associativity, $f\star g=\sum_\rho a_\rho(s)E_{\rho_1}\cdots E_{\rho_\ell}g$. By \eqref{eq:taylor},
+\[ B(f,g)=\sum_\rho a'_\rho(1)e_\rho g+\sum_\rho a_\rho(1)\sum_i\Bigl(\prod_{j\ne i}e_{\rho_j}\Bigr)D_{\rho_i}g . \]
+Applying the same computation to $f=\sum_\rho a_\rho(s)E_{\rho_1}\cdots E_{\rho_\ell}(1)$ itself, which does not depend on $s$, and using $D_k(1)=0$, gives $\sum_\rho a'_\rho(1)e_\rho=0$. Since $f|_{s=1}=\sum_\rho a_\rho(1)e_\rho$, the remaining sum is $\sum_k\frac{\partial f}{\partial e_k}D_k(g)$, and $D_k(g)=\sum_l\frac{\partial g}{\partial e_l}D_k(e_l)$. Symmetry of $M$ is commutativity of $\star$ \cite{Hikita25}.
 \end{proof}
 
 \begin{proposition}[The matrix $M$]\label{prop:M}
@@ -614,48 +614,111 @@ For $k\ge r\ge0$, with $L(a,b):=\dfrac{(1-t^{a+b})(t^{ab}-1)}{(1-t^a)(1-t^b)}$,
 \[ M_{kr}=B(e_k,e_r)=r\,e_ke_r+\sum_{j=1}^{r}L(k-r+j,\,j)\,e_{k+j}e_{r-j}. \]
 Consequently $[(s-1)^1]e^\star_\lambda=\sum_{i<j}M_{\lambda_i\lambda_j}\,e_{\lambda\setminus\{\lambda_i,\lambda_j\}}$.
 \end{proposition}
-\begin{proof}[Sketch of proof]
-Differentiate \cref{cor:pieri} (whose proof does not use \cref{prop:M}) at $s=1$. Since $\pi_a(b)|_{s=1}=\delta_{b0}$, only $y=r$ survives at $s=1$, and its derivative is $r\,e_ke_r$. For $y=r-j$, $j\ge1$, put $a=k-r+j$. Then $\partial_s\pi_a(j)|_{s=1}=[u^j]\sum_{m<a}\frac{ut^m}{1+ut^m}=(-1)^{j-1}[a]_{t^j}$, so $\partial_sC_{a,j}|_{s=1}=-\frac{[a+j]}{[a]}[a]_{t^j}=L(a,j)$. The second statement follows from \cref{thm:bider}, since $D_k(1)=0$.
+\begin{proof}
+$M_{kr}=[(s-1)^1]\,e_k\star e_r$. Use the form of the Pieri rule in \cref{cor:pieri} (\cref{sec:box}; its proof does not use \cref{prop:M}): $e_k\star e_r=\sum_{y=0}^{r}s^yC_{k-y,r-y}e_{k+r-y}e_y$. Since $\pi_a(b)|_{s=1}=\delta_{b0}$, every $C_{a,b}$ with $b\ge1$ vanishes at $s=1$; so the $y=r$ term $s^re_ke_r$ contributes $r\,e_ke_r$, and the term $y=r-j$, $j\ge1$, contributes $\partial_sC_{a,j}|_{s=1}$ with $a=k-r+j$. Now $\partial_s\pi_a(j)|_{s=1}=[u^j]\sum_{m<a}\frac{ut^m}{1+ut^m}=(-1)^{j-1}[a]_{t^j}$, so $\partial_sC_{a,j}|_{s=1}=-\frac{[a+j]}{[a]}[a]_{t^j}=L(a,j)$. For the second statement, $[(s-1)^1]E_{\lambda_1}\cdots E_{\lambda_\ell}(1)=\sum_i\prod_{j<i}e_{\lambda_j}\,D_{\lambda_i}\bigl(\prod_{j>i}e_{\lambda_j}\bigr)$; expand with the Leibniz rule.
 \end{proof}
 
+\subsection{Blocks}
+\begin{lemma}[Polarization]\label{lem:polar}
+Let $D$ be a linear operator on a commutative ring and $g_1,\dots,g_r$ elements of it. For $S\subseteq[r]$ let $\delta_S:=[\cdots[D,g_{s_1}],\dots,g_{s_q}](1)=\sum_{T\subseteq S}(-1)^{|S\setminus T|}\prod_{i\in S\setminus T}g_i\,D\bigl(\prod_{i\in T}g_i\bigr)$. Then
+\[ D(g_1\cdots g_r)=\sum_{S\subseteq[r]}\Bigl(\prod_{i\notin S}g_i\Bigr)\delta_S , \]
+and if $D$ has order $\le p$, then $\delta_S=0$ for $|S|>p$, and for $|S|=p$ the map $(g_i)_{i\in S}\mapsto\delta_S$ is a derivation in each argument.
+\end{lemma}
+\begin{proof}
+Substituting the second expression for $\delta_S$, the right side is $\sum_T\prod_{i\notin T}g_i\,D(\prod_{i\in T}g_i)\sum_{S\supseteq T}(-1)^{|S\setminus T|}$, and the inner sum is $[T=[r]]$. Vanishing is the definition of order $\le p$. For $|S|=p$, $D':=[\cdots[D,g_{s_2}],\dots,g_{s_p}]$ has order $\le1$, so $D'(ab)=aD'(b)+bD'(a)-abD'(1)$, i.e.\ $[D',ab](1)=a[D',b](1)+b[D',a](1)$; and the iterated commutator is symmetric in its arguments.
+\end{proof}
+
+\begin{proposition}[Block expansion]\label{prop:block}
+Let $\lambda$ have $\ell$ parts and $p_1,\dots,p_\ell\ge0$ with $\sum_ip_i=m$. Then
+\[ E^{(p_1)}_{\lambda_1}\cdots E^{(p_\ell)}_{\lambda_\ell}(1)=\sum_\pi\prod_{C\in\pi}g^\pi_C , \]
+a finite sum over set partitions $\pi$ of $[\ell]$ with at least $\ell-m$ blocks, where each $g^\pi_C$ is homogeneous of type $\lambda_C$.
+\end{proposition}
+\begin{proof}
+Induction on the number of operators applied, from the right; the empty product $1$ has no blocks. Apply $D=E^{(p)}_k$, $k=\lambda_j$, $p=p_j$, to a term $\prod_{C\in\pi}g_C$. By \cref{lem:polar} the result is $\sum_{S\subseteq\pi,|S|\le p}\prod_{C\notin S}g_C\cdot\delta_S$, and we let $\pi'=(\pi\setminus S)\cup\{C'\}$ with $C'=\{j\}\cup\bigcup S$. Then $|\pi'|\ge|\pi|+1-p$, which gives the block count. Each $\delta_S$ is a combination of products of the $g_C$ and of $D$ applied to such products. Rescaling monomials does not enlarge monomial supports, so the degree step \cref{lem:degstep} holds for $E^{(p)}_k$ as well, and $D_j$ is additive on products; hence $D_j(\delta_S)\le\sum_{C\in S}\sum_{i\in C}\min(\lambda_i,j)+\min(\lambda_j,j)$, i.e.\ $\delta_S$ has type $\lambda_{C'}$.
+\end{proof}
+
+\begin{definition}
+For $\lambda,\mu\vdash n$, $\kappa(\lambda,\mu)$ is the largest $r$ such that $\lambda=\lambda^1\sqcup\cdots\sqcup\lambda^r$ and $\mu=\mu^1\sqcup\cdots\sqcup\mu^r$ as multisets of parts, with every block nonempty and $\mu^i\trianglerighteq\lambda^i$ (so $|\mu^i|=|\lambda^i|$); $\kappa=-\infty$ if $\mu\not\trianglerighteq\lambda$. $\mu$ is a \emph{coarsening} of $\lambda$ if $\kappa(\lambda,\mu)=\ell(\mu)$.
+\end{definition}
+
+\subsection{The block valuation law}
 \begin{theorem}[Block valuation law]\label{thm:blocklaw}
 For all $\lambda,\mu\vdash n$ and all $t$, $\val(c_{\lambda\mu})\ge\ell(\lambda)-\kappa(\lambda,\mu)$. For $\mu\trianglerighteq\lambda$, $\mu\neq\lambda$, equality holds over $\mathbb{Q}(t)$ and at $t=0$:
 \[ \val(c_{\lambda\mu})=\ell(\lambda)-\kappa(\lambda,\mu). \]
 At $t=0$ the leading coefficient is $(-1)^{\ell-\kappa}N(\lambda,\mu)$ with $N(\lambda,\mu)\ge1$ a count of minimal raising-operator configurations.
 \end{theorem}
-\begin{proof}[Sketch of proof]
-\emph{Lower bound} (subset formula only): by polarization, an order-$p$ operator glues at most $p$ existing ``blocks'' to the new part, so the $(s-1)^m$ coefficient is a sum of products over $\ge\ell-m$ blocks, each of type $\lambda_C$ by the degree count of \cref{thm:DS}. \emph{Equality}: at $t=0$, $\omega e^\star_\lambda=\widetilde H_\lambda(x;s)=s^{n(\lambda)}Q'_\lambda(x;s^{-1})$, and Macdonald's raising operators $Q'_\lambda(x;u)=\prod_{i<j}\frac{1-R_{ij}}{1-uR_{ij}}h_\lambda$ \cite[III (2.15$'$) with \S5 Ex.~7(a)]{Macdonald95} give $R_{ij}^k$ the coefficient $(u-1)u^{k-1}=-(s-1)s^{-k}$ at $u=s^{-1}$. So every transfer edge costs exactly one $(s-1)$ with sign $-1$, so nothing cancels; the minimum edge count is $\ell-\kappa$ (components $\le\kappa$; a path tree on each indecomposable block). Specialise $t=0\to$ generic.
+
+\begin{proof}[Proof of the lower bound]
+By \eqref{eq:taylor}, $[(s-1)^m]e^\star_\lambda=\sum_{\sum p_i=m}E^{(p_1)}_{\lambda_1}\cdots E^{(p_\ell)}_{\lambda_\ell}(1)$. By \cref{prop:block} each term is a sum of products $\prod_{C\in\pi}g_C$ with $|\pi|\ge\ell-m$ and $g_C$ of type $\lambda_C$, and such a product lies in $\mathrm{span}\{e_{\sqcup_C\nu^C}:\nu^C\trianglerighteq\lambda_C\}$. So $e_\mu$ can occur only if $\kappa(\lambda,\mu)\ge|\pi|\ge\ell-m$. The argument works over $\mathbb{Q}(t)$ and for every specialisation $t\in\mathbb{Q}$.
 \end{proof}
+
 \begin{remark}[Input at $t=0$]\label{rem:t0input}
-The $t=0$ edge $e^\star_\mu|_{t=0}=s^{n(\mu)}P_{\mu'}(x;1/s,0)=\omega\widetilde H_\mu(x;s)$ is \textbf{not ours}: it is assembled from \cite{DFK18} eq.~(5.15) (with $M_{k,1}=E_k|_{t=0}$), Cor.~5.8 in its level-one form (5.25), Cor.~5.18 (eq.~(5.27)) (numbering of arXiv:1505.01657v2), and \cite[VI (5.1), (4.14)(iv)]{Macdonald95}. In particular \cref{thm:blocklaw} does not depend on Cherednik's nonsymmetric theory.
+The $t=0$ edge $e^\star_\mu|_{t=0}=s^{n(\mu)}P_{\mu'}(x;1/s,0)=\omega\widetilde H_\mu(x;s)$, where $\widetilde H_\mu(x;s)=s^{n(\mu)}Q'_\mu(x;s^{-1})$, is \textbf{not ours}: it is assembled from \cite{DFK18} eq.~(5.15) (with $M_{k,1}=E_k|_{t=0}$), Cor.~5.8 in its level-one form (5.25), Cor.~5.18 (eq.~(5.27)) (numbering of arXiv:1505.01657v2), and \cite[VI (5.1), (4.14)(iv)]{Macdonald95}. In particular \cref{thm:blocklaw} does not depend on Cherednik's nonsymmetric theory.
 \end{remark}
+
+\begin{proof}[Proof of equality]
+By \cref{rem:t0input}, $c_{\lambda\mu}(s,0)=[h_\mu]\,s^{n(\lambda)}Q'_\lambda(x;s^{-1})$. By \cite[III (2.15$'$) with \S5 Ex.~7(a)]{Macdonald95}, $Q'_\lambda(x;u)=\prod_{i<j\le\ell}\frac{1-R_{ij}}{1-uR_{ij}}h_\lambda$, where $R_{ij}h_\alpha=h_{\alpha+e_i-e_j}$, $h_\alpha=h_{\alpha_1}h_{\alpha_2}\cdots$ and $h_r=0$ for $r<0$. Expand $\frac{1-R}{1-uR}=1+\sum_{a\ge1}(u-1)u^{a-1}R^a$; at $u=s^{-1}$ the coefficient of $R^a$ is $-(s-1)s^{-a}$. A \emph{configuration} is a function $\mathbf m$ on pairs $i<j\le\ell$ with values in $\mathbb{Z}_{\ge0}$; its edge set is $E(\mathbf m)=\{ij:\mathbf m_{ij}\ge1\}$ and its result is $\alpha(\mathbf m)=\lambda+\sum\mathbf m_{ij}(e_i-e_j)$. Then
+\[ c_{\lambda\mu}(s,0)=\sum_{\mathbf m:\ \alpha(\mathbf m)\ge0,\ \mathrm{sort}\,\alpha(\mathbf m)=\mu}(-1)^{|E(\mathbf m)|}(s-1)^{|E(\mathbf m)|}s^{a(\mathbf m)},\qquad a(\mathbf m)\in\mathbb{Z}, \]
+a finite sum (the conditions $\alpha_\ell\ge0$, $\alpha_{\ell-1}\ge0,\dots$ bound the $\mathbf m_{ij}$ successively). Every configuration contributes $(-1)^{|E|}$ at order $(s-1)^{|E|}$, so there is no cancellation at the lowest order: $\val(c_{\lambda\mu}(s,0))=E_{\min}$, the least $|E(\mathbf m)|$ over admissible $\mathbf m$, with leading coefficient $(-1)^{E_{\min}}N(\lambda,\mu)$, $N$ the number of minimisers.
+
+$E_{\min}\ge\ell-\kappa$: let $C$ be a connected component of the graph $([\ell],E(\mathbf m))$. Transfers stay inside $C$ and move mass from a larger index to a smaller one, and $\lambda$ is weakly decreasing; so the partial sums of $\alpha|_C$ in index order dominate those of $\lambda_C$, and sorting only increases them. Hence the components form a compatible block decomposition, there are at most $\kappa$ of them, and $|E|\ge\ell-\kappa$.
+
+$E_{\min}\le\ell-\kappa$: take a decomposition with $\kappa$ blocks. By maximality each block $(\rho,\nu)=(\lambda_C,\mu^C)$ has no compatible refinement. Let $c_1<\dots<c_L$ be the positions of $C$, pad $\nu$ with zeros to length $L$, and put $B_r=\nu_1+\dots+\nu_r$, $P_r=\rho_1+\dots+\rho_r$. Then $B_r>P_r$ for $1\le r<L$: $\ge$ holds by dominance, and $B_r=P_r$ would split $(\rho,\nu)$ into the compatible pieces $(\rho_{\le r},\nu_{\le r})$ and $(\rho_{>r},\nu_{>r})$, both of positive size. Put $\mathbf m_{c_rc_{r+1}}=B_r-P_r\ge1$. Position $c_r$ then ends with $\rho_r+(B_r-P_r)-(B_{r-1}-P_{r-1})=\nu_r\ge0$. This uses $L-1$ edges per block, $\ell-\kappa$ in all.
+
+Finally, $c_{\lambda\mu}\in\mathbb{Q}[s,t]$ (\cref{thm:DS}); write $c_{\lambda\mu}=\sum_j(s-1)^ja_j(t)$. The lower bound gives $a_j=0$ for $j<\ell-\kappa$, and $a_{\ell-\kappa}(0)=(-1)^{\ell-\kappa}N(\lambda,\mu)\ne0$, so $a_{\ell-\kappa}\ne0$.
+\end{proof}
+
 \begin{remark}[Novelty]
 We have not found the block law stated anywhere. Its $t=0$ case is classical in substance: the raising-operator formula follows from \cite[eq.~(11)]{DLT94} and Jacobi--Trudi, after which the valuation count above is a short exercise. What is new is the lower bound for all $t$ (from the subset formula alone), the exactness over $\mathbb{Q}(t)$, and the merge weights below.
 \end{remark}
 
+\subsection{Coarsenings and merge weights}
 \begin{theorem}[Coarsenings: merge-history expansion]\label{thm:coarse}
 Let $\mu\neq\lambda$ be a coarsening of $\lambda$ and $m=\ell(\lambda)-\ell(\mu)$. Then $\val(c_{\lambda\mu})=m$, and $\Lead_{\lambda\mu}(t):=[(s-1)^m]c_{\lambda\mu}$ equals
 \[ \Lead_{\lambda\mu}(t)=\sum_{\text{tight histories }H\text{ ending at }\mu}\ \prod_{\text{merges in }H}W_k(J),\qquad \Lead_{\lambda\mu}(0)=(-1)^m\#\{H\}\neq0, \]
-where a (tight) history processes $\lambda_\ell,\dots,\lambda_1$, each part $k$ either opening a block of size $k$ or merging $p\ge1$ existing blocks of sizes $J=(j_1,\dots,j_p)$ into one block of size $k+|J|$ via the order-$p$ piece $E_k^{(p)}$, it ends at $\mu$ if the final block sizes are $\mu$, and $W_k(J):=\lin\,[\cdots[E_k^{(p)},e_{j_1}],\dots,e_{j_p}](1)$.
+where a (tight) history processes $\lambda_\ell,\dots,\lambda_1$, each part $k$ either opening a block of size $k$ or merging $p\ge1$ existing blocks of sizes $J=(j_1,\dots,j_p)$ into one block of size $k+|J|$ via the order-$p$ piece $E_k^{(p)}$, it is tight if the orders add up to $m$, it ends at $\mu$ if the final block sizes are $\mu$, and $W_k(J):=\lin\,[\cdots[E_k^{(p)},e_{j_1}],\dots,e_{j_p}](1)$.
 \end{theorem}
-\begin{proof}[Sketch of proof]
-Pass to $\mathrm{gr}_I\Lam$: non-tight terms land in $I^{\ell-m+1}$; tight steps are multilinear derivations, so only linear parts $g_i\equiv\gamma_ie_{n_i}\bmod I^2$ matter. At $t=0$, a roots-of-unity evaluation, Weyl orthogonality and Murnaghan--Nakayama give $W_k(J)|_{t=0}=(-1)^p$.
+\begin{proof}
+Since $\ell(\mu)=\ell-m$, the coefficient of $e_\mu$ in $[(s-1)^m]e^\star_\lambda$ can be read modulo $I^{\ell-m+1}$. In \cref{prop:block}, a product over $|\pi|>\ell-m$ blocks of positive-degree factors lies in $I^{\ell-m+1}$; so only the terms where every step merges exactly $p_j$ blocks survive, i.e.\ tight histories. At a tight step, $\delta_S$ is a derivation in each argument (\cref{lem:polar}), so $\delta_S(bc,\dots)\in I^2$ for $b,c\in I$, and modulo $I^2$, $\delta_S(g_1,\dots,g_p)$ depends only on the linear parts $g_i\equiv\gamma_ie_{n_i}$: it is $\prod_i\gamma_i\,W_k(n_1,\dots,n_p)\,e_n$. An opening step contributes $e_k$, with $\gamma=1$. The final product of blocks is $\prod_C\gamma_Ce_{|C|}$ modulo $I^{\ell-m+1}$, which gives the formula. By \cref{thm:W} below, $W_k(J)|_{t=0}=(-1)^{|J|}$, so every tight history contributes $(-1)^m$ at $t=0$. Histories exist: in each block of the coarsening, let the last-processed part merge all the others, opened earlier as singletons. So $\Lead_{\lambda\mu}(0)\ne0$, and $\val(c_{\lambda\mu})=m$ by the lower bound in \cref{thm:blocklaw}.
 \end{proof}
+
+Let $T_kf:=\sum_{|A|=k}c_Ax_Af(x_A)$ for $f\in\Lam_k$, where $f(x_A)$ is $f$ evaluated at the $k$ variables $x_a$, $a\in A$. (This is unrelated to the Hecke operators of \cref{sec:hikita}.)
 
 \begin{theorem}[Merge weights]\label{thm:W}
 With $n=k+|J|$ and $p=|J|$,
 \[ W_k(J)=(-1)^{p}\,\frac{[n]_t}{[k]_t}\prod_{j\in J}[k]_{t^{j}}. \]
 Consequently $(-1)^m\Lead_{\lambda\mu}(t)>0$ for coarsenings and every real $t>0$.
 \end{theorem}
-\begin{proof}[Sketch of proof]
-$W_k(J)=(-1)^{d-p}\lin T_k(p_J)$, $d=|J|$, with $T_k$ as in \cref{lem:linT}. The parabolic factorisation $T_kP_\rho=P_{\rho+1^k}$ \cite[III (2.2)]{Macdonald95} and $\lin P_\lambda=(-1)^{n-k}\frac{[n]}{[k]}P_{\lambda-1^k}(1,t,\dots,t^{k-1})$ (from \cite[III.7 Ex.~2, III.2 Ex.~1]{Macdonald95}) give the ``discrete HL measure = principal specialisation'' identity $\lin T_k f=(-1)^d\frac{[n]}{[k]}f(1,t,\dots,t^{k-1})$ (\cref{lem:linT}); apply it to $f=p_J$.
-\end{proof}
 \begin{lemma}\label{lem:linT}
-Let $T_kf:=\sum_{|A|=k}c_Ax_Af(x_A)$ for $f\in\Lam_k$. For $f$ homogeneous of degree $d$ and $n=k+d$: \[\lin T_k(f)=(-1)^d\frac{[n]_t}{[k]_t}f(1,t,\dots,t^{k-1}).\]
+For $f\in\Lam_k$ homogeneous of degree $d$ and $n=k+d$: \[\lin T_k(f)=(-1)^d\frac{[n]_t}{[k]_t}f(1,t,\dots,t^{k-1}).\]
 \end{lemma}
 \begin{remark}[Novelty]
 \Cref{lem:linT} is a short corollary of \cite[III.7 Ex.~2, III (2.2)]{Macdonald95} and is probably known.
 \end{remark}
+
+\begin{lemma}\label{lem:parabolic}
+For $\ell(\rho)\le k\le m$, $T_k\bigl(P_\rho(x_1,\dots,x_k;t)\bigr)=P_{\rho+1^k}(x_1,\dots,x_m;t)$.
+\end{lemma}
+\begin{proof}
+By \cite[III (2.2)]{Macdonald95}, $P_\lambda=\sum_{w\in S_m/S_m^\lambda}w\bigl(x^\lambda\prod_{i<j,\,\lambda_i>\lambda_j}\frac{x_i-tx_j}{x_i-x_j}\bigr)$, $S_m^\lambda$ the stabiliser of $\lambda$. For $\lambda=\rho+1^k$ the positive entries are the first $k$; a coset is an image set $A=w([k])$ together with a coset of $S_k/S_k^\rho$; the pairs with $\lambda_i>\lambda_j$ are those with $i\le k<j$, giving $c_A$, and those with $i,j\le k$, $\rho_i>\rho_j$; and $x^\lambda=x_{[k]}x_{[k]}^\rho$. Grouping by $A$, the inner sum is \cite[III (2.2)]{Macdonald95} for $P_\rho$ in the variables $x_A$.
+\end{proof}
+
+\begin{lemma}\label{lem:linP}
+For $\lambda\vdash n$ with $\ell(\lambda)=k$, $\lin P_\lambda(x;t)=(-1)^{n-k}\frac{[n]_t}{[k]_t}P_{\lambda-1^k}(1,t,\dots,t^{k-1};t)$.
+\end{lemma}
+\begin{proof}
+Since $[p_n]e_n=(-1)^{n-1}/n$ and $e_\nu$ with $\ell(\nu)\ge2$ has no $p_n$ term, $\lin G=(-1)^{n-1}\langle G,p_n\rangle=(-1)^{n-1}(1-t^n)\langle G,p_n\rangle_t$. By $\langle P_\lambda,Q_\mu\rangle_t=\delta_{\lambda\mu}$ and $Q_\lambda=b_\lambda P_\lambda$ \cite[III (4.9)]{Macdonald95}, $\langle P_\lambda,p_n\rangle_t=[P_\lambda]p_n/b_\lambda(t)$, and $[P_\lambda]p_n=t^{n(\lambda)}\varphi_{k-1}(t^{-1})=(-1)^{k-1}t^{n(\lambda)-\binom k2}\varphi_{k-1}(t)$ \cite[III.7 Ex.~2]{Macdonald95}, where $\varphi_r(t)=\prod_{a=1}^r(1-t^a)$. On the other side, with $\rho=\lambda-1^k$, \cite[III.2 Ex.~1]{Macdonald95} gives $P_\rho(1,\dots,t^{k-1})=t^{n(\rho)}\varphi_k/\prod_{i\ge0}\varphi_{m_i(\rho)}$ with $m_0(\rho)=k-\ell(\rho)$; here $m_i(\rho)=m_{i+1}(\lambda)$, so the denominator is $b_\lambda$, and $n(\rho)=n(\lambda)-\binom k2$. Since $\frac{[n]}{[k]}\varphi_k=(1-t^n)\varphi_{k-1}$, the two sides agree.
+\end{proof}
+
+\begin{proof}[Proof of \cref{lem:linT}]
+The $P_\rho(x_1,\dots,x_k;t)$ with $\ell(\rho)\le k$ form a basis of $\Lam_k$ \cite[III (2.7)]{Macdonald95}; for $f=P_\rho$, $\rho\vdash d$, combine \cref{lem:parabolic,lem:linP}.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:W}]
+Let $J=(j_1,\dots,j_p)$, $d=|J|$. First, $W_k(J)=\lin E_k^{(p)}(e_{j_1}\cdots e_{j_p})$: in \cref{lem:polar}, $\delta_\varnothing=E^{(p)}_k(1)=0$, and for $\varnothing\ne S\ne[p]$ the term $\prod_{i\notin S}e_{j_i}\,\delta_S$ lies in $I^2$. Next, with $E(u)=\sum_re_ru^r$ and $R(u):=\prod_{a\in A}\frac{1+sux_a}{1+ux_a}$ read as a function of $x_A$,
+\[ E_k\Bigl(\prod_{i=1}^pE(u_i)\Bigr)=\prod_iE(u_i)\cdot T_k\Bigl(\prod_iR(u_i)\Bigr),\qquad \log R(u)=\sum_{r\ge1}(-1)^{r-1}\frac{s^r-1}{r}u^rp_r(x_A). \]
+Take $[u_1^{j_1}\cdots u_p^{j_p}]$ and $[(s-1)^p]$. Terms in which some $e_{r_i}$, $r_i\ge1$, is taken from $\prod E(u_i)$ lie in $I^2$. In the remaining term, each $[u_i^{j_i}]R(u_i)$ has $(s-1)$-valuation $\ge1$, with $(s-1)^1$-coefficient $(-1)^{j_i-1}p_{j_i}(x_A)$. Hence $W_k(J)=(-1)^{d-p}\lin T_k(p_J)$, and \cref{lem:linT} with $p_j(1,\dots,t^{k-1})=[k]_{t^j}$ gives the formula. For $t>0$ every $W_k(J)$ has sign $(-1)^{|J|}$, and the orders along a tight history add up to $m$.
+\end{proof}
 
 
 %% ===================================================================
