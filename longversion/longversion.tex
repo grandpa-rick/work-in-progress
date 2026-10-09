@@ -501,19 +501,88 @@ By the last two proofs, $(c_{\lambda\mu}/s^{n(\mu)})|_{s=t=0}=\Lambda^0_\lambda(
 \end{proof}
 
 \begin{remark}
-The leading coefficients $d_{\lambda\mu}(t)=[s^{n(\mu)}]c_{\lambda\mu}$ depend on $t$; for instance $d_{(1^4),(2,1,1)}=1+3t$. They are identified in \cref{rem:H}. The degree count above is the same kind of triangularity argument as for Macdonald's operators \cite[VI (3.6)--(3.10)]{Macdonald95}.
+The leading coefficients $d_{\lambda\mu}(t)=[s^{n(\mu)}]c_{\lambda\mu}$ depend on $t$; for instance $d_{(1^4),(2,1,1)}=1+3t$. They are identified in \cref{cor:dmatrix}. The degree count above is the same kind of triangularity argument as for Macdonald's operators \cite[VI (3.6)--(3.10)]{Macdonald95}.
 \end{remark}
 
 %% ===================================================================
 \section{The $s\to0$ edge}\label{sec:edge}
 %% ===================================================================
-\wip{To contain, with full proofs: the $s\to0$ conjugacy (stated in the remark below), the remaining edges of the $(s,t)$-square, and the reflection $(s,t)\mapsto(1/s,1/t)$; the $t=0$ and $t\to\infty$ edges are cited, not claimed.}
+Since $s=q^{-1}$, the edge $s\to0$ is Hikita's $q\to\infty$, where the unrescaled product degenerates \cite[Lemma~6.3]{Hikita25}. After the rescaling of \cref{thm:DS} it becomes Hall--Littlewood multiplication. Throughout this section $t$ is an indeterminate, $b_\mu:=s^{n(\mu)}e_\mu$, and we work in $\Lam_m$ with $m$ at least the degree (\cref{lem:stable}). We keep the notation $\mathbb{K}$, $v$, $\sigma_c$, $\omega$ of \cref{sec:DS}, with $\mathbb{K}=\mathbb{Q}(t)(s^{1/2})$.
 
-\begin{remark}[The $s\to0$ edge; no novelty claim for the matrix]\label{rem:H}
-Since $s=q^{-1}$, the edge $s\to0$ is Hikita's $q\to\infty$, where the unrescaled product degenerates \cite[Lemma~6.3]{Hikita25}. In the basis $b_\mu$, $e_k\star(\cdot)$ preserves $\bigoplus_\mu\mathbb{Q}[s,t]\,b_\mu$, and modulo $s$ it is conjugate, via $b_\mu\mapsto t^{-n(\mu')}P_{\mu'}(x;t^{-1})$, to multiplication by $t^{-\binom k2}e_k$. Consequently the leading coefficients $d_{\lambda\mu}(t):=[s^{n(\mu)}]\,c_{\lambda\mu}$ of \cref{thm:DS} \emph{are the known $e\to$HL transition matrix} of \cite[\S3.2]{Kirillov98}: writing $e_\lambda=\sum_\kappa M(e,P)_{\lambda\kappa}P_\kappa(x;t)$,
-\[ d_{\lambda\mu}(t)=t^{\,n(\mu')-n(\lambda')}\,M(e,P)_{\lambda\mu'}(t^{-1}). \]
-Their positivity and $d_{\lambda\mu}(1)=\#\{0\text{-}1\text{ matrices with row sums }\lambda,\text{ column sums }\mu'\}$ are therefore classical \cite[\S3.2]{Kirillov98}; what is new is only the identification of this matrix with the $s$-leading coefficients of $\star$.
+\begin{theorem}[The $s\to0$ edge]\label{thm:H}
+Let $\mathcal O=\mathbb{Q}(t)[s]_{(s)}$ and $\mathcal L=\bigoplus_\mu\mathcal O\,b_\mu$.
+\begin{enumerate}
+\item $E_kb_\mu\in\bigoplus_\nu\mathbb{Q}[s,t]\,b_\nu$; in particular $E_k\mathcal L\subseteq\mathcal L$.
+\item Let $L_k$ be the map induced by $E_k$ on $\mathcal L/s\mathcal L=\bigoplus_\mu\mathbb{Q}(t)\,\bar b_\mu$, and let $\phi(\bar b_\mu):=t^{-n(\mu')}P_{\mu'}(x;t^{-1})$. Then $\phi\circ L_k=t^{-\binom k2}\,e_k\cdot\phi$.
+\item Explicitly, with $\rho=\mu'$ and $\kappa=\nu'$,
+\[ L_k\bar b_\mu=\sum_{\kappa/\rho\ \text{vertical $k$-strip}}t^{\mathrm{inv}(\kappa/\rho)}\prod_{v\ge1}\qbin{m_v(\kappa)}{r_v}\ \bar b_\nu, \]
+where $r_v$ is the number of rows of $\kappa$ of length $v$ that end in a box of the strip, and $\mathrm{inv}(\kappa/\rho)=\sum_{v<w}r_v\,(m_w(\kappa)-r_w)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}[The $s$-leading coefficients]\label{cor:dmatrix}
+For $\lambda,\mu\vdash n$, $d_{\lambda\mu}(t):=[s^{n(\mu)}]\,c_{\lambda\mu}$ satisfies
+\[ d_{\lambda\mu}(t)=t^{\,n(\mu')-n(\lambda')}\,[P_{\mu'}(x;t^{-1})]\,e_\lambda=t^{-n(\lambda')}\sum_\nu K_{\nu'\lambda}\,\widetilde K_{\nu\mu'}(t), \]
+where $\widetilde K_{\nu\kappa}(t)=t^{n(\kappa)}K_{\nu\kappa}(t^{-1})$ is the cocharge Kostka--Foulkes polynomial. Hence $d_{\lambda\mu}\in\mathbb{N}[t]$, and $d_{\lambda\mu}(1)$ is the number of $0$-$1$ matrices with row sums $\lambda$ and column sums $\mu'$.
+\end{corollary}
+
+\subsection{Admissible functions}
+Call a homogeneous $F=\sum_\beta a_\beta x^\beta\in\mathbb{K}[x]^{S_m}$ \emph{admissible} if $v(a_\beta)\ge\omega(\beta)$ for all $\beta$. As in the proof of \cref{lem:valA}, $F$ is admissible if and only if $v(\sigma_cF)\ge\min_{\beta\in\mathbb{Z}^m_{\ge0}}(\omega(\beta)-c\cdot\beta)$ for all $c\in(\frac12\mathbb{Z})^m$; the backward direction uses $c=\alpha-\frac12\mathbf1$, for which $\beta=\alpha$ is the unique minimiser. For admissible $F$ let $\mathrm{in}(F)(\alpha)\in\mathbb{Q}(t)$ be the residue of $s^{-\omega(\alpha)}a_\alpha$; it depends only on $\mathrm{sort}(\alpha)$. With $c=\alpha-\frac12\mathbf1$ and $v_0=\omega(\alpha)-c\cdot\alpha$,
+\begin{equation}\label{eq:inform}
+\mathrm{in}_{v_0}(\sigma_cF)=\mathrm{in}(F)(\alpha)\,x^\alpha .
+\end{equation}
+
+\begin{lemma}\label{lem:admissible}
+A homogeneous $F=\sum_\mu c_\mu e_\mu$ of degree $\le m$ is admissible if and only if $v(c_\mu)\ge n(\mu)$ for all $\mu$. In that case $\mathrm{in}(F)(\mu')$ is the residue of $s^{-n(\mu)}c_\mu$.
+\end{lemma}
+\begin{proof}
+The coefficient of $x^\beta$ in $b_\mu$ is $s^{n(\mu)}M_{\mu\kappa}$ with $\kappa=\mathrm{sort}(\beta)$. If $M_{\mu\kappa}\ne0$ then $\kappa\trianglelefteq\mu'$, so $\kappa'\trianglerighteq\mu$ and $\omega(\beta)=n(\kappa')\le n(\mu)$, with equality only for $\kappa=\mu'$, where $M_{\mu\mu'}=1$. So $b_\mu$ is admissible with $\mathrm{in}(b_\mu)(\kappa)=[\kappa=\mu']$, which gives the backward direction and the formula. The forward direction is the argument in the proof that $s^{n(\mu)}\mid c_{\lambda\mu}$ in \cref{sec:DS}, with $a^\lambda$ replaced by the coefficients of $F$.
+\end{proof}
+
+\begin{lemma}\label{lem:levelset}
+$\sum_{B\subseteq[N],|B|=r}\prod_{i\in B,j\notin B}a_{ij}=\qbin Nr$.
+\end{lemma}
+\begin{proof}
+Group the Poincar\'e identity $\sum_{w\in S_N}w(\prod_{i<j}a_{ij})=[N]_t!$ \cite[III (1.4)]{Macdonald95} by $B=w(\{1,\dots,r\})$; the stabiliser $S_r\times S_{N-r}$ contributes $[r]_t![N-r]_t!$.
+\end{proof}
+
+\subsection{The recursion}
+\begin{proposition}\label{prop:Hrec}
+Let $F$ be admissible of degree $n$, with $m\ge n+k$. Then $E_kF$ is admissible, and for every $\kappa\vdash n+k$
+\begin{equation}\label{eq:Hrec}
+\mathrm{in}(E_kF)(\kappa)=\sum_{\rho:\ \kappa/\rho\ \text{vertical $k$-strip}}t^{\mathrm{inv}(\kappa/\rho)}\prod_{v\ge1}\qbin{m_v(\kappa)}{r_v}\ \mathrm{in}(F)(\rho).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Fix $c$ and a term $R_A$ of \cref{thm:subset}. Since $t$ is a unit, $v(\sigma_ca_{ij})=0$, and the initial form of $\sigma_ca_{ij}$ is $1$ if $c_i>c_j$, $t$ if $c_i<c_j$, and $a_{ij}$ if $c_i=c_j$. As in \cref{lem:valA}, using \eqref{eq:omega},
+\[ v(\sigma_cR_A)\ge\min_{\gamma\ge1_A}\bigl(\omega(\gamma)-c\cdot\gamma\bigr)\ge\min_{\gamma\ge0}\bigl(\omega(\gamma)-c\cdot\gamma\bigr), \]
+so $E_kF$ is admissible. Now fix $\alpha$ with $\mathrm{sort}(\alpha)=\kappa$, $c=\alpha-\frac12\mathbf1$, $v_0=\omega(\alpha)-c\cdot\alpha$; all terms have $v\ge v_0$, so initial forms add, and by \eqref{eq:inform} $\mathrm{in}(E_kF)(\alpha)x^\alpha=\sum_A\mathrm{in}_{v_0}(\sigma_cR_A)$. If $A\not\subseteq\mathrm{supp}(\alpha)$, then $\gamma=\alpha$ is excluded from $\{\gamma\ge1_A\}$ and $v(\sigma_cR_A)>v_0$. If $A\subseteq\mathrm{supp}(\alpha)$, put $\beta_0=\alpha-1_A$; then $c-1_A=\beta_0-\frac12\mathbf1$, the levels add by \eqref{eq:omega}, and
+\[ \mathrm{in}_{v_0}(\sigma_cR_A)=\mathrm{in}_0(\sigma_cc_A)\cdot\mathrm{in}(F)(\beta_0)\,x^\alpha . \]
+Let $L_v=\{j:\alpha_j=v\}$ ($v\ge1$), $B_v=A\cap L_v$ and $r_v=|B_v|$. Then
+\[ \mathrm{in}_0(\sigma_cc_A)=t^{\#\{i\in A,\,j\notin A:\ \alpha_i<\alpha_j\}}\prod_{v\ge1}\ \prod_{i\in B_v,\,j\in L_v\setminus B_v}a_{ij},\qquad \#\{\cdots\}=\sum_{v<w}r_v(m_w-r_w). \]
+The partition $\mathrm{sort}(\beta_0)$ is obtained from $\kappa$ by lowering $r_v$ of its parts equal to $v$, for each $v$; this is the $\rho$ with $\kappa/\rho$ a vertical $k$-strip and data $(r_v)$, and every such strip arises from exactly one $(r_v)$. So both $\mathrm{in}(F)(\beta_0)$ and the power of $t$ depend only on $(r_v)$, and summing over the $B_v$ with \cref{lem:levelset} gives $\prod_v\qbin{m_v}{r_v}$.
+\end{proof}
+At $t=0$ every $t$-binomial is $1$ and $t^{\mathrm{inv}}$ vanishes unless every part larger than a lowered part is lowered; so \eqref{eq:Hrec} reduces to the recursion in the proof of \cref{lem:valB}.
+
+\subsection{Proof of \cref{thm:H} and \cref{cor:dmatrix}}
+\emph{(1).} $b_\mu$ is admissible, so $E_kb_\mu$ is admissible (\cref{prop:Hrec}) and its $b_\nu$-coordinates have $v\ge0$ (\cref{lem:admissible}). By the integrality part of \cref{thm:DS}'s proof, $E_ke_\mu\in\bigoplus_\nu\mathbb{Q}[s,t]e_\nu$, so the $b_\nu$-coordinate is $p/s^{n(\nu)-n(\mu)}$ with $p\in\mathbb{Q}[s,t]$; having $v\ge0$ over $\mathbb{Q}(t)$, it lies in $\mathbb{Q}[s,t]$.
+
+\emph{(3).} By \cref{lem:admissible}, the $\bar b_\nu$-coordinate of $L_k\bar b_\mu$ is $\mathrm{in}(E_kb_\mu)(\nu')$; apply \eqref{eq:Hrec} with $\mathrm{in}(b_\mu)(\rho)=[\rho=\mu']$.
+
+\emph{(2).} Let $\kappa/\rho$ be a vertical $k$-strip with data $(r_v)$, obtained by lowering the parts indexed by $A$. Writing $n(\kappa)=\sum_{\text{pairs of parts}}\min$, a pair of parts both in $A$ loses $1$; a pair with one part of value $v$ in $A$ and one of value $w$ not in $A$ loses $1$ if and only if $v\le w$; other pairs lose nothing. Hence
+\begin{equation}\label{eq:ncount}
+n(\kappa)-n(\rho)=\binom k2+\mathrm{inv}(\kappa/\rho)+\sum_vr_v(m_v-r_v).
+\end{equation}
+Since $\qbin mr\big|_{t\mapsto t^{-1}}=t^{-r(m-r)}\qbin mr$, \eqref{eq:ncount} gives $t^{\mathrm{inv}}\prod_v\qbin{m_v}{r_v}=t^{\,n(\kappa)-n(\rho)-\binom k2}\psi_{\kappa/\rho}(t^{-1})$ with $\psi_{\kappa/\rho}(u):=\prod_v\genfrac{[}{]}{0pt}{}{m_v(\kappa)}{r_v}_u$. The Hall--Littlewood Pieri rule \cite[III (3.2)]{Macdonald95} reads $e_kP_\rho(x;u)=\sum_\kappa\psi_{\kappa/\rho}(u)P_\kappa(x;u)$, summed over vertical $k$-strips (there $m_v(\kappa)=\kappa'_v-\kappa'_{v+1}$ and $r_v=\kappa'_v-\rho'_v$). For $X\in\mathcal L$ put $h(\kappa)=t^{-n(\kappa)}\mathrm{in}(X)(\kappa)$, so that $\phi(\bar X)=\sum_\kappa h(\kappa)P_\kappa(x;t^{-1})$ by \cref{lem:admissible}. By \eqref{eq:Hrec}, $t^{-n(\kappa)}\mathrm{in}(E_kX)(\kappa)=t^{-\binom k2}\sum_\rho\psi_{\kappa/\rho}(t^{-1})h(\rho)$, hence $\phi(L_k\bar X)=t^{-\binom k2}\sum_\rho h(\rho)\,e_kP_\rho(x;t^{-1})=t^{-\binom k2}e_k\,\phi(\bar X)$.
+
+\emph{\cref{cor:dmatrix}.} Since $1=b_\varnothing$ and $\phi(\bar b_\varnothing)=1$, iterating (2) gives $\phi(e^\star_\lambda\bmod s)=t^{-\sum_i\binom{\lambda_i}2}e_\lambda=t^{-n(\lambda')}e_\lambda$. By \cref{thm:DS}, $e^\star_\lambda\equiv\sum_\mu d_{\lambda\mu}\bar b_\mu$, so comparing coefficients of $P_{\mu'}(x;t^{-1})$ gives the first formula. Expanding $e_\lambda=\sum_\nu K_{\nu'\lambda}s_\nu$ and $s_\nu=\sum_\kappa K_{\nu\kappa}(u)P_\kappa(x;u)$ \cite[III (2.6)]{Macdonald95} at $u=t^{-1}$ gives the second. The $K_{\nu\kappa}(t)$ have nonnegative coefficients \cite[III (6.5)]{Macdonald95}, and $d_{\lambda\mu}\in\mathbb{Q}[t]$ by \cref{thm:DS}, so $d_{\lambda\mu}\in\mathbb{N}[t]$. At $t=1$, $P_\kappa(x;1)=m_\kappa$ \cite[III \S2]{Macdonald95}, so $d_{\lambda\mu}(1)=[m_{\mu'}]e_\lambda=M_{\lambda\mu'}$. \qed
+
+\begin{remark}[Prior work; no novelty claim for the matrix]\label{rem:H}
+The matrix $d_{\lambda\mu}(t)$ is the classical $e\to$Hall--Littlewood transition matrix: writing $e_\lambda=\sum_\kappa M(e,P)_{\lambda\kappa}P_\kappa(x;t)$, \cref{cor:dmatrix} says $d_{\lambda\mu}(t)=t^{\,n(\mu')-n(\lambda')}M(e,P)_{\lambda\mu'}(t^{-1})$, and its positivity and the value at $t=1$ are in \cite[\S3.2]{Kirillov98}. What is new is only the identification of this matrix with the $s$-leading coefficients of $\star$, i.e.\ \cref{thm:H}. Hikita's \cite[Lemma~6.3]{Hikita25} treats the unrescaled limit $q\to\infty$.
 \end{remark}
+
+\wip{Still to be added to this section, with full proofs: the remaining edges of the $(s,t)$-square, the reflection $\Psi_{1/s,1/t}=\Psi_{s,t}^{-1}$, and the collapse on the opposite edges; the $t=0$ edge (\cref{rem:t0input}) and the $t\to\infty$ edge are cited, not claimed.}
+
 
 %% ===================================================================
 \section{The block valuation law at $s=1$}\label{sec:blocklaw}

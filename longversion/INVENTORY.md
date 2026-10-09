@@ -200,7 +200,7 @@ The *proofs* trees, however, differ:
 | lem:step | step map | TC::ell-column-step-map (B7) | **full proof** |
 | lem:Z | closing identity (Z) | TC::ell-column-closing-identity-Z (B7) | **full proof** |
 | thm:DS, cor:opDS, lem:e-m … lem:valB, lem:Ek1, lem:stable | DS + Op-DS + exact up-set support and s-valuation; E_k(1)=e_k; stability | DS::root, DS::ds-all-lengths-degree-count, DS::full-upset-support-exact-valuation, DS::day214-gauss-valuation-lemma-A (B8, B9) | **full proof** (from 214, re-derived; Lemma B level-set sum now via Mac III (1.4) q-binomial instead of the u-leading-term argument; E_k(1)=e_k via Mac III (2.2),(2.8) instead of Hikita Lemma 3.3) |
-| rem:H | s→0 edge, d-matrix | C1, C2 | FPSAC text — WIP: section to hold C1, C5–C10 with proofs from 215/217e |
+| thm:H, cor:dmatrix, lem:admissible, lem:levelset, prop:Hrec, rem:H | Theorem H (s→0 ⋆ ≅ HL e_k-Pieri), explicit matrix, integrality; d-matrix = e→HL transition, ∈ℕ[t], d(1)=#0-1 matrices | DS::theorem-H-s0-star-is-HL-pieri, DS::d-equals-hall-littlewood-transition, DS::d-lambda-mu-t-count-01-matrices (C1, C2) | **full proof** (from 215, re-derived); rem:H = prior-work remark (Kirillov, Hikita L6.3). WIP: C5–C10 (square edges, Lemma R, Thm A, Prop C) still to add |
 | thm:bider … lem:linT | block law package | D1–D8 | sketches (FPSAC text) — WIP |
 | thm:G, cor:G, thm:F, thm:blockmult | leads | D9–D12 | sketches — WIP |
 | thm:box, cor:column, thm:lin, cor:pieri | Box Complement, plethystic lin, Pieri 2nd proof | E1, B2 | sketches — WIP |
@@ -213,3 +213,4 @@ The *proofs* trees, however, differ:
 
 **Notation clashes to fix when the ported sections are rewritten:** Γ_k (§3 generating function) vs Γ_a (§9 bilinear form); C_I / C_j(x) (§3) vs C_{a,b} (cor:pieri); κ_c (§3 residues) vs κ(λ,μ) (block count).
 - `check_DS_printed.py` (log, n≤5, t∈{−5/11, 0}; s-polynomials recovered by 26-point interpolation + 2 held-out points): thm:DS support = exact up-set, val_s = n(μ), c_{λλ}=s^{n(λ)}, c|_{s=1}=0 off-diagonal, t=0 lead = 1; cor:opDS; lem:Ek1; lem:stable (m=n vs n+1); rem d_{(1^4),(211)}=1+3t; Peel Lemma n≤10 (5511 triples); level-set q-binomial identity. ALL True.
+- `check_H_printed.py` (log): thm:H (1) integrality + (3) explicit vertical-strip matrix vs engine, all μ,k with |μ|+k≤5 at t∈{−5/11,3/2} (52 cases); cor:dmatrix first formula vs independent HL P (Macdonald symmetrisation) n≤4 at 2 t-values; d∈ℕ[t] and d(1)=#0-1 matrices n≤4 (t-interpolation). ALL True.
