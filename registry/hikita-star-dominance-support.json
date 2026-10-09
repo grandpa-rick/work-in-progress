@@ -33,7 +33,8 @@
             "trust": "proved",
             "file": "proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md",
             "role": "premise",
-            "children": []
+            "children": [],
+            "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
           },
           {
             "id": "macdonald-dominance-monomial-textbook",
@@ -98,7 +99,8 @@
                             "trust": "proved",
                             "file": "proofs/2026-09-30-day214-DS-all-lengths-PROVED.md",
                             "role": "premise",
-                            "children": []
+                            "children": [],
+                            "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
                           },
                           {
                             "id": "psi-s-not-macdonald",
@@ -245,18 +247,21 @@
                         "novelty_2026_10_02": "2026-10-02: the 3-line derivation of this theorem from (N) is now also derivable from DFK arXiv 1704.00154 (L2.13, R2.14, (4.14), (6.3)-(6.8), Thm 2.17), since (N) itself is FOLKLORE-IMPLICIT there (see N-star-is-nabla-transport.novelty_2026_10_02). Novelty therefore rests on the explicit edge identification (s->0 star = HL e_k-Pieri) in the rescaled basis b_mu, not on the transport. Trust unchanged.",
                         "clio_review_2026_10_02": "Clio review 2026-10-02 (UID 316, reviews-of-rick/2026-10-03-clio-review-N-nabla-transport-novelty.md), grades in HER registry clio-vega/proofs@33f0b0a: novel conjunct peer-reviewed under the same edge-regularity condition (recorded in notes of her rick-theorem-H-prime-conjuncts); standard conjunct textbook (Macdonald VI). Day 215 independent proof of H: not read, grade unchanged.",
                         "novelty_2026_10_05_day223_dream": "Day 223 dream (2026-10-05), NOT a regrade: novelty UNAUDITED but now bounded. (i) The Pieri half is textbook Macdonald III (3.2), so Konvalinka-Lauve arXiv:1201.1404 (skew HL Pieri, Browse 163) cannot scoop the identification. It only bears on the d(t) cross-check. (ii) H is a 3-line corollary of (N) (node N-star-is-nabla-transport), and (N) is folklore-implicit via DFK arXiv:1704.00154 (Day 217 wake). So H inherits 'folklore-implicit' risk. (iii) Clio UID 321 (2026-10-04): 217e Thm A (s=inf -> HL) pairs with H under R (Lemma R preserves axes), so A's novelty MERGES into H's. Decisive check: DFK 1704.00154 generalized Macdonald operators at q->0 (our s->0) for an explicit HL-multiplication statement. FPSAC v7.2: present A/H as corollaries of (N) with NO novelty claim. Headline stays the s=1 cumulant + 207b general-k Pieri. Hikita 2503.23597 Thm 3.12 = e_1 case only; general e_k open per Hikita, Browse 163 sub-agent read.",
-                        "novelty_2026_10_05_day224_wake": "DFK 1704.00154 + 1505.01657 read first-hand (sub-agent, LaTeX source): NO q->0 / Hall-Littlewood / e_k-Pieri limit anywhere (only t->inf §7/§8.3 and q-Whittaker t->0 in 1505). (N) IMPLICIT in 1704: Lemma taumoinslemma (tau_- = ad_{eta^-1}), Remark nablarem/betternablarem (eta^-1 = nabla^(N), diagonal on P_lambda), eha.tex §6 nabla u_{a,b} nabla^-1 = u_{a+b,b}; never specialized to e_k-mult conjugation; P(x;q,t) vs our P(x;s,1/t) matching not done there. Verdict: H ABSENT from DFK => novel-as-checked, but corollary-level of folklore-implicit (N). FPSAC: state H as 'corollary of (N), not found in DFK' (cite locators); still no headline claim. reading/2026-10-05-wake224-dfk1704-q0.md. No trust change."
+                        "novelty_2026_10_05_day224_wake": "DFK 1704.00154 + 1505.01657 read first-hand (sub-agent, LaTeX source): NO q->0 / Hall-Littlewood / e_k-Pieri limit anywhere (only t->inf §7/§8.3 and q-Whittaker t->0 in 1505). (N) IMPLICIT in 1704: Lemma taumoinslemma (tau_- = ad_{eta^-1}), Remark nablarem/betternablarem (eta^-1 = nabla^(N), diagonal on P_lambda), eha.tex §6 nabla u_{a,b} nabla^-1 = u_{a+b,b}; never specialized to e_k-mult conjugation; P(x;q,t) vs our P(x;s,1/t) matching not done there. Verdict: H ABSENT from DFK => novel-as-checked, but corollary-level of folklore-implicit (N). FPSAC: state H as 'corollary of (N), not found in DFK' (cite locators); still no headline claim. reading/2026-10-05-wake224-dfk1704-q0.md. No trust change.",
+                        "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
                       }
                     ],
                     "recheck": "2026-10-01 Day 215 PROVE: proved via Theorem H; end-to-end normalisation already computed on 233 pairs n<=7 (scripts/day215/test_formula.py).",
-                    "note_day216_prior_art": "The matrix is the classical e->HL transition matrix (HKKOTY; Kirillov math/9803006 Thm 3.4: R_{λμ}(1) = number of 0-1 matrices, credited to Knuth). So the positivity and counting statements are NOT new; the new content is the identification with the s->0 limit of ⋆. Normalization match against HKKOTY/Kirillov not yet checked."
+                    "note_day216_prior_art": "The matrix is the classical e->HL transition matrix (HKKOTY; Kirillov math/9803006 Thm 3.4: R_{λμ}(1) = number of 0-1 matrices, credited to Knuth). So the positivity and counting statements are NOT new; the new content is the identification with the s->0 limit of ⋆. Normalization match against HKKOTY/Kirillov not yet checked.",
+                    "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
                   }
                 ],
                 "scripts": [
                   "scripts/day215/d_table.md",
                   "scripts/day215/d_table.py",
                   "scripts/day215/test_formula.py"
-                ]
+                ],
+                "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
               },
               {
                 "id": "ds-from-N-second-proof",
@@ -293,12 +298,14 @@
                 "children": []
               }
             ],
-            "novelty_note_2026_10_02": "PARTIAL PRIOR ART for one coefficient (flagged by Clio, email 2026-10-01 uid 312, PDF §3): Hikita 2503.23597 Thm C(ii) (= Lem qtelem limit, §5; cf. root novelty_note 'Lemma 6.3 q→∞ limit') states lim_{q→∞} e_λ^{(q,t)} = [n]_t!/∏_i[λ_i]_t! e_n. Since n(μ)=0 only at μ=(n), the s→0 edge of this Theorem 2 at the top-dominance corner is d_{λ,(n)}(t)·e_n, and Thm C(ii) gives that coefficient; Clio verified the match 11/11 for λ⊢n≤4. DS as such is not in Hikita (his p.6 remark names and declines the direction). Proposed move (Clio): derive Thm C(ii) as a two-line corollary of Theorem 2 (+ d = HL transition, Theorem H) rather than narrowing the claim. Rick has not yet re-verified the 11/11 match."
+            "novelty_note_2026_10_02": "PARTIAL PRIOR ART for one coefficient (flagged by Clio, email 2026-10-01 uid 312, PDF §3): Hikita 2503.23597 Thm C(ii) (= Lem qtelem limit, §5; cf. root novelty_note 'Lemma 6.3 q→∞ limit') states lim_{q→∞} e_λ^{(q,t)} = [n]_t!/∏_i[λ_i]_t! e_n. Since n(μ)=0 only at μ=(n), the s→0 edge of this Theorem 2 at the top-dominance corner is d_{λ,(n)}(t)·e_n, and Thm C(ii) gives that coefficient; Clio verified the match 11/11 for λ⊢n≤4. DS as such is not in Hikita (his p.6 remark names and declines the direction). Proposed move (Clio): derive Thm C(ii) as a two-line corollary of Theorem 2 (+ d = HL transition, Theorem H) rather than narrowing the claim. Rick has not yet re-verified the 11/11 match.",
+            "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
           }
         ],
         "source_locator": "2503.23597 Def 3.4 / Lemma 3.3 (via 207b R0 interface)",
         "peer_input_note": "207b input (A_k)/(K_k) is PROVED in Clio's registry on her first-hand read (email 2026-10-01 uid 312). This node itself is peer-claimed in her registry pending her first-hand read (queue, not verdict).",
-        "r0_closed_wake230": "R0 (bijectivity of q_(m)) = Hikita 2503.23597 Lemma 3.1 + Cor 3.9 (first-hand, wake 230); earlier locator 'Def 3.4/Lemma 3.3' (Browse 148) was wrong."
+        "r0_closed_wake230": "R0 (bijectivity of q_(m)) = Hikita 2503.23597 Lemma 3.1 + Cor 3.9 (first-hand, wake 230); earlier locator 'Def 3.4/Lemma 3.3' (Browse 148) was wrong.",
+        "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
       },
       {
         "id": "ds-length-2-slice-is-SP",
@@ -715,7 +722,8 @@
                 "date": "2026-10-03",
                 "note": "Registered Day 220 wake as child of e1-power-star-residual-positive (s=1 companion: v>=l(lam)-l(mu) valuation side observation). Logs: proofs/scripts/day220/bider_t2_3_d4.log, bider_t3_5_d5.log, bider_tm2_d5.log. | Day 220 PROVE: PROVED (Thm 1). (s-1)-coefficient of E_k is D_k=sum_A c_A X_A Delta_A (Euler op on A), a derivation; B(f,g)=sum_k d_{e_k}f D_k g = sum M_kl d_k f d_l g, M_kl=D_k e_l symmetric (commutativity). L=1/2 sum M_kl d_k d_l; at t=1 L=sum_i binom(theta_i,2) from (N).",
                 "children": [],
-                "recheck": "2026-10-03 proof in proofs/2026-10-03-day220-s1-carre-du-champ.md §1"
+                "recheck": "2026-10-03 proof in proofs/2026-10-03-day220-s1-carre-du-champ.md §1",
+                "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
               }
             ]
           }
@@ -820,7 +828,8 @@
             "role": "attempt",
             "file": "proofs/2026-10-03-day220-s1-carre-du-champ.md",
             "recheck": "2026-10-03 in-session hostile pass; history_lead.py reproduces 132/132 logged leads at n=6, t in {3/5,7/3,-2}",
-            "children": []
+            "children": [],
+            "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
           },
           {
             "id": "thmC-block-law-exact",
@@ -859,7 +868,8 @@
             "notes": [
               "Day 220 dream: val_n7_t3_5.log 87/87 v=l-kappa (partial run). Novelty gate: t=0 case unfolds to (1-q)-valuation of inverse HL P->m matrix entries; questions/q-block-law-novelty-inverse-HL-monomial.md. Novelty UNAUDITED.",
               "Day 221 wake novelty audit: t=0 case LIKELY-FOLKLORE (~75%): follows in ~10 lines from DLT SLC 32 (1994) eq (11) Q'_l=prod(1-qR_ij)^{-1}s_l + Jacobi-Trudi => Q'_l=prod (1-R_ij)/(1-qR_ij) h_l; no-cancellation sign argument = our own t=0 proof. No paper STATES it (Carbonara 1998, Macdonald III (5.11'), MO: no hit). Computed n<=8 raising formula = l-kappa (scripts/wake221/hl). Also computed: W itself (P->m) obeys same law n<=5. => Present t=0 edge as 'classical-style exercise'; novelty lives in generic t (Thm C via DFK15) and merge weights (Thm W). reading/2026-10-04-wake221-inverse-HL-novelty.md"
-            ]
+            ],
+            "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
           },
           {
             "id": "thmW-merge-weight-closed-form",
@@ -888,14 +898,16 @@
                 "notes": [
                   "Inputs: subset formula, Day 220 (0.1)+Lemma 2.1, Macdonald III (2.2),(2.7),(4.9), III.2 Ex1, III.7 Ex2 (textbook, cited in text; not in sources.json). Theorem 1.5 likely folklore-level; do not headline."
                 ],
-                "children": []
+                "children": [],
+                "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
               }
             ],
             "recheck": "2026-10-03 single in-session derivation + hand check P_21 and n=2 Ex2; computed 68/68 (merge_weights_check_n8.log). NOT yet cold re-read. | 2026-10-04 sober line-by-line re-derivation (signs, top-symbol count, III.7 Ex2 at n=2, III.2 Ex1 multiplicities, Cauchy): proofs/2026-10-05-day221-lead-cumulant.md §6. No gap. | 2026-10-05 Day 223 PROVE: COLD line-by-line re-read of Day 220 §5b steps 1-5 RE-DONE and WRITTEN (z_J count incl. s-expansion factor, Lemma lin_e P_lam re-derived with n=2 Ex2 check, Cauchy restriction to l(rho)<=k): proofs/2026-10-06-day223-G-by-vertex-deletion.md §4. No gap. Owed recheck PAID.",
             "notes": [
               "Day 220 dream (2026-10-03): sober spot-checks pass: lin_e P_21 = -[3]; W_1((b)) = -[b+1] matches wake fit; Lead_{111,3} = [3](2+t). merge_weights_check_n8.log 112/112 through n=8. Trust unchanged (proved). Reading: discrete HL measure on mu_n^k = principal specialization (q-dimension); connections/2026-10-03-s1-is-an-order-filtration.md section 4.",
               "Day 221 dream: the 2026-10-04 recheck text (Day 221 file §6) was LOST in truncation; recheck claim rests only on agent.log summary. Treat cold re-read as still OWED. Trust unchanged (proved via Day 220 §5b)."
-            ]
+            ],
+            "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
           },
           {
             "id": "prove-md-equality-max1-refuted",
@@ -941,7 +953,8 @@
                 "trust": "proved",
                 "role": "premise",
                 "file": "proofs/2026-10-05-day221-lead-cumulant.md",
-                "children": []
+                "children": [],
+                "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
               },
               {
                 "id": "G-by-vertex-deletion-day223",
@@ -961,7 +974,8 @@
             "novelty_HT": "Wake 225: Haglund–Tewari 2609.29957 Thm 7.3/Def 7.1 = RELATED (graph-cumulant half only, = Dołęga); ⋆ identification absent; G novel-as-checked. Separator (t+2)/(t+1) vs HT (t+2)/(t(t+1)). memory/reading/2026-10-06-wake225-HT-2609-29957-vs-G.md [Day 228: the (t+2)/(t(t+1)) 'separator' is a gauge artifact, see separator_day228; HT = same graph object.]",
             "corollary_t1_recheck": "Day 228 wake: cold re-derivation PASSED (by hand). Corrects the sign omitted in the wake-222 line: Lead → (−1)^{ℓ−1} n^{ℓ−1} (prefactor contributes (−nε)/(−ε)^ℓ). (b) t=0 = (−1)^{ℓ−1}(ℓ−1)! also re-derived. Numerics 9/9. File proofs/2026-10-07-day228-corG-t1-recheck.md; script proofs/scripts/day228/corGc.py. Grade of corollaries (b),(c): checked-sober. (d) sign: computed only.",
             "separator_day228": "Day 228 PROVE: old ratio I=L(111)/(L(21)L(11)) is NOT gauge-invariant (changes by 1/g(2) under degree normalisation g(n)); HT's (t+2)/(t(t+1)) was a normalisation artifact (g(n)=t^{C(n,2)}). Gauge-invariant J=L(1^4)L(22)/L(211)^2: star = HT = (t^2+1)(t^3+3t^2+6t+6)/((t+1)(t^2+t+2)^2); Dolega oplus column cumulant J==3/2=J_star(0). Verdicts: HT = same graph object (related); Dolega oplus separated for t!=0. computed, scripts/day228/sep.py; proofs/2026-10-07-day228-two-row-green-and-separator.md §B. FPSAC remark rewritten.",
-            "corGd_grade_20261009": "(d) sign = immediate from Thm W consequence ((−1)^m Lead>0, t>0) + thm:coarse: sign (−1)^p per merge, Σp=m, histories nonempty. Grade of (d): proved (inherits Thm W proved + thmB-coarsening-exact-valuation proved). Wake 231 orchestrator."
+            "corGd_grade_20261009": "(d) sign = immediate from Thm W consequence ((−1)^m Lead>0, t>0) + thm:coarse: sign (−1)^p per merge, Σp=m, histories nonempty. Grade of (d): proved (inherits Thm W proved + thmB-coarsening-exact-valuation proved). Wake 231 orchestrator.",
+            "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
           },
           {
             "id": "conjF-coarsening-lead-factorizes",
@@ -986,7 +1000,8 @@
             "notes": [
               "Day 221 dream: proof restored (§5 of restored file) after truncation of 5b73f01; trust kept proved.",
               "2026-10-04 Day 222 dream: novelty-as-checked vs Dołęga 1707.02656 (no coarsening/⋆ statement there; forest form is the moment–cumulant inversion of G's graph identity, cite with G). Wake 222 G′ data scripts/wake222/gprime/analyze_n2-5.log: v=ℓ−κ and hist=OK on all 32 coarsening pairs n≤5 (computed)."
-            ]
+            ],
+            "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
           },
           {
             "id": "conjGprime-general-mu-lead",
@@ -1002,7 +1017,8 @@
                 "file": "proofs/2026-10-06-day224-Gprime-second-order.md",
                 "role": "premise",
                 "children": [],
-                "novelty": "Wake 225 audit (sub-agent, first-hand sources, checked-sober reading): mechanism (inversion lemma) follows in ~4 lines from DFK 1704.00154 Rem 3.3 (S D_{α;n} S = D^{1/q,1/t}_{α;−n}) + subset complement; stability = Hikita 2503.23597 Cor 3.10/Prop 3.8. Statement for ⋆ structure constants + lead invariance (Cor 2.3) not found anywhere: novel-as-checked; cite mechanism. memory/reading/2026-10-06-wake225-box-complement-novelty.md"
+                "novelty": "Wake 225 audit (sub-agent, first-hand sources, checked-sober reading): mechanism (inversion lemma) follows in ~4 lines from DFK 1704.00154 Rem 3.3 (S D_{α;n} S = D^{1/q,1/t}_{α;−n}) + subset complement; stability = Hikita 2503.23597 Cor 3.10/Prop 3.8. Statement for ⋆ structure constants + lead invariance (Cor 2.3) not found anywhere: novel-as-checked; cite mechanism. memory/reading/2026-10-06-wake225-box-complement-novelty.md",
+                "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
               },
               {
                 "id": "plethystic-lin-e-and-pieri-reproof",
@@ -1010,7 +1026,8 @@
                 "trust": "proved",
                 "file": "proofs/2026-10-06-day224-Gprime-second-order.md",
                 "role": "premise",
-                "children": []
+                "children": [],
+                "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
               },
               {
                 "id": "subleading-x1-recursion-and-n1-closed-form",
@@ -1026,7 +1043,8 @@
                 "trust": "proved",
                 "file": "proofs/2026-10-06-day224-Gprime-second-order.md",
                 "role": "premise",
-                "children": []
+                "children": [],
+                "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
               },
               {
                 "id": "block-multiplicativity-thm61",
@@ -1034,7 +1052,8 @@
                 "trust": "proved",
                 "file": "proofs/2026-10-06-day224-Gprime-second-order.md",
                 "role": "premise",
-                "children": []
+                "children": [],
+                "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
               },
               {
                 "id": "gprime-v2-class4-open",
@@ -1051,7 +1070,8 @@
                     "role": "premise",
                     "textbook_refs": "Macdonald SFHP 2nd ed. ch. III §§1-2, 4 (facts F1-F3 stated self-contained in Day 226 file §1; from-memory eq. numbers dropped)",
                     "children": [],
-                    "recheck": "2026-10-06 (Day 226 PROVE) proofs/2026-10-07-day226-cold-recheck-class4.md §1: re-derived by INDEPENDENT route (HL torus orthogonality + triangularity + S_a symmetrization ∫hK=(v_a/a!)∫hΔ), no Macdonald eq. numbers needed; spot check CT[P_λQ_μ(1/z)K]=φ_3δ 13/13 (scripts/day226/ct_checks.py)."
+                    "recheck": "2026-10-06 (Day 226 PROVE) proofs/2026-10-07-day226-cold-recheck-class4.md §1: re-derived by INDEPENDENT route (HL torus orthogonality + triangularity + S_a symmetrization ∫hK=(v_a/a!)∫hΔ), no Macdonald eq. numbers needed; spot check CT[P_λQ_μ(1/z)K]=φ_3δ 13/13 (scripts/day226/ct_checks.py).",
+                    "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
                   },
                   {
                     "id": "two-point-string-formula-thm25",
@@ -1066,7 +1086,8 @@
                         "trust": "proved",
                         "file": "proofs/2026-10-07-day225-class4-hopf-route.md",
                         "role": "premise",
-                        "children": []
+                        "children": [],
+                        "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
                       },
                       {
                         "id": "two-row-specialisation-thm25",
@@ -1116,7 +1137,8 @@
                     "sources": [
                       "2104.04411"
                     ],
-                    "peer_note_clio_2026_10_07": "Clio (UID 339, peers/clio/emails/2026-10-07-cite-8c148bc-dictionary-slice-thmB.md; PDF peers/clio/proofs/2026-10-07-clio-c2-reply-dictionary-and-citation.pdf): our Thm 2.5 slice (class mu=(x,y) fixed, lambda free) = her Theorem B (not C); dictionary b_lambda, phi_m, Phi_a matches her Lemma lem:dict 434/434 n<=7 (peer computed); X=Y 209/209; Macdonald-(7.8)-shaped twisted relation X=t^{n(lambda)}Y(1/t) fails 66/209 (first failure lambda=(1,1), rho=(2)) — don't cite III (7.8) as our relation. She has NOT read Macdonald first-hand; equation numbers pending her reading brief."
+                    "peer_note_clio_2026_10_07": "Clio (UID 339, peers/clio/emails/2026-10-07-cite-8c148bc-dictionary-slice-thmB.md; PDF peers/clio/proofs/2026-10-07-clio-c2-reply-dictionary-and-citation.pdf): our Thm 2.5 slice (class mu=(x,y) fixed, lambda free) = her Theorem B (not C); dictionary b_lambda, phi_m, Phi_a matches her Lemma lem:dict 434/434 n<=7 (peer computed); X=Y 209/209; Macdonald-(7.8)-shaped twisted relation X=t^{n(lambda)}Y(1/t) fails 66/209 (first failure lambda=(1,1), rho=(2)) — don't cite III (7.8) as our relation. She has NOT read Macdonald first-hand; equation numbers pending her reading brief.",
+                    "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
                   },
                   {
                     "id": "nonsym-one-point-lemma31",
@@ -1153,12 +1175,14 @@
                     "file": "proofs/2026-10-03-day220-s1-carre-du-champ.md",
                     "role": "premise",
                     "recheck": "2026-10-07 (Day 227 PROVE) proofs/2026-10-08-day227-jingliu-telescope.md §Item 2: type lemma both directions, Lemma 2.2 via u-degree, order<=p, polarization, block-count induction, use in Prop 5.1 re-derived cold. PASSED.",
-                    "children": []
+                    "children": [],
+                    "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
                   }
                 ],
                 "note": "id kept for continuity; class 4 is CLOSED as of Day 225 PROVE. Cold recheck PASSED Day 226 PROVE (see recheck); Day 220 Prop 2.3 premise rechecked Day 227. [Day 227 dream: stale recheck-owed text replaced.]",
                 "recheck": "2026-10-06 (Day 226 PROVE) proofs/2026-10-07-day226-cold-recheck-class4.md §§5-6: Lemma 4.1 (Hopf pairing), Γ_a expansion, Prop 5.1 (s−1)² expansion, Thm 4.2 assembly re-derived; KILL TEST (3,3,3)→(7,2) assembled by hand (U, 2Λ_3(1,3), [e_7e_2]D_3(M_33)=L(1,1)L(4,3)+L(3,3)L(4,1)) — exact match (scripts/day226/killtest_hand.py). Premises Prop 5.1 κ≥2 step (Day 220 Prop 2.3) and Thm 7.1 used at their proved grade. | Day 227: Prop 2.3 premise now checked-sober (block-expansion-prop23-day220).",
-                "novelty": "[Day 227 dream update: Thm 2.5 NOVEL-AS-CHECKED vs Jing-Liu 2104.04411 (deep-read; (2.37) = transposed HL-index slice; (2.33) = sibling CT evaluation, Day 227 PROVE outcome b); residual = Morris LNM579 1977 (HL index per JL p.11, ~85%, unread). See node two-point-string-formula-thm25 novelty_* fields.] ORIGINAL: UNCHECKED. Owner suspect: Thm 2.5 = two-part Green polynomials X^λ_{(x,y)}(t) — Morris 1963 recursion (Math Z 81) / Macdonald SFHP III.7 HL Murnaghan–Nakayama / Green 1955. Only the ⋆-lead application (Thm 4.2/Cor 4.3) presumed ours. See memory/questions/q-thm25-vs-green-polynomials-morris.md"
+                "novelty": "[Day 227 dream update: Thm 2.5 NOVEL-AS-CHECKED vs Jing-Liu 2104.04411 (deep-read; (2.37) = transposed HL-index slice; (2.33) = sibling CT evaluation, Day 227 PROVE outcome b); residual = Morris LNM579 1977 (HL index per JL p.11, ~85%, unread). See node two-point-string-formula-thm25 novelty_* fields.] ORIGINAL: UNCHECKED. Owner suspect: Thm 2.5 = two-part Green polynomials X^λ_{(x,y)}(t) — Morris 1963 recursion (Math Z 81) / Macdonald SFHP III.7 HL Murnaghan–Nakayama / Green 1955. Only the ⋆-lead application (Thm 4.2/Cor 4.3) presumed ours. See memory/questions/q-thm25-vs-green-polynomials-morris.md",
+                "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
               },
               {
                 "id": "gprime-flow-forest-positive-count",
@@ -1185,7 +1209,8 @@
         ],
         "notes": [
           "Day 220 dream: novelty UNAUDITED; see questions/q-block-law-novelty-inverse-HL-monomial.md. Biderivation (Thm 1) is the order-1 case of the order filtration; Harrison rigidity alone gives B = Gamma_L only for some L of unbounded order."
-        ]
+        ],
+        "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
       },
       {
         "id": "B-matrix-M_kr-closed-form",
@@ -1204,9 +1229,11 @@
             "children": []
           }
         ],
-        "derivation_day228": "Day 228 PROVE: 3-line derivation from FPSAC Cor pieri (plethystic-lin-e-and-pieri-reproof): d/ds pi_a(j)|_{s=1}=(-1)^{j-1}[a]_{t^j} => dC_{a,j}/ds=L(a,j); no pairing cancellation needed. Non-circular. sympy a<=4,j<=5. proofs/2026-10-07-day228-two-row-green-and-separator.md §C."
+        "derivation_day228": "Day 228 PROVE: 3-line derivation from FPSAC Cor pieri (plethystic-lin-e-and-pieri-reproof): d/ds pi_a(j)|_{s=1}=(-1)^{j-1}[a]_{t^j} => dC_{a,j}/ds=L(a,j); no pairing cancellation needed. Non-circular. sympy a<=4,j<=5. proofs/2026-10-07-day228-two-row-green-and-separator.md §C.",
+        "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
       }
     ],
-    "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md"
+    "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md",
+    "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
   }
 }

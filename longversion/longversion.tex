@@ -67,7 +67,11 @@ From it we derive a closed generating function for $e_k\star(e_{a_1}\cdots e_{a_
 with explicit polynomials $F_n(w)$, and at $t=0$ the coefficients form a truncated geometric distribution (\cref{cor:pieri-t0}). In the generating function, the $\ell$ columns interact only through a pairwise cross kernel, and the proof closes with a single residue identity (\cref{lem:Z}).
 
 \subsection*{Dominance and valuations}
-\wip{Summary of \cref{sec:DS,sec:edge,sec:blocklaw,sec:leads,sec:box,sec:v2} to be rewritten once those sections are written in full; the statements there are currently those of the extended abstract.}
+Write $e^\star_\lambda:=e_{\lambda_1}\star\cdots\star e_{\lambda_\ell}=\sum_\mu c_{\lambda\mu}(s,t)\,e_\mu$. A termwise degree count on the subset formula shows that $c_{\lambda\mu}\in\mathbb{Q}[s,t]$ is supported exactly on the dominance up-set of $\lambda$, with $s$-adic valuation exactly $n(\mu)$ (\cref{thm:DS}). In the rescaled basis $b_\mu=s^{n(\mu)}e_\mu$, the operator $e_k\star(\cdot)$ reduces modulo $s$ to Hall--Littlewood multiplication by $t^{-\binom k2}e_k$, so the $s$-leading coefficients form the classical $e\to$Hall--Littlewood transition matrix (\cref{thm:H,cor:dmatrix}).
+
+At $s=1$, $\star$ is the ordinary product, and the variable $s$ enters the subset formula only through an Euler operator; so the $(s-1)^p$ Taylor piece of $e_k\star(\cdot)$ is a differential operator of order $p$. The first-order term is a symmetric biderivation with an explicit matrix (\cref{thm:bider,prop:M}), and an order-$p$ piece can glue at most $p$ existing blocks of parts. This gives the \emph{block valuation law}
+\[ \val_{s-1}(c_{\lambda\mu})=\ell(\lambda)-\kappa(\lambda,\mu)\qquad(\mu\trianglerighteq\lambda,\ \mu\ne\lambda), \]
+where $\kappa$ is the maximal number of compatible blocks (\cref{thm:blocklaw}); the lower bound holds for all $t$, and exactness is settled at $t=0$, where no cancellation occurs. The leading coefficients are sums over merge histories with explicit weights (\cref{thm:coarse,thm:W}). For a full merge the lead is $\frac{1-t^n}{\prod_i(1-t^{\lambda_i})}\sum_{H\text{ connected}}\prod_{ij\in H}(t^{\lambda_i\lambda_j}-1)$ (\cref{thm:G}), whose graph half is due to Do{\l}{\k{e}}ga~\cite{Dolega19}, and every lead is a sum of products of connected leads (\cref{thm:F,thm:blockmult}). The coefficients satisfy $c_{N^\ell-\lambda,N^\ell-\mu}=s^{N\binom\ell2-(\ell-1)|\lambda|}c_{\lambda\mu}$ (\cref{thm:box}). Finally, every leading coefficient at valuation $2$ is given in closed form (\cref{thm:v2,cor:v2}), via a constant-term formula and a residue evaluation of Green polynomials at two-part classes (\cref{thm:CT,thm:2pt}).
 
 \subsection*{Organisation}
 \Cref{sec:hikita} sets up Hikita's product and proves the subset formula. \Cref{sec:pieri} contains the Pieri package. \Cref{sec:DS} proves dominance support, and \cref{sec:edge} identifies the $s\to0$ edge. \Cref{sec:blocklaw,sec:leads} treat the expansion at $s=1$, \cref{sec:box} the box symmetry and the linear coefficient, and \cref{sec:v2} the second-order leading coefficients.
@@ -310,12 +314,12 @@ Write $u=x_i$. Then $e_b(\hx_i)=[y^b]E(y)/(1+uy)$ and $E(\hx_i;\gamma)=E(\gamma)
 as one sees from $\prod_c(1-sz_c/a)=a^{-\ell}\prod_c(a-sz_c)$, $\prod_{a'\neq a}(1-a'/a)=a^{-\ell}\prod_{a'\ne a}(a-a')$ and $Q(-a)=E(ta)/E(a)$. Thus $\rho_y=\mathcal{F}(y)$ and $\rho_{\gamma_c}=-\kappa_c/(y-\gamma_c)$, and
 \[ (1-t)\sum_iH(x_i;y)\prod_{j\ne i}a_{ij}=\frac Cy-\mathcal F(y)\frac{E(ty)}{E(y)}+\sum_c\frac{\kappa_c}{y-\gamma_c}\,\frac{E(t\gamma_c)}{E(\gamma_c)} . \]
 Multiply by $E(y)\prod_cE(\gamma_c)$ and write $E(y)=\sum_ne_ny^n$, $E(ty)=\sum_nt^ne_ny^n$. The coefficient of $e_n$ is $[y^{b-n}]$ of the Laurent expansion at $y=0$ of
-\[ \Bigl(\frac Cy-t^n\mathcal F(y)\Bigr)\prod_cE(\gamma_c)+\sum_c\frac{\kappa_c}{y-\gamma_c}E(t\gamma_c)\prod_{c'\ne c}E(\gamma_{c'})=\frac{C(1-t^n)}{y}\prod_cE(\gamma_c)+\sum_c\frac{\kappa_c}{y-\gamma_c}\bigl(E(t\gamma_c)-t^nE(\gamma_c)\bigr)\prod_{c'\ne c}E(\gamma_{c'}), \]
+\begin{multline*} \Bigl(\frac Cy-t^n\mathcal F(y)\Bigr)\prod_cE(\gamma_c)+\sum_c\frac{\kappa_c}{y-\gamma_c}E(t\gamma_c)\prod_{c'\ne c}E(\gamma_{c'})\\=\frac{C(1-t^n)}{y}\prod_cE(\gamma_c)+\sum_c\frac{\kappa_c}{y-\gamma_c}\bigl(E(t\gamma_c)-t^nE(\gamma_c)\bigr)\prod_{c'\ne c}E(\gamma_{c'}), \end{multline*}
 by the partial fraction expansion of $\mathcal F$. Expanding $1/(y-\gamma)=-\sum_{p\ge0}y^p\gamma^{-p-1}$ gives the claim: $n=b+1$ picks the pole at $0$, $n\le b$ picks the second sum, and $n>b+1$ contributes nothing.
 \end{proof}
 
 \subsection{Proof of \cref{thm:ellcol}}
-Write $\mathcal T_k$ for the right-hand side of \cref{thm:ellcol}, $\mathcal T_k=\sum_{b,I}W^{(k)}_{b,I}\,e_b\prod_cE(t^{i_c}z_c)$ with $W^{(k)}_{b,I}=C_I^{\,b}V^{(k-b)}_I$, $C_I:=s^\ell t^{-|I|}$; $\epsilon_1,\dots,\epsilon_\ell$ are the unit vectors of $\mathbb{Z}^\ell$.
+Write $\mathcal T_k$ for the right-hand side of \cref{thm:ellcol}, so $\mathcal T_k=\sum_{b,I}W^{(k)}_{b,I}\,e_b\prod_cE(t^{i_c}z_c)$ with $W^{(k)}_{b,I}=C_I^{\,b}V^{(k-b)}_I$, $C_I:=s^\ell t^{-|I|}$; $\epsilon_1,\dots,\epsilon_\ell$ are the unit vectors of $\mathbb{Z}^\ell$.
 
 \emph{Reduction to an index identity.} We show the step identity
 \begin{equation}\label{eq:Ll}
@@ -581,7 +585,9 @@ Since $\qbin mr\big|_{t\mapsto t^{-1}}=t^{-r(m-r)}\qbin mr$, \eqref{eq:ncount} g
 The matrix $d_{\lambda\mu}(t)$ is the classical $e\to$Hall--Littlewood transition matrix: writing $e_\lambda=\sum_\kappa M(e,P)_{\lambda\kappa}P_\kappa(x;t)$, \cref{cor:dmatrix} says $d_{\lambda\mu}(t)=t^{\,n(\mu')-n(\lambda')}M(e,P)_{\lambda\mu'}(t^{-1})$, and its positivity and the value at $t=1$ are in \cite[\S3.2]{Kirillov98}. What is new is only the identification of this matrix with the $s$-leading coefficients of $\star$, i.e.\ \cref{thm:H}. Hikita's \cite[Lemma~6.3]{Hikita25} treats the unrescaled limit $q\to\infty$.
 \end{remark}
 
-\wip{Still to be added to this section, with full proofs: the remaining edges of the $(s,t)$-square, the reflection $\Psi_{1/s,1/t}=\Psi_{s,t}^{-1}$, and the collapse on the opposite edges; the $t=0$ edge (\cref{rem:t0input}) and the $t\to\infty$ edge are cited, not claimed.}
+\begin{remark}[Other edges]\label{rem:edges}
+The edges $t\to\infty$, $s\to\infty$ and $t=0$ of the $(s,t)$-square, and the reflection $(s,t)\mapsto(1/s,1/t)$, can be treated through a conjugation of $e_k\star(\cdot)$ by an operator that is diagonal on Macdonald polynomials; such a conjugation is implicit in \cite{DFK19}. We do not develop this here and use none of it: the only other edge that enters below is $t=0$, and for it we cite \cite{DFK18} (\cref{rem:t0input}).
+\end{remark}
 
 
 %% ===================================================================
@@ -843,20 +849,35 @@ This proof of the Pieri rule is independent of the one in \cref{sec:pieri}: it u
 %% ===================================================================
 \section{Second order: every valuation-$2$ lead}\label{sec:v2}
 %% ===================================================================
-\wip{The proofs in this section are condensed sketches carried over from the extended abstract; full proofs are to be written from the authors' notes, as in \cref{sec:hikita,sec:pieri}.}
 
 By \cref{thm:blockmult}, valuation-$2$ leads reduce to connected leads with $\ell(\lambda)=3$, $\kappa=1$; by \cref{cor:column} to two-part $\mu$. With $T_a$ as in \cref{lem:linT}, put
 \[ \Gamma_a(e_b,e_c):=E_a^{(2)}(e_be_c)-e_bE_a^{(2)}(e_c)-e_cE_a^{(2)}(e_b)=\sum_{1\le r\le b,\ 1\le q\le c}(-1)^{r+q}e_{b-r}e_{c-q}\,T_a(p_rp_q). \]
+Indeed, with $R(u)$ as in the proof of \cref{thm:W}, $R(u)=\prod_{x\in A}\bigl(1+(s-1)y_x(u)\bigr)$ with $y_x(u)=\frac{ux_x}{1+ux_x}$, so $[(s-1)^2]R(u)R(v)=e_2(Y_u)+e_2(Y_v)+p_1(Y_u)p_1(Y_v)$ in the alphabets $Y_u=\{y_x(u)\}_{x\in A}$, $Y_v$; hence $E_a^{(2)}(E(u)E(v))-E(u)E_a^{(2)}E(v)-E(v)E_a^{(2)}E(u)=E(u)E(v)\,T_a\bigl(p_1(Y_u)p_1(Y_v)\bigr)$, and $p_1(Y_u)=\sum_{r\ge1}(-1)^{r-1}u^rp_r(x_A)$. Take $[u^bv^c]$.
 
 \begin{proposition}\label{prop:reduce}
 If $(a,b,c)$ is any ordering of $\lambda$ and $\kappa(\lambda,\mu)=1$, then $[(s-1)^2]c_{\lambda\mu}=[e_\mu]\bigl(\Gamma_a(e_b,e_c)+D_aD_b(e_c)\bigr)$.
 \end{proposition}
+\begin{proof}
+Since $E^{(p)}(1)=0$ for $p\ge1$, $[(s-1)^2]E_aE_bE_c(1)=E_a^{(2)}(e_be_c)+D_aD_b(e_c)+e_aE_b^{(2)}(e_c)$, and $E_a^{(2)}(e_be_c)=\Gamma_a(e_b,e_c)+e_bE_a^{(2)}(e_c)+e_cE_a^{(2)}(e_b)$. Each of $e_bE_a^{(2)}(e_c)$, $e_cE_a^{(2)}(e_b)$, $e_aE_b^{(2)}(e_c)$ is a part $e_{\lambda_i}$ times a function of the type of the other two parts (\cref{prop:block}), so every $\mu$ in its support has $\kappa(\lambda,\mu)\ge2$.
+\end{proof}
 
 \begin{theorem}[Constant-term adjoint formula]\label{thm:CT}
-For $g\in\Lam_a$, $F\in\Lam$: $\varphi_a(t)\,\langle T_ag,F\rangle_t=\mathrm{CT}\bigl[Z\,g(z)\,F(z_1^{-1},\dots,z_a^{-1})\,\Omega(z)\bigr]$, where $Z=z_1\cdots z_a$ and $\Omega(z)=\prod_{1\le i<j\le a}\frac{z_j-z_i}{z_j-tz_i}$, expanded in $z_i/z_j$ ($i<j$).
+For $g\in\Lam_a$ and $F\in\Lam$,\[ \varphi_a(t)\,\langle T_ag,F\rangle_t=\mathrm{CT}\bigl[Z\,g(z)\,F(z_1^{-1},\dots,z_a^{-1})\,\Omega(z)\bigr], \]where $Z=z_1\cdots z_a$ and $\Omega(z)=\prod_{1\le i<j\le a}\frac{z_j-z_i}{z_j-tz_i}$, expanded in $z_i/z_j$ ($i<j$).
 \end{theorem}
-\begin{proof}[Sketch of proof]
-$T_ag$ restricted to $a$ variables is $Zg$ and lies in $\mathrm{span}\{P_\mu:\ell(\mu)=a\}$. Evaluate $\langle G,q_\alpha\rangle_t=[y^\alpha]G$ via Cauchy \cite[III (4.2), (4.4), (4.8)--(4.9)]{Macdonald95}, write $\langle G,Q_\lambda\rangle_t$ as a constant term by the raising-operator formula \cite[III (2.15$'$)]{Macdonald95}, and symmetrise $\Omega=\Delta\theta$ with $\sum_w w(\theta)=v_a(t)$ \cite[III (1.4)]{Macdonald95}; $Q_\lambda(z^{-1})$ is evaluated by \cite[III (2.1), (2.11)--(2.12)]{Macdonald95}. This is Jing's vertex-operator calculus \cite{Jing91} with the vertex operators hidden.
+\begin{proof}
+Let $G=T_ag$. In exactly $a$ variables only $A=[a]$ survives and $c_{[a]}=1$, so $G(z)=Zg(z)$; and $G\in\mathrm{span}\{P_\mu:\ell(\mu)=a\}$ by \cref{lem:parabolic}. We read $\mathrm{CT}$ of a Laurent polynomial times $\Omega$ either formally or as the integral over the torus $|z_i|=1$ for $|t|<1$; the two agree because the expansion of $\Omega$ converges there, and both sides of the theorem are rational in $t$.
+
+\emph{Step 1.} For $\alpha\in\mathbb{Z}^a_{\ge0}$, $\langle G,q_\alpha\rangle_t=[y^\alpha]G(y_1,\dots,y_a)$, with $q_\alpha=\prod q_{\alpha_i}$: pair $G$ with the Cauchy identity $\sum_\mu Q_\mu(x)P_\mu(y)=\prod_{i,j}\frac{1-tx_iy_j}{1-x_iy_j}=\sum_\alpha q_\alpha(x)y^\alpha$ \cite[III (4.2), (4.4)]{Macdonald95}, using $\langle P_\lambda,Q_\mu\rangle_t=\delta_{\lambda\mu}$ \cite[III (4.9)]{Macdonald95}.
+
+\emph{Step 2.} For $\ell(\lambda)\le a$ (padded), the raising-operator formula \cite[III (2.15$'$)]{Macdonald95} gives $Q_\lambda=\sum_\beta c_\beta q_{\lambda+\beta}$ with $\sum_\beta c_\beta y^{-\beta}=\prod_{i<j}\frac{1-y_j/y_i}{1-ty_j/y_i}$; operators involving positions beyond $\ell(\lambda)$ only produce negative entries, where $q$ and $[y^\cdot]$ both vanish. With step 1 and the relabelling $z_k=y_{a+1-k}$,
+\[ \langle G,Q_\lambda\rangle_t=\mathrm{CT}\bigl[G(z)\,z^{-\lambda^{\mathrm{rev}}}\,\Omega(z)\bigr],\qquad\lambda^{\mathrm{rev}}=(\lambda_a,\dots,\lambda_1). \]
+
+\emph{Step 3.} Let $\Delta=\prod_{i\ne j}\frac{1-z_i/z_j}{1-tz_i/z_j}$ and $\theta=\prod_{i<j}\frac{z_i-tz_j}{z_i-z_j}$, so that $\Delta\theta=\Omega$. For symmetric $f$, $f\Omega$ is analytic on the torus and $f\Delta$ is symmetric, so averaging over $S_a$ and using $\sum_ww(\theta)=v_a(t)=[a]_t!$ \cite[III (1.4)]{Macdonald95} gives $\mathrm{CT}[f\Omega]=\frac{v_a}{a!}\mathrm{CT}[f\Delta]$.
+
+\emph{Step 4.} By \cite[III (2.1)--(2.2)]{Macdonald95}, $Q_\lambda(z^{-1})=\frac{b_\lambda}{v_\lambda}\sum_ww\bigl(z^{-\lambda}\tilde\theta\bigr)$ with $\tilde\theta=\prod_{i<j}\frac{z_j-tz_i}{z_j-z_i}$ and $v_\lambda=\prod_{i\ge0}v_{m_i(\lambda)}$, $m_0=a-\ell(\lambda)$. Since $\tilde\theta\Delta=\prod_{i<j}\frac{z_i-z_j}{z_i-tz_j}$, step 3, symmetry, and the relabelling $z_k\leftrightarrow z_{a+1-k}$ give
+\[ \mathrm{CT}\bigl[G\,Q_\lambda(z^{-1})\,\Omega\bigr]=v_a\frac{b_\lambda}{v_\lambda}\,\mathrm{CT}\bigl[G\,z^{-\lambda^{\mathrm{rev}}}\Omega\bigr]=v_a\frac{b_\lambda}{v_\lambda}\langle G,Q_\lambda\rangle_t . \]
+
+\emph{Step 5.} Write $F=\sum_\lambda F_\lambda Q_\lambda$. Terms with $\ell(\lambda)>a$ vanish on both sides, and $\langle G,Q_\lambda\rangle_t=0$ unless $\ell(\lambda)=a$, in which case $m_0=0$ and $v_a\,b_\lambda/v_\lambda=v_a(1-t)^a=\varphi_a$. Hence $\mathrm{CT}[GF(z^{-1})\Omega]=\varphi_a\langle G,F\rangle_t$.
 \end{proof}
 
 \begin{theorem}[Two-point formula]\label{thm:2pt}
@@ -866,10 +887,27 @@ Let $g\in\Lam_a$ be homogeneous of degree $d$, $n=a+d$, $x,y\ge1$, $x+y=n$, and 
 -\frac{g(1,t,\dots,t^{a-1})}{1-t^a}\sum_{j=0}^{a-1}t^{-jy}\Biggr\}.
 \end{multline*}
 \end{theorem}
-\begin{proof}[Sketch of proof]
-Insert $S(u)=\sum_i1/(uz_i-1)$ into \cref{thm:CT} and take iterated residues: every variable lands on a $t$-string $1/u,t/u,\dots$ or $1/v,t/v,\dots$. A string of length $A$ with base $q$ has weight $(-1)^{A-1}\varphi_{A-1}q^A$, and two strings interact through the shuffle identity
-\[ \mathrm{Sh}_{A,B}(w)=\qbin{A+B}{A}\,t^{-AB}\,\frac{(1-w)(1-t^{B-A}w)}{(1-t^{-A}w)(1-t^Bw)},\qquad w=u/v, \]
-proved by a last-letter recursion. Take Taylor coefficients at $w=0$.
+\begin{proof}
+Let $S(u):=\sum_{i=1}^a\frac{1}{uz_i-1}=\sum_{x\ge1}u^{-x}p_x(z^{-1})$. By \cref{thm:CT} and homogeneity,
+\[ \mathcal R(u,v):=\frac1{\varphi_a}\mathrm{CT}\bigl[g\,Z\,S(u)S(v)\,\Omega\bigr]=\sum_{x+y=n}\frac{\Phi_a(g;x,y)}{(1-t^x)(1-t^y)}u^{-x}v^{-y}=u^{-n}\rho(w),\qquad w=u/v, \]
+with $\rho$ a polynomial, so $\Phi_a(g;x,y)=(1-t^x)(1-t^y)[w^y]\rho$.
+
+\emph{String expansion.} Take $|t|$ small, $u,v$ generic, and radii $\max(|u|^{-1},|v|^{-1})<r_1<\dots<r_a$; the constant term is the integral of $g\,S(u)S(v)\,\Omega\prod_mdz_m/(2\pi i)$ over $|z_m|=r_m$. Expand $S(u)S(v)$ into its $a^2$ summands and integrate $z_1,\dots,z_a$ in turn. When $z_m$ is integrated, its poles inside $|z_m|=r_m$ are at $1/u$ or $1/v$ if $z_m$ carries the $u$- or $v$-factor, and at $tz_l$ for $l<m$ (from the factor $\frac{z_m-z_l}{z_m-tz_l}$); the poles $z_j/t$, $j>m$, lie outside, and $g$ is a polynomial. The numerator $\prod_{l<m}(z_m-z_l)$ kills the residue at $tz_l$ if some earlier $z_{l'}$ already equals $tz_l$. Hence the evaluation points form \emph{$t$-strings} $q,qt,\dots,qt^{A-1}$ (at increasing positions), each started by a \emph{seed} at $1/u$ or $1/v$, and position $1$ is always a seed. The surviving configurations are: (i) a word $\omega\in\{U,V\}^a$ containing both letters, the $u$-factor at the first $U$ and the $v$-factor at the first $V$, the $(\alpha+1)$-st $U$ at $t^\alpha/u$ and the $(\beta+1)$-st $V$ at $t^\beta/v$; (ii) the word $U^a$, all points $t^{m-1}/u$, with the $v$-factor at any position $j+1$, where it is simply evaluated; (iii) the mirror image $V^a$.
+
+\emph{String weight.} A string of length $A$ with base $q$ contributes $(-1)^{A-1}\varphi_{A-1}(t)\,q^A$: the seed residue is $q$; a successor pair contributes the residue $qt^\alpha(t-1)$; a non-successor pair at string distance $\delta\ge2$ contributes $\frac{t^\delta-1}{t^\delta-t}$; and $\prod_{\delta=2}^{A-1}\bigl(\frac{1-t^\delta}{t(1-t^{\delta-1})}\bigr)^{A-\delta}=t^{-\binom{A-1}2}\varphi_{A-1}/(1-t)^{A-1}$.
+
+\emph{Interaction.} For a $U$-string of length $A$ and a $V$-string of length $B=a-A$, the cross factors are $\frac{wt^{\beta-\alpha}-1}{wt^{\beta-\alpha}-t}$ ($U_\alpha$ before $V_\beta$) and $\frac{1-wt^{\beta-\alpha}}{1-wt^{\beta-\alpha+1}}$ ($V_\beta$ before $U_\alpha$), and their sum over shuffles is the function $\mathrm{Sh}_{A,B}(w)$ of \cref{lem:shuffle}.
+
+\emph{Assembling.} Since $g(z^*)=u^{-d}G_A(w)$ for configuration (i) and $u^{-d}g(\pi_a)$ for (ii), where $\pi_a=(1,t,\dots,t^{a-1})$, and $v^{-B}=u^{-B}w^B$,
+\[ \varphi_a\rho(w)=\sum_{A=1}^{a-1}(-1)^a\varphi_{A-1}\varphi_{B-1}\,w^B\,\mathrm{Sh}_{A,B}(w)\,G_A(w)+(-1)^{a-1}\varphi_{a-1}\,g(\pi_a)\sum_{j=0}^{a-1}\frac{w}{t^j-w}+O(w^n), \]
+the last term coming from (iii). This is an identity of rational functions of $w$, each term analytic at $w=0$, so $[w^y]$ may be taken termwise. By \cref{lem:shuffle}, $\mathrm{Sh}_{A,B}(w)=\qbin aA t^{-AB}\bigl(1+\kappa_{AB}\sum_{m\ge1}(t^{-Am}-t^{Bm})w^m\bigr)$ with $\kappa_{AB}=\frac{(1-t^A)(1-t^B)}{1-t^a}$, and $\qbin aA\varphi_{A-1}\varphi_{B-1}=\frac{\varphi_a}{(1-t^A)(1-t^B)}$, $\frac{\varphi_{a-1}}{\varphi_a}=\frac1{1-t^a}$. For $1\le y\le n-1$ this gives the formula.
+\end{proof}
+
+\begin{lemma}[Shuffle identity]\label{lem:shuffle}
+\[ \mathrm{Sh}_{A,B}(w)=\qbin{A+B}{A}\,t^{-AB}\,\frac{(1-w)(1-t^{B-A}w)}{(1-t^{-A}w)(1-t^Bw)}, \]\[ \frac{(1-w)(1-t^{B-A}w)}{(1-t^{-A}w)(1-t^Bw)}=1+\kappa_{AB}\sum_{m\ge1}(t^{-Am}-t^{Bm})w^m. \]
+\end{lemma}
+\begin{proof}
+Induction on $A+B$; for $A=0$ or $B=0$ both sides are $1$. Condition on the last letter. If it is $U_{A-1}$, its cross factors telescope to $\frac{1-wt^{1-A}}{1-wt^{B+1-A}}$; if it is $V_{B-1}$, to $t^{-A}\frac{1-wt^{B-1}}{1-wt^{B-1-A}}$. So $\mathrm{Sh}_{A,B}=\frac{1-wt^{1-A}}{1-wt^{B+1-A}}\mathrm{Sh}_{A-1,B}+t^{-A}\frac{1-wt^{B-1}}{1-wt^{B-1-A}}\mathrm{Sh}_{A,B-1}$. With $X=t^A$, $Y=t^B$, $\qbin{A+B-1}{A-1}/\qbin{A+B}{A}=\frac{1-X}{1-XY}$ and $\qbin{A+B-1}{A}/\qbin{A+B}A=\frac{1-Y}{1-XY}$, the claimed closed form satisfies this recursion if and only if $Y(1-X)(1-w/X)+(1-Y)(1-Yw)=(1-XY)(1-wY/X)$, and both sides equal $1-XY-wY/X+wY^2$. For the expansion: the left side is $1$ at $w=0$, tends to $1$ at $\infty$, and has simple poles with residue $-t^A\kappa_{AB}$ at $w=t^A$ and $t^{-B}\kappa_{AB}$ at $w=t^{-B}$; so does the right side.
 \end{proof}
 \begin{remark}[Relation to Green polynomials]
 Write $p_\mu=\sum_\lambda X^\lambda_\mu(t)P_\lambda(x;t)$. For $g=P_\rho$ and $\lambda=\rho+1^a$ one has $\Phi_a(P_\rho;x,y)=(1-t^x)(1-t^y)X^{\lambda}_{(x,y)}(t)/b_\lambda(t)$, so \cref{thm:2pt} evaluates Green polynomials at two-part classes; the two $t$-strings are the Frobenius orbits of a maximal torus of type $(x,y)$ \cite{Green55}. \Cref{thm:CT} is Jing's constant-term expression for the matrix element $\langle Q_\lambda,p_\mu\rangle$ \cite{Jing91}, cf.\ \cite[(2.17), (2.20)]{JingLiu21}. Jing and Liu \cite[Thm.~2.7]{JingLiu21} expand the same matrix element as a nested sum valid for all $\mu$, extracting one variable at a time; at two-part $\mu$ that sum does not close up, since its inner sums run over classes of arbitrary length. Their closed forms \cite[Thm.~2.10, (2.37)--(2.40)]{JingLiu21} restrict the Hall--Littlewood index $\lambda$, not the class $\mu$; their Murnaghan--Nakayama rule \cite[Thm.~3.2]{JingLiu21} generalises a formula of Morris \cite{Morris77}\footnote{We have not seen \cite{Morris77} first-hand; its scope is as described in \cite[p.~12, before Thm.~3.2]{JingLiu21}.}, its case $\ell(\lambda)=2$. We evaluate by residues instead, and at $\ell(\mu)=2$ the poles organise into two $t$-strings. The formula is explicit, with no sum over classes, and linear in the two-string specialisation $G_A$ of $g$; for general $\rho$, $G_A$ is itself a finite (branching) sum, so \cref{thm:2pt} is not a product formula.
@@ -888,8 +926,14 @@ Let $\lambda=(a,b,c)$ be any ordering of a length-$3$ partition, $\mu=(x,y)$ wit
 \end{multline*}
 with $D_a$ the derivation $D_a(e_j)=M_{aj}$ of \cref{prop:M}.
 \end{theorem}
-\begin{proof}[Sketch of proof]
-\Cref{prop:reduce}; in the expansion of $\Gamma_a$ only terms with $r=b$ or $q=c$ survive $[e_xe_y]$; single-$e$ parts come from \cref{lem:linT}, and $\langle G,p_xp_y\rangle=(-1)^n(m_{xy}[e_xe_y]G+\lin G)$ converts \cref{thm:2pt} into $U_a$.
+\begin{lemma}\label{lem:pair2}
+For $G$ homogeneous of degree $n=x+y$, $\langle G,p_xp_y\rangle=(-1)^n\bigl(m_{xy}[e_xe_y]G+\lin G\bigr)$.
+\end{lemma}
+\begin{proof}
+$\langle e_\nu,p_xp_y\rangle=\langle\Delta e_\nu,p_x\otimes p_y\rangle$ since $p_x,p_y$ are primitive, and $\langle e_m,p_m\rangle=(-1)^{m-1}$. Each tensor factor must be a single $e$, so $\ell(\nu)\ge3$ gives $0$, $\langle e_n,p_xp_y\rangle=(-1)^n$, $\langle e_xe_y,p_xp_y\rangle=(-1)^nm_{xy}$, and other two-part $\nu$ give $0$.
+\end{proof}
+\begin{proof}[Proof of \cref{thm:v2}]
+By \cref{prop:reduce}, $[(s-1)^2]c_{\lambda\mu}=[e_xe_y]\bigl(\Gamma_a(e_b,e_c)+D_a(M_{bc})\bigr)$. In $\Gamma_a(e_b,e_c)=\sum_{r,q}(-1)^{r+q}e_{b-r}e_{c-q}T_a(p_rp_q)$, terms with $r<b$ and $q<c$ have at least three factors in $I$ and do not contribute. For $r<b$, $q=c$, only the single-$e$ part $\Xi_a(r,c)e_{a+r+c}$ of $T_a(p_rp_c)$ (\cref{lem:linT}) contributes; symmetrically for $r=b$, $q<c$. For $r=b$, $q=c$ the contribution is $(-1)^{b+c}[e_xe_y]T_a(p_bp_c)=(-1)^{b+c}U_a(b,c;x,y)$ by \cref{lem:pair2} and $\lin T_a(p_bp_c)=\Xi_a(b,c)$.
 \end{proof}
 \begin{corollary}\label{cor:v2}
 Every lead at valuation $2$ ($\kappa=\ell-2$, any $\ell$) has a closed formula: by \cref{thm:blockmult} it is a sum of products of pair leads (\cref{prop:M}) and $\ell=3$, $\kappa=1$ leads (\cref{thm:G}, \cref{cor:column}, \cref{thm:v2}).

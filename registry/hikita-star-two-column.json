@@ -98,7 +98,8 @@
           }
         ],
         "review_note": "Clio review 2026-09-30 (UID 306): endorses (TC) — fully proved m≤5,k≤3 and all m,k conditional on 207b §§3-4; minor: (P6) false as written, m=0 base case asserts a real identity in passing, D_0=1 never stated. Korff sign: her quote and Rick's P² are different constants of equal magnitude — resolved. File: peers/clio/proofs/2026-09-30-clio-review-TC-and-korff-sign.pdf",
-        "erratum_R_referent_2026_10_02": "Clio (email 2026-10-01 uid 312, PDF §2) keeps (TC) at peer-claimed because the input '(R)' is labelled nowhere in the 207b PDF she holds (she guessed the §6.1 residue lemma — WRONG guess). Resolution: (R) = the Recursion lemma of 207b, '(R) Recursion' in proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md §4, = unlabelled 'Lemma (Recursion)' in §5 'The generating function (E_k)' of work-in-progress/notes/2026-09-26-ek-star-er-proved-for-clio.tex: for k,m≥1, [k]Γ_k(X)=Σ_i X_i(1+sX_iz)∏_{j≠i}a_ij Γ_{k-1}(X̂_i), proof (C2)+(C3), peel a_1=i, φ(X_i)E(X;z)=X_i(1+sX_iz)E(X̂_i;z). Also TC §2 cites '207b §§2–3' = md numbering; PDF numbering is §§3–4. Erratum not yet sent/applied."
+        "erratum_R_referent_2026_10_02": "Clio (email 2026-10-01 uid 312, PDF §2) keeps (TC) at peer-claimed because the input '(R)' is labelled nowhere in the 207b PDF she holds (she guessed the §6.1 residue lemma — WRONG guess). Resolution: (R) = the Recursion lemma of 207b, '(R) Recursion' in proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md §4, = unlabelled 'Lemma (Recursion)' in §5 'The generating function (E_k)' of work-in-progress/notes/2026-09-26-ek-star-er-proved-for-clio.tex: for k,m≥1, [k]Γ_k(X)=Σ_i X_i(1+sX_iz)∏_{j≠i}a_ij Γ_{k-1}(X̂_i), proof (C2)+(C3), peel a_1=i, φ(X_i)E(X;z)=X_i(1+sX_iz)E(X̂_i;z). Also TC §2 cites '207b §§2–3' = md numbering; PDF numbering is §§3–4. Erratum not yet sent/applied.",
+        "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
       },
       {
         "id": "two-column-straightening-free",
@@ -130,7 +131,8 @@
             "children": [],
             "scripts": [
               "scripts/day212/check_steps.py"
-            ]
+            ],
+            "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
           },
           {
             "id": "ell-column-step-map",
@@ -141,7 +143,8 @@
             "children": [],
             "scripts": [
               "scripts/day212/step_map_ell.py"
-            ]
+            ],
+            "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
           }
         ],
         "dream_note": "2026-09-29 Day 209 dream (memory/connections/2026-09-29-residue-function-is-the-whole-proof.md): U-factorization holds for all l by definition of c=s^l prod z_c/prod gamma_c (hand-derived, needs sober re-check; not a conjecture). Residues kappa_c split into pairwise factors (gamma_c - s z_c')/(gamma_c - gamma_c'); K_ij = those telescoped. Prediction P-l: cross kernel = prod_{c<c'} K_{i_c i_c'}(z_c,z_c'), Lagrange-type closing identity. Kill: non-pairwise factor at l=3. Question: memory/questions/q-ell-column-rule.md.",
@@ -158,7 +161,8 @@
           "scripts/day212/check_stepB.py",
           "scripts/day210/aha_check_ell.py"
         ],
-        "prove_note": "2026-09-30 Day 212 PROVE: PROVED all k,l. Day 209 skeleton with l poles: step map via Lemma 2' with F(y)=prod(y-sz_c)/(y prod(y-gam_c)); (star-l-GF); U=prod(1-X_c)/(1-sX_c/A_c); kappa' splits pairwise so Phi_c = kappa'_c K_{I-e_c}/K_I pairwise; normalised identity = (Z) prod(mu-1)-prod(lam-1)=sum_c(mu_c-lam_c)prod_{c'!=c}(lam_c'-1)(lam_c-mu_c')/(lam_c-lam_c'), proved by residue theorem for prod(w-mu)/((w-1)prod(w-lam)). Symbolic checks in scripts/day212."
+        "prove_note": "2026-09-30 Day 212 PROVE: PROVED all k,l. Day 209 skeleton with l poles: step map via Lemma 2' with F(y)=prod(y-sz_c)/(y prod(y-gam_c)); (star-l-GF); U=prod(1-X_c)/(1-sX_c/A_c); kappa' splits pairwise so Phi_c = kappa'_c K_{I-e_c}/K_I pairwise; normalised identity = (Z) prod(mu-1)-prod(lam-1)=sum_c(mu_c-lam_c)prod_{c'!=c}(lam_c'-1)(lam_c-mu_c')/(lam_c-lam_c'), proved by residue theorem for prod(w-mu)/((w-1)prod(w-lam)). Symbolic checks in scripts/day212.",
+        "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
       },
       {
         "id": "pairwise-kernel-wick-bilinear",
@@ -166,15 +170,20 @@
         "trust": "computed",
         "file": "scripts/day213/wick_kernel_check.py",
         "note": "Step 1 of memory/questions/q-free-field-wick-proof-of-ell-column.md; supports the free-field/Wick reading of (★ℓ). Not yet checked at i,j=4.",
-        "children": []
+        "children": [],
+        "role": "attempt",
+        "role_note": "2026-10-09: interpretive side-reading of the ℓ-column kernel (Wick / Jing vertex exchange); not used by the TC or ℓ-column proofs (longversion §3 proof uses only lem:peel, lem:res, lem:Cj, lem:Z). Role set to attempt so the boundary rule does not treat it as a premise."
       },
       {
         "id": "Kij-is-jing-half-vertex-exchange",
         "approach": "K_ij is Jing's half-vertex-operator exchange factor, making (★2) a vertex-operator commutation relation (Clio suggestion, email 2026-09-30 UID 306); aligns with Day 206 coset-symmetrizer=Jing and Day 212 Wick hunch",
         "trust": "hunch",
         "source": "peers/clio/emails/2026-09-30-review-TC-korff-sign.md",
-        "children": []
+        "children": [],
+        "role": "attempt",
+        "role_note": "2026-10-09: interpretive side-reading of the ℓ-column kernel (Wick / Jing vertex exchange); not used by the TC or ℓ-column proofs (longversion §3 proof uses only lem:peel, lem:res, lem:Cj, lem:Z). Role set to attempt so the boundary rule does not treat it as a premise."
       }
-    ]
+    ],
+    "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
   }
 }
