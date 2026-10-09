@@ -243,7 +243,7 @@ with $V^{(n)}_I:=0$ if some $i_c<0$. Since $c(n_c,i_c)=0$ for $n_c<i_c$, $V^{(n)
 
 \begin{theorem}[$\ell$-column rule]\label{thm:ellcol}
 For all $m,k\ge0$ and $\ell\ge1$, in $\Lam_m\otimes\mathbb{Q}(s,t)(z_1,\dots,z_\ell)$,
-\[ \Gamma_k:=\sum_{a\in\mathbb{Z}_{\ge0}^\ell}z_1^{a_1}\cdots z_\ell^{a_\ell}\ e_k\star(e_{a_1}\cdots e_{a_\ell})=\sum_{b=0}^{k}\ \sum_{I}\ \bigl(s^\ell t^{-|I|}\bigr)^b\,V^{(k-b)}_I\ e_b\prod_{c=1}^\ell E(t^{i_c}z_c). \]
+\[ \mathcal E_k:=\sum_{a\in\mathbb{Z}_{\ge0}^\ell}z_1^{a_1}\cdots z_\ell^{a_\ell}\ e_k\star(e_{a_1}\cdots e_{a_\ell})=\sum_{b=0}^{k}\ \sum_{I}\ \bigl(s^\ell t^{-|I|}\bigr)^b\,V^{(k-b)}_I\ e_b\prod_{c=1}^\ell E(t^{i_c}z_c). \]
 In particular the right-hand side is a polynomial in $z_1,\dots,z_\ell$, and $e_k\star(e_{a_1}\cdots e_{a_\ell})$ is its coefficient of $z^a$. The coefficients do not depend on $m$, so the identity holds in $\Lam$.
 \end{theorem}
 
@@ -286,24 +286,24 @@ The first part is the case $\ell=2$. For the second, expand both sides of \cref{
 \subsection{The recursion}
 By \cref{thm:subset}, $e_k\star(e_{a_1}\cdots e_{a_\ell})=\sum_{|A|=k}c_Ax_A\prod_ce_{a_c}(x_{A^c},sx_A)$, and $\sum_{a}z^a\prod_ce_{a_c}(x_{A^c},sx_A)=\prod_c\prod_{j\notin A}(1+x_jz_c)\prod_{i\in A}(1+sx_iz_c)$. Hence
 \begin{equation}\label{eq:Gamma}
-\Gamma_k(x)=\prod_cE(z_c)\cdot S^\varphi_k(x),\qquad \varphi(u):=u\prod_{c=1}^\ell\frac{1+suz_c}{1+uz_c}.
+\mathcal E_k(x)=\prod_cE(z_c)\cdot S^\varphi_k(x),\qquad \varphi(u):=u\prod_{c=1}^\ell\frac{1+suz_c}{1+uz_c}.
 \end{equation}
 Since $\varphi(x_i)\prod_cE(z_c)=x_i\prod_c(1+sx_iz_c)\cdot\prod_cE(\hx_i;z_c)$, \cref{lem:peel} gives, for $m\ge1$ and $k\ge1$,
 \begin{equation}\label{eq:Rl}
-[k]\,\Gamma_k(x)=\sum_{i=1}^mx_i\prod_{c=1}^\ell(1+sx_iz_c)\prod_{j\neq i}a_{ij}\ \Gamma_{k-1}(\hx_i),
+[k]\,\mathcal E_k(x)=\sum_{i=1}^mx_i\prod_{c=1}^\ell(1+sx_iz_c)\prod_{j\neq i}a_{ij}\ \mathcal E_{k-1}(\hx_i),
 \end{equation}
-where $\Gamma_{k-1}(\hx_i)$ denotes $\Gamma_{k-1}$ computed in the $m-1$ variables $\hx_i$. For $m=0$ we have $\Gamma_0=1$ and $\Gamma_k=0$ for $k\ge1$.
+where $\mathcal E_{k-1}(\hx_i)$ denotes $\mathcal E_{k-1}$ computed in the $m-1$ variables $\hx_i$. For $m=0$ we have $\mathcal E_0=1$ and $\mathcal E_k=0$ for $k\ge1$.
 
 \subsection{The step map}
 Fix $I$ and put $\gamma_c:=t^{i_c}z_c$, $C:=s^\ell t^{-|I|}=s^\ell\prod_cz_c/\prod_c\gamma_c$, and
-\[ \mathcal{F}(v):=\frac{\prod_{c=1}^\ell(v-sz_c)}{v\prod_{c=1}^\ell(v-\gamma_c)}=\frac{C}{v}+\sum_{c=1}^\ell\frac{\kappa_c}{v-\gamma_c},\qquad \kappa_c:=\frac{\prod_{c'}(\gamma_c-sz_{c'})}{\gamma_c\prod_{c'\neq c}(\gamma_c-\gamma_{c'})}. \]
+\[ \mathcal{F}(v):=\frac{\prod_{c=1}^\ell(v-sz_c)}{v\prod_{c=1}^\ell(v-\gamma_c)}=\frac{C}{v}+\sum_{c=1}^\ell\frac{\eta_c}{v-\gamma_c},\qquad \eta_c:=\frac{\prod_{c'}(\gamma_c-sz_{c'})}{\gamma_c\prod_{c'\neq c}(\gamma_c-\gamma_{c'})}. \]
 
 \begin{lemma}[Step map]\label{lem:step}
 For $b\ge0$, in $m\ge1$ variables,
 \begin{multline*}
 (1-t)\sum_{i}x_i\prod_c(1+sx_iz_c)\prod_{j\neq i}a_{ij}\ e_b(\hx_i)\prod_cE(\hx_i;\gamma_c)
 =C(1-t^{b+1})\,e_{b+1}\prod_cE(\gamma_c)\\
--\sum_{n=0}^{b}e_n\sum_{c=1}^\ell\kappa_c\,\gamma_c^{\,n-b-1}\bigl(E(t\gamma_c)-t^nE(\gamma_c)\bigr)\prod_{c'\neq c}E(\gamma_{c'}).
+-\sum_{n=0}^{b}e_n\sum_{c=1}^\ell\eta_c\,\gamma_c^{\,n-b-1}\bigl(E(t\gamma_c)-t^nE(\gamma_c)\bigr)\prod_{c'\neq c}E(\gamma_{c'}).
 \end{multline*}
 \end{lemma}
 \begin{proof}
@@ -311,10 +311,10 @@ Write $u=x_i$. Then $e_b(\hx_i)=[y^b]E(y)/(1+uy)$ and $E(\hx_i;\gamma)=E(\gamma)
 \[ H(v;y):=\frac{v\prod_c(1+svz_c)}{(1+yv)\prod_c(1+\gamma_cv)} \]
 (the sum over $i$ is finite and each term is regular at $y=0$, so $[y^b]$ commutes with it). Apply \cref{lem:res} over $\mathbb{K}=\mathbb{Q}(s,t,z,y)$. The poles of $H/v$ are simple, at $v=-1/a$ for $a\in\{y,\gamma_1,\dots,\gamma_\ell\}$, and $H(v)/v\sim C/(yv)$ at $\infty$, which contributes $C/y$. At $v=-1/a$ the residue of $f$ is $\rho_a\,E(ta)/E(a)$, where
 \[ \rho_a=\frac{\prod_c(a-sz_c)}{a\prod_{a'\neq a}(a-a')} , \]
-as one sees from $\prod_c(1-sz_c/a)=a^{-\ell}\prod_c(a-sz_c)$, $\prod_{a'\neq a}(1-a'/a)=a^{-\ell}\prod_{a'\ne a}(a-a')$ and $Q(-a)=E(ta)/E(a)$. Thus $\rho_y=\mathcal{F}(y)$ and $\rho_{\gamma_c}=-\kappa_c/(y-\gamma_c)$, and
-\[ (1-t)\sum_iH(x_i;y)\prod_{j\ne i}a_{ij}=\frac Cy-\mathcal F(y)\frac{E(ty)}{E(y)}+\sum_c\frac{\kappa_c}{y-\gamma_c}\,\frac{E(t\gamma_c)}{E(\gamma_c)} . \]
+as one sees from $\prod_c(1-sz_c/a)=a^{-\ell}\prod_c(a-sz_c)$, $\prod_{a'\neq a}(1-a'/a)=a^{-\ell}\prod_{a'\ne a}(a-a')$ and $Q(-a)=E(ta)/E(a)$. Thus $\rho_y=\mathcal{F}(y)$ and $\rho_{\gamma_c}=-\eta_c/(y-\gamma_c)$, and
+\[ (1-t)\sum_iH(x_i;y)\prod_{j\ne i}a_{ij}=\frac Cy-\mathcal F(y)\frac{E(ty)}{E(y)}+\sum_c\frac{\eta_c}{y-\gamma_c}\,\frac{E(t\gamma_c)}{E(\gamma_c)} . \]
 Multiply by $E(y)\prod_cE(\gamma_c)$ and write $E(y)=\sum_ne_ny^n$, $E(ty)=\sum_nt^ne_ny^n$. The coefficient of $e_n$ is $[y^{b-n}]$ of the Laurent expansion at $y=0$ of
-\begin{multline*} \Bigl(\frac Cy-t^n\mathcal F(y)\Bigr)\prod_cE(\gamma_c)+\sum_c\frac{\kappa_c}{y-\gamma_c}E(t\gamma_c)\prod_{c'\ne c}E(\gamma_{c'})\\=\frac{C(1-t^n)}{y}\prod_cE(\gamma_c)+\sum_c\frac{\kappa_c}{y-\gamma_c}\bigl(E(t\gamma_c)-t^nE(\gamma_c)\bigr)\prod_{c'\ne c}E(\gamma_{c'}), \end{multline*}
+\begin{multline*} \Bigl(\frac Cy-t^n\mathcal F(y)\Bigr)\prod_cE(\gamma_c)+\sum_c\frac{\eta_c}{y-\gamma_c}E(t\gamma_c)\prod_{c'\ne c}E(\gamma_{c'})\\=\frac{C(1-t^n)}{y}\prod_cE(\gamma_c)+\sum_c\frac{\eta_c}{y-\gamma_c}\bigl(E(t\gamma_c)-t^nE(\gamma_c)\bigr)\prod_{c'\ne c}E(\gamma_{c'}), \end{multline*}
 by the partial fraction expansion of $\mathcal F$. Expanding $1/(y-\gamma)=-\sum_{p\ge0}y^p\gamma^{-p-1}$ gives the claim: $n=b+1$ picks the pole at $0$, $n\le b$ picks the second sum, and $n>b+1$ contributes nothing.
 \end{proof}
 
@@ -325,19 +325,19 @@ Write $\mathcal T_k$ for the right-hand side of \cref{thm:ellcol}, so $\mathcal 
 \begin{equation}\label{eq:Ll}
 \sum_ix_i\prod_c(1+sx_iz_c)\prod_{j\ne i}a_{ij}\,\mathcal T_{k-1}(\hx_i)=[k]\,\mathcal T_k(x)\qquad(m\ge0,\ k\ge1)
 \end{equation}
-(for $m=0$ the left side is empty). Given \eqref{eq:Ll}, the theorem follows by induction on $k$ for all $m$ at once: $\Gamma_0=\prod_cE(z_c)=\mathcal T_0$ because $V^{(0)}_{0}=1$; for $m=0$, \eqref{eq:Ll} says $\mathcal T_k=0=\Gamma_k$; for $m\ge1$, \eqref{eq:Rl}, the induction hypothesis in the variables $\hx_i$, and \eqref{eq:Ll} give $[k]\Gamma_k=[k]\mathcal T_k$.
+(for $m=0$ the left side is empty). Given \eqref{eq:Ll}, the theorem follows by induction on $k$ for all $m$ at once: $\mathcal E_0=\prod_cE(z_c)=\mathcal T_0$ because $V^{(0)}_{0}=1$; for $m=0$, \eqref{eq:Ll} says $\mathcal T_k=0=\mathcal E_k$; for $m\ge1$, \eqref{eq:Rl}, the induction hypothesis in the variables $\hx_i$, and \eqref{eq:Ll} give $[k]\mathcal E_k=[k]\mathcal T_k$.
 
-Apply \cref{lem:step} to each term of $\mathcal T_{k-1}(\hx_i)$. The term $e_{b'}\prod_cE(t^{i_c}z_c)$ on the right receives three kinds of contributions: from $(b'-1,I)$ via the pole at $0$; from $(b,I)$, $b\ge b'$, via $-t^{b'}E(\gamma_c)$; and from $(b,I-\epsilon_c)$, $b\ge b'$, via $E(t\gamma'_c)$ with $\gamma'_c=t^{i_c-1}z_c$. Writing $\kappa'_c$ for $\kappa_c$ computed at $I-\epsilon_c$, $n:=k-b'$, $p:=b-b'$, and using $C_{I-\epsilon_c}=tC_I$, the coefficient of $e_{b'}\prod_cE(t^{i_c}z_c)$ in $(1-t)$ times the left side of \eqref{eq:Ll} is $C_I^{\,b'}$ times
-\[ (1-t^{b'})V^{(n)}_I+t^{b'}\sum_{p\ge0}C_I^{\,p}\Bigl[V^{(n-1-p)}_I\sum_c\kappa_c\gamma_c^{-p-1}-t^p\sum_cV^{(n-1-p)}_{I-\epsilon_c}\kappa'_c\,(t^{i_c-1}z_c)^{-p-1}\Bigr]. \]
+Apply \cref{lem:step} to each term of $\mathcal T_{k-1}(\hx_i)$. The term $e_{b'}\prod_cE(t^{i_c}z_c)$ on the right receives three kinds of contributions: from $(b'-1,I)$ via the pole at $0$; from $(b,I)$, $b\ge b'$, via $-t^{b'}E(\gamma_c)$; and from $(b,I-\epsilon_c)$, $b\ge b'$, via $E(t\gamma'_c)$ with $\gamma'_c=t^{i_c-1}z_c$. Writing $\eta'_c$ for $\eta_c$ computed at $I-\epsilon_c$, $n:=k-b'$, $p:=b-b'$, and using $C_{I-\epsilon_c}=tC_I$, the coefficient of $e_{b'}\prod_cE(t^{i_c}z_c)$ in $(1-t)$ times the left side of \eqref{eq:Ll} is $C_I^{\,b'}$ times
+\[ (1-t^{b'})V^{(n)}_I+t^{b'}\sum_{p\ge0}C_I^{\,p}\Bigl[V^{(n-1-p)}_I\sum_c\eta_c\gamma_c^{-p-1}-t^p\sum_cV^{(n-1-p)}_{I-\epsilon_c}\eta'_c\,(t^{i_c-1}z_c)^{-p-1}\Bigr]. \]
 So \eqref{eq:Ll} follows from the index identity
 \begin{equation}\label{eq:starl}
-\sum_{p\ge0}C_I^{\,p}\Bigl[V^{(n-1-p)}_I\sum_c\kappa_c\gamma_c^{-p-1}-t^p\sum_cV^{(n-1-p)}_{I-\epsilon_c}\kappa'_c\,(t^{i_c-1}z_c)^{-p-1}\Bigr]=(1-t^n)V^{(n)}_I\qquad(n\ge0),
+\sum_{p\ge0}C_I^{\,p}\Bigl[V^{(n-1-p)}_I\sum_c\eta_c\gamma_c^{-p-1}-t^p\sum_cV^{(n-1-p)}_{I-\epsilon_c}\eta'_c\,(t^{i_c-1}z_c)^{-p-1}\Bigr]=(1-t^n)V^{(n)}_I\qquad(n\ge0),
 \end{equation}
 because then the coefficient is $C_I^{\,b'}(1-t^{b'+n})V^{(n)}_I=(1-t^k)W^{(k)}_{b',I}$. (No uniqueness of such expansions is needed: the two sides agree term by term.)
 
 \emph{Generating function.} Let $\mathcal V_I(x):=\sum_{n\ge0}V^{(n)}_Ix^n$. The $p$-sums in \eqref{eq:starl} are convolutions, and $\sum_{p\ge0}C^p\gamma^{-p-1}x^{p+1}=x/(\gamma-Cx)$. So \eqref{eq:starl} for all $n$ is equivalent to
 \begin{equation}\label{eq:starlGF}
-\mathcal V_I(x)\,U(x)-\mathcal V_I(tx)=-\sum_c\kappa'_c\,\frac{x}{t^{i_c-1}z_c-C_Itx}\,\mathcal V_{I-\epsilon_c}(x),\qquad U(x):=1-\sum_c\frac{\kappa_cx}{\gamma_c-C_Ix}.
+\mathcal V_I(x)\,U(x)-\mathcal V_I(tx)=-\sum_c\eta'_c\,\frac{x}{t^{i_c-1}z_c-C_Itx}\,\mathcal V_{I-\epsilon_c}(x),\qquad U(x):=1-\sum_c\frac{\eta_cx}{\gamma_c-C_Ix}.
 \end{equation}
 Put $X_c:=C_Ix/(sz_c)$ and $A_c:=t^{i_c}$. Summing over $(n_c)$ in the definition of $V^{(n)}_I$, the exponent of $t$ attached to column $c$ is $-n_c|I|+i_c(|I|-i_c)$, so
 \begin{equation}\label{eq:VGF}
@@ -353,7 +353,7 @@ and passing from $I$ to $I-\epsilon_c$ replaces every $X_{c'}$ by $tX_{c'}$.
 \item column $c$ of $\mathcal V_IU$ contributes $\frac{(1-stX_c)(1-sX_c/A_c)}{(1-tX_c)(1-X_c)}\cdot\frac{1-X_c}{1-sX_c/A_c}=\frac{1-u_c}{1-tX_c}$, and column $c$ of $\mathcal V_I(tx)$ contributes $\frac{A_c-u_c}{1-tX_c}$;
 \item in the $c$-th term on the right (present only if $i_c\ge1$), the columns $c'\ne c$ contribute $\frac{A_{c'}-u_{c'}}{1-tX_{c'}}$; column $c$ contributes $\frac{D_{i_c-1}}{D_{i_c}}\frac{A_c}{t}X_c^{-1}\frac{1-st^2X_c/A_c}{1-tX_c}$ with $D_{i-1}/D_i=(1-A)/(ts-A)$; the prefactors contribute $s^{\ell-1}t^{-2(|I|-i_c)}$; and $\frac{x}{t^{i_c-1}z_c-C_Itx}=\frac{stX_c}{C_I(A_c-st^2X_c)}$.
 \end{itemize}
-It remains to compute $\Phi_c:=\kappa'_cK_{I-\epsilon_c}/K_I$. The diagonal factor of $\kappa'_c$ is $(\gamma'_c-sz_c)/\gamma'_c=(A_c-st)/A_c$. For $c'\neq c$ put $z=z_c$, $w=z_{c'}$, $i=i_c$, $j=i_{c'}$, using $K_{ij}(z,w)=K_{ji}(w,z)$ to place $c$ in the first slot. Then
+It remains to compute $\Phi_c:=\eta'_cK_{I-\epsilon_c}/K_I$. The diagonal factor of $\eta'_c$ is $(\gamma'_c-sz_c)/\gamma'_c=(A_c-st)/A_c$. For $c'\neq c$ put $z=z_c$, $w=z_{c'}$, $i=i_c$, $j=i_{c'}$, using $K_{ij}(z,w)=K_{ji}(w,z)$ to place $c$ in the first slot. Then
 \[ \frac{t^{i-1}z-sw}{t^{i-1}z-t^jw}\cdot\frac{K_{i-1,j}(z,w)}{K_{ij}(z,w)}=\prod_{r=0}^{j-1}\frac{t^iz-t^rw}{t^{i-1}z-t^rw}=t^j\,\frac{t^iz-w}{t^iz-t^jw}, \]
 the last product telescoping after writing $t^iz-t^rw=t(t^{i-1}z-t^{r-1}w)$. With $\rho_{cc'}:=z_c/z_{c'}=X_{c'}/X_c$ we get
 \[ \Phi_c=\frac{A_c-st}{A_c}\prod_{c'\neq c}A_{c'}\frac{A_c\rho_{cc'}-1}{A_c\rho_{cc'}-A_{c'}} . \]
@@ -374,7 +374,7 @@ The rational function $g(w)=\prod_c(w-\mu_c)/\bigl((w-1)\prod_c(w-\lambda_c)\big
 \end{proof}
 
 \begin{remark}
-For $\ell=1$, \cref{lem:Z} is the tautology $(\mu-1)-(\lambda-1)=\mu-\lambda$, and the proof above reduces to a one-index recursion for $c(n,j)$. For $\ell=2$ it is the polynomial identity that closes the two-column case. The cross kernel $K_I$ is forced by the pairwise splitting of $\kappa'_c$ in Step B.
+For $\ell=1$, \cref{lem:Z} is the tautology $(\mu-1)-(\lambda-1)=\mu-\lambda$, and the proof above reduces to a one-index recursion for $c(n,j)$. For $\ell=2$ it is the polynomial identity that closes the two-column case. The cross kernel $K_I$ is forced by the pairwise splitting of $\eta'_c$ in Step B.
 \end{remark}
 
 \subsection{Proof of \cref{cor:pieri-t0}}
