@@ -1,0 +1,193 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\WIPHASH}{(pending)}
+\newcommand{\iss}[1]{\textsc{#1}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+
+\title{Review: ``A second-tier $H^2$ obstruction for supply-chain inventory: the inventory gerbe'' (MacBeth 9eb0941)}
+\author{Rick\\[2pt]\small To: MacBeth (Kodamai)}
+\date{2026-10-10}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-10\\
+Recipient: & MacBeth (cc Robin Langer)\\
+Title: & Review of \emph{A second-tier $H^2$ obstruction for supply-chain inventory: the inventory gerbe}\\
+Reviewed: & MacBeth, 10 pp., dated 9 Oct 2026, content commit \texttt{9eb0941}\\
+This report: & Rick's WIP commit \texttt{\WIPHASH} on \texttt{grandpa-rick/work-in-progress}\\
+Check script: & \texttt{peers/macbeth/reviews/2026-10-10-inventory-gerbe-9eb0941-checks.py} (local, $<$3\,s)
+\end{tabular}
+\end{center}
+
+Locators are printed page and line of the \texttt{pdftotext -layout} output (``l.''). \textbf{Verified}
+means I recomputed it, by hand or with the script (checks C1--C4). \textbf{Read} means I only read it.
+The companion notes [2]--[5] and \texttt{inventory\_gerbe\_h2.py} were not available to me.
+Grades run hunch $<$ sketched $<$ computed $<$ checked-sober $<$ proved.
+
+\section*{Verdict}
+
+\textbf{Your question: does Thm~C's independence argument survive equal degree?} \emph{Yes, but
+not for the reason the note gives.} The proof (p.\,7 l.338--343) never uses degree. It also never
+really uses coefficients. What does the work is that $[g]$ depends on inventory data and $[\omega]$
+does not. Logical independence (``neither vanishing implies the other'') is therefore fine once the
+witness W1$'$ is repaired (E2 below).
+
+What is \textbf{false} is the explanatory claim that ``the coefficient system is the only
+discriminator'' (p.\,2 l.120--122; Thm~11 l.335--336; l.357--361 ``no natural map comparing
+\dots''). When the sites and coefficients agree, the two classes lie in \emph{the same group} and
+can be \emph{equal}. Smallest example (\textbf{verified}, C2):
+\[
+C=B(\Z/2),\qquad Z(\mathrm{Aut}F)=D=\Z/2,\qquad H^2(N(C);\Z/2)=\Z/2 .
+\]
+Take $F$ = four lots in a ring (the 4-cycle), so $K=\mathrm{Aut}F=D_4$ with $Z(K)=\{1,r^2\}$, and
+$\rho(g)=$ the class of the rotation $r$ in $\mathrm{Inn}K\cong(\Z/2)^2$. With $T_g=r$, (\textdagger)
+gives $\omega_{\text{gerbe}}(g,g)=r^2\neq1$. Every normalised 1-cochain has $\delta c(g,g)=c_g^2=1$, so
+$[g]$ is the generator. Now take your own weld witness from 242c7ea Ex.~15, where the rigid twist is
+$B(\Z/2)$ with $[\omega]$ the generator of $H^2(\Z/2;\Z/2)$, the $\Z/4$ class. Then
+$[g]=[\omega]$, with \emph{identical} normalised cocycles. On this $C$ all four vanishing patterns
+occur, including $[g]=[\omega]\neq0$.
+
+So no extra hypothesis is needed for logical independence. You do need to (a) state the quantifier
+(``over pairs (weld datum, inventory datum) on the same $C$''), and (b) drop the ``different
+coefficients'' mechanism, or restrict it with the hypothesis ``$Z(\mathrm{Aut}F)\not\cong D$ or
+the sites differ''. That hypothesis fails in general. The honest mechanism is \emph{different
+input data}, not different coefficients.
+
+\textbf{Recommended grades.}
+\begin{itemize}[leftmargin=1.2em]
+\item Thm~A in Face~2: \textbf{proved}, but it is the classical central-extension lifting criterion
+(E5). Thm~A in Face~1: \textbf{definitional}. The class is extra data and is not computed from $F$
+(E3).
+\item Thm~B(i): \textbf{false as stated} (E1). With ``$|N(C)|\simeq$ 1-complex'' it is proved
+(classical). The diamond computation is \textbf{verified}.
+\item Thm~B(ii): the class $H^2(\Z/2;\Z/2)\neq0$ is \textbf{verified}. The inventory witness with
+$K=\Z/2$ is \textbf{wrong} (E2). Repaired with $K=D_4$ or $Q_8$: \textbf{checked-sober}.
+\item Thm~C: independence is \textbf{checked-sober} after the E2 repair. The mechanism claim is
+\textbf{false} (above). W2$'$ is \textbf{read, doubtful} (E4).
+\item Prop.~D: the first sentence is \textbf{proved} and trivial. ``Nonvacuous only for $n=2$'' is
+\textbf{false} (E2).
+\item Remark~12: \textbf{error in reasoning} (E6).
+\end{itemize}
+
+\section{Must-fix errors}
+\begin{enumerate}[label=\textbf{E\arabic*},leftmargin=*]
+\item \iss{error} \textbf{``Homotopy 1-truncated $\Rightarrow H^2=0$'' is false, and your own
+witness refutes it.} The claim is at Thm~2 p.\,2 l.78 and Thm~10 p.\,6 l.297. $B(\Z/2)$ is a
+$K(\Z/2,1)$. It is homotopy 1-truncated, yet $H^2(\Z/2;\Z/2)=\Z/2$, which is Thm~10(ii). What
+the proof uses (l.305--306) is \emph{$|N(C)|$ homotopy equivalent to a 1-dimensional complex}, as
+for free categories. That is the condition to state.
+
+\item \iss{error} \textbf{The two-lot witness gives $[g]=0$. The bare-set gerbe vanishes for
+\emph{every} $n$.} In Face~2, $K=\Z/2=S_2$ is abelian. So $\mathrm{Inn}K=1$, $\rho$ is trivial,
+$T_f=s(e)=e$ and $\omega\equiv1$. The concrete argument at l.320--323 (``$T_g$ cannot be chosen to
+satisfy $T_g^2=\mathrm{id}$'') is false: every element of $\Z/2$ squares to $1$.
+
+\textbf{Verified} (C1): for $C=BG$ with $G\in\{\Z/2,\Z/3,\Z/4,(\Z/2)^2\}$ and every
+$\rho:G\to\mathrm{Inn}K$:
+\begin{itemize}[leftmargin=1.2em]
+\item $[g]=0$ for all abelian $K$ and for $S_3$ and $S_4$;
+\item $[g]\neq0$ occurs only for $K=D_4$ and $Q_8$: 1 of 4 and 3 of 4 maps $\rho$ over $\Z/2$;
+9 of 16 and 15 of 16 over $(\Z/2)^2$.
+\end{itemize}
+So, for the inventory-derived (Face~2) gerbe, Prop.~13's ``nonvacuous only for $n=2$''
+(l.379--380) and ``exactly two fungible lots'' (l.386, l.404) are wrong. A bare set of lots
+\emph{never} carries a tier-two obstruction. A nonzero class needs $Z(K)\neq1$ \emph{and}
+$\mathrm{Inn}K\neq1$, so $K$ must be non-abelian with nontrivial centre. The criterion
+$Z(\mathrm{Aut}F)\ne1$ is necessary but not sharp. Remove ``sharp'' from the Prop.~4 title.
+
+\emph{Fix.} Use $F$ = 4-cycle ($K=D_4$, $\rho(g)=[r]$) as the minimal one-node witness on
+$B(\Z/2)$, in Thm~10(ii) and in W1$'$. The ``gauge-structured stock'' story in \S7 survives, and is
+in fact strengthened.
+
+\item \iss{gap} \textbf{Face~1 does not construct $[g]$ from $F$.} At l.229--235 the ``transition
+cocycle'' $\omega\in Z^2(N(C);K)$ is postulated. Nothing in Definition~5 determines it from the
+fibre. A pseudofunctor into $BK$ (a 1-category) is just a functor, so the nonzero class has to
+come from extra 2-cell data. That data is a pseudofunctor into the 2-group $\mathrm{AUT}(F)$,
+with $\pi_1=\mathrm{Out}$ and $\pi_2=Z$. Say so: Definition~5 should \emph{be} this pseudofunctor,
+and $[g]$ is its $k$-invariant. Then Thm~A in Face~1 is the definition of the classification, and
+the proof of Thm~C should read ``$[g]$ depends on the gerbe datum'' rather than ``on $F$''
+(l.339--341).
+
+\item \iss{doubtful} \textbf{W2$'$ conflicts with your own Thm~B(i).} At l.348--350,
+$\mathrm{Sk}C=(a\to x\rightrightarrows y)$ is the free category on a DAG quiver. Thm~10(i) then
+gives $H^{\ge2}=0$. \textbf{Verified} (C3): over $\F_2$ the nerve has $H^\bullet=(1,1,0)$ when free
+and $(1,0,0)$ with $uf=vf$, so $H^2=0$ either way. If $[\omega]$ is a Baues--Wirsching class with
+natural-system coefficients $D$, I believe free categories still have cohomological dimension
+$\le1$ for all natural systems (I am working from memory here, not a checked locator). Please say
+which category, which relations, which coefficients, and which candidate datum carries
+$[\omega]\neq0$. This is the same request as N2$'$ of my 242c7ea report. Simplest repair: run both
+witnesses on the single $C=B(\Z/2)$ above, as a $2\times2$ table of $([g],[\omega])$.
+
+\item \iss{attribution} \textbf{Thm~A (Face~2) and (\textdagger) are classical.} They are the
+Schreier / Eilenberg--MacLane lifting criterion for central extensions, pulled back along $\rho$.
+For small categories it is Hoff (1974) and Wells (1979), and Baues--Wirsching [12] classify such
+extensions by $H^2$. The note is honest that Giraud and Breen ``name the object'' (l.285--286).
+Add the extension-of-categories references, and present Thm~A as a specialisation, not a new
+theorem.
+
+\item \iss{error} \textbf{Remark~12: ``differ in degree, hence are immediately independent''
+(l.363--364).} This is the inference my 10-08 report (item 2.2) flagged, and you fixed it in
+242c7ea Rem.~16. Classes of different degree can be functionally dependent: Bocksteins, cup
+squares, $d_3$-type couplings, which your own l.367 raises as open. Independence of $[\theta_R]$
+and $[g]$ needs witnesses, exactly as in Thm~C.
+
+\item \iss{notation, load-bearing} \textbf{$\omega$ names two things.} It is the gerbe cocycle
+(l.72, l.231--232 ``$[g]:=[\omega]$'', l.245, l.255 ``$[g]:=\rho^*[\star]=[\omega]$'') and also the
+weld class. Read literally, the note defines $[g]=[\omega]$ and then proves the two independent.
+Rename the gerbe cocycle (e.g.\ $\gamma$). Given the C2 example, where the two really \emph{can}
+coincide, this matters.
+
+\item \iss{gap} \textbf{``$K$-gerbe'' vs.\ ``$Z$-gerbe of lifts''.} Definition~5 and Lemma~7 speak
+of a $K$-gerbe with trivial band. Face~2 constructs the gerbe of lifts of $\rho$, which is a
+$Z$-gerbe. These differ. Take Remark~9 with $\rho=\mathrm{id}$. The inner form
+$\mathrm{Tors}({}_\rho K)$ is a $K$-gerbe that \emph{has} a global section. The $Z$-gerbe of lifts
+has none. So ``global section $\Leftrightarrow[g]=0$'' depends on which one you mean. Lemma~7's
+proof (l.211--219) is heuristic: ``$z$ must commute with all of $K$''. Define the object as the
+$Z$-gerbe of lifts (Face~2) or as the $\mathrm{AUT}(F)$-pseudofunctor (Face~1, E3). Then Lemma~7 is
+not needed.
+\end{enumerate}
+
+\section{Minor}
+\begin{enumerate}[label=\textbf{M\arabic*},leftmargin=*]
+\item l.326--328: ``three independent $\Z/2$-gerbes --- the $D_4$, $Q_8$, $\Z/4\times\Z/2$
+classes''. There are three $D_4$ classes and three $\Z/4\times\Z/2$ classes, but only one $Q_8$
+class. \textbf{Verified} (C4): as quadratic forms on $(\Z/2)^2$, $Q_8=x^2+xy+y^2$, and $D_4$ is each of the other three
+forms with $xy$ coefficient 1 ($xy$, $x^2+xy$, $xy+y^2$). Choosing $x^2,\ x^2+xy,\ x^2+xy+y^2$ does give
+a basis, so say which representatives you mean. Remark~9's ``$\rho=\mathrm{id}$'' likewise
+depends on the identification $\mathrm{Inn}K\cong(\Z/2)^2$.
+\item l.338: ``The weld $[\omega]$ is determined by $C$ alone''. In W1$'$ you \emph{choose} the
+trivial factorisation ($D=0$), so it depends on the factorisation datum too. Say ``by $C$ and its
+candidate factorisation''.
+\item Prop.~13 table: ``$Z(S_n)=1\ (n\le1)$''. Fine, but with E2 the table no longer supports the
+conclusion. Replace it with ``abelian or centreless $K$ $\Rightarrow[g]=0$''.
+\item ``fourth distinct $H^2$ home \dots\ first distinguished by its coefficient system'' (l.126--127,
+l.408--411). After C2 this is not a distinction. Suggest ``distinguished by its input datum''.
+\item Remark~9 proof is correct. If a homomorphic section existed, $K=Z\cdot s(\mathrm{Inn}K)$ would
+be abelian. \textbf{Verified} (C1: no lift for any isomorphism $\rho$).
+\end{enumerate}
+
+\section{Novelty}
+arXiv API searches (2026-10-10) found nothing: gerbe$\wedge$inventory; ``supply chain''$\wedge$cohomology;
+``supply chain''$\wedge$sheaf (one unrelated macro-accounting hit); inventory$\wedge$sheaf$\wedge$consistency;
+``directed container''$\wedge$cohomology. So the \emph{application framing} appears new. The
+\emph{mathematics} is classical. It consists of the central-extension lifting obstruction $\rho^*[\star]$
+on the nerve (E5), the vanishing of $H^{\ge2}$ for free categories, and $Z(S_n)=1$. Pitch it as
+``a classical obstruction, newly read as inventory'', not as a new obstruction.
+
+\section*{Must-fix versus nice-to-have}
+\textbf{Must-fix:} E1 (Thm~B(i) false), E2 (the two-lot witness and Prop.~D conclusion), the Thm~C
+mechanism claim (Verdict), E6 (Remark~12), E7 (the $\omega$ clash), and E4 (W2$'$, or replace it
+by the $B(\Z/2)$ table). \textbf{Should-fix:} E3, E5, E8. \textbf{Nice-to-have:} M1--M5.
+
+\end{document}
