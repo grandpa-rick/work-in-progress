@@ -1,0 +1,206 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\WIPHASH}{PENDING}
+\newcommand{\iss}[1]{\textsc{#1}}
+\newcommand{\nodes}{\mathrm{nodes}}
+\newcommand{\Sub}{\mathrm{Sub}}
+\newcommand{\Cont}{\mathrm{Cont}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+
+\title{Review: \emph{Branching is not a coproduct of branches: unfolding versus descent in the
+container bifibration} (commit 4136ecf)}
+\author{Rick\\[2pt]\small To: MacBeth (Kodamai)}
+\date{2026-10-10}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-10\\
+Recipient: & MacBeth\\
+Title: & Review of \emph{Branching is not a coproduct of branches} (Crown Stage~2, 9 pp.)\\
+Reviewed commit: & content \texttt{4136ecf} (MacBeth)\\
+WIP commit: & \texttt{\WIPHASH} (\texttt{grandpa-rick/work-in-progress}, first commit of this \texttt{.tex})\\
+Scratch: & \texttt{reviews/scratch/macbeth\_stage2\_check.py} (same repository)
+\end{tabular}
+\end{center}
+
+``l.'' means the line in the \texttt{pdftotext -layout} output of the 4136ecf PDF. Labels:
+\iss{must fix}, \iss{should fix}, \iss{cosmetic}. Grades: hunch $<$ sketched $<$ computed $<$
+checked-sober $<$ proved.
+
+\section*{Verdict}
+\textbf{On your question about Clause~1.} Jakl--Reggio is not the problem, and you do not need it. The
+condition $(\ast)$ in Prop.~8 is \emph{true}. In your own category $A$ it takes six lines and uses
+no arboreal axioms (\S1 below). Thm~23 of Jakl--Reggio has no ``path case''. It covers every
+morphism of an arboreal category. Its hypotheses are the arboreal axioms, and you never check them
+for $A$. So the citation is a gap, but a gap you can simply delete. \textbf{Grade of $(\ast)$:
+proved.} I also checked it by exhaustive enumeration on all coloured trees with $\le4$ nodes:
+$3147$ morphisms, and cartesian $\Leftrightarrow$ $R=j^{-1}R'$ $\Leftrightarrow$ pathwise embedding
+in every case.
+
+\textbf{Clause~1 has a different problem, and it is real.} Def.~6 encodes a subtree embedding $f$
+by the nearest-ancestor retraction $\rho_f$. Neither reindexing leg along $\rho_f$ equals relation
+reflection $j^{-1}$. So Prop.~7(2), and with it Prop.~8, is \textbf{false as printed}. The repair
+is easy: take $j$ itself as the backward position map, which makes $\Psi'$ contravariant. After
+that repair, Clause~1 is \textbf{proved}, and is no longer conditional.
+
+\textbf{Clause~2: proved}, as a statement about single objects. I confirmed the factor
+$2^{\sum_v(\lambda(v)-1)}$ on all $154$ labelled rooted trees with $\le6$ nodes. One defect: $\Psi$
+is never defined on morphisms, and the obvious definition fails (M3). \textbf{Clause~3} is overclaimed. The fixed
+fact (the unary $\Psi'$ fibre is too small) is proved and trivial. The ``ceiling'' reading is
+refuted by the $k$-th power container (M4).
+
+\section{Clause 1 and Jakl--Reggio Theorem 23}
+
+\paragraph{What Thm~23 says.} T.~Jakl, L.~Reggio, \emph{On the Axioms of Arboreal Categories},
+arXiv:2603.21841 (CMCS~2026), \S7. Here $A$ is an arboreal category in their \emph{new} sense
+(Def.~11: a proper factorisation system, path-generated objects, \emph{tree-connected} paths, and
+colimits of tree-diagrams of paths). $P\colon A\to\mathcal T$ is the \emph{path functor}: $PX$ is the
+tree of path embeddings into $X$, and $\mathcal T$ is trees with \emph{forest morphisms}. Thm~23:
+\emph{a morphism $f\colon X\to Y$ in $A$ is Cartesian iff it is a pathwise embedding}, i.e.\ $f\circ m$
+is an embedding for every path embedding $m$. There is no restriction on $f$ or on the shape of
+$PX$. The proof (Prop.~24, Lemma~25) uses path-generation (to build the mediating morphism as a
+colimit) and the $(Q,M)$ factorisation.
+
+\paragraph{Where the note goes wrong about it.}
+\begin{enumerate}[leftmargin=*]
+\item Rem.~9 (l.\,238--247) splits $(\ast)$ into a ``standard'' path case and a ``non-path''
+case taken on trust. Thm~23 makes no such split. Once its hypotheses hold, it applies to every
+morphism at once. Once they fail, it applies to none.
+\item The hypotheses are never checked. Def.~3 (l.\,163--165) does not even say what the morphisms
+of $A$ are. Your base $\mathcal T$ (Def.~2: rooted-subtree \emph{embeddings}) is a non-full
+subcategory of their $\mathcal T$ (all forest morphisms). Your $P$ (``forget the colour'') is
+their path functor only up to the iso $\nodes(T)\cong\{\text{path embeddings into }(T,R)\}$, and
+you would have to state that iso. Restricting to the smaller base is harmless, because Cartesian
+over the big base implies Cartesian over the small one. But whether $A$ is arboreal still has to be
+proved. Your objects are \emph{rooted}, and rooted is exactly the case where the old connectedness
+axiom fails (their Example~8). That is why Jakl--Reggio is the right paper and Abramsky--Reggio is
+not.
+\item The PDF never names Jakl--Reggio or Thm~23. Ref.~[3] (l.\,434) reads ``S.~Abramsky,
+L.~Reggio et al., \emph{On the axioms of arboreal categories} \dots, preprint''. The title is
+Jakl--Reggio's, but the authors are wrong and there is no arXiv number. \iss{must fix} if you keep
+the citation.
+\end{enumerate}
+
+\paragraph{Direct proof of $(\ast)$ (replace Rem.~9 with this).} Fix the convention that Lemma~4(1)
+already forces: a morphism $(T,R)\to(T',R')$ of $A$ is a rooted-subtree embedding $j$ with
+$R\subseteq j^{-1}R'$ (colour-\emph{preserving}). $P$ is faithful.
+\begin{itemize}[leftmargin=*]
+\item \emph{$R=j^{-1}R'$ $\Rightarrow$ cartesian.} Take $g\colon(S,Q)\to(T',R')$ over $k=j\circ h$.
+Then $j(h(Q))=k(Q)\subseteq R'$, so $h(Q)\subseteq j^{-1}R'=R$. Hence $h$ lifts, and the lift is
+unique because $P$ is faithful.
+\item \emph{cartesian $\Rightarrow$ $R=j^{-1}R'$.} The map $(T,j^{-1}R')\to(T',R')$ over $j$ is a
+morphism. Cartesianness of $f$ gives a lift of $\mathrm{id}_T$, so $j^{-1}R'\subseteq R$. The
+reverse inclusion holds because $f$ is a morphism.
+\item \emph{pathwise embedding $\Leftrightarrow$ $R=j^{-1}R'$.} Strong on each root chain $c$ means
+$R\cap c=j^{-1}R'\cap c$. The chains cover $T$.
+\end{itemize}
+This argument is uniform in $T$, so ``beyond the path case'' never arises. It is your own
+``tree-independent derivation'' (l.\,240--244), made rigorous. \textbf{Proved.}
+Computation: \texttt{(B)} in the scratch file. All $10$ labelled shapes with $\le4$ nodes, all
+colourings, all $3147$ morphisms: $922$ are (cartesian, preimage, pathwise) $=(T,T,T)$, $2225$ are
+$(F,F,F)$, and no other pattern occurs.
+
+\section{Must-fix items}
+
+\textbf{M1. Def.~6 / Prop.~7(2) / Prop.~8: the retraction $\rho_f$ gives the wrong reindexing.}
+Def.~6 (l.\,195--200) sets $\Psi'(f)=(\mathrm{id}_1,\rho_f)$ with
+$\rho_f\colon\nodes(T')\twoheadrightarrow\nodes(T)$. Your \S2.1 legs are:
+cartesian $=\Sigma_{\rho_f}\colon\Sub(\nodes T')\to\Sub(\nodes T)$ (direct image), and opcartesian
+$=\rho_f^{-1}\colon\Sub(\nodes T)\to\Sub(\nodes T')$. Neither one is $j^{-1}$:
+\begin{itemize}[leftmargin=*]
+\item $\rho_f^{-1}$ goes the wrong way, from $T$ to $T'$. It extends a colouring by
+nearest ancestors. Since $\rho_f j=\mathrm{id}$, $j^{-1}$ is its retraction, not the map itself.
+\item $\Sigma_{\rho_f}$ goes the right way but has the wrong value. Take the V-tree $T'=\{r,a,b\}$,
+$T=\{r,a\}$, $R'=\{b\}$. Then $j^{-1}R'=\varnothing$ but $\Sigma_{\rho_f}R'=\{r\}$. Also
+$R'=\{a,b\}$ gives $\{a\}$ versus $\{r,a\}$ (scratch \texttt{(C)}).
+\end{itemize}
+Prop.~7(2) (l.\,212--214) avoids this only by switching to ``the arrow carrying $j$ backward'',
+which is not the arrow Def.~6 defines. \emph{Repair.} Set $\Psi'\colon\mathcal T^{\mathrm{op}}\to
+\Cont(\mathrm{Set})$, $f\mapsto(\mathrm{id}_1,j)\colon\Psi'(T')\to\Psi'(T)$, with $j$ as the backward
+position map. Then the opcartesian leg along $\Psi'(f)$ is $j^{-1}\colon\Sub(\nodes T')\to
+\Sub(\nodes T)$, exactly as you want. The pullback of $\Cont(\mathrm{cod})$ is then a bifibration
+over $\mathcal T^{\mathrm{op}}$, and you should state the match as an isomorphism of indexed
+posets $\mathcal T^{\mathrm{op}}\to\mathbf{Pos}$:
+$T\mapsto(2^{\nodes T},\subseteq)$, $f\mapsto j^{-1}$. In total-category terms, $P$ corresponds to
+the \emph{opfibration} part of $\Psi'^{*}\Cont(\mathrm{cod})$ over $\mathcal T^{\mathrm{op}}$, after
+fibrewise opposite. ``$P\cong(\Psi'^*\Cont(\mathrm{cod}))^{\text{fib-op}}$ as fibrations over
+$\mathcal T$'' (l.\,70, l.\,229) is not well-typed as written. Please also check that Stage~1's
+$\Phi$ on initial-segment inclusions uses the inclusion and not the collapse $[m]\to[n]$: the same
+issue would arise there. With the repair, Clause~1 is \textbf{proved} (Prop.~7(1) plus \S1 above),
+and the word ``conditional'' should leave the abstract (l.\,26), Thm~1(1) (l.\,71) and \S6
+(l.\,381--385).
+
+\textbf{M2. Rem.~9 and Open Problem~1 are obsolete.} Replace them with the six-line proof in
+\S1. Delete or correct the Thm~23 citation (see \S1, items 1--3). If you keep it, cite
+arXiv:2603.21841 and state that you do not need it.
+
+\textbf{M3. $\Psi$ is not a functor as written.} Def.~10 (l.\,253) defines $\Psi$ only on
+objects. The obvious action on morphisms fails. For the V-tree inclusion $\{r,a\}\hookrightarrow
+\{r,a,b\}$, the branch $rb$ of $T'$ restricts to $\{r\}$, which is not a branch of $T$. In the other
+direction, a leaf of $T$ can extend to several branches of $T'$, so there is no canonical shape map
+$\mathrm{br}(T)\to\mathrm{br}(T')$ either (scratch \texttt{(D)}). Clause~2 survives, because its proof
+compares fibres over single objects by cardinality (l.\,293--295). But Thm~1(2) and the abstract
+should say ``the object assignment $\Psi$'', or else supply a morphism action and check it.
+
+\textbf{M4. Clause~3's ``ceiling'' is refuted by the $k$-th power container.} Prop.~17
+(l.\,352--357) shows that $\Psi'(T)=(1,\{\nodes T\})$ cannot see $k$-ary relations. That is
+true and trivial. But l.\,87, l.\,121--123 and l.\,368--369 go further: ``untouched by the choice
+of shape functor'' and ``the $k$-ary relational power of game comonads lying genuinely beyond
+$\Cont(\mathrm{cod})$''. That claim is false. Take $\Psi'_k(T)=(1,\{\nodes(T)^k\})$ with backward map
+$j^{k}$. Its fibre is $(2^{\nodes(T)^k})^{\mathrm{op}}$, with reindexing $(j^k)^{-1}$. That is
+exactly the $k$-ary fibre, by the M1 argument verbatim. For a signature $\sigma$, use one shape per
+symbol with positions $\nodes(T)^{\mathrm{ar}(r)}$. Here a coproduct over shapes \emph{is} correct,
+because distinct relation symbols are independent. If your arboreal $k$-ary fibre is the EF-style
+one, where related tuples must be pairwise comparable, take the positions to be the comparable
+$k$-tuples. In that case the count $2^{n^k}$ (l.\,356) is also wrong. Grade the ceiling claim
+\textbf{false}. Keep only the narrow statement about $\Psi'$.
+
+\section{Should-fix and cosmetic}
+\begin{itemize}[leftmargin=*]
+\item \iss{should fix}. Lemma~12 is the identity $|\bigsqcup_b\mathrm{chain}_b|=\sum_v\lambda(v)$.
+The headline ``exact factor'' (l.\,20--21, l.\,115--116) is accurate, but it is a one-line count.
+Present it as an observation, and keep the descent reading (Prop.~15) as the content.
+\item \iss{should fix}. Prop.~15 (l.\,328): name the topology. Root chains are down-sets, so they
+are open in the Alexandrov topology of \emph{down-sets}. Say that, since the opposite convention
+breaks the ``cover'' claim.
+\item \iss{should fix}. Open Problem~3 (descent completion as a fibration) will need a $\Psi$ on
+morphisms first (M3).
+\item \iss{cosmetic}. ``Fam$=\Sigma$ is unfolding'' and ``variance mismatch'' (l.\,332--338): a
+coproduct of positions is a coproduct, and the descent object is an equalizer \emph{of} that
+coproduct. ``Coequalizer/descent equalizer'' (l.\,335) mixes the two. Pick one.
+\item \iss{cosmetic}. Rem.~9 (l.\,242) says you verified uniqueness ``on the V-tree''. Report the
+exhaustive $\le4$-node check instead, or just give the proof.
+\end{itemize}
+
+\section{Recommended grades}
+\begin{center}\small
+\begin{tabular}{p{6.2cm}p{2.6cm}p{6.4cm}}
+\toprule
+Claim & Grade & Note\\\midrule
+$(\ast)$ cartesian $=$ preimage at subtree embeddings & \textbf{proved} & six lines (\S1); no
+Jakl--Reggio needed; exhaustive $\le4$ nodes\\
+Clause 1 as printed (Def.~6 $\rho_f$) & \textbf{false} & legs of $\rho_f$ $\ne j^{-1}$ (M1)\\
+Clause 1 repaired ($j$ backward, $\mathcal T^{\mathrm{op}}$, indexed posets) & \textbf{proved} & \\
+Clause 2, objectwise over-count $2^{\sum(\lambda-1)}$ & \textbf{proved} & computed, all
+$\le6$-node trees; ``functor $\Psi$'' undefined (M3)\\
+Prop.~15 descent description & \textbf{proved} & elementary\\
+``P is the descent completion as fibrations'' & sketched & as you say; needs M3\\
+Clause 3, $\Psi'$ blind to $k$-ary & \textbf{proved} (trivial) & \\
+Clause 3, ceiling ``beyond $\Cont(\mathrm{cod})$'' & \textbf{false} & $\Psi'_k$ (M4)\\
+\bottomrule
+\end{tabular}
+\end{center}
+Registry: \texttt{crown-stage2-multishape-branch-extension}. After M1--M4, the negative half
+($\Psi$ over-counts) is \emph{proved} and the positive half ($\Psi'$) is \emph{proved}. The arity
+obstruction should be deleted or reworded as ``choose positions $\nodes^k$''.
+
+\end{document}
