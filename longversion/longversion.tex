@@ -40,6 +40,7 @@
 
 \date{\today}
 
+\setlength{\emergencystretch}{2em}
 \begin{document}
 
 \begin{abstract}
@@ -57,7 +58,7 @@ Hikita introduced a two-parameter deformation $\star$ of the product of symmetri
 
 Hikita~\cite{Hikita25} defined a commutative, associative product $\star$ on symmetric functions over $\mathbb{Q}(q,t)$ by transporting the ordinary product through the level-one polynomial representation of the affine Hecke algebra. We write $s:=q^{-1}$. At $s=1$, $\star$ is the ordinary product. Hikita's Pieri rule \cite[Thm.~3.12]{Hikita25} reads, in our normalisation,
 \[ e_1\star e_r=(1-s)[r+1]_t\,e_{r+1}+s\,e_1e_r . \]
-Di Francesco and Kedem~\cite[\S8.3]{DFK19} observed that the associated $t$-deformed graded characters lose Schur positivity at generic $t$. This paper is about the structure that survives: explicit multiplication rules, triangularity, and valuations.
+Di Francesco and Kedem~\cite[\S8.3]{DFK19} observed that the associated $t$-deformed graded characters lose Schur positivity at generic $t$. Chen, Lu and Ruan~\cite{ChenLuRuan26} identify the derived Hall algebra of the Jordan quiver with a ring of double symmetric functions with parameter~$t$, sending the derived Hall basis to double Hall--Littlewood functions, for which they also prove Pieri rules; this is a related Hall-algebra product, and we do not compare it with~$\star$ here. This paper is about the structure that survives: explicit multiplication rules, triangularity, and valuations.
 
 \subsection*{Pieri rules}
 The operator $e_k\star(\cdot)$ is a sum over $k$-subsets (\cref{thm:subset}),
@@ -201,7 +202,8 @@ Terms with $m\in A$ vanish because of the factor $x_A$; for $m\notin A$, $a_{im}
 The next two lemmas drive every computation in \cref{sec:pieri}. For a function $\varphi$ of one variable put $S^\varphi_k(x_1,\dots,x_m):=\sum_{|A|=k}c_A\prod_{a\in A}\varphi(x_a)$.
 
 \begin{lemma}[Peeling one variable]\label{lem:peel}
-For $m\ge1$ and $k\ge1$, $[k]\,S^\varphi_k(x)=\sum_{i=1}^m\varphi(x_i)\prod_{j\neq i}a_{ij}\;S^\varphi_{k-1}(\hx_i)$.
+For $m\ge1$ and $k\ge1$,
+\[ [k]\,S^\varphi_k(x)=\sum_{i=1}^m\varphi(x_i)\prod_{j\neq i}a_{ij}\;S^\varphi_{k-1}(\hx_i). \]
 \end{lemma}
 \begin{proof}
 By \eqref{eq:omega-split} and the Poincar\'e identity, $[k]_t!\,S^\varphi_k=\sum_a\omega(a)\prod_l\varphi(x_{a_l})$, the sum over distinct $k$-tuples. Separate $a_1=i$: $\omega(a)=\prod_{j\neq i}a_{ij}\cdot\omega'(a_2,\dots,a_k)$, where $\omega'$ is the weight of \eqref{eq:ordered} for the variables $\hx_i$. Summing over $(a_2,\dots,a_k)$ gives $[k-1]_t!\,S^\varphi_{k-1}(\hx_i)$.
@@ -370,7 +372,9 @@ For indeterminates $\lambda_1,\dots,\lambda_\ell,\mu_1,\dots,\mu_\ell$,
 \[ \prod_c(\mu_c-1)-\prod_c(\lambda_c-1)=\sum_{c=1}^\ell(\mu_c-\lambda_c)\prod_{c'\ne c}(\lambda_{c'}-1)\frac{\lambda_c-\mu_{c'}}{\lambda_c-\lambda_{c'}} . \]
 \end{lemma}
 \begin{proof}
-The rational function $g(w)=\prod_c(w-\mu_c)/\bigl((w-1)\prod_c(w-\lambda_c)\bigr)$ has residue $\frac{\lambda_c-\mu_c}{\lambda_c-1}\prod_{c'\ne c}\frac{\lambda_c-\mu_{c'}}{\lambda_c-\lambda_{c'}}$ at $\lambda_c$, residue $\prod_c(1-\mu_c)/\prod_c(1-\lambda_c)$ at $1$, and residue $-1$ at $\infty$. The residues sum to zero; multiply by $\prod_c(\lambda_c-1)$.
+The rational function
+\[ g(w)=\prod_c(w-\mu_c)\Big/\Bigl((w-1)\prod_c(w-\lambda_c)\Bigr) \]
+has residue $\frac{\lambda_c-\mu_c}{\lambda_c-1}\prod_{c'\ne c}\frac{\lambda_c-\mu_{c'}}{\lambda_c-\lambda_{c'}}$ at $\lambda_c$, residue $\prod_c(1-\mu_c)/\prod_c(1-\lambda_c)$ at $1$, and residue $-1$ at $\infty$. The residues sum to zero; multiply by $\prod_c(\lambda_c-1)$.
 \end{proof}
 
 \begin{remark}
@@ -517,7 +521,8 @@ Since $s=q^{-1}$, the edge $s\to0$ is Hikita's $q\to\infty$, where the unrescale
 Let $\mathcal O=\mathbb{Q}(t)[s]_{(s)}$ and $\mathcal L=\bigoplus_\mu\mathcal O\,b_\mu$.
 \begin{enumerate}
 \item $E_kb_\mu\in\bigoplus_\nu\mathbb{Q}[s,t]\,b_\nu$; in particular $E_k\mathcal L\subseteq\mathcal L$.
-\item Let $L_k$ be the map induced by $E_k$ on $\mathcal L/s\mathcal L=\bigoplus_\mu\mathbb{Q}(t)\,\bar b_\mu$, and let $\phi(\bar b_\mu):=t^{-n(\mu')}P_{\mu'}(x;t^{-1})$. Then $\phi\circ L_k=t^{-\binom k2}\,e_k\cdot\phi$.
+\item Let $L_k$ be the map induced by $E_k$ on the quotient $\mathcal L/s\mathcal L=\bigoplus_\mu\mathbb{Q}(t)\,\bar b_\mu$,
+and let $\phi(\bar b_\mu):=t^{-n(\mu')}P_{\mu'}(x;t^{-1})$. Then $\phi\circ L_k=t^{-\binom k2}\,e_k\cdot\phi$.
 \item Explicitly, with $\rho=\mu'$ and $\kappa=\nu'$,
 \[ L_k\bar b_\mu=\sum_{\kappa/\rho\ \text{vertical $k$-strip}}t^{\mathrm{inv}(\kappa/\rho)}\prod_{v\ge1}\qbin{m_v(\kappa)}{r_v}\ \bar b_\nu, \]
 where $r_v$ is the number of rows of $\kappa$ of length $v$ that end in a box of the strip, and $\mathrm{inv}(\kappa/\rho)=\sum_{v<w}r_v\,(m_w(\kappa)-r_w)$.
@@ -607,7 +612,7 @@ As $E_kF$ is a symmetric polynomial in $x$ and $s$ (\cref{thm:DS}), each $E_k^{(
 \begin{theorem}[First order is a biderivation]\label{thm:bider}
 Let $D_k:=E_k^{(1)}$ and $B(f,g):=\partial_s(f\star g)|_{s=1}$ for $f,g\in\Lam_m$ with coefficients in $\mathbb{Q}(t)$ (independent of $s$). Then $D_k$ is a derivation of $\Lam_m$, and
 \[ B(f,g)=\sum_{k,l}M_{kl}\,\frac{\partial f}{\partial e_k}\frac{\partial g}{\partial e_l},\qquad M_{kl}:=D_k(e_l)=B(e_k,e_l)=M_{lk}. \]
-So $B$ is a symmetric biderivation, the carr\'e du champ of $L=\frac12\sum M_{kl}\partial^2/\partial e_k\partial e_l$.
+So $B$ is a symmetric biderivation, $B(f,g)=L(fg)-fL(g)-gL(f)$ for $L=\frac12\sum M_{kl}\partial^2/\partial e_k\partial e_l$.
 \end{theorem}
 \begin{proof}
 $D_k=\sum_Ac_Ax_A\Delta_A$ is a sum of derivations. By \cref{thm:DS} the $e^\star_\rho$ form a basis whose transition matrix to the $e_\rho$ is unitriangular at $s=1$; write $f=\sum_\rho a_\rho(s)e^\star_\rho$ with $a_\rho$ regular at $s=1$. By associativity, $f\star g=\sum_\rho a_\rho(s)E_{\rho_1}\cdots E_{\rho_\ell}g$. By \eqref{eq:taylor},
@@ -626,12 +631,16 @@ $M_{kr}=[(s-1)^1]\,e_k\star e_r$. Use the form of the Pieri rule in \cref{cor:pi
 
 \subsection{Blocks}
 \begin{lemma}[Polarization]\label{lem:polar}
-Let $D$ be a linear operator on a commutative ring and $g_1,\dots,g_r$ elements of it. For $S\subseteq[r]$ let $\delta_S:=[\cdots[D,g_{s_1}],\dots,g_{s_q}](1)=\sum_{T\subseteq S}(-1)^{|S\setminus T|}\prod_{i\in S\setminus T}g_i\,D\bigl(\prod_{i\in T}g_i\bigr)$. Then
+Let $D$ be a linear operator on a commutative ring and $g_1,\dots,g_r$ elements of it. For $S\subseteq[r]$ let
+\[ \delta_S:=[\cdots[D,g_{s_1}],\dots,g_{s_q}](1)=\sum_{T\subseteq S}(-1)^{|S\setminus T|}\prod_{i\in S\setminus T}g_i\,D\Bigl(\prod_{i\in T}g_i\Bigr). \]
+Then
 \[ D(g_1\cdots g_r)=\sum_{S\subseteq[r]}\Bigl(\prod_{i\notin S}g_i\Bigr)\delta_S , \]
 and if $D$ has order $\le p$, then $\delta_S=0$ for $|S|>p$, and for $|S|=p$ the map $(g_i)_{i\in S}\mapsto\delta_S$ is a derivation in each argument.
 \end{lemma}
 \begin{proof}
-Substituting the second expression for $\delta_S$, the right side is $\sum_T\prod_{i\notin T}g_i\,D(\prod_{i\in T}g_i)\sum_{S\supseteq T}(-1)^{|S\setminus T|}$, and the inner sum is $[T=[r]]$. Vanishing is the definition of order $\le p$. For $|S|=p$, $D':=[\cdots[D,g_{s_2}],\dots,g_{s_p}]$ has order $\le1$, so $D'(ab)=aD'(b)+bD'(a)-abD'(1)$, i.e.\ $[D',ab](1)=a[D',b](1)+b[D',a](1)$; and the iterated commutator is symmetric in its arguments.
+Substituting the second expression for $\delta_S$, the right side is
+\[ \sum_T\prod_{i\notin T}g_i\,D\Bigl(\prod_{i\in T}g_i\Bigr)\sum_{S\supseteq T}(-1)^{|S\setminus T|}, \]
+and the inner sum is $[T=[r]]$. Vanishing is the definition of order $\le p$. For $|S|=p$, $D':=[\cdots[D,g_{s_2}],\dots,g_{s_p}]$ has order $\le1$, so $D'(ab)=aD'(b)+bD'(a)-abD'(1)$, i.e.\ $[D',ab](1)=a[D',b](1)+b[D',a](1)$; and the iterated commutator is symmetric in its arguments.
 \end{proof}
 
 \begin{proposition}[Block expansion]\label{prop:block}
@@ -682,7 +691,7 @@ We have not found the block law stated anywhere. Its $t=0$ case is classical in 
 \begin{theorem}[Coarsenings: merge-history expansion]\label{thm:coarse}
 Let $\mu\neq\lambda$ be a coarsening of $\lambda$ and $m=\ell(\lambda)-\ell(\mu)$. Then $\val(c_{\lambda\mu})=m$, and $\Lead_{\lambda\mu}(t):=[(s-1)^m]c_{\lambda\mu}$ equals
 \[ \Lead_{\lambda\mu}(t)=\sum_{\text{tight histories }H\text{ ending at }\mu}\ \prod_{\text{merges in }H}W_k(J),\qquad \Lead_{\lambda\mu}(0)=(-1)^m\#\{H\}\neq0, \]
-where a (tight) history processes $\lambda_\ell,\dots,\lambda_1$, each part $k$ either opening a block of size $k$ or merging $p\ge1$ existing blocks of sizes $J=(j_1,\dots,j_p)$ into one block of size $k+|J|$ via the order-$p$ piece $E_k^{(p)}$, it is tight if the orders add up to $m$, it ends at $\mu$ if the final block sizes are $\mu$, and $W_k(J):=\lin\,[\cdots[E_k^{(p)},e_{j_1}],\dots,e_{j_p}](1)$.
+where a (tight) history processes $\lambda_\ell,\dots,\lambda_1$, each part $k$ either opening a block of size $k$ or merging a set of $p\ge1$ existing (distinguishable) blocks of sizes $J=(j_1,\dots,j_p)$ into one block of size $k+|J|$ via the order-$p$ piece $E_k^{(p)}$, it is tight if the orders add up to $m$, it ends at $\mu$ if the final block sizes are $\mu$, and $W_k(J):=\lin\,[\cdots[E_k^{(p)},e_{j_1}],\dots,e_{j_p}](1)$.
 \end{theorem}
 \begin{proof}
 Since $\ell(\mu)=\ell-m$, the coefficient of $e_\mu$ in $[(s-1)^m]e^\star_\lambda$ can be read modulo $I^{\ell-m+1}$. In \cref{prop:block}, a product over $|\pi|>\ell-m$ blocks of positive-degree factors lies in $I^{\ell-m+1}$; so only the terms where every step merges exactly $p_j$ blocks survive, i.e.\ tight histories. At a tight step, $\delta_S$ is a derivation in each argument (\cref{lem:polar}), so $\delta_S(bc,\dots)\in I^2$ for $b,c\in I$, and modulo $I^2$, $\delta_S(g_1,\dots,g_p)$ depends only on the linear parts $g_i\equiv\gamma_ie_{n_i}$: it is $\prod_i\gamma_i\,W_k(n_1,\dots,n_p)\,e_n$. An opening step contributes $e_k$, with $\gamma=1$. The final product of blocks is $\prod_C\gamma_Ce_{|C|}$ modulo $I^{\ell-m+1}$, which gives the formula. By \cref{thm:W} below, $W_k(J)|_{t=0}=(-1)^{|J|}$, so every tight history contributes $(-1)^m$ at $t=0$. Histories exist: in each block of the coarsening, let the last-processed part merge all the others, opened earlier as singletons. So $\Lead_{\lambda\mu}(0)\ne0$, and $\val(c_{\lambda\mu})=m$ by the lower bound in \cref{thm:blocklaw}.

@@ -67,6 +67,42 @@
     \field{year}{2026}
   \endentry
 
+  \entry{ChenLuRuan26}{misc}{}
+    \name{author}{3}{}{%
+      {{hash=CJ}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Jiayi},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Lu},
+         familyi={L\bibinitperiod},
+         given={Ming},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=RS}{%
+         family={Ruan},
+         familyi={R\bibinitperiod},
+         given={Shiquan},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CJLMRS1}
+    \strng{fullhash}{CJLMRS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{CLR26}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \verb{eprint}
+    \verb 2601.13497
+    \endverb
+    \field{title}{Double {H}all--{L}ittlewood symmetric polynomials}
+    \field{eprinttype}{arXiv}
+    \field{year}{2026}
+  \endentry
+
   \entry{DFK18}{article}{}
     \name{author}{2}{}{%
       {{hash=DFP}{%

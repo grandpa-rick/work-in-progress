@@ -114,7 +114,7 @@ For $\lambda,\mu\vdash n$, $\kappa(\lambda,\mu)$ is the largest $r$ such that $\
 \begin{theorem}[First order is a biderivation]\label{thm:bider}
 Let $D_k:=E_k^{(1)}$ and $B(f,g):=\partial_s(f\star g)|_{s=1}$. Then $D_k$ is a derivation of $\Lam_N$, and
 \[ B(f,g)=\sum_{k,l}M_{kl}\,\frac{\partial f}{\partial e_k}\frac{\partial g}{\partial e_l},\qquad M_{kl}:=D_k(e_l)=B(e_k,e_l)=M_{lk}. \]
-So $B$ is a symmetric biderivation, the carr\'e du champ of $L=\frac12\sum M_{kl}\partial^2/\partial e_k\partial e_l$.
+So $B$ is a symmetric biderivation, $B(f,g)=L(fg)-fL(g)-gL(f)$ for $L=\frac12\sum M_{kl}\partial^2/\partial e_k\partial e_l$.
 \end{theorem}
 \begin{proof}[Proof idea]
 $\binom{\Delta_A}{1}=\Delta_A$ is a derivation and left multiplication by $c_AX_A$ preserves this. Write $f=\sum_\rho a_\rho(s)e^\star_\rho$, differentiate $f\star g=\sum_\rho a_\rho(s)E_\rho g$ at $s=1$, and use $D_k(1)=0$. Symmetry of $M$ is commutativity of $\star$ \cite{Hikita25}.
@@ -150,7 +150,7 @@ We have not found the block law stated anywhere. Its $t=0$ case is classical in 
 \begin{theorem}[Coarsenings: merge-history expansion]\label{thm:coarse}
 Let $\mu\neq\lambda$ be a coarsening of $\lambda$ and $m=\ell(\lambda)-\ell(\mu)$. Then $\val(c_{\lambda\mu})=m$, and $\Lead_{\lambda\mu}(t):=[(s-1)^m]c_{\lambda\mu}$ equals
 \[ \Lead_{\lambda\mu}(t)=\sum_{\text{tight histories }H\text{ ending at }\mu}\ \prod_{\text{merges in }H}W_k(J),\qquad \Lead_{\lambda\mu}(0)=(-1)^m\#\{H\}\neq0, \]
-where a (tight) history processes $\lambda_\ell,\dots,\lambda_1$, each part $k$ either opening a block of size $k$ or merging $p\ge1$ existing blocks of sizes $J=(j_1,\dots,j_p)$ into one block of size $k+|J|$ via the order-$p$ piece $E_k^{(p)}$, it ends at $\mu$ if the final block sizes are $\mu$, and $W_k(J):=\lin\,[\cdots[E_k^{(p)},e_{j_1}],\dots,e_{j_p}](1)$.
+where a (tight) history processes $\lambda_\ell,\dots,\lambda_1$, each part $k$ either opening a block of size $k$ or merging a set of $p\ge1$ existing (distinguishable) blocks of sizes $J=(j_1,\dots,j_p)$ into one block of size $k+|J|$ via the order-$p$ piece $E_k^{(p)}$, it ends at $\mu$ if the final block sizes are $\mu$, and $W_k(J):=\lin\,[\cdots[E_k^{(p)},e_{j_1}],\dots,e_{j_p}](1)$.
 \end{theorem}
 \begin{proof}[Proof idea]
 Pass to $\mathrm{gr}_I\Lam$: non-tight terms land in $I^{\ell-m+1}$; tight steps are multilinear derivations, so only linear parts $g_i\equiv\gamma_ie_{n_i}\bmod I^2$ matter. At $t=0$, a roots-of-unity evaluation, Weyl orthogonality and Murnaghan--Nakayama give $W_k(J)|_{t=0}=(-1)^p$.
