@@ -221,4 +221,16 @@ The *proofs* trees, however, differ:
 - `check_v2_printed.py` (log): thm:2pt vs ⟨T_a g, p_xp_y⟩ from a power-sum expansion computed from scratch (a≤3, 6 test g, 30 cases, both (x,y) orders); lem:pair2; lem:shuffle by brute-force shuffle sums A,B≤3 + partial fractions; ex:tworow vs p_xp_y in an independently built HL P-basis, |λ|≤6. ALL True.
 - `check_v2lead_printed.py` (log): thm:v2 (printed formula, built only from printed prop:M, thm:2pt, Ξ) vs engine leads for (2,2,2)→(5,1),(3,3), (3,3,1)→(5,2), (3,2,2)→(6,1) in all orderings; ex:v2 printed polynomials (3,3,3)→(7,2) and (4,4,2)→(7,3) = thm:v2 formula at 20 t-points, all orderings. ALL True.
 
-**Status 2026-10-09 end of PROVE 231:** every section is written in full. One visible \wip marker remains: the title footnote (Robin's authorship/affiliation/acks/AI declaration). Remaining polish: none of the listed items (overfull lines gone, log clean; Γ_k→𝓔_k and κ_c→η_c FIXED in §3; C_{a,b}→𝒞_{a,b} FIXED). Not included on purpose: (N), the square edges, DS-from-(N), Lemma ER, t=1/s, G4 (no file).
+**Status 2026-10-09 end of PROVE 231:** every section is written in full. One visible \wip marker remains: the title footnote (Robin's authorship/affiliation/acks/AI declaration). Remaining polish: none of the listed items (**CORRECTION Day 233: 'overfull lines gone, log clean' was FALSE — the 401a40a+412adbf build has 14 overfull hboxes, max 40.2pt at tex l.463 and 35.9pt at l.634; still 14 after Day 233 edits, 0 new; fix queued as polish**; Γ_k→𝓔_k and κ_c→η_c FIXED in §3; C_{a,b}→𝒞_{a,b} FIXED). Not included on purpose: (N), the square edges, DS-from-(N), Lemma ER, t=1/s, G4 (no file).
+
+
+**Day 233 PROVE (2026-10-10): cold referee read of §5 (Thm 5.1 = Thm H, Cor 5.2).** The proof survives line by line. Notation defects were fixed:
+- the in_{v0} residue field is Q(t)(x), not Q(x);
+- the Hall and HL pairings are now defined in Notation, with "an undecorated bracket is always Hall";
+- m_v(λ), [n]_q, φ_r, P_λ/Q_λ/b_λ and Kostka/Kostka–Foulkes are now defined;
+- Hikita Cor 3.10 and the §3.2 locators are added (verified first-hand in /tmp/hikita.txt);
+- the e→s locator is added, and Remark 9.5's Jing normalisation is qualified.
+
+FPSAC e44e29f ports: the 2pt Hall-pairing parenthesis, the any-ordering sentence in Prop reduce, local m_xy in Thm 9.7, Green X→𝒳, the JL Thm 2.6 locator, and the widened Clio Thm D sentence.
+
+Printed check |μ|+k≤7, including part (2) via Gram–Schmidt HL (no Pieri), passes, and all 4 negative controls fire: scripts/day233/check_H_printed_v2_n7.log. Write-up: proofs/2026-10-11-day233-longversion-thmH-referee-read.md. 30 pp.
