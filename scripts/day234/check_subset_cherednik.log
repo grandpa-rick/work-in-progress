@@ -1,0 +1,6 @@
+T_a piLeft desc e= 1 rec= 0 commute=True match k=1,2,3: [True, True, True]
+   negative control (pi without s): [False, False, False]
+T_a piLeft desc e= -1 rec= 1 commute=True match k=1,2,3: [False, False, False]
+T_b piLeft desc e= 1 rec= 0 commute=True match k=1,2,3: [False, False, True]
+T_b piLeft desc e= -1 rec= 1 commute=True match k=1,2,3: [False, False, False]
+conventions reproducing the printed subset formula: 1

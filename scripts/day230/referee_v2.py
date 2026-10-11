@@ -1,5 +1,6 @@
 # Referee hand-check: implement Thm 6.6 (closed l=3,kappa=1 leads) LITERALLY from the FPSAC text, compare with engine log.
-import sympy as sp, re, itertools
+import sympy as sp, re, itertools, os
+DATA=os.path.join(os.path.dirname(os.path.abspath(__file__)),'data')  # engine logs copied from day224 (tracked)
 t,w=sp.symbols('t w')
 def br(m,q=None):
     q=t if q is None else q
@@ -45,7 +46,7 @@ def lead(a,b,c,x,y):
     return sp.factor(sp.cancel(res))
 ok=bad=0
 for f in ['newcases_n10.log','table3_n8.log']:
-  for line in open('/home/agent/projects/proofs/scripts/day224/'+f):
+  for line in open(os.path.join(DATA,f)):
     mm=re.match(r'(\([\d, ]*\)) -> (\([\d, ]*\)) : (.*?)  \|',line)
     if not mm: continue
     lam,mu,p=eval(mm.group(1)),eval(mm.group(2)),sp.sympify(mm.group(3))

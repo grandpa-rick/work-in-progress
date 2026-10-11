@@ -660,7 +660,7 @@ For $\lambda,\mu\vdash n$, $\kappa(\lambda,\mu)$ is the largest $r$ such that $\
 \begin{theorem}[Block valuation law]\label{thm:blocklaw}
 For all $\lambda,\mu\vdash n$ and all $t$, $\val(c_{\lambda\mu})\ge\ell(\lambda)-\kappa(\lambda,\mu)$. For $\mu\trianglerighteq\lambda$, $\mu\neq\lambda$, equality holds over $\mathbb{Q}(t)$ and at $t=0$:
 \[ \val(c_{\lambda\mu})=\ell(\lambda)-\kappa(\lambda,\mu). \]
-At $t=0$ the leading coefficient is $(-1)^{\ell-\kappa}N(\lambda,\mu)$ with $N(\lambda,\mu)\ge1$ a count of minimal raising-operator configurations.
+At $t=0$ the leading coefficient is $(-1)^{\ell-\kappa}N(\lambda,\mu)$ where $N(\lambda,\mu)\ge1$ is the number of $(k_{ij})_{1\le i<j\le\ell}$ in $\mathbb{Z}_{\ge0}$ with exactly $\ell-\kappa$ nonzero entries such that $\lambda+\sum k_{ij}(e_i-e_j)$ is a rearrangement of $\mu$ ($e_i$ the unit vectors; these are the minimal raising-operator configurations of the proof).
 \end{theorem}
 
 \begin{proof}[Proof of the lower bound]
@@ -867,7 +867,7 @@ Indeed, with $R(u)$ as in the proof of \cref{thm:W}, $R(u)=\prod_{x\in A}\bigl(1
 If $(a,b,c)$ is any ordering of $\lambda$ and $\kappa(\lambda,\mu)=1$, then $[(s-1)^2]c_{\lambda\mu}=[e_\mu]\bigl(\Gamma_a(e_b,e_c)+D_aD_b(e_c)\bigr)$.
 \end{proposition}
 \begin{proof}
-As $\star$ is commutative and associative (\cref{sec:hikita}), $e^\star_\lambda=E_aE_bE_c(1)$ for every ordering $(a,b,c)$ of $\lambda$; fix one. Since $E^{(p)}(1)=0$ for $p\ge1$, $[(s-1)^2]E_aE_bE_c(1)=E_a^{(2)}(e_be_c)+D_aD_b(e_c)+e_aE_b^{(2)}(e_c)$, and $E_a^{(2)}(e_be_c)=\Gamma_a(e_b,e_c)+e_bE_a^{(2)}(e_c)+e_cE_a^{(2)}(e_b)$. Each of $e_bE_a^{(2)}(e_c)$, $e_cE_a^{(2)}(e_b)$, $e_aE_b^{(2)}(e_c)$ is a part $e_{\lambda_i}$ times a function of the type of the other two parts (\cref{prop:block}), so every $\mu$ in its support has $\kappa(\lambda,\mu)\ge2$.
+As $\star$ is commutative and associative (\cref{sec:hikita}), $e^\star_\lambda=E_aE_bE_c(1)$ for every ordering $(a,b,c)$ of $\lambda$; fix one. Since $E^{(p)}(1)=0$ for $p\ge1$, $[(s-1)^2]E_aE_bE_c(1)=E_a^{(2)}(e_be_c)+D_aD_b(e_c)+e_aE_b^{(2)}(e_c)$, and $E_a^{(2)}(e_be_c)=\Gamma_a(e_b,e_c)+e_bE_a^{(2)}(e_c)+e_cE_a^{(2)}(e_b)$. So the surviving expansion terms are $E_a^{(2)}(e_be_c)$, $e_aE_b^{(2)}(e_c)$ and $D_aD_b(e_c)$, while the three terms to discard, $e_aE_b^{(2)}(e_c)$, $e_bE_a^{(2)}(e_c)$, $e_cE_a^{(2)}(e_b)$, are not these three: they are one term discarded from the expansion plus the two introduced by the $\Gamma_a$ packaging (the two triples share one element), and this list is complete. Each of them has support in $\kappa(\lambda,\mu)\ge2$. Indeed, $E_c(1)=e_c$, so $E_a(e_c)=E_aE_c(1)=e^\star_{(a,c)}$ (by commutativity) and $E_a^{(2)}(e_c)=[(s-1)^2]\,e^\star_{(a,c)}$. By \cref{thm:DS}, $e^\star_{(a,c)}$ is supported on $\{e_\nu:\nu\trianglerighteq(a,c)\}$, hence so is $E_a^{(2)}(e_c)$, and $e_bE_a^{(2)}(e_c)$ is supported on $\{e_{\nu\sqcup(b)}\}$. For such $\mu=\nu\sqcup(b)$, the blocks $\lambda^1=\mu^1=\{b\}$, $\lambda^2=\{a,c\}$, $\mu^2=\nu$ form a two-block decomposition, so $\kappa(\lambda,\mu)\ge2$. The other two terms are identical with the letters permuted.
 \end{proof}
 
 \begin{theorem}[Constant-term adjoint formula]\label{thm:CT}

@@ -1,0 +1,2 @@
+Thm 3.4 t=0 lead = (-1)^(l-kappa) N, N as defined, n<=7: 189 pass, 0 fail
+negative control (count l-kappa+1 edges instead): identity fails on 172/189

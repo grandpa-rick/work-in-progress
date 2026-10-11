@@ -1,0 +1,4 @@
+[printed] |lam|<=5: 18 partitions, 18 pass all claims (i)-(vi), 0 fail; failure kinds: {}  (49.2s)
+[divide_qint] |lam|<=5: 18 partitions, 5 pass all claims (i)-(vi), 13 fail; failure kinds: {'i:not-in-Q[s,t]': 33}  (59.4s)
+[scale_complement] |lam|<=5: 18 partitions, 5 pass all claims (i)-(vi), 13 fail; failure kinds: {'ii:diag': 13, 'vi:t=0lead': 36, 'v:sval': 35}  (49.2s)
+cross-check vs scripts/day234/ctable_n7.pkl: 53 coefficients, 0 mismatches

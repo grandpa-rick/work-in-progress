@@ -1,0 +1,2 @@
+table n<=7 built 13.7 s 44
+N-stability (N=n, n+2 vs 7), n<=6: 58 comparisons, 0 mismatches
