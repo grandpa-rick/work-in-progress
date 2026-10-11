@@ -209,9 +209,23 @@
                     "date": "2026-10-10",
                     "children": [],
                     "note_dream_20261010": "Day 233 dream: role premise->attempt. NS (proved) cites C1/C3 as textbook imports; this computed node is an in-progress attempt to REPLACE those imports by a presentation check + one abstract theorem (crown memory/connections/2026-10-09-N-imports-are-a-presentation-check.md), not a load-bearing premise of NS. Trust unchanged (computed). Clears the Day 233 validator advisory without inflating anything."
+                   },
+                   {
+                    "id": "N_imports_C1_C3_replaced",
+                    "approach": "(C1)+(C3) replaced: (C1) = our T_i, pi_0 give a group rep of B(W_e)=Omega x| B(W_a) (hand presentation check: (c) sigma s_i = s_{i+1} sigma; (d) sigma^2 with s cancelling; T_0 relations by pi-conjugation; braid via day232 Artin check) + Haiman ICM Thm 4.2 (Bernstein) with DERIVED dictionary: v_pi=s_1..s_{m-1}, pi T_i pi^{-1}=T_{i+1} (same direction), Phi(y^{e_i})=T_{i-1}^{-1}..T_1^{-1} pi T_{m-1}..T_i, iota(T->T^{-1}) gives our word W_i = t^{-(m-i)}Y_i. (C3) = hand triangularity: dominance filtration (Robin Hood lemma) + carried-entry path expansion on gr, telescoping P_q(mu)=P_q(lam)-(carried-e) => mu <=_c lam, only all-swap path hits lam, diag s^{lam_i} t^{b_i}, b_i=#{lam_j>lam_i}+#{j<i: lam_j=lam_i}; separating Z=sum c^{i-1}Y_i.",
+                    "trust": "proved",
+                    "role": "premise",
+                    "file": "proofs/2026-10-11-day235-N-imports-presentation-and-triangularity.md",
+                    "sources": [
+                     "Haiman-ICM2006"
+                    ],
+                    "note": "Machine: scripts/day235/tri_proof_check.py ALL True: path model == actual same-orbit part exactly (m=2 d<=5, m=3 d<=4, m=4 d<=3, m=5 d<=2); proof order holds on 372 same-orbit + 535 lower-dom terms; C1/(c)/(d) at m=5; NEG controls break (reversed order violated, T-for-T^{-1} non-commuting). Gap: Thm 4.2 cited (ICM proof outline), no self-contained braid-group proof of W_iW_j=W_jW_i. Twisted-Y triangularity not covered (not needed).",
+                    "date": "2026-10-11",
+                    "children": []
                    }
                   ],
-                  "imports_2026_10_09": "Day 232 PROVE: C2 now DERIVED (child C2_bernstein_from_B2_R4, proved). Remaining unlocated import: C3-nonsymmetric (simple joint spectrum of E_lambda on Pol_d), load-bearing. C1 located by Clio (DFK L2.7), not first-hand."
+                  "imports_2026_10_09": "Day 232 PROVE: C2 now DERIVED (child C2_bernstein_from_B2_R4, proved). Remaining unlocated import: C3-nonsymmetric (simple joint spectrum of E_lambda on Pol_d), load-bearing. C1 located by Clio (DFK L2.7), not first-hand.",
+                  "imports_2026_10_11": "Day 235 PROVE: C1 and C3 now discharged by child N_imports_C1_C3_replaced (proved; C1 via Haiman ICM 2006 Thm 4.2 first-hand + derived dictionary + hand presentation check; C3 by hand). With C2 (day232) no Cherednik-operator textbook imports remain; sole external = Bernstein presentation theorem (abstract)."
                  }
                 ],
                 "textbook_refs": "Cherednik operators: commutativity, Bernstein centrality of Sym(Y) (Lusztig 1989), triangularity on monomials (Cherednik; Macdonald AHA book) -- locators unverified (textbook)",

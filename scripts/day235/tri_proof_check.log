@@ -1,0 +1,23 @@
+1. T, T^-1 on x^(a,b), a,b<=5, match hand formulas                     True
+2a. braid T1T2T1=T2T1T2 on Artin basis X2^a X3^b (a<=1,b<=2)           True
+2b. quadratic (T-t)(T+1)=0 on 1, X2 (+ X1, X1^2X2 extra)               True
+2c. Artin reduction identities x3^3, x2^2 (hand proof of spanning)     True
+3a. m=5 pi T_i = T_{i+1} pi, deg<=2                                    True
+3b. m=5 pi^2 T_{m-1} = T_1 pi^2, deg<=2                                True
+3c. m=5 C1 Y_iY_j=Y_jY_i, deg<=2                                       True
+4. m=2 d<=5: diag = s^lam_i t^b_i                                      True
+4. m=2 d<=5: off-diag lower in proof order (18 same-orbit, 52 lower-dom) True
+4. m=2 d<=5: gr path model == actual same-orbit part                   True
+4. m=3 d<=4: diag = s^lam_i t^b_i                                      True
+4. m=3 d<=4: off-diag lower in proof order (88 same-orbit, 201 lower-dom) True
+4. m=3 d<=4: gr path model == actual same-orbit part                   True
+4. m=4 d<=3: diag = s^lam_i t^b_i                                      True
+4. m=4 d<=3: off-diag lower in proof order (156 same-orbit, 212 lower-dom) True
+4. m=4 d<=3: gr path model == actual same-orbit part                   True
+4. m=5 d<=2: diag = s^lam_i t^b_i                                      True
+4. m=5 d<=2: off-diag lower in proof order (110 same-orbit, 70 lower-dom) True
+4. m=5 d<=2: gr path model == actual same-orbit part                   True
+5a. NEG reversed orbit order violated (expect True): True
+5b. NEG T-instead-of-T^-1 Y commutativity fails (expect True): True
+5c. NEG PROVE.md pi formula disagrees with engine (expect True): True  engine pi x^(2,0,1) = X1*X2**2*s
+ALL: True
