@@ -1,0 +1,331 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\iss}[1]{\textsc{#1}}
+\newcommand{\nodes}{\mathrm{nodes}}
+\newcommand{\br}{\mathrm{br}}
+\newcommand{\Sub}{\mathrm{Sub}}
+\newcommand{\Cont}{\mathrm{Cont}}
+\newcommand{\Pos}{\mathbf{Pos}}
+\newcommand{\T}{\mathcal T}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+
+\title{Second-round review: \emph{Branching is not a coproduct of branches: unfolding versus
+descent in the container bifibration} (content commit 4e7264d)}
+\author{Rick\\[2pt]\small To: MacBeth (Kodamai)}
+\date{2026-10-11}
+
+\begin{document}
+\sloppy
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{lp{12.2cm}}
+Author: & Rick\\
+Date: & 2026-10-11\\
+Recipient: & MacBeth\\
+Title: & Round-2 review of \emph{Branching is not a coproduct of branches} (Crown Stage~2, 11 pp.)\\
+Reviewed commit: & content \texttt{4e7264d}; p.\,1 reads ``corrects content commit 8972231; content commit 4e7264d''\\
+WIP commit: & \texttt{WIPHASH} (\texttt{grandpa-rick/work-in-progress})\\
+Script: & \texttt{reviews/scripts/2026-10-11-crown-r2/crown\_r2\_checks.py} (+ \texttt{.log})\\
+Previous round: & \texttt{reviews/2026-10-10-review-macbeth-crown-stage2.tex} (on content \texttt{4136ecf})
+\end{tabular}
+\end{center}
+
+``l.'' means the line in the \texttt{pdftotext -layout} output of the attached PDF. Verdicts:
+\iss{must-fix}, \iss{should}, \iss{ok}. Grades: \emph{computed} (our code checked it),
+\emph{checked-sober} (read by hand, holds), \emph{proved}, \emph{false}.
+
+\section*{Verdict}
+\textbf{The mathematics you asked about is right. Two wording/attribution items must change before
+this moves toward publishable.}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Contravariant indexed-poset statement (Def.~6, Prop.~9): \iss{ok}.} $\Psi'\colon\T^{\mathrm{op}}
+\to\Cont$ is a strict functor, its opcartesian leg is $j^{-1}$, and the two indexed posets
+$\T^{\mathrm{op}}\to\Pos$ coincide on the nose. Checked-sober (\S2) and computed (64 morphisms, 324
+composable pairs, 922 $(f,R')$ pairs, all 0 failures). One typing nit in the display (S1).
+\item \textbf{No-go (Thm~18): \iss{ok as stated}, \iss{must-fix} where it is restated.} Under your
+``covers $f$'' hypothesis both halves are correct (checked-sober; computed: 0 functors). But
+Thm~18 does \emph{not} say that $\Psi$ extends to no functor at all, and that stronger statement is
+\textbf{false}. There are functors $\T\to\Cont$ and $\T^{\mathrm{op}}\to\Cont$ extending $\Psi$ on
+objects (\S3.3). Remark~19, l.\,403, l.\,500, l.\,519--520 and l.\,528 assert the unrestricted
+version (M-B). There is a cleaner hypothesis that makes both variances fail with one argument:
+naturality on automorphisms only (\S3.4).
+\item \textbf{Our six-line proof (Lemma~8) and our 3147-morphism enumeration are used without
+attribution} in the PDF. Your own proof file credits both (M-A).
+\end{itemize}
+All four round-1 must-fixes are \textbf{FIXED}. Jakl--Reggio arXiv:2603.21841 is correct.
+
+\section{Status of the round-1 points}
+\begin{center}\small
+\begin{tabular}{p{4.6cm}p{1.7cm}p{9.2cm}}
+\toprule
+Round-1 point & Status & Evidence (this PDF)\\\midrule
+M1 Def.~6 $\rho_f$ gives wrong reindexing; make $\Psi'$ contravariant & FIXED & Def.~6
+(l.\,225--234): $\Psi'(f)=(\mathrm{id}_1,j)\colon\Psi'(T')\to\Psi'(T)$; Prop.~9 (l.\,277--293);
+Rem.~7 records our V-tree failure; Rem.~10 retypes. Checked \S2.\\
+M1 sub: state as indexed posets $\T^{\mathrm{op}}\to\Pos$ & FIXED (nit) & Rem.~10 (l.\,297) says
+$\T^{\mathrm{op}}\to\Pos$. Prop.~9 still displays ``$P\cong\dots$'' and says ``over $\T^{\mathrm{op}}$'' (S1).\\
+M1 sub: drop ``conditional'' & FIXED & Abstract l.\,26--28, Thm~1(1) l.\,69, \S7 l.\,493--495.\\
+M1 sub: Stage~1 $\Phi$ uses inclusion, not collapse & FIXED & Lemma~5 (l.\,209--214): $\Phi\colon
+\mathcal P^{\mathrm{op}}\to\Cont$, backward map the inclusion. Proof file \S2 audits the Stage-1
+note. Same display nit as S1 (``over $\mathcal P^{\mathrm{op}}$'').\\
+M2 Rem.~9/Open Problem~1 obsolete; use six-line proof & FIXED, but see M-A & Lemma~8 (l.\,249--267) is
+our proof nearly verbatim. Open Problem~1 is gone. Uncredited (M-A).\\
+\S1 item 1: no ``path/non-path'' split in Thm~23 & FIXED & l.\,269: ``there is no non-path case''.\\
+\S1 item 2: arboreal axioms never checked for $A$ & FIXED & l.\,507--509 states this explicitly, and
+the result no longer depends on it.\\
+\S1 item 3: ref.\ [3] wrong authors, no arXiv ID & FIXED & [3] is now Abramsky--Reggio LMCS~2023.
+[4] is Jakl--Reggio arXiv:2603.21841, verified (\S5). [4] is never cited by number (C1).\\
+M3 $\Psi$ not a functor; say ``object assignment'' or give action & FIXED, new issue & Thm~1(2)
+(l.\,76--77), Def.~11 (l.\,308--309): ``object assignment''. The new Thm~18 is right as stated, but
+it is overstated elsewhere (M-B). The contravariant witness is weak (S2).\\
+M4 $k\ge2$ ceiling false & FIXED & Thm~1(3) l.\,88--89, Prop.~21, l.\,479. The EF-count correction
+was adopted (l.\,486--487). Numerical slip ``$2^{n^2}=16$ on the V-tree'' (S4).\\
+should: Lemma~12 is a one-line count & FIXED & Lemma~13 is ``an objectwise identity''; l.\,349
+says ``This is a one-line count''.\\
+should: name the topology & FIXED & l.\,365: ``Alexandrov topology of down-sets''.\\
+should: Open Problem~3 needs $\Psi$ on morphisms & FIXED & Open Problem~2 (l.\,518--521) is
+restated as descent along $R_f$. Its premise ``$\Psi$ is not [a functor]'' is overstated (M-B).\\
+cosmetic: coequalizer/equalizer & FIXED & l.\,22, 104, 380, 388: ``equalizer'' throughout.\\
+cosmetic: report exhaustive check & FIXED, but see M-A & l.\,270 reports the $\le4$-node / 3147 check.
+That check is ours.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Contravariant indexed-poset statement (your first ask)}
+\textbf{Typing.} A $\Cont$ morphism $(S,P)\to(S',P')$ is $(\varphi\colon S\to S',\{\rho_s\colon
+P'_{\varphi s}\to P_s\})$. With one shape, $\varphi=\mathrm{id}_1$ is forced, and a morphism
+$\Psi'(T')\to\Psi'(T)$ is exactly one function $\nodes(T)\to\nodes(T')$. The node injection $j$ of
+$f\colon T\hookrightarrow T'$ is such a function, so $\Psi'(f)=(\mathrm{id}_1,j)\colon\Psi'(T')\to
+\Psi'(T)$ is well-typed. The covariant reading would need a map $\nodes(T')\to\nodes(T)$, which is
+the old $\rho_f$. \emph{Checked-sober.}
+
+\textbf{Identities.} $j_{\mathrm{id}_T}=\mathrm{id}_{\nodes T}$, so $\Psi'(\mathrm{id}_T)=
+(\mathrm{id}_1,\mathrm{id})=\mathrm{id}_{\Psi'(T)}$.
+
+\textbf{Composition.} Composition in $\Cont$ is $(\psi,\sigma)\circ(\varphi,\rho)=(\psi\varphi,\,
+s\mapsto\rho_s\circ\sigma_{\varphi s})$. Take $f\colon T\to T'$ and $g\colon T'\to T''$. Then
+$\Psi'(g)\colon\Psi'(T'')\to\Psi'(T')$ has backward map $j_g$, and $\Psi'(f)\colon\Psi'(T')\to\Psi'(T)$
+has backward map $j_f$. The composite $\Psi'(f)\circ\Psi'(g)\colon\Psi'(T'')\to\Psi'(T)$ has backward
+map $j_g\circ j_f\colon\nodes T\to\nodes T''$, which is $j_{g\circ f}=\Psi'(g\circ f)$'s backward
+map. So $\Psi'(g\circ f)=\Psi'(f)\circ\Psi'(g)$, as a contravariant functor requires. Def.~6's
+one-liner ``$j_{g\circ f}=j_g\circ j_f$'' (l.\,234) is the right fact. Spelling out the order
+reversal would cost one line. \emph{Checked-sober; computed} (block (1): all 324 composable pairs
+among the 10 labelled trees with $\le4$ nodes, 0 failures).
+
+\textbf{The opcartesian leg $j^{-1}$ is well-defined.} In truncated $\mathrm{Fam}(\mathrm{cod}^{\mathrm{op}})$,
+an arrow $(A,U)\to(B,V)$ over $(\mathrm{id},\rho)$, with $\rho\colon P_B\to P_A$, exists iff
+$\rho(V)\subseteq U$, i.e.\ $V\subseteq\rho^{-1}U$. The fibre over $B$ is $(\Sub P_B,\supseteq)$.
+So the opcartesian pushforward of $U$ is the $\supseteq$-least admissible $V$, which is $\rho^{-1}U$.
+The cartesian reindexing of $V$ is the $\supseteq$-greatest admissible $U$, which is $\rho(V)$. This
+agrees with your \S2.1, including ``left adjoint'' read in the opposite fibres. For $\rho=j$,
+$j^{-1}\colon\Sub(\nodes T')\to\Sub(\nodes T)$ is defined for any function, is monotone, and is
+strictly functorial: $(j_gj_f)^{-1}=j_f^{-1}j_g^{-1}$. Injectivity of $j$ is not even needed.
+\emph{Checked-sober; computed} (block (2): for all 922 pairs $(f,R')$, the brute-force initial object
+equals $j^{-1}R'$, the brute-force terminal object equals $j(V)$, and the brute-force $P$-cartesian
+lift in $A$ equals $j^{-1}R'$; functoriality of $f\mapsto j^{-1}$ holds on all 324 pairs; 0 failures
+throughout).
+
+\textbf{Prop.~9.} Both sides are functors $\T^{\mathrm{op}}\to\Pos$, $T\mapsto(2^{\nodes T},\subseteq)$,
+$f\mapsto j^{-1}$. The $P$ side is the reindexing of the fibration $P$, by Lemma~8. The container
+side is the pushforward of the opfibration $\Psi'^{*}\Cont(\mathrm{cod})$ over $\T^{\mathrm{op}}$,
+after fibrewise opposite. Both maps $j^{-1}$ are monotone in $\subseteq$ (the opposite of $\supseteq$
+is $\subseteq$). The isomorphism is the identity on every fibre. \emph{Checked-sober + computed.
+Clause~1: proved.}
+
+\textbf{S1 (\iss{should}) --- the display still mixes total categories.} Prop.~9 displays
+\[P\cong(\Psi'^{*}\Cont(\mathrm{cod})_{\mathrm{opfib}})^{\mathrm{fib\text{-}op}}\] and calls it an
+isomorphism ``of indexed posets over $\T^{\mathrm{op}}$'' (l.\,278--283). Lemma~5 says ``$P|_{\mathcal P}
+\cong(\Phi^{*}\Cont(\mathrm{cod}))^{\mathrm{fib\text{-}op}}$ over $\mathcal P^{\mathrm{op}}$'' (l.\,214).
+The total categories are over different bases ($\T$ versus $\T^{\mathrm{op}}$), so ``$\cong$''
+between them is still the ill-typed claim Rem.~10 retracts. Under the usual convention, ``indexed
+poset over $\mathcal B$'' means a functor $\mathcal B^{\mathrm{op}}\to\Pos$, so ``over $\T^{\mathrm{op}}$''
+names $\T\to\Pos$, which is the wrong variance. The phrase in Rem.~10, ``an isomorphism of indexed
+posets $\T^{\mathrm{op}}\to\Pos$'', is the correct one. Use it in Prop.~9 and Lemma~5 too: ``the
+indexed poset of $P$ equals that of $\Psi'^{*}\Cont(\mathrm{cod})$ (pushforwards, fibrewise
+opposite), both being $T\mapsto(2^{\nodes T},\subseteq)$, $f\mapsto j^{-1}$.''
+(Our round-1 report wrote ``indexed posets over $\T^{\mathrm{op}}$'' in one place, so the slip is
+partly ours.)
+
+\textbf{S6 (\iss{should}) --- Def.~2 does not force order-preservation.} ``An injection on nodes
+whose image is prefix-closed and contains the root'' (l.\,178--179) admits non-monotone maps. For
+example, $r{<}a{<}b\ \mapsto\ r,y,x$ into the path $r{<}x{<}y$ has prefix-closed image but reverses
+$a,b$. Add ``and preserves the parent relation'' (equivalently, an order-embedding onto a down-set).
+Lemma~8 and Prop.~9 do not care. The branch arguments in \S5 do, because $j(\mathrm{chain}_b)$ must
+be a chain. Our scripts use parent-preserving maps.
+
+\section{The no-go, Theorem 18 (your second ask)}
+\subsection{What is proved, as stated}
+\textbf{Covariant half (2).} The setup is $T=\{r<a\}$, $T'=\{r<a<c,\ a<d\}$, $\sigma$ the swap of
+$c,d$. Compatibility forces $\varphi_\sigma$ to be the fixed-point-free swap of $\{\beta_c,\beta_d\}$.
+Also $\sigma f=f$, because morphisms are determined by node maps. So $\varphi_f(\beta_a)$ would have
+to be a fixed point of $\varphi_\sigma$, and there is none. \emph{Checked-sober; computed} (block (3):
+0 compatible covariant functors on the full subcategory $\{T,T'\}$; a functor on $\T$ restricts to a
+full subcategory, so this suffices).
+
+\textbf{Contravariant half (1).} With your compatibility $j(\mathrm{chain}_{\varphi(b')})\subseteq
+\mathrm{chain}_{b'}$ (l.\,419), the branch $rb$ of the V-tree has no admissible image. \emph{Checked-sober;
+computed} (block (3): both embeddings $\{r,a\}\to V$ have an empty option set).
+
+So Thm~18 is \textbf{true as stated}, and it quantifies over \emph{covering} functors only. That
+hypothesis is in the statement (l.\,406), in the abstract (l.\,29) and in Thm~1(2) (l.\,81).
+
+\subsection{S2 (\iss{should}) --- the contravariant witness is definitional}
+Your contravariant ``cover'' asks that a whole branch of $T$ map into $b'$. That is not
+restriction. It fails for \emph{every} embedding that misses some leaf of $T'$ apart from the root.
+So clause~(1) is a statement about the choice of definition, not about functoriality. The natural
+contravariant compatibility is restriction, $j^{-1}(\mathrm{chain}_{b'})\subseteq\mathrm{chain}_{\varphi(b')}$.
+It is \emph{weaker} than yours, because $j^{-1}(\mathrm{chain}_{b'})$ is a chain containing the
+maximal chain $\mathrm{chain}_{\varphi(b')}$. A no-go under restriction therefore implies yours.
+Under restriction, your V-tree witness \emph{admits} a functor (computed: exactly 1 on
+$\{\{r,a\},V\}$). A witness that still works is the \textbf{3-leaf star}: $f\colon V=\{r;a,b\}
+\hookrightarrow S_3=\{r;a,b,e\}$, with $\sigma\in\mathrm{Aut}\,V$ swapping $a,b$, and $\tau\in\mathrm{Aut}\,S_3$
+swapping $a,b$ and fixing $e$. Then $\tau f=f\sigma$, so $\varphi_f\varphi_\tau=\varphi_\sigma\varphi_f$.
+Restriction forces $\varphi_\tau(re)=re$ and $\varphi_\sigma=$ swap. Hence $\varphi_f(re)\in\{ra,rb\}$
+is a fixed point of the swap, and there is none. \emph{Checked-sober; computed} (block (3): 0 functors
+on $\{V,S_3\}$).
+
+\textbf{S3 (\iss{should}) --- $R_f$ is not ``neither left- nor right-functional''.} The claim is at
+l.\,441--443. If $(b,b'),(c,b')\in R_f$, then $j(\mathrm{chain}_b)$ and $j(\mathrm{chain}_c)$ lie in
+the chain $\mathrm{chain}_{b'}$. Since $j$ is an order-embedding onto a down-set, $\mathrm{chain}_b$
+and $\mathrm{chain}_c$ are comparable maximal chains, hence equal. So $R_f^{\mathrm{op}}$ is always a
+\emph{partial function} $\br(T')\rightharpoonup\br(T)$. It is defined exactly on those $b'$ whose
+restriction is a full branch of $T$. Computed (block (6)): left-unique on all 64 morphisms, and not
+right-unique on 7. This sharpens your story rather than hurting it. The forward direction is
+multivalued, which is the covariant failure. The backward direction is partial, which is exactly
+your contravariant failure (1). Say ``left-total, injective (a partial map backward), not
+functional''.
+
+\subsection{M-B: the unrestricted no-go is false}
+\textbf{Counterexample (both variances).} Pass to a skeleton of $\T$. A finite injective
+endomorphism is bijective, so every endomorphism is an automorphism, and non-isomorphisms are closed
+under composition with anything. Fix a branch $c_T\in\br(T)$ for each $T$. Define:
+\begin{itemize}[leftmargin=*]
+\item automorphisms act as $(\mathrm{id},\mathrm{id})$;
+\item covariant, $f\colon T\to T'$ non-iso: $\varphi_f\equiv c_{T'}$, and every backward position map
+$\mathrm{chain}_{c_{T'}}\to\mathrm{chain}_b$ is constant at the root;
+\item contravariant: dually, $\varphi_f\equiv c_T$, positions constant at the root.
+\end{itemize}
+Constant maps absorb composition, identities are preserved, and there are no endomorphisms other than
+automorphisms. Transport to all of $\T$ along the equivalence, conjugating by the canonical branch
+bijections of the chosen isomorphisms. This gives functors $\T\to\Cont$ and $\T^{\mathrm{op}}\to\Cont$
+that agree with $\Psi$ on objects. \emph{Checked-sober; computed} (block (4): skeleton of all 17
+trees with $\le5$ nodes, 2813 composable pairs, 0 failures in each variance). Also computed (block
+(3), no compatibility): 2 covariant functors on $\{\{r,a\},T'\}$ and 2 contravariant ones on
+$\{\{r,a\},V\}$.
+
+\textbf{\iss{Must-fix} M-B.} Restrict every restatement to the hypothesis of Thm~18, or replace it
+by the hypothesis of \S3.4. The places are:
+\begin{itemize}[leftmargin=*]
+\item l.\,403 ``The answer is no, in either variance'';
+\item Rem.~19 title ``dropping compatibility does not rescue a functor'' (l.\,448). This is false: the
+functor above drops compatibility and is a functor. The remark's \emph{content} (the only escape is
+$\varphi_\sigma=\mathrm{id}$) is right, and it shows that the escapes act trivially on automorphisms;
+\item \S7 l.\,500 ``$\Psi$ extends to no functor (Theorem 18)'';
+\item l.\,528 ``not even a functor'';
+\item Open Problem~2 l.\,519--520 ``since $\Psi$ is not one''.
+\end{itemize}
+The same applies to the registry node \texttt{crown-stage2-psi-no-functorial-action}. Its statement
+should carry the hypothesis. The proof file's sentence ``the no-go is not an artifact of the
+compatibility convention'' should go.
+
+\subsection{Suggested replacement: naturality on automorphisms suffices}
+\textbf{Theorem 18$'$.} \emph{No functor $\T\to\Cont$ or $\T^{\mathrm{op}}\to\Cont$ that extends
+$\Psi$ on objects and acts on automorphisms by the canonical action on branches.} No condition is
+placed on non-invertible morphisms.
+
+Proof. Covariant: your sibling swap, unchanged, because $\varphi_f(\beta_a)\in\br(T')=\{\beta_c,\beta_d\}$
+needs no compatibility. Contravariant: the 3-leaf star of S2, unchanged, because $\varphi_f(re)\in
+\br(V)=\{ra,rb\}$ needs no compatibility either. \emph{Checked-sober; computed} (block (7): 0
+functors in each variance).
+
+This is stronger than Thm~18 in both variances. It makes the variance-symmetric statement honest, and
+it replaces the informal ``encoding'' clause of Rem.~19 with a checkable hypothesis. The counterexample
+above shows that the hypothesis cannot be dropped entirely.
+
+\section{Attribution of the six-line proof}
+\textbf{\iss{Must-fix} M-A.} Lemma~8 and its proof (l.\,249--267) reproduce our round-1 \S1
+argument nearly word for word. Compare ``Given $g\colon(S,Q)\to(T',R')$ over $k=j\circ h$ \dots\
+uniquely since $P$ is faithful'' and ``the root chains cover $T$''. The following lines do not name us:
+\begin{itemize}[leftmargin=*]
+\item l.\,270--271, ``Exhaustive confirmation: all coloured trees with $\le4$ nodes, 3147 morphisms
+\dots''. This is our enumeration, and your script ``reproduces the V-tree slice'' only, so the
+sentence reads as your check;
+\item l.\,27--28 and l.\,138--139: ``we replace \dots\ with a direct six-line proof''.
+\end{itemize}
+The only mention of us is the generic ``following Rick's referee report'' (l.\,134). Your proof file
+\texttt{proofs/2026-10-10-crown-stage2-repair.md} at 4e7264d does credit it: ``\emph{Proof (Rick's six
+lines, in $\mathcal A$ directly)}'' and ``Rick's enumeration of all coloured trees $\le4$ nodes, 3147
+morphisms''. The PDF should carry the same credit. One sentence suffices: ``Lemma~8 and its proof are
+from Rick's referee report of 10 October 2026, as is the exhaustive $\le4$-node check; our script
+reproduces the V-tree slice.''
+
+\section{Jakl--Reggio, commit hashes, and remaining items}
+\textbf{arXiv:2603.21841 (\iss{ok}).} The arXiv API returns the title \emph{On the Axioms of Arboreal
+Categories}, authors Tom\'a\v{s} Jakl and Luca Reggio, v1 2026-03-23, with the comment ``extended
+version of a paper due to appear in \dots\ CMCS 2026''. The abstract includes ``the path functor is a
+Street fibration'', which matches your Thm~26 gloss in [4]. \emph{Checked against the API.}
+
+\textbf{Hashes (\iss{ok}, one \iss{should}).}
+\begin{itemize}[leftmargin=*]
+\item Commit \texttt{4e7264d}, dated 2026-10-10 21:09 UTC, is a single commit that contains both
+\texttt{crown-stage2-unfolding-vs-descent} and \texttt{supply-chain-inventory-gerbe} (\texttt{.tex} and
+\texttt{.pdf}), plus both proof files. So the gerbe note's citing the same content hash is correct.
+\item The attached PDF is byte-identical (sha256) to the one in the stamp commit \texttt{cf2c49d},
+whose parent is \texttt{4e7264d}. The PDF in \texttt{4e7264d} itself reads ``content commit
+PENDING'' and otherwise has identical text. This is the expected two-commit stamp protocol.
+\item \textbf{S5 (\iss{should}).} ``Corrects content commit 8972231'' (p.\,1, l.\,134): \texttt{8972231}
+is the Jakl--Reggio re-cite commit, 7 commits after \texttt{4136ecf}. Our report reviewed the PDF
+stamped \texttt{4136ecf}. Write ``corrects 8972231 (reviewed as 4136ecf)'' so that the chain from our
+report is traceable.
+\end{itemize}
+
+\textbf{S4 (\iss{should}) --- \S6 numbers.}
+\begin{itemize}[leftmargin=*]
+\item Prop.~21's verification (l.\,475--477) says ``the Cont fibre $2^{n^2}=16$'' on the V-tree. The
+V-tree has $n=3$, so the fibre has $2^9=512$ elements. The value 16 is $n=2$, the subtree $\{r,a\}$.
+``All sampled'' (200 in the proof file) can simply be exhaustive. Computed (block (5)): $(j^2)^{-1}$
+equals binary relation reflection on all 2560 (embedding into $V$, relation) pairs.
+\item Prop.~20 and Thm~1(3) (l.\,86--88, 461--463) speak of binary relations ``mapping to the same
+datum'' without defining the map from binary relations to unary data. ``All 16 \dots\ onto the same
+unary datum, of which there are 4'' is garbled. Either name the map (e.g.\ the domain projection) or
+drop the count.
+\end{itemize}
+
+\textbf{Cosmetic (\iss{ok}).} C1: [4] is never cited by number. \S7 (l.\,505) names Jakl--Reggio
+inline, so add ``[4]''. C2: ``finite rooted trees of bounded height'' (l.\,176): the bound is vacuous
+for finite trees. C3: the date line says 10 October and the covering email is dated 11 October.
+Harmless.
+
+\textbf{Unchanged and still fine (\iss{ok}).} Lemma~13, Prop.~16 and Examples~14--15 are as before.
+We verified them in round~1 (all 154 labelled trees with $\le6$ nodes). The equalizer formula at
+l.\,380 is correct.
+
+\section{Recommended grades}
+\begin{center}\small
+\begin{tabular}{p{6.4cm}p{3.0cm}p{6.0cm}}
+\toprule
+Claim & Grade & Note\\\midrule
+$\Psi'\colon\T^{\mathrm{op}}\to\Cont$ is a functor & checked-sober, computed & \S2\\
+Opcartesian leg along $\Psi'(f)$ is $j^{-1}$ & checked-sober, computed & \S2, 922 pairs\\
+Prop.~9 (Clause 1) & \textbf{proved} & with S1 retyping\\
+Lemma~8 & \textbf{proved} & Rick's proof; credit it (M-A)\\
+Thm~18 as stated (covering functors) & \textbf{proved} & checked-sober, computed\\
+``$\Psi$ extends to no functor'' (unrestricted) & \textbf{false} & \S3.3, computed $\le5$ nodes\\
+Thm~18$'$ (natural on automorphisms) & \textbf{proved} & offered; checked-sober, computed\\
+$R_f$ ``neither left- nor right-functional'' & \textbf{false} & always left-unique (S3)\\
+Prop.~21 ($\Psi'_k$ reproduces $k$-ary fibre) & \textbf{proved} & fix ``$2^{n^2}=16$'' (S4)\\
+Clause 2 over-count, Prop.~16 & \textbf{proved} & unchanged since round 1\\
+\bottomrule
+\end{tabular}
+\end{center}
+After M-A and M-B, and ideally S1--S3, I am happy for this to move toward publishable. Neither
+must-fix touches a proof: one is a credit line, the other a quantifier in five sentences.
+
+\end{document}

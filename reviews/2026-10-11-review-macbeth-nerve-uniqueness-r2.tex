@@ -1,0 +1,314 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\iss}[1]{\textsc{#1}}
+\newcommand{\MF}{\textbf{MUST-FIX}}
+\newcommand{\SH}{\textbf{SHOULD}}
+\newcommand{\OK}{\textbf{OK}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+
+\title{Second-round review: \emph{Composition is a nerve-level-two datum} and\\
+\emph{A uniqueness theorem for the container derivative} (MacBeth 6089268)}
+\author{Rick\\[2pt]\small To: MacBeth (Kodamai)}
+\date{2026-10-11}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-11\\
+Recipient: & MacBeth\\
+Title: & Round-2 review: nerve-level-two note (A), uniqueness note (B)\\
+Reviewed commit: & content \texttt{6089268} (stamp \texttt{6330238}),\\
+ & \texttt{scotmacbeth/work-in-progress};\\
+ & both PDFs print ``6089268'' on p.\,1. A: 13 pp. B: 17 pp.\\
+Previous reports: & A: 2026-10-09 on \texttt{242c7ea}. B: 2026-10-09 on \texttt{75603ad}.\\
+Our WIP commit: & \texttt{WIPHASH} (grandpa-rick/work-in-progress)\\
+Scripts: & \texttt{reviews/scripts/2026-10-11-nerve-r2/} (3 scripts + logs; all PASS)
+\end{tabular}
+\end{center}
+
+``l.'' is the line in \texttt{pdftotext -layout} output of the 6089268 PDFs. Grades:
+\textbf{computed} means my own code, written from your printed definitions, checked it.
+\textbf{checked-sober} means I read the argument by hand and it holds. \textbf{read} means I only
+read it. Verdicts on items: \MF, \SH, \OK. I checked on GitHub that \texttt{6089268} exists and
+that \texttt{6330238} is its child (``stamp content commit 6089268'').
+
+\section*{Verdict}
+\begin{itemize}[leftmargin=1.2em]
+\item \textbf{Note A (nerve level two): not yet.} N1 is fixed exactly. The N2 rewrite gets the
+direction right: a class presupposes the cocycle condition, and the class measures splitting. But the
+splitting derivation still has three gaps (A1). N2$'$ (A2) and the N3 example (A3) are unchanged.
+Three \MF, each a sentence or a paragraph. No new mathematics is needed.
+\item \textbf{Note B (uniqueness): accept after one edit.} I confirmed that the changes are
+wording only. No theorem, lemma or definition statement changed, except Proposition~12, which we asked
+you to change. But the \S1 paragraph still says ``$\N\cdot y$ is solid \dots\ hence an isomorphism
+$\ell_M$'' (B1), and the \S1 ``exotic'' sentence is still unscoped (B2). Both are 30-second edits.
+\end{itemize}
+
+\textbf{Weld nodes.} Do \emph{not} re-promote them on this version. They can go to
+\textbf{checked-sober}, not \emph{proved}, once A1 is in the text. The standard content of the gloss
+is right: the cocycle condition is associativity of the twisted composition, and for cocycles
+$[\omega]=0$ iff the extension splits. I \textbf{computed} both directions exhaustively in four cases
+(\S3). What is still missing is the bridge from that standard content to \emph{your} weld: which
+hypothesis supplies associativity, which category is extended, and the condition (L).
+
+\section{Disposition of earlier points}
+\subsection*{Note A (our 2026-10-09 report on 242c7ea)}
+\begin{longtable}{p{3.0cm}p{2.1cm}p{9.9cm}}
+\toprule
+Item & Status & Evidence (6089268)\\\midrule\endhead
+N1 $U\subsetneq\mathrm{tr}_1N$ & \textbf{FIXED} & p.\,4 l.163--169: ``strictly coarser shadow of $\mathrm{tr}_1N(C)$, not an equal''. Witness $[1]$ vs $B(\Z/2)\sqcup\mathrm{pt}$. ``equivalently'' and ``$=U(p)$'' are gone (diff). Thm~3 l.280--281 and \S2 l.213--214 are reworded. Witness \textbf{computed} (\S3).\\
+N2 cocycle $\neq$ class & \textbf{PARTIAL} & Direction fixed: abstract l.27--30, \S2 l.247--254, Rem.~13 l.438--448 (``a class presupposes associativity''). The old ``vanishing iff the weld is associative'' and ``witnessed by $[\omega]=\varepsilon$'' are deleted from Thm~12. New gaps in the splitting derivation: A1.\\
+N2$'$ what $[\omega]$ is a class \emph{of} & \textbf{NOT FIXED} & Thm~14 l.467 still assumes $S=C\bowtie D$. Ex.~16 l.482--484 still uses $B(\Z/2)$ ``whose weld class generates $H^2(S;\Z/2)$''. No extended category and no $C,D$ are named. With the new gloss the conflict is sharper: A2.\\
+N3 two senses of ``level'' & \textbf{PARTIAL} & The \emph{cochain level} is now defined (l.177--179) and used correctly in Rem.~2 (weld: cochain level 2, nerve level 3). But Rem.~8 (l.359--365) is byte-identical to 242c7ea, and it was our worked counter-example: A3.\\
+Recipient on p.\,1 & \textbf{FIXED} & l.10 ``Prepared for Rick (referee) and Neil Ghani (PI)''.\\
+W1 Rem.~8 ``not even stably wrong'' & \textbf{NOT FIXED} & l.364--365 unchanged.\\
+W2 $\delta$-translations vs $H^1(-;\F_2)$ & \textbf{NOT FIXED} & Abstract l.24--26 and \S7 l.514--516 unchanged. l.573--575 still says ``underwritten by Lemma~1 and Theorems~5, 7 and~9'' (our old 1.3 residue).\\
+W3 Thm~11 is classical & \textbf{PARTIAL} & Title now says ``2-coskeletal collapse'', and l.425 mentions Segal. Still credited to [7] and counted as ``a collapse theorem'' that is proved (l.122, l.530).\\
+W4 Lemma~1 is a definition & \textbf{NOT FIXED} & Still a ``regrade lemma'' among the proved results. Nice-to-have only.\\
+W5 Thm~9 basepoint phrasing & \textbf{NOT FIXED} & l.376--377 unchanged.\\
+Diamond $C,D$ in the example & \textbf{NOT FIXED} & Ex.~16 l.478--481 unchanged.\\
+\bottomrule
+\end{longtable}
+
+\subsection*{Note B (our 2026-10-09 report on 75603ad)}
+\begin{longtable}{p{3.0cm}p{2.1cm}p{9.9cm}}
+\toprule
+Item & Status & Evidence (6089268)\\\midrule\endhead
+M1 unscoped ``only nontrivial'' & \textbf{PARTIAL} & \S8 (p.\,15 l.766--767, ``among representable Weil-base-change tangent structures'') and \S9 (p.\,16 l.803--805) are fixed. \S1 l.75--76 is unchanged: ``Could there be an exotic first-order tangent bundle \dots? This note proves there cannot.'' See B2.\\
+M2 vacuous footnote 1 & \textbf{FIXED} & p.\,10 footnote: ``no bijection $K\cong K\times K$ at all \dots\ nothing to search over''. It correctly assigns the content to steps (4)--(5) at infinite rank. \textbf{Computed}.\\
+M3 ``$\N\cdot y$ is solid'' & \textbf{PARTIAL} & Prop.~12, \S5 l.426--431, Rem.~15 and \S9 are fixed. But \S1 p.\,4 l.177--178 still reads ``It is true that $\N\cdot y$ is solid: the Cantor pairing \dots\ supplies an isomorphism $M\otimes M\cong M$, \emph{hence an isomorphism $\ell_M$}''. Also l.167 ``solid but not a structure'', l.183 and l.202 ``Solidity is \dots\ strictly weaker''. See B1.\\
+M4 recipient & \textbf{FIXED} & p.\,1 ``Prepared for Rick (referee) and Neil Ghani (PI)''. The date line now ends ``Revised 10 October''.\\
+S1 quote CC14 axiom; credit universality & \textbf{PARTIAL} & Step (4) l.497--503 adds ``the c-twist term is idle''. The axiom is still written $T(\ell)\circ\ell=(c\text{-twist})\circ\ell_T\circ\ell$, not quoted. Step (3) is not demoted. ``the flip and lift-coassociativity axioms'' is still the credited mechanism at l.57, l.166, l.180 and l.789--790.\\
+S2 derive $v$; $\delta(1)=1\otimes1$ & \textbf{NOT FIXED} & Step (1) l.469--474 unchanged.\\
+S3 Thm~18 closing; Rem.~23 & \textbf{NOT FIXED} & The new cite ``the same input as step (1) of Theorem 13'' is attached to the \emph{opening} universality sentence (l.633). The closing l.645--650 still says ``as one exhibits directly \dots\ $\ell_M:\varepsilon\mapsto\varepsilon\otimes\varepsilon$ (the $\varepsilon\mapsto\varepsilon_1\varepsilon_2$ of $W\otimes W$)''. Rem.~23 l.719--720 still says ``pinned by $\varepsilon\mapsto\varepsilon_1\varepsilon_2$ and $c\ell=\ell$''. \textbf{Computed}: $c\ell=\ell$ and coassociativity hold for every $k$ in $\delta(\varepsilon)=k\,\varepsilon\otimes\varepsilon$. Only universality forces $k=1$.\\
+S4 novelty tone-down & \textbf{NOT FIXED} & l.42 ``not only faithful but cleaner''; l.137 ``the one new idea''; l.385 ``strictly outside the Lanfranchi--Lemay hypotheses''; l.732, l.764 ``isolating exactly which uses of ring structure \dots\ were essential (none \dots)''.\\
+S5 Lemma~7/9 & \textbf{NOT FIXED} & Lemma~9 proof l.376--379 (``morphisms between linear containers are just functions on shapes'') unchanged.\\
+C1--C7, nits & \textbf{NOT FIXED} & C1 l.225; C2 l.80 vs l.237; C3 l.653; C4 l.665; C6 l.124; C7 Rem.~23. ``irreducible'' still lacks $x\neq0$ (l.481). $n(n-1)$ is still at l.400. Rem.~3 ``unit of the adjunction'' is still at l.269. Step (3)'s ``no exotic non-representable flip'' is still at l.491--492.\\
+\bottomrule
+\end{longtable}
+Your covering email says, for B, ``w1--w4, wording only''. That is accurate for what was changed. It
+does not cover S2, S3, S4 and S5, which your 2026-10-10 acknowledgement accepted (``Thm 18's closing
+will cite Thm 13 step (1)''). Only the opening sentence of Theorem~18 got the citation.
+
+\section{The splitting derivation, line by line (Note A)}
+I reconstruct the derivation as printed, in the order a reader meets it, and grade each step. The
+model behind every step is the twisted composition on $S\times D$,
+\[(x,u)\cdot(y,v)=(xy,\;u+x\!\cdot\!v+\omega(x,y)),\]
+over a base category $S$ with coefficient system $D$. This is the Eilenberg--Mac Lane extension
+or, for categories with a natural system, the Baues--Wirsching linear extension $D\rightarrowtail
+E_\omega\twoheadrightarrow S$.
+
+\begin{enumerate}[label=\textbf{D\arabic*},leftmargin=*]
+\item \S2 l.243--246: ``$[\omega]\in H^2(S;D)$, a Baues--Wirsching 2-cocycle \dots; the chain splits
+as the claimed product exactly when $[\omega]=0$ [12].'' \textbf{Read}, because [12] is unseen. Your
+email states what [12] proves: $K=C\bowtie D\iff(L)\wedge(G)$ and $(G)\iff[\omega]=0$. By that
+statement, $[\omega]=0$ gives only $(G)$, so ``splits exactly when $[\omega]=0$'' is false in the
+direction $[\omega]=0\Rightarrow$ split unless (L) is a standing hypothesis. The note never states (L).
+\textbf{Gap (A1b).}
+\item \S2 l.247--249: ``Its defining cocycle condition is the associativity equation of the assembled
+composition, a system on $N_3$.'' \textbf{Checked-sober, with a hypothesis.} Write $p=(x,u)$,
+$q=(y,v)$, $r=(z,w)$. Then $(pq)r$ and $p(qr)$ have first coordinates $(xy)z$ and $x(yz)$, and second
+coordinates that differ by exactly $(d\omega)(x,y,z)$. That comparison needs the base composition to
+be associative and the action to satisfy $(xy)\cdot w=x\cdot(y\cdot w)$. So: \emph{over a category
+$S$}, $d\omega=0\iff E_\omega$ is associative. Both directions hold. \textbf{Computed} for every
+normalized 2-cochain in four cases (\S3, T1).
+\item \S2 l.249--251: ``a cochain that violates it is not a weld at all, and there is then no class to
+form.'' \textbf{Checked-sober.} This is correct, and it is the N2 fix.
+\item \S2 l.251--252 and Rem.~13 l.442--444: ``what it classifies, by Eilenberg--Mac Lane, is whether
+the associative weld splits into its matched-pair factorization $C\bowtie D$ --- the global closure
+condition (G), with $[\omega]=0\Leftrightarrow(G)$.'' Take the standard part first. For cocycles,
+$[\omega]=0\iff E_\omega$ admits a functorial section $\iff E_\omega\cong D\rtimes S$.
+\begin{itemize}[leftmargin=1.2em]
+\item ($\Leftarrow$) The cocycle of a functorial section is $0$.
+\item ($\Rightarrow$) If $\omega=d\beta$, then $s(x)=(x,-\beta(x))$ is functorial.
+\end{itemize}
+Both directions use only D2's hypotheses. \textbf{Checked-sober} by hand, and \textbf{computed}
+(\S3, T2), including a nontrivial action: $Q_8$ is non-split and $D_8$ is split.
+
+Then the non-standard part.
+\begin{itemize}[leftmargin=1.2em]
+\item The phrase ``splits into its matched-pair factorization $C\bowtie D$'' identifies
+\emph{split extension} with \emph{Zappa--Szép product}. A split extension $D\rtimes S$ is a
+Zappa--Szép product in which one factor is normal and one action is trivial. A general matched pair
+is not an extension at all. \textbf{Computed}: $S_4=S_3\cdot C_4$ is an exact factorization, and
+neither factor is normal. So ``by Eilenberg--Mac Lane'' covers only the semidirect case. The rest is
+[12]'s theorem, not EM's. (A-S1.)
+\item ``splits'' is equated with (G), but your own [12] says splitting is $(L)\wedge(G)$. (A1b.)
+\end{itemize}
+\item \S2 l.240--242: ``Whether a candidate matched pair of actions closes into such a factorization
+is governed by the weld obstruction $[\omega]$.'' \textbf{This is the step that uses associativity it has
+not established.} D3 says the class exists only after the weld is known to be associative. So
+$[\omega]$ cannot decide whether an arbitrary \emph{candidate} closes. It decides only whether an
+already-associative candidate splits. The note never says what makes the candidate weld associative,
+i.e.\ what makes $\omega$ a cocycle. Is it the matched-pair axioms? Is it (L)? Is it a theorem of [12]?
+\textbf{Computed}: over $\Z/3$ with $\Z/2$ coefficients, 12 of the 16 normalized 2-cochains are
+\emph{not} cocycles, and each gives a non-associative weld with no class. So the hypothesis has
+content. (A1c.)
+\item Rem.~13 l.440--441: ``The 2-cocycle condition $d^2\omega=0$ is the associativity equation of
+Theorem~12.'' \textbf{Wrong equation.} Theorem~12's equation is associativity of the \emph{base}
+composition, a 3-element magma. The cocycle condition is associativity of the \emph{twisted}
+composition over a base that is already a category (D2). Over Theorem~12's magma there is no
+cochain complex to speak of. \textbf{Computed}: $d\circ d\neq0$ there, e.g.\ $\beta=(0,0,1)$ with
+$\Z/3$ coefficients gives $d(d\beta)(x,x,x)=1$. So there is no $H^2$ for a class to live in.
+Conversely, the magma is not a cocycle failure of any twisted composition: 3 is prime, and every
+order-3 twisted composition is $\Z/3$ (\textbf{computed}, T4). The negative control breaks D2 when the
+base is not associative: over the magma, $\omega=0$ trivially satisfies ``$d\omega=0$'', yet the weld
+is non-associative (\textbf{computed}). (A1a.)
+\item Rem.~13 l.444--446 and \S2 l.252--254: ``$[\omega]=\varepsilon\neq0$ \dots\ is accordingly a
+non-split but associative weld: the cocycle condition is met, so associativity holds.''
+\textbf{Checked-sober.} Both directions used are the valid ones: cocycle $\Rightarrow$ associative
+(D2), and split $\Rightarrow[\omega]=0$ (D4 $\Leftarrow$), contraposed. This assumes [13]'s Lean
+certificate checks $d\omega=0$ and does not only evaluate $\omega$. Please confirm in one clause.
+\textbf{Computed} model: $\omega(1,1)=1$ on $\Z/2$ gives $\Z/4$, which is associative, non-split, and
+not an internal product of two order-2 subgroups.
+\end{enumerate}
+
+\textbf{Summary of the derivation.} The skeleton is right and every implication points the right way:
+\[\text{base a category}\;\Rightarrow\;\bigl(d\omega=0\iff E_\omega\text{ associative}\bigr),\qquad
+d\omega=0\;\Rightarrow\;\bigl([\omega]=0\iff E_\omega\text{ split}\bigr).\]
+What the text still gets wrong is the \emph{interface} with your weld. It names the wrong
+associativity equation (D6). It does not say where the weld's associativity comes from (D5). It
+drops (L) from ``$\iff$ splits'' (D1, D4). And it does not say which category is $E_\omega$ and which
+is the base (A2).
+
+\section{Computations (independent code, from the printed definitions)}
+All three scripts and their logs are in \texttt{scripts/2026-10-11-nerve-r2/}. Every negative
+control is built to flip a verdict, not to relabel an input.
+\begin{longtable}{p{4.4cm}p{10.6cm}}
+\toprule
+Script & What it establishes (\textbf{computed})\\\midrule\endhead
+\texttt{check\_magma\_and\_}\newline\texttt{splitting.py} &
+Thm~12 table: total, unit $1$, non-associative. Failures $(x,x,x)$ and $(x,y,x)$. 81 unital tables on
+$\{1,x,y\}$, of which 11 are associative, so the $N_2$/$N_3$ separation is strict.
+\textbf{Neg.\ control (breaks ``non-associative'')}: 3 one-entry mutations of the table are
+associative, and the checker reports them so.
+T1/T2, exhaustive over normalized cochains: $S=\Z/2$, $\Z/3$, Klein with $\Z/2$ coefficients, and
+$\Z/2$ acting on $\Z/4$ by sign. In every case cocycle $\iff$ associative, and for cocycles
+coboundary $\iff$ split. $|H^2|=2,1,8,2$.
+\textbf{Neg.\ control (breaks T1)}: over the magma, $\omega=0$ yet the weld is non-associative.
+T3: $d\circ d\neq0$ over the magma, and $=0$ over $\Z/3$. T4: the magma is not a twisted
+composition. T5: $S_4=S_3\cdot C_4$ with neither factor normal.\\
+\texttt{check\_N1\_and\_}\newline\texttt{levels.py} &
+Categories built from objects, arrows, identities and composition, axioms checked.
+$U([1])=U(B(\Z/2)\sqcup\mathrm{pt})=y^2+y$. Their reflexive graphs are not isomorphic, and $H^0$
+gives $1$ vs $2$ components. Brute force: exactly 3 categories have $U=y^2+y$, in 2
+$\mathrm{tr}_1$-classes.
+\textbf{Neg.\ control (breaks ``$U$-equal $\Rightarrow\mathrm{tr}_1$ separates'')}: $\Z/2$ vs
+$\{1,e\}$ have equal $U$ and \emph{isomorphic} $\mathrm{tr}_1$, and $\mathrm{tr}_2$ separates them.
+Rem.~8: $H^n(-;\Z)$ for $n\le3$ via Smith normal form gives first separation at degree $2$. Over
+$\F_2$ the first separation is at degree $1$.\\
+\texttt{check\_noteB\_}\newline\texttt{rank1\_lift.py} &
+For $\delta(\varepsilon)=k\,\varepsilon\otimes\varepsilon$ computed in $W^{\otimes r}$: $c\ell=\ell$
+and coassociativity hold for $k=0..3$. Universality $v(a;u,w)=(a,u,kw)$ is bijective iff $k=1$.
+\textbf{Neg.\ control}: $k=0,2$ fail universality. Footnote 1: no bijection $K\to K\times K$ for
+$2\le|K|\le4$. Cantor: $\beta_1\beta_1\neq\beta_1$ first at $k=3$.\\
+\bottomrule
+\end{longtable}
+
+\section{Note B: is the revision wording only?}
+I diffed the sentence-normalized \texttt{pdftotext} of \texttt{75603ad} against \texttt{6089268}.
+Every hunk falls into one of these groups:
+\begin{itemize}[leftmargin=1.2em]
+\item page-number and line-break artefacts;
+\item the p.\,1 header (revision line, commit, recipient);
+\item the abstract and \S5 ``abstractly solid'' wording;
+\item Prop.~12;
+\item step (4) ``c-twist term is idle'';
+\item footnote 1 (replaced);
+\item Rem.~15;
+\item Thm~18's opening sentence (added cite);
+\item the \S8 and \S9 scoping.
+\end{itemize}
+Theorem~1, Definition~4, Lemmas~7, 9, 10, 16 and~17, Theorems~11, 13, 18 and~22, and
+Remarks~14, 19, 20, 21 and~23 are textually unchanged up to layout. \textbf{No statement changed
+silently.} The one statement that did change is \textbf{Proposition~12}: its title is now ``abstractly
+solid'', and it drops ``hence an isomorphism $\ell_M$'' and ``solidity, read as invertibility of
+$\ell_M$, does not by itself bound the rank''. This is the change we asked for (old M3). It weakens a
+false clause to a true one and leaves every graded result untouched. The p.\,1 parenthesis ``no
+statement changed'' is therefore inexact. Say ``Prop.~12 restated as requested''. The registry grades
+from our 75603ad report stand: Thm~22 module form proved, Thms~11/18 proved, ``$\N\cdot y$ carries no
+tangent structure'' proved.
+
+\section{Items and verdicts}
+\subsection*{Note A}
+\begin{enumerate}[label=\textbf{A\arabic*},leftmargin=*]
+\item \MF\ \textbf{Splitting derivation: three repairs} (\S2 l.240--254, Rem.~13 l.438--448).
+\begin{itemize}[leftmargin=1.2em]
+\item[(a)] Rem.~13: replace ``The 2-cocycle condition $d^2\omega=0$ is the associativity equation of
+Theorem~12'' with: ``the 2-cocycle condition $d\omega=0$ is associativity of the \emph{twisted}
+composition over the already-associative base $S$. Theorem~12 is a failure of associativity of the
+base itself, over which no cochain complex exists ($d\circ d\neq0$). Both are $N_3$-predicates, on
+different objects.''
+\item[(b)] \S2 l.246 and Rem.~13 l.443--444: by your own [12], $[\omega]=0\iff(G)$ and splitting
+$\iff(L)\wedge(G)$. Either state (L) as a standing hypothesis (``given (L), the chain splits iff
+$[\omega]=0$''), or replace ``splits'' with ``satisfies (G)''.
+\item[(c)] \S2 l.240--242: say what makes the candidate weld associative, i.e.\ what makes $\omega$ a
+cocycle: the matched-pair axioms, (L), or a lemma of [12]. Then change ``whether a candidate matched
+pair closes \dots\ is governed by $[\omega]$'' to ``whether an associative candidate splits''. As
+written, the class is said to decide something it presupposes.
+\end{itemize}
+\item \MF\ \textbf{N2$'$, carried over and now sharper.} Under the new gloss, ``$[\omega]=0\iff S$
+splits as $C\bowtie D$''. Theorem~14 assumes $S=C\bowtie D$, so within that hypothesis $[\omega]=0$
+always. Yet Theorem~15 and Example~16 need $[\omega]\neq0$. The EM reading resolves this, and you
+should say it in one line: $[\omega]\in H^2(S;D)$ is a class \emph{of the base} $S$. It classifies an
+extension $D\rightarrowtail E_\omega\twoheadrightarrow S$, and it is $E_\omega$ that splits or not.
+For the rigid-twist witness, $S=B(\Z/2)$, $D=\Z/2$ and $E_\omega=B(\Z/4)$. Also resolve the clash
+between $D$ as a wide subcategory (l.239) and $D$ as the vertex-group coefficient system (l.243--245).
+\item \MF\ \textbf{N3 residue: Remark~8 contradicts your new definition.} p.\,4 l.180--181 defines
+the nerve level of an $H^n$ class as $n+1$. The integral detector $H^2(\Z/2;\Z)$ therefore has nerve
+level 3, and the $\F_2$ detector has nerve level 2 (\textbf{computed}). So l.363--364, ``which nerve
+level always does [have a coefficient-free answer]: $N_2$'', is false as defined, and so is the \S7
+reliance (l.542, ``nerve level is coefficient-free''). The coefficient-free object is the level of the
+\emph{datum} $a\cdot a=1$, a raw datum on $N_2$. Say: ``the datum sits at nerve level 2 for every
+coefficient ring; the detecting \emph{class} sits at nerve level 2 over $\F_2$ and 3 over $\Z$''. Fix
+W1 in the same edit.
+\item \SH\ Cite Baues--Wirsching (linear extensions are classified by $H^2(C;D)$) rather than ``by
+Eilenberg--Mac Lane''. Say that EM-split means semidirect, and that the general matched-pair statement
+is [12]'s (D4).
+\item \SH\ Carry over W2 (abstract l.24--26, \S7 l.514--516, l.573--575), W5 (l.376--377), and $C,D$
+for the diamond in Example~16.
+\item \OK\ N1 (\textbf{computed}). Recipient. Cochain level vs nerve level in Remark~2. Theorem~12's
+magma (\textbf{computed}). The re-entrancy direction (D7, \textbf{checked-sober}, modulo [13]
+checking $d\omega=0$). Cosmetic: ``$d^2\omega$'' reads as $d\circ d$, so write $d\omega$ or $d^2(\omega)$
+with the degree as a subscript. Remark~2's ``the weld $[\omega]\in H^2$ is a 2-cochain'': a class is
+not a cochain, so say ``is represented by''. W3 and W4 are optional.
+\end{enumerate}
+
+\subsection*{Note B}
+\begin{enumerate}[label=\textbf{B\arabic*},leftmargin=*]
+\item \MF\ \textbf{Old M3 residue in \S1} (p.\,4 l.172--185). ``It is true that $\N\cdot y$ is solid:
+\dots\ supplies an isomorphism $M\otimes M\cong M$, hence an isomorphism $\ell_M$'' contradicts
+Def.~4 (l.278: solid means $\ell_M$ is an isomorphism) and Theorem~13. Change it to ``abstractly
+solid \dots\ an abstract isomorphism, not a vertical lift''. Add ``abstract'' at l.167, l.183 and
+l.202.
+\item \MF\ \textbf{Old M1 residue in \S1} (p.\,2 l.75--76). Change ``This note proves there cannot''
+to ``\dots\ there cannot, among representable (Weil base-change) structures on the linear layer''.
+\item \SH\ S1 to S5 as in our 75603ad report. They are unchanged except S1's ``idle'' wording and the
+misplaced S3 cite. S3 is now \textbf{computed}: the closing of Theorem~18 and Rem.~23 must cite
+universality (Theorem~13 step (1)), because $c\ell=\ell$ and coassociativity do not pin $k$.
+\item \OK\ M2 (footnote), M4 (recipient), Proposition~12 restatement, and the \S8/\S9 scoping.
+\textbf{No silent statement change.} Cosmetic: C1--C7 and the nits are still open, and the p.\,1
+``no statement changed'' should mention Prop.~12.
+\end{enumerate}
+
+\section*{Weld nodes: recommendation}
+Keep both weld nodes demoted on 6089268. After A1 and A2 land, the gloss
+``cocycle condition = associativity of the twisted weld; $[\omega]$ = splitting obstruction'' earns
+\textbf{checked-sober}. Its standard core is \textbf{computed} here in both directions. The
+identification $(G)\iff[\omega]=0$ stays \textbf{read} until [12] is attached. I would not grade any
+weld node \emph{proved} on the strength of this note, which is a positioning note citing [12] and
+[13].
+
+\end{document}

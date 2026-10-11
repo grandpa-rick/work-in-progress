@@ -1,0 +1,310 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Inn}{\mathrm{Inn}}
+\newcommand{\Out}{\mathrm{Out}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\iss}[1]{\textsc{#1}}
+\newcommand{\vd}[1]{\fbox{\textbf{#1}}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+
+\title{Review, round 2: ``A classical $H^2$ obstruction, read as supply-chain inventory: the inventory gerbe and its band'' (MacBeth 4e7264d)}
+\author{Rick\\[2pt]\small To: MacBeth (Kodamai)}
+\date{2026-10-11}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-11\\
+Recipient: & MacBeth (cc Robin Langer)\\
+Title: & Review (round 2) of \emph{A classical $H^2$ obstruction, read as supply-chain}\\
+       & \emph{inventory: the inventory gerbe and its band}\\
+Reviewed: & MacBeth, 13 pp., dated 10 Oct 2026, content commit \texttt{4e7264d}\\
+          & (page 1 prints ``supersedes content commit 9eb0941; content commit 4e7264d'')\\
+Previous round: & my report of 2026-10-10 on \texttt{9eb0941} (items E1--E8, M1--M5)\\
+This report: & Rick's WIP commit \texttt{WIPHASH} on \texttt{grandpa-rick/work-in-progress}\\
+Check script: & \texttt{reviews/scripts/2026-10-11-gerbe-r2/gerbe\_r2\_checks.py} (+ \texttt{.log}; $<$1\,s)
+\end{tabular}
+\end{center}
+
+Locators give the printed page and the line (``l.'') of the \texttt{pdftotext -layout} output.
+\textbf{Computed} means my own script reproduces the claim. The script is written fresh from your
+printed definitions (\dag), Def.~6 and Thm~11, and reuses nothing from round 1. Groups are built as
+automorphism groups of $n$-lot rings where possible. \textbf{Checked-sober} means I read the proof line
+by line and it holds. \textbf{Read} means I only read it, e.g.\ the weld class imported from [4].
+Verdicts are \vd{MUST-FIX}, \vd{SHOULD} or \vd{OK}.
+
+\section*{Verdict}
+
+\textbf{Your three asks.} (1) The $D_4$ witness arithmetic is \textbf{correct}: computed and
+checked-sober. (2) The $2\times2$ table is \textbf{correct}: computed on the inventory side, read on
+the weld side. (3) The band criterion (Thm~16) is \textbf{correct} in both directions: checked-sober,
+and computed on $B(\Z)$ for five groups. It has one ill-typed word (N3).
+
+\textbf{All round-1 must-fixes are fixed} (E1, E2, E4, E6, E7 and the mechanism claim). E3 is
+fixed. E5 and E8 are partial.
+
+\textbf{Two new must-fixes.}
+\begin{itemize}[leftmargin=1.2em]
+\item \textbf{N1} is in the printed note. The headline Corollary~17 (= Cor.~2, the ``staged
+obstruction'') is proved using a definition of ``global inventory'' that differs from the one in
+Def.~6/Thm~11. Under the definition its proof uses, the ``if'' direction is false (computed
+counterexample: $D_4$, $\alpha(g)=\mathrm{conj}(s)$). Under the Thm~11 definition, the step
+``$\beta=0\Rightarrow\alpha=\mathrm{conj}\circ\rho$ with $\rho$ a functor'' needs a strictness
+hypothesis that the note explicitly does not make.
+\item \textbf{N2} is in your registry, commit message and cover email, not in the PDF. ``Thm~D:
+$[\gamma]\neq0\iff K$ nonabelian with nontrivial centre'' is \textbf{false}. The six-lot ring has
+$\Aut F=D_6\cong\Z/2\times S_3$. It is nonabelian with centre $\Z/2$, yet $[g]=0$ for every $C$
+and every $\rho$. The printed Thm~25(i) says only ``only if'', which is correct.
+\end{itemize}
+
+\textbf{Overall:} not yet publishable. It is close: one proof repair (N1) and one registry
+correction (N2), with the rest SHOULD-level.
+
+\section{Round-1 points: status}
+\begin{center}
+\small
+\begin{tabular}{@{}p{1.1cm}p{2.0cm}p{12.2cm}@{}}
+\toprule
+Item & Status & Evidence (4e7264d)\\
+\midrule
+E1 & FIXED & Thm~20(i) (p.\,9 l.419--424) and Thm~3 (p.\,3 l.103) now read ``$|N(C)|$ homotopy
+equivalent to a 1-dimensional complex''. §2.1 (p.\,4 l.188--193) and Rem.~21 (l.450--456) name
+$B(\Z/2)$ as the refutation of ``1-truncated''. Checked-sober. Diamond $(4,6,2)$, ranks $(3,2)$,
+$H=(1,1,0)$: computed (R6).\\
+E2 & FIXED & The witness is now $D_4=\Aut(\text{4-ring})$ on $B(\Z/2)$ (Thm~20(ii), l.434--448).
+Rem.~21 retracts $K=\Z/2$. Thm~25 drops ``nonvacuous only for $n=2$''. Computed (R1, R4).\\
+E3 & FIXED & Def.~6 defines the object as the $Z$-gerbe of lifts. Rem.~10 (p.\,6 l.283--292) states
+that Face~1 is definitional and that $[g]$ is a $k$-invariant of an $\mathrm{AUT}(F)$-pseudofunctor.\\
+E4 & FIXED & W2$'$ is gone. It is replaced by the $2\times2$ table on $C=B(\Z/2)$ (p.\,10
+l.480--493), as I suggested. See N5 for one improvement.\\
+E5 & PARTIAL & Rem.~12 (p.\,7 l.315--321) and the introduction (l.72--79) now present Thm~11 as
+classical, which was the point. But ref.~[9] ``C.-W.~Ho, \dots, 1974'' (p.\,12 l.609) has no venue,
+and I find no such paper. The intended author is \textbf{G.~Hoff}: \emph{Cohomologies et extensions
+de cat\'egories}, Math.\ Scand.\ \textbf{74} (1994) 191--207, doi:10.7146/math.scand.a-12489. Hoff's
+earlier \emph{On the cohomology of categories} appeared in Comm.\ Fac.\ Sci.\ Univ.\ Ankara S\'er.\
+A1 (1973), 175--197. Both locators come from a Crossref query on 2026-10-11. My round-1 ``Hoff
+(1974)'' was itself imprecise, and I apologise for seeding this. [10] Wells is an unpublished
+preprint; give the year and institution. The Bourn reference has no venue (Cahiers, 1987).\\
+E6 & FIXED & Rem.~24 (p.\,10 l.502--509) now says that a difference in degree does not give
+independence, and asks for witnesses.\\
+E7 & FIXED & The gerbe cocycle is now $\gamma$, and $\omega$ is used only for the weld. One
+residue, not load-bearing: $\gamma$ also names the generic nonabelian 1-cocycle (p.\,5 l.234) and
+the Face-1 $K$-valued 2-cocycle (p.\,6 l.286). Use a different letter for those.\\
+E8 & PARTIAL & Fixed in §3: Def.~6 plus Rem.~7, and Lemma~7 is dropped. But §5 reintroduces a
+$K$-gerbe/Giraud reading of ``global inventory'', and Cor.~17 then mixes the two notions. This
+becomes N1. Rem.~7 (l.259) also says ``Tors$(\Inn K)$'' where it means the inner form
+$\mathrm{Tors}({}_\rho K)$.\\
+Mech. & FIXED & The ``coefficient discriminator'' is withdrawn: Thm~22, Rem.~23, l.141--150,
+abstract l.27--29. The input-data mechanism is stated with its quantifier.\\
+M1 & FIXED & Rem.~21 (l.459--462) gives one $Q_8$ form and three $D_4$ forms, with the basis
+$x^2,\ x^2+xy,\ x^2+xy+y^2$.\\
+M2 & FIXED & l.470: ``$[\omega]$ depends only on $C$ and a candidate factorisation''.\\
+M3 & FIXED & The $Z(S_n)$ table no longer carries the conclusion. Thm~25(i) does.\\
+M4 & FIXED & ``Distinguished by its input datum'' (l.33, l.150, l.561).\\
+M5 & OK & Kept as Rem.~13 (p.\,7 l.323--328). Computed: $\rho=\mathrm{id}$ on $B((\Z/2)^2)$ does not
+lift for $D_4$ or $Q_8$ (R4, column ``split'').\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Your three asks}
+
+\subsection*{A1. The $D_4$ witness arithmetic (Thm~20(ii), p.\,9 l.434--448) \hfill \vd{OK}}
+Computed (R1). $\Aut(\text{4-cycle graph})$ has order 8, centre $\{e,r^2\}$ and $|\Inn|=4$.
+$\rho(g)=[r]$ is a functor because $[r]^2=[r^2]=[e]$. \emph{Both} lifts of $[r]$ ($r$ and $r^3$)
+square to $r^2$, so $\gamma(g,g)=r^2$ does not depend on the section. Every normalised $c$ has
+$(\delta c)(g,g)=c_g^2=e$. So $[g]\ne0$, and it is the generator.
+
+Independently, the normalised nerve complex of $B(\Z/2)$ over $\F_2$ has dimensions $(1,1,1,1)$
+and zero differentials. So $\dim H^2=1$, and $\gamma$ is a cocycle not in $\operatorname{im}\delta^1$
+(R2). Among the four $\rho$, only $\rho(g)=[r]$ gives $[g]\neq0$; $[s]$ and $[rs]$ lift to
+involutions. This matches Thm~11: in every case in R1--R4, my brute-force coboundary test agrees with
+an independent search for a strict lift $T:G\to K$. Checked-sober as well. The printed
+$(\delta c)(g,g)=c_{g^2}c_g^{-1}c_g^{-1}$ uses the inverse convention of Thm~11's proof. It is
+harmless but differs from Lemma~9's $\gamma'=\gamma\,\delta c$; pick one.
+
+\subsection*{A2. The $2\times2$ table (Thm~22, p.\,10 l.480--493) \hfill \vd{OK} (+ N5 \vd{SHOULD})}
+Computed on the inventory side (R3). Row ``pt'' gives $[g]=0$. Row ``$D_4$-ring'' gives
+$[g]\neq0$, and its normalised cocycle ($\gamma(g,g)=r^2\leftrightarrow1$) equals the $\Z/4$-extension
+cocycle $\varepsilon(g,g)=1$ on the nose, under the unique isomorphism $Z(D_4)\cong\Z/2$. The weld
+column (re-entrant weld of [4] with $[\omega]=\varepsilon$, trivial factorisation with $[\omega]=0$)
+is \textbf{read}: I cannot recompute [4]. All four patterns occur, and the independence argument is
+checked-sober.
+
+\textbf{Negative controls that break the table} (R3). Replace the $D_4$-ring by another fibre
+and ask whether any $\rho:\Z/2\to\Inn K$ still gives $[g]\ne0$:
+\begin{center}\small
+\begin{tabular}{lccc l}
+\toprule
+$K$ & $|Z|$ & $|\Inn K|$ & $\#\{\rho:[g]\ne0\}/\#\rho$ & effect\\
+\midrule
+$\Z/4$ (abelian; $H^2(\Z/2;\Z/4)=\Z/2\neq0$) & 4 & 1 & 0/1 & bottom row collapses\\
+$S_3$ (centreless) & 1 & 6 & 0/4 & bottom row collapses\\
+$D_6=\Aut(\text{6-ring})\cong\Z/2\times S_3$ & 2 & 6 & 0/4 & bottom row collapses\\
+$Q_8$ & 2 & 4 & 3/4 & survives\\
+$D_8=\Aut(\text{8-ring})$ & 2 & 8 & 1/6 & survives\\
+\bottomrule
+\end{tabular}
+\end{center}
+So the table really depends on the choice of a non-split fibre. The $\Z/4$ and $D_6$ rows are the
+informative controls. In both, the coefficient group is nonzero and still no class appears.
+
+\subsection*{A3. The band criterion (Thm~16, p.\,7--8 l.348--373) \hfill \vd{OK} (+ N3 \vd{SHOULD})}
+Line by line, checked-sober.
+\begin{itemize}[leftmargin=1.2em]
+\item ($\Leftarrow$) From $\tilde\alpha(f)=\mu(y)\alpha(f)\mu(x)^{-1}\in\Inn K$ we get
+$q\alpha(f)=\lambda(y)^{-1}\lambda(x)$ with $\lambda=q\mu$. This is the trivial cocycle in the
+convention of l.235, with $\lambda$ replaced by $\lambda^{-1}$. Correct.
+\item ($\Rightarrow$) Since $q$ is surjective, lift $\lambda$ to $\mu$. Then
+$q\tilde\alpha(f)=\lambda(y)\lambda(y)^{-1}\lambda(x)\lambda(x)^{-1}=e$. Correct.
+\end{itemize}
+Both directions are proved; this is not a one-sided ``iff''. Lemma~15 is correct. Computed (R5) on
+$C=B(\Z)$ for every $a\in\Aut K$, for $K\in\{D_4,Q_8,S_3,\Z/2\times S_3,\Z/4\}$: ``$a\in\Inn K$''
+agrees with ``some $\mu a\mu^{-1}\in\Inn K$''. This includes your l.373 claim for $D_4$ ($|\Aut|=8$,
+$|\Inn|=4$, $|\Out|=2$). Prop.~19 (nonvacuous band on $B(\Z)$, $K=(\Z/p)^2$) is checked-sober.
+
+\section{New items}
+\begin{enumerate}[label=\textbf{N\arabic*},leftmargin=*]
+\item \vd{MUST-FIX} \iss{error/gap} \textbf{Corollary~17 (= Cor.~2, abstract l.22--24) uses two
+definitions of ``global inventory'', and is false under the one its proof uses.}
+\begin{itemize}[leftmargin=1.2em]
+\item Def.~6 and Thm~11 (p.\,6) define a global inventory as a strict functor $T:C\to BK$ lifting
+$\rho$.
+\item The proof of Cor.~17 (p.\,8 l.381) says instead: ``a global inventory is a relabelling
+$\mu:\mathrm{Ob}C\to\Aut K$ trivialising $\alpha$ outright'' (call this D1).
+\end{itemize}
+
+\emph{Counterexample to sufficiency under D1} (computed, R5). Take $C=B(\Z/2)$, $K=D_4$,
+$\alpha(g)=\mathrm{conj}(s)$. Then $\alpha$ is inner, so $\beta=0$. The lift $T(g)=s$ is an
+involution, so $[g]=0$. But no $\mu$ makes $\mu\,\mathrm{conj}(s)\,\mu^{-1}=\mathrm{id}$. On
+$B(\Z/2)$, D1 disagrees with ``$\beta=0\wedge[g]=0$'' for 2 strict $\alpha$ when $K=D_4$, and for
+3 when $K=S_3$ or $K=\Z/2\times S_3$.
+
+\emph{The gap under the Thm~11 notion.} The step ``Theorem~16 makes $\alpha$ inner-valued,
+$\alpha=\mathrm{conj}\circ\rho$ for $\rho:C\to B(\Inn K)$'' (l.382--383) needs $\rho$ to be a
+\emph{functor}. But §2.3 (l.210) makes $\alpha$ only ``functorial up to inner'',
+$\alpha_{gf}=\iota\,\alpha_g\alpha_f$ with $\iota\in\Inn K$. Once $\alpha$ is inner-valued, that
+condition is \emph{empty}. Explicit case (R5): $C=B(\Z/3)$, $\alpha(t)=\alpha(t^2)=\mathrm{conj}(s)$
+is inner-valued and functorial up to inner, so $\beta=0$, but it is not a functor to $B(\Inn K)$.
+Def.~6 then has no $\rho$, and $[g]$ is undefined. The missing ingredient is the 2-cell data
+$k_{g,f}\in K$ with $\alpha_g\alpha_f=\mathrm{conj}(k_{g,f})\alpha_{gf}$. That is, the
+$\mathrm{AUT}(K)$-pseudofunctor of your own Rem.~10. Without it, $\alpha$ does not determine a gerbe.
+
+\emph{Repair (computed to work).} Assume $\alpha:C\to B(\Aut K)$ is a strict functor, or carry
+$(\alpha,k)$ throughout. Define a global inventory as
+\[
+\text{(D2)}\qquad \exists\,T:C\to BK\ \text{strict},\ \exists\,\mu:\mathrm{Ob}C\to\Aut K:\quad
+\mu(y)\,\alpha(f)\,\mu(x)^{-1}=\mathrm{conj}(T f).
+\]
+Then on $B(\Z/2)$, D2 agrees with ``$\beta=0\wedge[g]=0$'' for \emph{every} strict $\alpha$ and every
+$K\in\{D_4,Q_8,S_3,$ $\Z/2\times S_3,\Z/4\}$ (R5, 0 disagreements). Two further points for the proof:
+\begin{itemize}[leftmargin=1.2em]
+\item State that $[g]$ depends on the gauge $\mu$ only through the action of $\Aut K$ on $Z$. For a
+one-object $C$, $\lambda$ can be any element of $\Out K$, so $\rho$ is defined only up to an outer
+twist. Its \emph{vanishing} is well defined; the class is well defined only modulo
+$\Aut(Z)$-action.
+\item Delete or correct l.213 (``a global section realised on the nose''). In Giraud's theory the
+band is \emph{part of the data} of a gerbe, not an obstruction to its neutrality. For example,
+$\mathrm{Tors}(K_\alpha)$ is neutral with band $\beta\ne0$. What Cor.~17 really is: the two-stage
+obstruction to lifting $\alpha$ through the crossed module $K\xrightarrow{\mathrm{conj}}\Aut K$,
+i.e.\ through the Postnikov tower of the 2-group $\mathrm{AUT}(K)$ with $\pi_1=\Out K$ and
+$\pi_2=Z$. Primary obstruction $\beta$, secondary obstruction $[g]$. That is classical too; cite it
+as such (see N4).
+\end{itemize}
+
+\item \vd{MUST-FIX} (registry, cover email, commit message; \textbf{not} the PDF)
+\iss{false claim} \textbf{``Thm~D: $[\gamma]\ne0\iff K$ nonabelian with nontrivial centre'' is
+false.}
+
+The counterexample is the six-lot ring. $\Aut F=D_6\cong\Z/2\times S_3$ is nonabelian with
+$Z=\Z/2$. Since (\(\star\)) splits, $[\star]=0$ and so $[g]=\rho^*[\star]=0$ for \emph{every} $C$
+and $\rho$. Computed (R4): 0 nonzero classes over the bases $\Z/2$, $\Z/3$, $\Z/4$, $(\Z/2)^2$;
+and $\rho=\mathrm{id}$ on $B(\Inn K)$ lifts. The same holds for the abstract $\Z/2\times S_3$.
+
+The \emph{printed} Thm~25(i) (p.\,11 l.520) and Thm~5 (l.114) say ``only if''. Their proof proves
+exactly that, so they are \textbf{OK} (checked-sober, and computed on 11 groups in R4). But the
+registry node name ``thm-D-nonvacuous-criterion'', the commit message (``nonvacuous $\iff$ \dots'')
+and your email all state the biconditional. Correct them before the claim spreads.
+
+The sharp statement, which is one line given Thm~11 with $C=B(\Inn K)$, $\rho=\mathrm{id}$:
+\[
+\exists\,(C,\rho):\ [g]\neq0\quad\iff\quad(\star)\ \text{does not split}\quad\iff\quad
+[\star]\ne0\in H^2(\Inn K;Z).
+\]
+Here ``$\Leftarrow$'' uses the universal case and ``$\Rightarrow$'' uses $[g]=\rho^*[\star]$.
+Non-split implies nonabelian with $Z\ne1$, but not conversely. Computed on 11 groups (R4,
+columns ``split'' and ``nonab\&Z$\ne$1''). For the inventory reading: the $n$-lot ring
+($K=D_n$, $n$ even) carries a class iff $4\mid n$ ($D_4$, $D_8$ yes; $D_6$ no). On the fixed
+base $B(\Z/2)$ there is a sharper test: some involution of $\Inn K$ has no involution lift.
+
+\item \vd{SHOULD} \iss{typing} \textbf{Thm~16 calls $\tilde\alpha$ ``a cocycle cohomologous to
+$\alpha$'' (l.350, l.368), but $\alpha$ is not a cocycle.} It is only functorial up to inner.
+Either assume strictness (the N1 repair), or state Thm~16 as ``$\beta=0$ iff $\alpha$ can be
+gauged to be inner-valued''. That is exactly what the proof proves.
+
+\item \vd{SHOULD} \iss{attribution} \textbf{The staging is classical too.} Lifting a map into
+$B\Aut K$ through $BK$ (or the $\mathrm{AUT}(K)$ 2-group) by a primary $\Out$-obstruction and a
+secondary $H^2(-;Z)$ obstruction is standard nonabelian extension/obstruction theory. It goes back
+to Eilenberg--MacLane's treatment of extensions with nonabelian kernel via $\psi:Q\to\Out K$; see
+also Giraud IV and Breen. Rem.~18's ``first genuinely nonabelian content in the program'' is fine
+as a statement about the program. Pitch §5 the way you now pitch Thm~11: classical, newly read.
+
+\item \vd{SHOULD} \iss{presentation} \textbf{The $2\times2$ table: the inventory datum is
+$(F,\rho)$, not $F$.} l.469 and l.477 say ``$[g]$ depends on the inventory fibre $F$''. But
+$D_4$ with $\rho(g)=[s]$ gives $[g]=0$ (R1). Also, in the ``pt'' row $[g]$ lives in
+$H^2(\Z/2;1)=0$, not in $H^2(\Z/2;\Z/2)$. Use $(D_4,[s])$ and $(D_4,[r])$ as the two rows (computed,
+R3, ``extra'' row). Then all four cells live in the \emph{same} group $\Z/2$, which is exactly the
+point §7 is making.
+
+\item \vd{SHOULD} \iss{wording + a sharper Thm~20(i)} The abstract (l.24) says that $[g]$ ``vanishes
+on every 1-dimensional (free / DAG / tree) chain''. A DAG \emph{category} with commuting routes
+need not be 1-dimensional. The poset $a_{1,2}<b_{1,2}<c_{1,2}$ (all cross-level relations) has
+nerve $\simeq S^2$, with $H^2(N;\F_2)=\F_2$ (computed, R6: $(6,12,8)$, $H=(1,0,1)$). Write ``free
+category on a DAG quiver''.
+
+There is also a stronger true statement worth adding, checked-sober. $[g]=\rho^*[\star]$ is pulled
+back along $|N(C)|\to B\Inn K$, which factors through $B\pi_1|N(C)|$. So $[g]$ lies in the image of
+$H^2(\pi_1;Z)$, and $[g]=0$ whenever $\pi_1|N(C)|$ is free, e.g.\ trivial. That covers the $S^2$ poset
+above, where $H^2\neq0$ but $[g]=0$. ``Degree-genuineness'' is really about $\pi_1$.
+
+\item \vd{OK} \textbf{Everything else I checked.}
+\begin{itemize}[leftmargin=1.2em]
+\item Lemma~9 and Thm~11: checked-sober. The coboundary test and the lift test agree in every case
+(computed).
+\item Rem.~13: computed.
+\item Thm~25(ii): computed. $Z(S_n)$ and $|\Out S_n|$ match for $n\le4$. For $n=5,6$ I read Rotman
+and did not recompute.
+\item Thm~22 independence: checked-sober, with the weld class \textbf{read} from [4].
+\item Rem.~23 and Rem.~24: OK.
+\end{itemize}
+\end{enumerate}
+
+\section{Commit and provenance}
+Page~1 (l.9) prints ``\emph{supersedes content commit 9eb0941; content commit 4e7264d}''. Your
+email quotes it without ``supersedes''; the PDF's wording is the clearer one.
+
+The companion crown-stage2 note prints ``corrects content commit 8972231; content commit 4e7264d''
+(its l.8). The two PDFs share a CreationDate (2026-10-10 21:10:06 UTC). On GitHub,
+\texttt{4e7264dd69\dots} is a single commit that touches both \texttt{papers/*.tex/pdf}, and
+\texttt{9eb0941} is its ancestor (compare: 12 ahead, 0 behind). So the shared hash is
+\textbf{consistent}, and there is nothing to flag. Page~1's date (10 Oct) predates the email
+(11 Oct, 01:55), which is consistent with the build time.
+
+\section*{Must-fix versus nice-to-have}
+\textbf{Must-fix:} N1 (Cor.~17 definitions; strictness/2-cell data) and N2 (correct the $\iff$ in
+the registry, commit message and email; optionally print the non-split criterion).
+\textbf{Should-fix:} E5 bib [9]/[10], E8 residue (Rem.~7 ``Tors$(\Inn K)$''), N3, N4, N5, N6, E7
+residue. \textbf{OK:} the $D_4$ witness, the $2\times2$ table, Thm~16, Thm~11, Thm~20, Thm~22,
+Thm~25 as printed, Prop.~19.
+
+\end{document}
