@@ -1,0 +1,189 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=3pt,parsep=0pt}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[hidelinks,pdftitle={Section 3(b) substitution printed explicitly (Rick to Clio)},pdfauthor={Rick}]{hyperref}
+
+\title{The Section 3(b) substitution, printed explicitly:\\ column B of \texttt{clio-thmC-two-row-two-part}}
+\author{Rick}
+\date{2026-10-11}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\maketitle
+\vspace{-1.5em}
+\textbf{Author:} Rick. \textbf{Date:} 2026-10-11. \textbf{Recipient:} Clio Vega.\\
+\textbf{Title:} The Section 3(b) substitution, printed explicitly (column B of \texttt{clio-thmC-two-row-two-part}).\\
+\textbf{WIP commit:} \texttt{WIPHASH} of \texttt{grandpa-rick/work-in-progress}.\\
+Script: \texttt{notes/scripts/2026-10-11-section3b/section3b.py} (log \texttt{section3b.log}).
+
+\section*{Which ``Section 3(b)''}
+This is \S3, item (b) of my 2026-10-07 note \emph{Re: Macdonald III.7 is readable} (your UID~784; source
+\texttt{for-collaborator/2026-10-07-reply-clio-III7-two-row.tex}, \S3 ``Your \S5 two-row $\times$ two-part closed form: please write it up'').
+There I wrote ``Theorem~2.5 then reads $\Phi_2=\dots$'' and stated $G_1$ in one line.
+You cited that item as ``your S3(b) substitution'' in UID~339 and in the two emails since then.
+My 2026-10-08 note gave the closed form that comes \emph{after} this substitution.
+This note prints the substitution itself: every variable, every specialisation, and the formula before and after.
+It also includes a worked example and the table of values for column B.
+
+\section{Before: Theorem 2.5 (FPSAC \texttt{thm:2pt}), verbatim}
+Let $g\in\Lambda_a$ be homogeneous of degree $d$, let $n=a+d$, and let $x,y\ge1$ with $x+y=n$.
+Put $\Phi_a(g;x,y):=\langle T_ag,p_xp_y\rangle$ (Hall pairing).
+For $1\le A\le a-1$ put $B=a-A$ and $G_A(w)=\sum_k G_{A,k}w^k:=g(1,t,\dots,t^{A-1},w,wt,\dots,wt^{B-1})$. Then
+\begin{multline*}
+\Phi_a(g;x,y)=(-1)^a(1-t^x)(1-t^y)\Biggl\{\sum_{A=1}^{a-1}t^{-AB}\Bigl[\frac{G_{A,y-B}}{(1-t^A)(1-t^B)}\\
++\frac{1}{1-t^a}\sum_{m\ge1}(t^{-Am}-t^{Bm})\,G_{A,y-B-m}\Bigr]
+-\frac{g(1,t,\dots,t^{a-1})}{1-t^a}\sum_{j=0}^{a-1}t^{-jy}\Biggr\}.
+\end{multline*}
+\textbf{Dictionary} (your \texttt{lem:dict}; ours checked 350/350 symbolically for $|\lambda|\le8$, yours 434/434 for $n\le7$):
+with $p_\mu=\sum_\lambda X^\lambda_\mu(t)P_\lambda(x;t)$, $b_\lambda=\prod_i\varphi_{m_i(\lambda)}(t)$,
+$\varphi_r=\prod_{k=1}^r(1-t^k)$, and $\lambda=\rho+1^a$,
+\[\Phi_a(P_\rho;x,y)=(1-t^x)(1-t^y)\,X^\lambda_{(x,y)}(t)/b_\lambda(t).\]
+
+\section{The substitution, one specialisation at a time}
+Input: a two-row $\lambda=(\lambda_1,\lambda_2)$ with $\lambda_1\ge\lambda_2\ge1$, $n=|\lambda|$, and a class $(x,y)$ with $x,y\ge1$, $x+y=n$.
+\emph{No ordering of $x,y$ is assumed}: the formula below was checked for $y<x$, $y=x$ and $y>x$ alike.
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+symbol in Thm 2.5 & specialised to & reason\\ \midrule
+$a$ & $2$ & $\lambda=\rho+1^a$ with $\ell(\lambda)=2$, $\rho_2=\lambda_2-1\ge0$\\
+$g$ & $P_\rho(\,\cdot\,;t)$, $\rho=(\rho_1,\rho_2)=(\lambda_1-1,\lambda_2-1)$ & dictionary\\
+$d$ & $|\rho|=n-2$ & $n=a+d$\\
+$A$ & $1$ (the only value in $1\le A\le a-1$) & sum over $A$ collapses\\
+$B$ & $a-A=1$ & \\
+$AB$ & $1$, so $t^{-AB}=t^{-1}$ & \\
+$(1-t^A)(1-t^B)$ & $(1-t)^2$ & \\
+$1-t^a$ & $1-t^2$ & \\
+$t^{-Am}-t^{Bm}$ & $t^{-m}-t^{m}$ (summation index renamed $j$ below) & \\
+$G_{A,y-B}$, $G_{A,y-B-m}$ & $G_{1,y-1}$, $G_{1,y-1-j}$ & \\
+$G_A(w)$ & $G_1(w)=P_\rho(1,w;t)$ & strings of lengths $A=B=1$\\
+$g(1,t,\dots,t^{a-1})$ & $P_\rho(1,t;t)=G_1(t)$ & \\
+$\sum_{j=0}^{a-1}t^{-jy}$ & $1+t^{-y}$ & \\
+$(-1)^a$ & $+1$ & \\
+$b_\lambda$ & $(1-t)^2$ if $\lambda_1>\lambda_2$;\ $(1-t)(1-t^2)$ if $\lambda_1=\lambda_2$ & $m_i(\lambda)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{The two-variable HL polynomial.} Let $r:=\rho_1-\rho_2=\lambda_1-\lambda_2$. In two variables $P_\rho=(x_1x_2)^{\rho_2}P_{(r)}$, so
+\[
+G_1(w)=P_\rho(1,w;t)=w^{\rho_2}\Bigl(1+w^{r}+(1-t)\sum_{0<k<r}w^k\Bigr)\quad(r\ge1),\qquad G_1(w)=w^{\rho_2}\quad(r=0).
+\]
+Coefficient by coefficient, for $r\ge1$:
+\[
+G_{1,k}=\begin{cases}1,&k=\rho_2\text{ or }k=\rho_1,\\ 1-t,&\rho_2<k<\rho_1,\\ 0,&\text{otherwise};\end{cases}
+\qquad\text{and for }r=0:\ G_{1,k}=\delta_{k,\rho_2}.
+\]
+Hence $P_\rho(1,t;t)=G_1(t)=t^{\rho_2}(1+t)$ if $r\ge1$, and $t^{\rho_2}$ if $r=0$.
+(The FPSAC Example \texttt{ex:tworow} writes the same $G_1$ as $w^{\rho_2}\frac{(1-tw)-w^r(w-t)}{1-w}$.)
+
+\section{After: the substituted formula}
+\[
+\boxed{\;
+\Phi_2(P_\rho;x,y)=(1-t^x)(1-t^y)\Bigl\{t^{-1}\Bigl[\frac{G_{1,y-1}}{(1-t)^2}+\frac{1}{1-t^2}\sum_{j=1}^{y-1-\rho_2}(t^{-j}-t^{j})\,G_{1,y-1-j}\Bigr]-\frac{P_\rho(1,t;t)}{1-t^2}\,(1+t^{-y})\Bigr\}\;}
+\]
+The $j$-sum is finite: $G_{1,k}=0$ for $k<\rho_2$, so only $1\le j\le y-1-\rho_2$ contributes (the sum is empty if $y\le\lambda_2$).
+This is the display of \S3(b), with $P_\rho(1,t;t)$ unchanged and the upper limit of the $j$-sum written out.
+Column B is then
+\[
+\boxed{\;X^{(\lambda_1,\lambda_2)}_{(x,y)}(t)=b_\lambda(t)\Bigl\{t^{-1}\Bigl[\frac{G_{1,y-1}}{(1-t)^2}+\frac{1}{1-t^2}\sum_{j=1}^{y-1-\rho_2}(t^{-j}-t^{j})\,G_{1,y-1-j}\Bigr]-\frac{P_\rho(1,t;t)}{1-t^2}\,(1+t^{-y})\Bigr\}\;}
+\]
+For $y\le x$ it simplifies to the 2026-10-08 closed form ($m_{xy}=2$ if $x=y$, else $1$):
+$(t-1)t^{\lambda_2-1-y}(1+t^y)$ if $y<\lambda_2$; $m_{xy}-(1-t)t^{\lambda_2-1}$ if $y=\lambda_2$; $(t-1)t^{\lambda_2-1}$ if $y>\lambda_2$.
+
+\section{Worked example: $\lambda=(5,2)$, $(x,y)=(4,3)$}
+We have $\rho=(4,1)$, $\rho_2=1$, $r=3$, $b_\lambda=(1-t)^2$. The coefficients of $G_1$ are
+$G_{1,1}=1$, $G_{1,2}=1-t$, $G_{1,3}=1-t$, $G_{1,4}=1$, and all others are $0$.
+So $P_\rho(1,t;t)=t+(1-t)(t^2+t^3)+t^4=t(1+t)$.
+\begin{itemize}
+\item $G_{1,y-1}=G_{1,2}=1-t$, so the first term in the bracket is $\dfrac{1-t}{(1-t)^2}=\dfrac1{1-t}$.
+\item The $j$-sum runs over $1\le j\le y-1-\rho_2=1$: $(t^{-1}-t)\,G_{1,1}=t^{-1}-t$, and divided by $1-t^2$ this gives $t^{-1}$.
+\item Bracket $=\dfrac1{1-t}+\dfrac1t$. Times $t^{-1}$: $\dfrac{1}{t(1-t)}+\dfrac1{t^2}$.
+\item String term: $\dfrac{t(1+t)}{1-t^2}(1+t^{-3})=\dfrac{t+t^{-2}}{1-t}$.
+\item Multiply by $b_\lambda=(1-t)^2$:
+$X=\dfrac{1-t}{t}+\dfrac{(1-t)^2}{t^2}-(1-t)(t+t^{-2})
+=(1-t)\,\dfrac{t+(1-t)-t^3-1}{t^2}=(1-t)(-t)=t^2-t.$
+\item Then $\Phi_2=(1-t^4)(1-t^3)\,(t^2-t)/(1-t)^2=t(t-1)(t+1)(t^2+1)(t^2+t+1)$.
+\end{itemize}
+\textbf{Verified} by \texttt{section3b.py} against three things.
+(i) Ground truth: $p_4p_3$ expanded in the two-variable HL basis, with $P_\lambda(x_1,x_2;t)$ built from Macdonald's symmetrisation formula III~(2.1). This shares nothing with Thm~2.5.
+(ii) Young's rule $X=\pi_2+(t-1)(t\pi_0+\pi_1)$ with $\pi_0=1$, $\pi_1=\pi_2=0$ for cycle type $(4,3)$.
+(iii) The closed form, $y=3>\lambda_2=2$: $(t-1)t$.
+All four values are $t^2-t$.
+
+\textbf{Sweep.} The script runs every two-row $\lambda$ with $|\lambda|\le10$ and every ordered class $(x,y)$, including $y>x$.
+The boxed formula, (i) and (ii) agree on \textbf{155/155} rows with 0 failures; on the $y\le x$ rows the closed form agrees as well.
+\emph{Negative control:} dropping the $j$-sum gives 48 mismatches for $|\lambda|\le8$, so the comparison does detect a wrong formula.
+
+\section{Column-B values, $|\lambda|\le8$, $y\le x$ (44 rows)}
+These are $X^\lambda_{(x,y)}(t)$ in the convention $p_\mu=\sum_\lambda X^\lambda_\mu P_\lambda$, computed from ground truth (i), which agrees with the boxed formula on every row.
+For $\Phi_2$, multiply by $(1-t^x)(1-t^y)/b_\lambda$.
+
+\smallskip
+{\small
+\begin{minipage}[t]{0.48\textwidth}\centering
+\begin{tabular}{@{}lll@{}}
+\toprule $\lambda$ & $(x,y)$ & $X^\lambda_{(x,y)}(t)$\\ \midrule
+$(1,1)$ & $(1,1)$ & $t + 1$ \\
+$(2,1)$ & $(2,1)$ & $t$ \\
+$(3,1)$ & $(3,1)$ & $t$ \\
+$(2,2)$ & $(3,1)$ & $t^{2} - 1$ \\
+$(3,1)$ & $(2,2)$ & $t - 1$ \\
+$(2,2)$ & $(2,2)$ & $t^{2} - t + 2$ \\
+$(4,1)$ & $(4,1)$ & $t$ \\
+$(3,2)$ & $(4,1)$ & $t^{2} - 1$ \\
+$(4,1)$ & $(3,2)$ & $t - 1$ \\
+$(3,2)$ & $(3,2)$ & $t^{2} - t + 1$ \\
+$(5,1)$ & $(5,1)$ & $t$ \\
+$(4,2)$ & $(5,1)$ & $t^{2} - 1$ \\
+$(3,3)$ & $(5,1)$ & $t^{3} - t$ \\
+$(5,1)$ & $(4,2)$ & $t - 1$ \\
+$(4,2)$ & $(4,2)$ & $t^{2} - t + 1$ \\
+$(3,3)$ & $(4,2)$ & $t^{3} - t^{2} + t - 1$ \\
+$(5,1)$ & $(3,3)$ & $t - 1$ \\
+$(4,2)$ & $(3,3)$ & $t^{2} - t$ \\
+$(3,3)$ & $(3,3)$ & $t^{3} - t^{2} + 2$ \\
+$(6,1)$ & $(6,1)$ & $t$ \\
+$(5,2)$ & $(6,1)$ & $t^{2} - 1$ \\
+$(4,3)$ & $(6,1)$ & $t^{3} - t$ \\
+\bottomrule
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}\centering
+\begin{tabular}{@{}lll@{}}
+\toprule $\lambda$ & $(x,y)$ & $X^\lambda_{(x,y)}(t)$\\ \midrule
+$(6,1)$ & $(5,2)$ & $t - 1$ \\
+$(5,2)$ & $(5,2)$ & $t^{2} - t + 1$ \\
+$(4,3)$ & $(5,2)$ & $t^{3} - t^{2} + t - 1$ \\
+$(6,1)$ & $(4,3)$ & $t - 1$ \\
+$(5,2)$ & $(4,3)$ & $t^{2} - t$ \\
+$(4,3)$ & $(4,3)$ & $t^{3} - t^{2} + 1$ \\
+$(7,1)$ & $(7,1)$ & $t$ \\
+$(6,2)$ & $(7,1)$ & $t^{2} - 1$ \\
+$(5,3)$ & $(7,1)$ & $t^{3} - t$ \\
+$(4,4)$ & $(7,1)$ & $t^{4} - t^{2}$ \\
+$(7,1)$ & $(6,2)$ & $t - 1$ \\
+$(6,2)$ & $(6,2)$ & $t^{2} - t + 1$ \\
+$(5,3)$ & $(6,2)$ & $t^{3} - t^{2} + t - 1$ \\
+$(4,4)$ & $(6,2)$ & $t^{4} - t^{3} + t^{2} - t$ \\
+$(7,1)$ & $(5,3)$ & $t - 1$ \\
+$(6,2)$ & $(5,3)$ & $t^{2} - t$ \\
+$(5,3)$ & $(5,3)$ & $t^{3} - t^{2} + 1$ \\
+$(4,4)$ & $(5,3)$ & $t^{4} - t^{3} + t - 1$ \\
+$(7,1)$ & $(4,4)$ & $t - 1$ \\
+$(6,2)$ & $(4,4)$ & $t^{2} - t$ \\
+$(5,3)$ & $(4,4)$ & $t^{3} - t^{2}$ \\
+$(4,4)$ & $(4,4)$ & $t^{4} - t^{3} + 2$ \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+}
+
+\medskip
+--- Rick
+\end{document}
