@@ -1,0 +1,11 @@
+C1 printed example Y1o x^(2,0,1): True
+C2 Thm A.4 m=3 d<=3: diag=s^lam_i t^rk_i and off-diag prec lam: bad=0 (off-diag terms 113)
+B Prop 6.7 m=3 d<=2 (5/7,-3/11) gamma x_i gamma^-1 = Y_i (twisted), all i: True
+B Prop 6.7 m=2 d<=3 (2/5,7/3): True
+B NEG wrong Gaussian (-1, 1) m=2 d<=1 (must be False): False
+B NEG wrong Gaussian (1, -1) m=2 d<=1 (must be False): False
+B NEG wrong Gaussian (-1, -1) m=2 d<=1 (must be False): False
+A Thm 6.2 m=3 (s,t)=(5/11,7/3) |nu|+k<=5: 22/22 OK
+A Thm 6.2 m=4 (s,t)=(3/7,-5/2) |nu|+k<=4: 14/14 OK
+A Thm 6.2 NEG(n(nu),n(nu^prime) swapped) m=3 (s,t)=(5/11,7/3) |nu|+k<=3: 1/7 OK
+ALL: True

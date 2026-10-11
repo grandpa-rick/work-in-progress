@@ -44,7 +44,7 @@
 \begin{document}
 
 \begin{abstract}
-Hikita introduced a two-parameter deformation $\star$ of the product of symmetric functions, obtained by transporting the ordinary product through the level-one polynomial representation of the affine Hecke algebra. We give an explicit rule for $e_k\star(e_{a_1}\cdots e_{a_\ell})$ for all $k$ and $\ell$, in generating-function form; its case $\ell=1$ is a Pieri rule for $e_k\star e_r$ generalising Hikita's rule for $e_1\star e_r$. Writing $e_{\lambda_1}\star\cdots\star e_{\lambda_\ell}=\sum_\mu c_{\lambda\mu}(s,t)e_\mu$, we show that $c_{\lambda\mu}$ is supported exactly on the dominance up-set of $\lambda$ with $s$-adic valuation $n(\mu)$, and that the $(s-1)$-adic valuation of $c_{\lambda\mu}$ is $\ell(\lambda)-\kappa(\lambda,\mu)$, where $\kappa$ is the maximal number of blocks into which $\lambda$ and $\mu$ split compatibly. Leading coefficients factor over blocks into connected pieces; for a full merge the connected piece is a connected-graph cumulant. The coefficients are invariant, up to a power of $s$, under complementation in a box, and all second-order leading coefficients are given in closed form via a residue formula for Green polynomials at two-part classes.
+Hikita introduced a two-parameter deformation $\star$ of the product of symmetric functions, obtained by transporting the ordinary product through the level-one polynomial representation of the affine Hecke algebra. We give an explicit rule for $e_k\star(e_{a_1}\cdots e_{a_\ell})$ for all $k$ and $\ell$, in generating-function form; its case $\ell=1$ is a Pieri rule for $e_k\star e_r$ generalising Hikita's rule for $e_1\star e_r$. Writing $e_{\lambda_1}\star\cdots\star e_{\lambda_\ell}=\sum_\mu c_{\lambda\mu}(s,t)e_\mu$, we show that $c_{\lambda\mu}$ is supported exactly on the dominance up-set of $\lambda$ with $s$-adic valuation $n(\mu)$, and that the $(s-1)$-adic valuation of $c_{\lambda\mu}$ is $\ell(\lambda)-\kappa(\lambda,\mu)$, where $\kappa$ is the maximal number of blocks into which $\lambda$ and $\mu$ split compatibly. Leading coefficients factor over blocks into connected pieces; for a full merge the connected piece is a connected-graph cumulant. The coefficients are invariant, up to a power of $s$, under complementation in a box, and all second-order leading coefficients are given in closed form via a residue formula for Green polynomials at two-part classes. Finally, we give a self-contained proof that $\star$ is the ordinary product transported by an operator diagonal on Macdonald polynomials, an identity implicit in work of Di Francesco and Kedem.
 \end{abstract}
 
 \maketitle
@@ -74,8 +74,11 @@ At $s=1$, $\star$ is the ordinary product, and the variable $s$ enters the subse
 \[ \val_{s-1}(c_{\lambda\mu})=\ell(\lambda)-\kappa(\lambda,\mu)\qquad(\mu\trianglerighteq\lambda,\ \mu\ne\lambda), \]
 where $\kappa$ is the maximal number of compatible blocks (\cref{thm:blocklaw}); the lower bound holds for all $t$, and exactness is settled at $t=0$, where no cancellation occurs. The leading coefficients are sums over merge histories with explicit weights (\cref{thm:coarse,thm:W}). For a full merge the lead is $\frac{1-t^n}{\prod_i(1-t^{\lambda_i})}\sum_{H\text{ connected}}\prod_{ij\in H}(t^{\lambda_i\lambda_j}-1)$ (\cref{thm:G}), whose graph half is due to Do{\l}{\k{e}}ga~\cite{Dolega19}, and every lead is a sum of products of connected leads (\cref{thm:F,thm:blockmult}). The coefficients satisfy $c_{N^\ell-\lambda,N^\ell-\mu}=s^{N\binom\ell2-(\ell-1)|\lambda|}c_{\lambda\mu}$ (\cref{thm:box}). Finally, every leading coefficient at valuation $2$ is given in closed form (\cref{thm:v2,cor:v2}), via a constant-term formula and a residue evaluation of Green polynomials at two-part classes (\cref{thm:CT,thm:2pt}).
 
+\subsection*{A Macdonald-diagonal transport}
+The product $\star$ is the ordinary product transported by the operator $\mathcal N$ that multiplies the Macdonald polynomial $P_\nu(x;s,t^{-1})$ by $t^{n(\nu)}s^{n(\nu')}$; equivalently, $e_k\star(\cdot)=t^{-\binom k2}\mathcal N e_k\mathcal N^{-1}$, a finite-variable form of a $\nabla$-conjugation (\cref{thm:N}). This identity is implicit in \cite{DFK19} and we claim no novelty for it. We give a self-contained proof via a nonsymmetric Gaussian, whose engine is the commutator $[\sum_jY_j,x_1]=(s-1)x_1Y_1$ for Cherednik's untwisted operators (\cref{lem:I,prop:NS}). No other result of the paper depends on \cref{thm:N}.
+
 \subsection*{Organisation}
-\Cref{sec:hikita} sets up Hikita's product and proves the subset formula. \Cref{sec:pieri} contains the Pieri package. \Cref{sec:DS} proves dominance support, and \cref{sec:edge} identifies the $s\to0$ edge. \Cref{sec:blocklaw,sec:leads} treat the expansion at $s=1$, \cref{sec:box} the box symmetry and the linear coefficient, and \cref{sec:v2} the second-order leading coefficients.
+\Cref{sec:hikita} sets up Hikita's product and proves the subset formula. \Cref{sec:pieri} contains the Pieri package. \Cref{sec:DS} proves dominance support, and \cref{sec:edge} identifies the $s\to0$ edge. \Cref{sec:nabla} proves the $\nabla$-transport identity, using the facts about Cherednik operators collected in \cref{app:cherednik}. \Cref{sec:blocklaw,sec:leads} treat the expansion at $s=1$, \cref{sec:box} the box symmetry and the linear coefficient, and \cref{sec:v2} the second-order leading coefficients.
 
 %% ===================================================================
 \section{Hikita's product and the subset formula}\label{sec:hikita}
@@ -97,7 +100,7 @@ Y_i&:=t^{m-i}\,T_{i-1}\cdots T_1\,\pi\,T_{m-1}^{-1}\cdots T_i^{-1}\qquad(1\le i\
 \end{align*}
 The $T_i$ are Demazure--Lusztig operators; they preserve polynomials, satisfy $(T_i-t)(T_i+1)=0$ and the braid relations, and $T_if=tf$ whenever $s_if=f$. For $1\le k\le m$ put
 \[ e_k(Y):=\sum_{b_1<\dots<b_k}Y_{b_1}Y_{b_2}\cdots Y_{b_k}, \]
-each product taken in increasing order of indices from left to right. (The $Y_i$ commute, but the proof of \cref{thm:subset} does not use this.) Hikita's product $F\star G$ is defined by transporting the product through the map $F(Y)\mapsto F(Y)\bullet1$; by \cite[Lemma~3.1, Cor.~3.9]{Hikita25} this map is a linear isomorphism compatible with $m\to m-1$, so $\star$ is well defined on $\Lam$ \cite[Cor.~3.10]{Hikita25}, and it is commutative and associative \cite[\S3.2, after Def.~3.4]{Hikita25}. We use $\star$ only through the following consequence of the definitions \cite[Def.~3.4, Lemma~3.3]{Hikita25}: for symmetric $F$,
+each product taken in increasing order of indices from left to right. (The $Y_i$ commute (\cref{prop:NS}, \cref{rem:twisted}), but the proof of \cref{thm:subset} does not use this.) Hikita's product $F\star G$ is defined by transporting the product through the map $F(Y)\mapsto F(Y)\bullet1$; by \cite[Lemma~3.1, Cor.~3.9]{Hikita25} this map is a linear isomorphism compatible with $m\to m-1$, so $\star$ is well defined on $\Lam$ \cite[Cor.~3.10]{Hikita25}, and it is commutative and associative \cite[\S3.2, after Def.~3.4]{Hikita25}. We use $\star$ only through the following consequence of the definitions \cite[Def.~3.4, Lemma~3.3]{Hikita25}: for symmetric $F$,
 \begin{equation}\label{eq:star-reading}
 e_k\star F=t^{-\binom k2}\,e_k(Y)\,F .
 \end{equation}
@@ -591,9 +594,115 @@ The matrix $d_{\lambda\mu}(t)$ is the classical $e\to$Hall--Littlewood transitio
 \end{remark}
 
 \begin{remark}[Other edges]\label{rem:edges}
-The edges $t\to\infty$, $s\to\infty$ and $t=0$ of the $(s,t)$-square, and the reflection $(s,t)\mapsto(1/s,1/t)$, can be treated through a conjugation of $e_k\star(\cdot)$ by an operator that is diagonal on Macdonald polynomials; such a conjugation is implicit in \cite{DFK19}. We do not develop this here and use none of it: the only other edge that enters below is $t=0$, and for it we cite \cite{DFK18} (\cref{rem:t0input}).
+The edges $t\to\infty$, $s\to\infty$ and $t=0$ of the $(s,t)$-square, and the reflection $(s,t)\mapsto(1/s,1/t)$, can be treated through the conjugation of $e_k\star(\cdot)$ by the Macdonald-diagonal operator $\mathcal N$ of \cref{thm:N}, which is implicit in \cite{DFK19}. We do not develop this here and use none of it: the only other edge that enters below is $t=0$, and for it we cite \cite{DFK18} (\cref{rem:t0input}).
 \end{remark}
 
+
+%% ===================================================================
+\section{Hikita's product as a Macdonald-diagonal transport}\label{sec:nabla}
+%% ===================================================================
+In this section we show that $\star$ is the ordinary product transported by an operator that is diagonal on Macdonald polynomials (\cref{thm:N}). \textbf{This identity is implicit in \cite{DFK19}} (\cref{rem:N-DFK}); we give a self-contained proof via a nonsymmetric Gaussian. Nothing outside this section depends on it. The proof uses three standard facts about Cherednik operators: commutativity, Bernstein's relations, and triangularity with simple spectrum. For completeness, \cref{app:cherednik} proves them in our conventions, citing only Bernstein's presentation of the extended affine braid group in the form \cite[Thm.~4.2]{Haiman06}.
+
+Throughout, $\mathsf P_\nu:=P_\nu(x;s,t^{-1})$ is the Macdonald polynomial \cite[VI \S4]{Macdonald95} with parameters $(q,t)=(s,t^{-1})$, in $m$ variables, for $\ell(\nu)\le m$. The $\mathsf P_\nu$ with $\ell(\nu)\le m$ form a basis of $\Lam_m$, and $\mathsf P_{(1^k)}=e_k$, because $m_{(1^k)}=e_k$ is minimal in dominance among the monomial functions of degree $k$.
+
+\begin{definition}\label{def:N}
+Let $\mathcal N$ be the linear operator on $\Lam_m$ with $\mathcal N\,\mathsf P_\nu=t^{n(\nu)}s^{n(\nu')}\,\mathsf P_\nu$.
+\end{definition}
+
+\begin{theorem}[$\nabla$-transport]\label{thm:N}
+For all $m\ge1$ and $1\le k\le m$, as operators on $\Lam_m$,
+\[ E_k=t^{-\binom k2}\,\mathcal N\circ e_k\circ\mathcal N^{-1}. \]
+Equivalently, $F\star G=\mathcal N\bigl(\mathcal N^{-1}F\cdot\mathcal N^{-1}G\bigr)$ for all $F,G\in\Lam_m$, and $e^\star_\lambda=t^{-n(\lambda')}\,\mathcal N e_\lambda$.
+\end{theorem}
+
+\begin{proof}[Proof of the equivalence]
+Put $F\star'G:=\mathcal N(\mathcal N^{-1}F\cdot\mathcal N^{-1}G)$, a commutative associative product on $\Lam_m$. Since $\mathcal N e_k=t^{\binom k2}e_k$, the displayed identity says $e_k\star F=E_kF=e_k\star'F$ for all $F$ (\cref{thm:subset}). Both products are associative, so $G\star F=G\star'F$ whenever $G$ is a polynomial in the $e_k$ for either product. Iterating, $e^\star_\lambda=e_{\lambda_1}\star'\cdots\star'e_{\lambda_\ell}=\mathcal N(\mathcal N^{-1}e_{\lambda_1}\cdots\mathcal N^{-1}e_{\lambda_\ell})=t^{-n(\lambda')}\mathcal Ne_\lambda$, using $\sum_i\binom{\lambda_i}2=n(\lambda')$. These elements span $\Lam_m$ as $\lambda$ runs over the partitions with $\lambda_1\le m$, so $\star=\star'$. Conversely, $\star=\star'$ gives $E_kF=e_k\star F=t^{-\binom k2}\mathcal N(e_k\,\mathcal N^{-1}F)$.
+\end{proof}
+
+\begin{remark}[The $\nabla$ form]\label{rem:N-nabla}
+Let $\nabla$ be the operator with $\nabla\widetilde H_\nu=t^{n(\nu)}q^{n(\nu')}\widetilde H_\nu$ on the modified Macdonald polynomials, which we normalise by $\widetilde H_\nu(x;q,t):=t^{n(\nu)}J_\nu[X/(1-t^{-1});q,t^{-1}]$, with $J_\nu$ the integral form, a scalar multiple of $P_\nu$ \cite[VI \S8]{Macdonald95}. Put $\varphi(F):=F[-\varepsilon X/(1-t)]$, so $\varphi^{-1}(G)=G[-\varepsilon X(1-t)]$; here $p_r[-\varepsilon X]=(-1)^{r-1}p_r$. Then $X/(1-t^{-1})$ evaluated at $-\varepsilon X(1-t)$ is $\varepsilon tX$, so
+\[ \varphi^{-1}\widetilde H_\nu(x;s,t)=t^{n(\nu)}J_\nu[\varepsilon tX;s,t^{-1}]=(-1)^{|\nu|}\,t^{|\nu|+n(\nu)}\,J_\nu(x;s,t^{-1}) . \]
+This is a scalar multiple of $\mathsf P_\nu$, so $\mathcal N=\varphi^{-1}\circ\nabla_{q=s}\circ\varphi$. \Cref{thm:N} therefore reads $t^{n(\lambda')}e^\star_\lambda=\varphi^{-1}\nabla_{q=s}\varphi(e_\lambda)$.
+\end{remark}
+
+\begin{remark}[Attribution]\label{rem:N-DFK}
+We use the numbering of arXiv:1704.00154, and take $(q,t)$ of \cite{DFK19} to be $(s,t^{-1})$. Then $E_k$ is a power of $t$ times the generalised Macdonald operator $M_{k;1}$ of \cite[(1.5)]{DFK19}. By \cite[Lemma~2.16, Thm.~2.17]{DFK19}, $M_{k;1}$ is the image of $e_k(Y)$ under the automorphism $\tau_+$, restricted to symmetric functions. By \cite[Lemma~2.13, Rem.~2.14, (4.14)]{DFK19}, the automorphism $\tau_-$ is conjugation by an $N$-variable version $\nabla^{(N)}$ of $\nabla$, which agrees with $\mathcal N$ up to a constant and a factor depending only on the degree. After the conventions are matched, the $SL_2(\mathbb{Z})$ relations \cite[(6.3), (6.5), (6.8)]{DFK19} give $\tau_-(e_k(X))=\tau_+(e_k(Y))$. Together these give \cref{thm:N}. The product $\star$ does not appear in \cite{DFK19}, and the identity is not stated there for $k\ge2$. Neither \cref{thm:N} nor its equivalent forms are claimed as new. What we add is an elementary route, which makes the normalisations explicit: one telescoping commutator (\cref{lem:I}) and a Gaussian on the nonsymmetric eigenbasis (\cref{prop:NS}).
+\end{remark}
+
+\begin{remark}[What uses \cref{thm:N}]\label{rem:N-uses}
+No other result of this paper uses \cref{thm:N}. In particular, \cref{thm:DS,thm:H,thm:blocklaw} and the results of \cref{sec:leads,sec:box,sec:v2} are proved without it. It does explain the shape of \cref{thm:H}. If $e_\mu=\sum_{\nu\trianglelefteq\mu'}a_{\mu\nu}\mathsf P_\nu$, then the coefficient of $\mathsf P_\nu$ in $\mathcal N^{-1}b_\mu$ carries the factor $s^{n(\mu)-n(\nu')}$. For $\nu\trianglelefteq\mu'$ we have $n(\nu')\le n(\mu)$, with equality only for $\nu=\mu'$. So modulo $s$ only $\mathsf P_{\mu'}$ survives, as in \cref{thm:H}(2). The same conjugation governs the edges in \cref{rem:edges}. We do not develop either limit argument here.
+\end{remark}
+
+\subsection{Untwisted operators}
+Let $\mathrm{Pol}:=\mathbb{Q}(s,t)[x_1,\dots,x_m]$ and let $\mathrm{Pol}_d$ be its homogeneous part of degree $d$. Besides the operator $\pi$ of \cref{sec:hikita}, we use Cherednik's untwisted shift and the corresponding operators
+\[ \pi_\circ f(x_1,\dots,x_m):=f(x_2,\dots,x_m,sx_1),\qquad Y^\circ_i:=t^{m-i}\,T_{i-1}\cdots T_1\,\pi_\circ\,T_{m-1}^{-1}\cdots T_i^{-1}. \]
+So $\pi=x_1\pi_\circ$, and hence $Y_1=x_1Y^\circ_1$. Besides the relations of \cref{sec:hikita}, we use the following elementary relations, proved in \cref{app:elementary}:
+\begin{enumerate}
+\item[(R1)] $T_ix_iT_i=t\,x_{i+1}$, and $T_i$ commutes with multiplication by $x_j$ for $j\notin\{i,i+1\}$;
+\item[(R2)] $\pi_\circ x_j=x_{j+1}\pi_\circ$ for $j<m$, and $\pi_\circ x_m=s\,x_1\pi_\circ$;
+\item[(R3)] $\pi_\circ T_j=T_{j+1}\pi_\circ$ for $1\le j\le m-2$;
+\item[(R4)] $T_i^{-1}=t^{-1}T_i-(1-t^{-1})$.
+\end{enumerate}
+From (R1) and (R4) we get
+\begin{equation}\label{eq:TX}
+T_j^{-1}x_j=x_{j+1}T_j^{-1}-(1-t^{-1})\,x_j,\qquad T_1x_2=x_1T_1+(t-1)\,x_2,\qquad x_{j+1}T_j^{-1}=t^{-1}T_jx_j .
+\end{equation}
+For the first, rewrite (R1) as $T_jx_j=t\,x_{j+1}T_j^{-1}$ and substitute $T_j=tT_j^{-1}+(t-1)$. For the second, rewrite (R1) as $x_1T_1=tT_1^{-1}x_2=(T_1-(t-1))x_2$. The third is (R1) multiplied by $t^{-1}T_j^{-1}$ on the right.
+
+\subsection{The commutator}
+\begin{lemma}\label{lem:I}
+On $\mathrm{Pol}$, $\bigl[\,Y^\circ_1+\dots+Y^\circ_m,\ x_1\bigr]=(s-1)\,x_1Y^\circ_1$.
+\end{lemma}
+\begin{proof}
+\emph{The terms $j\ge2$.} The tail $T_{m-1}^{-1}\cdots T_j^{-1}$ commutes with $x_1$, and $\pi_\circ x_1=x_2\pi_\circ$. By \eqref{eq:TX}, $T_1x_2=x_1T_1+(t-1)x_2$, and $T_{j-1}\cdots T_2$ commutes with $x_1$. Hence
+\[ [Y^\circ_j,x_1]=(t-1)\,L_j,\qquad L_j:=t^{m-j}\,T_{j-1}\cdots T_2\,x_2\,\pi_\circ\,T_{m-1}^{-1}\cdots T_j^{-1}. \]
+\emph{The term $j=1$.} Moving $x_1$ to the left with the first identity of \eqref{eq:TX}, one factor at a time, and using that $x_i$ commutes with $T_{i+1}^{-1},\dots,T_{m-1}^{-1}$, we get
+\[ T_{m-1}^{-1}\cdots T_1^{-1}x_1=x_mT_{m-1}^{-1}\cdots T_1^{-1}-(1-t^{-1})\sum_{i=1}^{m-1}x_i\,T_{m-1}^{-1}\cdots T_{i+1}^{-1}\,T_{i-1}^{-1}\cdots T_1^{-1}. \]
+Apply $t^{m-1}\pi_\circ$ and use (R2). The first term becomes $s\,x_1Y^\circ_1$, so
+\[ [Y^\circ_1,x_1]=(s-1)\,x_1Y^\circ_1-(t-1)\sum_{i=1}^{m-1}R_i,\qquad R_i:=t^{m-2}\,x_{i+1}\,\pi_\circ\,T_{m-1}^{-1}\cdots T_{i+1}^{-1}\,T_{i-1}^{-1}\cdots T_1^{-1}. \]
+\emph{Telescoping.} The factors $T_{i-1}^{-1}\cdots T_1^{-1}$ commute with $T_{m-1}^{-1}\cdots T_{i+1}^{-1}$, and by (R3) they pass through $\pi_\circ$ as $T_i^{-1}\cdots T_2^{-1}$. By the third identity of \eqref{eq:TX}, applied $i-1$ times, $x_{i+1}T_i^{-1}\cdots T_2^{-1}=t^{-(i-1)}T_i\cdots T_2\,x_2$. Hence $R_i=L_{i+1}$. Summing over $j$, the terms $(t-1)L_j$ for $j\ge2$ cancel the terms $-(t-1)R_i$.
+\end{proof}
+
+\subsection{The nonsymmetric Gaussian}
+By \cref{thm:C3}, $\mathrm{Pol}_d$ has a basis $\{\mathcal E_\lambda\}$, indexed by the compositions $\lambda\in\mathbb{Z}_{\ge0}^m$ with $|\lambda|=d$, such that
+\[ Y^\circ_i\,\mathcal E_\lambda=y_i(\lambda)\,\mathcal E_\lambda,\qquad y_i(\lambda)=s^{\lambda_i}t^{\mathrm{rk}_i(\lambda)},\qquad \mathrm{rk}_i(\lambda)=\#\{j:\lambda_j>\lambda_i\}+\#\{j<i:\lambda_j=\lambda_i\}, \]
+and $i\mapsto\mathrm{rk}_i(\lambda)$ is a bijection $[m]\to\{0,\dots,m-1\}$. Two consequences are used repeatedly. First, the vector $y(\lambda)$ determines $\lambda$. Second, the sum $\sum_iy_i(\lambda)=\sum_{r=0}^{m-1}s^{a_r}t^r$ determines the multiset $\{y_i(\lambda)\}$, because its exponents of $t$ are distinct. Define $\theta(s^at^r):=s^{\binom a2}t^{ar}$, so that
+\begin{equation}\label{eq:theta}
+\theta(s\,y)=y\,\theta(y)\qquad(y=s^at^r),
+\end{equation}
+and let $\widehat\gamma$ be the operator on $\mathrm{Pol}$ with $\widehat\gamma\,\mathcal E_\lambda=\gamma(\lambda)\,\mathcal E_\lambda$, where $\gamma(\lambda):=\prod_i\theta(y_i(\lambda))$.
+
+\begin{proposition}[Nonsymmetric Gaussian]\label{prop:NS}
+For $1\le i\le m$, as operators on $\mathrm{Pol}$, $\widehat\gamma\,x_i\,\widehat\gamma^{-1}=Y_i$, where $Y_i$ are the operators of \cref{sec:hikita}. Consequently the $Y_i$ commute, and $e_k(Y)=\widehat\gamma\,e_k(x)\,\widehat\gamma^{-1}$.
+\end{proposition}
+\begin{proof}
+\emph{$i=1$.} Write $x_1\mathcal E_\lambda=\sum_\mu c_{\mu\lambda}\mathcal E_\mu$, with $|\mu|=|\lambda|+1$. Applying \cref{lem:I} to $\mathcal E_\lambda$ and comparing coefficients gives, for each $\mu$ with $c_{\mu\lambda}\ne0$,
+\[ \textstyle\sum_jy_j(\mu)=\sum_jy_j(\lambda)+(s-1)\,y_1(\lambda). \]
+Write $\sum_jy_j(\lambda)=\sum_rs^{a_r}t^r$, and similarly $\sum_rs^{a'_r}t^r$ for $\mu$. Comparing coefficients of $t^r$ gives $a'_r=a_r$ for $r\ne\mathrm{rk}_1(\lambda)$ and $a'_r=a_r+1$ for $r=\mathrm{rk}_1(\lambda)$. So the multiset $\{y_j(\mu)\}$ is $\{y_j(\lambda)\}$ with $y_1(\lambda)$ replaced by $s\,y_1(\lambda)$, and $\gamma(\mu)=y_1(\lambda)\gamma(\lambda)$ by \eqref{eq:theta}. Hence $\widehat\gamma x_1\widehat\gamma^{-1}\mathcal E_\lambda=y_1(\lambda)\,x_1\mathcal E_\lambda=x_1Y^\circ_1\mathcal E_\lambda=Y_1\mathcal E_\lambda$.
+
+\emph{$\widehat\gamma$ commutes with each $T_i$.} Fix $d$. Let $S_d\subset\mathbb{Q}(s,t)^m$ be the finite set of all $w\cdot y(\lambda)$, with $|\lambda|=d$ and $w\in S_m$. Choose a polynomial $g$ that agrees with $(y_1,\dots,y_m)\mapsto\prod_i\theta(y_i)$ on $S_d$. Since that function and $S_d$ are $S_m$-invariant, the symmetrisation $f_d$ of $g$ still agrees with it on $S_d$. Then $\widehat\gamma|_{\mathrm{Pol}_d}=f_d(Y^\circ)|_{\mathrm{Pol}_d}$, which commutes with $T_i$ by \cref{lem:bernstein} and \cref{thm:C1}. Since $T_i$ preserves $\mathrm{Pol}_d$, $\widehat\gamma$ commutes with $T_i$.
+
+\emph{All $i$.} By (R1) and \cref{lem:bernstein}(a) for $\pi$, $x_{i+1}=t^{-1}T_ix_iT_i$ and $Y_{i+1}=t^{-1}T_iY_iT_i$. Conjugate by $\widehat\gamma$ and induct on $i$. The consequences follow because the $x_i$ commute.
+\end{proof}
+
+\begin{lemma}\label{lem:Nsym}
+$\widehat\gamma$ preserves $\Lam_m\subset\mathrm{Pol}$, and $\widehat\gamma|_{\Lam_m}=\mathcal N$.
+\end{lemma}
+\begin{proof}
+The proofs of \cref{prop:Ak,prop:Kk} use only (H5) and the fact that $\pi^nF$ is symmetric in $x_1,\dots,x_n$ and in $x_{n+1},\dots,x_m$. Both also hold for $\pi_\circ$: (H5) is (R3), and $\pi_\circ^nF=F(x_{n+1},\dots,x_m,sx_1,\dots,sx_n)$. For $k=1$ and symmetric $F$ this gives
+\[ \textstyle e_1(Y^\circ)F=\sum_ac_{\{a\}}\,F|_{x_a\mapsto sx_a}=t^{m-1}\sum_a\prod_{j\ne a}\frac{t^{-1}x_a-x_j}{x_a-x_j}\,F|_{x_a\mapsto sx_a}, \]
+which is $t^{m-1}$ times Macdonald's operator $D^1_m$ \cite[VI (3.4)]{Macdonald95} with $(q,t)=(s,t^{-1})$. Hence $e_1(Y^\circ)\mathsf P_\nu=\sum_is^{\nu_i}t^{i-1}\,\mathsf P_\nu$ \cite[VI \S\S3--4]{Macdonald95}. Expand $\mathsf P_\nu=\sum_\lambda u_\lambda\mathcal E_\lambda$. Each $\lambda$ with $u_\lambda\ne0$ has $\sum_iy_i(\lambda)=\sum_is^{\nu_i}t^{i-1}$, so its spectral multiset is $\{s^{\nu_i}t^{i-1}\}_i$. Therefore
+\[ \textstyle\gamma(\lambda)=\prod_i\theta(s^{\nu_i}t^{i-1})=s^{\sum_i\binom{\nu_i}2}\,t^{\sum_i(i-1)\nu_i}=s^{n(\nu')}t^{n(\nu)}, \]
+so $\widehat\gamma\mathsf P_\nu=t^{n(\nu)}s^{n(\nu')}\mathsf P_\nu$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:N}]
+Let $F\in\Lam_m$. By \cref{thm:subset}, \cref{prop:NS} and \cref{lem:Nsym},
+\[ E_kF=t^{-\binom k2}e_k(Y)F=t^{-\binom k2}\,\widehat\gamma\,e_k\,\widehat\gamma^{-1}F=t^{-\binom k2}\,\widehat\gamma\bigl(e_k\,\mathcal N^{-1}F\bigr)=t^{-\binom k2}\,\mathcal N\,e_k\,\mathcal N^{-1}F, \]
+since $e_k\mathcal N^{-1}F$ is symmetric.
+\end{proof}
+
+\paragraph{Computer checks.} \Cref{lem:I} was checked for $m\le4$ on all monomials of degree $\le3$. \Cref{prop:NS} was checked exactly, with scalar $1$ and for all $i$, for $m=2$ (degree $\le3$) and $m=3$ (degree $\le2$). \Cref{thm:N} was checked for all $\nu$ and $k$ with $|\nu|+k\le5$ at a rational point $(s,t)$. Each of the three wrong Gaussians $s^{\pm\binom a2}t^{\pm ar}$ (all sign choices other than $\theta$) fails already in degree~$1$.
 
 %% ===================================================================
 \section{The block valuation law at $s=1$}\label{sec:blocklaw}
@@ -668,7 +777,7 @@ By \eqref{eq:taylor}, $[(s-1)^m]e^\star_\lambda=\sum_{\sum p_i=m}E^{(p_1)}_{\lam
 \end{proof}
 
 \begin{remark}[Input at $t=0$]\label{rem:t0input}
-The $t=0$ edge $e^\star_\mu|_{t=0}=s^{n(\mu)}P_{\mu'}(x;1/s,0)=\omega\widetilde H_\mu(x;s)$, where $\widetilde H_\mu(x;s)=s^{n(\mu)}Q'_\mu(x;s^{-1})$, is \textbf{not ours}: it is assembled from \cite{DFK18} eq.~(5.15) (with $M_{k,1}=E_k|_{t=0}$), Cor.~5.8 in its level-one form (5.25), Cor.~5.18 (eq.~(5.27)) (numbering of arXiv:1505.01657v2), and \cite[VI (5.1), (4.14)(iv)]{Macdonald95}. In particular \cref{thm:blocklaw} does not depend on Cherednik's nonsymmetric theory.
+The $t=0$ edge $e^\star_\mu|_{t=0}=s^{n(\mu)}P_{\mu'}(x;1/s,0)=\omega\widetilde H_\mu(x;s)$, where $\widetilde H_\mu(x;s)=s^{n(\mu)}Q'_\mu(x;s^{-1})$, is \textbf{not ours}: it is assembled from \cite{DFK18} eq.~(5.15) (with $M_{k,1}=E_k|_{t=0}$), Cor.~5.8 in its level-one form (5.25), Cor.~5.18 (eq.~(5.27)) (numbering of arXiv:1505.01657v2), and \cite[VI (5.1), (4.14)(iv)]{Macdonald95}. In particular \cref{thm:blocklaw} does not depend on Cherednik's nonsymmetric theory; only \cref{sec:nabla} and \cref{app:cherednik} use it, and nothing outside them depends on them.
 \end{remark}
 
 \begin{proof}[Proof of equality]
@@ -963,6 +1072,109 @@ $(3,3,3)\to(7,2)$: $\Lead=2t^{13}+3t^{12}+3t^{11}+6t^{10}+6t^9+6t^8+9t^7+6t^6+3t
   \item \textbf{Positivity.} Leads are not $t$-positive (\cref{ex:v2}), so no ``$t$-count of minimal flows'' can hold. Is there a signed or cancellation-free model?
   \item \textbf{Cumulant link.} Is there a Macdonald-cumulant construction whose leads are the $\star$-leads for all $t$, i.e.\ cumulants of $e_k\mapsto t^{\binom k2}$?
 \end{enumerate}
+
+\appendix
+%% ===================================================================
+\section{Cherednik operators in our conventions}\label{app:cherednik}
+%% ===================================================================
+This appendix proves the facts about the operators $T_i$, $\pi_\circ$, $Y^\circ_i$ used in \cref{sec:nabla}. These are textbook facts. For completeness we include short proofs in our conventions, and we claim nothing new here. The only external input is Bernstein's presentation, cited from \cite[Thm.~4.2]{Haiman06}. Notation is as in \cref{sec:hikita,sec:nabla}, and $K:=\mathbb{Q}(s,t)$.
+
+\subsection{Elementary relations}\label{app:elementary}
+Fix $i$ and let $R_i\subset\mathrm{Pol}$ be the subring of $s_i$-invariant polynomials. Then $T_i$ is $R_i$-linear, and $\mathrm{Pol}$ is a free $R_i$-module with basis $\{1,x_i\}$. From the definition, $T_i1=t$ and $T_ix_i=x_{i+1}$, so $T_ix_{i+1}=T_i(x_i+x_{i+1})-T_ix_i=tx_i+(t-1)x_{i+1}$.
+\begin{itemize}
+\item \emph{Quadratic relation.} $T_i^2=(t-1)T_i+t$ holds on $1$ (since $t^2=(t-1)t+t$) and on $x_i$ (both sides give $tx_i+(t-1)x_{i+1}$). This gives (R4).
+\item \emph{(R1).} Both sides of $T_ix_iT_i=tx_{i+1}$ are $R_i$-linear. On $1$ both give $tx_{i+1}$; on $x_i$ both give $tx_ix_{i+1}$. If $j\notin\{i,i+1\}$, then $x_j\in R_i$.
+\item \emph{(R2)} is immediate from the definition.
+\item \emph{(R3)} follows as for (H5): $\pi_\circ$ intertwines $s_j$ with $s_{j+1}$ and multiplication by $x_{j+1}/(x_j-x_{j+1})$ with multiplication by $x_{j+2}/(x_{j+1}-x_{j+2})$, for $j\le m-2$.
+\item \emph{Braid relations.} We use these as stated in \cref{sec:hikita}. Far commutation holds because $T_i$ and $T_k$, $|i-k|\ge2$, act on disjoint pairs of variables, each linearly over polynomials in the other pair. For $T_iT_{i+1}T_i=T_{i+1}T_iT_{i+1}$, both sides are linear over the polynomials that are symmetric in $x_i,x_{i+1},x_{i+2}$. Over that ring, $\mathbb{Q}[x_i,x_{i+1},x_{i+2}]$ is free on the six monomials $x_i^ax_{i+1}^b$ with $a\le2$, $b\le1$, so the relation reduces to a finite computation on these six monomials. We carried it out symbolically in $s$ and $t$.
+\end{itemize}
+
+\subsection{Bernstein relations}
+\begin{lemma}\label{lem:bernstein}
+Let $\varpi$ be an operator on $\mathrm{Pol}$ with $\varpi T_k=T_{k+1}\varpi$ for $1\le k\le m-2$; this covers $\varpi=\pi$ by (H5) and $\varpi=\pi_\circ$ by (R3). Define $Y'_i:=t^{m-i}T_{i-1}\cdots T_1\varpi T_{m-1}^{-1}\cdots T_i^{-1}$. Then for $1\le i\le m-1$:
+\begin{enumerate}
+\item[(a)] $T_iY'_iT_i=tY'_{i+1}$;
+\item[(b)] $T_iY'_i=Y'_{i+1}T_i-(t-1)Y'_{i+1}$ and $T_iY'_{i+1}=Y'_iT_i+(t-1)Y'_{i+1}$; hence $[T_i,Y'_i+Y'_{i+1}]=0$ and $T_iY'_iY'_{i+1}=Y'_{i+1}Y'_iT_i$;
+\item[(c)] $T_iY'_j=Y'_jT_i$ for $j\notin\{i,i+1\}$.
+\end{enumerate}
+If moreover the $Y'_i$ commute, then $T_if(Y')=f(Y')T_i$ for every $f\in K[y_1,\dots,y_m]^{S_m}$.
+\end{lemma}
+\begin{proof}
+(a) The trailing $T_i^{-1}$ of $Y'_i$ cancels against $T_i$. The $T_i$ on the left extends $T_{i-1}\cdots T_1$ to $T_i\cdots T_1$, so the result is $tY'_{i+1}$.
+
+(b) Multiply (a) on the right, respectively on the left, by $T_i^{-1}=t^{-1}T_i-(1-t^{-1})$. Adding the two relations cancels the $(t-1)Y'_{i+1}$ terms. Applying the first relation and then the second gives $T_iY'_iY'_{i+1}=Y'_{i+1}T_iY'_{i+1}-(t-1)Y'^2_{i+1}=Y'_{i+1}Y'_iT_i$.
+
+(c) Case $j\ge i+2$. By the braid and far relations, $T_i\,T_{j-1}\cdots T_1=T_{j-1}\cdots T_1\,T_{i+1}$. Then $T_{i+1}\varpi=\varpi T_i$, and $T_i$ commutes with $T_{m-1}^{-1},\dots,T_j^{-1}$.
+
+Case $j\le i-1$. $T_i$ commutes with $T_{j-1},\dots,T_1$, and $T_i\varpi=\varpi T_{i-1}$. The braid relation in the form $T_{i-1}T_i^{-1}T_{i-1}^{-1}=T_i^{-1}T_{i-1}^{-1}T_i$ gives $T_{i-1}\,T_{m-1}^{-1}\cdots T_j^{-1}=T_{m-1}^{-1}\cdots T_j^{-1}\,T_i$.
+
+Finally, a symmetric $f$ is a polynomial in $y_i+y_{i+1}$, $y_iy_{i+1}$ and the $y_j$ with $j\ne i,i+1$. If the $Y'$ commute, then $f(Y')$ is the same polynomial in the corresponding operators, and each of these commutes with $T_i$ by (b) and (c).
+\end{proof}
+
+\subsection{Commutativity}
+\begin{theorem}\label{thm:C1}
+The operators $Y^\circ_1,\dots,Y^\circ_m$ commute pairwise on $\mathrm{Pol}$.
+\end{theorem}
+
+\emph{What we cite.} Let $W_e=Y\rtimes W_0=\Omega\ltimes W_a$ be the extended affine Weyl group, where $\Omega$ is the stabiliser of the fundamental alcove. Let $B(W_e)=\Omega\ltimes B(W_a)$ be the extended affine braid group, in which $\Omega$ acts on $B(W_a)$ through its action on the Coxeter generators \cite[\S\S3.9--3.13, 4.1]{Haiman06}. For $\varpi\in\Omega$ write $\varpi=y^{\lambda_\varpi}v_\varpi$ with $v_\varpi\in W_0$ \cite[(13)]{Haiman06}. Let $B(Y,W_0)$ be the right affine braid group of \cite[\S2.9]{Haiman06}. It is generated by the finite braid group $B(W_0)$ and the abelian group $Y$, subject to the relations \cite[(8)--(9)]{Haiman06}
+\[ T_iy^\lambda T_i^{-1}=y^\lambda\ \text{ if }\langle\lambda,\alpha_i^\vee\rangle=0,\qquad T_i^{-1}y^\lambda T_i^{-1}=y^{s_i\lambda}\ \text{ if }\langle\lambda,\alpha_i^\vee\rangle=1 . \]
+Bernstein's theorem \cite[Thm.~4.2]{Haiman06} gives an isomorphism $\Phi\colon B(Y,W_0)\to B(W_e)$ that is the identity on $B(W_0)$ and sends $y^{\lambda_\varpi}\mapsto\varpi T_{v_\varpi^{-1}}$. We use only one consequence of it: \emph{the elements $\Phi(y^\lambda)$, $\lambda\in Y$, commute in $B(W_e)$.}
+
+\emph{The dictionary for $GL_m$.} Take $Y=\mathbb{Z}^m$ and $\alpha_i=\alpha_i^\vee=e_i-e_{i+1}$ \cite[Ex.~2.5]{Haiman06}. The fundamental alcove is $\{x_1\ge\dots\ge x_m\ge x_1-1\}$. Let $v$ be the cyclic permutation $e_j\mapsto e_{j+1}$, indices mod $m$. Then $y^{e_1}v$ sends $x$ to $(x_m+1,x_1,\dots,x_{m-1})$, so it preserves the alcove. Hence it is the generator $\varpi$ of $\Omega\cong\mathbb{Z}$ with $\lambda_\varpi=e_1$ and $v_\varpi=v=s_1s_2\cdots s_{m-1}$. Its inverse $v^{-1}=s_{m-1}\cdots s_1$ is reduced: in one-line notation it is $(m,1,\dots,m-1)$, of length $m-1$. So $\Phi(y^{e_1})=\varpi T_{m-1}\cdots T_1$. Conjugation by $\varpi$ sends $s_i\mapsto s_{i+1}$ for $i\le m-2$, sends $s_{m-1}\mapsto y^{e_1-e_m}s_{e_1-e_m}=s_0$, and sends $s_0\mapsto s_1$. So in $B(W_e)$ we have $\varpi T_j\varpi^{-1}=T_{j+1}$, indices mod $m$. By the second displayed relation with $\lambda=e_j$, induction on $i$ gives
+\[ \Phi(y^{e_i})=T_{i-1}^{-1}\cdots T_1^{-1}\,\varpi\,T_{m-1}\cdots T_i . \]
+The assignment $T_j\mapsto T_j^{-1}$ ($0\le j\le m-1$), $\varpi\mapsto\varpi$ preserves all defining relations of $B(W_e)$. Indeed, $ABA=BAB$ implies $A^{-1}B^{-1}A^{-1}=B^{-1}A^{-1}B^{-1}$, and the relation $\varpi T_j\varpi^{-1}=T_{j+1}$ is preserved. So it defines an involutive automorphism $\iota$. It maps $\Phi(y^{e_i})$ to $W_i:=T_{i-1}\cdots T_1\,\varpi\,T_{m-1}^{-1}\cdots T_i^{-1}$. Hence \emph{the $W_i$ commute in $B(W_e)$.} As a consistency check, $\iota$ applied to $T_j^{-1}y^{e_j}T_j^{-1}=y^{e_{j+1}}$ gives $W_{j+1}=T_jW_jT_j$, which is \cref{lem:bernstein}(a) for $Y^\circ_i=t^{m-i}W_i$.
+
+\emph{The representation.} For $m\ge3$, $B(W_e)$ is generated by $T_0,\dots,T_{m-1},\varpi^{\pm1}$, subject to the braid relations of type $\tilde A_{m-1}$ (indices mod $m$) and $\varpi T_j\varpi^{-1}=T_{j+1}$. For $m=2$ there is no relation between $T_0$ and $T_1$. Set $\rho(T_j)=T_j$ for $1\le j\le m-1$, $\rho(\varpi)=\pi_\circ$ and $\rho(T_0):=\pi_\circ T_{m-1}\pi_\circ^{-1}$. These operators are invertible: the $T_j$ by (R4), and $\pi_\circ$ because it is a $K$-algebra automorphism of $\mathrm{Pol}$. It remains to check the relations.
+\begin{itemize}
+\item Among $T_1,\dots,T_{m-1}$ they are the braid relations of \cref{app:elementary}.
+\item $\pi_\circ T_j\pi_\circ^{-1}=T_{j+1}$ for $j\le m-2$ is (R3).
+\item $\pi_\circ^2T_{m-1}\pi_\circ^{-2}=T_1$: the automorphism $\pi_\circ^2$ maps $x_{m-1}\mapsto sx_1$ and $x_m\mapsto sx_2$, so it intertwines $s_{m-1}$ with $s_1$. It maps $x_m/(x_{m-1}-x_m)$ to $sx_2/(sx_1-sx_2)=x_2/(x_1-x_2)$.
+\item The relations involving $T_0$ follow by conjugation. $\pi_\circ T_0\pi_\circ^{-1}=T_1$ is the previous item. Conjugating by $\pi_\circ^{-1}$, respectively $\pi_\circ^{-2}$, turns the $(T_{m-1},T_0)$ and $(T_0,T_1)$ braid relations into the $(T_{m-2},T_{m-1})$ braid relation. It turns $T_0T_j=T_jT_0$ ($2\le j\le m-2$) into a far relation among $T_1,\dots,T_{m-1}$.
+\end{itemize}
+So $\rho$ is a representation of $B(W_e)$ on $\mathrm{Pol}$, and $\rho(W_i)=t^{-(m-i)}Y^\circ_i$. This proves \cref{thm:C1}. \qed
+
+\begin{remark}[The twisted operators]\label{rem:twisted}
+For $\pi=x_1\pi_\circ$ the same relations hold on the Laurent polynomial ring, on which $\pi$ is invertible. On $\mathrm{Pol}$, however, $\pi$ is not surjective ($1\notin\pi(\mathrm{Pol})$). So $\mathrm{Pol}$ is a module only for the subalgebra generated by the $T_j^{\pm1}$ and $\pi$, and not for $\pi^{-1}$. The words $W_i$ use $\pi$ but never $\pi^{-1}$. Hence the $Y_i$ of \cref{sec:hikita} commute on Laurent polynomials, and therefore on $\mathrm{Pol}$. This also follows from \cref{prop:NS}.
+\end{remark}
+
+\subsection{Triangularity and simple spectrum}
+For a composition $\mu\in\mathbb{Z}^m_{\ge0}$ write $P_q(\mu)=\mu_1+\dots+\mu_q$. Let $\mu\le_c\lambda$ mean $P_q(\mu)\le P_q(\lambda)$ for all $q$. For compositions of the same size, define $\mu\prec\lambda$ if either $\mathrm{sort}(\mu)\vartriangleleft\mathrm{sort}(\lambda)$, or $\mathrm{sort}(\mu)=\mathrm{sort}(\lambda)$, $\mu\ne\lambda$ and $\mu\le_c\lambda$. This is a strict partial order. Within one $S_m$-orbit it puts the decreasing rearrangement on top.
+
+\begin{theorem}\label{thm:tri}
+For all $i$ and all compositions $\lambda$, $Y^\circ_ix^\lambda=s^{\lambda_i}t^{\mathrm{rk}_i(\lambda)}x^\lambda+\sum_{\mu\prec\lambda}c_\mu x^\mu$, with $\mathrm{rk}_i$ as in \cref{sec:nabla}.
+\end{theorem}
+
+\emph{$T$ on monomials.} Write $(a,b)$ for the exponents of $(x_j,x_{j+1})$; the other variables are spectators. Let $B(a,b):=\sum_{\min(a,b)<c<\max(a,b)}x_j^cx_{j+1}^{a+b-c}$ be the sum of the ``between'' terms. Summing the geometric series in the definition of $T_j$ gives:
+\[ T_jx^{(a,b)}=\begin{cases}x^{(b,a)}+(1-t)B,&a>b,\\ tx^{(b,a)}+(t-1)x^{(a,b)}+(t-1)B,&a<b,\\ tx^{(a,a)},&a=b;\end{cases} \]
+\[ T_j^{-1}x^{(a,b)}=\begin{cases}t^{-1}x^{(b,a)}-(1-t^{-1})x^{(a,b)}+t^{-1}(1-t)B,&a>b,\\ x^{(b,a)}+(1-t^{-1})B,&a<b,\\ t^{-1}x^{(a,a)},&a=b.\end{cases} \]
+The second table follows from the first by (R4).
+
+\emph{The dominance filtration.} If $b<c<a$, then replacing two entries $a,b$ of a composition by $c,a+b-c$ makes its sorted version strictly smaller in dominance. Indeed, $P_k(\mathrm{sort}\,v)$ is the maximum of $\sum_{p\in S}v_p$ over $k$-sets $S$. A $k$-set containing exactly one of the two changed positions can trade that position for the position of $a$ without decreasing the old sum. So no partial maximum increases, and since the multisets differ, some partial maximum strictly decreases. Let $F_\nu$, respectively $F_{\vartriangleleft\nu}$, be the span of the $x^\mu$ with $\mathrm{sort}(\mu)\trianglelefteq\nu$, respectively $\vartriangleleft\nu$. By the tables, $T_j^{\pm1}$ preserve both spaces, and so does $\pi_\circ$, which acts on monomials by
+\[ \pi_\circ x^\mu=s^{\mu_m}x^{(\mu_m,\mu_1,\dots,\mu_{m-1})} . \]
+So $Y^\circ_i$ acts on $\mathrm{gr}_\nu=F_\nu/F_{\vartriangleleft\nu}$, which has basis the $x^\mu$ with $\mathrm{sort}(\mu)=\nu$. On $\mathrm{gr}_\nu$ the between terms vanish. Let $(p,q)$ be the entries in positions $j,j+1$. Then $T_j^{-1}$ swaps them with coefficient $1$ if $p<q$, and multiplies by $t^{-1}$ if $p=q$. If $p>q$, it swaps them with coefficient $t^{-1}$ and also ``stays'' with coefficient $-(1-t^{-1})$. Likewise, $T_j$ swaps with coefficient $1$ if $p>q$, multiplies by $t$ if $p=q$, and if $p<q$ swaps with coefficient $t$ and stays with coefficient $t-1$. (When $p=q$ we count the move as a swap.)
+
+\emph{Paths.} Expand $Y^\circ_ix^\lambda$ in $\mathrm{gr}_{\mathrm{sort}(\lambda)}$ as a sum over paths, each binary step choosing ``swap'' or, where allowed, ``stay''. The operator $T_i^{-1}$ acts first, then $T_{i+1}^{-1},\dots,T_{m-1}^{-1}$, then $\pi_\circ$, then $T_1,\dots,T_{i-1}$.
+\begin{itemize}
+\item \emph{Phase 1} ($T_j^{-1}$, $j=i,\dots,m-1$). Before step $j$, position $j$ holds a carried value $w_j$, with $w_i=\lambda_i$, and position $j+1$ still holds $\lambda_{j+1}$. A swap deposits $D_j=\lambda_{j+1}$ at position $j$ and sets $w_{j+1}=w_j$. A stay is allowed only if $w_j>\lambda_{j+1}$; it deposits $D_j=w_j$ and sets $w_{j+1}=\lambda_{j+1}<w_j$. In both cases $D_j+w_{j+1}=w_j+\lambda_{j+1}$, and $w$ is non-increasing. Put $e:=w_m$.
+\item \emph{$\pi_\circ$} moves $e$ to position $1$ with the factor $s^e$, and shifts the other entries one place to the right.
+\item \emph{Phase 2} ($T_j$, $j=1,\dots,i-1$). Before step $j$, position $j$ holds $u_j$, with $u_1=e$, and position $j+1$ holds $\lambda_j$. A swap deposits $g_j=\lambda_j$ and sets $u_{j+1}=u_j$. A stay is allowed only if $u_j<\lambda_j$; it deposits $g_j=u_j$ and sets $u_{j+1}=\lambda_j>u_j$. In both cases $g_j+u_{j+1}=u_j+\lambda_j$, and $u$ is non-decreasing.
+\end{itemize}
+The path outputs $\mu=(g_1,\dots,g_{i-1},u_i,D_i,\dots,D_{m-1})$. For $q\le i-1$, telescoping phase 2 gives $P_q(\mu)=P_q(\lambda)-(u_{q+1}-e)\le P_q(\lambda)$. For $q\ge i$, telescoping phase 1 gives $\sum_{j=q}^{m-1}D_j=\sum_{p>q}\lambda_p+(w_q-e)$, hence $P_q(\mu)=P_q(\lambda)-(w_q-e)\le P_q(\lambda)$. Equality for all $q$ forces $u$ and $w$ to be constant. Every stay changes the carried value, so equality forces the all-swap path, which outputs $\mu=\lambda$. The all-swap path has coefficient $t^{m-i}s^{\lambda_i}\prod_{j>i,\ \lambda_j\le\lambda_i}t^{-1}\prod_{j<i,\ \lambda_j\ge\lambda_i}t$, and
+\[ (m-i)-\#\{j>i:\lambda_j\le\lambda_i\}+\#\{j<i:\lambda_j\ge\lambda_i\}=\mathrm{rk}_i(\lambda). \]
+Lifting from $\mathrm{gr}$ to $F_{\mathrm{sort}(\lambda)}$ adds only terms with $\mathrm{sort}(\mu)\vartriangleleft\mathrm{sort}(\lambda)$. This proves \cref{thm:tri}. \qed
+
+For example, take $m=3$, $\lambda=(2,0,1)$ and $Y^\circ_1=t^2\pi_\circ T_2^{-1}T_1^{-1}$. In $\mathrm{gr}$ the result is $s^2x^{(2,0,1)}-s(t-1)x^{(1,0,2)}-t(t-1)x^{(0,2,1)}$. The partial sums $(1,1,3)$ and $(0,2,3)$ are both $\le(2,2,3)$. In $\mathrm{Pol}$ there is one more term, $-s(t-1)x^{(1,1,1)}$, which is strictly lower in dominance.
+
+\begin{corollary}\label{thm:C3}
+On each $\mathrm{Pol}_d$ the $Y^\circ_i$ are simultaneously diagonalisable, with simple joint spectrum. There is an eigenbasis $\mathcal E_\lambda=x^\lambda+\sum_{\mu\prec\lambda}(\cdots)$ with $Y^\circ_i\mathcal E_\lambda=s^{\lambda_i}t^{\mathrm{rk}_i(\lambda)}\mathcal E_\lambda$. For each $\lambda$, $i\mapsto\mathrm{rk}_i(\lambda)$ is a bijection $[m]\to\{0,\dots,m-1\}$.
+\end{corollary}
+\begin{proof}
+Rank the indices $j$ by ``larger $\lambda_j$ first, ties broken by smaller $j$''. Then $\mathrm{rk}_i(\lambda)$ is the number of indices ranked before $i$, which gives the bijection. Since the $s$-degree of $y_i(\lambda)$ is $\lambda_i$, the vectors $y(\lambda)$ are pairwise distinct. Choose $c\in\mathbb{Q}$ such that the values $z(\lambda)=\sum_ic^{i-1}y_i(\lambda)$, $|\lambda|=d$, are pairwise distinct; each pair excludes at most $m-1$ values of $c$. By \cref{thm:tri}, $Z:=\sum_ic^{i-1}Y^\circ_i$ is triangular with respect to a linear extension of $\prec$, with distinct diagonal entries $z(\lambda)$. So $Z$ is diagonalisable, with one-dimensional eigenspaces $K\mathcal E_\lambda$, where $\mathcal E_\lambda=x^\lambda+\sum_{\mu\prec\lambda}(\cdots)$. By \cref{thm:C1} each $Y^\circ_i$ commutes with $Z$, so it preserves each line $K\mathcal E_\lambda$. Its eigenvalue there is the coefficient of $x^\lambda$ in $Y^\circ_i\mathcal E_\lambda$, which is $y_i(\lambda)$ by \cref{thm:tri}.
+\end{proof}
+
+\begin{remark}
+\Cref{thm:tri} and the path expansion were compared with a direct implementation: the path sum agrees with the actual same-orbit part of $Y^\circ_ix^\lambda$ coefficient by coefficient, for $m=2,3,4,5$ in degrees $\le5,4,3,2$. The order $\le_c$ is what the proof controls. The reversed order within an orbit is violated already for $m=3$, $d=3$.
+\end{remark}
 
 \printbibliography
 

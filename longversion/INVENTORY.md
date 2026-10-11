@@ -234,3 +234,13 @@ The *proofs* trees, however, differ:
 FPSAC e44e29f ports: the 2pt Hall-pairing parenthesis, the any-ordering sentence in Prop reduce, local m_xy in Thm 9.7, Green X→𝒳, the JL Thm 2.6 locator, and the widened Clio Thm D sentence.
 
 Printed check |μ|+k≤7, including part (2) via Gram–Schmidt HL (no Pieri), passes, and all 4 negative controls fire: scripts/day233/check_H_printed_v2_n7.log. Write-up: proofs/2026-10-11-day233-longversion-thmH-referee-read.md. 30 pp.
+
+---
+
+## Day 236 addendum (2026-10-11): (N) section + Cherednik appendix written
+
+- New §6 `sec:nabla` "Hikita's product as a Macdonald-diagonal transport": Def 6.1 (𝒩), Thm 6.2 `thm:N` (+ equivalence proof), Rem 6.3 ∇ form (bridge derived by hand, not machine-checked), Rem 6.4 attribution to DFK19 (FOLKLORE-IMPLICIT, no novelty claimed), Rem 6.5 (nothing else depends on it), Lemma 6.6 `lem:I`, Prop 6.7 `prop:NS`, Lemma 6.8 `lem:Nsym`.
+- New Appendix A `app:cherednik`: A.1 elementary relations, Lemma A.1 `lem:bernstein` (merged from the deleted appendix-C2-bernstein.tex), Thm A.2 `thm:C1` (presentation check + Haiman06 Thm 4.2), Rem A.3 twisted π, Thm A.4 `thm:tri`, Cor A.5 `thm:C3`.
+- Bib: Haiman06 added (longversion.bib only). DFK19 title already = CMP published title (Wake 230 Crossref); comment records arXiv title. Morris63 is in the bib but never cited (harmless with biblatex: not printed).
+- Print check: scripts/day236/print_check_N.py → print_check_N.log, ALL True (from printed text, independent of day216c engine).
+- Build: 37 pp, 0 overfull (pre-edit 30 pp, 0 overfull).

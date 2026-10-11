@@ -297,6 +297,33 @@
     \field{year}{1996}
   \endentry
 
+  \entry{Haiman06}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=HM}{%
+         family={Haiman},
+         familyi={H\bibinitperiod},
+         given={Mark},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Eur. Math. Soc., Z{\"u}rich}%
+    }
+    \strng{namehash}{HM1}
+    \strng{fullhash}{HM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hai06}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{booktitle}{Proceedings of the International Congress of
+  Mathematicians, Madrid 2006, Vol.~{III}}
+    \field{pages}{843\bibrangedash 872}
+    \field{title}{Cherednik algebras, {M}acdonald polynomials and
+  combinatorics}
+    \field{year}{2006}
+  \endentry
+
   \entry{Hikita25}{misc}{}
     \name{author}{1}{}{%
       {{hash=HT}{%
