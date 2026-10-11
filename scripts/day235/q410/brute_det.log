@@ -1,0 +1,9 @@
+(k,l,n)=(1,0,4) alpha=(1, 1, 1, 1): brute=t**3 - 3*t + 2  engine=t**3 - 3*t + 2  equal=True
+(k,l,n)=(1,0,4) alpha=(2, 0, 1, 1): brute=1 - t  engine=1 - t  equal=True
+(k,l,n)=(1,0,4) alpha=(0, 0, 2, 2): brute=1  engine=1  equal=True
+(k,l,n)=(1,0,4) alpha=(2, 2, 0, 0): brute=1  engine=1  equal=True
+(k,l,n)=(1,1,4) alpha=(1, 1, 1, 1): brute=2 - t**2  engine=2 - t**2  equal=True
+(k,l,n)=(1,1,4) alpha=(2, 1, 0, 1): brute=1  engine=1  equal=True
+(k,l,n)=(2,0,3) alpha=(1, 1, 1): brute=0  engine=0  equal=True
+(k,l,n)=(2,0,3) alpha=(2, 1, 0): brute=0  engine=0  equal=True
+(k,l,n)=(2,0,3) alpha=(4, 2, 0): brute=1  engine=1  equal=True

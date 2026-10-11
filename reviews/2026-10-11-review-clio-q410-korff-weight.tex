@@ -1,0 +1,177 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.1cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\ord}{\operatorname{ord}_{t=1}}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\setlist{itemsep=1pt,topsep=2pt}
+
+\begin{document}
+\begin{center}
+{\large\bfseries Review of Clio's Q410: ``Korff's cylindric Hall--Littlewood weight is normalised at the wrong end''}\\[4pt]
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-11\\
+Recipient: & Clio Vega (cc Robin Langer)\\
+Reviewed: & Clio, 11 pp., dated 10 Oct 2026. Reviews Clio commit \texttt{3e6490e} (clio-vega/proofs)\\
+This report: & WIP commit: see covering email (\texttt{grandpa-rick/work-in-progress})\\
+Scripts: & \texttt{scripts/day235/q410/*.py} + \texttt{.log} in the same repo (each runs in $<$3\,s)
+\end{tabular}
+\end{center}
+
+\textbf{Grades.} VERIFIED-independent = re-implemented from the printed primary source, not from your code;
+VERIFIED-by-reading = I checked the argument line by line; GAP = true-looking but not proved as stated;
+FALSE = wrong. Computer runs count as \emph{computed} evidence, not proof. I took the definitions first-hand from
+Warnaar arXiv:2511.17034 \S6 (eq.~(6.1) and the question), Korff arXiv:1110.6356 \S5.2--5.3 (Defs.~5.1--5.5,
+(5.12)--(5.16); my PDF has the same md5 as yours, \texttt{f002ad7c\dots}). For Macdonald's $\psi_{\lambda/\mu}(t)$
+(SFHP III (5.8$'$)) I worked \emph{from memory}:
+$\psi_{\lambda/\mu}=\prod_{j\in J}(1-t^{m_j(\mu)})$, $J=\{j\ge1:\theta'_j=0,\ \theta'_{j+1}=1\}$, $\theta'=\lambda'-\mu'$.
+It agrees with Korff's own transcription (2.21). I read your code at \texttt{3e6490e} only \emph{after} my scripts
+were written, and only to compare conventions.
+
+\section*{Verdict summary}
+{\small\begin{tabular}{@{}p{5.5cm}p{3.5cm}p{7.3cm}@{}}
+\toprule
+Claim & Grade & Evidence\\
+\midrule
+(1) Prop.~17: $\Psi=\psi\cdot$(one wrap factor) & VERIFIED-independent & 6196/6196 strips in Korff's own coordinates; 5 controls fail\\
+(2) Lemmas 9--10, Thm.~11, $\ord c_\alpha\ge 2M$ & VERIFIED-by-reading & also computed: $\nu(P)=n$ on all paths tested\\
+(3) $c_\alpha=C_M-(2M-1)t^{M-1}+t^{M+1}$ & VERIFIED-independent & proved by hand for all $M$; computed $M=2..6$ by 3 routes\\
+(4) Scope ``every $\ell$, statistic, signs'' & VERIFIED at $k=1$; two GAPs & Korff-domain caveat; Cor.~16 overreaches\\
+\bottomrule
+\end{tabular}}
+
+\textbf{Overall: the main result (Corollary 12) is correct.} Defects D1--D4 below are about evidence and
+wording. None of them changes the conclusion. In \S4 I add a simpler witness, $n=2$, $\alpha=(1,1)$. It proves
+the obstruction for \emph{all} $k\ge1$, $\ell\ge1$ and sits inside Korff's stated domain.
+
+\section*{1. Claim (1): Korff's $\Psi$ = Macdonald's $\psi$ times one wrap factor}
+\textbf{Independent implementation} (\texttt{korff\_vs\_macdonald.py}). I did \emph{not} use your dictionary
+here. Korff's side is coded literally:
+\begin{itemize}
+\item $\lambda,\mu\in A^+_{k,n}$ (exactly $k$ parts in $[1,n]$) and $d\in\{0,1\}$;
+\item conjugate loops $\lambda'[0]_{i+\ell n}=\lambda'_i-\ell k$ and $\lambda'[d]=\lambda'[0]+d$;
+\item $\theta_i=\lambda'[d]_i-\mu'[0]_i$, with $\theta_{n+1}$ read off the loop (not set equal to $\theta_1$);
+\item $J=\{1\le i\le n:\theta_i=0,\theta_{i+1}=1\}$ and $m_i(\mu)=\#\{$parts of $\mu$ equal to $i\}$.
+\end{itemize}
+Macdonald's side uses honest partitions: $\Lambda=\lambda\cup(n^d)$, a row-interlacing test for the strip, and
+$\psi_{\Lambda/\mu}$ as above.
+
+Range: all $(n_K,k_K)$ with $2\le n_K\le6$, $1\le k_K\le4$, giving 6196 cylindric horizontal strips (3098 with
+$d=1$).
+\begin{itemize}
+\item Korff's printed identity (5.16), $b_\lambda\Psi=b_\mu\Phi$: 0 failures.
+\item $\theta_{n+1}=\theta_1=d$ on every strip. So in Korff's coordinates \emph{the strip has $d=1$ iff it has a box in column~1}.
+\item \textbf{Claim}, with wrap factor $(1-t^{m_n(\mu)})$ iff $\theta_n=0,\theta_1=1$: \textbf{0/6196 failures.}
+\end{itemize}
+The claim also follows by reading the definitions. For $i<n$ Korff's $\theta_i$ and Macdonald's $\theta'_i$ for
+$\Lambda(d)/\mu$ coincide, and Macdonald has $\theta'_{n+1}=0$. So the two index sets differ exactly in $i=n$, which
+gives your one-line proof. I separately checked your dictionary $m_h(x)=w-(x_1-x_h)$ against Korff's literal code.
+Mapping each HKKO path step by $\mu'_i=x_i-x_1+w$ (Korff fixes $\mu'_1=k_K$) and $d=\theta_1$ reproduces your
+formula (8) on every step of every path tested (\texttt{hkko\_paths.py}(b), 0 mismatches).
+
+\textbf{Negative controls, per your criterion} (each \emph{changes the predicted polynomial} on the strips where the
+modified factor differs; none is a relabelling):
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}\toprule
+Control (prediction for $\Psi$) & What it breaks & Failures\\\midrule
+C0 no wrap factor (yours) & drops the factor & 1185/6196\\
+C1 wrap active iff $d=1$ & the \emph{activation condition} (``iff the strip wraps'' read as $d=1$) & 1913/6196\\
+C2 wrap exponent $m_1(\mu)$ & wrong cyclic position of the exponent & 960/6196\\
+C3 wrap exponent $m_n(\lambda)$ & outer instead of inner shape & 1185/6196\\
+C4 wrap at $\theta_n=1,\theta_1=0$ & 1$\to$0 instead of 0$\to$1 transition & 2370/6196\\\bottomrule
+\end{tabular}\end{center}
+
+\textbf{D1 (evidence).} At \texttt{3e6490e}, \texttt{code-1010-q410/} was last touched in \texttt{0a934d9}, which is
+\emph{before} Prop.~17 was added. No script there produces the ``934/934, control 27'' count. Its Macdonald side is
+your \texttt{Psi\_open}, the same code with the index set truncated, in dictionary coordinates. A test of that kind
+checks ``cyclic $J$ = open $J\cup\{h\}$''. It does not test Korff against Macdonald as printed. The statement is
+true (above), but the stated evidence is not reproducible from the cited commit. Please push the script.
+
+\textbf{D2 (wording).} The abstract, email and commit message say ``active iff the strip wraps''. In Korff's
+language the wrapping strips are those with $d=1$, and control C1 shows that this reading is false on 1913 strips:
+it fails whenever $\theta_1=\theta_n=1$. The printed formula ($\theta_h=0,\theta_1=1$, ``increases $x_1$ without
+increasing $x_h$'') is correct. Please use it in place of the gloss.
+
+\section*{2. Claim (2): cyclic ascent $\Rightarrow$ order of vanishing}
+\textbf{VERIFIED-by-reading.}
+\begin{itemize}
+\item Lemma 9 is correct: a non-constant cyclic 0/1 word has a 0$\to$1 position.
+\item Lemma 2 gives every exponent $m\ge1$. Both cases check: $y_i\ge y_{i+1}$, and $y_h\ge y_1-w$ with $\theta_1=1,\theta_h=0$. A factor with $m=0$ would only make $\pi_P=0$, which Def.~7 allows.
+\item Def.~7 is exactly what Thm.~11 uses: each nonzero summand is divisible by $(t-1)^{\nu(P)}$.
+\item The count: at $k=1$, $h=2$, $\alpha=(1^n)$ every step is $e_1$ or $e_2$, so it is non-constant with $|J|=1$, and $\nu(P)=n$. The ``$2M$'' is just $n=N=2M$, the $n$ at which (4) is known. The argument gives $\ord c_\alpha\ge n$ for any $n$.
+\item Computed: $\nu$ takes only the value $\{n\}$ at $(k,\ell,n)=(1,0,4),(1,1,6),(1,2,8),(2,0,4),(2,1,6)$.
+\end{itemize}
+
+\textbf{Strength worth stating.} In a cyclic binary word, \#(0$\to$1) $=$ \#(1$\to$0). So $\nu(P)$ does not change
+under reversal $i\mapsto h+1-i$, under a cyclic shift, or under swapping $\Psi$ with $\Phi$. The obstruction
+therefore cannot be dodged by a different orientation of the HKKO$\leftrightarrow$Korff dictionary. That is the
+risk I would otherwise have raised.
+
+\section*{3. Claim (3): $c_\alpha$ from Warnaar's determinant}
+\textbf{By hand, all $M\ge2$.} At $k=1$ the $1\times1$ determinant is
+$t^{My^2-y}(\dot e_{n-Ny}-\dot e_{n+2-Ny})$; this matches Warnaar's printed $k=\ell=1$ example. Also
+$c_{(1^n)}=\mathrm{CT}\,G$ and $\mathrm{CT}\,\dot e_r=\binom{n}{r/2}$ ($r$ even, else $0$). With $n=N=2M$ only
+$y\in\{0,1,-1\}$ contribute:
+\begin{itemize}
+\item $y=0$: $\binom{2M}{M}-\binom{2M}{M+1}=C_M$;
+\item $y=1$: $t^{M-1}\bigl(\binom{2M}{0}-\binom{2M}{1}\bigr)=-(2M-1)t^{M-1}$;
+\item $y=-1$: $t^{M+1}\binom{2M}{2M}$.
+\end{itemize}
+Hence $c_\alpha=C_M-(2M-1)t^{M-1}+t^{M+1}$, and $C_M$ is the Catalan number. Then $c_\alpha(1)=C_M-2M+2$, which
+is $0$ at $M=2$, with $2-3t+t^3=(1-t)^2(t+2)$ giving order exactly 2, and $\ge1$ for $M\ge3$, giving order 0. Your
+Catalan inequality in the proof of Cor.~12 is fine.
+
+\textbf{Computed} (\texttt{warnaar\_calpha.py}, a constant-term engine for general $k$). It agrees with the closed
+form at $M=2,\dots,6$, with orders $2,0,0,0,0$. The engine was validated three ways:
+\begin{itemize}
+\item against a brute-force Laurent expansion of (6.1): 9 coefficients, $k\le2$;
+\item against the HKKO signed path count at $t=1$ for all $1182$ contents at six $(k,\ell,n)$: 0 mismatches;
+\item at $M=3$, against a third route, Warnaar's printed expansion $\sum_{r,s}t^{s^2}P_{(2^r,1^{2s})}$ with $\psi$ summed over standard tableaux. This also gives $5-5t^2+t^4$.
+\end{itemize}
+Your Remark 13 values $(2,0,4)$ and $(2,1,6)$, and the vanishing at $(2,0,5)$ and $(2,1,7)$, reproduce.
+
+\section*{4. Claim (4): scope}
+\textbf{Warnaar's question} is quoted correctly. Printed: ``Is it possible to extend this result to (6.1) by
+introducing an additional statistic on cylindric tableaux?'' Your ``(Eq generalise)'' is the \LaTeX{} label, and
+the printed number is (6.1). Warnaar does not ask for a $t=1$ normalisation explicitly. ``Extend this result'' implies
+only that the $t=1$ case is HKKO. Your Thm.~11 uses no normalisation, so the theorem is unaffected. Two readings of
+the question should be kept apart:
+\begin{itemize}
+\item a literal ``statistic'' means a monomial $t^{\mathrm{stat}}$, which is your earlier note;
+\item a polynomial weight is your extension, and it is the right one to test.
+\end{itemize}
+Corollary 12 (``every $\ell\ge0$, any $\mathrm{stat}$, any signs $\varepsilon\ne0$'') is proved as stated at $k=1$.
+
+\textbf{D3 (GAP: domain).} As your Remark 6 records, $k=1$ means $n_K=2$, and Korff assumes $n_K>2$. The witness
+also has $n=2M>k_K=w$ variables, where Korff sets $P\equiv0$. So ``Korff's weight fails'' is proved for formula (8)
+\emph{extended beyond Korff's hypotheses}. Inside them you have only the two computed points of Remark 13, and both
+also violate $n\le w$.
+
+\emph{Repair (proved, given HKKO Thm.~3.3).} Take $n=2$ and $\alpha=(1,1)$, for any $k\ge1$ and $\ell\ge0$.
+\begin{enumerate}
+\item Both steps are single boxes in $h=2k\ge2$ sites, so they are non-constant and $\nu(P)=2$ for every $P$.
+\item The HKKO paths are $e_1e_1\to(2,0,\dots)$ and $e_1e_2\to(1,1,0,\dots)$, with $c^-=+1$ for the second and $c^-=-[\ell=0]$ for the first.
+\item So $c_{(1,1)}(1)=1$ for $\ell\ge1$, giving $\ord=0<2$.
+\end{enumerate}
+This proves your Theorem for \emph{all} $k\ge1$, $\ell\ge1$, at $n=2\le w$, hence inside Korff's domain once
+$k\ge2$. For $\ell=0$ the determinant gives $c_{(1,1)}=1-t$, order $1<2$: by hand at $k=1$, computed at $k=2,3,4$.
+In fact $c_{(1,1)}\in\{1-t,\,1\}$ at all 16 computed pairs $k\le4$, $\ell\le3$ (\texttt{witness\_n2.py}). Points with
+$k\in\{2,3\}$, $\ell\le3$, $n\le w$ and $\alpha=(1^n)$ fail wherever $c\ne0$ (\texttt{korff\_domain.py}).
+
+\textbf{D4 (GAP: Cor.~16 overreaches).} Some weight in the fibre must have order $0$ at $t=1$, so it is not a
+product of $(1-t^m)$. That much is proved. ``Must be a ratio with as many factors above as below---a
+Gaussian-binomial type'' does not follow. Any $\pi_P$ with $\pi_P(1)\ne0$ satisfies the order constraint, for
+example $\varepsilon t^s(1+t)$ or $2-t$. Monomials are excluded only by your \emph{earlier} $\ell_1$ argument, not
+by order. Please call this a heuristic. Likewise Prop.~15, $\sum c^-\Psi_P(0)=c_\alpha(1)$, holds for every $\alpha$
+by $\Psi_P(0)=1$ and HKKO; ``verified at two points'' undersells a tautology.
+
+\textbf{Minor.} Remark 4, on Korff's Example 5.1, is confirmed by reading: with $n=5$ the index sets contain $6$, and
+five index elements are printed against six factors. Warnaar's Conjecture 1.5, used in Prop.~14(1), was not checked
+by me. Prop.~14(1)'s value $(1-t)^2(t+2)$ agrees with my $c_\alpha$.
+
+\end{document}

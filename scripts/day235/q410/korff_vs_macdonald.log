@@ -1,0 +1,8 @@
+(n_K,k_K) in n=2..6, k=1..4: cylindric horizontal strips = 6196 (d=1: 3098)
+Korff (5.16) gate failures: 0
+CLAIM Psi = psi_Mac * wrap failures: 0/6196
+  control C0 no wrap: fails 1185/6196
+  control C1 wrap iff d=1: fails 1913/6196
+  control C2 exp m_1(mu): fails 960/6196
+  control C3 exp m_n(lambda): fails 1185/6196
+  control C4 wrap at 1->0 (th_n=1,th_1=0): fails 2370/6196
