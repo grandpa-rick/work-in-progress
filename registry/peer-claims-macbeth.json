@@ -138,6 +138,38 @@
       "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-07-container-derivative-rewrite-uniqueness-existence.md",
       "file": "peers/macbeth/proofs/2026-10-06-macbeth-container-derivative-uniqueness.pdf; peers/macbeth/proofs/2026-10-06-macbeth-container-derivative-tangent-structure.pdf",
       "source_pin": "MacBeth work-in-progress @ 5f1531d"
+    },
+    {
+      "id": "macbeth-inventory-gerbe-4e7264d",
+      "approach": "Supply-chain inventory gerbe: D4 witness on B(Z/2), band criterion Thm 16, Thm 25(i) (MacBeth, email 2026-10-11)",
+      "trust": "peer-claimed",
+      "claimed_by": "peers/macbeth/emails/2026-10-11-inventory-gerbe-corrected-4e7264d.md",
+      "file": "peers/macbeth/proofs/2026-10-11-supply-chain-inventory-gerbe-4e7264d.pdf",
+      "review": "Rick r2 2026-10-11 (WIP fc69dab): D4 witness, 2x2 table, Thm 16 hold (computed + checked-sober). MUST: Cor 17 two defs of global inventory (sufficiency fails under proof's def); 'Thm D' iff as emailed is FALSE (D6=Z/2xS3 splits; sharp = non-split Z->K->InnK, 4|n). Stays peer-claimed."
+    },
+    {
+      "id": "macbeth-crown-stage2-contravariant-4e7264d",
+      "approach": "Crown Stage 2: Psi': T^op->Cont functor, opcartesian leg j^{-1}; Thm 18 no-go (MacBeth, email 2026-10-11)",
+      "trust": "peer-claimed",
+      "claimed_by": "peers/macbeth/emails/2026-10-11-crown-stage2-corrected-contravariant-4e7264d.md",
+      "file": "peers/macbeth/proofs/2026-10-11-crown-stage2-unfolding-vs-descent-4e7264d.pdf",
+      "review": "Rick r2 2026-10-11 (WIP fc69dab): Psi' functor + j^{-1} + Thm 18 AS STATED (with 'covers') hold. MUST: credit for Lemma 8/3147 enumeration; unrestricted no-go FALSE (constant shape maps give functors both variances). His node psi-no-functorial-action overclaims."
+    },
+    {
+      "id": "macbeth-nerve-level-two-6089268",
+      "approach": "Composition is a nerve-level-two datum: [omega] = splitting class; magma separator; U(p) coarser than tr1 N (MacBeth, email 2026-10-11)",
+      "trust": "peer-claimed",
+      "claimed_by": "peers/macbeth/emails/2026-10-11-nerve-level-two-and-uniqueness-revised-6089268.md",
+      "file": "peers/macbeth/proofs/2026-10-11-composition-is-a-nerve-level-two-datum-6089268.pdf",
+      "review": "Rick r2 2026-10-11 (WIP fc69dab): N1 fixed; standard splitting core holds. MUST A1 (cocycle cond != Thm 12 magma; (L) missing; 'closes' presumes assoc), A2 ([omega] classifies extension E of S), A3 (level convention). Weld nodes: keep demoted."
+    },
+    {
+      "id": "macbeth-uniqueness-6089268",
+      "approach": "Container-derivative uniqueness, wording revisions w1-w4 (MacBeth, email 2026-10-11)",
+      "trust": "peer-claimed",
+      "claimed_by": "peers/macbeth/emails/2026-10-11-nerve-level-two-and-uniqueness-revised-6089268.md",
+      "file": "peers/macbeth/proofs/2026-10-11-container-derivative-uniqueness-6089268.pdf",
+      "review": "Rick r2 2026-10-11 (WIP fc69dab): wording-only confirmed (except Prop 12 rename); accept after B1/B2 scope edits."
     }
   ]
 }
