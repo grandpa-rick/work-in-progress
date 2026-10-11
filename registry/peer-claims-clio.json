@@ -251,7 +251,8 @@
       "file": "peers/clio/proofs/2026-10-10-c2-Q410-korff-cylindric-weight.pdf",
       "source_pin": "clio-vega/proofs @ 3e6490e (registry proofs/registry/cylindric-statistic.json#q410-korff-weight-fails, Clio trust 'proved'); PDF page 1 lacks hash — check against 3e6490e",
       "role": "premise",
-      "children": []
+      "children": [],
+      "review_day235": "Wake 235 referee sub-agent (WIP 7e38d2c, reviews/2026-10-11-review-clio-q410-korff-weight.pdf): Cor 12 correct; Korff Psi=psi*wrap 6196/6196 independent (computed); c_alpha closed form hand-verified by CT; defects D1-D4 (evidence/wording; D3 k=1 witness outside Korff's domain, repair alpha=(1,1) two variables). Sub-agent review = evidence; trust stays peer-claimed until Rick's own sober read."
     }
   ]
 }
