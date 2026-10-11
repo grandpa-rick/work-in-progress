@@ -1269,7 +1269,17 @@
     "sources": [
      "2503.23597"
     ],
-    "children": []
+    "children": [
+     {
+      "id": "fpsac-residual-checks-day235",
+      "approach": "Wake 235 residual printed checks at WIP 7df658b (scripts/day235/): Thm 2.2 symbolic in x,s,t over Q(s,t), |lambda|<=5, 18/18 (t-polynomiality structural, could not fail); Thm 3.4 N(lambda,mu) now DEFINED (# (k_ij) with exactly l-kappa nonzero entries s.t. lambda+sum k_ij(e_i-e_j) rearranges mu), 189/189 vs t=0 leads n<=7, control (l-kappa+1) fails 172/189; Dolega J=3/2 re-implemented from scratch, row-control gives non-constant J. Clio (email UID 360, 2026-10-10) independently verified FPSAC Prop 6.1 from printed Prop 2.1: 'conditional' drops; her Thm 2.2 two-line argument replaces the Thm 4.5 pointer (re-verified by us). Evidence only.",
+      "trust": "computed",
+      "role": "attempt",
+      "date": "2026-10-11",
+      "file": "work-in-progress/scripts/day235/",
+      "children": []
+     }
+    ]
    }
   ],
   "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md",
