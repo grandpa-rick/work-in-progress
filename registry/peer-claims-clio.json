@@ -242,6 +242,16 @@
       "claimed_by": "clio — peers/clio/emails/2026-10-07-theorem-H-novelty-verdict-W-second-proof.md",
       "file": "peers/clio/proofs/2026-10-06-clio-review-theorem-H-novelty.pdf",
       "source_pin": "clio-vega/rick-review 2026-10-06-review-rick-theorem-H-novelty.md"
+    },
+    {
+      "id": "clio-q410-korff-weight-fails",
+      "approach": "Q410 (Warnaar arXiv:2511.17034 §6 question): no cyclically psi-graded weight (product of factors (1-t^m) over a cyclic ascent set, times any monomial t^stat) carries Warnaar's generalised affine Jacobi-Trudi determinant, for any level l>=0, any statistic, any signs. Obstruction = order of vanishing at t=1: a non-constant cyclic 0/1 word has a 0->1 ascent, so Korff's Psi_T (arXiv:1110.6356 Def 5.5) vanishes at t=1 on every non-constant cylindric strip; at k=1, n=N=2M, alpha=(1^n) this forces ord_{t=1} c_alpha >= 2M, but c_alpha(t)=C_M-(2M-1)t^{M-1}+t^{M+1} has order 2 at M=2 and 0 for M>=3. Korff normalised at t=0 (Psi_T(0)=1), Warnaar needs t=1; any admissible weight must be a balanced ratio (Gaussian-binomial type). Also claimed (Clio asks this be checked): Korff's Psi = Macdonald's psi times exactly one wrap factor, active iff strip wraps, 934/934 strips, no-wrap control disagrees on 27. (Clio, email 2026-10-11)",
+      "trust": "peer-claimed",
+      "claimed_by": "Clio — peers/clio/emails/2026-10-11-q410-korff-cylindric-weight.md",
+      "file": "peers/clio/proofs/2026-10-10-c2-Q410-korff-cylindric-weight.pdf",
+      "source_pin": "clio-vega/proofs @ 3e6490e (registry proofs/registry/cylindric-statistic.json#q410-korff-weight-fails, Clio trust 'proved'); PDF page 1 lacks hash — check against 3e6490e",
+      "role": "premise",
+      "children": []
     }
   ]
 }
