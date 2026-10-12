@@ -1,13 +1,13 @@
 {
   "peer": "Scot MacBeth",
   "email": "scot.macbeth20@gmail.com",
-  "note": "Peer-claimed nodes from MacBeth. Trust grade 'peer-claimed' sits below Rick's checked-sober boundary — cite but do not build on without local re-derivation. See peers/macbeth/registry/peer-claims.json for the older MacBeth ledger.",
+  "note": "Peer-claimed nodes from MacBeth. Trust grade 'peer-claimed' sits below Rick's checked-sober boundary \u2014 cite but do not build on without local re-derivation. See peers/macbeth/registry/peer-claims.json for the older MacBeth ledger.",
   "claims": [
     {
       "id": "macbeth-mcontainers-thm2-codensity-eq-fullness",
       "approach": "M-container extension [[-]]_M = [[-]] o M: fullness of the extension iff codensity of M (Thm 2) (macbeth, email 2026-09-05)",
       "trust": "peer-claimed",
-      "claimed_by": "macbeth — peers/macbeth/emails/2026-09-05-mcontainers-codensity-polynomiality.md",
+      "claimed_by": "macbeth \u2014 peers/macbeth/emails/2026-09-05-mcontainers-codensity-polynomiality.md",
       "file": "peers/macbeth/proofs/mcontainers-codensity-polynomiality.pdf",
       "source_pin": "scotmacbeth/work-in-progress @ b94bc32"
     },
@@ -15,7 +15,7 @@
       "id": "macbeth-mcontainers-thm3-polynomiality-eq-composition",
       "approach": "M-container extension: composition-closure iff polynomiality of M (Thm 3). Converse extended 05-Sep: necessity proved for super-polynomial monads (cardinality law) and analytic monads (Aut(X)-stabilizer invariant, Young-within-block vs D4 block-swap wreath); sole residual is a species Plethysm Lemma with no known monad inhabitant, so Thm 3 reads as a biconditional in practice (macbeth, email 2026-09-05)",
       "trust": "peer-claimed",
-      "claimed_by": "macbeth — peers/macbeth/emails/2026-09-05-mcontainers-codensity-polynomiality.md",
+      "claimed_by": "macbeth \u2014 peers/macbeth/emails/2026-09-05-mcontainers-codensity-polynomiality.md",
       "file": "peers/macbeth/proofs/mcontainers-codensity-polynomiality.pdf",
       "source_pin": "scotmacbeth/work-in-progress @ b94bc32"
     },
@@ -23,7 +23,7 @@
       "id": "macbeth-vcont-thm33-faithful-not-full",
       "approach": "VCont Thm 3.3: over Set the container extension is full and faithful, but over Vec the biproduct collapse makes it faithful-but-not-full and not injective on objects; ({*}, k^2) and ({1,2}, k) both present X -> X (+) X yet are non-isomorphic (lean-verified) (macbeth, email 2026-09-05)",
       "trust": "peer-claimed",
-      "claimed_by": "macbeth — peers/macbeth/emails/2026-09-05-vcont-treatment.md",
+      "claimed_by": "macbeth \u2014 peers/macbeth/emails/2026-09-05-vcont-treatment.md",
       "file": "peers/macbeth/proofs/vcont-treatment-2026-09-05.pdf",
       "source_pin": "scotmacbeth/work-in-progress @ b94bc32"
     },
@@ -31,7 +31,7 @@
       "id": "macbeth-vcont-setxvecfd-admissible-off-pole",
       "approach": "Composition-comonoids in VCont are families of k-algebras; Set x Vec_fd is admissible off the connected-unit pole (macbeth, email 2026-09-05)",
       "trust": "peer-claimed",
-      "claimed_by": "macbeth — peers/macbeth/emails/2026-09-05-vcont-treatment.md",
+      "claimed_by": "macbeth \u2014 peers/macbeth/emails/2026-09-05-vcont-treatment.md",
       "file": "peers/macbeth/proofs/vcont-treatment-2026-09-05.pdf",
       "source_pin": "scotmacbeth/work-in-progress @ b94bc32"
     },
@@ -39,7 +39,7 @@
       "id": "macbeth-vcont-frontier-Q-infinite-dim-vec-projective",
       "approach": "Frontier Question (Q): whether full infinite-dim Vec is admissible, equivalently whether F = Hom(E, (+)_N -) is projective; conjectured OPEN and independent of ZFC (macbeth, email 2026-09-05)",
       "trust": "peer-claimed",
-      "claimed_by": "macbeth — peers/macbeth/emails/2026-09-05-vcont-treatment.md",
+      "claimed_by": "macbeth \u2014 peers/macbeth/emails/2026-09-05-vcont-treatment.md",
       "file": "peers/macbeth/proofs/vcont-treatment-2026-09-05.pdf",
       "source_pin": "scotmacbeth/work-in-progress @ b94bc32"
     },
@@ -52,90 +52,90 @@
       ],
       "email_log": "projects/peers/macbeth/emails/2026-09-16-change-of-base-report-for-review.md",
       "grade": "submitted-for-review",
-      "content": "14pp monad/comonad on containers, change-of-base spine Cont = Fam(Set^op) → Fam(C^op) + enrichment. Neil-requested. Content-commit 129fecd.",
-      "scrutiny_request": "§4 Thm 4.5 step 2 (Kl(M) closed => terminal object with M⊤≅1); three-functor framing legibility.",
+      "content": "14pp monad/comonad on containers, change-of-base spine Cont = Fam(Set^op) \u2192 Fam(C^op) + enrichment. Neil-requested. Content-commit 129fecd.",
+      "scrutiny_request": "\u00a74 Thm 4.5 step 2 (Kl(M) closed => terminal object with M\u22a4\u22451); three-functor framing legibility.",
       "rick_status": "Acknowledged 2026-09-16; full PDF response within a cycle or two. No rush per MacBeth."
     },
     {
       "id": "obstruction-residue-dependent-refutation-concurrence",
-      "approach": "MacBeth concurs with Rick's refutation of ν⟂[Ω] independence; reproduced |G|=8 (ν=1 forces [β]=0) and |G|=16 (D=Z/8, L={1,5}) witnesses via Hol(A) enumerator; refinement: coupling is three-way ([ν],σ,[β]), residue {3,7} with [β]=0 only at σ=ν; σ=id recovers Rick's relation (MacBeth, email 2026-09-29)",
+      "approach": "MacBeth concurs with Rick's refutation of \u03bd\u27c2[\u03a9] independence; reproduced |G|=8 (\u03bd=1 forces [\u03b2]=0) and |G|=16 (D=Z/8, L={1,5}) witnesses via Hol(A) enumerator; refinement: coupling is three-way ([\u03bd],\u03c3,[\u03b2]), residue {3,7} with [\u03b2]=0 only at \u03c3=\u03bd; \u03c3=id recovers Rick's relation (MacBeth, email 2026-09-29)",
       "trust": "peer-claimed",
-      "claimed_by": "MacBeth — peers/macbeth/emails/2026-09-29-nu-omega-refutation-concurrence.md",
+      "claimed_by": "MacBeth \u2014 peers/macbeth/emails/2026-09-29-nu-omega-refutation-concurrence.md",
       "file": "peers/macbeth/proofs/2026-09-29-macbeth-concurs-nu-omega-refutation.pdf"
     },
     {
       "id": "o-nu-im-phi-plus-eq-ker",
-      "approach": "im φ⁺ = ker o_ν (main statement of fixed-σ slices note) (MacBeth, email 2026-09-30)",
+      "approach": "im \u03c6\u207a = ker o_\u03bd (main statement of fixed-\u03c3 slices note) (MacBeth, email 2026-09-30)",
       "trust": "peer-claimed",
-      "claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
+      "claimed_by": "MacBeth \u2014 peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
       "file": "peers/macbeth/proofs/2026-09-30-macbeth-o-nu-fixed-sigma-slices.pdf",
       "source_pin": "MacBeth work-in-progress @ fc3d742"
     },
     {
       "id": "o-nu-fixed-sigma-additive",
-      "approach": "Each fixed-σ slice o_ν|_σ is additive (tables 16/16 & 81/81) (MacBeth, email 2026-09-30)",
+      "approach": "Each fixed-\u03c3 slice o_\u03bd|_\u03c3 is additive (tables 16/16 & 81/81) (MacBeth, email 2026-09-30)",
       "trust": "peer-claimed",
-      "claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
+      "claimed_by": "MacBeth \u2014 peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
       "file": "peers/macbeth/proofs/2026-09-30-macbeth-o-nu-fixed-sigma-slices.pdf",
       "source_pin": "MacBeth work-in-progress @ fc3d742"
     },
     {
       "id": "o-nu-fixed-sigma-kills-B2plus",
-      "approach": "Each fixed-σ slice o_ν|_σ kills B²₊ (coboundaries 4/4 & 9/9; |G|=8 closed form (1+ν)b∈2D^σ reproduces kernel) (MacBeth, email 2026-09-30)",
+      "approach": "Each fixed-\u03c3 slice o_\u03bd|_\u03c3 kills B\u00b2\u208a (coboundaries 4/4 & 9/9; |G|=8 closed form (1+\u03bd)b\u22082D^\u03c3 reproduces kernel) (MacBeth, email 2026-09-30)",
       "trust": "peer-claimed",
-      "claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
+      "claimed_by": "MacBeth \u2014 peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
       "file": "peers/macbeth/proofs/2026-09-30-macbeth-o-nu-fixed-sigma-slices.pdf",
       "source_pin": "MacBeth work-in-progress @ fc3d742"
     },
     {
       "id": "o-nu-torsor-dichotomy-Z8-L15",
-      "approach": "Torsor dichotomy for |G|=16, D=Z/8, L={1,5}: basepoint present ⟺ νσ≡1 (mod 4); torsor ([β]=0 unavailable) ⟺ νσ≡3 (mod 4) (MacBeth, email 2026-09-30)",
+      "approach": "Torsor dichotomy for |G|=16, D=Z/8, L={1,5}: basepoint present \u27fa \u03bd\u03c3\u22611 (mod 4); torsor ([\u03b2]=0 unavailable) \u27fa \u03bd\u03c3\u22613 (mod 4) (MacBeth, email 2026-09-30)",
       "trust": "checked-sober",
-      "claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
+      "claimed_by": "MacBeth \u2014 peers/macbeth/emails/2026-09-30-o-nu-fixed-sigma-slices.md",
       "file": "peers/macbeth/proofs/2026-09-30-macbeth-o-nu-fixed-sigma-slices.pdf",
       "source_pin": "MacBeth work-in-progress @ fc3d742",
-      "note": "COMPUTED-ONLY by MacBeth (general torsor claim computed/open, not proved). Refinement (email 2026-09-30-o-nu-torsor-refinement.md, UID 305): torsor needs L⊊Aut(D), not mere non-trivial kernel; multiplicative datum lives over (D,∘) not (D,+); o_ν is affine: o_ν([β]) = [Q^∘β] − c_{[ν],σ}, offset c = class of ambient defect (λ^D_d−1) = 2(νσ−1) for H=Z/2; im φ⁺ = o_ν⁻¹(0) affine coset, contains 0 iff c=0 (16/16). Z/4 nontrivial brace (L=Aut(Z/4), offset≡0, no torsor) is a counterexample to the PDF's earlier sentence 'non-trivial kernel ⟹ torsor'. Z/8, L={1,5} tables stand.",
-      "refinement_claimed_by": "MacBeth — peers/macbeth/emails/2026-09-30-o-nu-torsor-refinement.md",
-      "recheck": "Rick sober re-derivation 2026-10-02: within D=Z/8, λ_g=5 (L={1,5}) the dichotomy νσ̂≡3 mod 4 ⟺ b odd follows directly from the checked lock; existence of realising braces in each slice computed (09-30 Table 2 reproduced exactly). Restricted to L={1,5}; general L⊊Aut sufficiency is FALSE (see o-nu-torsor-sufficiency-counterexample-L13-L17). peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md"
+      "note": "COMPUTED-ONLY by MacBeth (general torsor claim computed/open, not proved). Refinement (email 2026-09-30-o-nu-torsor-refinement.md, UID 305): torsor needs L\u228aAut(D), not mere non-trivial kernel; multiplicative datum lives over (D,\u2218) not (D,+); o_\u03bd is affine: o_\u03bd([\u03b2]) = [Q^\u2218\u03b2] \u2212 c_{[\u03bd],\u03c3}, offset c = class of ambient defect (\u03bb^D_d\u22121) = 2(\u03bd\u03c3\u22121) for H=Z/2; im \u03c6\u207a = o_\u03bd\u207b\u00b9(0) affine coset, contains 0 iff c=0 (16/16). Z/4 nontrivial brace (L=Aut(Z/4), offset\u22610, no torsor) is a counterexample to the PDF's earlier sentence 'non-trivial kernel \u27f9 torsor'. Z/8, L={1,5} tables stand.",
+      "refinement_claimed_by": "MacBeth \u2014 peers/macbeth/emails/2026-09-30-o-nu-torsor-refinement.md",
+      "recheck": "Rick sober re-derivation 2026-10-02: within D=Z/8, \u03bb_g=5 (L={1,5}) the dichotomy \u03bd\u03c3\u0302\u22613 mod 4 \u27fa b odd follows directly from the checked lock; existence of realising braces in each slice computed (09-30 Table 2 reproduced exactly). Restricted to L={1,5}; general L\u228aAut sufficiency is FALSE (see o-nu-torsor-sufficiency-counterexample-L13-L17). peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md"
     },
     {
       "id": "o-nu-lock-4b-mod8-H-Z2",
-      "approach": "Lock 4b ≡ 2(νσ̂−1) mod 8 for H=Z/2 (σ̂ = ∘-conjugation; proved for H=Z/2, 112/112; computed for general |G|=16; σ̂ beats additive σ₊, 104/104 vs 80/104) (MacBeth, email 2026-10-01)",
+      "approach": "Lock 4b \u2261 2(\u03bd\u03c3\u0302\u22121) mod 8 for H=Z/2 (\u03c3\u0302 = \u2218-conjugation; proved for H=Z/2, 112/112; computed for general |G|=16; \u03c3\u0302 beats additive \u03c3\u208a, 104/104 vs 80/104) (MacBeth, email 2026-10-01)",
       "trust": "checked-sober",
-      "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md",
+      "claimed_by": "MacBeth \u2014 peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md",
       "file": "peers/macbeth/proofs/2026-10-01-macbeth-o-nu-socle-LsubAut-tabulation.pdf",
-      "recheck": "Rick sober re-derivation 2026-10-02: identity form (λ_x−1)b=2δ_1(x) is one line from additivity of λ_x (all ideals, H=Z/2, (G,+) abelian); counts 112 and 24 and 09-30 Table 2 reproduced independently (lock identity 100% of triples on Z/8, Z/16, Z/2×Z/4, Z/2×Z/8); scope of mod-8 form: D=Z/8, L={1,5}, νσ̂ additive there. peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
-      "review_note": "νσ̂ ∉ Aut(D,+) in general: non-additive for half the sections when L ∋ 3 (192/384, 192/384, 256/512). σ̂ vs σ₊ 104/104 vs 80/104 NOT reproduced (σ₊ undefined) — that sub-claim stays peer-claimed."
+      "recheck": "Rick sober re-derivation 2026-10-02: identity form (\u03bb_x\u22121)b=2\u03b4_1(x) is one line from additivity of \u03bb_x (all ideals, H=Z/2, (G,+) abelian); counts 112 and 24 and 09-30 Table 2 reproduced independently (lock identity 100% of triples on Z/8, Z/16, Z/2\u00d7Z/4, Z/2\u00d7Z/8); scope of mod-8 form: D=Z/8, L={1,5}, \u03bd\u03c3\u0302 additive there. peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
+      "review_note": "\u03bd\u03c3\u0302 \u2209 Aut(D,+) in general: non-additive for half the sections when L \u220b 3 (192/384, 192/384, 256/512). \u03c3\u0302 vs \u03c3\u208a 104/104 vs 80/104 NOT reproduced (\u03c3\u208a undefined) \u2014 that sub-claim stays peer-claimed."
     },
     {
       "id": "o-nu-offset-coboundary-general-H",
-      "approach": "Offset coboundary c^d = d₊[δ_•(d)] for general H (MacBeth, email 2026-10-01)",
+      "approach": "Offset coboundary c^d = d\u208a[\u03b4_\u2022(d)] for general H (MacBeth, email 2026-10-01)",
       "trust": "checked-sober",
-      "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md",
+      "claimed_by": "MacBeth \u2014 peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md",
       "file": "peers/macbeth/proofs/2026-10-01-macbeth-o-nu-socle-LsubAut-tabulation.pdf",
-      "recheck": "Rick sober re-derivation 2026-10-02: 4-line identity from additivity of λ_d; scope (G,+) abelian; offset section-dependent, class 0. peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
-      "review_note": "General-H basepoint criterion '0∈im φ⁺ ⟺ δ_•(d) hom ∀d': (⇒) checked-sober for a suitable section; (⇐) GAP (not a consequence of (⋆), needs realisability argument; S3 unseen) — stays peer-claimed. Definition 2 o_ν ill-typed on D/2D in general."
+      "recheck": "Rick sober re-derivation 2026-10-02: 4-line identity from additivity of \u03bb_d; scope (G,+) abelian; offset section-dependent, class 0. peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
+      "review_note": "General-H basepoint criterion '0\u2208im \u03c6\u207a \u27fa \u03b4_\u2022(d) hom \u2200d': (\u21d2) checked-sober for a suitable section; (\u21d0) GAP (not a consequence of (\u22c6), needs realisability argument; S3 unseen) \u2014 stays peer-claimed. Definition 2 o_\u03bd ill-typed on D/2D in general."
     },
     {
       "id": "o-nu-torsor-sufficiency-counterexample-L13-L17",
-      "approach": "Counterexample (Rick) to MacBeth 10-01 torsor sufficiency 'L⊊Aut(D) ∧ νσ̂ non-socle (c≠0) ⇒ no basepoint': D=Z/8 in (G,+)=Z/2×Z/8, H=Z/2, L={1,3} or {1,7}: b even on all 384/384 (brace,D,u) triples (lock gives b≡c₀−1 mod 4), though non-socle cosets / offset c=4 occur — fails under both readings of 'socle' (=L or ={1,5})",
+      "approach": "Counterexample (Rick) to MacBeth 10-01 torsor sufficiency 'L\u228aAut(D) \u2227 \u03bd\u03c3\u0302 non-socle (c\u22600) \u21d2 no basepoint': D=Z/8 in (G,+)=Z/2\u00d7Z/8, H=Z/2, L={1,3} or {1,7}: b even on all 384/384 (brace,D,u) triples (lock gives b\u2261c\u2080\u22121 mod 4), though non-socle cosets / offset c=4 occur \u2014 fails under both readings of 'socle' (=L or ={1,5})",
       "trust": "computed",
-      "claimed_by": "Rick — peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
+      "claimed_by": "Rick \u2014 peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
       "file": "scripts/day217-macbeth/lock_tab.log",
       "pdf": "work-in-progress/reviews/2026-10-02-review-macbeth-o-nu-socle.pdf"
     },
     {
       "id": "o-nu-torsor-necessity",
-      "approach": "Torsor necessity: no basepoint ⇒ L⊊Aut(D) (MacBeth 10-01; hand-checked by MacBeth at D=Z/4 only). Rick computed for H=Z/2, D=Z/4 (L=Aut: b even 64/64) and D=Z/8 (L=Aut(Z/8): b even 512/512); no general proof",
+      "approach": "Torsor necessity: no basepoint \u21d2 L\u228aAut(D) (MacBeth 10-01; hand-checked by MacBeth at D=Z/4 only). Rick computed for H=Z/2, D=Z/4 (L=Aut: b even 64/64) and D=Z/8 (L=Aut(Z/8): b even 512/512); no general proof",
       "trust": "computed",
-      "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md; computed by Rick — peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
+      "claimed_by": "MacBeth \u2014 peers/macbeth/emails/2026-10-02-o-nu-socle-LsubAut-tabulation.md; computed by Rick \u2014 peers/macbeth/reviews/2026-10-02-rick-review-o-nu-socle.md",
       "file": "scripts/day217-macbeth/lock_tab.log"
     },
     {
       "id": "macbeth-container-derivative-rewrite-2026-10-06",
-      "approach": "Rewritten container-derivative uniqueness note + companion existence (tangent-structure) note with Rick's accepted scope fix: tangent functor is the Weil base change T=(−)⊗W, W=N[eps]/eps^2 (not (−)◁D on all of Poly); ◁ and ⊗W agree only on the linear layer; universality leaves exactly {id, ∂} on finite-rank N-algebras. F4 (M=N·y as a genuine third structure) flagged open; F5 incorporated. Review requested before Strathclyde (Oct 13–16). (MacBeth, email 2026-10-06 UID 336)",
+      "approach": "Rewritten container-derivative uniqueness note + companion existence (tangent-structure) note with Rick's accepted scope fix: tangent functor is the Weil base change T=(\u2212)\u2297W, W=N[eps]/eps^2 (not (\u2212)\u25c1D on all of Poly); \u25c1 and \u2297W agree only on the linear layer; universality leaves exactly {id, \u2202} on finite-rank N-algebras. F4 (M=N\u00b7y as a genuine third structure) flagged open; F5 incorporated. Review requested before Strathclyde (Oct 13\u201316). (MacBeth, email 2026-10-06 UID 336)",
       "trust": "peer-claimed",
-      "claimed_by": "MacBeth — peers/macbeth/emails/2026-10-07-container-derivative-rewrite-uniqueness-existence.md",
+      "claimed_by": "MacBeth \u2014 peers/macbeth/emails/2026-10-07-container-derivative-rewrite-uniqueness-existence.md",
       "file": "peers/macbeth/proofs/2026-10-06-macbeth-container-derivative-uniqueness.pdf; peers/macbeth/proofs/2026-10-06-macbeth-container-derivative-tangent-structure.pdf",
       "source_pin": "MacBeth work-in-progress @ 5f1531d"
     },
@@ -170,6 +170,15 @@
       "claimed_by": "peers/macbeth/emails/2026-10-11-nerve-level-two-and-uniqueness-revised-6089268.md",
       "file": "peers/macbeth/proofs/2026-10-11-container-derivative-uniqueness-6089268.pdf",
       "review": "Rick r2 2026-10-11 (WIP fc69dab): wording-only confirmed (except Prop 12 rename); accept after B1/B2 scope edits."
+    },
+    {
+      "id": "macbeth-band-boundary-2fa15ef",
+      "approach": "Standalone band-boundary note (extract of gerbe \u00a75): Lemma 5 band = strict Out-cocycle; Thm 6 beta=0 iff transport gauges into Inn; Cor 7 staged obstruction (strict inventory iff beta=0 and [g]=0); Thm 8 S_n doubly vacuous n>=3, n!=6, exceptions n=6 (band) / n=2 (centre); Thm 9 (Z/p)^2 band on B(Z); \u00a76/Rem 10 NEW at grade 'computed': D4xC2 on T^2, delta(beta)=[A,B]=[s]!=0 in H^2(T^2;InnG) (MacBeth, email 2026-10-11 UID 374)",
+      "trust": "peer-claimed",
+      "claimed_by": "peers/macbeth/emails/2026-10-12-band-boundary-note.md",
+      "file": "peers/macbeth/proofs/2026-10-11-inventory-band-boundary.pdf",
+      "source_pin": "MacBeth work-in-progress content commit 2fa15ef",
+      "review": "Rick 2026-10-12 (for-collaborator-pdfs/2026-10-12-macbeth-band-boundary-review.pdf; script WIP scripts/day237/band_boundary_checks.py): Lemma 5, Thm 6 (<=) OK; Thm 6 (=>) OK only for strict alpha (cocycle line uses alpha(gf)=alpha(g)alpha(f), contradicting \u00a72; D4/B(Z/3) computed). MUST: Cor 7 = r2 N1 UNREPAIRED (S3/B(Z) conj((01)): beta=0,[g]=0, no strict inventory; computed); Thm 8 n=2 'centre exception' FALSE (S2 abelian => Inn=1, Z->S2->1 splits, [g]=0 every C; re-imports retracted E2); \u00a76 'T^2 first base' FALSE (D4xC2 on B(Z/2): outer involution r->r,s->sc,c->r^2c has no involutive lift, computed). \u00a76 witness RE-COMPUTED independently (|Aut|=64,|Out|=16, [A,B]=conj(s), A,B act trivially on Inn, 0/16 commuting lifts) and is hand-provable; grade 'computed' honest for the finite fact, delta-identification only sketched. 'Staged' right for the lifting problem through G->AutG, wrong as a reading of Giraud. Thm D iff not restated (OK). Stays peer-claimed."
     }
   ]
 }

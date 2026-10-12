@@ -1,0 +1,36 @@
+== (A) Thm 6 (=>) cocycle line under the note's own up-to-inner hypothesis ==
+D4, B(Z/3), alpha(t)=alpha(t^2)=conj(s): functorial up to Inn: True | strict: False
+  => with mu=id, alpha~=alpha is inner-valued but alpha~(t*t) != alpha~(t)alpha~(t): True
+== (B) Cor 7 'strict global inventory = relabelling mu with mu.alpha == e' ==
+S3: |Aut|=6 |Inn|=6 |Z|=1
+S3, C=B(Z), alpha(t)=conj((01)): beta=0 (Out=1), [g]=0 (Z=1, dim 1); exists mu with mu.alpha=e: False
+D4, C=B(Z/2), alpha(g)=conj(s) (s involution => strict lift T(g)=s, [g]=0): exists mu: False
+== (C) Thm 8 n=2: G=S2 abelian ==
+S2: |Aut|=1 |Inn|=1 |Z|=2 -> Inn=1, rho-bar trivial, gerbe of lifts of trivial functor is neutral: [g]=0 for every C
+  sanity: H^2(B(Z/2);Z/2)=Z/2 is nonzero, yet the Def-6 class rho*[*] = 0 since * : Z->S2->1 splits.
+== (D) Section 6 witness G = D4 x C2 ==
+|G|=16 |Z(G)|=4 |Aut G|=64 |Inn G|=4 |Out G|=16
+A in Aut G: True | B in Aut G: True
+A outer: True | B outer: True | AB outer: True
+A^2=id: True | B^2=id: True
+[A,B] inner (so [A],[B] commute in Out): True
+[A,B] = conj(g) for g in ['r^0 s^1 c^0', 'r^0 s^1 c^1', 'r^2 s^1 c^0', 'r^2 s^1 c^1']
+[A,B] == conj(s): True
+A, B act trivially on Inn G: True True -> coinvariants M_{<A,B>} = Inn G = (Z/2)^2 and obstruction = [A,B] itself
+commuting lift pairs over Inn x Inn (16 pairs): 0
+commuting pairs (x,y) in A Inn x B Inn: 0
+printed 16x16 version (g,h in G): commuting count 0
+Z(G) -> G -> Inn G split: False (Rem 10 caveat (2): 'same group also witnesses' the central stage)
+== (E) delta on B(Z/2): outer involutions with no involutive lift ==
+D4     |Aut|=  8 |Inn|= 4  outer-involution classes=1  with no involutive lift=0
+Q8     |Aut|= 24 |Inn|= 4  outer-involution classes=3  with no involutive lift=0
+S3     |Aut|=  6 |Inn|= 6  outer-involution classes=0  with no involutive lift=0
+D4xC2  |Aut|= 64 |Inn|= 4  outer-involution classes=11  with no involutive lift=3
+C4xC2  |Aut|=  8 |Inn|= 1  outer-involution classes=5  with no involutive lift=0
+D8     |Aut|= 32 |Inn|= 8  outer-involution classes=3  with no involutive lift=1
+== (F) S6: Phi(012345)=[1,4,2,5,0,3], Phi((01))=(01)(25)(34) ==
+hom: True | bijection: True | transpositions -> types: [(2, 2, 2)]
+== (E') explicit outer involution of D4xC2 with no involutive lift ==
+  a: r->r^1 s^0 c^0, s->r^0 s^1 c^1, c->r^2 s^0 c^1 ; a^2 = conj of ['r^1 s^0 c^0', 'r^1 s^0 c^1'] ; a acts trivially on Inn: True
+  a: r->r^1 s^0 c^1, s->r^0 s^1 c^0, c->r^2 s^0 c^1 ; a^2 = conj of ['r^0 s^1 c^0', 'r^0 s^1 c^1'] ; a acts trivially on Inn: True
+  a: r->r^1 s^0 c^1, s->r^0 s^1 c^1, c->r^2 s^0 c^1 ; a^2 = conj of ['r^1 s^1 c^0', 'r^1 s^1 c^1'] ; a acts trivially on Inn: True
