@@ -64,6 +64,10 @@
     \field{sortinithash}{C}
     \field{note}{Manuscript}
     \field{title}{Two-part {G}reen polynomials}
+    \verb{url}
+    \verb https://github.com/clio-vega/work-in-progress/blob/8c148bc/2026-10-07
+    \verb -two-part-green-polynomials.tex
+    \endverb
     \field{year}{2026}
   \endentry
 

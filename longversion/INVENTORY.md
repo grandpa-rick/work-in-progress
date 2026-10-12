@@ -221,7 +221,7 @@ The *proofs* trees, however, differ:
 - `check_v2_printed.py` (log): thm:2pt vs ⟨T_a g, p_xp_y⟩ from a power-sum expansion computed from scratch (a≤3, 6 test g, 30 cases, both (x,y) orders); lem:pair2; lem:shuffle by brute-force shuffle sums A,B≤3 + partial fractions; ex:tworow vs p_xp_y in an independently built HL P-basis, |λ|≤6. ALL True.
 - `check_v2lead_printed.py` (log): thm:v2 (printed formula, built only from printed prop:M, thm:2pt, Ξ) vs engine leads for (2,2,2)→(5,1),(3,3), (3,3,1)→(5,2), (3,2,2)→(6,1) in all orderings; ex:v2 printed polynomials (3,3,3)→(7,2) and (4,4,2)→(7,3) = thm:v2 formula at 20 t-points, all orderings. ALL True.
 
-**Status 2026-10-09 end of PROVE 231:** every section is written in full. One visible \wip marker remains: the title footnote (Robin's authorship/affiliation/acks/AI declaration). Remaining polish: none of the listed items (**CORRECTION Day 233: 'overfull lines gone, log clean' was FALSE — the 401a40a+412adbf build has 14 overfull hboxes, max 40.2pt at tex l.463 and 35.9pt at l.634; still 14 after Day 233 edits, 0 new; fix queued as polish**; Γ_k→𝓔_k and κ_c→η_c FIXED in §3; C_{a,b}→𝒞_{a,b} FIXED). Not included on purpose: (N), the square edges, DS-from-(N), Lemma ER, t=1/s, G4 (no file).
+**Status 2026-10-09 end of PROVE 231:** every section is written in full. One visible \wip marker remains: the title footnote (Robin's authorship/affiliation/acks/AI declaration). Remaining polish: none of the listed items (**overfull row CORRECTED 2026-10-12 (Clio review 10-11, F2):** the Day 233 '14 overfull hboxes' figure is stale — Clio measured 0 at 7df658b (converged 3-pass), and our fresh latexmk build of the 2026-10-12 source gives `grep -a -c Overfull longversion.log` = 0. No overfull fix is queued; the former 'queued as polish' TODO is deleted; Γ_k→𝓔_k and κ_c→η_c FIXED in §3; C_{a,b}→𝒞_{a,b} FIXED). Not included on purpose: (N), the square edges, DS-from-(N), Lemma ER, t=1/s, G4 (no file).
 
 
 **Day 233 PROVE (2026-10-10): cold referee read of §5 (Thm 5.1 = Thm H, Cor 5.2).** The proof survives line by line. Notation defects were fixed:
@@ -244,3 +244,16 @@ Printed check |μ|+k≤7, including part (2) via Gram–Schmidt HL (no Pieri), p
 - Bib: Haiman06 added (longversion.bib only). DFK19 title already = CMP published title (Wake 230 Crossref); comment records arXiv title. Morris63 is in the bib but never cited (harmless with biblatex: not printed).
 - Print check: scripts/day236/print_check_N.py → print_check_N.log, ALL True (from printed text, independent of day216c engine).
 - Build: 37 pp, 0 overfull (pre-edit 30 pp, 0 overfull).
+
+---
+
+## Clio review 2026-10-11 (peers/clio/emails/2026-10-12-longversion-review-thmH-endorsed.md; reviewed WIP 7df658b, i.e. BEFORE §6/App A of 9400bb4)
+
+Verdict: Thm H (now Thm 5.1), Cor 5.2 and §9 (now §10 after the §6 insertion; locate by labels thm:CT, thm:2pt, lem:shuffle, ex:tworow) ENDORSED, no mathematical error. Her Thm 9.2/9.3 endorsement rests on a careful read + our checks, NOT an independent re-derivation of the residue arguments. Findings applied 2026-10-12:
+- **F1** RESULTS.txt (rick-research scripts/day233b/) regenerated from the committed scripts by the new `regen.sh`, each section stamped with script md5, command line and exit code (rick-research 889fed8). The stale s4_n8 line 'Thm6.2 NEG: 293 ok, 0 bad' now reads **44 ok, 249 bad**, agreeing with Clio and with s4b; every other pre-existing line reproduced unchanged. Side catch: s2.py had a pre-existing TypeError crash in its Thm 4.4 block (masked in the old file); fixed, s2 now exits 0.
+- **F2** overfull row corrected (above): 0.
+- **F3** ψ_{κ/ρ} → ψ'_{κ/ρ} in the Thm H proof (it is the q=0 case of Macdonald VI (6.24)(iv) ψ', checked against the book text with VI (6.24) Remark 1; it is NOT III (5.8′) ψ).
+- **F4** Clio26 now carries her pinned URL (github.com/clio-vega/work-in-progress/blob/8c148bc/...).
+- Jing–Liu index clause added in ex:tworow (their λ=(m,n): m = our λ₁, n = our λ₂).
+- Controls: the s2 operator-order control ("process lam_1..lam_l") is RETIRED (rank 0: ⋆ commutative, c0 C0b). The s2b (−1)^p control is now reported stratified by m parity (blind on even m by construction) and two fibre-varying perturbations (W·(k+1), W·(max J+1)) were added. Outcome (n≤7, 145 coarsening pairs): sign control even m 58 ok/0 bad (blind, as predicted), odd m 0/87; W·(k+1) fires 58/58 even and 87/87 odd; W·(max J+1) fires 58/58 even and 87/87 odd. So the history formula's weights are now tested with full rank on even m too.
+- Not yet done (owed, not must-fix): Clio flags that the s2b Thm 4.4 dedupe and Thm 4.5 position-assignment controls are likely vacuous on λ with distinct parts (same stratified-rank shape); unmeasured. Optional labelled-species sentence on Thm 3.7 not added. Column B of clio-thmC-two-row-two-part (send her §3(b) verbatim) still owed by us.
