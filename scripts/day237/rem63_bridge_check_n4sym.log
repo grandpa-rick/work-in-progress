@@ -1,0 +1,15 @@
+PASS P3 n=4 symbolic: N = phi^-1 nabla_{q=s} phi on all of Lambda^4 (5x5 over QQ(s,t))
+PASS   ctrl n(nu)<->n(nu') eigenvalue breaks
+PASS   ctrl s<->t (whole RHS operator) breaks
+PASS   ctrl phi without -eps breaks
+PASS P4 n=4 symbolic lam=(4,) t^n(lam') e*_lam = phi^-1 nabla phi e_lam (m=4, printed T,pi,Y)
+PASS   ctrl P4 t^n(lam) breaks
+PASS P4 n=4 symbolic lam=(3, 1) t^n(lam') e*_lam = phi^-1 nabla phi e_lam (m=4, printed T,pi,Y)
+PASS   ctrl P4 t^n(lam) breaks
+PASS P4 n=4 symbolic lam=(2, 2) t^n(lam') e*_lam = phi^-1 nabla phi e_lam (m=4, printed T,pi,Y)
+PASS P4 n=4 symbolic lam=(2, 1, 1) t^n(lam') e*_lam = phi^-1 nabla phi e_lam (m=4, printed T,pi,Y)
+PASS   ctrl P4 t^n(lam) breaks
+PASS P4 n=4 symbolic lam=(1, 1, 1, 1) t^n(lam') e*_lam = phi^-1 nabla phi e_lam (m=4, printed T,pi,Y)
+PASS   ctrl P4 t^n(lam) breaks
+ALL True 13
+EXIT 0

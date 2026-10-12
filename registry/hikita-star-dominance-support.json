@@ -241,7 +241,8 @@
                 "dfk_dictionary_day237": "Rem 6.4 re-derived FIRST-HAND from arXiv:1704.00154v2 e-print (compiled locally): (1.5) M_{alpha;n}, Lemma 2.12 (tau+=ad gamma^{-1}, added to citation), Lemma 2.16, Thm 2.17/(2.11), Lemma 2.13, Rem 2.14, (4.14), (6.3),(6.5),(6.8) all exist and say what we print. Dictionary (their (q,t)=(s,1/t), theta=t^{-1/2}) composes by hand to E_k = t^{k(m-k)} t^{-k(m-k)/2} s^{-k/2} t^{-k(m-1)/2} s^{k/2} N e_k N^{-1} = t^{-C(k,2)} N e_k N^{-1} (k=1: t^0, k=2: t^{-1}); exact Thm 6.2. DFK Rem 4.8 + Thm 4.7 (Sigma: X->X/(t-1); phi = (-1)^d Sigma) IS our Rem 6.3 bridge; now credited. Day-237 suspicion of a DFK plethystic sign slip REFUTED by computation (scripts/day237/dfk_rem48_sign.py: DFK literal TRUE n=2,3). Residual (theirs, not load-bearing): finite-N use of the SV11 SL2(Z) identification.",
                 "sources": [
                  "1704.00154"
-                ]
+                ],
+                "print_check_day237_n4sym": "2026-10-12 (re-run session): n=4 P3 (N = phi^-1 nabla_{q=s} phi as a 5x5 operator on Lambda^4 over QQ(s,t)) and P4 (all |lambda|=4, printed Sec.2 operators, m=4) now checked SYMBOLICALLY: work-in-progress scripts/day237/rem63_bridge_check_n4sym.{py,log}, ALL True 13; controls (n(nu)<->n(nu'), s<->t, phi without -eps, t^n(lam)) break. Supersedes the 3-rational-point n=4 coverage; printed Computer-checks sentence now reads 'symbolically for |lambda|<=4'."
                },
                {
                 "id": "KF-hall-littlewood-formula-for-Ek",
