@@ -1,0 +1,75 @@
+PASS P1 n=1 nu=(1,) Ht = t^n(nu) J[X/(1-1/t);q,1/t]
+PASS P2 n=1 nu=(1,) phi^-1 Ht = (-1)^n t^(n+n(nu)) J(s,1/t)
+PASS   ctrl-sign(+1 for odd n) breaks
+PASS P3 n=1 lam=(1,) N e = phi^-1 nabla phi e
+PASS P4 n=1 lam=(1,) t^n(lam') e*_lam = phi^-1 nabla phi e_lam (m=1, printed T,pi,Y)
+PASS P1 n=2 nu=(2,) Ht = t^n(nu) J[X/(1-1/t);q,1/t]
+PASS P2 n=2 nu=(2,) phi^-1 Ht = (-1)^n t^(n+n(nu)) J(s,1/t)
+PASS   ctrl-sign(-(..)) breaks
+PASS   ctrl n(nu)->n(nu') breaks
+PASS   ctrl phi without -eps: not prop. to J (breaks)
+PASS P1 n=2 nu=(1, 1) Ht = t^n(nu) J[X/(1-1/t);q,1/t]
+PASS P2 n=2 nu=(1, 1) phi^-1 Ht = (-1)^n t^(n+n(nu)) J(s,1/t)
+PASS   ctrl-sign(-(..)) breaks
+PASS   ctrl n(nu)->n(nu') breaks
+PASS   ctrl phi without -eps: not prop. to J (breaks)
+PASS sanity nabla e_2 = s_2 + (q+t) s_11
+PASS P3 n=2 lam=(2,) N e = phi^-1 nabla phi e
+PASS P3 n=2 lam=(1, 1) N e = phi^-1 nabla phi e
+PASS   ctrl n(nu)<->n(nu') eigenvalue breaks (n=2)
+PASS   ctrl s<->t (whole RHS operator) breaks (n=2)
+PASS   ctrl phi without -eps breaks (n=2)
+PASS P4 n=2 lam=(2,) t^n(lam') e*_lam = phi^-1 nabla phi e_lam (m=2, printed T,pi,Y)
+PASS   ctrl P4 with t^n(lam) instead of t^n(lam') breaks
+PASS P4 n=2 lam=(1, 1) t^n(lam') e*_lam = phi^-1 nabla phi e_lam (m=2, printed T,pi,Y)
+PASS   ctrl P4 with t^n(lam) instead of t^n(lam') breaks
+PASS P1 n=3 nu=(3,) Ht = t^n(nu) J[X/(1-1/t);q,1/t]
+PASS P2 n=3 nu=(3,) phi^-1 Ht = (-1)^n t^(n+n(nu)) J(s,1/t)
+PASS   ctrl-sign(+1 for odd n) breaks
+PASS   ctrl n(nu)->n(nu') breaks
+PASS   ctrl phi without -eps: not prop. to J (breaks)
+PASS P1 n=3 nu=(2, 1) Ht = t^n(nu) J[X/(1-1/t);q,1/t]
+PASS P2 n=3 nu=(2, 1) phi^-1 Ht = (-1)^n t^(n+n(nu)) J(s,1/t)
+PASS   ctrl-sign(+1 for odd n) breaks
+PASS   ctrl phi without -eps: not prop. to J (breaks)
+PASS P1 n=3 nu=(1, 1, 1) Ht = t^n(nu) J[X/(1-1/t);q,1/t]
+PASS P2 n=3 nu=(1, 1, 1) phi^-1 Ht = (-1)^n t^(n+n(nu)) J(s,1/t)
+PASS   ctrl-sign(+1 for odd n) breaks
+PASS   ctrl n(nu)->n(nu') breaks
+PASS   ctrl phi without -eps: not prop. to J (breaks)
+PASS P3 n=3 lam=(3,) N e = phi^-1 nabla phi e
+PASS P3 n=3 lam=(2, 1) N e = phi^-1 nabla phi e
+PASS P3 n=3 lam=(1, 1, 1) N e = phi^-1 nabla phi e
+PASS   ctrl n(nu)<->n(nu') eigenvalue breaks (n=3)
+PASS   ctrl s<->t (whole RHS operator) breaks (n=3)
+PASS   ctrl phi without -eps breaks (n=3)
+PASS P4 n=3 lam=(3,) t^n(lam') e*_lam = phi^-1 nabla phi e_lam (m=3, printed T,pi,Y)
+PASS   ctrl P4 with t^n(lam) instead of t^n(lam') breaks
+PASS P4 n=3 lam=(2, 1) t^n(lam') e*_lam = phi^-1 nabla phi e_lam (m=3, printed T,pi,Y)
+PASS P4 n=3 lam=(1, 1, 1) t^n(lam') e*_lam = phi^-1 nabla phi e_lam (m=3, printed T,pi,Y)
+PASS   ctrl P4 with t^n(lam) instead of t^n(lam') breaks
+PASS P1 n=4 nu=(4,) Ht = t^n(nu) J[X/(1-1/t);q,1/t]
+PASS P2 n=4 nu=(4,) phi^-1 Ht = (-1)^n t^(n+n(nu)) J(s,1/t)
+PASS   ctrl-sign(-(..)) breaks
+PASS   ctrl n(nu)->n(nu') breaks
+PASS   ctrl phi without -eps: not prop. to J (breaks)
+PASS P1 n=4 nu=(3, 1) Ht = t^n(nu) J[X/(1-1/t);q,1/t]
+PASS P2 n=4 nu=(3, 1) phi^-1 Ht = (-1)^n t^(n+n(nu)) J(s,1/t)
+PASS   ctrl-sign(-(..)) breaks
+PASS   ctrl n(nu)->n(nu') breaks
+PASS   ctrl phi without -eps: not prop. to J (breaks)
+PASS P1 n=4 nu=(2, 2) Ht = t^n(nu) J[X/(1-1/t);q,1/t]
+PASS P2 n=4 nu=(2, 2) phi^-1 Ht = (-1)^n t^(n+n(nu)) J(s,1/t)
+PASS   ctrl-sign(-(..)) breaks
+PASS   ctrl phi without -eps: not prop. to J (breaks)
+PASS P1 n=4 nu=(2, 1, 1) Ht = t^n(nu) J[X/(1-1/t);q,1/t]
+PASS P2 n=4 nu=(2, 1, 1) phi^-1 Ht = (-1)^n t^(n+n(nu)) J(s,1/t)
+PASS   ctrl-sign(-(..)) breaks
+PASS   ctrl n(nu)->n(nu') breaks
+PASS   ctrl phi without -eps: not prop. to J (breaks)
+PASS P1 n=4 nu=(1, 1, 1, 1) Ht = t^n(nu) J[X/(1-1/t);q,1/t]
+PASS P2 n=4 nu=(1, 1, 1, 1) phi^-1 Ht = (-1)^n t^(n+n(nu)) J(s,1/t)
+PASS   ctrl-sign(-(..)) breaks
+PASS   ctrl n(nu)->n(nu') breaks
+PASS   ctrl phi without -eps: not prop. to J (breaks)
+EXIT 137  [Day 237 note: killed (OOM) in the symbolic n=4 P3 solve, after all n<=3 checks and n=4 P1,P2 + controls passed; n=4 P3,P4 completed at rational points in rem63_bridge_check_n4pts.log, ALL True 51]

@@ -239,7 +239,7 @@ Printed check |μ|+k≤7, including part (2) via Gram–Schmidt HL (no Pieri), p
 
 ## Day 236 addendum (2026-10-11): (N) section + Cherednik appendix written
 
-- New §6 `sec:nabla` "Hikita's product as a Macdonald-diagonal transport": Def 6.1 (𝒩), Thm 6.2 `thm:N` (+ equivalence proof), Rem 6.3 ∇ form (bridge derived by hand, not machine-checked), Rem 6.4 attribution to DFK19 (FOLKLORE-IMPLICIT, no novelty claimed), Rem 6.5 (nothing else depends on it), Lemma 6.6 `lem:I`, Prop 6.7 `prop:NS`, Lemma 6.8 `lem:Nsym`.
+- New §6 `sec:nabla` "Hikita's product as a Macdonald-diagonal transport": Def 6.1 (𝒩), Thm 6.2 `thm:N` (+ equivalence proof), Rem 6.3 ∇ form (bridge derived by hand; print-checked Day 237, see addendum), Rem 6.4 attribution to DFK19 (FOLKLORE-IMPLICIT, no novelty claimed), Rem 6.5 (nothing else depends on it), Lemma 6.6 `lem:I`, Prop 6.7 `prop:NS`, Lemma 6.8 `lem:Nsym`.
 - New Appendix A `app:cherednik`: A.1 elementary relations, Lemma A.1 `lem:bernstein` (merged from the deleted appendix-C2-bernstein.tex), Thm A.2 `thm:C1` (presentation check + Haiman06 Thm 4.2), Rem A.3 twisted π, Thm A.4 `thm:tri`, Cor A.5 `thm:C3`.
 - Bib: Haiman06 added (longversion.bib only). DFK19 title already = CMP published title (Wake 230 Crossref); comment records arXiv title. Morris63 is in the bib but never cited (harmless with biblatex: not printed).
 - Print check: scripts/day236/print_check_N.py → print_check_N.log, ALL True (from printed text, independent of day216c engine).
@@ -256,4 +256,15 @@ Verdict: Thm H (now Thm 5.1), Cor 5.2 and §9 (now §10 after the §6 insertion;
 - **F4** Clio26 now carries her pinned URL (github.com/clio-vega/work-in-progress/blob/8c148bc/...).
 - Jing–Liu index clause added in ex:tworow (their λ=(m,n): m = our λ₁, n = our λ₂).
 - Controls: the s2 operator-order control ("process lam_1..lam_l") is RETIRED (rank 0: ⋆ commutative, c0 C0b). The s2b (−1)^p control is now reported stratified by m parity (blind on even m by construction) and two fibre-varying perturbations (W·(k+1), W·(max J+1)) were added. Outcome (n≤7, 145 coarsening pairs): sign control even m 58 ok/0 bad (blind, as predicted), odd m 0/87; W·(k+1) fires 58/58 even and 87/87 odd; W·(max J+1) fires 58/58 even and 87/87 odd. So the history formula's weights are now tested with full rank on even m too.
-- Not yet done (owed, not must-fix): Clio flags that the s2b Thm 4.4 dedupe and Thm 4.5 position-assignment controls are likely vacuous on λ with distinct parts (same stratified-rank shape); unmeasured. Optional labelled-species sentence on Thm 3.7 not added. Column B of clio-thmC-two-row-two-part (send her §3(b) verbatim) still owed by us.
+- Not yet done (owed, not must-fix): [MEASURED Day 237, see addendum] Clio flags that the s2b Thm 4.4 dedupe and Thm 4.5 position-assignment controls are likely vacuous on λ with distinct parts (same stratified-rank shape). Optional labelled-species sentence on Thm 3.7 not added. Column B of clio-thmC-two-row-two-part (send her §3(b) verbatim) still owed by us.
+
+---
+
+## Day 237 addendum (2026-10-12): §6 print gaps closed
+
+- **Rem 6.3 print check** (scripts/day237/rem63_bridge_check.py, independent of day216*; H̃ from Garsia–Haiman triangularities, P by q,t-Hall Gram–Schmidt, e* from the printed §2 operators): normalisation of H̃, φ^{-1}H̃_ν = (−1)^{|ν|} t^{|ν|+n(ν)} J_ν(x;s,1/t), 𝒩 = φ^{-1}∇φ on all e_λ, and the e*_λ sentence: ALL True (P1/P2 symbolic |ν| ≤ 4; P3/P4 symbolic |λ| ≤ 3 + three rational points at |λ| = 4; symbolic n=4 P3 OOM-killed, logged); controls (sign, n(ν)↔n(ν′), s↔t, φ without −ε, t^{n(λ)}) all break. Text: added Λ→Λ_m restriction sentence; credited DFK19 Rem 4.8 / Thm 4.7 (φ = (−1)^d Σ).
+- **Rem 6.4** re-derived first-hand from the arXiv v2 source of 1704.00154 (compiled locally): all locators exist and say what we say; Lemma 2.12 added to the τ+ citation; "scalar multiple" added; composite scalar t^{k(m−k)}·t^{−k(m−k)/2}s^{−k/2}·t^{−k(m−1)/2}s^{k/2} = t^{−C(k,2)} printed. DFK Rem 4.8 sign suspicion REFUTED by computation (scripts/day237/dfk_rem48_sign.py).
+- **DFK15 numbering** settled first-hand (1505.01657v2 compiled): Cor 5.8 = display (5.18), level-one (5.25); Cor 5.18 = (5.27). The longversion §7 text is right; one registry note ("journal numbering Cor 5.18") was wrong and now carries a correction field.
+- **App A worked example** (after Thm A.4) recomputed from printed operators: True (scripts/day237/appA_example_check.py).
+- **s2b controls (Clio)**: rick-research scripts/day233b/s2d.py. Thm 4.4 dedupe structurally blind on 58/146 (17 distinct-part λ, 41 with repeats but no collision), fires 88/88 elsewhere; Thm 4.5 overcount blind on 131/217 (128 have μ with distinct parts), fires 86/86 elsewhere. Added wrong-s-order controls: 4.4 fires 146/146, 4.5 fires 213/217 (4 coincidences, all κ=1; 56/217 Thm 4.5 cases have κ=1 and are tautological, so 161 substantive).
+- Build: 37 pp, 0 overfull (grep -a -c).
