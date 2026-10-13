@@ -1,0 +1,185 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\newcommand{\MU}{\textbf{MUST}}
+\newcommand{\SH}{\textbf{SHOULD}}
+\newcommand{\NI}{\textbf{NIT}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\T}{\mathcal T}
+\newcommand{\br}{\mathrm{br}}
+\setlist{nosep,leftmargin=1.3em}
+
+\begin{document}
+\begin{center}
+{\large\bf Round-3 review: nerve-level-two (A) + uniqueness (B), UID 378; crown Stage~2, UID 379}\\[4pt]
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-13\\
+To: & MacBeth (cc Robin Langer)\\
+Reviewed: & content \texttt{e4d1785} (nerve PDF stamped in \texttt{fed2448}; uniqueness and crown PDFs are\\
+ & byte-identical to \texttt{e4d1785}'s, sha256 checked). A: 13 pp, B: 17 pp, crown: 12 pp.\\
+Previous report: & ours of 2026-10-11 on \texttt{6089268} / \texttt{4e7264d} (WIP \texttt{fc69dab})\\
+WIP commit: & \texttt{daf6036} (grandpa-rick/work-in-progress)\\
+Script: & \texttt{scripts/day238/macbeth\_r2\_nerve\_crown\_checks.py} + \texttt{.log}
+\end{tabular}
+\end{center}
+
+\textbf{Verdict.} B: \textbf{accept}. B1 and B2 are fixed. A: A1 and A3 are fixed. A2 is half fixed: the
+new Remark~17 is right, but \S2 and Remark~13 still say the opposite (\textbf{1 \MU}). Crown: M-A is fixed and
+M-B is mostly fixed. Thm~19 is our Thm~18$'$ word for word. There are two new \MU s: two unrestricted ``no
+functor'' sentences are left, and a new ``exactly'' claim in Rem.~20 is false (computed counterexample). Every
+\MU\ is a one-line edit. ``l.'' is the line in \texttt{pdftotext -layout}.
+
+\textbf{What I re-ran.} Our four 2026-10-11 scripts (crown: 7 blocks; nerve: magma/splitting, N1/levels,
+Note-B rank-1 lift) give logs identical to the ones saved on 10-11. The printed statements they encode did not
+change. \emph{Statement drift}: I compared every ``Theorem/Lemma/Prop/Cor $N$ (\dots).'' head, old against
+new, letters only. Note A: 10/10 verbatim. Note B: 11/11 verbatim. (Thm~1 differs only by page furniture;
+cut at the statement end it is identical.) \emph{Negative control}: the same check on B
+\texttt{75603ad}$\to$\texttt{6089268} flags Prop.~12 (similarity 0.32), which was restated then. So A's ``without
+changing any theorem'' and B's header are \textbf{accurate}.
+
+\section*{1. Note A (nerve level two)}
+\begin{tabular}{p{2.2cm}p{1.5cm}p{12.5cm}}
+\toprule
+Item & Status & New printed text\\\midrule
+A1(a) Rem.~13 equation & FIXED & l.452--457: ``The cocycle condition $d\omega=0$ is associativity of the twisted composition over the
+already-associative base $S$ --- not the associativity equation of Theorem~12 \dots\ ($d\circ d\neq0$ \dots)''. The
+cosmetic $d^2\omega\to d\omega$ is done too.\\
+A1(b) (L) & FIXED & l.260--262: ``satisfies (G) exactly when $[\omega]=0$, and --- given also the local condition (L) ---
+splits''. l.462--464: ``under the standing (L) the class decides splitting [12]''.\\
+A1(c) ``closes'' & FIXED & l.251--253: ``Whether an associative candidate weld (one satisfying the matched-pair/cocycle condition
+of \S5) splits''. Associativity is now a hypothesis, which is fine. NIT: \S5 states no matched-pair condition, so say
+``(one with $d\omega=0$)''.\\
+A-S1 EM vs [12] & FIXED & l.464--466: ``Eilenberg--Mac Lane alone covers the semidirect case \dots\ the general matched-pair
+statement \dots\ is the theorem of [12]''.\\
+A2 class of what & \textbf{HALF} & Rem.~17 (l.506--519) is exactly right. But see A-M1.\\
+A3 Rem.~8 & FIXED & l.377--380: ``$a\cdot a=1$ sits on $N_2$ for every coefficient ring. The detecting class \dots\ sits at
+$N_2$ over $\F_2$ \dots\ but at $N_3$ over $\Z$''. The \S7 echo is fixed (l.576--577).\\
+W1, W2, W5, & OPEN & l.381 ``not even stably wrong''. l.24--26, 107--108, 544--546 (``$\delta$-translations \dots\ separate \dots\ at
+cohomological degree one''): the $\delta$-invariant is not a class, and the degree-one separation is Thm~7's
+$H^1(-;\F_2)$. l.607--608. Thm~9 l.390--392. Diamond $C,D$ in Ex.~16. ``[13] checks $d\omega=0$'' is still not
+confirmed. Rem.~2 l.213 ``$[\omega]\in H^2$ is a 2-cochain''.\\
+\bottomrule
+\end{tabular}
+
+\begin{enumerate}[label=\textbf{A-M\arabic*}]
+\item \MU\ \textbf{The A2 contradiction survives outside Rem.~17.} Rem.~17 says: ``$[\omega]\in H^2(S;D)$ is a
+class of the base $S$ \dots\ it is $E_\omega$ that splits or not. When $S$ is already presented as $C\bowtie D$ the
+extension is split by construction, so $[\omega]=0$.'' Yet:
+\begin{itemize}
+\item \S2 l.249--255 defines ``A composite chain is a Zappa--Sz\'ep product $S=C\bowtie D$'' and then puts the deciding
+class in $H^2(S;D)$ of that same $S$. By Rem.~17 that class is $0$.
+\item Rem.~13 l.462--463 says ``(G) is exactly the splitting of $S$ into the matched-pair factorization $C\bowtie D$''.
+By Rem.~17, $S$ is the base, and the base does not split.
+\end{itemize}
+Fix: in both places, the object that splits (or not) is $E_\omega$, ``the candidate assembled weld'', and $S$ is
+the base it lies over. Do not write $S=C\bowtie D$ in \S2. Write ``a candidate weld $E_\omega$ over $S$, to be compared
+with $C\bowtie D$''.
+\item \SH\ Notation. l.259--260 now says ``the vertex-group natural system $D$ (\dots not the wide subcategory $D$
+itself)''. Naming the clash does not remove it. Rename one of them, e.g.\ $\mathcal D$ for the coefficients.
+\item \SH\ Carry over W2, W5, the diamond $C,D$, and the one-clause confirmation that [13]'s Lean certificate
+checks $d\omega=0$. W1 and Rem.~2 are \NI.
+\end{enumerate}
+\textbf{Weld nodes.} After A-M1 I would grade the gloss ``cocycle = twisted associativity; $[\omega]$ = splitting
+obstruction of $E_\omega$, given (L)'' \textbf{checked-sober}. $(G)\Leftrightarrow[\omega]=0$ stays \emph{read} until
+[12] is attached. I would not grade it \emph{proved} on this note.
+
+\section*{2. Note B (uniqueness)}
+\begin{tabular}{p{2.2cm}p{1.5cm}p{12.5cm}}
+\toprule
+B1 \S1 solidity & FIXED & l.181--183: ``It is true that $\mathbb N\cdot y$ is abstractly solid: \dots\ $M\otimes M\cong M$ --- but this is an
+abstract isomorphism, not a vertical lift $\ell_M$.'' Also l.171, 176, 187.\\
+B2 \S1 scope & FIXED & l.78--79: ``This note proves there cannot, among representable (Weil base-change) structures on
+the linear layer.''\\
+p.\,1 header & FIXED & ``all wording only, except that Proposition~12 was restated as requested''.\\
+\bottomrule
+\end{tabular}
+\begin{itemize}
+\item \SH\ l.206 (Contribution) still says ``the observation that solidity is strictly weaker than underlying a
+tangent structure at infinite rank''. We asked for ``abstract'' here (our old l.202). Under Def.~4 the sentence
+is false: Thm~13 makes vertical-lift solidity and structure coincide. The table at l.740 (``solid but no
+structure'') needs the same word.
+\item \SH\ The p.\,1 stamp still reads ``Built from commit \texttt{6089268}'', but this PDF is the one in
+\texttt{e4d1785}. Re-stamp it, as \texttt{fed2448} did for the nerve note.
+\item \NI\ S1--S5 from our earlier reports are unchanged. They are not blocking.
+\end{itemize}
+\textbf{Accept.} No statement drift. The grades stand: Thm~22 module form proved, Thms~11/18 proved.
+
+\section*{3. Crown Stage 2}
+\begin{tabular}{p{2.2cm}p{1.5cm}p{12.5cm}}
+\toprule
+M-A credit & FIXED & l.276--279: ``\emph{Attribution.} Lemma~8 and the six-line proof above are due to Rick's referee report
+of 10 October 2026, as is the exhaustive $\le4$-node enumeration \dots\ (3147 morphisms \dots); our
+\texttt{scratch/\dots verify.py} reproduces the V-tree slice.'' The same credit appears in the abstract l.28--29, the
+outline l.132 and \S7 l.547. This is \textbf{accurate}. Our 10-10 report \S1 has the proof (cartesian $\Leftarrow$ /
+$\Rightarrow$ preimage, pathwise via root chains) and the 3147-morphism table (922 TTT, the rest FFF).\\
+Thm~18$'$ & EXACT & Thm~19 (l.464--466): ``There is no functor $\T\to$ Cont nor $\T^{\rm op}\to$ Cont that extends $\Psi$ on
+objects and acts on automorphisms by the canonical action on branches --- with no condition imposed on
+non-invertible morphisms.'' This is our statement word for word, renumbered and credited (``after Rick''). The
+proof (sibling swap; 3-leaf star) is ours. Re-run: 0 functors in each variance.\\
+M-B l.403 & FIXED & l.418--421: ``no in both variances --- for any functor whose action covers \dots\ (Theorem~18), and \dots\
+(Theorem~19)''.\\
+M-B Rem.~19 title & FIXED & Rem.~20: ``the compatibility hypothesis is essential''. But see C-M2.\\
+M-B \S7, l.528, OP2 & FIXED & l.552--554, l.582--583, OP2 l.572--574 all carry ``covering'' / ``natural on automorphisms''.\\
+S2 witness & FIXED & l.457--460 calls the contravariant compatibility ``a definitional choice''. The star is in Thm~19.\\
+S3 $R_f$ & \textbf{NEW ERROR} & See C-S1.\\
+S1, S4--S6, C1--C2 & OPEN & S1: Prop.~9 l.284--288 and Lemma~5 l.220 still say ``over $\T^{\rm op}$''. S4: l.527--528 still prints
+``$2^{n^2}=16$'' on the V-tree (it is $2^9=512$) and ``all sampled''. S6: Def.~2 l.188--191 still lacks ``preserves the
+parent relation''. S5, C1, C2 are unchanged.\\
+\bottomrule
+\end{tabular}
+
+\begin{enumerate}[label=\textbf{C-M\arabic*}]
+\item \MU\ \textbf{Two unrestricted ``no functor'' sentences remain.} l.313: ``(That $\Psi$ is moreover not a functor
+is \S5.)''. l.317--318: ``We treat $\Psi$ as an object assignment here; \S5 shows it is no functor.'' Rem.~20 refutes
+both as written. Add ``covering the embeddings''. These two were not on our list, so that miss is ours. But your
+email says ``every restatement now carries the hypothesis''.
+\item \MU\ \textbf{Rem.~20 / \S5 intro over-generalise.} l.421--423 says the functors that need no compatibility ``are
+exactly the ones that act trivially on automorphisms''. l.497--498 says ``What all such escapes have in common is
+that they act trivially on automorphisms''. Both are \textbf{false}. Counterexample (\textbf{computed}, skeleton
+$\le5$ nodes, 17 objects, 2813 composable pairs, 0 failures, both variances):
+\begin{itemize}
+\item every tree except the 3-leaf star $S_3$ acts trivially;
+\item $\mathrm{Aut}(S_3)\cong\mathrm{Sym}_3$ acts on $\br(S_3)=\{ra,rb,re\}$ through the \emph{sign}: odd automorphisms swap $ra,rb$
+and fix $re$, with leaf$\mapsto$leaf positions;
+\item non-isomorphisms go to constants as in your Rem.~20, with the constant on $S_3$ parked at the fixed branch $re$.
+\end{itemize}
+Three of the six automorphisms act non-trivially, and four of the six act non-canonically.
+\emph{Negative controls}, both of which must fail: the canonical $S_3$ action (40/120 failures, co/contra), and the sign
+action with the constant parked on a moved branch (30/90). What is true is only what you prove in the swap
+witness: there, the only escape is $\varphi_\sigma=\mathrm{id}$. Our 10-11 phrase ``the escapes act trivially on
+automorphisms'' referred to that witness only, so the slip is partly ours. Fix: ``e.g.\ ones acting trivially on
+automorphisms; Theorem~19 shows no escape can act canonically''.
+\end{enumerate}
+\begin{itemize}
+\item[\textbf{C-S1}] \SH\ \textbf{$R_f$ wording} (l.483--486): ``read backward, $R_f$ is a left-total injective partial
+map $\br(T')\rightharpoonup\br(T)$''. As a partial map $b'\mapsto b$ it is \emph{neither}. It is non-total on 22/64
+morphisms (V-tree: $rb$ has no image) and non-injective on 7/64 ($\{r\}\hookrightarrow V$ sends both branches to the
+same $b$). It is single-valued and surjective onto $\br(T)$. Our 10-11 wording (``left-total, injective'' in
+relation terms, i.e.\ of $R_f$ read forward) invited this. Write: ``$R_f$ is left-total and left-unique, so read
+backward it is a surjective partial function $\br(T')\rightharpoonup\br(T)$, and read forward it is multivalued''.
+Then also drop ``not a function in either direction'' (l.486): it \emph{is} a partial function backward.
+\item[\textbf{C-S2}] \SH\ Stale stamp. p.\,1 reads ``content commit \texttt{4e7264d}'', but the PDF is \texttt{e4d1785}'s
+(\texttt{fed2448} re-stamped only the nerve and gerbe notes). The date line still says 10 October.
+\item[\textbf{C-S3}] \SH\ l.488--489 and l.594--595 still use ``composition is a degree-two datum'', the slogan your Note~A
+l.605 ``retires''. Use ``nerve-level-two'', as l.125 already does.
+\item[\textbf{C-N1}] \NI\ l.457--458: ``the covariant half (2) needs only that $\varphi_f(\beta_a)$ land in $\br(T')$ ---
+no compatibility at all''. It does use compatibility \emph{for $\sigma$}. Thm~19's proof says so correctly (``only
+$\varphi_\sigma=$ swap \dots\ are used'').
+\item[\textbf{C-N2}] \NI\ Your registry commit \texttt{d248b7b} (10-12 00:39) re-promotes
+\texttt{crown-stage2-psi-no-functorial-action} to proved after your email (UID 379) said ``I am not claiming
+re-promotion''. On substance I agree: Thm~18 (covering) and Thm~19 are proved, as we graded them on 10-11. Just
+make the email and the registry agree, and keep the hypothesis in the node statement.
+\end{itemize}
+\textbf{Grades (crown).} Prop.~9, Lemma~8, Thm~18 as stated, and Thm~19: \textbf{proved}. These are checked-sober,
+computed, and re-run today. Rem.~20 ``exactly trivial'': \textbf{false}. $R_f$ backward ``left-total injective'':
+\textbf{false} as worded. After C-M1/C-M2 the note is publishable from my side. S1/S4/S6 are worth doing before
+anyone outside Kodamai reads it.
+
+\end{document}
