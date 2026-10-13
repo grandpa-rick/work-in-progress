@@ -1,0 +1,129 @@
+============================================================================================
+PART A  Thm 28 chain for the n-lot ring K = D_n, n = 3..64 (each link by a separate method)
+============================================================================================
+n= 3 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n= 4 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:True   4|n:True
+n= 5 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n= 6 |Z|=2  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n= 7 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n= 8 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:True   4|n:True
+n= 9 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=10 |Z|=2  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=11 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=12 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:True   4|n:True
+n=13 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=14 |Z|=2  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=15 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=16 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:True   4|n:True
+n=17 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=18 |Z|=2  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=19 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=20 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:True   4|n:True
+n=21 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=22 |Z|=2  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=23 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=24 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:True   4|n:True
+n=25 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=26 |Z|=2  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=27 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=28 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:True   4|n:True
+n=29 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=30 |Z|=2  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=31 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:False  4|n:False
+n=32 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:True   4|n:True
+n=33 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=34 |Z|=2  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=35 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=36 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:None   4|n:True
+n=37 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=38 |Z|=2  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=39 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=40 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:None   4|n:True
+n=41 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=42 |Z|=2  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=43 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=44 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:None   4|n:True
+n=45 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=46 |Z|=2  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=47 |Z|=1  [*]!=0:False  nonsplit(brute):False  B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=48 |Z|=2  [*]!=0:True   nonsplit(brute):True   B(Z/2)-witness:True   B(V4)-witness:None   4|n:True
+n=49 |Z|=1  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=50 |Z|=2  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=51 |Z|=1  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=52 |Z|=2  [*]!=0:True   nonsplit(brute):None   B(Z/2)-witness:True   B(V4)-witness:None   4|n:True
+n=53 |Z|=1  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=54 |Z|=2  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=55 |Z|=1  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=56 |Z|=2  [*]!=0:True   nonsplit(brute):None   B(Z/2)-witness:True   B(V4)-witness:None   4|n:True
+n=57 |Z|=1  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=58 |Z|=2  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=59 |Z|=1  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=60 |Z|=2  [*]!=0:True   nonsplit(brute):None   B(Z/2)-witness:True   B(V4)-witness:None   4|n:True
+n=61 |Z|=1  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=62 |Z|=2  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=63 |Z|=1  [*]!=0:False  nonsplit(brute):None   B(Z/2)-witness:False  B(V4)-witness:None   4|n:False
+n=64 |Z|=2  [*]!=0:True   nonsplit(brute):None   B(Z/2)-witness:True   B(V4)-witness:None   4|n:True
+-- chain links agree with each other:
+  [*]!=0 == nonsplit(brute) on n<=48 : True
+  [*]!=0 == B(Z/2)-witness (=> 'essentially nonzero'): True
+  [*]!=0 == B(V4)-witness on n<=32   : True
+-- the printed arithmetic, and controls that must FAIL:
+  Thm 28 printed: 4 | n                                      mismatches vs [*]!=0:   0  []
+  control 1: 2 | n  (= retracted Thm D 'nonabelian, Z!=1')   mismatches vs [*]!=0:  15  [6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50]
+  control 2: 8 | n                                           mismatches vs [*]!=0:   8  [4, 12, 20, 28, 36, 44, 52, 60]
+  control 3: n = 2 mod 4 (swapped)                           mismatches vs [*]!=0:  31  [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26]
+============================================================================================
+PART B  'always rectifiable unless 4|n' (Thm 28 'Equivalently', Rem 29, abstract): band witnesses
+============================================================================================
+D2 on C=B(Z) with alpha(t)=theta: needs mu, k with mu theta mu^-1 = c_k, i.e. theta inner.
+Finite base B(Z/m), m = ord(theta): same test, T(t)=k must also satisfy k^m=e -- checked below.
+n= 3 |Aut|=  6 |Inn|= 6 |Out|= 1  outer involution on B(Z/2) obstructs D2: False  4|n:False
+n= 4 |Aut|=  8 |Inn|= 4 |Out|= 2  outer involution on B(Z/2) obstructs D2: True   4|n:True
+n= 5 |Aut|= 20 |Inn|=10 |Out|= 2  outer involution on B(Z/2) obstructs D2: False  4|n:False
+n= 6 |Aut|= 12 |Inn|= 6 |Out|= 2  outer involution on B(Z/2) obstructs D2: True   4|n:False
+n= 7 |Aut|= 42 |Inn|=14 |Out|= 3  outer involution on B(Z/2) obstructs D2: False  4|n:False
+n= 8 |Aut|= 32 |Inn|= 8 |Out|= 4  outer involution on B(Z/2) obstructs D2: True   4|n:True
+n= 9 |Aut|= 54 |Inn|=18 |Out|= 3  outer involution on B(Z/2) obstructs D2: False  4|n:False
+n=10 |Aut|= 40 |Inn|=10 |Out|= 4  outer involution on B(Z/2) obstructs D2: True   4|n:False
+n=11 |Aut|=110 |Inn|=22 |Out|= 5  outer involution on B(Z/2) obstructs D2: False  4|n:False
+n=12 |Aut|= 48 |Inn|=12 |Out|= 4  outer involution on B(Z/2) obstructs D2: True   4|n:True
+n=13 |Aut|=156 |Inn|=26 |Out|= 6  outer involution on B(Z/2) obstructs D2: False  4|n:False
+n=14 |Aut|= 84 |Inn|=14 |Out|= 6  outer involution on B(Z/2) obstructs D2: True   4|n:False
+n=15 |Aut|=120 |Inn|=30 |Out|= 4  outer involution on B(Z/2) obstructs D2: True   4|n:False
+n=16 |Aut|=128 |Inn|=16 |Out|= 8  outer involution on B(Z/2) obstructs D2: True   4|n:True
+n=17 |Aut|=272 |Inn|=34 |Out|= 8  outer involution on B(Z/2) obstructs D2: False  4|n:False
+n=18 |Aut|=108 |Inn|=18 |Out|= 6  outer involution on B(Z/2) obstructs D2: True   4|n:False
+n=19 |Aut|=342 |Inn|=38 |Out|= 9  outer involution on B(Z/2) obstructs D2: False  4|n:False
+n=20 |Aut|=160 |Inn|=20 |Out|= 8  outer involution on B(Z/2) obstructs D2: True   4|n:True
+n=21 |Aut|=252 |Inn|=42 |Out|= 6  outer involution on B(Z/2) obstructs D2: True   4|n:False
+n=22 |Aut|=220 |Inn|=22 |Out|=10  outer involution on B(Z/2) obstructs D2: True   4|n:False
+n=23 |Aut|=506 |Inn|=46 |Out|=11  outer involution on B(Z/2) obstructs D2: False  4|n:False
+n=24 |Aut|=192 |Inn|=24 |Out|= 8  outer involution on B(Z/2) obstructs D2: True   4|n:True
+  n with 4 ∤ n where a strict transport on the FINITE base B(Z/2) admits NO global inventory (band): [6, 10, 14, 15, 18, 21, 22]
+  n<=24 with 4 ∤ n and Out D_n != 1 (C=B(Z), alpha(t)=outer theta: NO global inventory): [5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 18, 19, 21, 22, 23]
+  explicit n=6: theta = (r->r^5, s->s r) ; theta^2 = id: True ; inner: False
+============================================================================================
+PART C  N1: Cor 18 under D2 (Def 6), strict alpha: Gamma -> Aut D_n, bases Z/2, Z/4, V4; n=3..12
+============================================================================================
+  strict alpha cases: 918 | Cor 18 (D2 <=> beta=0 & [g]=0) failures: 0 | nontrivial-band cases: 560 | D2-but-not-D1 (old N1 gap, now harmless): 278
+  N1 witness B(Z/2), D4, alpha(g)=c_s: alpha strict: True | D2 via mu=id, T(g)=s: True | D1 (some mu kills c_s): False
+============================================================================================
+PART D  The k_{g,f} datum (Sec 2.3 'strict functor carrying the k_{g,f}'; Rem 11 '[g] is its k-invariant')
+============================================================================================
+On C=B(Z/2): alpha strict (alpha_g^2=id) forces k_{g,g} in Z. Cocycle law k_{h,gf} alpha_h(k_{g,f}) = k_{hg,f} k_{h,g}
+holds for any k_{g,g}=z in Z (Aut fixes the central involution). Neutrality of the AUT(F)-pseudofunctor (alpha,k):
+  exists mu in Aut K, T_g in K with c_{T_g} = mu alpha_g mu^-1 and T_{gg}=e = mu(k_{g,g}) T_g T_g.
+D2 (Def 6) is the same with k ignored (T_g^2 = e).
+  n= 4 alpha=id            D2:True  | true neutrality k=e:True  k=z:False
+  n= 4 alpha=c_r           D2:False | true neutrality k=e:False k=z:True 
+  n= 4 alpha=c_{r^(n/4)}   D2:False | true neutrality k=e:False k=z:True 
+  n= 6 alpha=id            D2:True  | true neutrality k=e:True  k=z:False
+  n= 6 alpha=c_s           D2:True  | true neutrality k=e:True  k=z:False
+  n= 8 alpha=id            D2:True  | true neutrality k=e:True  k=z:False
+  n= 8 alpha=c_{r^(n/4)}   D2:False | true neutrality k=e:False k=z:True 
+  n=10 alpha=id            D2:True  | true neutrality k=e:True  k=z:False
+  n=10 alpha=c_s           D2:True  | true neutrality k=e:True  k=z:False
+  n=12 alpha=id            D2:True  | true neutrality k=e:True  k=z:False
+  n=12 alpha=c_{r^(n/4)}   D2:False | true neutrality k=e:False k=z:True 
+  => with k=z central the same strict alpha flips: Thm 22(ii)'s witness (n=4, c_r) becomes neutral, and alpha=id
+     becomes non-neutral for EVERY even n (incl. n=6). Under the pseudofunctor reading the criterion is 2|n, not 4|n.
