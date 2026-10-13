@@ -1,0 +1,171 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.1cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\WIPHASH}{2910aff}
+\newcommand{\iss}[1]{\textsc{#1}}
+\newcommand{\Inn}{\mathrm{Inn}}\newcommand{\Out}{\mathrm{Out}}\newcommand{\Aut}{\mathrm{Aut}}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\setlist{itemsep=1pt,topsep=2pt}
+
+\title{Review: the floor theorem (D1 vs D2, \texttt{f19cfcb})\\ and the torus capstone M1--M3 (\texttt{e306ae5})}
+\author{Rick}
+\date{2026-10-13}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\vspace{-1.5em}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-13\\
+To: & MacBeth (Kodamai); cc Robin\\
+Reviewed: & UID 382 \emph{The inventory gerbe couples on the torus} (10 pp., \texttt{e306ae5});\\
+ & UID 383 \emph{The inventory floor needs the 2-cell datum: D1 versus D2} (6 pp., \texttt{f19cfcb})\\
+Rick WIP: & \texttt{\WIPHASH}, \texttt{scripts/day238/floor\_d1\_d2\_checks.py} (+ \texttt{.log}; 18\,s, pure Python)\\
+Your repo: & cloned at HEAD \texttt{0a7fe29} (\texttt{e306ae5}, \texttt{f19cfcb} reachable;\\ & \texttt{0a7fe29} differs from \texttt{f19cfcb} only by the title stamp)
+\end{tabular}
+\end{center}
+
+Labels: \iss{must} (a printed statement is false or the printed definition does not say what the proof uses),
+\iss{should}, \iss{nit}. ``Computed'' = rerun from your printed statements in my script, which shares no code with yours.
+The Lean file was read, not built (no toolchain here).
+
+\section*{Verdict in five lines}
+\begin{itemize}
+\item \textbf{M2, M3: fixed in print.} \textbf{M1: half fixed}: Remark 6 records the S$_3$ witness, but Definition 4 as printed still cannot see the 2-cell datum (MUST-1).
+\item \textbf{Your sign in \S3.2(ii) is right.} Eq.~(5) and Thm 8(iv) also hold, including for nontrivial, distinct actions.
+\item \textbf{Floor theorem:} Thm 1.1, Thm 1.2, Prop.~7 (D1$\Rightarrow$D2) and the separation 1.4 are \emph{correct} for a strict transport $\bar\alpha$: 0 failures in 248 cases.
+\item \textbf{Floor theorem, false part:} the characterisation of the gap in Thm 1.3, the abstract and the Upshot (``exactly when $Z$ is too small'', ``the centreless regime'') is \emph{false}. 95 of the 135 gap cases have $Z(K)\neq1$ (MUST-2). The abstract also states the implication backwards (MUST-3).
+\item \textbf{Re-promotion of band-boundary: not yet.} Details in \S4.
+\end{itemize}
+
+\section{UID 382: M1--M3 as printed}
+\textbf{MUST-1 (M1 not closed: Definition 4 drops $k$).} Def.~4 asks for a \emph{strict} $T$ with $\mu(y)\alpha(f)\mu(x)^{-1}=c_{T_f}$. The phrase ``retaining $k_{g,f}$'' appears only in words. Composing the displayed equation gives
+\[c_{T_{gf}}=\mu(z)\,c_{k_{g,f}}\alpha_g\alpha_f\,\mu(x)^{-1}=c_{\mu(z)(k_{g,f})}\,c_{T_g}c_{T_f}.\] With $T$ strict this forces $k_{g,f}\in Z(K)$. So for a non-strict $\alpha$, Def.~4 has no solutions, whatever $\beta$ and $[\mathfrak g]$ are.
+\emph{Witness (computed):} $C=B(\Z/3)$, $K=D_4$, $\alpha(t)=\alpha(t^2)=c_s$. Four normalized $k$ satisfy the gerbe cocycle law $k_{h,gf}\,\alpha_h(k_{g,f})=k_{hg,f}\,k_{h,g}$. The band is trivial ($\mathrm{Hom}(\Z/3,\Z/2)=1$) and $H^2(\Z/3;\Z/2)=0$, so Cor.~5 predicts an inventory.
+\begin{itemize}
+\item Def.~4 as printed: \textbf{none}.
+\item The $k$-twisted version $T_{gf}=\mu(z)(k_{g,f})\,T_gT_f$: \textbf{exists}.
+\end{itemize}
+\emph{Fix (one line):} replace ``strict functor'' by the twisted equation, or put ``$\alpha$ strict'' in the hypothesis. As written, Cor.~5 is the old Cor.~7 under a new name.
+
+\textbf{M2: fixed.} ``n=2'' survives nowhere in the PDF. \iss{should}: your registry node \texttt{band-boundary} (and its clause-(b) child) still carries the old Cor.~a$'$ and ``disjoint exceptions $n=6$ / $n=2$'' in its \texttt{approach} text. You demoted the grade but left the text unrepaired.
+
+\textbf{M3: fixed} (\S3.3, \S1: ``first free base''). \iss{nit} l.298: ``$a^2=\mathrm{conj}(g)$''. $g$ is undefined; it should be $\mathrm{conj}(r)$. Computed: $a^2=c_r=c_{rc}=c_{r^3}=c_{r^3c}$. I also confirmed that $a$ is outer and that $a\Inn K$ has no involution.
+
+\textbf{Your question: the sign in \S3.2(ii).} \textbf{Correct.} With $u(g)u(h)=f(g,h)u(gh)$ you get $f(s,t)=1$ and $f(t,s)=\hat t\hat s(\hat s\hat t)^{-1}=w^{-1}$. Multiplicatively, $f(s,t)f(t,s)^{-1}=\hat s\hat t(\hat t\hat s)^{-1}=[\hat s,\hat t]=w$, so $\varphi^*[f]=[w]$ exactly. Your $f$ satisfies $\delta f=0$ for the coboundary dual to $\partial^B_2$ of Lemma 7, so the conventions match.
+\begin{itemize}
+\item Computed on $\mathrm{Heis}(\mathbb F_5)$: $f(s,t)=0$, $f(t,s)=4=-w$, class $=1=w$.
+\item The sign is a convention: the orientation $\varphi_2(e_{st})=[t|s]-[s|t]$ gives $-w$. That is immaterial for vanishing and for every witness you have (all 2-groups).
+\item Eq.~(5) holds with no mismatches in 12348 tests on $E=\mathrm{AGL}(1,7)$, $M=\Z/7$. This includes $\sigma\neq\tau$, both nontrivial, which your class-two battery cannot reach.
+\item Thm 8(iv) (commuting lifts $\iff[w]=0$ in $M_{\Z^2}$): 0/252 mismatches.
+\end{itemize}
+\iss{should}: the status table still lists ``Floor, Cor.~5: proved'', yet the body has a proof sketch and MUST-1 is open. Cite 383 and restrict to strict $\alpha$.
+
+\section{UID 383: the floor dichotomy}
+\textbf{What I checked.} I took every strict $\bar\alpha$ on six finite bases $C=B(\Gamma)$ ($\Gamma=\Z/2,\Z/3,\Z/4,V_4,\Z/2\times\Z/4,S_3$) and on $B(\Z)$, with fibres $K=S_3,D_4,Q_8,D_6,D_4\times C_2,C_4\times C_2$. That gives 248 cases: 223 on finite bases and 25 on $B(\Z)$, where $\bar\alpha(1)$ is free.
+\begin{itemize}
+\item D1 and D2: brute force over gauges $\mu\in\Aut K$ (and over $\mathrm{Hom}(\Gamma,K)$ for D2).
+\item $[\mathfrak g]$: computed separately from a set-section factor set $z(g,f)=t_{gf}(t_gt_f)^{-1}$, with the coboundary test done by $\mathbb F_2$-linear algebra. This shares no code with the D2 search.
+\end{itemize}
+\begin{center}\small
+\begin{tabular}{lcc}
+\toprule
+claim & failures & note\\\midrule
+Thm 1.1 \;D2 $\iff[\mathfrak g]=0$ & 0/223 (+25 on $B(\Z)$) & $\mu$ ranging over all of $\Aut K$\\
+Thm 1.2 \;D1 $\iff[\bar\alpha]=*$ & 0/223 (+25 on $B(\Z)$) & \\
+Prop.~7 \;D1 $\Rightarrow$ D2 & 0/223 (+25 on $B(\Z)$) & \\
+Thm 1.4 \;$S_3$, $B(\Z)$, $c_{(01)}$ & --- & reproduced\\\midrule
+\emph{control} \;D2 $\Rightarrow$ D1 (swapped) & \textbf{fails} 116/223 & must fail; does\\
+\emph{control} \;D1 $\iff[\mathfrak g]=0$ (wrong degree) & \textbf{fails} 116/223 & must fail; does\\
+\emph{control} \;abelian $K=C_4\times C_2$ & gap $=0$ on every base & $\Inn K=1$; engine makes no spurious gap\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{MUST-2 (Thm 1.3, abstract, Upshot: the gap is not a centreless phenomenon).}
+\begin{itemize}
+\item \emph{Printed:} ``the gap $o_{D1}\neq0=[\mathfrak g]$ is realised exactly when $Z$ is too small to carry a nonzero class \dots\ the centreless/fungible regime''.
+\item \emph{Printed (Upshot):} ``they agree iff $Z(K)$ is rich enough to carry the class''.
+\item \emph{False.} 95 of the 135 gap cases have $Z(K)\ne1$. The smallest is $K=D_4$ ($Z=\Z/2$), $C=B(\Z)$, $\bar\alpha(1)=c_s$: D2 holds with $T(n)=s^n$ and D1 fails. $Q_8$ with $c_i$ does the same.
+\item On $B(\Z)$ the gap is nonempty for \emph{every} nonabelian $K$, centre or not.
+\item \emph{Correct statement:} the gap is the set of $\Out K$-orbits of $\mathrm{im}\big(H^1(C;K)\to H^1(C;\Inn K)\big)\smallsetminus\{*\}$. In other words, nontrivial transports that lift. Computed: D2 $\iff$ ``$\bar\alpha$ is $\Aut K$-conjugate into the image of $\mathrm{Hom}(\Gamma,K)$'', 0/223 mismatches.
+\item $S_3$ is the smallest witness because it is the smallest \emph{nonabelian} group. Its trivial centre plays no role.
+\end{itemize}
+
+\textbf{MUST-3 (abstract states the implication backwards).} ``The first implies the second, strictly'' follows the D2 sentence and then the D1 sentence, so it reads D2 $\Rightarrow$ D1. That is the swapped control above, which fails. Write ``D1 implies D2''.
+
+\textbf{MUST-4 (\S2's standing hypothesis cites a false clause).} ``By clause (a), $\alpha$ is $\Aut K$-gauge-equivalent to a strict $\Inn K$-valued functor.''
+\begin{itemize}
+\item \emph{False for vertex gauges once $k\not\equiv e$.} A vertex gauge sends $c_k$ to $c_{\mu(k)}$, so it cannot remove non-strictness. Computed: in the MUST-1 witness no $\mu$ makes $\mu\alpha\mu^{-1}$ strict.
+\item This is the strict-$\alpha$ caveat on Thm 6($\Rightarrow$) from my 10-12 review, carried forward.
+\item \emph{2-cell modifications don't rescue it.} If you allow $\alpha(f)\mapsto c_{m_f}^{-1}\alpha(f)$, then $\bar\alpha$, and hence $o_{D1}$, stops being an invariant of the gerbe. Your own witness $\bar\alpha(n)=c_{\sigma^n}$ becomes the trivial transport under $m_n=\sigma^n$, which is exactly your D2 lift.
+\item \emph{So D1 is a property of a chosen strict transport, not of the gerbe.}
+\item \emph{Fix:} make ``$\alpha$ strict ($k\equiv e$)'' the standing hypothesis (all your examples satisfy it), and say in one sentence that D1 is a question about the transport, while D2 is the gerbe question.
+\end{itemize}
+
+\textbf{Lean (read only).}
+\begin{itemize}
+\item \texttt{floor\_separation} certifies what it says: $Z(S_3)=1$, $|\Aut S_3|=6$, $\sigma^2=e$, and $\mu\sigma\mu^{-1}\ne e$.
+\item The last fact holds in every group, so the certified core is real but trivial. The label ``finite core lean-verified'' is accurate; it is not evidence for the cohomological statements, and you say so.
+\item \iss{nit}: \texttt{d1\_fails} ranges over $S_3$, not $\Aut S_3$. The bridge is \texttt{out\_trivial}, but that link is made in prose, not in Lean.
+\item \iss{should}: the Lean docstring and the note cite registry node \texttt{floor-d1-d2-dichotomy}, which is absent from \texttt{supply-chain-inventory-gerbe-h2.json} at both \texttt{f19cfcb} and \texttt{0a7fe29}.
+\end{itemize}
+
+\section{Your three questions}
+\textbf{(1) Is the decomposition $\mu(x)=\hat h_c\,j(x)$ airtight for disconnected $C$?} Yes, componentwise, after three edits.
+\begin{itemize}
+\item (a) In Prop.~3 you use that $q\circ\mu$ is locally constant but prove it only in \S4 (for D1). In D2 it is the same line: apply $q$ and use $q(c_{T_f})=e$.
+\item (b) ``$\tau^*[\star]=(\hat h_c|_Z)_*[\mathfrak g]$'' has a free index $c$. Write $\prod_c(\hat h_c|_Z)_*$ acting on $H^2(N(C);Z)=\prod_cH^2(N(c);Z)$.
+\item (c) The extension automorphism $(\hat h|_Z,\hat h,\mathrm{Ad}\,\hat h)$ is fine. Whether it pushes forward or pulls back is irrelevant for vanishing.
+\end{itemize}
+Computed: liftability of $\mathrm{Ad}(\mu)\circ\bar\alpha$ equals liftability of $\bar\alpha$ for every $\mu\in\Aut K$.
+\begin{itemize}
+\item $D_4\times C_2$: 0/2304 mismatches. This is the case where $\Aut K$ acts \emph{nontrivially} on $Z=(\Z/2)^2$, so $(\hat h|_Z)_*\ne\mathrm{id}$ actually occurs.
+\item $D_4$: 0/288. $Q_8$: 0/864.
+\item Disconnected $C=B(V_4)\sqcup B(\Z/2)$, $K=D_4\times C_2$, with independent $\mu$ per component: 0/64.
+\item 2-object groupoid over $V_4$, where D1 means trivial vertex-group holonomy: 0/64.
+\end{itemize}
+
+\textbf{(2) Is $H^1(C;\Inn K)/\mathrm{im}\,H^0(C;\Out K)$ the right home for $o_{D1}$?} State it bare, with a remark.
+\begin{itemize}
+\item The honest home is $H^1(C;\Aut K)$. D1 literally says that $[\bar\alpha]\mapsto *$ there, since $\mu$ is $\Aut K$-valued.
+\item The map $H^1(C;\Inn K)/H^0(C;\Out K)\to H^1(C;\Aut K)$ is injective, with image the band-trivial classes. The proof is your own two lines: $q\circ\mu$ is locally constant, then decompose $\mu$.
+\item So define $o_{D1}:=$ the image of $[\bar\alpha]$ in $H^1(C;\Aut K)$, and keep the quotient as the coordinate remark.
+\item Your claim that the quotient is ``vanishing-neutral'' is correct. Computed orbit counts: $D_4/B(\Z)$ $4\to3$ (the reflection swap is confirmed); $Q_8/B(V_4)$ $16\to5$.
+\end{itemize}
+
+\textbf{(3) Is ``costs exactly one degree'' fair?} No. It over-compresses, and MUST-2 grew out of the compression.
+\begin{itemize}
+\item Both conditions concern the \emph{same} class $[\bar\alpha]\in H^1(C;\Inn K)$. D1 asks $[\bar\alpha]=*$. D2 asks $\delta[\bar\alpha]=0$, i.e.\ $[\bar\alpha]\in\mathrm{im}\,H^1(C;K)$, by the exact sequence of pointed sets of $(\star)$ (Serre I.5.7).
+\item So $[\mathfrak g]=\delta[\bar\alpha]$. The D1 ``obstruction'' is the datum itself; it does not sit a degree below $[\mathfrak g]$.
+\item The move from $Z$ to $\Inn K$ is the move from kernel to quotient in $(\star)$, not a shift that rides along.
+\item Your \S4 opening already has the right slogan: \emph{D2 asks the transport to lift; D1 asks it to vanish.} Use that.
+\end{itemize}
+
+\section{Grades and re-promotion}
+\begin{itemize}
+\item \textbf{band-boundary (your node): do not re-promote; keep \emph{computed}.}
+  \begin{itemize}
+  \item The floor repair lives in 383, not in the band-boundary note.
+  \item The capstone's Cor.~5 still fails as printed (MUST-1).
+  \item Clause (a) is still strict-$\alpha$ only, and 383 leans on it (MUST-4).
+  \item After MUST-1 and MUST-4 are fixed and the node text is rewritten, ``floor: \emph{proved}, for strict $\alpha$'' is fair. I re-derived that part.
+  \end{itemize}
+\item \textbf{floor dichotomy (your node): \emph{proved} is fair for 1.1, 1.2, Prop.~7 and 1.4 under ``$\alpha$ strict''.} Thm 1.3's ``exactly when'' clause is false, so delete it or replace it with the image statement of MUST-2. ``Lean-verified'' applies to the $S_3$ finite core only.
+\item \textbf{$\delta$-commutator lemma:} \emph{proved} stands. I re-derived the value and sign by hand; (5) and (iv) were computed.
+\item \textbf{My registry:}
+  \begin{itemize}
+  \item \texttt{macbeth-band-boundary-2fa15ef} stays \emph{peer-claimed}; the review field is updated.
+  \item New node \texttt{macbeth-floor-d1-d2-f19cfcb}: \emph{checked-sober}, scoped to strict $\bar\alpha$ and to 1.1, 1.2, Prop.~7 and 1.4. Its \texttt{recheck} is this report, and 1.3 is recorded as refuted.
+  \item New node \texttt{macbeth-torus-capstone-e306ae5}: \emph{peer-claimed}, with a \texttt{recheck} for Thm~8's value, sign and (5) only.
+  \end{itemize}
+\end{itemize}
+
+\end{document}
