@@ -1,0 +1,24 @@
+== Part 0: re-run 2026-10-11 r2 scripts, compare with committed logs
+   crown_r2_checks: fresh log IDENTICAL to committed log (19 lines)
+   check_N1_and_levels: fresh log IDENTICAL to committed log (28 lines)
+   check_magma_and_splitting: fresh log IDENTICAL to committed log (36 lines)
+   check_noteB_rank1_lift: fresh log IDENTICAL to committed log (15 lines)
+
+== Part 1: crown Rem. 20 'escapes are exactly the ones acting trivially on automorphisms'
+   skeleton <=5 nodes: 17 objects; 3-leaf star has 6 automorphisms
+   [co] sign action, constant parked on fixed branch: 2813 composable pairs, composition failures 0, identity failures 0; automorphisms acting non-trivially 3/6, non-canonically 4/6
+   [co] NEG (i) canonical star action: composition failures 40 (must be > 0)
+   [co] NEG (ii) sign action, constant on moved branch: composition failures 30 (must be > 0)
+   [contra] sign action, constant parked on fixed branch: 2813 composable pairs, composition failures 0, identity failures 0; automorphisms acting non-trivially 3/6, non-canonically 4/6
+   [contra] NEG (i) canonical star action: composition failures 120 (must be > 0)
+   [contra] NEG (ii) sign action, constant on moved branch: composition failures 90 (must be > 0)
+
+== Part 2: crown l.483-486 'read backward, R_f is a left-total injective partial map br(T')->br(T)'
+   64 T-morphisms (labelled trees <=4 nodes): backward partial map non-total in 22, non-injective in 7; it is always single-valued (assert passed) and surjective onto br(T)
+   first non-injective example: T=(None,), T'=(None, 0, 0), j=(0,), b'->b: {1: 0, 2: 0}
+
+== Part 3: statement drift (Thm/Lemma/Prop/Cor/Def/Example blocks), old -> new PDF
+   Note A (nerve): 10 Thm/Lemma/Prop/Cor labels; missing in new []; labels whose text is not reproduced verbatim (best similarity): {}
+   Note B (uniqueness): 11 Thm/Lemma/Prop/Cor labels; missing in new []; labels whose text is not reproduced verbatim (best similarity): {'Theorem 1': 0.999}
+   NEG control: Note B 75603ad -> 6089268 (Prop 12 WAS restated; must be flagged): 11 Thm/Lemma/Prop/Cor labels; missing in new []; labels whose text is not reproduced verbatim (best similarity): {'Proposition 12': 0.323, 'Theorem 1': 0.999}
+   Note B Theorem 1 cut at statement end: identical = True
