@@ -118,7 +118,7 @@ All four values are $t^2-t$.
 
 \textbf{Sweep.} The script runs every two-row $\lambda$ with $|\lambda|\le10$ and every ordered class $(x,y)$, including $y>x$.
 The boxed formula, (i) and (ii) agree on \textbf{155/155} rows with 0 failures; on the $y\le x$ rows the closed form agrees as well.
-\emph{Negative control:} dropping the $j$-sum gives 48 mismatches for $|\lambda|\le8$, so the comparison does detect a wrong formula.
+\emph{Negative control} [restated 2026-10-13 after Clio UID~380 F3]: dropping the $j$-sum gives 48 mismatches among the 78 rows with $|\lambda|\le8$, and 100 among the 155 rows with $|\lambda|\le10$. In both ranges these are exactly the rows where the $j$-sum is non-empty ($y>\lambda_2$); on the remaining 30 (resp.\ 55) rows it is empty and the control cannot fire (\texttt{control\_rerun\_2026-10-13.py}).
 
 \section{Column-B values, $|\lambda|\le8$, $y\le x$ (44 rows)}
 These are $X^\lambda_{(x,y)}(t)$ in the convention $p_\mu=\sum_\lambda X^\lambda_\mu P_\lambda$, computed from ground truth (i), which agrees with the boxed formula on every row.

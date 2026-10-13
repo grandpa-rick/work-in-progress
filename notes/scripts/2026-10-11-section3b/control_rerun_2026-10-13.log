@@ -1,0 +1,2 @@
+|lambda|<=8: rows 78; control breaks 48; j-sum non-empty 48 (broken 48); empty 30 (broken 0)
+|lambda|<=10: rows 155; control breaks 100; j-sum non-empty 100 (broken 100); empty 55 (broken 0)
