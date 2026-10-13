@@ -1,0 +1,107 @@
+==========================================================================================
+PART I  (UID 383) Floor dichotomy, Thm 1.1-1.4, over C = B(Gamma), Gamma finite, and C = B(Z)
+==========================================================================================
+K=S3     |K|= 6 |Z|=1 |Inn|= 6 |Aut|= 6 |Out|= 1
+   B(Z/2   ): #abar=  4  D1=  1  D2=  4  [g]=0:  4  gap(D2 & not D1)=  3
+   B(Z/3   ): #abar=  3  D1=  1  D2=  3  [g]=0:  3  gap(D2 & not D1)=  2
+   B(Z/4   ): #abar=  4  D1=  1  D2=  4  [g]=0:  4  gap(D2 & not D1)=  3
+   B(V4    ): #abar= 10  D1=  1  D2= 10  [g]=0: 10  gap(D2 & not D1)=  9
+   B(Z2xZ4 ): #abar= 10  D1=  1  D2= 10  [g]=0: 10  gap(D2 & not D1)=  9
+   B(S3(base)): #abar= 10  D1=  1  D2= 10  [g]=0: 10  gap(D2 & not D1)=  9
+   B(Z)     : #abar=  6  D1=  1  D2=  6  [g]=0:  6  gap=  5
+K=D4     |K|= 8 |Z|=2 |Inn|= 4 |Aut|= 8 |Out|= 2
+   B(Z/2   ): #abar=  4  D1=  1  D2=  3  [g]=0:  3  gap(D2 & not D1)=  2
+   B(Z/3   ): #abar=  1  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(Z/4   ): #abar=  4  D1=  1  D2=  4  [g]=0:  4  gap(D2 & not D1)=  3
+   B(V4    ): #abar= 16  D1=  1  D2=  7  [g]=0:  7  gap(D2 & not D1)=  6
+   B(Z2xZ4 ): #abar= 16  D1=  1  D2=  8  [g]=0:  8  gap(D2 & not D1)=  7
+   B(S3(base)): #abar=  4  D1=  1  D2=  3  [g]=0:  3  gap(D2 & not D1)=  2
+   B(Z)     : #abar=  4  D1=  1  D2=  4  [g]=0:  4  gap=  3
+K=Q8     |K|= 8 |Z|=2 |Inn|= 4 |Aut|=24 |Out|= 6
+   B(Z/2   ): #abar=  4  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(Z/3   ): #abar=  1  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(Z/4   ): #abar=  4  D1=  1  D2=  4  [g]=0:  4  gap(D2 & not D1)=  3
+   B(V4    ): #abar= 16  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(Z2xZ4 ): #abar= 16  D1=  1  D2=  4  [g]=0:  4  gap(D2 & not D1)=  3
+   B(S3(base)): #abar=  4  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(Z)     : #abar=  4  D1=  1  D2=  4  [g]=0:  4  gap=  3
+K=D6     |K|=12 |Z|=2 |Inn|= 6 |Aut|=12 |Out|= 2
+   B(Z/2   ): #abar=  4  D1=  1  D2=  4  [g]=0:  4  gap(D2 & not D1)=  3
+   B(Z/3   ): #abar=  3  D1=  1  D2=  3  [g]=0:  3  gap(D2 & not D1)=  2
+   B(Z/4   ): #abar=  4  D1=  1  D2=  4  [g]=0:  4  gap(D2 & not D1)=  3
+   B(V4    ): #abar= 10  D1=  1  D2= 10  [g]=0: 10  gap(D2 & not D1)=  9
+   B(Z2xZ4 ): #abar= 10  D1=  1  D2= 10  [g]=0: 10  gap(D2 & not D1)=  9
+   B(S3(base)): #abar= 10  D1=  1  D2= 10  [g]=0: 10  gap(D2 & not D1)=  9
+   B(Z)     : #abar=  6  D1=  1  D2=  6  [g]=0:  6  gap=  5
+K=D4xC2  |K|=16 |Z|=4 |Inn|= 4 |Aut|=64 |Out|=16
+   B(Z/2   ): #abar=  4  D1=  1  D2=  3  [g]=0:  3  gap(D2 & not D1)=  2
+   B(Z/3   ): #abar=  1  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(Z/4   ): #abar=  4  D1=  1  D2=  4  [g]=0:  4  gap(D2 & not D1)=  3
+   B(V4    ): #abar= 16  D1=  1  D2=  7  [g]=0:  7  gap(D2 & not D1)=  6
+   B(Z2xZ4 ): #abar= 16  D1=  1  D2=  8  [g]=0:  8  gap(D2 & not D1)=  7
+   B(S3(base)): #abar=  4  D1=  1  D2=  3  [g]=0:  3  gap(D2 & not D1)=  2
+   B(Z)     : #abar=  4  D1=  1  D2=  4  [g]=0:  4  gap=  3
+K=C4xC2  |K|= 8 |Z|=8 |Inn|= 1 |Aut|= 8 |Out|= 8
+   B(Z/2   ): #abar=  1  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(Z/3   ): #abar=  1  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(Z/4   ): #abar=  1  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(V4    ): #abar=  1  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(Z2xZ4 ): #abar=  1  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(S3(base)): #abar=  1  D1=  1  D2=  1  [g]=0:  1  gap(D2 & not D1)=  0
+   B(Z)     : #abar=  1  D1=  1  D2=  1  [g]=0:  1  gap=  0
+TOTALS: {'cases': 248, 'T1.1 fail': 0, 'T1.2 fail': 0, 'D1=>D2 fail': 0, 'gap': 135, 'gap_with_Z_nontriv': 95, 'swap D2=>D1 holds': 107, 'D1<=>[g]=0 holds': 107}
+  -> Thm 1.1 (D2 <=> [g]=0): failures 0 ; Thm 1.2 (D1 <=> [abar]=*): failures 0 ; Prop 7 (D1 => D2): failures 0
+
+-- negative controls (each MUST fail somewhere) --
+  [swap] 'D2 => D1' : holds in 107 / 223 (base,abar) cases over finite bases -> FAILS (as it must) iff < total
+  [wrong degree] 'D1 <=> [g]=0': holds in 107 / same -> FAILS iff < total
+  [abelian K=C4xC2] |Inn|=1: every abar trivial, so gap must be 0 on every base (see table: gap=0) -- control PASSES as predicted
+
+-- printed Thm 1.3 / abstract / Upshot: 'gap realised exactly when Z is too small (centreless regime)' --
+  K=D4 (|Z|=2), C=B(Z), abar(1)=c_s: D2 lift T(n)=s^n (s^2=e: True ); D1 exists: False
+  K=Q8 (|Z|=2), C=B(Z), abar(1)=c_i: D2 lift T(n)=i^n ; D1 exists: False
+  total gap cases with Z(K) != 1: 95  (Thm 1.3 'exactly when centreless' is FALSE if > 0)
+
+-- the exact-sequence reading (answer to Q3): D2 <=> [abar] in im(H^1(C;K) -> H^1(C;InnK)) (mod Out), D1 <=> [abar] = * --
+  D2 == 'abar Aut-conjugate into the image of Hom(Gamma,K)': mismatches 0 / 223
+
+==========================================================================================
+PART II  Q1 (disconnected C, per-component outer part) and Q2 (home of o_D1)
+==========================================================================================
+  K=D4xC2  (#distinct actions of Aut K on Z(K): 2): liftability of Ad(mu)o abar vs abar, mismatches 0 / 2304
+  K=D4     (#distinct actions of Aut K on Z(K): 1): liftability of Ad(mu)o abar vs abar, mismatches 0 / 288
+  K=Q8     (#distinct actions of Aut K on Z(K): 1): liftability of Ad(mu)o abar vs abar, mismatches 0 / 864
+  C = B(V4) |_| B(Z/2), K=D4xC2: joint D2 (independent mu per component) vs [g]=0 in H^2 = H^2(V4) x H^2(Z/2): mismatches 0 / 64
+  2-object groupoid over V4, K=D4: D1 (two-vertex gauge) <=> vertex-group holonomy trivial: mismatches 0 / 64
+  K=D4xC2  B(Z/2 ): |H^1(C;Inn)| =   4, |H^1(C;Inn)/H^0(Out)| = |image in H^1(C;Aut)| =   3
+  K=D4xC2  B(V4  ): |H^1(C;Inn)| =  16, |H^1(C;Inn)/H^0(Out)| = |image in H^1(C;Aut)| =  10
+  K=D4xC2  B(Z/4 ): |H^1(C;Inn)| =   4, |H^1(C;Inn)/H^0(Out)| = |image in H^1(C;Aut)| =   3
+  K=D4     B(Z/2 ): |H^1(C;Inn)| =   4, |H^1(C;Inn)/H^0(Out)| = |image in H^1(C;Aut)| =   3
+  K=D4     B(V4  ): |H^1(C;Inn)| =  16, |H^1(C;Inn)/H^0(Out)| = |image in H^1(C;Aut)| =  10
+  K=D4     B(Z/4 ): |H^1(C;Inn)| =   4, |H^1(C;Inn)/H^0(Out)| = |image in H^1(C;Aut)| =   3
+  K=Q8     B(Z/2 ): |H^1(C;Inn)| =   4, |H^1(C;Inn)/H^0(Out)| = |image in H^1(C;Aut)| =   2
+  K=Q8     B(V4  ): |H^1(C;Inn)| =  16, |H^1(C;Inn)/H^0(Out)| = |image in H^1(C;Aut)| =   5
+  K=Q8     B(Z/4 ): |H^1(C;Inn)| =   4, |H^1(C;Inn)/H^0(Out)| = |image in H^1(C;Aut)| =   2
+  383 §4 'for K=D4 the Out action swaps the two reflection classes': |H^1(B(Z);InnD4)|=4, Out-orbits=3, c_s ~Aut~ c_rs: True
+
+==========================================================================================
+PART III  (UID 382) M1-M3 as printed
+==========================================================================================
+M1: C=B(Z/3), K=D4, alpha(t)=alpha(t^2)=c_s (non-strict); normalized 2-cell data k satisfying the gerbe cocycle law: 4
+   band trivial (Hom(Z/3,Out D4=Z/2)=1) and H^2(Z/3;Z/2)=0, so Cor 5 predicts a global inventory.
+   Def 4 AS PRINTED (T strict, no k in the T-equation): exists = False   | k-twisted version T(gf)=mu(k)T(g)T(f): exists = True
+   vertex gauge cannot strictify: exists mu with mu alpha mu^-1 strict: False
+M1 Rem 6 witness: S3/B(Z)/c_(01): Def-4 lift T(n)=sigma^n (sigma^2=e: True ); D1 gauge exists: False
+M2: |Inn S2| = 1, |Z S2| = 2 -> abar trivial, [g]=0 on every base (T=e)
+M3: printed a in Aut: True | outer: True | a^2 = conj(r): True | a^2 = conj(x) for x in ['r^1 s^0 c^0', 'r^1 s^0 c^1', 'r^3 s^0 c^0', 'r^3 s^0 c^1']
+    no involutive lift in a.Inn: True
+
+==========================================================================================
+PART IV  (UID 382) Thm 8 sign (Q 'sign in 3.2(ii)') and eq. (5)
+==========================================================================================
+Heis(F_5): w=[A,B] central coord = 1 ; f(s,t) = 0 ; f(t,s) = 4 (central coord; -w = 4)
+  phi_2(e_st) = [s|t]-[t|s]  =>  class = f(s,t) - f(t,s) = 1  ==  w = 1 : True
+  f is a bar 2-cocycle (dz=0 with d convention of Lemma 7) on a 3x3 box: True
+  orientation control: with phi_2(e_st)=[t|s]-[s|t] the class would be 4 = -w (sign is a convention of the Koszul generator)
+eq.(5) [Au,Bv]-[A,B] = tau(sigma-1)v - sigma(tau-1)u, E=AGL(1,7) (nontrivial distinct actions): mismatches 0 / 12348
+Thm 8(iv) commuting lifts <=> [w]=0 in M_{Z^2}: mismatches 0 / 252
