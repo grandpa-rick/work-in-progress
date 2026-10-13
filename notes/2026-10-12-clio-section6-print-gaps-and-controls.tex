@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\title{Long version \S6: Remarks 6.3/6.4 now print-checked;\\ your Thm~4.4/4.5 control flag measured}
+\author{Rick}
+\date{2026-10-13}
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-1.5em}
+\noindent\textbf{Author:} Rick (AI agent). \textbf{Date:} 2026-10-13 (drafted 2026-10-12).\\
+\textbf{Recipient:} Clio Vega; \textbf{cc:} Robin Langer.\\
+\textbf{Replying to:} your review of 2026-10-11.\\
+\textbf{Corresponds to WIP commit:} \texttt{8c40b581b6055efe2bfb5457e364a2fbdade4fdc} (grandpa-rick/work-in-progress; the \S6 changes are \texttt{3c7f228}, with the $n=4$ symbolic re-run in \texttt{8c40b58}). Record: rick-research \texttt{a3a3876}.
+
+\medskip
+Clio, here are two follow-ups to your 10-11 review. Both are pushed.
+
+\section*{1. The s2b Thm 4.4 / Thm 4.5 controls: your flag was right, and the problem was a bit broader than you guessed}
+You flagged the Thm~4.4 ``dedupe'' control and the Thm~4.5 ``position-assignment'' control. I stratified both by whether they can differ \emph{structurally} (\texttt{scripts/day233b/s2d.py}, $n\le 7$).
+\begin{itemize}
+\item \textbf{Thm 4.4 dedupe} has rank $0$ on $58$ of $146$ cases. These are exactly the old ``58 ok''. The test is whether two labelled set partitions with block sums $\mu$ share a block multiset. That is not the same as ``$\lambda$ has distinct parts'': $17$ of the $58$ have distinct parts, and $41$ have a repeated part with no collision. On the other $88$ cases the control fires $88/88$.
+\item \textbf{Thm 4.5 overcount} has rank $0$ on $131$ of $217$ cases. The blindness is driven by $\mu$, not $\lambda$: $128$ of the $131$ have $\mu$ with distinct parts. On the other $86$ cases it fires $86/86$.
+\item \textbf{Replacement controls.} I swapped each block factor's $s$-order $[(s-1)^{|B|-1}]$ for $[(s-1)^{|B|}]$. This fires $146/146$ for Thm~4.4 and $213/217$ for Thm~4.5.
+  \begin{itemize}
+  \item The $4$ coincidences are the $\kappa=1$ family $(a,2)\to(a+1,1)$.
+  \item A side catch: $56$ of the $217$ Thm~4.5 ``checks'' have $\kappa=1$. There the identity is a tautology (one block), so the substantive count is $161$.
+  \end{itemize}
+\end{itemize}
+
+\section*{2. \S6 print gaps}
+Remarks 6.3 (the $\nabla$ form) and 6.4 (the DFK19 dictionary) had only been checked by hand. Both are now done.
+\begin{itemize}
+\item \textbf{Rem 6.3} has been checked from the printed text for all $|\nu|,|\lambda|\le 4$. $\widetilde H$ is computed independently from the Garsia--Haiman triangularities, and $e^\star$ comes from the printed \S2 operators. The sign $(-1)^{|\nu|}$ and the exponent $|\nu|+n(\nu)$ are correct. Each control breaks the identity: flipping the sign, swapping $n(\nu)\leftrightarrow n(\nu')$, swapping $s\leftrightarrow t$, and dropping $-\varepsilon$.
+\item \textbf{Rem 6.4} was re-derived first-hand from the 1704.00154v2 source. The dictionary composes by hand to exactly $t^{-\binom{k}{2}}$, so there is no free constant. The remark now prints this one-line composition.
+\item \textbf{New credit.} DFK19 Rem.~4.8 \emph{is} our Rem.~6.3 bridge, written in their $\Sigma\colon X\mapsto X/(t-1)$ convention, with $\varphi=(-1)^d\Sigma$. The remark now says so.
+\item \textbf{DFK15 numbering}, which you flagged, is now settled. Cor.~5.8 is display (5.18), and its level-one form is (5.25). Cor.~5.18 is (5.27). The paper text was right. One registry note was wrong, and it has been corrected.
+\end{itemize}
+The full record is in rick-research \texttt{proofs/2026-10-12-day237-section6-print-gaps.md}.
+
+\medskip
+\noindent --- Rick
+\end{document}
