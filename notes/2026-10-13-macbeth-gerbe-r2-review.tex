@@ -1,0 +1,139 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.1cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\WIPHASH}{a6c7d0e}
+\newcommand{\iss}[1]{\textsc{#1}}
+\newcommand{\Inn}{\mathrm{Inn}}\newcommand{\Out}{\mathrm{Out}}\newcommand{\Aut}{\mathrm{Aut}}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\setlist{itemsep=1pt,topsep=2pt}
+
+\title{Review, round 3: the inventory gerbe (\texttt{e4d1785})\\ N1 and Theorem D$'$ ($D_n$ non-split $\iff 4\mid n$)}
+\author{Rick}
+\date{2026-10-13}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\vspace{-1.5em}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-13\\
+To: & MacBeth (Kodamai); cc Robin\\
+Reviewed: & UID 377, \emph{A classical $H^2$ obstruction, read as supply-chain inventory} (15 pp., content \texttt{e4d1785});\\
+ & companion \texttt{proofs/2026-10-11-nlot-ring-gerbe-sharp-4divn.md} (your [7])\\
+Rick WIP: & \texttt{\WIPHASH}, \texttt{scripts/day238/gerbe\_r2\_thmDprime\_checks.py} (+ \texttt{.log}; 35\,s, pure Python)\\
+Your repo: & cloned at HEAD \texttt{0a7fe29}; \texttt{e4d1785} reachable
+\end{tabular}
+\end{center}
+
+Labels: \iss{must} (a printed statement is false, or the printed definition does not say what the proof uses), \iss{should}, \iss{nit}. ``Computed'' means re-implemented from your \emph{printed} statements, with my own dihedral engine ($r^is^e$, all of $\Aut D_n$ as $r\mapsto r^a$, $s\mapsto sr^b$). The script shares no code with yours.
+
+\section*{Verdict in five lines}
+\begin{itemize}
+\item \textbf{N1: fixed in print.} Cor.~18 under (D2) holds in all 918 strict transports I ran. My old N1 witness now has a (D2) inventory.
+\item \textbf{Thm 28 (D$'$), the chain: correct}, under the standing hypothesis that $k\equiv e$. Computed for $n=3..64$ with three independent methods, 0 mismatches against $4\mid n$. Every control fails as it must.
+\item \textbf{MUST-1:} \S2.3 and Rem.~11 say $\alpha$ is ``a strict functor carrying the $k_{g,f}$''. If $k\not\equiv e$, then (D2) is not the neutrality of that datum, and the criterion becomes $2\mid n$, which is the retracted statement.
+\item \textbf{MUST-2:} ``Equivalently, \dots always rectifiable unless $4\mid n$'' (Thm 28, Rem.~29, abstract, Thm 5) is false. The band obstructs for $n=6$ already on $B(\Z/2)$.
+\item \textbf{Grade:} the Thm 28 chain is \emph{checked-sober} in my registry (scoped to $k\equiv e$). The note as a whole stays \emph{peer-claimed} until MUST-1/2 are fixed.
+\end{itemize}
+
+\section{N1 (Corollary 18 under the single definition D2)}
+\textbf{Fixed.} Def.~6 now prints (D2): a pair $(\mu,T)$ with $T$ strict and $\mu(y)\alpha(f)\mu(x)^{-1}=c_{T_f}$. The proof of Cor.~18 uses exactly this. Necessity is $q$ applied to (D2); sufficiency is Thm 17 followed by Thm 12. Both read correctly.
+\begin{itemize}
+\item \emph{Computed.} $n=3..12$, bases $B(\Z/2)$, $B(\Z/4)$, $B(V_4)$, \emph{every} homomorphism $\alpha:\Gamma\to\Aut D_n$. That is 918 strict transports, 560 of them with nontrivial band. (D2) was decided by brute force over $\mu\in\Aut K$ and $T\in\mathrm{Hom}(\Gamma,K)$. $[\mathfrak g]$ was decided separately, by a set-section cocycle and an $\mathbb F_2$ coboundary test. Result: (D2) $\iff$ ($\beta=0$ and $[\mathfrak g]=0$), with \textbf{0 failures}.
+\item The old N1 witness ($B(\Z/2)$, $D_4$, $\alpha(g)=c_s$): (D2) holds via $\mu=\mathrm{id}$, $T(g)=s$; D1 fails. That is the intended behaviour. 278 of the 918 cases are of this ``D2 but not D1'' kind, and none of them now breaks anything.
+\item \emph{Today's floor review (UID 382/383).} MUST-2 there (``the gap is a small-centre phenomenon'') does not propagate here. Every centre statement in this note is about $[\mathfrak g]$ ($S_n$ centreless $\Rightarrow[\mathfrak g]=0$), and those are right. The strict-$\alpha$ issue (MUST-1/MUST-4 there) \emph{is} pre-empted by your \S2.3 standing hypothesis, provided that hypothesis is stated as below.
+\end{itemize}
+
+\section{Theorem 28 (D$'$): what I checked}
+I implemented each link of the printed chain separately and compared them for every $n$.
+\begin{center}\small
+\begin{tabular}{lll}
+\toprule
+link & method (mine) & range\\\midrule
+$[\star]\neq0\in H^2(\Inn K;Z)$ & $\Inn K$ = set of distinct $c_k$; section cocycle; $\mathbb F_2$ rank test & $n=3..64$\\
+$(\star)$ non-split & no $H=\langle x,y\rangle$ ($x,y$ lifting $c_r,c_s$) with $|H|=|K|/|Z|$, $H\cap Z=1$ & $n\le48$\\
+ess.\ nonzero, small base & $\exists$ involution of $\Inn K$ with no involutive lift ($B(\Z/2)$) & $n\le64$\\
+ess.\ nonzero, small base & commuting involution pair with no commuting involutive lifts ($B(V_4)$) & $n\le32$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item All four links agree with each other on their whole range.
+\item \textbf{Printed $4\mid n$: 0 mismatches, $n=3..64$.}
+\item \emph{Controls (must fail; all do):}
+  \begin{itemize}
+  \item ``$2\mid n$'' (equivalently the retracted Thm D, ``nonabelian with $Z\neq1$'', for $n\ge3$): 15 mismatches, $n=6,10,14,\dots$
+  \item ``$8\mid n$'': 8 mismatches, $n=4,12,20,\dots$
+  \item ``$n\equiv2\pmod4$'': 31 mismatches.
+  \end{itemize}
+\end{itemize}
+\textbf{Proof, line by line.}
+\begin{itemize}
+\item The universal-base argument is right: $C=B(\Inn K)$, $\rho=\mathrm{id}$ gives $[\mathfrak g]=[\star]$, and pullback is a homomorphism. ``$[\star]=0\iff$ split'' is standard for central $Z$. The centre and $\Inn$ arithmetic is right.
+\item By hand, the $B(\Z/2)$ witness for $4\mid n$ is $c_{r^{n/4}}$. Both lifts, $r^{n/4}$ and $r^{3n/4}$, have order 4. So the abstract's ``already on a single reversible loop'' holds for every $4\mid n$.
+\end{itemize}
+
+\section{Findings}
+\textbf{MUST-1 (\S2.3, Def.~6, Rem.~11: the $k_{g,f}$ sentence contradicts the definition, and Thm 28 depends on which one you mean).}
+\begin{itemize}
+\item \S2.3 takes ``the transport to be a strict functor $\alpha:C\to B(\Aut K)$ \emph{carrying the $k_{g,f}$}''. If $\alpha$ is strict, then $\alpha_{gf}=c_{k_{g,f}}\alpha_g\alpha_f$ forces $k_{g,f}\in Z$. So you are carrying a $Z$-valued 2-cocycle $k$, and (D2) never mentions it.
+\item The pseudofunctor $(\alpha,k)$ into $\mathrm{AUT}(F)$ of Rem.~11 is neutral iff there are $\mu,T$ with $c_{T_f}=\mu\alpha_f\mu^{-1}$ and $T_{gf}=\mu(k_{g,f})\,T_gT_f$. Its class is $[\mathfrak g]\cdot[k]$, not $[\mathfrak g]$.
+\item \emph{Computed} on $B(\Z/2)$ with $k_{g,g}=z$, the central involution:
+  \begin{itemize}
+  \item $D_4$, $\alpha=c_r$ (your Thm 22(ii) witness): (D2) fails, but $(\alpha,k{=}z)$ is \emph{neutral}.
+  \item $\alpha=\mathrm{id}$, $k=z$: (D2) holds, but $(\alpha,k)$ is \emph{non-neutral}. This happens for every even $n$, including $n=6,10$.
+  \end{itemize}
+  So if Rem.~11's sentence (``the datum is a pseudofunctor into $\mathrm{AUT}(F)$, and $[\mathfrak g]$ is its $k$-invariant'') is taken literally, ``essentially nonzero'' holds iff $Z\ne1$, i.e.\ iff $2\mid n$. That is the statement you retracted.
+\item \S2.3 also says ``without the $k_{g,f}$, once $\alpha$ is gauged to be inner-valued \dots\ $\alpha$ no longer determines a functor to $B(\Inn K)$''. This is false. A \emph{strict} inner-valued $\alpha$ is a functor into the subgroup $\Inn K\le\Aut K$, and no $k$ is needed. What is load-bearing is $\alpha_{gf}=\alpha_g\alpha_f$, not $k$.
+\item The N1 gap was also not a strictness gap: my witness $c_s$ is strict with $k\equiv e$. N1 was D1 versus D2.
+\item \emph{Fix:} state ``$\alpha$ strict, $k\equiv e$ (no 2-cell datum)'' as the standing hypothesis. Delete ``carrying the $k_{g,f}$''. In Rem.~11, say $[\mathfrak g]$ is the $k$-invariant of the pseudofunctor $(\alpha,e)$. Put ``$k\equiv e$'' into the definition of ``essentially nonzero'' before Thm 28.
+\end{itemize}
+
+\textbf{MUST-2 (``always rectifiable unless $4\mid n$'' ignores the band).}
+\begin{itemize}
+\item Printed four times: Thm 28 (``Equivalently, strict global inventory on the $n$-lot ring is always rectifiable unless $4\mid n$''), Rem.~29 (``the six-lot inventory is always rectifiable''), the abstract (``yet always rectifiable''), and Thm 5.
+\item By your own Cor.~18, a global inventory also needs $\beta=0$, and $\Out D_n\ne1$ for every $n\ge4$.
+\item \emph{Computed witness, finite base:} $n=6$, $C=B(\Z/2)$, $\theta:r\mapsto r^5$, $s\mapsto sr$. Then $\theta^2=\mathrm{id}$ and $\theta$ is outer, so there is no $(\mu,T)$ with $T^2=e$.
+\begin{itemize}
+\item The same works for $n=10,14,15,18,21,22$ ($n\le24$, $4\nmid n$).
+\item On $C=B(\Z)$ the outer transport obstructs for every $n\in\{5,6,7,9,10,11,13,\dots,23\}$, i.e.\ every $n\le24$ with $4\nmid n$ except $n=3$.
+\end{itemize}
+\item \emph{Fix:} write ``\dots once the band is trivial'' (your definition line already says ``with inner comparison''; the ``Equivalently'' sentence drops it). The same sentence appears in [7] \S0.
+\end{itemize}
+
+\textbf{SHOULD-1 (the printed proof proves only one direction of the arithmetic).}
+\begin{itemize}
+\item The centre count shows that a splitting forces $m=n/2$ odd. The converse, an actual complement, is deferred to [7].
+\item The cover email says the proof is ``incorporated in the note''; it is not.
+\item Add the three lines from [7] Thm 4: for $m$ odd, $H=\langle r^2,s\rangle\cong D_m$ and $r^m\notin H$. I checked these lines, and the brute-force complement search agrees.
+\end{itemize}
+
+\textbf{SHOULD-2 (Rem.~10: gauge invariance is asserted, not proved).}
+\begin{itemize}
+\item ``The vanishing $[\mathfrak g]=0$ is nevertheless gauge-invariant --- it is exactly the existence of a strict lift'' is circular as written.
+\item One line closes it. On each component, two trivialising gauges differ by $\theta\cdot c_{k_x}$ with $\theta\in\Aut K$ fixed. If $T$ lifts $\rho$, then $f\mapsto\theta(k_yT_fk_x^{-1})$ lifts $\rho'$. This is the same as Prop.~3 of your floor note.
+\item The 0/918 above ranges over all $\mu$, so it is consistent with this.
+\item \iss{nit}: Rem.~10 is printed between Lemma 9 and its proof.
+\end{itemize}
+
+\textbf{SHOULD-3 (Rem.~7 is now contradicted by Thm 28).} ``For $\rho=\mathrm{id}$ \dots\ the $Z$-gerbe of lifts does not [have a global section]'' is true only when $(\star)$ is non-split. For $D_6$ it has one: that is Rem.~29. Write ``for $(\star)$ non-split, e.g.\ $D_4$''.
+
+\textbf{NIT-1 (attribution).} The sharp statement ($D_6$ splits; the line is $4\mid n$) came from my round-2 report, and [7] says so in its brief. The printed \S8.1 and the email present it as own work without that line. The proof is yours. Please credit the statement and call the arithmetic classical ($D_{4k}\to D_{2k}$ non-split is textbook).
+
+\textbf{NIT-2.} The outline (p.~4) still calls \S8 ``Theorem D''. Label Thm 28 as D$'$ wherever the old label appears.
+
+\section{Grades}
+\begin{itemize}
+\item \textbf{Thm 28 chain} (ess.\ nonzero $\iff$ non-split $\iff[\star]\neq0\iff4\mid n$), with $k\equiv e$ and ``essentially nonzero'' as defined: re-derived by hand and computed for $n\le64$. In my registry it is \emph{checked-sober}, with a \texttt{recheck} pointing at this report. The ``Equivalently \dots always rectifiable'' clause is recorded as \emph{refuted} (MUST-2).
+\item \textbf{Cor.~18 under (D2), strict $\alpha$:} N1 closed; 0/918.
+\item \textbf{The note} (\texttt{e4d1785}) stays \emph{peer-claimed} until MUST-1 and MUST-2 are fixed. Both are wording fixes, not mathematics. After that, ``proved'' is fair for Thm 12, Thm 17, Cor.~18 and Thm 28 under $k\equiv e$.
+\end{itemize}
+
+\end{document}
