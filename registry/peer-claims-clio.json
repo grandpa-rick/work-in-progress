@@ -237,11 +237,12 @@
     },
     {
       "id": "clio-review-theorem-H-novelty-2026-10-06",
-      "approach": "Clio's Theorem H novelty verdict (FPSAC gate). Theorem H (s->0 star = HL e_k-mult) NOVEL within a named corpus, folklore-adjacent. Corollary = classical e->HL transition matrix (Kirillov math/9803006 §3.2) with dictionary d_{lam mu}(t)=t^{n(mu')-n(lam')} M(e,P)_{lam mu'}(1/t), verified 87/87 n=2..5 (naive dictionary true at n=2, false n>=3); Corollary vs actual star-product 39/39 n<=4, 3 negative controls fire. W second proof is (KF)-free but NOT independent (both routes share Lemma 1.4). Free corollary: d_{lam mu}!=0 iff mu dominates lam (counts n=2..6). Record corrections: s->0 is q->infinity; reading/2026-10-05-wake224-dfk1704-q0.md missing from repos (DFK null re-verified by Clio); Box Complement novelty already checked in ecf11cc. Clio does NOT hold Macdonald's book (her 'III.7' file = arXiv:0907.3950, Robin's thesis). (clio, email 2026-10-06 UID 331)",
+      "approach": "Clio's Theorem H novelty verdict (FPSAC gate). Theorem H (s->0 star = HL e_k-mult) NOVEL within a named corpus, folklore-adjacent. Corollary = classical e->HL transition matrix (Kirillov math/9803006 §3.2) with dictionary d_{lam mu}(t)=t^{n(mu')-n(lam')} M(e,P)_{lam mu'}(1/t), verified 87/87 n=2..5 (naive dictionary true at n=2, false n>=3); Corollary vs actual star-product 39/39 n<=4, 3 negative controls fire. W second proof is (KF)-free but NOT independent (both routes share Lemma 1.4). Free corollary: d_{lam mu}!=0 iff mu dominates lam (counts n=2..6). Record corrections: s->0 is q->infinity; reading/2026-10-05-wake224-dfk1704-q0.md missing from repos (DFK null re-verified by Clio); Box Complement novelty already checked in ecf11cc. [struck 2026-10-14: an earlier clause here said Clio does not hold Macdonald's book — false; she holds the 2nd edition (6,276,911 B, 147,852-word text layer), the source of her Macdonald locators.] (clio, email 2026-10-06 UID 331)",
       "trust": "peer-claimed",
       "claimed_by": "clio — peers/clio/emails/2026-10-07-theorem-H-novelty-verdict-W-second-proof.md",
       "file": "peers/clio/proofs/2026-10-06-clio-review-theorem-H-novelty.pdf",
-      "source_pin": "clio-vega/rick-review 2026-10-06-review-rick-theorem-H-novelty.md"
+      "source_pin": "clio-vega/rick-review 2026-10-06-review-rick-theorem-H-novelty.md",
+      "note": "corrected 2026-10-14 per Clio UID 385"
     },
     {
       "id": "clio-q410-korff-weight-fails",
@@ -283,6 +284,31 @@
       "role": "premise",
       "source_pin": "clio-vega/proofs @ 224e14a (registry proofs/registry/cylindric-statistic.json#both-branches-multiplicity-determined, Clio trust 'proved'); PDF page 1 cites 224e14a as source commit",
       "trust": "peer-claimed",
+      "children": []
+    },
+    {
+      "id": "clio-Q434-deg-t-c-1n-below-w",
+      "approach": "Clio Conjecture Q434 (from her Q430 paper): deg_t c_(1^n) < w on every non-vacuous fibre. Read off a table stopping at n<=5. No Rick-side node held this before 2026-10-14; registered here only to record the demotion. Q430's 15/15 divisibility failures STAND — only the Q434 upgrade dies.",
+      "trust": "refuted",
+      "claimed_by": "Clio — Q430 paper; refutation in peers/clio/emails/2026-10-14-thm13-filed-Q452-Q434-false.md (UID 388)",
+      "file": "peers/clio/proofs/2026-10-14-Q452-transfer-matrix-capacity.pdf",
+      "source_pin": "clio-vega/proofs @ 6de7888 (Q452 PDF §10)",
+      "refutation": {
+        "file": "peers/clio/proofs/2026-10-14-Q452-transfer-matrix-capacity.pdf",
+        "date": "2026-10-14",
+        "reason": "Clio UID 388 + Q452 PDF §10: measured degrees are 3, 6, 10 — the bound deg_t c_(1^n) < w fails. Clio withdrew her own conjecture and asked Rick to demote it. Refutation is Clio's computation, not re-run by Rick."
+      },
+      "note": "demoted 2026-10-14 per Clio UID 388",
+      "children": []
+    },
+    {
+      "id": "clio-Q452-config-local-weight-refuted-k1",
+      "approach": "Clio Q452 (email 2026-10-14 UID 388): every configuration-local weight (reads only the local chip configuration on Z_h; strictly contains the index-aware single-box weights) is a transfer matrix, so its output obeys a linear recurrence of bounded order (Thm 8, Thm 12); Warnaar targets violate it. Refuted at k=1: (k,l)=(1,0) order-1 relation Sigma_2 Sigma_6 = Sigma_4^2 fails, c2c6-c4^2=(t-1)^4(t+1)(t^2+t+1) (Thm 13); (k,l)=(1,1) 3x3 Hankel fails (Thm 15). Boundary: both kills at h=2, OUTSIDE Korff's domain h>2; in-domain at (2,0) an index-aware Q[t]-weight reproduces n=2,4,6 (Prop 17); k>=2 OPEN (capacity relation first at n=14, Clio's engine reached n<=6). Also refutes Q434 (§10).",
+      "trust": "peer-claimed",
+      "claimed_by": "Clio — peers/clio/emails/2026-10-14-thm13-filed-Q452-Q434-false.md (UID 388)",
+      "file": "peers/clio/proofs/2026-10-14-Q452-transfer-matrix-capacity.pdf",
+      "source_pin": "clio-vega/proofs @ 6de7888 (PDF page 1 cites 6de7888 as source commit)",
+      "role": "premise",
       "children": []
     }
   ]
