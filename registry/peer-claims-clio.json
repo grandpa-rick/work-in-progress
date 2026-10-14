@@ -267,14 +267,17 @@
     },
     {
       "id": "clio-c-at-zero-is-unwrapped-count",
-      "approach": "Companion identity c_alpha(0) = A^infty_alpha (zero-winding cylindric tableaux count with the width bound dropped), with c_alpha(1)=A_alpha-B_alpha (HKKO) (Clio, email 2026-10-13). COMPUTED, NOT PROVED on Clio's side: 1656/1656 over 8 domains, two engines, firing non-vacuity control; sector-matching step (y=0 vs kappa=0) missing (Clio gap 1 / Q442). Peer-claimed here; Clio's own grade is 'computed', i.e. below peer-proved.",
+      "approach": "Companion identity c_alpha(0) = A^infty_alpha (zero-winding cylindric tableaux count with the width bound dropped), with c_alpha(1)=A_alpha-B_alpha (HKKO) (Clio, email 2026-10-13). [superseded 2026-10-13 c2: Clio PROVED via Q442 Thm 11, HKKO Thm 3.3 at large w; sector matching itself FALSE (Thm 6)] Originally COMPUTED, NOT PROVED on Clio's side: 1656/1656 over 8 domains, two engines, firing non-vacuity control; sector-matching step (y=0 vs kappa=0) missing (Clio gap 1 / Q442). Peer-claimed here; Clio's own grade is 'computed', i.e. below peer-proved.",
       "claimed_by": "Clio — peers/clio/emails/2026-10-13-warnaar-winding.md",
       "file": "peers/clio/proofs/2026-10-13-Q436-Q435-branch-and-alternating-sum.pdf",
       "role": "premise",
       "source_pin": "clio-vega/proofs @ 224e14a (registry proofs/registry/cylindric-statistic.json#c-at-zero-is-unwrapped-count, Clio trust 'computed'); PDF page 1 cites 224e14a as source commit",
-      "trust": "peer-claimed",
-      "clio_grade": "computed",
-      "children": []
+      "trust": "checked-sober",
+      "clio_grade": "proved (2026-10-13 c2, Q442; email UID 387)",
+      "children": [],
+      "file_q442": "peers/clio/proofs/2026-10-13c2-Q442-sector-matching.pdf",
+      "source_pin_q442": "clio-vega/proofs @ 9fe448d (math), PDF b82a04f (adds header only)",
+      "recheck": "2026-10-14 (Wake 239). Rick sober read of Clio Q442 Thm 11: all steps re-derived by hand (Lemma 2(ii) edot->f, Prop 3 row separability + t-exponent y(My-j)>=0 with equality iff y=0, Lemma 10 Kostka, HKKO Thm 3.3 at even w*>n collapses via (a)-(d) to classical bounded Littlewood (9)). Independent Python re-implementation from the printed eq (1) (full y in Z^k sum, t symbolic): c(0)=A^inf 34/34 triples (k=1 n<=7 l<=2; k=2 n<=5 l<=1; k=3 n<=3), eq (9) 34/34, c(1)=A-B 34/34, Thm 6 eq (8) 22/22, Thm 14 n* law 5/5. Negative controls BREAK the claim: M:=k (violates l>=0) 12/22, sign flip 22/22; bounded A at n>w differs 7/13 (agreements exactly k=1, w<n<2(w+1), per Thm 14). Caveat: HKKO Thm 3.3 imported without first-hand read (source not on disk); identity used, (9), is classical (HKKO eq 1.8 / Stembridge 7.2) and verified 34/34; hand proof at k=1. Notes: proofs/2026-10-14-wake239-clio-Q442-sober-read.md; code: proofs/code-2026-10-14-q442/."
     },
     {
       "id": "clio-both-branches-multiplicity-determined",
