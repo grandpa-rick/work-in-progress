@@ -1,0 +1,15 @@
+N=2: 5 monomial symmetric fns, deg<=3
+  k=1: T2 subset bad=0  T3 printed E_k=t^(k(m-k))M_k;1 bad=0  T3' DFK-ops bad=0  T4 bridge(I) bad=0  controls(I) q-only=5 t-only=5 no-k-swap=n/a  T5 bad=0
+  k=2: T2 subset bad=0  T3 printed E_k=t^(k(m-k))M_k;1 bad=0  T3' DFK-ops bad=5  T4 bridge(I) bad=0  controls(I) q-only=0 t-only=5 no-k-swap=5  T5 bad=0
+  T6 done (only HIT lines would indicate an operator-level n=+1 match at inverted params)
+N=3: 6 monomial symmetric fns, deg<=3
+  k=1: T2 subset bad=0  T3 printed E_k=t^(k(m-k))M_k;1 bad=0  T3' DFK-ops bad=0  T4 bridge(I) bad=0  controls(I) q-only=6 t-only=6 no-k-swap=6  T5 bad=0
+  k=2: T2 subset bad=0  T3 printed E_k=t^(k(m-k))M_k;1 bad=0  T3' DFK-ops bad=6  T4 bridge(I) bad=0  controls(I) q-only=6 t-only=6 no-k-swap=6  T5 bad=0
+  k=3: T2 subset bad=0  T3 printed E_k=t^(k(m-k))M_k;1 bad=0  T3' DFK-ops bad=6  T4 bridge(I) bad=0  controls(I) q-only=0 t-only=6 no-k-swap=6  T5 bad=0
+  T6 done (only HIT lines would indicate an operator-level n=+1 match at inverted params)
+N=4: 3 monomial symmetric fns, deg<=2
+  k=1: T2 subset bad=0  T3 printed E_k=t^(k(m-k))M_k;1 bad=0  T3' DFK-ops bad=0  T4 bridge(I) bad=0  controls(I) q-only=3 t-only=3 no-k-swap=3  T5 bad=0
+  k=2: T2 subset bad=0  T3 printed E_k=t^(k(m-k))M_k;1 bad=0  T3' DFK-ops bad=3  T4 bridge(I) bad=0  controls(I) q-only=3 t-only=3 no-k-swap=n/a  T5 bad=0
+  k=3: T2 subset bad=0  T3 printed E_k=t^(k(m-k))M_k;1 bad=0  T3' DFK-ops bad=3  T4 bridge(I) bad=0  controls(I) q-only=3 t-only=3 no-k-swap=3  T5 bad=0
+  k=4: T2 subset bad=0  T3 printed E_k=t^(k(m-k))M_k;1 bad=0  T3' DFK-ops bad=3  T4 bridge(I) bad=0  controls(I) q-only=0 t-only=3 no-k-swap=3  T5 bad=0
+  T6 done (only HIT lines would indicate an operator-level n=+1 match at inverted params)

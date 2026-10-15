@@ -1,0 +1,9 @@
+N=2 k=1: T3' DFK-ops = printed (1.5) at (s,theta^-1): bad=0/5   control (theta not inverted): bad=5
+N=2 k=2: T3' DFK-ops = printed (1.5) at (s,theta^-1): bad=0/5   control (theta not inverted): bad=0
+N=3 k=1: T3' DFK-ops = printed (1.5) at (s,theta^-1): bad=0/6   control (theta not inverted): bad=6
+N=3 k=2: T3' DFK-ops = printed (1.5) at (s,theta^-1): bad=0/6   control (theta not inverted): bad=6
+N=3 k=3: T3' DFK-ops = printed (1.5) at (s,theta^-1): bad=0/6   control (theta not inverted): bad=0
+N=4 k=1: T3' DFK-ops = printed (1.5) at (s,theta^-1): bad=0/3   control (theta not inverted): bad=3
+N=4 k=2: T3' DFK-ops = printed (1.5) at (s,theta^-1): bad=0/3   control (theta not inverted): bad=3
+N=4 k=3: T3' DFK-ops = printed (1.5) at (s,theta^-1): bad=0/3   control (theta not inverted): bad=3
+N=4 k=4: T3' DFK-ops = printed (1.5) at (s,theta^-1): bad=0/3   control (theta not inverted): bad=0
