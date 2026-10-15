@@ -1357,7 +1357,8 @@
       "file": "proofs/2026-10-15-prove240-ymatch-n-sign.md",
       "children": []
      }
-    ]
+    ],
+    "owner": "DFK 1704.00154 (negaP)+Lemma dalga+Thm genmacthm, general n; (I) is n=−1 — credited Wake 241"
    }
   ],
   "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md",

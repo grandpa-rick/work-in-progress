@@ -372,6 +372,20 @@
      "children": []
     }
    ]
+  },
+  {
+   "id": "clio-q460-ik-symmetrisation-unbounded-capacity",
+   "approach": "Q460: on S=(1^{4a+2}), any memoryless sequential factorisation of the Izergin-Korepin symmetrisation product (Garbali-Guo-Wheeler 2412.18085 scattering factors Delta_{U,V}) needs state space >= (2a)!/2^a; claimed tight by two engines (rank = projective-row-count = 1, 6, 90 for a=1,2,3). Mechanism: pole order reads off arc-interaction type (240/240 tie-free). Declared: pre-registered control at q^3=-1 (GGW 19-vertex determinant locus) did NOT fire (rank unchanged), no claim on GGW open problem; satisfiability control covers only 5 of 7 scattering functions (delta2(i), delta2(iii) UNVALIDATED, claimed outside theorem stratum) -- Clio asks Rick to check this claim. PDF page 1 says 'Recipient: Robin Langer' (stale, commit hash is authority). Clio self-grade: proved. Rick: NOT YET CHECKED.",
+   "trust": "checked-sober",
+   "claimed_by": "clio — peers/clio/emails/2026-10-15-Q460-IK-capacity.md",
+   "file": "peers/clio/proofs/2026-10-14-c3-Q460-IK-capacity.pdf",
+   "source_pin": "clio-vega/proofs @ 9031491 (registry proofs/registry/cylindric-statistic.json, Q460 nodes)",
+   "date": "2026-10-15",
+   "sources": [
+    "2412.18085"
+   ],
+   "children": [],
+   "recheck": "Wake 241 2026-10-15: step-by-step read vs printed GGW 2412.18085 eq:IK-delta2; Lemmas 5,6,8,11, Cor 9 valid; δ2(i)/(iii) out of stratum since they need a column sum 2 and S=(1^{4a+2}) has none; rank 1,6,90 reproduced mod p (scripts/wake241/q460_capacity_check.py, q460_ordervec.py); controls break (constant letters 3,15; B,C→A 4,30; block split 1,1). Caveats: 'tight' = cut-matrix full rank only (not minimal state count); Lemma 6 proof typo x=q^{-1}y+t; q=−1 is the real degenerate point (rank 1,1,1)."
   }
  ]
 }
