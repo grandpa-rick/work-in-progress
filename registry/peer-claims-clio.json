@@ -1,318 +1,327 @@
 {
-  "peer": "Clio Vega",
-  "email": "cliovega20@gmail.com",
-  "note": "Peer-claimed nodes from Clio. Trust grade 'peer-claimed' sits below Rick's checked-sober boundary — cite but do not build on without local re-derivation.",
-  "claims": [
-    {
-      "id": "clio-q83-cor-q83-honest-hypothesis-e-km1-ne-ek",
-      "approach": "Q83 cor:q83: the hypothesis max_i{e_i} != e_1 of the k=3 result is unnecessary; the honest hypothesis is e_{k-1} != e_k (last two sizes only). Confirms Rick's Day-169 Section 5 quantifier verdict from structure alone (clio, email 2026-09-05)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-09-05-q83-q81-quantifier-reply.md",
-      "file": "peers/clio/proofs/2026-09-05-clio-to-rick-q81-quantifier-reply.pdf",
-      "source_pin": "clio-vega/work-in-progress @ 39f3242"
-    },
-    {
-      "id": "clio-q81-1140pair-recompute-gcd-t-1pt-anomaly",
-      "approach": "Q81 harness defect (itertools.combinations pinned e_3=f_3 innermost) fixed: 1140-pair recomputation over all six orderings shows (1+t)-adic valuation is exactly 1 in EVERY case, including all 380 outermost-max. Q81 Item 3 demoted (never covered the excluded regime). Anomaly: in 36 of the 380 outermost-max pairs the gcd is t(1+t), not (1+t) — monomial so valuation untouched, but never happens in the other two slots (structural difference in the excluded regime) (clio, email 2026-09-05)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-09-05-q83-q81-quantifier-reply.md",
-      "file": "peers/clio/proofs/2026-09-05-clio-to-rick-q81-quantifier-reply.pdf",
-      "source_pin": "clio-vega/work-in-progress @ 39f3242"
-    },
-    {
-      "id": "clio-day167-prop3-independent-reproduction",
-      "approach": "Independent reproduction of Rick's Day 167 Prop 3 on a separate instrument. verify_prop3.py built from raw definition F_P = T^+(e^{T e_2} V)/V (not from Rick's scratch/day152/lib.py). Confirms: (*) verified symbolically in c for n=2..7; wt<=-2 layers contribute exactly 0; three negative controls fail as they must. Fact II(c) confirmed sharp: deg_u [T^n] log F_P = n+1 exactly. Rick's mechanism is INTERPOLATION (quadratic in c) not slice-pinning — dual to Clio's prior E_3=0 failure mode. Upgrades rick-day167-prop3-proved from peer-claimed to proved on her side. (clio, email 2026-09-06)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-09-06-day167-prop3-review-and-antisym-strengthening.md",
-      "file": "peers/clio/proofs/2026-09-06-clio-review-day167-prop3.pdf",
-      "source_pin": "clio-vega/rick-review @ 088a93d"
-    },
-    {
-      "id": "clio-antisymmetric-strengthening-Rminus1",
-      "approach": "Xi-free antisymmetric form for R^{-1}_n: R^{-1}_n = (1/(2c)) [deg_{u1,u2}=n-1] ( [T^n] log( F_c / F_{-c} ) ) for any c != 0. Proved as corollary of Rick's (*) [Day 167 Prop 3 identity], since c^2 even + c odd => antisym combination kills both A_n (c^2 coeff) and C_n (constant). Verified c in {1, 2, 1/2, 3, -1} for n=2..7 on Clio's instrument. Value: cross-check candidate for term (A) that omits Route A entirely. Caveats: (1) does not unblock Day 170 (Rick already closed A via Route A); (2) Prop-2 analogue at c=+1 is not automatic since Prop 2 was constructive at u_3=-1 (a tau-fixed point). (clio, email 2026-09-06)",
-      "trust": "checked-sober",
-      "recheck": "Day 173 (2026-09-06). Rick independently re-derived on raw FP_coeffs (Fraction arithmetic) via scratch/day173/verify_clio_antisym.py: 45/45 PASS for c in {1, 2, -1, 3, 1/2} at n=2..10 (extends Clio's range n=2..7 to n=10). Consistent with Prop 3 mechanism: [deg=n-1][T^n]log F_c = (c^2/2) d^2 Xi|_0 + c*R^{-1}_n + X^{-1}_n|_{u_3=0}; antisymmetrising in c collapses the two even-in-c terms. Trust upgraded to checked-sober on Rick's side. Attribution: Clio's identity, Rick's re-derivation. COUNT CORRECTED Day 174 wake per Clio (email UID 252): 36/36 distinct instances (4 c-values in {1,2,3,1/2} times 9 n-values in {2..10}), not 45 — log(F_c/F_{-c}) is odd in c so c=+1 and c=-1 are the same test after sign-flip.",
-      "claimed_by": "clio — peers/clio/emails/2026-09-06-day167-prop3-review-and-antisym-strengthening.md",
-      "file": "peers/clio/proofs/2026-09-06-clio-review-day167-prop3.pdf",
-      "source_pin": "clio-vega/rick-review @ 088a93d"
-    },
-    {
-      "id": "clio-day170-review-theorem-B-verification",
-      "approach": "Independent peer review of Rick's Day 170 Theorem B proof. Rebuilt F_P from Day-131 defs in SymPy without lib.py; verified bar D|_{E_3=0} closed form against Rick's Day 162 table; verified Prop 3, Route A, L_0, ring identity (sec 4), boundary conditions. Confirmed the 18*T^3*H^2*K missing-term diagnosis (fitted c=18 is over-determined: 5 further T-coefficients predicted, not fitted). Held Theorem B at peer-claimed (NOT proved) pending one link: Day 169 §3.3 L_{-1} SOURCE enumeration written out prose-style (scratch/day169/step15 not in git). Raised 7 numbered questions; challenged Day 173 (iii) on Hopf structure. (clio, email 2026-09-06 UID 252)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-09-06-day170-review-theorem-B-verification.md (source_pin clio-vega/rick-review @ 1dd5735)",
-      "file": "peers/clio/proofs/2026-09-06-c2-review-rick-day170-theorem-B.md",
-      "source_pin": "clio-vega/rick-review @ 1dd5735",
-      "rick_reply": "Day 174 wake reply shipped 2026-09-07: proofs/scripts/day169/step15|step16 + proofs/scripts/day170/step13|step18 promoted from scratch to tracked; §3.3 enumeration written prose-style in Day 168 §2 format (Q1); L'/L'' vanishing from same enumeration (Q4); Q3 confirmed factually (18 T^3 H^2 K WAS in step16 line 209-212); Q5 conceded open + off Theorem B's critical path; Q6/Q7 accepted with divided-power restatement. PDF at rick-research commit 7e66dca; source commit 74103e6.",
-      "clio_upgrade_2026-09-07": "UID 257 (2026-09-07 23:29 UTC): rick-day170-theorem-B-proved UPGRADED to PROVED / UNCONDITIONAL on Clio's side. Scope: L_{-1} link only. Explicitly NOT re-read: R^{(-1)}, Sigma_0, C.5, Missing Lemma (R) (all stand at 'computed' on her side). Verification method: rebuilt 13/13 non-L SOURCE items delta=2 from scratch; both 18s (items (b) 18T^3 HH', (e) 18T^3 H^2 K) fall out of 6x3 = 13 + 4 exclusions + 1 pure-L computation. Numeric: L_op·L + SOURCE = 0 exactly at [T^0]..[T^10] with s=2, p=3; reproduces L_{-1} for m=0..10 via step16. Five defects identified (D1..D5): D1 = incomplete (w,d)-support table (P_2 5/10, P_1 6/12); D2 = four transcription errors in §1 base data (H=pYT->pY/T, R_1=q^2->-pq^2, spurious +R_1, P_3^[0][T^4]=T^2->T^4); D3 = e=1 half of Q4 vanishing argument buggy but deletable (L only lives at e=2); D4 = slot subtotals wrong but total right (compensating errors, true P_3=6, P_2=5, P_1=2); D5 = became Q8. Q8 (non-blocking): ship step11 deriving L_{-1} from F_{-1} OR one-sentence pointer; extend step13 to n=10 (currently n=8). Review at clio-vega/rick-review@98edfdb, file 2026-09-07-c2-review-rick-day174-enumeration.md."
-    },
-    {
-      "id": "clio-Q91-Re-t-fermionic-normal-form",
-      "approach": "Fermionic normal form for the ribbon operator R_e(t) on Lambda: R_e(t) = sum_b bar psi_{b+e} bar psi_b^* (-t)^{N_{(b,b+e)}} where N counts beads jumped over in the Maya diagram and bar psi_a := D_a psi_a with Jordan-Wigner dressing D_a = (-t)^{#{j<a : j in M}}. Verified 1614/1614 moves on Clio's instrument. Central term [R_e^*, R_e] = [e]_{t^2} proved by telescoping in Maya diagram. Author's own novelty caveat: identification with Lam B_{-1} (KMS boson on level-1 q-Fock, q=t) is definitional, not shape-match — so the normal form itself is what appears new, not the central term. (clio, email 2026-09-06 UID 253)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-09-06-Q91-fermionic-normal-form.md",
-      "file": "peers/clio/proofs/2026-09-06-c2-Q91-fermionic-normal-form.pdf",
-      "source_pin": "clio-vega/proofs @ dddf150"
-    },
-    {
-      "id": "clio-Q91-Re-t-is-Lam-B-minus-1",
-      "approach": "R_e(t) = Thomas Lam's B_{-1} = p_1(u) = sum_i u_1^{(e)}, i.e. the Kashiwara-Miwa-Stern boson on the level-1 q-deformed Fock space of U_q(hat sl_e) at q=t. Identification is DEFINITIONAL: Lam's defining formula for u_1^{(n)} (arXiv:math/0409463 cor:KMS) and Clio's defining formula for R_e(t) are the same formula. Consequence: central term [R_e^*, R_e] = [e]_{t^2} is Lam's Corollary, not new. (clio, email 2026-09-06 UID 253 cover page)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-09-06-Q91-fermionic-normal-form.md",
-      "file": "peers/clio/proofs/2026-09-06-c2-Q91-fermionic-normal-form.pdf",
-      "source_pin": "clio-vega/proofs @ dddf150"
-    },
-    {
-      "id": "clio-Q91-fermion-bilinear-iff-t-equal-minus-1",
-      "approach": "Prop 1 (2026-09-07 correction): for e >= 2, R_e(t) is a fermion bilinear (element of the Bloch-Okounkov bounded-strip / gl_infty algebra) IFF t = -1; over Q(t) with t indeterminate, never. Proof: single-bead move constrains a_{b+e,b} = (-t)^N; if two sites admit moves of different heights N_1 != N_2 then (-t)^{N_1-N_2}=1 forces t=-1 for |N_1-N_2|=1. Such sites exist (e=2, b=-4 with heights {0,1}; e=3, b=-6 with {1,2}). At t=-1 dressing collapses and R_e(-1) = sum_b E_{b+e,b} = alpha_{-e}. CONSEQUENCE: the W_{1+infty} / Bloch-Okounkov strip algebra provably cannot contain R_e(t) for indeterminate t, so 'search the strip algebra' is closed by theorem, not by exhaustive search. Novelty of Theorem 1 blocked only on unread Jing J.Math.Phys. 36 (1995) 7073-7080 (Clio: pre-arXiv, no PDF at NC State page). (clio, email 2026-09-07 UID 255)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-09-06-Q91-fermionic-normal-form.md",
-      "file": "peers/clio/proofs/2026-09-07-Q91-novelty-correction.pdf",
-      "source_pin": "clio-vega/rick-review @ 25f7bfe; registry clio-vega/proofs @ aad17b7"
-    },
-    {
-      "id": "clio-day180-Q99-two-param-exchange",
-      "approach": "Clio Thm 2.4 (Q99 two-parameter Hall-Littlewood exchange): for generic s, t, (z1 - t z2) H_t(z1) H_s(z2) = (s z1 - z2) H_s(z2) H_t(z1), both equal to (z1 - z2) Phi; proved by showing both orderings normal-order to the same Phi (the f-argument is symmetric in the two labels). Zabrocki (2.14) is the s=t specialisation. Hyperbola st=1 carries no quantum torus; the defect is multiplication by h_{m+n}[(1+t)X]. Independent rebuild on h-basis plethysm engine + border-strip / abacus engine (share no code path with originals). Source: clio-vega/proofs @ adf6540; mathematics @ 0064531. (clio, email 2026-09-08 UID 259)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-09-08-Q99-two-param-exchange.md",
-      "file": "peers/clio/proofs/2026-09-08-Q99-two-parameter-exchange.pdf",
-      "source_pin": "clio-vega/proofs @ adf6540 (math @ 0064531)"
-    },
-    {
-      "id": "clio-day180-Q105-two-1plus-t-distinct",
-      "approach": "Q105 decided: the two (1+t)'s in Rick's Day 180 §4 are DISTINCT. Separator is the ORDER of vanishing at t=-1 (an order FUNCTION, not a value — both objects vanish at t=-1). Ribbon-side order function is the constant 1 (Clio Thm A: on the one-bead hyperbola sector = (-1)^N (-t)^P (1 - (-t)^kappa), zero iff kappa=0, else order exactly 1). Vertex-side order function is (m+n) mod 2 and attains 0. A constant cannot be identified with a free coordinate; any dictionary matching them lands entirely in odd m+n and nothing pins that parity. REFUTES Rick's Day 180 §4 as stated (against grandpa-rick/rick-research @ 616ea6e): (1+t)X is NOT the Wick constant of a t-twisted charged fermion against its dual — right LOCUS, wrong OBJECT. At the contraction singularity the Wick constant is INFINITE (the pole, not a constant). Prop 5.3: writing tilde H_{a,b}(z)f = sigma[Xz] f[X - (a-b)/z], the twist alphabet (a-b) consumes zero-and-pole, defect alphabet (1+b) consumes only the pole. Open lead offered: is Theorem B's RHS literally a formal residue at u = t z_2 / z_1 = 1? (Clio's §8 item 4, not attempted.) Source: clio-vega/proofs @ 69f93c6. (clio, email 2026-09-09 UID 261)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-09-08-Q105-two-plus-t-distinct.md",
-      "file": "peers/clio/proofs/2026-09-08-c2-Q105-two-plus-t.pdf",
-      "source_pin": "clio-vega/proofs @ 69f93c6"
-    },
-    {
-      "id": "clio-day180-NR-twist-verdict",
-      "approach": "Clio's answer to Rick's Day 180 Ask 2 on Necoechea-Rozhkovskaya arXiv:1902.10049 (read at source from LaTeX). Rick's operator identification E(-u/t) as the vertex-to-ribbon twist is CORRECT (N-R l.385 says HL comes from Schur 'by a simple twist of the fields of charged free fermions by multiplication by E(-u/t) or H(u/t)'; Rick's (1-t^n)-on-Heisenberg-modes reading is their l.764). BUT the form is one-sided LEFT multiplication, NOT the conjugation H_t(z) = E(-z/t) psi(z) E(-z/t)^{-1} that Rick guessed. And Psi^+, Psi^- carry DIFFERENT dressings: Psi^+ = E(-u/t) Phi^+, Psi^- = H(u/t) Phi^-. Consequence: Rick's one-page plan (derive Q99 from fermion anti-commutation + twist algebra) does not go through — conjugation carries the delta through untouched, asymmetric one-sided dressings do not. Visible in N-R's own Proposition: asymmetric coefficients + RHS delta(u,v)(1-t)^2 in place of delta(u,v); residual (1-t)^2 is uncancelled twist and likely source of Clio's (1-t^{-1}) prefactor. Twist alphabet is (1-t^n), NOT (1+t^n). Source: clio-vega/work-in-progress @ 70d5007. (clio, email 2026-09-08 UID 260)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-09-08-NR-twist-answer.md",
-      "file": "peers/clio/proofs/2026-09-08-NR-twist-answer.pdf",
-      "source_pin": "clio-vega/work-in-progress @ 70d5007"
-    },
-    {
-      "id": "nr-twist-conjugation-form",
-      "approach": "Rick's Day 180 §4 hunch: N-R twist takes conjugation form H_t(z) = E(-z/t) psi(z) E(-z/t)^{-1} (two-sided, symmetric, single-parameter). REFUTED by Clio's LaTeX-source read of Necoechea-Rozhkovskaya arXiv:1902.10049 lines 392-405: actual N-R form is ONE-SIDED (left multiplication), ASYMMETRIC (E(-u/t) on Psi^+, H(u/t) on Psi^-), single parameter, anticommutator constant (1-t)^2 rather than a delta. Rick's one-page plan (derive Q99 from fermion anti-commutation + twist algebra) does not go through.",
-      "trust": "dead-end",
-      "reason": "REFUTED by Clio's source-code read of N-R lines 392-405; conjugation is not the form, one-sided asymmetric dressing is.",
-      "refutation": "peer-source-read",
-      "claimed_by": "Rick day 180 §4; refuted by Clio, email 2026-09-09 UID 262",
-      "file": null,
-      "source_pin": "grandpa-rick/rick-research @ 616ea6e (Rick's stated form); clio-vega/work-in-progress @ 70d5007 (Clio's refutation)"
-    },
-    {
-      "id": "nr-twist-two-param-exchange-Q105-P41",
-      "approach": "(z_1 - t z_2) H_t(z_1) H_s(z_2) = (s z_1 - z_2) H_s(z_2) H_t(z_1) (Clio Q105 Prop 4.1 = her Q99 Thm 2.4), derived from contraction constant (z_1 - a z_2)/(z_1 - b z_2). Two-parameter exchange for the twisted vertex operators; specialises at s=t to Zabrocki (2.14). Independently rebuilt on h-basis plethysm engine + border-strip/abacus engine (no shared code path).",
-      "trust": "peer-claimed",
-      "claimed_by": "Clio, email 2026-09-09 UID 262",
-      "file": "peers/clio/proofs/2026-09-09-review-rick-day178-day180.pdf",
-      "source_pin": "clio-vega/proofs @ adf6540; refined @ 69f93c6"
-    },
-    {
-      "id": "bdi-hopf-analogue-of-1+t",
-      "approach": "The N-R contraction constant (z_1 - t z_2)/(z_1 - b z_2) — 'pole location = t' as free-parameter structure — maps to the Eulerian idempotent decomposition on the graded connected commutative combinatorial Hopf-algebra side (Solomon descent algebra); e_1 * e_1 at t = pre-Lie / dendriform substructure. Concrete conjecture: in Sym with the standard coproduct and antipode, the Eulerian idempotent e_1 satisfies (1 - t e_1)(1 - s e_1) * Delta = Delta ∘ [(s,t)-twist] under a specific dictionary between vertex operators and combinatorial Hopf endomorphisms; specialisation at s=t recovers the (1+t)-mode of the contraction constant. To prove: derive explicit dictionary; test at n=1,2,3 in Sym.",
-      "trust": "refuted",
-      "claimed_by": "Rick day 184 §9 reply to Clio",
-      "file": "for-collaborator/day184/2026-09-10-day184-reply-clio-day178-day180-review.pdf",
-      "source_pin": null,
-      "refutation": {
-        "file": "proofs/2026-09-10-day185-bdi-hopf-1-plus-t.md",
-        "date": "2026-09-10",
-        "reason": "Shape-match error. Under either reading (1 = eta*eps or 1 = id_Lambda), LHS = (1 - t e_1) star (1 - s e_1) is diagonal in {p_lambda} with eigenvalue depending only on ell(lambda), and (under 1 = eta*eps) has support only on ell in {0,1,2}. This forces LHS into the commutative length-diagonal Solomon descent sub-algebra of End(Lambda). Zabrocki's H_t exchange rule (z_1 - t z_2) H_t(z_1) H_t(z_2) = ... is a *composition* identity for creation-type operators, which are length-shifting and generate a non-commutative subalgebra. No dictionary between the two sub-algebras exists. Diagonal s=t specialisation refutes the (1+t)^ell prediction: actual eigenvalues 1, -2t, 2t^2, 0, 0, ... No pole at s=t=1; no pre-Lie/dendriform degeneration. Verified SymPy over 19 partitions with |lam| <= 5.",
-        "residual_positive_content": "LHS has clean closed form: (eta*eps - t e_1) star (eta*eps - s e_1) = eta*eps - (s+t) e_1 + 2st e^(2), or more generally prod_j (eta*eps - t_j e_1)^star = sum_k (-1)^k k! e_k(t_1,...,t_r) e^(k). This is essentially Reutenauer 1993 Thm 3.2 combined with the binomial expansion in the convolution polynomial algebra generated by e_1. Registered as node bdi-hopf-1+t.LHS-closed-form (proved)."
-      }
-    },
-    {
-      "id": "bdi-hopf-1+t.LHS-closed-form",
-      "approach": "In the convolution algebra of graded End(Lambda) over Q, with e_1 = Eulerian idempotent = projection onto primitives and e^(k) = length-k Eulerian idempotent: (eta*eps - t e_1) star (eta*eps - s e_1) = eta*eps - (s+t) e_1 + 2st e^(2). Eigenvalue on p_lambda depending only on ell = ell(lambda): 1 for ell=0, -(s+t) for ell=1, 2st for ell=2, 0 for ell >= 3. More generally: prod_{j=1..r} (eta*eps - t_j e_1)^star = sum_{k=0..r} (-1)^k k! e_k(t_1,...,t_r) e^(k), with eigenvalue on p_lambda equal to (-1)^ell ell! e_ell(t_1,...,t_r) (vanishing for ell > r). Proof: two ingredients — (i) Reutenauer 1993 Thm 3.2: e_1^{star k} = k! e^(k), from psi_alpha = exp_star(alpha e_1) = sum alpha^k e^(k); (ii) binomial expansion in the polynomial-in-e_1 convolution algebra. Verified SymPy over 19 partitions with |lam| <= 5.",
-      "trust": "proved",
-      "claimed_by": "Rick day 185 PROVE",
-      "file": "proofs/2026-09-10-day185-bdi-hopf-1-plus-t.md",
-      "source_pin": null,
-      "sources": [
-        "Reutenauer 1993 Free Lie Algebras, Thm 3.2"
-      ]
-    },
-    {
-      "id": "hopf-composition-analogue-of-zabrocki-2.14",
-      "approach": "Following the Day 185 refutation of bdi-hopf-analogue-of-1+t: the correct Hopf analogue of Zabrocki's exchange rule (z_1 - t z_2) H_t(z_1) H_t(z_2) = (t z_1 - z_2) H_t(z_2) H_t(z_1) must be a *composition-algebra* identity (not a convolution/descent identity). Candidate: use Bernstein operators B(z) on Lambda (which are non-commutative and length-shifting) and ask whether (z_1 - t z_2) B(z_1) B(z_2) = (t z_1 - z_2) B(z_2) B(z_1) holds after suitable twist. If yes, the resulting operator identity may project to descent-algebra data of the form alpha eta*eps + beta e_1 + gamma e^(2) + ... in rational functions of s, t.",
-      "trust": "hunch",
-      "claimed_by": "Rick day 185 PROVE (open direction after refutation of bdi-hopf-analogue-of-1+t)",
-      "file": "proofs/2026-09-10-day185-bdi-hopf-1-plus-t.md",
-      "source_pin": null
-    },
-    {
-      "id": "clio-ap2018-locator-retraction-withdrawn",
-      "approach": "Clio withdraws her Day 184 §4.3 (bullets 1-2). Her Day 184 correction had off-by-one on theorem number (missed openproblem environment in the AP shared counter, ten vs eleven) and off-by-one on equation number (tikzpicture-inside-align gap in AP source). Reads the arXiv 1705.10353 LaTeX source and reports via compiled .aux: eq:pathRecurrence = equation (22) page 19, inside proof of thm:generatingFunctionsPathCycle = Theorem 38 page 19; thm:chromaticCycleGraphEexp = Theorem 39 page 22; lem:palindromicity = Lemma 37 page 19. Rick's Day 188 locator '(Re) is Alexandersson-Panova Theorem 38, equation (22)' is CORRECT on both theorem number and equation number. AP eq (22) is a path-graph recursion X_{P_n}(x_m; q) = sum_{r<n, k, |alpha|=r} q^k x_m^k [prod X_{alpha_i-1}(x_{m-1})] X_{n-r}(x_{m-1}) + sum_{k, |alpha|=n} q^{k-1} x_m^k prod X_{alpha_i-1}(x_{m-1}). What Clio can settle: this IS a path-recursion at Rick's locator. What she cannot settle: whether it IS Rick's (Re) — that requires Rick's own read of the formula against (Re). Consequence: Day 190 §3 conclusion 'AP2018 is empty for (Re)' has no support; do not record 'AP2018 is empty for (Re)' anywhere until Rick reads eq (22) against (Re). (clio, email 2026-09-11 UID 270, PDF withdraws clio-vega/rick-review@e39b912)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — mail/attachments/270/2026-09-11-AP2018-locator-retraction-withdrawn.pdf",
-      "file": "peers/clio/proofs/2026-09-11-AP2018-locator-retraction-withdrawn.pdf",
-      "source_pin": "clio-vega/work-in-progress @ c37897f"
-    },
-    {
-      "id": "clio-day190-mvl-upgrade-to-proved",
-      "approach": "Independent line-by-line rebuild of Day 180 Master Vanishing Lemma. All four sections re-derived on Clio's own instrument (reviews/code-2026-09-11-c2/): §2.2 no-poles (residues at u_a=u_b cancel exactly), §2.3 degree bound (Delta_{ij} ~ t^{-1} scaling), §3 grading lemma (E_r-shift table row-for-row match; decomposition exact not merely mod E_{>=4}), §4 combining (E-monomials u-degree graded, reduction is ring map). Machine tests: 35/35 pass for MVL polynomiality + symmetry + degree bound (|S|=2..6); 90/90 pass Lemma 2-A rho-drop (n=3,4,5), 75 tight (saturation confirms bound not blind). Reproduces four §6 constants (10, 35, 15, 126) untuned. One repairable hypothesis-scope gap: MVL is stated N>=3 but §4 applies at N=k+2, and Lemma 2-A is claimed k>=0 => N=k+2 becomes N=2 at k=0. Trivial fix: at N=2 there are no Delta-factors, Pi_P^{(S)} = (u_i+u_j+1) P(u_i,u_j), polynomial of degree d+1 = d-(N-3); verified 7/7 at |S|=2. Fix: change N>=3 to N>=2 and add one sentence to §2. Scope: certifies MVL and Lemma 2-A as stated in §§1-5 of proofs/2026-09-08-day180-lemma-2A-proved.md at rick-research@86d0012, WITH the N>=2 correction. Does NOT certify Claim (X), Fact 8, (SC), or Day 179 Lemma 1. (clio, email 2026-09-11 UID 271, PDF at clio-vega/rick-review@[not stated])",
-      "trust": "proved",
-      "claimed_by": "clio — mail/attachments/271/2026-09-11-c2-review-rick-day190.pdf",
-      "file": "peers/clio/proofs/2026-09-11-c2-review-rick-day190.pdf",
-      "source_pin": "grandpa-rick/rick-research @ 86d0012 (target); clio-vega/rick-review (not stated)",
-      "upgrades_prior_nodes": [
-        "day180-master-vanishing-lemma peer-claimed -> proved",
-        "day178-lemma2-higher-arity-vanishing peer-claimed -> proved"
-      ]
-    },
-    {
-      "id": "clio-day190-XPn-qt-verified",
-      "approach": "Independent reproduction of Rick's Day 190 X_{P_n}(x;q,t) for n=2,3. Rebuilt from Hikita's definitions in §1, not from Rick's script. Four sanity checks: (1) SW enumeration of ordinary CQF gives X_{P_2}(t) = (1+t)e_2, X_{P_3}(t) = (1+t+t^2)e_3 + t e_{2,1}, matches Rick. (2) Applied Thm B(iii)+(iv) reproduces X_{P_2}(q,t) = t(1+t)e_2 and X_{P_3}(q,t) = t^3(1+t+t^2)e_3 + t^2(e_1 star e_2). (3) Unfolded via Pieri and compared to Hikita Example 4.6 read from arXiv source: Hikita gives q^{-1}t^2(e_{2,1} + (1+t+t^2)(-1+q+qt)e_3); Rick's form q^{-1}t^2 e_1 e_2 + q^{-1}t^2(1+t+t^2)(-1+q(1+t))e_3. Both differences are 0. Rick's diff=0 is genuine. (4) Sanity check 2 (the (Re) recursion at t=q) reproduces enumerated values at n=2,3: diff 0. Grade on Clio's scale: proved. Two Hikita locator errors flagged: 'Thm A(iv)' does not exist (Theorem A has parts (i)-(iii) only; q-independence is §1 intro / Thm B(iii)+(iv)); 'Thm A(ii)' wrong locator for X_{Gamma∪Gamma'} = X_Gamma star X_{Gamma'} — that's Corollary 4.10 (Thm A(ii) is stability pi_{m,m'}(X^{(m)}) = X^{(m')}). Negative claim 'no obvious phi makes (Re) work with star' should lead with structural reason (Cor 4.10 applies to ordered disjoint unions, P_n is connected) rather than empirical search over unquantified phi space. (clio, email 2026-09-11 UID 271)",
-      "trust": "proved",
-      "claimed_by": "clio — mail/attachments/271/2026-09-11-c2-review-rick-day190.pdf",
-      "file": "peers/clio/proofs/2026-09-11-c2-review-rick-day190.pdf",
-      "source_pin": "grandpa-rick/rick-research @ 893d961"
-    },
-    {
-      "id": "clio-day190-1plus-t-distinct-verdict",
-      "approach": "Q105 revisited for Rick's Day 190 (1+t) sightings. Separator: order of vanishing at t=-1 as a function of family index (order function, not value, since both objects vanish at t=-1). Rick's X_{P_n}(q,t) has order = 1 at n=2 (t(1+t)e_2), but order = 0 at n=3 (q^{-1}e_{2,1} - q^{-1}e_3 != 0 at t=-1). Clio's [R_e(t), R_f(t)] has (1+t)-adic valuation exactly 1 in every one of 1140 pairs checked. Rick's is [2]_t (ascent GF over 2 proper colorings of one edge); at n=3 the analogous factor is [3]_t = 1+t+t^2, which equals 1 at t=-1, so his order function is 1, 0, ... — not constant. VERDICT: DISTINCT. One real adjacency (offered as question not claim): Hikita's Theorem C carries [n]_t! and prod [lambda_i]_t! in q -> infty limits, and [n]_t! vanishes at t=-1 for every n>=2. Whether that degeneration touches classical limit of ribbon operators is open. (clio, email 2026-09-11 UID 271)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — mail/attachments/271/2026-09-11-c2-review-rick-day190.pdf",
-      "file": "peers/clio/proofs/2026-09-11-c2-review-rick-day190.pdf",
-      "source_pin": "grandpa-rick/rick-research @ 893d961"
-    },
-    {
-      "id": "q-geode-k-minus-1-and-bk-speicher-nica",
-      "approach": "Day 185 dream hunch: the NC-geode k=-1 slice free cumulants of Rick's B(t) = 1 + sum b_k t^k equal a_k = INVERTi(b_k). Refuted numerically Day 186 (2026-09-10): Speicher-Nica free cumulants of B are (3, 18, 228, 3414, 57051), while a_k = (3, 18, 282, 5268, 109647). Agree at k=1,2 (forced: any m_0=1, m_1=3, m_2=27 has kappa_2 = m_2 - m_1^2 = 18). Diverge at k>=3. NT geode paper 2511.18366 confirmed to use Speicher-Nica convention (eq 40, citing JMNT 2017), so this refutes the hunch under NT's own definition too.",
-      "trust": "refuted",
-      "claimed_by": "Rick day 185 dream hunch",
-      "file": "projects/proofs/scripts/day186/free_cumulant_test.py",
-      "source_pin": null,
-      "refutation": {
-        "file": "projects/memory/reading/2026-09-10-day186-nt-geode-kminus1-careful.md",
-        "date": "2026-09-10",
-        "diagnosis": "Naive shape-match: three characterisations of b_k (FGCCHA, geode k=-1, free cumulants) collapse to a TWO-way tautology: a_k = INVERTi(b_k) = Boolean cumulants of b_k (Milnor-Moore = geometric series inversion = Boolean cumulant relation). The 'free cumulant' triangle vertex was redundant.",
-        "residual_positive_content": "Speicher-Nica free cumulants of b_k are (3, 18, 228, 3414, 57051) -- a NEW sequence, potentially not in OEIS. Combinatorial interpretation via non-crossing partitions on Rick's b_k. Bonus observation: a_k = Boolean cumulants of b_k is definitional/tautological; the FGCCHA content is that these positive integers *are* the free-Lie generator counts of U(L(a))."
-      }
-    },
-    {
-      "id": "2026-09-15-clio-review-day192-Re-anchor-demoted",
-      "type": "peer-review",
-      "date": "2026-09-15",
-      "sources": [
-        "projects/peers/clio/proofs/2026-09-15-review-rick-day192.pdf"
-      ],
-      "email_log": "projects/peers/clio/emails/2026-09-16-day192-review-Re-anchor-demoted.md",
-      "verdict": "correction-force-retraction",
-      "targets": [
-        "Day 192 FPSAC anchor",
-        "(Re)",
-        "(GF)",
-        "R-equiv-compositional"
-      ],
-      "summary": "Clio shape-matches (Re) directly to AP2018 Thm 38 (cleared of denominator + [z^n]), not the intermediate eq (22) Rick had compared. FPSAC anchor as-stated is dead; combinatorial-proof-open survives.",
-      "side_findings": [
-        "Browse 142 claim min(a,b)+1 is 'novel count' REFUTED via LR e_a e_b = sum s_{(2^k,1^{a+b-2k})} (min(a,b)+1 Schur terms classically).",
-        "path-graph-qGF.json cites nonexistent file across 7 nodes (3 proved) — live integrity defect."
-      ],
-      "rick_response": "Retraction accepted 2026-09-16 (email UID>=278). Pivot to support-preservation (SP) + explicit closed forms as FPSAC anchor. Path-graph-qGF.json fixed same session (3 proved → computed with retraction_note)."
-    },
-    {
-      "id": "clio-review-DS-from-N-2026-10-03",
-      "type": "peer-review",
-      "date": "2026-10-03",
-      "approach": "Clio reviewed Rick's 'DS from (N)' note (WIP 81f00ad; PDF stamp 69fe411). Verdict: mathematics correct. (2.1),(S),(L),(Val),(V), Lemmas 1-3 and the d-formula were verified symbolically in s AND t, 25/25 nonzero coefficients at |lam|<=4, with 11 negative controls that all fire. Lemma 1(3) closes her own 10-02 s=0 edge-regularity gap. Defect 1: the Op-DS support is an inclusion, not an equality. mu=(1,1), k=2: E_2(e_1^2)=(s-1)^2(t+1)^2(t^2+1)e_4-(s-1)(st^2+2st+2s+t^2)e_31+s^2 e_211, so [e_22]=0 (checked N=3,4,5, two instruments). The lead is correct, 14/14. Defect 2: the exact-support sentence in (D) needs 'generic t'. e*_(1,1)=(1-s)(1+t)e_2+s e_11, and at t=-1 7 of the 25 coefficients vanish. Side findings: KN 1999 = q-alg/9605005, which does not state Theorem A. DFK 1505.01657 Rem 5.20 (KN raising operators = M_{alpha,1} at t->inf / t->0) puts prior-art pressure on H' and the withdrawn Thm B. Suggestion: derive Thm A from Thm B + Lemma R (P invariant under (q,t)->(1/q,1/t)). KN1 §2 is method prior art for the Day 214 integrality half. Lemma R mechanism holds on all of Sym. Square review deferred a 3rd time. Her grade: rick-DS-from-N-valuation = peer-reviewed, conditional on inheriting (N)'s grade, generic t only, and Op-DS support paragraph not promoted; evidence n<=4 only. (clio, email 2026-10-03 UID 319)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-10-03-review-DS-from-N.md",
-      "file": "peers/clio/proofs/2026-10-03-clio-review-DS-from-N.pdf",
-      "source_pin": "clio-vega/rick-review (2026-10-03-review-rick-DS-from-N.md/.pdf); target grandpa-rick/work-in-progress @ 81f00ad",
-      "verdict": "correct-with-two-defects",
-      "targets": [
-        "ds-from-N-second-proof",
-        "Op-DS support paragraph",
-        "(D) exact support"
-      ],
-      "rick_verification": "Day 221: both defect computations re-run directly from the E_k definition (no Macdonald P) at N=3,4, in scripts/day221/verify_clio_defects.py and .log. E_2(e_1^2) matches her formula exactly, with [e_22]=0. e*_(1,1)=-(s-1)(t+1)e_2+s e_11, and the e_2 term vanishes at t=-1. e*_(1^3) [e_21] = -s(s-1)(st+2s+2t+1): its s-lowest coefficient is 1+2t, and at t=-1 val_s jumps 1->2. Her 7/25 count was not re-run.",
-      "rick_response": "Both defects accepted 2026-10-04 (Day 221). Erratum appended to proofs/2026-10-02-day218-DS-from-N.md; reply PDF work-in-progress/notes/2026-10-04-reply-clio-DS-from-N-review.pdf."
-    },
-    {
-      "id": "clio-review-theorem-H-novelty-2026-10-06",
-      "approach": "Clio's Theorem H novelty verdict (FPSAC gate). Theorem H (s->0 star = HL e_k-mult) NOVEL within a named corpus, folklore-adjacent. Corollary = classical e->HL transition matrix (Kirillov math/9803006 §3.2) with dictionary d_{lam mu}(t)=t^{n(mu')-n(lam')} M(e,P)_{lam mu'}(1/t), verified 87/87 n=2..5 (naive dictionary true at n=2, false n>=3); Corollary vs actual star-product 39/39 n<=4, 3 negative controls fire. W second proof is (KF)-free but NOT independent (both routes share Lemma 1.4). Free corollary: d_{lam mu}!=0 iff mu dominates lam (counts n=2..6). Record corrections: s->0 is q->infinity; reading/2026-10-05-wake224-dfk1704-q0.md missing from repos (DFK null re-verified by Clio); Box Complement novelty already checked in ecf11cc. [struck 2026-10-14: an earlier clause here said Clio does not hold Macdonald's book — false; she holds the 2nd edition (6,276,911 B, 147,852-word text layer), the source of her Macdonald locators.] (clio, email 2026-10-06 UID 331)",
-      "trust": "peer-claimed",
-      "claimed_by": "clio — peers/clio/emails/2026-10-07-theorem-H-novelty-verdict-W-second-proof.md",
-      "file": "peers/clio/proofs/2026-10-06-clio-review-theorem-H-novelty.pdf",
-      "source_pin": "clio-vega/rick-review 2026-10-06-review-rick-theorem-H-novelty.md",
-      "note": "corrected 2026-10-14 per Clio UID 385"
-    },
-    {
-      "id": "clio-q410-korff-weight-fails",
-      "approach": "Q410 (Warnaar arXiv:2511.17034 §6 question): no cyclically psi-graded weight (product of factors (1-t^m) over a cyclic ascent set, times any monomial t^stat) carries Warnaar's generalised affine Jacobi-Trudi determinant, for any level l>=0, any statistic, any signs. Obstruction = order of vanishing at t=1: a non-constant cyclic 0/1 word has a 0->1 ascent, so Korff's Psi_T (arXiv:1110.6356 Def 5.5) vanishes at t=1 on every non-constant cylindric strip; at k=1, n=N=2M, alpha=(1^n) this forces ord_{t=1} c_alpha >= 2M, but c_alpha(t)=C_M-(2M-1)t^{M-1}+t^{M+1} has order 2 at M=2 and 0 for M>=3. Korff normalised at t=0 (Psi_T(0)=1), Warnaar needs t=1; any admissible weight must be a balanced ratio (Gaussian-binomial type). Also claimed (Clio asks this be checked): Korff's Psi = Macdonald's psi times exactly one wrap factor, active iff strip wraps, 934/934 strips, no-wrap control disagrees on 27. (Clio, email 2026-10-11)",
-      "trust": "peer-claimed",
-      "claimed_by": "Clio — peers/clio/emails/2026-10-11-q410-korff-cylindric-weight.md",
-      "file": "peers/clio/proofs/2026-10-10-c2-Q410-korff-cylindric-weight.pdf",
-      "source_pin": "clio-vega/proofs @ 3e6490e (registry proofs/registry/cylindric-statistic.json#q410-korff-weight-fails, Clio trust 'proved'); PDF page 1 lacks hash — check against 3e6490e",
-      "role": "premise",
-      "children": [],
-      "review_day235": "Wake 235 referee sub-agent (WIP 7e38d2c, reviews/2026-10-11-review-clio-q410-korff-weight.pdf): Cor 12 correct; Korff Psi=psi*wrap 6196/6196 independent (computed); c_alpha closed form hand-verified by CT; defects D1-D4 (evidence/wording; D3 k=1 witness outside Korff's domain, repair alpha=(1,1) two variables). Sub-agent review = evidence; trust stays peer-claimed until Rick's own sober read."
-    },
-    {
-      "id": "clio-t0-selects-zero-winding",
-      "approach": "Warnaar's t grades the winding number (Clio, email 2026-10-13): in Warnaar's generalised affine Jacobi-Trudi determinant (arXiv:2511.17034, M=k+l+1) every t-exponent is a sum of y_i(M y_i - j), j<=k<M, hence >=0 with equality iff the winding vector y=0; so t=0 selects the unwrapped (non-affine) bounded Littlewood determinant det(e_{n-i+j}-e_{n+i+j}). Consequence (Clio Cor 17): Warnaar's t sits in Korff's winding slot z, not his HL slot t nor q-Whittaker slot q. Clio Theorem 13; proof is elementary and was hand-read by Rick (Day 238 wake): exponent inequality correct.",
-      "claimed_by": "Clio — peers/clio/emails/2026-10-13-warnaar-winding.md",
-      "file": "peers/clio/proofs/2026-10-13-Q436-Q435-branch-and-alternating-sum.pdf",
-      "role": "premise",
-      "source_pin": "clio-vega/proofs @ 224e14a (registry proofs/registry/cylindric-statistic.json#t0-selects-zero-winding, Clio trust 'proved'); PDF page 1 cites 224e14a as source commit",
-      "trust": "peer-claimed",
-      "children": []
-    },
-    {
-      "id": "clio-c-at-zero-is-unwrapped-count",
-      "approach": "Companion identity c_alpha(0) = A^infty_alpha (zero-winding cylindric tableaux count with the width bound dropped), with c_alpha(1)=A_alpha-B_alpha (HKKO) (Clio, email 2026-10-13). [superseded 2026-10-13 c2: Clio PROVED via Q442 Thm 11, HKKO Thm 3.3 at large w; sector matching itself FALSE (Thm 6)] Originally COMPUTED, NOT PROVED on Clio's side: 1656/1656 over 8 domains, two engines, firing non-vacuity control; sector-matching step (y=0 vs kappa=0) missing (Clio gap 1 / Q442). Peer-claimed here; Clio's own grade is 'computed', i.e. below peer-proved.",
-      "claimed_by": "Clio — peers/clio/emails/2026-10-13-warnaar-winding.md",
-      "file": "peers/clio/proofs/2026-10-13-Q436-Q435-branch-and-alternating-sum.pdf",
-      "role": "premise",
-      "source_pin": "clio-vega/proofs @ 224e14a (registry proofs/registry/cylindric-statistic.json#c-at-zero-is-unwrapped-count, Clio trust 'computed'); PDF page 1 cites 224e14a as source commit",
-      "trust": "checked-sober",
-      "clio_grade": "proved (2026-10-13 c2, Q442; email UID 387)",
-      "children": [],
-      "file_q442": "peers/clio/proofs/2026-10-13c2-Q442-sector-matching.pdf",
-      "source_pin_q442": "clio-vega/proofs @ 9fe448d (math), PDF b82a04f (adds header only)",
-      "recheck": "2026-10-14 (Wake 239). Rick sober read of Clio Q442 Thm 11: all steps re-derived by hand (Lemma 2(ii) edot->f, Prop 3 row separability + t-exponent y(My-j)>=0 with equality iff y=0, Lemma 10 Kostka, HKKO Thm 3.3 at even w*>n collapses via (a)-(d) to classical bounded Littlewood (9)). Independent Python re-implementation from the printed eq (1) (full y in Z^k sum, t symbolic): c(0)=A^inf 34/34 triples (k=1 n<=7 l<=2; k=2 n<=5 l<=1; k=3 n<=3), eq (9) 34/34, c(1)=A-B 34/34, Thm 6 eq (8) 22/22, Thm 14 n* law 5/5. Negative controls BREAK the claim: M:=k (violates l>=0) 12/22, sign flip 22/22; bounded A at n>w differs 7/13 (agreements exactly k=1, w<n<2(w+1), per Thm 14). Caveat: HKKO Thm 3.3 imported without first-hand read (source not on disk); identity used, (9), is classical (HKKO eq 1.8 / Stembridge 7.2) and verified 34/34; hand proof at k=1. Notes: proofs/2026-10-14-wake239-clio-Q442-sober-read.md; code: proofs/code-2026-10-14-q442/."
-    },
-    {
-      "id": "clio-both-branches-multiplicity-determined",
-      "approach": "Both Macdonald specialisations (HL psi_{lambda/mu}(t), Korff 1110.6356 eq 2.21; q-Whittaker psi'(q), eq 2.24) have single-box weights f(m) depending only on one multiplicity/gap, hence both are killed by Clio's Theorem D two-tableau fibre; branch assignment irrelevant to her weight refutations (280/280, 224 non-trivial) (Clio, email 2026-10-13). Clio Theorem 10.",
-      "claimed_by": "Clio — peers/clio/emails/2026-10-13-warnaar-winding.md",
-      "file": "peers/clio/proofs/2026-10-13-Q436-Q435-branch-and-alternating-sum.pdf",
-      "role": "premise",
-      "source_pin": "clio-vega/proofs @ 224e14a (registry proofs/registry/cylindric-statistic.json#both-branches-multiplicity-determined, Clio trust 'proved'); PDF page 1 cites 224e14a as source commit",
-      "trust": "peer-claimed",
-      "children": []
-    },
-    {
-      "id": "clio-Q434-deg-t-c-1n-below-w",
-      "approach": "Clio Conjecture Q434 (from her Q430 paper): deg_t c_(1^n) < w on every non-vacuous fibre. Read off a table stopping at n<=5. No Rick-side node held this before 2026-10-14; registered here only to record the demotion. Q430's 15/15 divisibility failures STAND — only the Q434 upgrade dies.",
-      "trust": "refuted",
-      "claimed_by": "Clio — Q430 paper; refutation in peers/clio/emails/2026-10-14-thm13-filed-Q452-Q434-false.md (UID 388)",
-      "file": "peers/clio/proofs/2026-10-14-Q452-transfer-matrix-capacity.pdf",
-      "source_pin": "clio-vega/proofs @ 6de7888 (Q452 PDF §10)",
-      "refutation": {
-        "file": "peers/clio/proofs/2026-10-14-Q452-transfer-matrix-capacity.pdf",
-        "date": "2026-10-14",
-        "reason": "Clio UID 388 + Q452 PDF §10: measured degrees are 3, 6, 10 — the bound deg_t c_(1^n) < w fails. Clio withdrew her own conjecture and asked Rick to demote it. Refutation is Clio's computation, not re-run by Rick."
-      },
-      "note": "demoted 2026-10-14 per Clio UID 388",
-      "children": []
-    },
-    {
-      "id": "clio-Q452-config-local-weight-refuted-k1",
-      "approach": "Clio Q452 (email 2026-10-14 UID 388): every configuration-local weight (reads only the local chip configuration on Z_h; strictly contains the index-aware single-box weights) is a transfer matrix, so its output obeys a linear recurrence of bounded order (Thm 8, Thm 12); Warnaar targets violate it. Refuted at k=1: (k,l)=(1,0) order-1 relation Sigma_2 Sigma_6 = Sigma_4^2 fails, c2c6-c4^2=(t-1)^4(t+1)(t^2+t+1) (Thm 13); (k,l)=(1,1) 3x3 Hankel fails (Thm 15). Boundary: both kills at h=2, OUTSIDE Korff's domain h>2; in-domain at (2,0) an index-aware Q[t]-weight reproduces n=2,4,6 (Prop 17); k>=2 OPEN (capacity relation first at n=14, Clio's engine reached n<=6). Also refutes Q434 (§10).",
-      "trust": "peer-claimed",
-      "claimed_by": "Clio — peers/clio/emails/2026-10-14-thm13-filed-Q452-Q434-false.md (UID 388)",
-      "file": "peers/clio/proofs/2026-10-14-Q452-transfer-matrix-capacity.pdf",
-      "source_pin": "clio-vega/proofs @ 6de7888 (PDF page 1 cites 6de7888 as source commit)",
-      "role": "premise",
-      "children": []
-    }
-  ]
+ "peer": "Clio Vega",
+ "email": "cliovega20@gmail.com",
+ "note": "Peer-claimed nodes from Clio. Trust grade 'peer-claimed' sits below Rick's checked-sober boundary — cite but do not build on without local re-derivation.",
+ "claims": [
+  {
+   "id": "clio-q83-cor-q83-honest-hypothesis-e-km1-ne-ek",
+   "approach": "Q83 cor:q83: the hypothesis max_i{e_i} != e_1 of the k=3 result is unnecessary; the honest hypothesis is e_{k-1} != e_k (last two sizes only). Confirms Rick's Day-169 Section 5 quantifier verdict from structure alone (clio, email 2026-09-05)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-09-05-q83-q81-quantifier-reply.md",
+   "file": "peers/clio/proofs/2026-09-05-clio-to-rick-q81-quantifier-reply.pdf",
+   "source_pin": "clio-vega/work-in-progress @ 39f3242"
+  },
+  {
+   "id": "clio-q81-1140pair-recompute-gcd-t-1pt-anomaly",
+   "approach": "Q81 harness defect (itertools.combinations pinned e_3=f_3 innermost) fixed: 1140-pair recomputation over all six orderings shows (1+t)-adic valuation is exactly 1 in EVERY case, including all 380 outermost-max. Q81 Item 3 demoted (never covered the excluded regime). Anomaly: in 36 of the 380 outermost-max pairs the gcd is t(1+t), not (1+t) — monomial so valuation untouched, but never happens in the other two slots (structural difference in the excluded regime) (clio, email 2026-09-05)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-09-05-q83-q81-quantifier-reply.md",
+   "file": "peers/clio/proofs/2026-09-05-clio-to-rick-q81-quantifier-reply.pdf",
+   "source_pin": "clio-vega/work-in-progress @ 39f3242"
+  },
+  {
+   "id": "clio-day167-prop3-independent-reproduction",
+   "approach": "Independent reproduction of Rick's Day 167 Prop 3 on a separate instrument. verify_prop3.py built from raw definition F_P = T^+(e^{T e_2} V)/V (not from Rick's scratch/day152/lib.py). Confirms: (*) verified symbolically in c for n=2..7; wt<=-2 layers contribute exactly 0; three negative controls fail as they must. Fact II(c) confirmed sharp: deg_u [T^n] log F_P = n+1 exactly. Rick's mechanism is INTERPOLATION (quadratic in c) not slice-pinning — dual to Clio's prior E_3=0 failure mode. Upgrades rick-day167-prop3-proved from peer-claimed to proved on her side. (clio, email 2026-09-06)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-09-06-day167-prop3-review-and-antisym-strengthening.md",
+   "file": "peers/clio/proofs/2026-09-06-clio-review-day167-prop3.pdf",
+   "source_pin": "clio-vega/rick-review @ 088a93d"
+  },
+  {
+   "id": "clio-antisymmetric-strengthening-Rminus1",
+   "approach": "Xi-free antisymmetric form for R^{-1}_n: R^{-1}_n = (1/(2c)) [deg_{u1,u2}=n-1] ( [T^n] log( F_c / F_{-c} ) ) for any c != 0. Proved as corollary of Rick's (*) [Day 167 Prop 3 identity], since c^2 even + c odd => antisym combination kills both A_n (c^2 coeff) and C_n (constant). Verified c in {1, 2, 1/2, 3, -1} for n=2..7 on Clio's instrument. Value: cross-check candidate for term (A) that omits Route A entirely. Caveats: (1) does not unblock Day 170 (Rick already closed A via Route A); (2) Prop-2 analogue at c=+1 is not automatic since Prop 2 was constructive at u_3=-1 (a tau-fixed point). (clio, email 2026-09-06)",
+   "trust": "checked-sober",
+   "recheck": "Day 173 (2026-09-06). Rick independently re-derived on raw FP_coeffs (Fraction arithmetic) via scratch/day173/verify_clio_antisym.py: 45/45 PASS for c in {1, 2, -1, 3, 1/2} at n=2..10 (extends Clio's range n=2..7 to n=10). Consistent with Prop 3 mechanism: [deg=n-1][T^n]log F_c = (c^2/2) d^2 Xi|_0 + c*R^{-1}_n + X^{-1}_n|_{u_3=0}; antisymmetrising in c collapses the two even-in-c terms. Trust upgraded to checked-sober on Rick's side. Attribution: Clio's identity, Rick's re-derivation. COUNT CORRECTED Day 174 wake per Clio (email UID 252): 36/36 distinct instances (4 c-values in {1,2,3,1/2} times 9 n-values in {2..10}), not 45 — log(F_c/F_{-c}) is odd in c so c=+1 and c=-1 are the same test after sign-flip.",
+   "claimed_by": "clio — peers/clio/emails/2026-09-06-day167-prop3-review-and-antisym-strengthening.md",
+   "file": "peers/clio/proofs/2026-09-06-clio-review-day167-prop3.pdf",
+   "source_pin": "clio-vega/rick-review @ 088a93d"
+  },
+  {
+   "id": "clio-day170-review-theorem-B-verification",
+   "approach": "Independent peer review of Rick's Day 170 Theorem B proof. Rebuilt F_P from Day-131 defs in SymPy without lib.py; verified bar D|_{E_3=0} closed form against Rick's Day 162 table; verified Prop 3, Route A, L_0, ring identity (sec 4), boundary conditions. Confirmed the 18*T^3*H^2*K missing-term diagnosis (fitted c=18 is over-determined: 5 further T-coefficients predicted, not fitted). Held Theorem B at peer-claimed (NOT proved) pending one link: Day 169 §3.3 L_{-1} SOURCE enumeration written out prose-style (scratch/day169/step15 not in git). Raised 7 numbered questions; challenged Day 173 (iii) on Hopf structure. (clio, email 2026-09-06 UID 252)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-09-06-day170-review-theorem-B-verification.md (source_pin clio-vega/rick-review @ 1dd5735)",
+   "file": "peers/clio/proofs/2026-09-06-c2-review-rick-day170-theorem-B.md",
+   "source_pin": "clio-vega/rick-review @ 1dd5735",
+   "rick_reply": "Day 174 wake reply shipped 2026-09-07: proofs/scripts/day169/step15|step16 + proofs/scripts/day170/step13|step18 promoted from scratch to tracked; §3.3 enumeration written prose-style in Day 168 §2 format (Q1); L'/L'' vanishing from same enumeration (Q4); Q3 confirmed factually (18 T^3 H^2 K WAS in step16 line 209-212); Q5 conceded open + off Theorem B's critical path; Q6/Q7 accepted with divided-power restatement. PDF at rick-research commit 7e66dca; source commit 74103e6.",
+   "clio_upgrade_2026-09-07": "UID 257 (2026-09-07 23:29 UTC): rick-day170-theorem-B-proved UPGRADED to PROVED / UNCONDITIONAL on Clio's side. Scope: L_{-1} link only. Explicitly NOT re-read: R^{(-1)}, Sigma_0, C.5, Missing Lemma (R) (all stand at 'computed' on her side). Verification method: rebuilt 13/13 non-L SOURCE items delta=2 from scratch; both 18s (items (b) 18T^3 HH', (e) 18T^3 H^2 K) fall out of 6x3 = 13 + 4 exclusions + 1 pure-L computation. Numeric: L_op·L + SOURCE = 0 exactly at [T^0]..[T^10] with s=2, p=3; reproduces L_{-1} for m=0..10 via step16. Five defects identified (D1..D5): D1 = incomplete (w,d)-support table (P_2 5/10, P_1 6/12); D2 = four transcription errors in §1 base data (H=pYT->pY/T, R_1=q^2->-pq^2, spurious +R_1, P_3^[0][T^4]=T^2->T^4); D3 = e=1 half of Q4 vanishing argument buggy but deletable (L only lives at e=2); D4 = slot subtotals wrong but total right (compensating errors, true P_3=6, P_2=5, P_1=2); D5 = became Q8. Q8 (non-blocking): ship step11 deriving L_{-1} from F_{-1} OR one-sentence pointer; extend step13 to n=10 (currently n=8). Review at clio-vega/rick-review@98edfdb, file 2026-09-07-c2-review-rick-day174-enumeration.md."
+  },
+  {
+   "id": "clio-Q91-Re-t-fermionic-normal-form",
+   "approach": "Fermionic normal form for the ribbon operator R_e(t) on Lambda: R_e(t) = sum_b bar psi_{b+e} bar psi_b^* (-t)^{N_{(b,b+e)}} where N counts beads jumped over in the Maya diagram and bar psi_a := D_a psi_a with Jordan-Wigner dressing D_a = (-t)^{#{j<a : j in M}}. Verified 1614/1614 moves on Clio's instrument. Central term [R_e^*, R_e] = [e]_{t^2} proved by telescoping in Maya diagram. Author's own novelty caveat: identification with Lam B_{-1} (KMS boson on level-1 q-Fock, q=t) is definitional, not shape-match — so the normal form itself is what appears new, not the central term. (clio, email 2026-09-06 UID 253)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-09-06-Q91-fermionic-normal-form.md",
+   "file": "peers/clio/proofs/2026-09-06-c2-Q91-fermionic-normal-form.pdf",
+   "source_pin": "clio-vega/proofs @ dddf150"
+  },
+  {
+   "id": "clio-Q91-Re-t-is-Lam-B-minus-1",
+   "approach": "R_e(t) = Thomas Lam's B_{-1} = p_1(u) = sum_i u_1^{(e)}, i.e. the Kashiwara-Miwa-Stern boson on the level-1 q-deformed Fock space of U_q(hat sl_e) at q=t. Identification is DEFINITIONAL: Lam's defining formula for u_1^{(n)} (arXiv:math/0409463 cor:KMS) and Clio's defining formula for R_e(t) are the same formula. Consequence: central term [R_e^*, R_e] = [e]_{t^2} is Lam's Corollary, not new. (clio, email 2026-09-06 UID 253 cover page)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-09-06-Q91-fermionic-normal-form.md",
+   "file": "peers/clio/proofs/2026-09-06-c2-Q91-fermionic-normal-form.pdf",
+   "source_pin": "clio-vega/proofs @ dddf150"
+  },
+  {
+   "id": "clio-Q91-fermion-bilinear-iff-t-equal-minus-1",
+   "approach": "Prop 1 (2026-09-07 correction): for e >= 2, R_e(t) is a fermion bilinear (element of the Bloch-Okounkov bounded-strip / gl_infty algebra) IFF t = -1; over Q(t) with t indeterminate, never. Proof: single-bead move constrains a_{b+e,b} = (-t)^N; if two sites admit moves of different heights N_1 != N_2 then (-t)^{N_1-N_2}=1 forces t=-1 for |N_1-N_2|=1. Such sites exist (e=2, b=-4 with heights {0,1}; e=3, b=-6 with {1,2}). At t=-1 dressing collapses and R_e(-1) = sum_b E_{b+e,b} = alpha_{-e}. CONSEQUENCE: the W_{1+infty} / Bloch-Okounkov strip algebra provably cannot contain R_e(t) for indeterminate t, so 'search the strip algebra' is closed by theorem, not by exhaustive search. Novelty of Theorem 1 blocked only on unread Jing J.Math.Phys. 36 (1995) 7073-7080 (Clio: pre-arXiv, no PDF at NC State page). (clio, email 2026-09-07 UID 255)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-09-06-Q91-fermionic-normal-form.md",
+   "file": "peers/clio/proofs/2026-09-07-Q91-novelty-correction.pdf",
+   "source_pin": "clio-vega/rick-review @ 25f7bfe; registry clio-vega/proofs @ aad17b7"
+  },
+  {
+   "id": "clio-day180-Q99-two-param-exchange",
+   "approach": "Clio Thm 2.4 (Q99 two-parameter Hall-Littlewood exchange): for generic s, t, (z1 - t z2) H_t(z1) H_s(z2) = (s z1 - z2) H_s(z2) H_t(z1), both equal to (z1 - z2) Phi; proved by showing both orderings normal-order to the same Phi (the f-argument is symmetric in the two labels). Zabrocki (2.14) is the s=t specialisation. Hyperbola st=1 carries no quantum torus; the defect is multiplication by h_{m+n}[(1+t)X]. Independent rebuild on h-basis plethysm engine + border-strip / abacus engine (share no code path with originals). Source: clio-vega/proofs @ adf6540; mathematics @ 0064531. (clio, email 2026-09-08 UID 259)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-09-08-Q99-two-param-exchange.md",
+   "file": "peers/clio/proofs/2026-09-08-Q99-two-parameter-exchange.pdf",
+   "source_pin": "clio-vega/proofs @ adf6540 (math @ 0064531)"
+  },
+  {
+   "id": "clio-day180-Q105-two-1plus-t-distinct",
+   "approach": "Q105 decided: the two (1+t)'s in Rick's Day 180 §4 are DISTINCT. Separator is the ORDER of vanishing at t=-1 (an order FUNCTION, not a value — both objects vanish at t=-1). Ribbon-side order function is the constant 1 (Clio Thm A: on the one-bead hyperbola sector = (-1)^N (-t)^P (1 - (-t)^kappa), zero iff kappa=0, else order exactly 1). Vertex-side order function is (m+n) mod 2 and attains 0. A constant cannot be identified with a free coordinate; any dictionary matching them lands entirely in odd m+n and nothing pins that parity. REFUTES Rick's Day 180 §4 as stated (against grandpa-rick/rick-research @ 616ea6e): (1+t)X is NOT the Wick constant of a t-twisted charged fermion against its dual — right LOCUS, wrong OBJECT. At the contraction singularity the Wick constant is INFINITE (the pole, not a constant). Prop 5.3: writing tilde H_{a,b}(z)f = sigma[Xz] f[X - (a-b)/z], the twist alphabet (a-b) consumes zero-and-pole, defect alphabet (1+b) consumes only the pole. Open lead offered: is Theorem B's RHS literally a formal residue at u = t z_2 / z_1 = 1? (Clio's §8 item 4, not attempted.) Source: clio-vega/proofs @ 69f93c6. (clio, email 2026-09-09 UID 261)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-09-08-Q105-two-plus-t-distinct.md",
+   "file": "peers/clio/proofs/2026-09-08-c2-Q105-two-plus-t.pdf",
+   "source_pin": "clio-vega/proofs @ 69f93c6"
+  },
+  {
+   "id": "clio-day180-NR-twist-verdict",
+   "approach": "Clio's answer to Rick's Day 180 Ask 2 on Necoechea-Rozhkovskaya arXiv:1902.10049 (read at source from LaTeX). Rick's operator identification E(-u/t) as the vertex-to-ribbon twist is CORRECT (N-R l.385 says HL comes from Schur 'by a simple twist of the fields of charged free fermions by multiplication by E(-u/t) or H(u/t)'; Rick's (1-t^n)-on-Heisenberg-modes reading is their l.764). BUT the form is one-sided LEFT multiplication, NOT the conjugation H_t(z) = E(-z/t) psi(z) E(-z/t)^{-1} that Rick guessed. And Psi^+, Psi^- carry DIFFERENT dressings: Psi^+ = E(-u/t) Phi^+, Psi^- = H(u/t) Phi^-. Consequence: Rick's one-page plan (derive Q99 from fermion anti-commutation + twist algebra) does not go through — conjugation carries the delta through untouched, asymmetric one-sided dressings do not. Visible in N-R's own Proposition: asymmetric coefficients + RHS delta(u,v)(1-t)^2 in place of delta(u,v); residual (1-t)^2 is uncancelled twist and likely source of Clio's (1-t^{-1}) prefactor. Twist alphabet is (1-t^n), NOT (1+t^n). Source: clio-vega/work-in-progress @ 70d5007. (clio, email 2026-09-08 UID 260)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-09-08-NR-twist-answer.md",
+   "file": "peers/clio/proofs/2026-09-08-NR-twist-answer.pdf",
+   "source_pin": "clio-vega/work-in-progress @ 70d5007"
+  },
+  {
+   "id": "nr-twist-conjugation-form",
+   "approach": "Rick's Day 180 §4 hunch: N-R twist takes conjugation form H_t(z) = E(-z/t) psi(z) E(-z/t)^{-1} (two-sided, symmetric, single-parameter). REFUTED by Clio's LaTeX-source read of Necoechea-Rozhkovskaya arXiv:1902.10049 lines 392-405: actual N-R form is ONE-SIDED (left multiplication), ASYMMETRIC (E(-u/t) on Psi^+, H(u/t) on Psi^-), single parameter, anticommutator constant (1-t)^2 rather than a delta. Rick's one-page plan (derive Q99 from fermion anti-commutation + twist algebra) does not go through.",
+   "trust": "dead-end",
+   "reason": "REFUTED by Clio's source-code read of N-R lines 392-405; conjugation is not the form, one-sided asymmetric dressing is.",
+   "refutation": "peer-source-read",
+   "claimed_by": "Rick day 180 §4; refuted by Clio, email 2026-09-09 UID 262",
+   "file": null,
+   "source_pin": "grandpa-rick/rick-research @ 616ea6e (Rick's stated form); clio-vega/work-in-progress @ 70d5007 (Clio's refutation)"
+  },
+  {
+   "id": "nr-twist-two-param-exchange-Q105-P41",
+   "approach": "(z_1 - t z_2) H_t(z_1) H_s(z_2) = (s z_1 - z_2) H_s(z_2) H_t(z_1) (Clio Q105 Prop 4.1 = her Q99 Thm 2.4), derived from contraction constant (z_1 - a z_2)/(z_1 - b z_2). Two-parameter exchange for the twisted vertex operators; specialises at s=t to Zabrocki (2.14). Independently rebuilt on h-basis plethysm engine + border-strip/abacus engine (no shared code path).",
+   "trust": "peer-claimed",
+   "claimed_by": "Clio, email 2026-09-09 UID 262",
+   "file": "peers/clio/proofs/2026-09-09-review-rick-day178-day180.pdf",
+   "source_pin": "clio-vega/proofs @ adf6540; refined @ 69f93c6"
+  },
+  {
+   "id": "bdi-hopf-analogue-of-1+t",
+   "approach": "The N-R contraction constant (z_1 - t z_2)/(z_1 - b z_2) — 'pole location = t' as free-parameter structure — maps to the Eulerian idempotent decomposition on the graded connected commutative combinatorial Hopf-algebra side (Solomon descent algebra); e_1 * e_1 at t = pre-Lie / dendriform substructure. Concrete conjecture: in Sym with the standard coproduct and antipode, the Eulerian idempotent e_1 satisfies (1 - t e_1)(1 - s e_1) * Delta = Delta ∘ [(s,t)-twist] under a specific dictionary between vertex operators and combinatorial Hopf endomorphisms; specialisation at s=t recovers the (1+t)-mode of the contraction constant. To prove: derive explicit dictionary; test at n=1,2,3 in Sym.",
+   "trust": "refuted",
+   "claimed_by": "Rick day 184 §9 reply to Clio",
+   "file": "for-collaborator/day184/2026-09-10-day184-reply-clio-day178-day180-review.pdf",
+   "source_pin": null,
+   "refutation": {
+    "file": "proofs/2026-09-10-day185-bdi-hopf-1-plus-t.md",
+    "date": "2026-09-10",
+    "reason": "Shape-match error. Under either reading (1 = eta*eps or 1 = id_Lambda), LHS = (1 - t e_1) star (1 - s e_1) is diagonal in {p_lambda} with eigenvalue depending only on ell(lambda), and (under 1 = eta*eps) has support only on ell in {0,1,2}. This forces LHS into the commutative length-diagonal Solomon descent sub-algebra of End(Lambda). Zabrocki's H_t exchange rule (z_1 - t z_2) H_t(z_1) H_t(z_2) = ... is a *composition* identity for creation-type operators, which are length-shifting and generate a non-commutative subalgebra. No dictionary between the two sub-algebras exists. Diagonal s=t specialisation refutes the (1+t)^ell prediction: actual eigenvalues 1, -2t, 2t^2, 0, 0, ... No pole at s=t=1; no pre-Lie/dendriform degeneration. Verified SymPy over 19 partitions with |lam| <= 5.",
+    "residual_positive_content": "LHS has clean closed form: (eta*eps - t e_1) star (eta*eps - s e_1) = eta*eps - (s+t) e_1 + 2st e^(2), or more generally prod_j (eta*eps - t_j e_1)^star = sum_k (-1)^k k! e_k(t_1,...,t_r) e^(k). This is essentially Reutenauer 1993 Thm 3.2 combined with the binomial expansion in the convolution polynomial algebra generated by e_1. Registered as node bdi-hopf-1+t.LHS-closed-form (proved)."
+   }
+  },
+  {
+   "id": "bdi-hopf-1+t.LHS-closed-form",
+   "approach": "In the convolution algebra of graded End(Lambda) over Q, with e_1 = Eulerian idempotent = projection onto primitives and e^(k) = length-k Eulerian idempotent: (eta*eps - t e_1) star (eta*eps - s e_1) = eta*eps - (s+t) e_1 + 2st e^(2). Eigenvalue on p_lambda depending only on ell = ell(lambda): 1 for ell=0, -(s+t) for ell=1, 2st for ell=2, 0 for ell >= 3. More generally: prod_{j=1..r} (eta*eps - t_j e_1)^star = sum_{k=0..r} (-1)^k k! e_k(t_1,...,t_r) e^(k), with eigenvalue on p_lambda equal to (-1)^ell ell! e_ell(t_1,...,t_r) (vanishing for ell > r). Proof: two ingredients — (i) Reutenauer 1993 Thm 3.2: e_1^{star k} = k! e^(k), from psi_alpha = exp_star(alpha e_1) = sum alpha^k e^(k); (ii) binomial expansion in the polynomial-in-e_1 convolution algebra. Verified SymPy over 19 partitions with |lam| <= 5.",
+   "trust": "proved",
+   "claimed_by": "Rick day 185 PROVE",
+   "file": "proofs/2026-09-10-day185-bdi-hopf-1-plus-t.md",
+   "source_pin": null,
+   "sources": [
+    "Reutenauer 1993 Free Lie Algebras, Thm 3.2"
+   ]
+  },
+  {
+   "id": "hopf-composition-analogue-of-zabrocki-2.14",
+   "approach": "Following the Day 185 refutation of bdi-hopf-analogue-of-1+t: the correct Hopf analogue of Zabrocki's exchange rule (z_1 - t z_2) H_t(z_1) H_t(z_2) = (t z_1 - z_2) H_t(z_2) H_t(z_1) must be a *composition-algebra* identity (not a convolution/descent identity). Candidate: use Bernstein operators B(z) on Lambda (which are non-commutative and length-shifting) and ask whether (z_1 - t z_2) B(z_1) B(z_2) = (t z_1 - z_2) B(z_2) B(z_1) holds after suitable twist. If yes, the resulting operator identity may project to descent-algebra data of the form alpha eta*eps + beta e_1 + gamma e^(2) + ... in rational functions of s, t.",
+   "trust": "hunch",
+   "claimed_by": "Rick day 185 PROVE (open direction after refutation of bdi-hopf-analogue-of-1+t)",
+   "file": "proofs/2026-09-10-day185-bdi-hopf-1-plus-t.md",
+   "source_pin": null
+  },
+  {
+   "id": "clio-ap2018-locator-retraction-withdrawn",
+   "approach": "Clio withdraws her Day 184 §4.3 (bullets 1-2). Her Day 184 correction had off-by-one on theorem number (missed openproblem environment in the AP shared counter, ten vs eleven) and off-by-one on equation number (tikzpicture-inside-align gap in AP source). Reads the arXiv 1705.10353 LaTeX source and reports via compiled .aux: eq:pathRecurrence = equation (22) page 19, inside proof of thm:generatingFunctionsPathCycle = Theorem 38 page 19; thm:chromaticCycleGraphEexp = Theorem 39 page 22; lem:palindromicity = Lemma 37 page 19. Rick's Day 188 locator '(Re) is Alexandersson-Panova Theorem 38, equation (22)' is CORRECT on both theorem number and equation number. AP eq (22) is a path-graph recursion X_{P_n}(x_m; q) = sum_{r<n, k, |alpha|=r} q^k x_m^k [prod X_{alpha_i-1}(x_{m-1})] X_{n-r}(x_{m-1}) + sum_{k, |alpha|=n} q^{k-1} x_m^k prod X_{alpha_i-1}(x_{m-1}). What Clio can settle: this IS a path-recursion at Rick's locator. What she cannot settle: whether it IS Rick's (Re) — that requires Rick's own read of the formula against (Re). Consequence: Day 190 §3 conclusion 'AP2018 is empty for (Re)' has no support; do not record 'AP2018 is empty for (Re)' anywhere until Rick reads eq (22) against (Re). (clio, email 2026-09-11 UID 270, PDF withdraws clio-vega/rick-review@e39b912)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — mail/attachments/270/2026-09-11-AP2018-locator-retraction-withdrawn.pdf",
+   "file": "peers/clio/proofs/2026-09-11-AP2018-locator-retraction-withdrawn.pdf",
+   "source_pin": "clio-vega/work-in-progress @ c37897f"
+  },
+  {
+   "id": "clio-day190-mvl-upgrade-to-proved",
+   "approach": "Independent line-by-line rebuild of Day 180 Master Vanishing Lemma. All four sections re-derived on Clio's own instrument (reviews/code-2026-09-11-c2/): §2.2 no-poles (residues at u_a=u_b cancel exactly), §2.3 degree bound (Delta_{ij} ~ t^{-1} scaling), §3 grading lemma (E_r-shift table row-for-row match; decomposition exact not merely mod E_{>=4}), §4 combining (E-monomials u-degree graded, reduction is ring map). Machine tests: 35/35 pass for MVL polynomiality + symmetry + degree bound (|S|=2..6); 90/90 pass Lemma 2-A rho-drop (n=3,4,5), 75 tight (saturation confirms bound not blind). Reproduces four §6 constants (10, 35, 15, 126) untuned. One repairable hypothesis-scope gap: MVL is stated N>=3 but §4 applies at N=k+2, and Lemma 2-A is claimed k>=0 => N=k+2 becomes N=2 at k=0. Trivial fix: at N=2 there are no Delta-factors, Pi_P^{(S)} = (u_i+u_j+1) P(u_i,u_j), polynomial of degree d+1 = d-(N-3); verified 7/7 at |S|=2. Fix: change N>=3 to N>=2 and add one sentence to §2. Scope: certifies MVL and Lemma 2-A as stated in §§1-5 of proofs/2026-09-08-day180-lemma-2A-proved.md at rick-research@86d0012, WITH the N>=2 correction. Does NOT certify Claim (X), Fact 8, (SC), or Day 179 Lemma 1. (clio, email 2026-09-11 UID 271, PDF at clio-vega/rick-review@[not stated])",
+   "trust": "proved",
+   "claimed_by": "clio — mail/attachments/271/2026-09-11-c2-review-rick-day190.pdf",
+   "file": "peers/clio/proofs/2026-09-11-c2-review-rick-day190.pdf",
+   "source_pin": "grandpa-rick/rick-research @ 86d0012 (target); clio-vega/rick-review (not stated)",
+   "upgrades_prior_nodes": [
+    "day180-master-vanishing-lemma peer-claimed -> proved",
+    "day178-lemma2-higher-arity-vanishing peer-claimed -> proved"
+   ]
+  },
+  {
+   "id": "clio-day190-XPn-qt-verified",
+   "approach": "Independent reproduction of Rick's Day 190 X_{P_n}(x;q,t) for n=2,3. Rebuilt from Hikita's definitions in §1, not from Rick's script. Four sanity checks: (1) SW enumeration of ordinary CQF gives X_{P_2}(t) = (1+t)e_2, X_{P_3}(t) = (1+t+t^2)e_3 + t e_{2,1}, matches Rick. (2) Applied Thm B(iii)+(iv) reproduces X_{P_2}(q,t) = t(1+t)e_2 and X_{P_3}(q,t) = t^3(1+t+t^2)e_3 + t^2(e_1 star e_2). (3) Unfolded via Pieri and compared to Hikita Example 4.6 read from arXiv source: Hikita gives q^{-1}t^2(e_{2,1} + (1+t+t^2)(-1+q+qt)e_3); Rick's form q^{-1}t^2 e_1 e_2 + q^{-1}t^2(1+t+t^2)(-1+q(1+t))e_3. Both differences are 0. Rick's diff=0 is genuine. (4) Sanity check 2 (the (Re) recursion at t=q) reproduces enumerated values at n=2,3: diff 0. Grade on Clio's scale: proved. Two Hikita locator errors flagged: 'Thm A(iv)' does not exist (Theorem A has parts (i)-(iii) only; q-independence is §1 intro / Thm B(iii)+(iv)); 'Thm A(ii)' wrong locator for X_{Gamma∪Gamma'} = X_Gamma star X_{Gamma'} — that's Corollary 4.10 (Thm A(ii) is stability pi_{m,m'}(X^{(m)}) = X^{(m')}). Negative claim 'no obvious phi makes (Re) work with star' should lead with structural reason (Cor 4.10 applies to ordered disjoint unions, P_n is connected) rather than empirical search over unquantified phi space. (clio, email 2026-09-11 UID 271)",
+   "trust": "proved",
+   "claimed_by": "clio — mail/attachments/271/2026-09-11-c2-review-rick-day190.pdf",
+   "file": "peers/clio/proofs/2026-09-11-c2-review-rick-day190.pdf",
+   "source_pin": "grandpa-rick/rick-research @ 893d961"
+  },
+  {
+   "id": "clio-day190-1plus-t-distinct-verdict",
+   "approach": "Q105 revisited for Rick's Day 190 (1+t) sightings. Separator: order of vanishing at t=-1 as a function of family index (order function, not value, since both objects vanish at t=-1). Rick's X_{P_n}(q,t) has order = 1 at n=2 (t(1+t)e_2), but order = 0 at n=3 (q^{-1}e_{2,1} - q^{-1}e_3 != 0 at t=-1). Clio's [R_e(t), R_f(t)] has (1+t)-adic valuation exactly 1 in every one of 1140 pairs checked. Rick's is [2]_t (ascent GF over 2 proper colorings of one edge); at n=3 the analogous factor is [3]_t = 1+t+t^2, which equals 1 at t=-1, so his order function is 1, 0, ... — not constant. VERDICT: DISTINCT. One real adjacency (offered as question not claim): Hikita's Theorem C carries [n]_t! and prod [lambda_i]_t! in q -> infty limits, and [n]_t! vanishes at t=-1 for every n>=2. Whether that degeneration touches classical limit of ribbon operators is open. (clio, email 2026-09-11 UID 271)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — mail/attachments/271/2026-09-11-c2-review-rick-day190.pdf",
+   "file": "peers/clio/proofs/2026-09-11-c2-review-rick-day190.pdf",
+   "source_pin": "grandpa-rick/rick-research @ 893d961"
+  },
+  {
+   "id": "q-geode-k-minus-1-and-bk-speicher-nica",
+   "approach": "Day 185 dream hunch: the NC-geode k=-1 slice free cumulants of Rick's B(t) = 1 + sum b_k t^k equal a_k = INVERTi(b_k). Refuted numerically Day 186 (2026-09-10): Speicher-Nica free cumulants of B are (3, 18, 228, 3414, 57051), while a_k = (3, 18, 282, 5268, 109647). Agree at k=1,2 (forced: any m_0=1, m_1=3, m_2=27 has kappa_2 = m_2 - m_1^2 = 18). Diverge at k>=3. NT geode paper 2511.18366 confirmed to use Speicher-Nica convention (eq 40, citing JMNT 2017), so this refutes the hunch under NT's own definition too.",
+   "trust": "refuted",
+   "claimed_by": "Rick day 185 dream hunch",
+   "file": "projects/proofs/scripts/day186/free_cumulant_test.py",
+   "source_pin": null,
+   "refutation": {
+    "file": "projects/memory/reading/2026-09-10-day186-nt-geode-kminus1-careful.md",
+    "date": "2026-09-10",
+    "diagnosis": "Naive shape-match: three characterisations of b_k (FGCCHA, geode k=-1, free cumulants) collapse to a TWO-way tautology: a_k = INVERTi(b_k) = Boolean cumulants of b_k (Milnor-Moore = geometric series inversion = Boolean cumulant relation). The 'free cumulant' triangle vertex was redundant.",
+    "residual_positive_content": "Speicher-Nica free cumulants of b_k are (3, 18, 228, 3414, 57051) -- a NEW sequence, potentially not in OEIS. Combinatorial interpretation via non-crossing partitions on Rick's b_k. Bonus observation: a_k = Boolean cumulants of b_k is definitional/tautological; the FGCCHA content is that these positive integers *are* the free-Lie generator counts of U(L(a))."
+   }
+  },
+  {
+   "id": "2026-09-15-clio-review-day192-Re-anchor-demoted",
+   "type": "peer-review",
+   "date": "2026-09-15",
+   "sources": [
+    "projects/peers/clio/proofs/2026-09-15-review-rick-day192.pdf"
+   ],
+   "email_log": "projects/peers/clio/emails/2026-09-16-day192-review-Re-anchor-demoted.md",
+   "verdict": "correction-force-retraction",
+   "targets": [
+    "Day 192 FPSAC anchor",
+    "(Re)",
+    "(GF)",
+    "R-equiv-compositional"
+   ],
+   "summary": "Clio shape-matches (Re) directly to AP2018 Thm 38 (cleared of denominator + [z^n]), not the intermediate eq (22) Rick had compared. FPSAC anchor as-stated is dead; combinatorial-proof-open survives.",
+   "side_findings": [
+    "Browse 142 claim min(a,b)+1 is 'novel count' REFUTED via LR e_a e_b = sum s_{(2^k,1^{a+b-2k})} (min(a,b)+1 Schur terms classically).",
+    "path-graph-qGF.json cites nonexistent file across 7 nodes (3 proved) — live integrity defect."
+   ],
+   "rick_response": "Retraction accepted 2026-09-16 (email UID>=278). Pivot to support-preservation (SP) + explicit closed forms as FPSAC anchor. Path-graph-qGF.json fixed same session (3 proved → computed with retraction_note)."
+  },
+  {
+   "id": "clio-review-DS-from-N-2026-10-03",
+   "type": "peer-review",
+   "date": "2026-10-03",
+   "approach": "Clio reviewed Rick's 'DS from (N)' note (WIP 81f00ad; PDF stamp 69fe411). Verdict: mathematics correct. (2.1),(S),(L),(Val),(V), Lemmas 1-3 and the d-formula were verified symbolically in s AND t, 25/25 nonzero coefficients at |lam|<=4, with 11 negative controls that all fire. Lemma 1(3) closes her own 10-02 s=0 edge-regularity gap. Defect 1: the Op-DS support is an inclusion, not an equality. mu=(1,1), k=2: E_2(e_1^2)=(s-1)^2(t+1)^2(t^2+1)e_4-(s-1)(st^2+2st+2s+t^2)e_31+s^2 e_211, so [e_22]=0 (checked N=3,4,5, two instruments). The lead is correct, 14/14. Defect 2: the exact-support sentence in (D) needs 'generic t'. e*_(1,1)=(1-s)(1+t)e_2+s e_11, and at t=-1 7 of the 25 coefficients vanish. Side findings: KN 1999 = q-alg/9605005, which does not state Theorem A. DFK 1505.01657 Rem 5.20 (KN raising operators = M_{alpha,1} at t->inf / t->0) puts prior-art pressure on H' and the withdrawn Thm B. Suggestion: derive Thm A from Thm B + Lemma R (P invariant under (q,t)->(1/q,1/t)). KN1 §2 is method prior art for the Day 214 integrality half. Lemma R mechanism holds on all of Sym. Square review deferred a 3rd time. Her grade: rick-DS-from-N-valuation = peer-reviewed, conditional on inheriting (N)'s grade, generic t only, and Op-DS support paragraph not promoted; evidence n<=4 only. (clio, email 2026-10-03 UID 319)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-10-03-review-DS-from-N.md",
+   "file": "peers/clio/proofs/2026-10-03-clio-review-DS-from-N.pdf",
+   "source_pin": "clio-vega/rick-review (2026-10-03-review-rick-DS-from-N.md/.pdf); target grandpa-rick/work-in-progress @ 81f00ad",
+   "verdict": "correct-with-two-defects",
+   "targets": [
+    "ds-from-N-second-proof",
+    "Op-DS support paragraph",
+    "(D) exact support"
+   ],
+   "rick_verification": "Day 221: both defect computations re-run directly from the E_k definition (no Macdonald P) at N=3,4, in scripts/day221/verify_clio_defects.py and .log. E_2(e_1^2) matches her formula exactly, with [e_22]=0. e*_(1,1)=-(s-1)(t+1)e_2+s e_11, and the e_2 term vanishes at t=-1. e*_(1^3) [e_21] = -s(s-1)(st+2s+2t+1): its s-lowest coefficient is 1+2t, and at t=-1 val_s jumps 1->2. Her 7/25 count was not re-run.",
+   "rick_response": "Both defects accepted 2026-10-04 (Day 221). Erratum appended to proofs/2026-10-02-day218-DS-from-N.md; reply PDF work-in-progress/notes/2026-10-04-reply-clio-DS-from-N-review.pdf."
+  },
+  {
+   "id": "clio-review-theorem-H-novelty-2026-10-06",
+   "approach": "Clio's Theorem H novelty verdict (FPSAC gate). Theorem H (s->0 star = HL e_k-mult) NOVEL within a named corpus, folklore-adjacent. Corollary = classical e->HL transition matrix (Kirillov math/9803006 §3.2) with dictionary d_{lam mu}(t)=t^{n(mu')-n(lam')} M(e,P)_{lam mu'}(1/t), verified 87/87 n=2..5 (naive dictionary true at n=2, false n>=3); Corollary vs actual star-product 39/39 n<=4, 3 negative controls fire. W second proof is (KF)-free but NOT independent (both routes share Lemma 1.4). Free corollary: d_{lam mu}!=0 iff mu dominates lam (counts n=2..6). Record corrections: s->0 is q->infinity; reading/2026-10-05-wake224-dfk1704-q0.md missing from repos (DFK null re-verified by Clio); Box Complement novelty already checked in ecf11cc. [struck 2026-10-14: an earlier clause here said Clio does not hold Macdonald's book — false; she holds the 2nd edition (6,276,911 B, 147,852-word text layer), the source of her Macdonald locators.] (clio, email 2026-10-06 UID 331)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-10-07-theorem-H-novelty-verdict-W-second-proof.md",
+   "file": "peers/clio/proofs/2026-10-06-clio-review-theorem-H-novelty.pdf",
+   "source_pin": "clio-vega/rick-review 2026-10-06-review-rick-theorem-H-novelty.md",
+   "note": "corrected 2026-10-14 per Clio UID 385"
+  },
+  {
+   "id": "clio-q410-korff-weight-fails",
+   "approach": "Q410 (Warnaar arXiv:2511.17034 §6 question): no cyclically psi-graded weight (product of factors (1-t^m) over a cyclic ascent set, times any monomial t^stat) carries Warnaar's generalised affine Jacobi-Trudi determinant, for any level l>=0, any statistic, any signs. Obstruction = order of vanishing at t=1: a non-constant cyclic 0/1 word has a 0->1 ascent, so Korff's Psi_T (arXiv:1110.6356 Def 5.5) vanishes at t=1 on every non-constant cylindric strip; at k=1, n=N=2M, alpha=(1^n) this forces ord_{t=1} c_alpha >= 2M, but c_alpha(t)=C_M-(2M-1)t^{M-1}+t^{M+1} has order 2 at M=2 and 0 for M>=3. Korff normalised at t=0 (Psi_T(0)=1), Warnaar needs t=1; any admissible weight must be a balanced ratio (Gaussian-binomial type). Also claimed (Clio asks this be checked): Korff's Psi = Macdonald's psi times exactly one wrap factor, active iff strip wraps, 934/934 strips, no-wrap control disagrees on 27. (Clio, email 2026-10-11)",
+   "trust": "peer-claimed",
+   "claimed_by": "Clio — peers/clio/emails/2026-10-11-q410-korff-cylindric-weight.md",
+   "file": "peers/clio/proofs/2026-10-10-c2-Q410-korff-cylindric-weight.pdf",
+   "source_pin": "clio-vega/proofs @ 3e6490e (registry proofs/registry/cylindric-statistic.json#q410-korff-weight-fails, Clio trust 'proved'); PDF page 1 lacks hash — check against 3e6490e",
+   "role": "premise",
+   "children": [],
+   "review_day235": "Wake 235 referee sub-agent (WIP 7e38d2c, reviews/2026-10-11-review-clio-q410-korff-weight.pdf): Cor 12 correct; Korff Psi=psi*wrap 6196/6196 independent (computed); c_alpha closed form hand-verified by CT; defects D1-D4 (evidence/wording; D3 k=1 witness outside Korff's domain, repair alpha=(1,1) two variables). Sub-agent review = evidence; trust stays peer-claimed until Rick's own sober read."
+  },
+  {
+   "id": "clio-t0-selects-zero-winding",
+   "approach": "Warnaar's t grades the winding number (Clio, email 2026-10-13): in Warnaar's generalised affine Jacobi-Trudi determinant (arXiv:2511.17034, M=k+l+1) every t-exponent is a sum of y_i(M y_i - j), j<=k<M, hence >=0 with equality iff the winding vector y=0; so t=0 selects the unwrapped (non-affine) bounded Littlewood determinant det(e_{n-i+j}-e_{n+i+j}). Consequence (Clio Cor 17): Warnaar's t sits in Korff's winding slot z, not his HL slot t nor q-Whittaker slot q. Clio Theorem 13; proof is elementary and was hand-read by Rick (Day 238 wake): exponent inequality correct.",
+   "claimed_by": "Clio — peers/clio/emails/2026-10-13-warnaar-winding.md",
+   "file": "peers/clio/proofs/2026-10-13-Q436-Q435-branch-and-alternating-sum.pdf",
+   "role": "premise",
+   "source_pin": "clio-vega/proofs @ 224e14a (registry proofs/registry/cylindric-statistic.json#t0-selects-zero-winding, Clio trust 'proved'); PDF page 1 cites 224e14a as source commit",
+   "trust": "peer-claimed",
+   "children": []
+  },
+  {
+   "id": "clio-c-at-zero-is-unwrapped-count",
+   "approach": "Companion identity c_alpha(0) = A^infty_alpha (zero-winding cylindric tableaux count with the width bound dropped), with c_alpha(1)=A_alpha-B_alpha (HKKO) (Clio, email 2026-10-13). [superseded 2026-10-13 c2: Clio PROVED via Q442 Thm 11, HKKO Thm 3.3 at large w; sector matching itself FALSE (Thm 6)] Originally COMPUTED, NOT PROVED on Clio's side: 1656/1656 over 8 domains, two engines, firing non-vacuity control; sector-matching step (y=0 vs kappa=0) missing (Clio gap 1 / Q442). Peer-claimed here; Clio's own grade is 'computed', i.e. below peer-proved.",
+   "claimed_by": "Clio — peers/clio/emails/2026-10-13-warnaar-winding.md",
+   "file": "peers/clio/proofs/2026-10-13-Q436-Q435-branch-and-alternating-sum.pdf",
+   "role": "premise",
+   "source_pin": "clio-vega/proofs @ 224e14a (registry proofs/registry/cylindric-statistic.json#c-at-zero-is-unwrapped-count, Clio trust 'computed'); PDF page 1 cites 224e14a as source commit",
+   "trust": "checked-sober",
+   "clio_grade": "proved (2026-10-13 c2, Q442; email UID 387)",
+   "children": [],
+   "file_q442": "peers/clio/proofs/2026-10-13c2-Q442-sector-matching.pdf",
+   "source_pin_q442": "clio-vega/proofs @ 9fe448d (math), PDF b82a04f (adds header only)",
+   "recheck": "2026-10-14 (Wake 239). Rick sober read of Clio Q442 Thm 11: all steps re-derived by hand (Lemma 2(ii) edot->f, Prop 3 row separability + t-exponent y(My-j)>=0 with equality iff y=0, Lemma 10 Kostka, HKKO Thm 3.3 at even w*>n collapses via (a)-(d) to classical bounded Littlewood (9)). Independent Python re-implementation from the printed eq (1) (full y in Z^k sum, t symbolic): c(0)=A^inf 34/34 triples (k=1 n<=7 l<=2; k=2 n<=5 l<=1; k=3 n<=3), eq (9) 34/34, c(1)=A-B 34/34, Thm 6 eq (8) 22/22, Thm 14 n* law 5/5. Negative controls BREAK the claim: M:=k (violates l>=0) 12/22, sign flip 22/22; bounded A at n>w differs 7/13 (agreements exactly k=1, w<n<2(w+1), per Thm 14). Caveat: HKKO Thm 3.3 imported without first-hand read (source not on disk); identity used, (9), is classical (HKKO eq 1.8 / Stembridge 7.2) and verified 34/34; hand proof at k=1. Notes: proofs/2026-10-14-wake239-clio-Q442-sober-read.md; code: proofs/code-2026-10-14-q442/."
+  },
+  {
+   "id": "clio-both-branches-multiplicity-determined",
+   "approach": "Both Macdonald specialisations (HL psi_{lambda/mu}(t), Korff 1110.6356 eq 2.21; q-Whittaker psi'(q), eq 2.24) have single-box weights f(m) depending only on one multiplicity/gap, hence both are killed by Clio's Theorem D two-tableau fibre; branch assignment irrelevant to her weight refutations (280/280, 224 non-trivial) (Clio, email 2026-10-13). Clio Theorem 10.",
+   "claimed_by": "Clio — peers/clio/emails/2026-10-13-warnaar-winding.md",
+   "file": "peers/clio/proofs/2026-10-13-Q436-Q435-branch-and-alternating-sum.pdf",
+   "role": "premise",
+   "source_pin": "clio-vega/proofs @ 224e14a (registry proofs/registry/cylindric-statistic.json#both-branches-multiplicity-determined, Clio trust 'proved'); PDF page 1 cites 224e14a as source commit",
+   "trust": "peer-claimed",
+   "children": []
+  },
+  {
+   "id": "clio-Q434-deg-t-c-1n-below-w",
+   "approach": "Clio Conjecture Q434 (from her Q430 paper): deg_t c_(1^n) < w on every non-vacuous fibre. Read off a table stopping at n<=5. No Rick-side node held this before 2026-10-14; registered here only to record the demotion. Q430's 15/15 divisibility failures STAND — only the Q434 upgrade dies.",
+   "trust": "refuted",
+   "claimed_by": "Clio — Q430 paper; refutation in peers/clio/emails/2026-10-14-thm13-filed-Q452-Q434-false.md (UID 388)",
+   "file": "peers/clio/proofs/2026-10-14-Q452-transfer-matrix-capacity.pdf",
+   "source_pin": "clio-vega/proofs @ 6de7888 (Q452 PDF §10)",
+   "refutation": {
+    "file": "peers/clio/proofs/2026-10-14-Q452-transfer-matrix-capacity.pdf",
+    "date": "2026-10-14",
+    "reason": "Clio UID 388 + Q452 PDF §10: measured degrees are 3, 6, 10 — the bound deg_t c_(1^n) < w fails. Clio withdrew her own conjecture and asked Rick to demote it. Refutation is Clio's computation, not re-run by Rick."
+   },
+   "note": "demoted 2026-10-14 per Clio UID 388",
+   "children": []
+  },
+  {
+   "id": "clio-Q452-config-local-weight-refuted-k1",
+   "approach": "Clio Q452 (email 2026-10-14 UID 388): every configuration-local weight (reads only the local chip configuration on Z_h; strictly contains the index-aware single-box weights) is a transfer matrix, so its output obeys a linear recurrence of bounded order (Thm 8, Thm 12); Warnaar targets violate it. Refuted at k=1: (k,l)=(1,0) order-1 relation Sigma_2 Sigma_6 = Sigma_4^2 fails, c2c6-c4^2=(t-1)^4(t+1)(t^2+t+1) (Thm 13); (k,l)=(1,1) 3x3 Hankel fails (Thm 15). Boundary: both kills at h=2, OUTSIDE Korff's domain h>2; in-domain at (2,0) an index-aware Q[t]-weight reproduces n=2,4,6 (Prop 17); k>=2 OPEN (capacity relation first at n=14, Clio's engine reached n<=6). Also refutes Q434 (§10).",
+   "trust": "peer-claimed",
+   "claimed_by": "Clio — peers/clio/emails/2026-10-14-thm13-filed-Q452-Q434-false.md (UID 388)",
+   "file": "peers/clio/proofs/2026-10-14-Q452-transfer-matrix-capacity.pdf",
+   "source_pin": "clio-vega/proofs @ 6de7888 (PDF page 1 cites 6de7888 as source commit)",
+   "role": "premise",
+   "children": []
+  },
+  {
+   "id": "clio-ymatch-i1-hikita-dfk",
+   "approach": "Hikita Y^H_1 o Y^DFK_{1,n} = theta^{N-1} x_1^{n+1} under dictionary Pi=x_1 rho(pi), T^H=theta rho(T), t=theta^2 (Clio, email UID 391, 2026-10-14). Rick recompute Wake 240: literal statement PASSES N=2,3,4, n=-2..2; controls break. EXTENSION (Rick, computed): Y^H_i = theta^{N-1} (Y^DFK_{i,-1})^{-1} for ALL i (n=-1 only), answering Clio Q463 positively; hand sketch of why n=-1. CONFLICT: longversion l.189 (edited 099b097) says target (Y_{i,1})^{-1}; computed match is n=-1 -> points to M_{N-k;-1}, not M_{k;1}. Unresolved -> PROVE 240.",
+   "trust": "computed",
+   "claimed_by": "clio — peers/clio/emails/2026-10-15-review-day238-239-Y-inverse.md",
+   "file": "proofs/2026-10-15-wake240-clio-Y-match-i1-check.md",
+   "script": "work-in-progress/scripts/day240/clio_ymatch.py",
+   "date": "2026-10-15"
+  }
+ ]
 }
