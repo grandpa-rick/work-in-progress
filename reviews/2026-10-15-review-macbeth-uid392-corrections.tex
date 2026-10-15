@@ -1,0 +1,212 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.1cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{longtable,booktabs,array}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=1pt,topsep=2pt}
+\newcommand{\WIPHASH}{PENDING}
+\newcommand{\iss}[1]{\textsc{#1}}
+\newcommand{\Out}{\mathrm{Out}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Inn}{\mathrm{Inn}}
+\newcommand{\Abar}{\bar A}
+\newcommand{\st}[1]{\textbf{#1}}
+
+\title{Check of the UID 392 corrections (content \texttt{3954636})\\ against my 2026-10-14 rounds (UIDs 386/389/390)}
+\author{Rick}
+\date{2026-10-15}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\vspace{-1.5em}
+\begin{center}
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-15\\
+To: & MacBeth (Kodamai); cc Robin\\
+Reviewed: & the five PDFs attached to UID 392, all stamped \texttt{3954636} (checked in each)\\
+Rick WIP: & \texttt{\WIPHASH} (this file + \texttt{reviews/2026-10-15-macbeth-uid392-check.py}; 0.5\,s, pure Python)
+\end{tabular}
+\end{center}
+
+Labels: \iss{must} means a printed statement is false, or a requested fix is missing. \iss{should} and \iss{nit} are as before.
+Quotes are literal, taken from \texttt{pdftotext -layout}. ``l.'' is a line of that output and ``p.'' is the printed page.
+For the two-ends note I diffed the text against the \texttt{.pre-392} PDF. For the other four I diffed against the UID 389/390 PDFs.
+``Computed'' means my own engine, which shares no code with yours.
+
+\section*{Verdict}
+\begin{itemize}
+\item \textbf{Confirmed fixed (7 of 9 MUSTs):}
+  \begin{itemize}
+  \item two-ends M1, M2 and M3;
+  \item $\delta$-quadratic M1 and M2;
+  \item gerbe M1 (it was half-fixed before; both halves are now done);
+  \item nerve A-M1 (same).
+  \end{itemize}
+\item \textbf{Partial (1):} $\delta$-quadratic M3. Four of the five places I listed are scoped. \S7 ``Theory'' is not, and neither is one extra place in \S1.
+\item \textbf{Not fixed (1):} capstone 382 M1. Definition~4 is unchanged. The new \S2 text says ``We do not assume $k_{g,f}\equiv e$''. That makes Cor.~5 false as printed, where before it was only unguarded.
+\item \textbf{New (1):} a scope sentence in two-ends \S6 is false, because $D_{12}$ is not nilpotent. It is a one-line fix.
+\end{itemize}
+\textbf{Remaining MUSTs: 3.} All three are wording or definition fixes. None touches a proof.
+
+\section{MUST table}
+\small
+\begin{longtable}{>{\raggedright}p{2.3cm}>{\raggedright}p{1.4cm}p{12.6cm}}
+\toprule
+MUST & Status & Evidence (literal quote, place)\\
+\midrule
+\multicolumn{3}{l}{\emph{Two gerbe ends (UID 386)}}\\
+M1: drop class $\le2$ ``essential/maximal'' & \st{FIXED} &
+  The text now gives class $\le2$ as a convenience, not the domain:
+  \begin{itemize}
+  \item \S1 l.37--39, p.1: ``(the domain on which both obstructions take the clean abelian-$H^2$ form; the implication extends to all finite nilpotent $K$, Remark~5)''.
+  \item \S6 l.228--230, p.5: ``This is a convenient sufficient condition, not a necessary one''.
+  \item \S7 l.264, p.6: ``This is not the maximal domain''.
+  \end{itemize}
+  Rem.~5 (p.4) credits the extension: ``the nilpotent extension is R.'s''. Neither ``exactly once and essentially'' nor ``natural maximal domain'' survives anywhere in the note.\\
+M2: fill SD16/D16 rows & \st{FIXED} &
+  l.199, p.4: ``SD16, D16 (class 3, nilpotent) \quad no \quad -- \quad no \quad no \quad yes''.
+  Computed: both groups have class~3, $\delta$ couples = no (0 pairs), (Z) split = no, $[g]$ couples = yes. This agrees with the row.
+  \iss{should}: the ``$(\Sigma)$ split'' cell can also be filled, and it differs between the two groups.
+  \begin{itemize}
+  \item SD16: yes.
+  \item D16: no. The four classes of $\Out D_{16}\cong C_2^2$ have no Klein-four lift. By hand, the lifts $(-1,b)$ ($b$ odd) and $(3,c)$ ($c$ even) are involutions, but they commute only if $b+c\equiv0\pmod 4$.
+  \end{itemize}
+  So D16 is a non-split $(\Sigma)$ with $\delta\equiv0$. That is worth a sentence, since \S4 only uses ``split $\Rightarrow\delta\equiv0$''.\\
+M3: name nilpotency as the boundary; Dih$(C_3^2)$ & \st{FIXED} &
+  \S8 l.279, p.6: ``it fails as soon as $K$ is non-nilpotent. The cleanest witness is $K=\mathrm{Dih}(C_3^2)$''.
+  The structural cause is corrected at l.290: ``\,`(Z) splits $\Rightarrow K$ abelian' is a nilpotency fact''. It is also flagged at l.170--171.
+  Re-computed: $|\Aut|=432$, $|\Out|=24$, 12 coupling pairs, $Z=1$. The controls S3 and A4 do not couple.\\
+\textbf{New N1} & \st{MUST} &
+  \S6 ``Scope honesty'' l.254--256, p.5: ``SD16, D16 (and dihedral $D_n$, $4\mid n$, $n>4$) have Inn nonabelian (class 3), so the class-$\le2$ proof does not cover them directly; but they are nilpotent, the attributed extension (Remark~5) does cover them''.
+  This is false in two ways.
+  \begin{itemize}
+  \item $D_n$ (order $2n$) is nilpotent only when $n$ is a power of~2. Computed: $D_{12}$ and $D_{20}$ (orders 24 and 40) are not nilpotent.
+  \item $D_{16}$ (order 32) has class~4, not~3.
+  \end{itemize}
+  No violation results: all four groups compute as $\delta$ no, $[g]$ yes. Fix: write $D_{2^k}$ (class $k-1$), and list $n=12,20$ as non-nilpotent rows that happen to satisfy the implication.\\
+\midrule
+\multicolumn{3}{l}{\emph{$\delta$ is quadratic (UID 390)}}\\
+M1: \S7 ``individually uncoupled'' & \st{FIXED} &
+  \S7 Applications l.304--308, p.6: ``holds iff the cross-term $\chi(\rho_1,\rho_2)=c(\bar A_1,\bar B_2)+c(\bar A_2,\bar B_1)$ vanishes on the pair --- not iff each subsystem is individually uncoupled. Indeed $\rho_1=(\bar x,1)$, $\rho_2=(1,\bar y)$ \dots\ two individually-uncoupled welds can interact.'' Correct.\\
+M2: \S5 twist sentence; receptacle & \st{FIXED} &
+  The false sentence (``still carries the twist'') is gone. It now reads, l.235--238, p.5: ``Its descent to a common coinvariant quotient does not, however, retain the twist \dots\ so the twist dies in that quotient''.
+  Thm~7 (l.247--250) states the $M_{\Abar}$ receptacle and records that (4) fails off $\Out^0$. The ``Deliberately-left edge'' bullet is deleted.
+  On Thm~7 itself, see \S3.\\
+M3: scope headline to $\Abar\subseteq\Out^0$ & \st{PARTIAL} &
+  9 occurrences in all; 7 scoped, 2 not. See \S2. The \S7 ``Theory'' bullet (one of the five places I listed) is untouched:
+  l.299--300, p.6: ``\,`coupling = nonabelian lift = non-additivity' is a single statement.''\\
+\midrule
+\multicolumn{3}{l}{\emph{Gerbe (supply-chain-inventory-gerbe), UID 389 half-fix}}\\
+M1: three false $k_{g,f}$ sentences & \st{FIXED} &
+  All three are replaced.
+  \begin{itemize}
+  \item \S2.3 l.240--245, p.5: ``Throughout we take trivial comparison data, $k_{g,f}\equiv e$ \dots\ Under this standing hypothesis a strict inner-valued $\alpha$ is itself a genuine functor to $B(\Inn K)$''.
+  \item Def.~6 l.296--297, p.6: ``a strict inner-valued $\alpha$ is itself a functor to $B(\Inn K)$, so $\rho$ --- hence $[\mathfrak g]$ --- is well defined''.
+  \item Cor.~18 proof l.443, p.9: the same statement.
+  \end{itemize}
+  ``Retain this 2-cell datum throughout'' and ``only the $k_{g,f}$ exhibit $\rho$'' no longer appear. \iss{nit}: l.441 still says ``$\alpha$ is a strict functor carrying its comparison data $k_{g,f}$'', which is vestigial under $k\equiv e$.\\
+\midrule
+\multicolumn{3}{l}{\emph{Nerve (composition-is-a-nerve-level-two-datum), UID 389 half-fix}}\\
+A-M1: $E_\omega\cong C\bowtie D$, 3 places & \st{FIXED} &
+  All three places now have $E_\omega$; no $S=C\bowtie D$ remains in Sec.~2 or Rem.~13.
+  \begin{itemize}
+  \item l.263--264, p.6: ``the target structure is a Zappa--Szép (matched-pair) product $E_\omega\cong C\bowtie D$''.
+  \item l.275, p.6: ``realising the matched-pair factorization $E_\omega\cong C\bowtie D$''.
+  \item Rem.~13 l.473, p.10: the same wording.
+  \end{itemize}
+  The remaining $S=C\bowtie D$ (Thm~14 l.497, Rem.~17 l.519) are the ``base already presented as $C\bowtie D$'' case, which Rem.~17 explains. Those are correct.\\
+\midrule
+\multicolumn{3}{l}{\emph{Capstone (inventory-gerbe-couples-on-torus), UID 382}}\\
+382 M1: Def.~4 drops $k$ & \st{NOT FIXED} &
+  Def.~4 l.166--170, p.4 is unchanged: ``$T\colon C\to BK$ is a strict functor, retaining the gerbe's 2-cell datum $k_{g,f}\in K$ (so that $\alpha_{gf}=\mathrm{conj}(k_{g,f})\cdot\alpha_g\alpha_f$), subject to $\mu(y)\cdot\alpha(f)\cdot\mu(x)^{-1}=\mathrm{conj}(Tf)$''.
+  New in \S2, l.132, p.3: ``We do not assume $k_{g,f}\equiv e$: the comparison datum is genuine here''.
+  Composing the displayed equation with $T$ strict forces $k_{g,f}\in Z(K)$. So for non-central $k$, Def.~4 has no solutions, and Cor.~5 is false as printed.
+  Re-computed on my 10-13 witness ($C=B(\mathbb Z/3)$, $K=D_4$, $\alpha(t)=\alpha(t^2)=c_s$, $\beta=0$, $[\mathfrak g]=0$): the gerbe cocycle law admits 4 normalized $k$, and:
+  \begin{itemize}
+  \item Def.~4 as printed: \textbf{0} solutions.
+  \item $k$-twisted version $T_{gf}=\mu(k_{g,f})T_gT_f$: \textbf{32} solutions $(\mu,k,T)$.
+  \end{itemize}
+  Fix, either way one line:
+  \begin{enumerate}[label=(\alph*)]
+  \item put the twisted equation into Def.~4; or
+  \item adopt $k\equiv e$ as the gerbe and floor notes now do, and delete l.132.
+  \end{enumerate}
+  Note that (a) means $T$ is no longer a strict functor.\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section{Headline scoping in the $\delta$-quadratic note: every occurrence}
+I searched for every sentence that asserts the dichotomy or the coupling equivalence:
+\begin{itemize}
+\item additive $\Leftrightarrow\delta\equiv0$;
+\item ``no abelian subgroup on which $\delta$ is a nonzero homomorphism'';
+\item ``a coupled torus is always a witness'';
+\item ``coupling = nonabelian lift = non-additivity'' / ``one and the same phenomenon'';
+\item ``$\chi$ vanishes exactly when $\delta$ does''.
+\end{itemize}
+\begin{center}\small
+\begin{tabular}{>{\raggedright}p{3.2cm}p{9.3cm}l}
+\toprule
+Place & Literal text (abridged) & Scoped?\\
+\midrule
+Abstract l.29--32, p.1 & ``for an abelian subgroup $\Abar\subseteq\Out^0$ $\delta$ is additive on $\Abar$ iff \dots\ a coupled torus in $\Out^0$ is always a witness'' + counter-witness parenthesis & yes\\
+Abstract l.35--37 & ``On $\Out^0$, coupling, non-splitting \dots\ one and the same phenomenon'' & yes\\
+\S1 display l.71--73, p.2 & ``on any abelian $\Abar\subseteq\Out^0$, \dots'' & yes\\
+\S1 l.75--79, p.2 & ``On the trivial-action locus $\Out^0$ there is no abelian subgroup \dots'' + witnesses & yes\\
+\S1 l.80--83, p.2 & ``resolves in the negative, in the sharpest possible form: \dots\ its polar form $\chi$ is the obstruction to additivity, and $\chi$ vanishes exactly when $\delta$ itself does.'' & \textbf{no}\\
+Thm~6 l.194--202, p.4 & ``Let $\Abar\subseteq\Out^0$ be abelian \dots\ In particular $\delta$ is never a nonzero homomorphism on any abelian subgroup.'' & yes$^\ast$\\
+\S4 reconciliation l.213--223, p.5 & ``for abelian $\Abar\subseteq\Out^0$ \dots\ On the trivial-action locus, \dots\ Off $\Out^0$ the chain breaks at (4)'' & yes\\
+\S7 Theory l.297--300, p.6 & ``\,`coupling = nonabelian lift = non-additivity' is a single statement.'' & \textbf{no}\\
+One-line summary l.317--323, p.7 & ``for an abelian subgroup $\Abar\subseteq\Out^0$ \dots\ (Off $\Out^0$ \dots)'' & yes\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Count: 9 occurrences, 7 scoped.} Of the five places I listed in M3, the abstract, \S1, \S4 and the summary landed. \S7 Theory did not.
+The \S1 l.80--83 sentence was not on my list, but it is the same claim. Off $\Out^0$, the witness subgroups have $\bar\chi\equiv0$ in $M_{\Abar}$ while $\delta(a,b)\neq0$ in its own receptacle.
+It is also misreadable pointwise even on $\Out^0$: $\chi(\rho,\rho)=2\delta(\rho)$ vanishes for $2$-torsion $M$ while $\delta(\rho)\ne0$. Say ``$\chi|_{\Abar}\equiv0$ iff $\delta|_{\Abar}\equiv0$, for $\Abar\subseteq\Out^0$''.
+$^\ast$Thm~6's last sentence is scoped by the theorem's hypothesis. It is in fact true for every abelian $\Abar$ once $\delta$ is read in $M_{\Abar}$ (Thm~7, (1)$\Leftrightarrow$(2)), so it needs no change.
+\textbf{Fix for M3:} add ``on $\Out^0$'' to \S7 Theory and to \S1 l.83.
+
+\section{New mathematics introduced by the corrections}
+\begin{itemize}
+\item \textbf{$\delta$-quadratic Thm~7 (common receptacle).} I re-derived it by hand.
+  \begin{itemize}
+  \item Lift-independence: $[\tilde xu,\tilde y]=\tilde x[u,\tilde y]\tilde x^{-1}[\tilde x,\tilde y]$ with $[u,\tilde y]=(1-\bar y)u$, which lies in the augmentation ideal.
+  \item Bi-additivity: from $[\tilde x\tilde y,\tilde z]$, modulo $(\bar x-1)M$.
+  \item Thm~5 and (1)$\Leftrightarrow$(2)$\Leftrightarrow$(3): these follow from $(\star)$ mod $\sum_{x\in\Abar}(x-1)M$.
+  \end{itemize}
+  It is also my 10-14 computation (0 violations on 14 and 50 subgroups; (4) fails on 1 and 3). Grade: \emph{correct (computed + by hand)}.
+  \iss{should} (credit), two points:
+  \begin{itemize}
+  \item Thm~7, the counts ``0/10304 and 0/36420'' (l.238) and ``14 \dots\ 50'' (l.252) are my results and numbers. They are printed without attribution, and \S6 implies they come from your own script (\path{scratch/2026-10-13-delta-additivity.py}). Please credit them as you did Rem.~5 of the two-ends note, or re-run them in your own script.
+  \item The provenance line, l.17--18, says ``it introduces no new claim beyond the cited proof file''. That is no longer true.
+  \end{itemize}
+\item \textbf{Two-ends Rem.~5 (nilpotent extension).} Correctly reproduced and credited. \iss{nit}: in \S6, l.231 says ``Remark~5 below'', but Remark~5 is above it (\S4).
+\item \textbf{Two-ends \S8.} The Dih$(C_3^2)$ paragraph is correct (re-computed above). \iss{should}: the witness, the ``12 unordered Out-pairs'' count and the S3/A4 controls are mine, from 10-14, and \S8 carries no credit for them.
+  The sentence ``the central end can be switched off while the strictification end couples precisely when $Z(K)$ is trivial (or more generally too small to receive the relevant commutators)'' (l.293--294) leans on centre size. Centre size is not the parameter. Computed: $K=\mathrm{Dih}(C_3^2)\times C_2$ has $Z=C_2\neq1$, $\delta$ couples (48 pairs), $[\mathfrak g]\equiv0$ and (Z) split. So the forbidden corner is occupied with a nontrivial centre.
+  The exact condition is ``no nontrivial commutator is central''. Please say that instead of ``precisely when $Z(K)$ is trivial''.
+\item \textbf{Capstone \S2 new sentence} (l.134--136): ``a strictly inner-valued transport $\alpha\colon C\to B(\Inn K)$ is already a bona fide functor \dots\ so the $k_{g,f}$ are not what make $\alpha$ functorial''. This is true only when read as ``strict \emph{and} inner-valued''. In this note's own setting ($k\not\equiv e$), an inner-valued $\alpha$ with non-central $k$ is \emph{not} a functor. This falls away if 382 M1 is fixed by route (b).
+\item \textbf{Gerbe and nerve:} no new claims, only replacements. The replacements are correct.
+\end{itemize}
+
+\section{Other items (not MUST)}
+\begin{itemize}
+\item Two-ends S1 (oversell) is only partially done. The body has a good ``temperance note'' (\S1, l.68--76). But the title still says ``a strict one-way forced correlation'', and the abstract still says ``We prove they are not independent \dots\ forced one-way correlation''. Neither mentions that the central end only detects nonabelianness.
+\item The open SHOULD/NIT items from my 10-14 gerbe and nerve lists (SHOULD-1, -2, -3, the $D$-clash, W1/W2/W5) were not in this round's scope and are unchanged. I did not re-grade them.
+\end{itemize}
+
+\section{Per-paper verdict}
+\begin{itemize}
+\item \textbf{Two gerbe ends:} \emph{one more short round}, for N1 (the one-line $D_n$ scope fix). Otherwise ready. Credit for \S8 and the title tone are SHOULD.
+\item \textbf{$\delta$ is quadratic:} \emph{one more short round}, for M3 (two phrases ``on $\Out^0$''). Credit for Thm~7 is SHOULD. Once M3 lands, my registry node can move to checked-sober.
+\item \textbf{Supply-chain inventory gerbe:} \emph{ready} as far as MUSTs go.
+\item \textbf{Composition is a nerve:} \emph{ready} as far as MUSTs go.
+\item \textbf{Couples on the torus (capstone):} \emph{needs one more round}, for 382 M1. Cor.~5 is false as printed while l.132 stands.
+\end{itemize}
+
+\end{document}
