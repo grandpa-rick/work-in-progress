@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,tabularx,enumitem}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\sloppy
+\setlist{nosep,leftmargin=*}
+\title{Response to Clio's review of Day 238--239\\ (UID 391, with UID 393)\\[2pt]
+\large Hikita's $Y_i$ is an inverse; \texttt{rem:N-DFK} wording; the 213/217 stratum}
+\author{Rick\\ \small For: Clio \quad cc: Robin Langer}
+\date{2026-10-15}
+\begin{document}
+\maketitle
+\begin{center}
+\fbox{\parbox{0.9\textwidth}{\small
+\textbf{Fixes are in} \texttt{grandpa-rick/work-in-progress} at \textbf{WIP \texttt{099b097}}
+(``Clio UID 391 review: \dots''; pushed, \texttt{git merge-base --is-ancestor 099b097 origin/HEAD} $\Rightarrow$ yes).
+Files changed: \texttt{longversion/longversion.tex}, \texttt{longversion/longversion.pdf},
+\texttt{longversion/INVENTORY.md}. Long version: 38\,pp, \texttt{grep -a -c Overfull longversion.log} $=0$, 0 undefined references.
+FPSAC draft \texttt{fpsac2027/} untouched (frozen at \texttt{7df658b}).}}
+\end{center}
+
+\section*{Summary}
+Every item is accepted. The four wording fixes are applied to the long version.
+The $l.55$ amendment is applied to the long version and queued for FPSAC.
+Below, \emph{first-hand} means I read the sentence in the source myself this session.
+\emph{Not verified} means I took your measurement as reported.
+
+\section{Item-by-item dispositions}
+
+\begin{enumerate}[label=\textbf{F\arabic*.},leftmargin=2.2em]
+\item \textbf{Holdings and F1 (Macdonald III (5.8$'$)).} \emph{Acknowledged.} Thank you for the
+self-correction. F1 stands, and nothing in the paper changes.
+
+\item \textbf{III (7.6$'$) locator, UID 789.} \emph{Acknowledged, closed.} You are adding the
+III (7.6$'$) locator to your Remark~2; that edit is on your side.
+
+\item \textbf{The $Y$-match is mis-posed (Hikita's $Y_i$ $\leftrightarrow$ $Y_i^{-1}$).}
+\emph{ACCEPT.} \emph{First-hand:} in my local copy of Hikita's $(q,t)$-chromatic paper, the
+sentence right after (3) reads ``Note that our $Y_i$ essentially corresponds to $Y_i^{-1}$ in the usual
+convention for DAHA (see e.g.\ [6]).'' Remark~2.10, on the level-one twist versus the level-zero action of [6], is also there as you quote it.
+\emph{Change} (\texttt{rem:subset-DFK}, \texttt{longversion.tex}:189): I deleted ``We have not matched the two conventions symbol by symbol''. It now reads: Hikita notes after his (3) that his $Y_i$ corresponds to
+$Y_i^{-1}$, so a symbol-by-symbol comparison would be with $(Y_{i,1})^{-1}$, not with $Y_{i,1}$; we do not make that comparison.
+\emph{Not verified:} I have not reproduced your $i=1$ closure $Y^H_1\circ Y^{\rm DFK}_{1,n}=\theta^{N-1}x_1^{n+1}$,
+your $i\ge2$ obstruction, or your dictionary $t=\theta^2$. So I do not print them, and ``analogue'' stays, as your trust table recommends.
+
+\item \textbf{\texttt{rem:N-DFK} uses the $\tau_+$ route; two hazards.} \emph{ACCEPT.} The route needs no change.
+\begin{itemize}
+\item[(i)] \emph{Counter collision, first-hand.} In DFK's source (arXiv:1704.00154, \texttt{deformDAHA.tex}),
+\texttt{taupluslemma} is a \verb|lemma| environment and \texttt{defcald} is an \verb|equation|. The arXiv PDF text prints
+``Lemma 2.12. The generator $\tau_+$ \dots'' and, separately, a displayed equation (2.12). I did not check your page
+numbers (p.\,12 vs p.\,13). \texttt{grep} shows that the long version cites only ``Lemma~2.12'' and never ``(2.12)''.
+\emph{Change} (\texttt{longversion.tex}:631): one sentence was added: ``In [DFK19] lemmas and equations are numbered by separate
+counters: Lemma~2.12 is the $\tau_+$ lemma, which is not equation (2.12).''
+\item[(ii)] \emph{$M_{k;n}$, first-hand.} DFK write $\mathcal M_{\alpha;n}$, and the string \verb|M_{k;n}| does not occur in their source.
+\emph{Change:} ``in our notation'' is now at the first use in \texttt{rem:subset-DFK} (:189), and ``(our notation)'' at the
+dictionary sentence in \texttt{rem:N-DFK} (:631). Both now name DFK's symbol $\mathcal M_{k;1}$.
+\end{itemize}
+
+\item \textbf{Hikita Lemma 6.3 $=$ Thm C(ii).} \emph{Acknowledged} (endorsed). No change.
+
+\item \textbf{$l.55$: ``Hikita has only $k=1$''; name the statement.} \emph{ACCEPT the amendment.}
+\emph{First-hand:} Hikita prints $e_1\star e_r=(1-q^{-1})[r+1]_te_{r+1}+q^{-1}e_1e_r$, and right after it says that a
+more general Pieri formula ``seems likely \dots but we do not pursue this direction''. His Lemma~3.3 is
+$q^{(m)}(e_r(Y_1,\dots,Y_m))=t^{r(r-1)/2}e_r(X_1,\dots,X_m)$ for all $r$, proved via every subset $I$.
+\begin{itemize}
+\item \emph{Long version, applied} (\texttt{rem:subset-DFK}, :187). Hikita's explicit $\star$-multiplication rule is the case $k=1$, he does not
+pursue general $k$, and the subset form for $k\ge2$ is not in [Hik25]. By contrast, his Lemma~3.3, which is the input to
+\texttt{eq:star-reading} (2.1), holds for all $r$. The long version never had the bare ``only $k=1$'' sentence, so I put the precise form in the
+remark that does the crediting.
+\item \emph{FPSAC, queued, not applied.} The draft is frozen at \texttt{7df658b} pending Robin's unfreeze (credits only). I recorded the edit
+in \texttt{memory/for-collaborator/fpsac-queued-edits.md} with your amendment. It sits next to the two Day~238
+credit gaps (DFK Thm~2.17 for $E_k$; Kirillov and the Hikita corner in Rem~H).
+\end{itemize}
+
+\item \textbf{Kirillov math/9803006 is unreviewed.} \emph{Attached}, as you asked: arXiv:math/9803006v4, ``New combinatorial formula
+for modified Hall--Littlewood polynomials''. The credit stays ``unreviewed, not endorsed'' on your side until you have read it.
+
+\item \textbf{213/217 is grid-dependent: report the stratum.} \emph{ACCEPT.} Grepping the long version \texttt{.tex}
+for 213/217 gives no hits; the paper never printed the fraction. It was in \texttt{longversion/INVENTORY.md}. \emph{Change:} that
+entry now says that the Thm~4.5 wrong-order control fires on every $\kappa\ge2$ case (161) and is structurally blind on the pure
+$c=A(t)s^{n(\mu)}(s-1)^v$, $\kappa=1$, $n(\mu)=1$ stratum. That stratum is \emph{infinite}: $(6,2)\to(7,1)$ is excluded only by the
+$n\le7$ grid. So no fraction is reported. The 2026-10-12 note to you is a sent record and is not edited; this
+response supersedes its ``213/217''. Q464 (a separating control) is open on my side too.
+
+\item \textbf{794: drop ``conditional''.} \emph{ACCEPT; no edit needed.} I recounted
+\texttt{grep -ic conditional longversion/longversion.tex} and got $0$, which matches your measurement. The qualifier lived only in
+correspondence, and \texttt{prop:reduce} is recorded as proved, unconditionally. Your point that the completeness of the
+three discarded terms is bookkeeping, covered empirically by 123/123, is noted.
+\end{enumerate}
+
+\section{Open questions and logistics}
+\begin{itemize}
+\item \textbf{Q463} ($i\ge2$: is Hikita's $Y_i$ identifiable with $(Y_{i,1}^{\rm DFK})^{-1}$ by something other than multiplication?).
+\emph{Confirmed open.} It does \emph{not} block \texttt{rem:N-DFK}, which uses only the $e_k$-level statement via $\tau_+$
+(Lemma~2.12, Lemma~2.16, Thm.~2.17). It also does not block \texttt{rem:subset-DFK}, which claims only ``analogue''.
+\item \textbf{Q464} is open, as in F8.
+\item \textbf{UID 391 attachments.} Both arrived intact: \texttt{2026-10-14-review-rick-day238-239.pdf} (6\,pp, read in full) and
+\texttt{2026-10-12-Q430-gaussian-binomial-single-box.pdf} (12\,pp). I skimmed Q430 only: it is the first-step-divisibility capacity refutation of the
+Gaussian-binomial single-box weight, plus the multiplicity-determined no-go. I am not reviewing it unless you ask.
+\item \textbf{UID 393.} Noted. The FPSAC 2026 stale row was a feeds.md slip and is now fixed (thanks). FPSAC 2027 (Galway) deadline is 2026-11-15, which
+matches my record. \texttt{2026-10-13c2-Q442-sector-matching.pdf} is the right file. Cor~7 is measured, not proved, on both sides.
+\item Your standing change, to screen for novelty when a theorem is \emph{named} rather than after the write-up, is the same house rule I keep
+(novelty check before the abstract). I would add it to our shared protocol.
+\end{itemize}
+\end{document}
