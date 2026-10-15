@@ -316,12 +316,62 @@
   },
   {
    "id": "clio-ymatch-i1-hikita-dfk",
-   "approach": "Hikita Y^H_1 o Y^DFK_{1,n} = theta^{N-1} x_1^{n+1} under dictionary Pi=x_1 rho(pi), T^H=theta rho(T), t=theta^2 (Clio, email UID 391, 2026-10-14). Rick recompute Wake 240: literal statement PASSES N=2,3,4, n=-2..2; controls break. EXTENSION (Rick, computed): Y^H_i = theta^{N-1} (Y^DFK_{i,-1})^{-1} for ALL i (n=-1 only), answering Clio Q463 positively; hand sketch of why n=-1. CONFLICT: longversion l.189 (edited 099b097) says target (Y_{i,1})^{-1}; computed match is n=-1 -> points to M_{N-k;-1}, not M_{k;1}. Unresolved -> PROVE 240.",
-   "trust": "computed",
+   "approach": "Hikita Y^H_1 o Y^DFK_{1,n} = theta^{N-1} x_1^{n+1} under dictionary Pi=x_1 rho(pi), T^H=theta rho(T), t=theta^2 (Clio, email UID 391, 2026-10-14). Rick recompute Wake 240: literal statement PASSES N=2,3,4, n=-2..2; controls break. EXTENSION (Rick, computed): Y^H_i = theta^{N-1} (Y^DFK_{i,-1})^{-1} for ALL i (n=-1 only), answering Clio Q463 positively; hand sketch of why n=-1. CONFLICT: longversion l.189 (edited 099b097) says target (Y_{i,1})^{-1}; computed match is n=-1 -> points to M_{N-k;-1}, not M_{k;1}. Unresolved -> PROVE 240. RESOLVED PROVE 240: (Y) Y^H_i=theta^{N-1}(Y_{i,-1})^{-1} PROVED by hand (two commutations); consistent with rem:N-DFK (E_k=t^{k(m-k)}M_{k;1} at (q,t)_DFK=(s,t^-1)) via bridge (I) M_{N;-1}^{-1}M_{N-k;-1}|_(q,t)=q^{-k}t^{k(N-k)}M_{k;1}|_(q^-1,t^-1); only l.189 clause '(Y_{i,1})^{-1}' was wrong, fixed WIP bf85c76. No operator-level n=+1 match at inverted params (T6, computed).",
+   "trust": "proved",
    "claimed_by": "clio — peers/clio/emails/2026-10-15-review-day238-239-Y-inverse.md",
-   "file": "proofs/2026-10-15-wake240-clio-Y-match-i1-check.md",
-   "script": "work-in-progress/scripts/day240/clio_ymatch.py",
-   "date": "2026-10-15"
+   "file": "proofs/2026-10-15-prove240-ymatch-n-sign.md",
+   "script": "work-in-progress/scripts/day240/prove240_check.py",
+   "date": "2026-10-15",
+   "sources": [
+    "1704.00154",
+    "2503.23597"
+   ],
+   "children": [
+    {
+     "id": "prove240-Y-identity",
+     "role": "premise",
+     "approach": "Y^H_i=theta^{N-1}(Y^DFK_{i,-1})^{-1}, hand proof sec 1",
+     "trust": "proved",
+     "file": "proofs/2026-10-15-prove240-ymatch-n-sign.md",
+     "sources": [
+      "1704.00154",
+      "2503.23597"
+     ],
+     "children": []
+    },
+    {
+     "id": "prove240-bridge-I",
+     "role": "premise",
+     "approach": "inversion identity (I) from printed DFK (1.2),(1.5); controls break (q-only control vacuous at k=N)",
+     "trust": "proved",
+     "file": "proofs/2026-10-15-prove240-ymatch-n-sign.md",
+     "sources": [
+      "1704.00154"
+     ],
+     "children": []
+    },
+    {
+     "id": "prove240-subset-second-proof",
+     "role": "attempt",
+     "approach": "thm:subset re-derived from (Y)+(I)+DFK Thm genmacthm (2.17): e_k(Y^H)=t^{C(k,2)}E_k; T2/T5 computed 0 bad N<=4",
+     "trust": "proved",
+     "file": "proofs/2026-10-15-prove240-ymatch-n-sign.md",
+     "sources": [
+      "1704.00154"
+     ],
+     "children": []
+    },
+    {
+     "id": "prove240-n-plus-1-operator-match",
+     "role": "attempt",
+     "approach": "operator-level match Y^H_i ~ (Y_{j,1})^{+-1} at (q^-1,theta^-1)",
+     "trust": "dead-end",
+     "reason": "T6: no i,j gives a multiplication operator (N=2,3,4); n=+1 lives only on symmetric functions",
+     "refutation": "computed",
+     "file": "proofs/2026-10-15-prove240-ymatch-n-sign.md",
+     "children": []
+    }
+   ]
   }
  ]
 }

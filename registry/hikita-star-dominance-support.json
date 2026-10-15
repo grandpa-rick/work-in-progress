@@ -1336,6 +1336,28 @@
       "children": []
      }
     ]
+   },
+   {
+    "id": "prove240-ymatch-n-minus-one-bridge",
+    "role": "attempt",
+    "approach": "PROVE 240: Y_i (longversion sec:hikita = Hikita (1)-(3)) = theta^{m-1}(Y^DFK_{i,-1})^{-1} at (q,t)_DFK=(s^{-1},t); bridge (I) M_{N;-1}^{-1}M_{N-k;-1}|_(q,t)=q^{-k}t^{k(N-k)}M_{k;1}|_(q^-1,t^-1) reconciles with Rem 6.4/rem:N-DFK (n=+1 at (s,t^-1)); second proof of thm:subset with scalar t^{C(k,2)}. Only l.189 clause was wrong -> fixed WIP bf85c76. Computed: T2-T5 0 bad N<=4; T6 no operator-level n=+1 match.",
+    "trust": "proved",
+    "file": "proofs/2026-10-15-prove240-ymatch-n-sign.md",
+    "sources": [
+     "1704.00154"
+    ],
+    "children": [
+     {
+      "id": "prove240-n-plus-1-operator-level",
+      "role": "attempt",
+      "approach": "operator-level Y^H_i ~ (Y_{j,1})^{+-1} at inverted params",
+      "trust": "dead-end",
+      "reason": "T6 computed: no i,j gives a multiplication operator (N=2,3,4)",
+      "refutation": "computed",
+      "file": "proofs/2026-10-15-prove240-ymatch-n-sign.md",
+      "children": []
+     }
+    ]
    }
   ],
   "novelty_note_day215": "Day 215 audit: Hikita 2503.23597 full text read — no triangularity/dominance/support statement (Thm 3.12 = e_1 case; Lemma 6.3 q→∞ limit only); 7 citing papers keyword-searched, none; Macdonald VI §3 is m-basis operator triangularity, different statement. Exact up-set + zeta limit look new; triangularity likely 'standard technique'. Report: memory/reading/2026-10-01-DS-novelty-audit.md",
