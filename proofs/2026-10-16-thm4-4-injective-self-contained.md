@@ -39,7 +39,7 @@
   - ker Θ is an ideal because Θ is an algebra map.
   - It is a coideal: if Θx=0 then (Θ⊗Θ)r(x) = ΔΘ(x) = 0, so r(x) ∈ ker Θ⊗'f + 'f⊗ker Θ.
   - So f is a connected braided bialgebra in C_q, and Thm 2 applies to it. This is the Nichols algebra B(V) of the diagonal braiding q^{(α_i,α_j)}.
-  - The dictionary with Lusztig's f = 'f/rad is Lemma D (§4). Nothing in §2–3 uses it.
+  - The dictionary with Lusztig's f = 'f/rad is Lemma D (§4, proved without citation in cycle 2). Nothing in §2–3 uses it.
 - **Notation.** D_t is the algebra automorphism F_i ↦ t_iF_i of 'f, for t ∈ (k^×)^I. Θ(D_t x) = t^ν Θ(x) for x ∈ 'f_ν, so D_t preserves ker Θ and descends to an automorphism of f.
 
 ## 2. Injectivity (no citation)
@@ -109,21 +109,60 @@ Then for **every** t ∈ (k^×)^I there is a φ-character ζ: f → A_φ with ζ
 - The forest hypothesis enters only in step 1. For a Dynkin graph with a cycle (affine Ã_n, n≥2) and a **cyclic** orientation, no linear extension exists, and whether a φ-character with all t_i ≠ 0 exists there is open (not pursued: no new problems).
 - Where q enters: [n]_{q_ii}! ≠ 0 in λ_o, so q must not be a root of unity of small order. Over Q(q) this is automatic.
 
-## 4. Dictionary with Lusztig (Lemma D, cited textbook input)
+## 4. Dictionary with Lusztig (Lemma D — proved in cycle 2, Lusztig 1.2.3 no longer cited)
 
-**Lemma D.** ker Θ = rad of Lusztig's form on 'f. Hence f = Lusztig's f (1.2.5).
+**Conventions (definitions, not theorems).** Lusztig's r: 'f → 'f⊗'f is the algebra map with r(F_i) = F_i⊗1 + 1⊗F_i, where the product on 'f⊗'f is
+(x1⊗x2)(y1⊗y2) = v^{(|x2|,|y1|)} x1y1⊗x2y2 (1.2.2). With q = v, this is our braided tensor product in C_q. Lusztig's form is a bilinear form ( , ) on 'f with
+- (a) (1,1) = 1, and (F_i,F_j) = δ_ij κ_i, where κ_i = (1−v_i^{−2})^{−1} and v_i = v^{d_i};
+- (b) (x, y'y'') = (r(x), y'⊗y''), where (x1⊗x2, y1⊗y2) := (x1,y1)(x2,y2);
+- (c) (x'x'', y) = (x'⊗x'', r(y)).
 
-*Proof, given Lusztig 1.2.3.* Lusztig 1.2.3 provides a symmetric bilinear form on 'f with:
-- (F_i,F_j) = δ_ij κ_i, κ_i ≠ 0;
-- (x, y'y'') = (r(x), y'⊗y''), with the factorwise form on 'f⊗'f;
-- 'f_ν ⊥ 'f_μ for ν ≠ μ.
+f is by definition 'f/rad (1.2.5). Lusztig proves (1.2.3) that such a form exists, is unique and is symmetric. Here all three facts are re-derived, so nothing is cited.
+(If a reader's r uses v^{−(|x2|,|y1|)}, the same proof applies with q ↦ q^{−1}. Nothing below depends on the sign.)
 
-Iterating the second property, for x ∈ 'f_ν and a word w of content ν:
-  (x, F_{w_1}⋯F_{w_n}) = (r^{(n−1)}x, F_{w_1}⊗…⊗F_{w_n}) = c_w(x) Π_k κ_{w_k}.
-- Only the π_w component pairs nontrivially, by weight-orthogonality factorwise.
-- Monomials span 'f_ν. So x ∈ rad ⇔ every c_w(x) = 0 ⇔ Θ(x) = 0. ∎
+**Notation.** For a word w = w_1…w_n, put κ_w = Π_k κ_{w_k} and F_w = F_{w_1}⋯F_{w_n}. The coefficient c_w(x) is the one from §1: π_w r^{(n−1)}(x) = c_w(x) F_{w_1}⊗…⊗F_{w_n}.
 
-**Status.** The form's existence (1.2.3) is cited from memory, not deep-read. So Lemma D is graded sketched-with-citation. It is used **only** to name f "Lusztig's f". Thm 4(4)(a),(b) and the Corollary stand on f := B(V) = 'f/ker Θ without it.
+**Definition.** B(x, F_w) := κ_w c_w(x). The words F_w form a basis of 'f, so this extends to a unique bilinear form B on 'f×'f.
+
+**Lemma D.**
+- (i) B satisfies (a), (b) and the weight orthogonality 'f_ν ⊥ 'f_μ (ν ≠ μ).
+- (ii) Any form satisfying (a) and (b) equals B. Hence Lusztig's form exists, is unique, and equals B.
+- (iii) B is symmetric. Hence (c) also holds.
+- (iv) rad B = ker Θ. Hence Lusztig's f = 'f/ker Θ = our f.
+
+*Proof.*
+
+(i)
+- *Orthogonality:* r is graded, so c_w(x) = 0 for x ∈ 'f_ν unless content(w) = ν.
+- *(a):* c_∅(1) = 1, and c_j(F_i) = δ_ij. So B(F_i, F_j) = δ_ij κ_i.
+- *(b):* by bilinearity, take y' = F_a and y'' = F_b to be words, with |a| = m and |b| = n−m ≥ 1. Coassociativity gives r^{(n−1)} = (r^{(m−1)} ⊗ r^{(n−m−1)})∘r as linear maps; no braiding enters, since only tensor factors are being regrouped. The component π_{ab} factors as π_a ⊗ π_b. So, writing r(x) = Σ x_(1)⊗x_(2),
+  c_{ab}(x) = Σ c_a(x_(1)) c_b(x_(2)).
+  Multiplying by κ_{ab} = κ_aκ_b gives B(x, F_aF_b) = Σ B(x_(1),F_a) B(x_(2),F_b) = (r(x), F_a⊗F_b)_B.
+  (The cases m = 0 or n are trivial, because r(x) has the components x⊗1 and 1⊗x.)
+
+(ii) Let ( , ) satisfy (a) and (b). Peel off the first letter: (x, F_w) = (r(x), F_{w_1}⊗F_{w_2…w_n}). Induction on n then gives (x, F_w) = (r^{(n−1)}x, F_{w_1}⊗…⊗F_{w_n}).
+- One more input is needed: (a) and (b) force orthogonality of weight spaces, i.e. (x, F_w) = 0 for x ∈ 'f_ν with ν ≠ content(w). This follows by the same induction: r^{(n−1)}x has components of degrees (λ_1,…,λ_n) with Σλ_k = ν, and the base case is (x, F_i) for x ∈ 'f_λ.
+- Base case. For λ = α_i, x is a multiple of F_i and (a) applies.
+- For λ = 0 there is no base case: (a)+(b) do **not** force (1, F_i) = 0.
+  - For example, (1, F_i·1) = (r(1), F_i⊗1) = (1, F_i) is a tautology.
+  - Setting (1, F_w) = Π_k c_{w_k}, with arbitrary scalars c_i, and extending by (b) gives a non-graded family.
+- So uniqueness needs the orthogonality axiom (o): 'f_ν ⊥ 'f_μ for ν ≠ μ. Lusztig's form has it, since his construction is degree by degree.
+- Given (a)+(b)+(o): only the component of r^{(n−1)}x in 'f_{α_{w_1}}⊗…⊗'f_{α_{w_n}} = kF_{w_1}⊗…⊗kF_{w_n} contributes. That component is c_w(x)F_{w_1}⊗…, so (x, F_w) = κ_w c_w(x) = B(x, F_w).
+- B satisfies (o) by (i). So whichever axiom list one takes for Lusztig's form ((a)+(b)+(o), or (a)–(c), each of which implies (o) on the relevant side), the form equals B.
+
+(iii) It suffices to check words: c_w(F_u) = c_u(F_w), with κ_u = κ_w (equal content; otherwise both sides are 0).
+- Θ is an algebra map, so c_w(F_u) = coefficient of [w] in [u_1]ш…ш[u_n].
+- Iterating the two-word shuffle, this is Σ_σ q^{e(σ)}. The sum runs over permutations σ ∈ S_n with w_{σ(k)} = u_k (letter u_k is placed in slot σ(k)). The exponent is e(σ) = Σ_{k<l, σ(k)>σ(l)} (α_{u_k}, α_{u_l}): each inversion is a later letter jumping an earlier one and pays the form on the pair. (Induct on n: [u_1…u_{n−1}-shuffle]ш[u_n] places u_n and pays (α_{u_n}, α_{x}) for every earlier letter x it precedes. These are exactly the inversions involving n.)
+- σ ↦ σ^{−1} is a bijection {σ : w∘σ = u} → {τ : u∘τ = w}. An inversion (k,l) of σ corresponds to the inversion (σ(l), σ(k)) of σ^{−1}. Its letters are w_{σ(l)} = u_l and w_{σ(k)} = u_k, paying (α_{u_l}, α_{u_k}).
+- (·,·) is symmetric, so e(σ^{−1}) = e(σ), and therefore c_w(F_u) = c_u(F_w).
+- (c) now follows: (x'x'', y) = (y, x'x'') = (r(y), x'⊗x'') = (x'⊗x'', r(y)), using symmetry of B and hence of the factorwise form.
+
+(iv)
+- Since κ_w ≠ 0 (over Q(q), v_i^{−2} ≠ 1), x lies in the left radical iff c_w(x) = 0 for all w iff Θ(x) = 0.
+- B is symmetric, so the left radical = the right radical = rad. ∎
+
+**Status:** proved (no citation). The only Lusztig input is the *definition* of r and of f = 'f/rad.
+Note on (ii): (a)+(b) alone do not pin (1, F_i). Lusztig's construction gives grading orthogonality, and any reasonable reading of 1.2.3 includes it. Either way the form is B.
 
 ## 5. Verification (computational)
 
@@ -162,6 +201,6 @@ All checks use exact rationals unless marked symbolic.
 
 ## 7. Gaps
 
-1. Lemma D rests on Lusztig 1.2.3 from memory. It is needed only for the name "Lusztig's f", not for any claim about B(V).
+1. ~~Lemma D rests on Lusztig 1.2.3 from memory.~~ **CLOSED (cycle 2):** §4 constructs the form as B(x,F_w)=κ_w c_w(x) and proves (a),(b),(c), uniqueness (given grading orthogonality), symmetry and rad B = ker Θ. Check: `lemmaD_check.py`: A3/B2/G2, 12 weights, all symmetric + Hopf; Gram rank = Kostant numbers (5,7,7,4 / 3,2,3,4 / 3,4,4,7, by hand); r-vs-shuffle dictionary 2308/2308; control with the unsymmetrised B2 Cartan as braiding → symmetry FAILS. Residual: only the convention for r (v^{+} vs v^{−}), from memory, and it is sign-robust.
 2. 'f being a braided bialgebra in C_q (tensor algebra with primitive generators) is standard and is used as such. It is checked numerically in Day 241 (Ψ multiplicativity 400/400 on free algebras).
 3. Novelty of Thm 2 / QSym_{q,φ} is still UNKNOWN (JRZ unread). Lemma 2 is elementary, and probably folklore in the Feigin-map literature (Berenstein; Rupel's quantum-shuffle Feigin map, from memory). It is not claimed as new.

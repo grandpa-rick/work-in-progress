@@ -172,10 +172,19 @@
    {
     "id": "lemmaD-lusztig-dictionary",
     "role": "attempt",
-    "approach": "Lemma D: ker Theta = rad of Lusztig's form ((x,F_w) = c_w(x) prod kappa), so B(V) = Lusztig's f. Used only to NAME f; Thm 4(4) does not depend on it. Input: Lusztig, Introduction to Quantum Groups 1.2.3/1.2.5, from memory, not deep-read (book, no arXiv id).",
-    "trust": "sketched",
+    "approach": "Lemma D (cycle 2, no citation): define B(x,F_w)=kappa_w c_w(x); prove Lusztig axioms (a),(b) via coassociativity, uniqueness given grading orthogonality ((a)+(b) alone don't pin (1,F_i)), symmetry via sigma->sigma^{-1} on shuffle inversions (needs (.,.) symmetric), (c) from symmetry; rad B = ker Theta. Only Lusztig input: the DEFINITIONS of r (1.2.2) and f='f/rad (1.2.5), conventions from memory, sign-robust (q->q^{-1}).",
+    "trust": "proved",
     "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
-    "children": []
+    "children": [
+     {
+      "id": "lemmaD-computed",
+      "role": "attempt",
+      "approach": "lemmaD_check.py: c_w from iterated braided r (independent of shuffle code) == shuffle coeff 2308/2308; B symmetric + Hopf on A3/B2/G2, 12 weights; Gram rank = Kostant numbers; control (unsymmetrised B2 Cartan as braiding) breaks symmetry.",
+      "trust": "computed",
+      "file": "code/seedq1/lemmaD_check.py",
+      "children": []
+     }
+    ]
    },
    {
     "id": "reineke-integration-remark",
