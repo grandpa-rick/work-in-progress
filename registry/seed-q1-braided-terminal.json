@@ -1,30 +1,190 @@
 {
-  "conjecture": "Seed Q1, braided form: ABS terminality (QSym, zeta_Q) transports to connected braided bialgebras in C_q (Lambda-graded, braiding q^{(|x|,|y|)}), and the terminal map restricted to Lusztig's f recovers Rosso's quantum-shuffle embedding.",
-  "status": "in-progress",
-  "date_opened": "2026-10-15",
-  "date_closed": null,
-  "tree": {
-    "id": "root",
-    "approach": "Day 241 PROVE: degenerate-point check (a), then repair zeta via a graded twisted target A_phi = k_phi[Lambda_+] and prove terminality; rank-1 test; rank>=2 Serre analysis.",
-    "trust": "in-progress",
+ "conjecture": "Seed Q1, braided form: ABS terminality (QSym, zeta_Q) transports to connected braided bialgebras in C_q (Lambda-graded, braiding q^{(|x|,|y|)}), and the terminal map restricted to Lusztig's f recovers Rosso's quantum-shuffle embedding.",
+ "status": "in-progress",
+ "date_opened": "2026-10-15",
+ "date_closed": null,
+ "tree": {
+  "id": "root",
+  "approach": "Day 241 PROVE: degenerate-point check (a), then repair zeta via a graded twisted target A_phi = k_phi[Lambda_+] and prove terminality; rank-1 test; rank>=2 Serre analysis.",
+  "trust": "in-progress",
+  "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
+  "children": [
+   {
+    "id": "a-naive-vacuous",
+    "role": "attempt",
+    "approach": "Prop 1: algebra morphisms H -> 1 in C_q kill H_+ (degree-0 target). True and one line, but it says nothing specific about the braiding: classical ABS zeta isn't graded either. The real content is that C_q -> Vect is not braided, so you can't 'forget the grading'. Repair = u-bookkeeping.",
+    "trust": "proved",
+    "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
+    "children": []
+   },
+   {
+    "id": "b-i-zeta-tensor-zeta-braided",
+    "role": "attempt",
+    "approach": "(b)(i) require zeta(x)zeta multiplicative on braided H(x)H.",
+    "trust": "dead-end",
+    "reason": "(zeta(x)zeta)((a(x)b)(c(x)d)) = q^{(|b|,|c|)} prod zeta: fails unless zeta kills H_+. Also not needed: terminality only uses zeta o m_H = m_A(zeta(x)zeta) as linear maps.",
+    "refutation": "proved",
+    "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
+    "children": []
+   },
+   {
+    "id": "thm2-braided-ABS",
+    "role": "attempt",
+    "approach": "Thm 2: for any bilinear phi, (QSym_{q,phi} = quantum quasi-shuffle with crossing q^{(b,a)} and merge q^{phi(a,b)}, zeta_Q = [l<=1]u) is terminal among (connected braided bialgebras in C_q, phi-characters H -> A_phi). ABS proof transports verbatim: coalgebra cofreeness (Lemma A, braiding-free) + Lemma B (bialgebra via cut bijection; crossing pairs alpha''-beta' give exactly the middle braiding).",
+    "trust": "proved",
+    "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
+    "novelty": "UNKNOWN: QSym_{q,phi} is presumably Jian-Rosso-Zhang's quantum quasi-shuffle algebra (0908.0083, 1302.5888 - abstract level only); braided terminality may be theirs or folklore. Browse must read JRZ I/II first-hand.",
+    "children": [
+     {
+      "id": "lemmaA-cofree",
+      "role": "premise",
+      "approach": "Lemma A: unique graded coalgebra map C -> QSym with zeta_Q Psi = zeta; coefficient-extraction proof, no braiding.",
+      "trust": "proved",
+      "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
+      "children": []
+     },
+     {
+      "id": "lemmaB-bialgebra",
+      "role": "premise",
+      "approach": "Lemma B: QSym_{q,phi} associative (bracketing-free inversion weight + cocycle), braided bialgebra (cut bijection), Takeuchi antipode, zeta_Q phi-character.",
+      "trust": "proved",
+      "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
+      "children": [
+       {
+        "id": "lemmaB-computed",
+        "role": "attempt",
+        "approach": "qqsym.py / lattice_bialg.py: rank-1 assoc 111/111, bialg 129/129 (deg<=6); rank-2 sl3 form with two phis bialg 225/225, assoc 0 fails; mismatched-braiding controls FAIL 49/49 and 223/225 (2 survivors degenerate).",
+        "trust": "computed",
+        "file": "code/seedq1/qqsym.py",
+        "children": []
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "prop3-no-character-group",
+    "role": "attempt",
+    "approach": "Prop 3: convolution of characters is not a character for q != 1 (k[F], n=2: t^2+(1+q)ts+s^2). ABS even/odd factorization has no direct braided analogue.",
+    "trust": "proved",
+    "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
+    "children": []
+   },
+   {
+    "id": "c-rank1-test",
+    "role": "attempt",
+    "approach": "Rank 1 k[F]: Psi(F^(n)) = t^n sum_alpha M_alpha / prod [alpha_i]_q!; multiplicativity a+b<=4 6/6 symbolic; q^{-1} control 0/6; q=1 gives h_1^n/n! (PROVE.md's 'h_n' was wrong). Free braided algebra (letter degrees 1,2,1): 400/400, controls 400/400 FAIL.",
+    "trust": "computed",
+    "file": "code/seedq1/psitest.py",
+    "children": []
+   },
+   {
+    "id": "thm4-scalar-characters-degenerate",
+    "role": "attempt",
+    "approach": "Thm 4(1)-(3): zeta(ad_c(F_i)^n F_j) = (...) prod_{k<n}(1 - q_ij q_ii^k y/x) (Gauss q-binomial). For phi=0 in finite type t_i t_j = 0 on every edge, so Psi(f) is commutative and generated by an independent set: the braided ABS map of f sees no Dynkin edge. Checked sl3 and B2 (b2_test.py: d-sets {-2,0,2} and {+-2} exactly as predicted).",
+    "trust": "proved",
     "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
     "children": [
-      {"id": "a-naive-vacuous", "role": "attempt", "approach": "Prop 1: algebra morphisms H -> 1 in C_q kill H_+ (degree-0 target). True and one line, but it says nothing specific about the braiding: classical ABS zeta isn't graded either. The real content is that C_q -> Vect is not braided, so you can't 'forget the grading'. Repair = u-bookkeeping.", "trust": "proved", "file": "proofs/2026-10-15-seed-q1-braided-terminal.md", "children": []},
-      {"id": "b-i-zeta-tensor-zeta-braided", "role": "attempt", "approach": "(b)(i) require zeta(x)zeta multiplicative on braided H(x)H.", "trust": "dead-end", "reason": "(zeta(x)zeta)((a(x)b)(c(x)d)) = q^{(|b|,|c|)} prod zeta: fails unless zeta kills H_+. Also not needed: terminality only uses zeta o m_H = m_A(zeta(x)zeta) as linear maps.", "refutation": "proved", "file": "proofs/2026-10-15-seed-q1-braided-terminal.md", "children": []},
-      {"id": "thm2-braided-ABS", "role": "attempt", "approach": "Thm 2: for any bilinear phi, (QSym_{q,phi} = quantum quasi-shuffle with crossing q^{(b,a)} and merge q^{phi(a,b)}, zeta_Q = [l<=1]u) is terminal among (connected braided bialgebras in C_q, phi-characters H -> A_phi). ABS proof transports verbatim: coalgebra cofreeness (Lemma A, braiding-free) + Lemma B (bialgebra via cut bijection; crossing pairs alpha''-beta' give exactly the middle braiding).", "trust": "proved", "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
-       "novelty": "UNKNOWN: QSym_{q,phi} is presumably Jian-Rosso-Zhang's quantum quasi-shuffle algebra (0908.0083, 1302.5888 - abstract level only); braided terminality may be theirs or folklore. Browse must read JRZ I/II first-hand.",
-       "children": [
-        {"id": "lemmaA-cofree", "role": "premise", "approach": "Lemma A: unique graded coalgebra map C -> QSym with zeta_Q Psi = zeta; coefficient-extraction proof, no braiding.", "trust": "proved", "file": "proofs/2026-10-15-seed-q1-braided-terminal.md", "children": []},
-        {"id": "lemmaB-bialgebra", "role": "premise", "approach": "Lemma B: QSym_{q,phi} associative (bracketing-free inversion weight + cocycle), braided bialgebra (cut bijection), Takeuchi antipode, zeta_Q phi-character.", "trust": "proved", "file": "proofs/2026-10-15-seed-q1-braided-terminal.md", "children": [
-          {"id": "lemmaB-computed", "role": "attempt", "approach": "qqsym.py / lattice_bialg.py: rank-1 assoc 111/111, bialg 129/129 (deg<=6); rank-2 sl3 form with two phis bialg 225/225, assoc 0 fails; mismatched-braiding controls FAIL 49/49 and 223/225 (2 survivors degenerate).", "trust": "computed", "file": "code/seedq1/qqsym.py", "children": []}
-        ]}
-      ]},
-      {"id": "prop3-no-character-group", "role": "attempt", "approach": "Prop 3: convolution of characters is not a character for q != 1 (k[F], n=2: t^2+(1+q)ts+s^2). ABS even/odd factorization has no direct braided analogue.", "trust": "proved", "file": "proofs/2026-10-15-seed-q1-braided-terminal.md", "children": []},
-      {"id": "c-rank1-test", "role": "attempt", "approach": "Rank 1 k[F]: Psi(F^(n)) = t^n sum_alpha M_alpha / prod [alpha_i]_q!; multiplicativity a+b<=4 6/6 symbolic; q^{-1} control 0/6; q=1 gives h_1^n/n! (PROVE.md's 'h_n' was wrong). Free braided algebra (letter degrees 1,2,1): 400/400, controls 400/400 FAIL.", "trust": "computed", "file": "code/seedq1/psitest.py", "children": []},
-      {"id": "thm4-scalar-characters-degenerate", "role": "attempt", "approach": "Thm 4(1)-(3): zeta(ad_c(F_i)^n F_j) = (...) prod_{k<n}(1 - q_ij q_ii^k y/x) (Gauss q-binomial). For phi=0 in finite type t_i t_j = 0 on every edge, so Psi(f) is commutative and generated by an independent set: the braided ABS map of f sees no Dynkin edge. Checked sl3 and B2 (b2_test.py: d-sets {-2,0,2} and {+-2} exactly as predicted).", "trust": "proved", "file": "proofs/2026-10-15-seed-q1-braided-terminal.md", "children": []},
-      {"id": "thm4-feigin-twist-injective", "role": "attempt", "approach": "Thm 4(4): with Feigin-type phi (antisym part +-(a_i,a_j) on edges) every t in (k^x)^I is a phi-character; Psi_phi: f -> QSym_{q,phi} injective because pi o Psi_phi = Rosso o rescaling, pi = quotient by non-simple-letter words = quantum shuffle algebra.", "trust": "sketched", "file": "proofs/2026-10-15-seed-q1-braided-terminal.md", "children": [
-        {"id": "rosso-injective", "role": "premise", "approach": "Rosso, Invent. Math. 133 (1998): quantum symmetrizer map f -> Sh_q(V) injective at generic q (f = Nichols algebra B(V)). Cited from memory; not deep-read.", "trust": "unclassified", "file": null, "children": []}
-      ]}
+     {
+      "id": "thm41-symbolic-all-rank2",
+      "role": "attempt",
+      "approach": "thm41_check.py: Thm 4(1) Serre-value formula symbolic in q,t,phi for A1xA1,A2,B2,G2 both directions (G2 n=4): 8/8. Closes Day 241 gap 2.",
+      "trust": "computed",
+      "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
+      "children": []
+     },
+     {
+      "id": "serre-in-ker-theta",
+      "role": "premise",
+      "approach": "Theta(ad_c(F_i)^{1-a_ij}F_j)=0 in the quantum shuffle algebra: exact symbolic identity in Q(q) for every finite rank-2 type, both directions (shuffle_checks.py 8/8). Finite check = proof for finite type. Replaces Lusztig 1.4.3 for 'Serre elements vanish in f'.",
+      "trust": "proved",
+      "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
+      "children": []
+     }
     ]
-  }
+   },
+   {
+    "id": "thm4-feigin-twist-injective",
+    "role": "attempt",
+    "approach": "Thm 4(4), f := 'f/ker Theta (Nichols algebra B(V)). (a) injectivity: pi o Psi_phi = Theta o D_t for EVERY phi (Lemma 1), so Psi_phi^f injective whenever it exists with t in (k^x)^I. (b) existence for forced twist: zeta = q^Q * lambda_o o Theta o D_t, lambda_o = sorted-word character (Lemma 2), o = linear extension of the orientation (Dynkin forest), Q absorbs the symmetric part. Corollary: for finite type and t in (k^x)^I, Psi_phi exists and is injective iff phi is a forced twist. No Rosso, no Lusztig 33.1.3.",
+    "trust": "proved",
+    "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
+    "children": [
+     {
+      "id": "rosso-injective",
+      "role": "attempt",
+      "approach": "Rosso, Invent. Math. 133 (1998): quantum symmetrizer map f -> Sh_q(V) injective at generic q (f = Nichols algebra B(V)). Cited from memory; not deep-read. SUPERSEDED Day 242: not used; injectivity is definitional for f=B(V) via Lemma 1.",
+      "trust": "unclassified",
+      "file": null,
+      "children": []
+     },
+     {
+      "id": "lemma1-pi-psi-equals-theta-Dt",
+      "role": "premise",
+      "approach": "Lemma 1: pi o Psi_phi^{'f} = Theta o D_t, independent of phi (Lemma A coefficient formula; simple-letter factors live in kF_i).",
+      "trust": "proved",
+      "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
+      "children": []
+     },
+     {
+      "id": "kerTheta-biideal",
+      "role": "premise",
+      "approach": "ker Theta is a biideal (Theta algebra+coalgebra map into T^c(V)), so f = 'f/ker Theta is a connected braided bialgebra in C_q and Thm 2 applies.",
+      "trust": "proved",
+      "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
+      "children": []
+     },
+     {
+      "id": "lemma2-sorted-word-character",
+      "role": "premise",
+      "approach": "Lemma 2: lambda_o(w) = [w o-sorted] prod 1/[n_i]_{q_ii}! is a phi_o-character of Sh_q(V), phi_o(a_k,a_l)=(a_k,a_l) for k after l. Gaussian binomial inside blocks, full crossing across blocks.",
+      "trust": "proved",
+      "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
+      "children": [
+       {
+        "id": "lemma2-computed",
+        "role": "attempt",
+        "approach": "shuffle_checks.py: A3, 4 orders x {sigma=0, random sym} x q in {3/7,-5/2}, 150 words each: 0 fails; controls (wrong orientation) 74/60/59 of 150 FAIL; same-orientation other extension 0 fail.",
+        "trust": "computed",
+        "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
+        "children": []
+       }
+      ]
+     },
+     {
+      "id": "serre-in-ker-theta-ref",
+      "role": "premise",
+      "approach": "Necessity direction (Corollary) uses Thm 4(2) + Serre elements vanish in f; see thm4-scalar-characters-degenerate/serre-in-ker-theta.",
+      "trust": "proved",
+      "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
+      "children": []
+     },
+     {
+      "id": "a3-separator",
+      "role": "attempt",
+      "approach": "a3_sep.py: A3, nu in {111,121,211,221,122}: O1,O2,O1+sym descend with rank = dim f_nu (4,5,4,7,7); WRONG (antisym 0 on edge 2-3) fails to descend in 121,221,122 (rank 7,10,13 > dim f), passes 211 (no bad-edge Serre weight); phi=0 fails 4/5. nu=111 separates NOTHING (degenerate). PROVE.md's 'wrong form rank-deficient' prediction wrong-shaped: rank too BIG on 'f (non-descent); t_3=0 variant descends with rank 0. q=1: rank 1 = dim S(V)_nu.",
+      "trust": "computed",
+      "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
+      "children": []
+     }
+    ]
+   },
+   {
+    "id": "lemmaD-lusztig-dictionary",
+    "role": "attempt",
+    "approach": "Lemma D: ker Theta = rad of Lusztig's form ((x,F_w) = c_w(x) prod kappa), so B(V) = Lusztig's f. Used only to NAME f; Thm 4(4) does not depend on it. Input: Lusztig, Introduction to Quantum Groups 1.2.3/1.2.5, from memory, not deep-read (book, no arXiv id).",
+    "trust": "sketched",
+    "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
+    "children": []
+   },
+   {
+    "id": "reineke-integration-remark",
+    "role": "attempt",
+    "approach": "phi_o = (minus) Euler form of quiver Q_o mod symmetric; hunch: zeta_o (sorted-word coefficient) = Reineke integral o Ringel-Green. Owners unread (Reineke 2003, Berenstein q-alg/9605016, KS 0811.2435).",
+    "trust": "hunch",
+    "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
+    "children": []
+   }
+  ]
+ }
 }
