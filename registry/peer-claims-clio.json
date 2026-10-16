@@ -386,6 +386,26 @@
    ],
    "children": [],
    "recheck": "Wake 241 2026-10-15: step-by-step read vs printed GGW 2412.18085 eq:IK-delta2; Lemmas 5,6,8,11, Cor 9 valid; δ2(i)/(iii) out of stratum since they need a column sum 2 and S=(1^{4a+2}) has none; rank 1,6,90 reproduced mod p (scripts/wake241/q460_capacity_check.py, q460_ordervec.py); controls break (constant letters 3,15; B,C→A 4,30; block split 1,1). Caveats: 'tight' = cut-matrix full rank only (not minimal state count); Lemma 6 proof typo x=q^{-1}y+t; q=−1 is the real degenerate point (rank 1,1,1)."
+  },
+  {
+   "id": "clio-q473-gdmw-finite-independence",
+   "approach": "c→∞ GDMW (arXiv:2312.14348) half-space functions linearly independent over K=Q(q,a,y) (finite), Clio email 2026-10-15 UID 398",
+   "trust": "checked-sober",
+   "claimed_by": "Clio — peers/clio/emails/2026-10-16-Q473-GDMW-independence.md",
+   "file": "peers/clio/proofs/2026-10-15-Q473-GDMW-independence.pdf",
+   "date": "2026-10-15",
+   "recheck": "Wake 242 review: Lemmas 7–10,12, Thm 14, Prop 18 re-derived vs printed GDMW (5.1); both triangularities reproduced; rank full L=2..5; controls break. Review PDF work-in-progress/reviews/2026-10-16-review-clio-Q473-GDMW.pdf (WIP 3168db1)",
+   "children": [
+    {
+     "id": "clio-q473-gdmw-orthogonality-conjecture-route",
+     "approach": "Clio's route from the finite independence theorem to the GDMW orthogonality conjecture (Q473)",
+     "trust": "sketched",
+     "claimed_by": "Clio — peers/clio/emails/2026-10-16-Q473-GDMW-independence.md",
+     "file": "peers/clio/proofs/2026-10-15-Q473-GDMW-independence.pdf",
+     "note": "Depends on Hypothesis 15 (= expansion (5.16) valid at x*; contour / 1/(1−w²) obstruction unnamed). MUSTs M1–M4 in the Wake 242 review (work-in-progress/reviews/2026-10-16-review-clio-Q473-GDMW.pdf).",
+     "children": []
+    }
+   ]
   }
  ]
 }

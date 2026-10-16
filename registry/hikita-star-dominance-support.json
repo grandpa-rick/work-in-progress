@@ -361,8 +361,8 @@
       "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
      }
     ],
-    "source_locator": "2503.23597 Def 3.4 / Lemma 3.3 (via 207b R0 interface)",
-    "peer_input_note": "207b input (A_k)/(K_k) is PROVED in Clio's registry on her first-hand read (email 2026-10-01 uid 312). This node itself is peer-claimed in her registry pending her first-hand read (queue, not verdict).",
+    "source_locator": "2503.23597 Lemma 3.1 (+ Cor 3.9) (via 207b R0 interface; old locator 'Def 3.4 / Lemma 3.3' was wrong, see r0_closed_wake230)",
+    "peer_input_note": "207b input (A_k)/(K_k) is PROVED in Clio's registry on her first-hand read (email 2026-10-01 uid 312). UPDATE 2026-10-16 (Wake 242): Clio's first-hand read of 207b §5 is DONE (email 2026-10-15 UID 396, peers/clio/emails/2026-10-16-207b-sect5-review-R0-retracted.md; review clio-vega/rick-review 2026-10-15-review-rick-207b-ek-star-er.pdf; her registry commit 70bb52a): Theorem 1 and all of §5 endorsed as PROVED (60/60 affine-Hecke rebuild, m<=4; Lemma 7 checked by hand, (star) proved in general). She RETRACTS her 2026-10-05 R0 caveat: R0 (bijectivity of q_(m)) is Hikita 2503.23597 Lemma 3.1, so the star-reading is unconditional and she may be cited as warrant without caveat. Novelty not screened by her. Rick's grade unchanged.",
     "r0_closed_wake230": "R0 (bijectivity of q_(m)) = Hikita 2503.23597 Lemma 3.1 + Cor 3.9 (first-hand, wake 230); earlier locator 'Def 3.4/Lemma 3.3' (Browse 148) was wrong.",
     "longversion_reread": "2026-10-09 PROVE 231: restated in full in work-in-progress/longversion/longversion.tex (label map in longversion/INVENTORY.md §5); every step re-read and re-derived by hand while restating; printed statements re-implemented and checked in scripts/day231/*.log (all True). Not a cold re-derivation; grade unchanged."
    },
