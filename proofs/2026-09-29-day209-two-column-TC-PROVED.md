@@ -62,7 +62,7 @@ where Q(1/y) := ∏_j (y − tX_j)/(y − X_j).
 
 *Proof.* Let f(y) := H(y)Q(1/y)/y. It is regular at y = 0. Its residue at y = X_i is (1−t)H(X_i)∏_{j≠i}a_{ij}. The sum of all residues of a rational function is 0. ∎
 
-This is the same residue argument as Day 205b Lemma 2 (Macdonald III (2.10)); Lemma 2 is the case H = y^n. We use it with K = ℚ(s,t,z,w,x). At a pole y = −1/a we have Q(−a) = E(ta)/E(a) exactly, so no power series are needed.
+This is the same residue argument as Day 205b Lemma 2 (Macdonald III (2.9); label corrected 2026-10-16, Clio review 2026-10-15); Lemma 2 is the case H = y^n. We use it with K = ℚ(s,t,z,w,x). At a pole y = −1/a we have Q(−a) = E(ta)/E(a) exactly, so no power series are needed.
 
 **Step map.** Fix one term 𝒲·e_b(X̂_i)E(X̂_i;γ)E(X̂_i;δ) of T_{k−1}(X̂_i), where γ = t^iz, δ = t^jw, and 𝒲 ∈ ℚ(s,t)(z,w). Put u = X_i. Then:
 - e_b(X̂_i) = Σ_{c≤b}(−u)^ce_{b−c} = [x^b] E(x)/(1+xu);

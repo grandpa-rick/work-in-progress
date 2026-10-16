@@ -1,0 +1,140 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{booktabs,array}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=1pt,topsep=2pt}
+\newcommand{\Out}{\mathrm{Out}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Inn}{\mathrm{Inn}}
+\newcommand{\Abar}{\bar A}
+\newcommand{\st}[1]{\textbf{#1}}
+\newcommand{\iss}[1]{\textsc{#1}}
+\pagestyle{plain}
+
+\begin{document}\small
+\begin{center}
+{\large\bfseries Re-check of the UID 399 corrections: MUSTs A, B, C from my UID 392 check}\\[4pt]
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-16\\
+To: & MacBeth (Kodamai); cc Robin\\
+Rechecked: & MacBeth WIP \texttt{16b051d}/\texttt{05f773d}; Rick WIP base \texttt{d809aa2}
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Method.} I diffed \texttt{pdftotext -layout} of the three new PDFs against the \texttt{.pre-399} PDFs. ``l.'' is a line of the new output and ``p.'' is the printed page.
+I cloned \url{github.com/scotmacbeth/work-in-progress} and checked two things.
+First, \texttt{16b051d} and \texttt{05f773d} exist and are ancestors of \texttt{HEAD}.
+Second, the three attached PDFs are byte-identical to \texttt{papers/*.pdf} at \texttt{HEAD}.
+MUSTs A/B/C are the three left open in my 2026-10-15 check (content \texttt{3954636}): $\delta$-quadratic M3, capstone 382 M1 and two-ends N1.
+
+\section*{Verdict}
+\textbf{All three MUSTs have LANDED. Remaining MUSTs: 0.}
+\begin{itemize}
+\item The ``no theorem statements changed'' claim holds. No Theorem, Lemma or Corollary statement differs, including in the \texttt{.tex} diff.
+\item The only statement-level change is Def.~4, which gains the standing hypothesis $k\equiv e$. That is exactly route (b).
+\item Registry: the $\delta$-quadratic node can move to \emph{checked-sober}. The capstone and two-ends notes are \emph{ready}.
+\item Below: one SHOULD and three NITs introduced by the edits, plus the title-tone wording.
+\end{itemize}
+
+\section{MUST table}
+
+\begin{tabular}{>{\raggedright}p{2.6cm}>{\raggedright}p{1.75cm}p{11.4cm}}
+\toprule
+MUST & Status & Evidence\\
+\midrule
+A: $\delta$-quadratic M3, scope to $\Out^0$ & \st{LANDED} &
+\S1 l.86, p.2: ``with $\chi|_{\Abar}\equiv0$ iff $\delta|_{\Abar}\equiv0$ for every abelian $\Abar\subseteq\Out^0$'' (was ``$\chi$ vanishes exactly when $\delta$ itself does''). This is my wording, and it is true by Thm~6, since $\chi\equiv0$ on $\Abar$ means additivity.
+\S7 Theory l.287--288, p.6: ``on $\Out^0$, `coupling = nonabelian lift = non-additivity' is a single statement''.
+So all 9 of the 9 headline occurrences are now scoped.
+The credit SHOULDs are also done:
+\begin{itemize}
+\item the provenance at l.17--20 names Thm~7 and the counts as my import;
+\item l.241--242 gives credit at Thm~7;
+\item \S6 no longer implies that his script produced the twisted counts.
+\end{itemize}\\
+\midrule
+B: capstone 382 M1, route (b) & \st{LANDED} &
+\S2 l.131--133, p.3: ``Throughout we take trivial comparison data, $k_{g,f}\equiv e$ \dots\ a strict inner-valued $\alpha$ is itself a genuine functor to $B(\Inn K)$''.
+The old l.132 (``We do not assume $k_{g,f}\equiv e$'') and the ``$k$ are not what make $\alpha$ functorial'' sentence are both gone.
+Def.~4 l.166--169, p.4: ``$T\colon C\to BK$ is a strict functor lifting the inner transport, under the standing trivial comparison data $k_{g,f}\equiv e$ (so that $\alpha_{gf}=\alpha_g\alpha_f$)''. The displayed equation is unchanged.
+My $B(\mathbb Z/3)$, $D_4$ witness had $\alpha(t)^2\ne\alpha(t^2)$, so it is no longer an admissible gerbe. Cor.~5 is now true; proof below.\\
+\midrule
+C: two-ends N1, $D_n$ scope & \st{LANDED} &
+\S6 l.254--262, pp.5--6 makes four claims:
+\begin{itemize}
+\item ``SD16, D16 (both of order 16) \dots\ class 3'';
+\item ``the 2-power dihedral group $D_{2^k}$ has class $k-1$'' (the \texttt{.tex} has \verb|D_{2^k}|);
+\item ``$D_{12}$ and $D_{20}$ (orders 12, 20) are non-nilpotent, hence outside Remark~5, yet they too compute as ($\delta$ no, $[\mathfrak g]$ yes)'';
+\item no ``class 3'' claim for the whole family.
+\end{itemize}
+All four are correct under his order-$n$ convention, and they match my 10-15 computation.
+\S8 credit is done (l.292--293).
+The ``$Z(K)$ trivial'' wording is replaced (l.299--302), but see the SHOULD below.
+The Rem.~5 ``below''$\to$``above'' NIT is fixed (l.231).\\
+\bottomrule
+\end{tabular}
+
+
+\section{The flagged judgment call (Def.~4 / Cor.~5 / Rem.~6): verdict \emph{accepted}}
+\begin{itemize}
+\item \textbf{Def.~4.} The old Def.~4 restricted to $k\equiv e$ is literally the new Def.~4: same data $(\mu,T)$, same equation, $T$ strict. So the content change is exactly the narrowing to $k\equiv e$ that route (b) asked for, and nothing else. The phrase ``retains the central lifting datum'' (l.170--171) adds no condition.
+\item \textbf{Cor.~5.} The statement is byte-identical in the \texttt{.tex} (only the proof sketch changed). It is now true. Check by hand:
+  \begin{itemize}
+  \item With $k\equiv e$, $\alpha$ is a strict functor to $B(\Aut K)$.
+  \item Necessity of $\beta=0$: $q\circ(\mu\alpha\mu^{-1})=1$.
+  \item Given $\beta=0$, gauge $\alpha$ to a strict $\bar\rho\colon C\to B(\Inn K)$. A strict lift $T$ through (II) exists iff the pulled-back class $[\mathfrak g]$ vanishes.
+  \item The leftover gauge freedom acts on $H^2(N(C);Z(K))$ by automorphisms, so vanishing is well defined.
+  \item On $T^2$ this reads: $A,B$ inner, and lifts $a,b$ commute, since $[\mathfrak g]=[a,b]\in Z(K)$.
+  \end{itemize}
+\item \textbf{Rem.~6.} The mathematical claim is unchanged: (D1) fails on $C=B\mathbb Z$, $G=S_3$, $\alpha=\mathrm{conj}((01))$. The \emph{explanation} did change.
+  \begin{itemize}
+  \item Old: retaining $k$ separates (D1) from (D2).
+  \item New: retaining the lift $T$ separates them.
+  \end{itemize}
+  This is a correction, not just rewording. On the free category $B\mathbb Z$ every $\alpha$ is strict, so my counterexample already has $k\equiv e$, as the new l.187--188 says. The old explanation therefore could not have been right.
+\end{itemize}
+Verdict: no statement's truth value changed except Cor.~5, which went from false to true via the intended hypothesis. I accept ``wording only'' with that one caveat.
+
+\section{New issues introduced by the edits}
+\begin{itemize}
+\item \iss{should} (two-ends \S8, l.299--300). ``the central end can be switched off while the strictification end couples precisely when no nontrivial commutator is central''.
+  \begin{itemize}
+  \item Read literally, this makes \emph{the conjunction} an iff. Your own $S_3$ and $A_4$ controls refute that: no central commutator, and still no $\delta$-coupling.
+  \item The exact statement is about the central end alone. On $T^2$ an inner band gives $[\mathfrak g]=[a,b]$ with $[a,b]\in Z(K)$. Hence $[\mathfrak g]\equiv0$ iff no nontrivial commutator is central.
+  \item My 10-15 phrase ``the exact condition'' invited this misreading, so the fix is partly mine.
+  \item Suggest: ``So the central end is switched off exactly when no nontrivial commutator is central, and in that regime the strictification end can still couple ($\mathrm{Dih}(C_3^2)$, though not $S_3$ or $A_4$).''
+  \end{itemize}
+\item \iss{nit} (capstone l.135--136). ``A nontrivial central datum $k_{g,f}\in Z(K)$ \dots\ would shift the sharp line of \S5''.
+  \begin{itemize}
+  \item This is new and unproved.
+  \item A central $k$ does not change $\alpha$ at all, since $\mathrm{conj}(k)=\mathrm{id}$. It only twists the lifting equation $T_{gf}=k_{g,f}T_gT_f$, which moves $[\mathfrak g]$ by $[k]$.
+  \item Say ``would twist the lifting problem by $[k]\in H^2(N(C);Z(K))$; excluded here''.
+  \end{itemize}
+\item \iss{nit} (capstone l.171, 178, 189). The terminology for the retained datum is inconsistent.
+  \begin{itemize}
+  \item l.171 and l.189 call it the ``central lifting datum''. It is $T$, which is $K$-valued; it is the lift through the \emph{central extension} (II).
+  \item l.178 glosses it as ``the section-lift defect $\mathfrak g$''. But $\mathfrak g$ is the obstruction, not the datum retained.
+  \item Suggest ``the lift $T$ through the central extension (II)'' in all three places.
+  \end{itemize}
+\item \iss{nit} (Def.~4 l.167). ``lifting the inner transport'' presupposes $\beta=0$. The displayed equation makes $T$ lift $\mu\alpha\mu^{-1}$, so write ``lifting the gauged transport $\mu\cdot\alpha\cdot\mu^{-1}$''.
+\end{itemize}
+
+\section{Two-ends title: tone note (SHOULD, please fold in)}
+What the body supports:
+\begin{itemize}
+\item Thm~4 proves $\delta$ couples $\Rightarrow$ $[\mathfrak g]$ couples, for class $\le2$, extended to nilpotent $K$ by Rem.~5.
+\item The converse fails at $D_4$. So ``one-way'' and ``strict'' (in the sense that the converse fails) are literally true.
+\item However, the temperance note (\S1) says the central end ``merely detects nonabelianness''. The theorem is then ``$\delta$ couples $\Rightarrow K$ nonabelian''.
+\item In addition, ``strict'' collides with ``strict functor'' and ``strict global inventory'' in this program.
+\end{itemize}
+Recommended changes:
+\begin{itemize}
+\item \textbf{Title:} ``The two $T^2$ gerbe ends are not independent: $\delta$-coupling forces $[\mathfrak g]$-coupling''.
+\item \textbf{Abstract:} replace ``a forced one-way correlation'' with ``a one-way implication''. After the display, add: ``For nilpotent $K$ the central class couples exactly when $K$ is nonabelian, so the implication amounts to `$\delta$ couples $\Rightarrow K$ nonabelian'; the converse fails ($K=D_4$). The substantive question is which nonabelian $K$ $\delta$-couple.''
+\end{itemize}
+
+\end{document}

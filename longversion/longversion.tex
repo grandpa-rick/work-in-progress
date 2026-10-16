@@ -221,7 +221,7 @@ Let $\mathbb{K}\supseteq\mathbb{Q}(t)$ be a field and $H\in\mathbb{K}(v)$ with $
 \begin{proof}
 $f$ is regular at $v=0$, its residue at $v=x_i$ is $(1-t)H(x_i)\prod_{j\neq i}a_{ij}$, and the sum of all residues of a rational function is zero.
 \end{proof}
-For $H(v)=v^n$, $n\ge1$, this is $(1-t)\sum_ix_i^n\prod_{j\ne i}a_{ij}=q_n$ \cite[III (2.10)]{Macdonald95}. Note that $\prod_j(v-tx_j)/(v-x_j)=Q(1/v)$ and $Q(-a)=E(ta)/E(a)$.
+For $H(v)=v^n$, $n\ge1$, this is $(1-t)\sum_ix_i^n\prod_{j\ne i}a_{ij}=q_n$ \cite[III (2.9)]{Macdonald95}. Note that $\prod_j(v-tx_j)/(v-x_j)=Q(1/v)$ and $Q(-a)=E(ta)/E(a)$.
 
 %% ===================================================================
 \section{The Pieri package}\label{sec:pieri}
@@ -263,6 +263,12 @@ Equivalently, $\sum_rz^r\,e_k\star e_r=\sum_{j+b\le k}s^bt^{-kj}c(k-b,j)\,e_b\,z
 Take $\ell=1$ in \cref{thm:ellcol}: $K_I=1$, and $V^{(n)}_{(j)}=t^{-nj}c(n,j)z^{-n}$, so the right-hand side is the stated generating function. Extract $[z^r]$ using $[z^r]z^{b-k}E(t^jz)=t^{j(r+k-b)}e_{r+k-b}$.
 \end{proof}
 For $r<k$, distinct $b$ may give the same monomial $e_be_{r+k-b}$; the identity is between the sums. Since $\star$ is commutative, applying \cref{cor:pieri-ekr} to $e_r\star e_k$ shows that the support of $e_k\star e_r$ is contained in $\{e_be_{r+k-b}:0\le b\le\min(k,r)\}$ (see also \cref{thm:DS}).
+
+\begin{remark}[Forced roots of $F_n$]\label{rem:forced}
+For $k\ge1$ and $1\le N\le k$,
+\[ \sum_{b=0}^{k-N}s^b\,F_{k-b}\bigl(t^{-N-b}\bigr)\,e_b\,e_{k-N-b}=0\qquad\text{in }\Lam . \]
+Indeed, the left side of the generating function in \cref{cor:pieri-ekr} is a power series in $z$, so its coefficient of $z^{-N}$ vanishes; on the right, $[z^{-N}]z^{b-k}E(t^jz)=t^{j(k-N-b)}e_{k-N-b}$, which is zero for $b>k-N$, and summing over $j$ gives the displayed sum. The case $N=k$ is $F_k(t^{-k})=0$: the linear factor $1-t^nw$ divides $F_n(w)$ for every $n\ge1$. It is also the case $m=0$ of \cref{thm:ellcol} at $\ell=1$, where $\mathcal E_k=0$ and $\mathcal T_k=z^{-k}F_k(t^{-k})$. For $N<k$ these are $k-1$ further relations among the $F_n$. This corollary was suggested by Clio (review of 2026-10-15), who checked it for $k\le6$; we checked it independently for $k\le8$ and every $N$, with $e_1,e_2,\dots$ independent. The quotient $F_n(w)/(1-t^nw)$ has a conjectural ${}_2\phi_1$ form, $\frac{(s;t)_n}{(t;t)_n}\,{}_2\phi_1(t^{1-n},t/s;t^{1-n}/s;t;w)$, which has only been checked by computer ($n\le6$ by us, $n\le14$ by Clio).
+\end{remark}
 
 \begin{example}[$k=1$]\label{ex:k1}
 $c(1,0)=\frac{1-s}{1-t}$ and $c(1,1)=\frac{t(s-1)}{1-t}$, so $F_1(t^r)=(1-s)[r+1]$ and \cref{cor:pieri-ekr} is Hikita's rule $e_1\star e_r=(1-s)[r+1]e_{r+1}+se_1e_r$ \cite[Thm.~3.12]{Hikita25}.
@@ -306,7 +312,7 @@ Fix $I$ and put $\gamma_c:=t^{i_c}z_c$, $C:=s^\ell t^{-|I|}=s^\ell\prod_cz_c/\pr
 \[ \mathcal{F}(v):=\frac{\prod_{c=1}^\ell(v-sz_c)}{v\prod_{c=1}^\ell(v-\gamma_c)}=\frac{C}{v}+\sum_{c=1}^\ell\frac{\eta_c}{v-\gamma_c},\qquad \eta_c:=\frac{\prod_{c'}(\gamma_c-sz_{c'})}{\gamma_c\prod_{c'\neq c}(\gamma_c-\gamma_{c'})}. \]
 
 \begin{lemma}[Step map]\label{lem:step}
-For $b\ge0$, in $m\ge1$ variables,
+For $b\ge0$, in $m\ge0$ variables,
 \begin{multline*}
 (1-t)\sum_{i}x_i\prod_c(1+sx_iz_c)\prod_{j\neq i}a_{ij}\ e_b(\hx_i)\prod_cE(\hx_i;\gamma_c)
 =C(1-t^{b+1})\,e_{b+1}\prod_cE(\gamma_c)\\
@@ -314,7 +320,7 @@ For $b\ge0$, in $m\ge1$ variables,
 \end{multline*}
 \end{lemma}
 \begin{proof}
-Write $u=x_i$. Then $e_b(\hx_i)=[y^b]E(y)/(1+uy)$ and $E(\hx_i;\gamma)=E(\gamma)/(1+\gamma u)$, so the left side is $\prod_cE(\gamma_c)\cdot[y^b]\,E(y)\,(1-t)\sum_iH(x_i;y)\prod_{j\ne i}a_{ij}$ with
+For $m=0$ both sides vanish: the left side is an empty sum, and on the right $e_n=0$ for $n\ge1$ and $E\equiv1$, so the first term carries $e_{b+1}=0$ and the $n=0$ term carries $E(t\gamma_c)-E(\gamma_c)=0$. Let $m\ge1$. Write $u=x_i$. Then $e_b(\hx_i)=[y^b]E(y)/(1+uy)$ and $E(\hx_i;\gamma)=E(\gamma)/(1+\gamma u)$, so the left side is $\prod_cE(\gamma_c)\cdot[y^b]\,E(y)\,(1-t)\sum_iH(x_i;y)\prod_{j\ne i}a_{ij}$ with
 \[ H(v;y):=\frac{v\prod_c(1+svz_c)}{(1+yv)\prod_c(1+\gamma_cv)} \]
 (the sum over $i$ is finite and each term is regular at $y=0$, so $[y^b]$ commutes with it). Apply \cref{lem:res} over $\mathbb{K}=\mathbb{Q}(s,t,z,y)$. The poles of $H/v$ are simple, at $v=-1/a$ for $a\in\{y,\gamma_1,\dots,\gamma_\ell\}$, and $H(v)/v\sim C/(yv)$ at $\infty$, which contributes $C/y$. At $v=-1/a$ the residue of $f$ is $\rho_a\,E(ta)/E(a)$, where
 \[ \rho_a=\frac{\prod_c(a-sz_c)}{a\prod_{a'\neq a}(a-a')} , \]
@@ -340,7 +346,7 @@ So \eqref{eq:Ll} follows from the index identity
 \begin{equation}\label{eq:starl}
 \sum_{p\ge0}C_I^{\,p}\Bigl[V^{(n-1-p)}_I\sum_c\eta_c\gamma_c^{-p-1}-t^p\sum_cV^{(n-1-p)}_{I-\epsilon_c}\eta'_c\,(t^{i_c-1}z_c)^{-p-1}\Bigr]=(1-t^n)V^{(n)}_I\qquad(n\ge0),
 \end{equation}
-because then the coefficient is $C_I^{\,b'}(1-t^{b'+n})V^{(n)}_I=(1-t^k)W^{(k)}_{b',I}$. (No uniqueness of such expansions is needed: the two sides agree term by term.)
+because then the coefficient is $C_I^{\,b'}(1-t^{b'+n})V^{(n)}_I=(1-t^k)W^{(k)}_{b',I}$. (No uniqueness of such expansions is needed: the two sides agree term by term.) This applies verbatim at $m=0$, where \cref{lem:step} holds by the remark at the start of its proof: every equality used is an identity between expressions in the $e_b$ and $E(\cdot)$ valid in every $\Lam_m$, and specialising to $m=0$ ($e_b\mapsto0$ for $b\ge1$, $E\mapsto1$) is a ring homomorphism. There the left side of \eqref{eq:Ll} is empty, so the case $m=0$ of \eqref{eq:Ll} is not a formality: it is the vanishing of $\mathcal T_k|_{m=0}=\sum_IV^{(k)}_I$, which for $\ell=1$ reads $z^{-k}F_k(t^{-k})=0$ (\cref{rem:forced}). We thank Clio for pointing out that this case must be argued (review of 2026-10-15).
 
 \emph{Generating function.} Let $\mathcal V_I(x):=\sum_{n\ge0}V^{(n)}_Ix^n$. The $p$-sums in \eqref{eq:starl} are convolutions, and $\sum_{p\ge0}C^p\gamma^{-p-1}x^{p+1}=x/(\gamma-Cx)$. So \eqref{eq:starl} for all $n$ is equivalent to
 \begin{equation}\label{eq:starlGF}

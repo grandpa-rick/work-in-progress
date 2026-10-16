@@ -18,7 +18,7 @@
 
 \title[The $e_k\star e_r$ Pieri rule for all $k$]{The $e_k\star e_r$ Pieri rule for all $k$: parabolic kernel, chain factorization, and a one-index $q$-series identity}
 \author{Rick}
-\date{2026-09-26, revised 2026-10-08}
+\date{2026-09-26, revised 2026-10-08 and 2026-10-16}
 
 \begin{document}
 
@@ -27,7 +27,7 @@ For every $k\ge1$, $r\ge0$ and every number of variables $m\ge0$, we prove
 \[
 t^{-\binom k2}e_k(Y)\bullet e_r=\sum_{b=0}^{k}s^b\,F_{k-b}(t^{r-b})\,e_b\,e_{r+k-b},\qquad s=q^{-1},
 \]
-with the explicit polynomial $F_n$ defined in \eqref{eq:c} below. Via Hikita's Definition~3.4 and Lemma~3.3 (arXiv:2503.23597), the left side is $e_k\star e_r$ (modulo R0; see the revision box). The cases $k=1$ and $k=2$ recover Hikita's Theorem~3.12 and our $W_r$. The cases $k=3$ and $k=4$ recover the Day~193 and Day~195 closed forms, which are now proved for all $r$.
+with the explicit polynomial $F_n$ defined in \eqref{eq:c} below. Via Hikita's Lemma~3.1, Definition~3.4 and Lemma~3.3 (arXiv:2503.23597), the left side is $e_k\star e_r$. The cases $k=1$ and $k=2$ recover Hikita's Theorem~3.12 and our $W_r$. The cases $k=3$ and $k=4$ recover the Day~193 and Day~195 closed forms, which are now proved for all $r$.
 \end{abstract}
 
 \maketitle
@@ -35,17 +35,31 @@ with the explicit polynomial $F_n$ defined in \eqref{eq:c} below. Via Hikita's D
 \begin{center}
 \begin{tabular}{ll}
 \textbf{Author:} & Rick\\
-\textbf{Date:} & 2026-09-26 (revised 2026-10-08)\\
+\textbf{Date:} & 2026-09-26 (revised 2026-10-08, 2026-10-16)\\
 \textbf{Recipient:} & Clio\\
 \textbf{Source:} & Corresponds to work-in-progress commit \texttt{7682bfd}\\
 & {\footnotesize(\texttt{proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md}, \texttt{scripts/day207b/})}\\
 \textbf{Revised:} & 2026-09-30: Clio review (UID~301): ordering in $e_k(Y)$; $t=0$ threshold $r\ge k-1$.\\
 & 2026-10-08: Clio review of 2026-10-05 (UID~325/326), F1--F4 below.\\
-\textbf{This revision:} & 2026-10-08, work-in-progress commit \texttt{aeffb18 (tex source)}\\
+& 2026-10-16: Clio review of 2026-10-15 (UID~396), G1--G5 below.\\
+\textbf{This revision:} & 2026-10-16, WIP base \texttt{d809aa2}\\
+& (repairs uncommitted at typesetting)\\
+\textbf{Previous:} & 2026-10-08, work-in-progress commit \texttt{aeffb18 (tex source)}\\
 \end{tabular}
 \end{center}
 
 \medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{Revision 2026-10-16.} Clio's review of 2026-10-15 endorses Theorem~\ref{thm:main} and all of \S5 as proved (independent affine-Hecke reimplementation, 60/60, $m\le4$; three planted lesions detected; Lemma~\ref{lem:star} checked step by step by hand). Changes:
+\begin{itemize}
+\item[G1.] R0 withdrawn. Bijectivity of $q_{(m)}$ is Hikita's Lemma~3.1, so the $\star$-reading is unconditional. ``Modulo R0'' is gone from the abstract.
+\item[G2.] The residue lemma is Macdonald III (2.9), not (2.10). (2.10) is the generating function $Q(u)=H(u)/H(tu)$.
+\item[G3.] The $m=0$ case of the Step Lemma now gets an actual argument. The old sentence cited $q_n$, which does not occur in $T_k$. The content of that case is $F_k(t^{-k})=0$.
+\item[G4.] Added the Concha--Lapointe/Hikita $Y_i$ dictionary (\S6). Lemma~$\star$ has been taken out of the machine-check list, since it is proved. The ``Open'' paragraph is now a Corollary.
+\item[G5.] In the proof of the Step Lemma, it is now explicit which bracket Lemma~$\star$ evaluates.
+\end{itemize}}}
+\medskip
+
 \noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
 \textbf{Revision 2026-10-08.} Clio (review of 2026-10-05) found four losses between the proof source (\texttt{proofs/2026-09-26-day207b-ek-star-er-general-k-PROVED.md}, ll.~190--210) and the 2026-09-30 PDF, all in the proof of the Step Lemma (\S5). The mathematics was correct in the source; each item below is restored from it. Thanks to Clio.
 \begin{itemize}
@@ -54,7 +68,7 @@ with the explicit polynomial $F_n$ defined in \eqref{eq:c} below. Via Hikita's D
 \item[F3.] Restored ``coefficientwise in $z$'' (justifying $\Omega$ on $g_c$, which has a pole at $u=-1/\gamma$) and ``for $m=0$ both sides are $0$''.
 \item[F4.] In (b), the manifestly polynomial form $[w^b]P=\sum_{n>b}(\dots)$ is now printed first, with the reason it equals $-\sum_{n\le b}(\dots)$.
 \end{itemize}
-Also restored the label (R) on the Recursion lemma, and the scope of the $\star$-reading (Clio, UID~326): the operator identity of Theorem~\ref{thm:main} is proved; its reading as $e_k\star e_r$ rests on Hikita Def.~3.4/Lemma~3.3 \emph{and} bijectivity of $q_{(m)}$ (R0), which is not proved here.}}
+Also restored the label (R) on the Recursion lemma, and the scope of the $\star$-reading (Clio, UID~326): the operator identity of Theorem~\ref{thm:main} is proved; its reading as $e_k\star e_r$ rests on Hikita Def.~3.4/Lemma~3.3 \emph{and} bijectivity of $q_{(m)}$ (R0), which is not proved here. \emph{[Withdrawn 2026-10-16: R0 is Hikita's Lemma~3.1; see G1.]}}}
 \medskip
 
 \section{Conventions and statement}
@@ -219,11 +233,11 @@ g_c(u)=st^{-j}u^{1+c}+(1-st^{-j})\frac{u^{1+c}}{1+\gamma u},
 \qquad\text{using}\qquad
 \frac{1+suz}{1+\gamma u}=st^{-j}+\frac{1-st^{-j}}{1+\gamma u}.
 \]
-The coefficients $e_{b-c}$ are now fully symmetric, and $g_c(0)=0$; indeed both pieces of the split vanish at $u=0$, since each carries the factor $u^{1+c}$ with $c\ge0$. So \emph{Day~205b Lemma~2} (the residue lemma $(1-t)\sum_iX_i^n\prod_{j\ne i}a_{ij}=q_n$ for $n\ge1$, i.e.\ Macdonald III (2.10); not Lemma~2 of this note) applies \emph{coefficientwise in $z$}:
+The coefficients $e_{b-c}$ are now fully symmetric, and $g_c(0)=0$; indeed both pieces of the split vanish at $u=0$, since each carries the factor $u^{1+c}$ with $c\ge0$. So \emph{Day~205b Lemma~2} (the residue lemma $(1-t)\sum_iX_i^n\prod_{j\ne i}a_{ij}=q_n$ for $n\ge1$, i.e.\ Macdonald III (2.9); not Lemma~2 of this note) applies \emph{coefficientwise in $z$}:
 \[
 \sum_ig(X_i)\prod_{j\ne i}a_{ij}=(1-t)^{-1}\Omega[g],\qquad \Omega[u^n]:=q_n\quad(n\ge1),\qquad\text{valid for }g(0)=0.
 \]
-Here ``coefficientwise in $z$'' is what licenses applying $\Omega$ to $g_c$, which has a pole at $u=-1/\gamma$: since $\gamma=t^jz$, each coefficient of $z^N$ in $g_c(u)$ is a polynomial in $u$ with zero constant term. The hypothesis $g(0)=0$ is load-bearing: for $g=1$ one gets $(1-t)\sum_i\prod_{j\ne i}a_{ij}=1-t^m$, not $q_0=1$ (off by $[m]_t$). For $m=0$ both sides are $0$ (empty sum on the left; $q_n=0$ for $n\ge1$ on the right). Two facts evaluate the result:
+Here ``coefficientwise in $z$'' is what licenses applying $\Omega$ to $g_c$, which has a pole at $u=-1/\gamma$: since $\gamma=t^jz$, each coefficient of $z^N$ in $g_c(u)$ is a polynomial in $u$ with zero constant term. The hypothesis $g(0)=0$ is load-bearing: for $g=1$ one gets $(1-t)\sum_i\prod_{j\ne i}a_{ij}=1-t^m$, not $q_0=1$ (off by $[m]_t$). Two facts evaluate the result:
 \begin{enumerate}[label=(\alph*)]
 \item \emph{The $s$-part.} $\sum_c(-1)^ce_{b-c}q_{c+1}=(1-t^{b+1})e_{b+1}$; this is $[y^{b+1}]$ of $Q(y)E(-y)=E(-ty)$.
 \item \emph{The pole part.} Since $\sum_c(-1)^ce_{b-c}u^c=[w^b]E(w)/(1+uw)$, and $\Omega[u/((1+wu)(1+\gamma u))]=\sum_{a,p\ge0}(-w)^a(-\gamma)^pq_{1+a+p}=(Q(-\gamma)-Q(-w))/(w-\gamma)$, using $E(x)Q(-x)=E(tx)$ twice gives
@@ -243,7 +257,9 @@ Write $N'_{jb}=s^bt^{-(k-1)j}c(k-1-b,j)$ for the coefficients of $T_{k-1}$, and 
 \[
 (1-t^{b'})c(n,j)+t^{b'}\Bigl[(1-st^{-j})\sum_{p\ge0}(st^{-j})^pc(n-1-p,j)-t^n(1-st^{1-j})\sum_{p\ge0}(st^{1-j})^pc(n-1-p,j-1)\Bigr].
 \]
-By Lemma~\ref{lem:star} the bracket equals $(1-t^n)c(n,j)$. So the whole expression is $(1-t^k)c(n,j)$, which is the claim.
+By Lemma~\ref{lem:star} the square bracket equals $(1-t^n)c(n,j)$. So the whole expression is $(1-t^{b'})c(n,j)+t^{b'}(1-t^n)c(n,j)=(1-t^k)c(n,j)$, which is the claim.
+
+\emph{The case $m=0$.} This case is not trivial. Every equality above (the residue lemma, (a), (b), both forms of $[w^b]P$, and the final collection via Lemma~\ref{lem:star}) is an identity between expressions in the $e_n$ and $E(\cdot)$ that holds in every $\Lambda_m$. Specialising to $m=0$, i.e.\ $e_n\mapsto0$ for $n\ge1$ and $E\mapsto1$, is a ring homomorphism, so the identity specialises. The left side becomes the empty sum, and $[k]T_k$ becomes $[k]z^{-k}F_k(t^{-k})$. So the case $m=0$ of the lemma says exactly $F_k(t^{-k})=0$. (This argument is Clio's, review of 2026-10-15, \S6 Finding~4. The sentence it replaces cited $q_n$, which does not occur in $T_k$.)
 \end{proof}
 
 \begin{lemma}[$\star$]\label{lem:star}
@@ -280,7 +296,7 @@ respectively. These are equal, because $D_j=\alpha_{j-1}t^j(s-1)/(1-t^j)$ for $j
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
 Induct on $k$, for all $m$ simultaneously. The base case is $\Gamma_0=E(z)=T_0$. For $k\ge1$:
 \begin{itemize}
-\item if $m=0$, the Step Lemma gives $T_k=0=\Gamma_k$;
+\item if $m=0$, then $\Gamma_k=0$, and the Step Lemma (its case $m=0$, i.e.\ $F_k(t^{-k})=0$) gives $T_k=0$;
 \item if $m\ge1$, combine the Recursion, the induction hypothesis in $m-1$ variables, and the Step Lemma.
 \end{itemize}
 Finally, $[z^r]\,z^{b-k}E(t^jz)=t^{j(r+k-b)}e_{r+k-b}$.
@@ -288,15 +304,14 @@ Finally, $[z^r]\,z^{b-k}E(t^jz)=t^{j(r+k-b)}e_{r+k-b}$.
 
 \section{Remarks}
 
-\paragraph{What is classical and what is new.} The kernel form of $e_k(Y)$ is classical in the $q$-shift DAHA; see Concha--Lapointe, arXiv:2307.02385, Lemmas~8 and~10. The level-one $\pi^k$ transfer and the $e$-basis Pieri rule for general $k$ are, as far as the Day~207 audit found, new.
+\paragraph{What is classical and what is new.} The kernel form of $e_k(Y)$ is classical in the $q$-shift DAHA; see Concha--Lapointe, arXiv:2307.02385, Lemmas~8 and~10. Their $Y_i$ is the mirror image of Hikita's (and ours). Per Clio's reading of their \S4 (review of 2026-10-15, \S7), CL's operator is $Y^{\mathrm{CL}}_i=t^{-N+i}\,T_i\cdots T_{N-1}\,\omega\,\bar T_1\cdots\bar T_{i-1}$, while ours is $Y_i=t^{m-i}\,T_{i-1}\cdots T_1\,\pi\,T_{m-1}^{-1}\cdots T_i^{-1}$. CL's string ascends where ours descends, and they have $\omega$ where we have $\pi$. Reversing the variables, $x_i\leftrightarrow x_{N+1-i}$ (so $T_j\leftrightarrow T_{N-j}$), takes our $Y_{N+1-i}$ to an operator of CL's shape with prefactor $t^{i-1}$. So the dictionary is $i\leftrightarrow N+1-i$, up to a global power of $t$ and the normalisations of $\omega$ and $\bar T_j$, which we have not re-checked first-hand against CL. On symmetric functions, $e_r(Y)$ is invariant under reindexing, so Lemma~10 transfers once the scalar is matched. This dictionary is a different one from the DFK relation $Y_i=\theta^{m-1}(Y_{i,-1})^{-1}$ in the long version. The level-one $\pi^k$ transfer and the $e$-basis Pieri rule for general $k$ are, as far as the Day~207 audit found, new.
 
 \paragraph{Specializations.} The following are checked symbolically in $u=t^r$: $k=1$ gives Hikita's Theorem~3.12; $k=2$ gives $W_r$; $k=3,4$ give Days~193 and~195. The case $r=0$ recovers Hikita's Lemma~3.3, $e_k(Y)\bullet1=t^{\binom k2}e_k$; this is checked symbolically for $k\le7$.
 
-\paragraph{Machine checks} (\texttt{scripts/day207b/}, all OK).
+\paragraph{Machine checks} (\texttt{scripts/day207b/}, all OK). Lemma~$\star$ is not on this list because it is proved in \S5; the symbolic run for $n\le9$ is consistency evidence only. Clio extended it to $n\le30$ at eight exact points.
 \begin{itemize}
 \item Key Lemma and $(A_k)$: exact for $m\le6$.
 \item (C2): checked.
-\item Lemma~$\star$: checked for $n\le9$.
 \item Step Lemma: checked with $z$ symbolic.
 \item Full theorem against a direct AHA computation: 216 cases, including $m<k$.
 \end{itemize}
@@ -307,6 +322,12 @@ e_k\star e_r=\sum_{b<\mu}(1-s)s^be_be_{r+k-b}+s^\mu e_\mu e_M,\qquad \mu=\min(k,
 \]
 The uncollapsed form $\sum_{b<k}(1-s)s^be_be_{r+k-b}+s^ke_ke_r$ holds for $r\ge k-1$. The P.S.\ of the covering email (UID~732) said $r\ge k$, which gave away one case. At $r=k-1$, the $b=k-1$ and $b=k$ terms combine to $s^{k-1}e_{k-1}e_k$. At $r=k-2$, the uncollapsed form is off by $(1-s)s^{k-1}(e_{k-1}^2-e_{k-2}e_k)\neq0$. Clio checked this for $k\le6$ (review of 2026-09-29, UID~301), and we re-checked it for $k\le5$.
 
-\paragraph{Open.} The ${}_2\phi_1$ form $F_n(w)=(1-t^nw)\frac{\poch sn}{\poch tn}\,{}_2\phi_1(t^{1-n},t/s;t^{1-n}/s;t;w)$ is only computed ($n\le6$), and it is not needed for the theorem.
+\paragraph{Corollary (forced roots; suggested by Clio).} For $k\ge1$ and $1\le N\le k$,
+\[
+\sum_{b=0}^{k-N}s^b\,F_{k-b}(t^{-N-b})\,e_b\,e_{k-N-b}=0\quad\text{in }\Lambda;\qquad\text{in particular (}N=k\text{)}\quad F_n(t^{-n})=0\ \ (n\ge1).
+\]
+\emph{Proof.} $\Gamma_k$ is a power series in $z$, so $[z^{-N}]T_k=0$ by Theorem~\ref{thm:main}. Since $[z^{-N}]z^{b-k}E(t^jz)=t^{j(k-N-b)}e_{k-N-b}$, summing over $j$ gives the display. \qed
+
+\noindent So $1-t^nw$ divides $F_n(w)$ for every $n$. This is proved, not merely computed. It is the case $m=0$ of the theorem. We checked the full family for $k\le8$ and every $N$, with the $e$'s independent (\texttt{scripts/day242/clio\_corollary\_check.py}, 121/121, lesion controls firing). The quotient's ${}_2\phi_1$ form, $F_n(w)/(1-t^nw)=\frac{\poch sn}{\poch tn}\,{}_2\phi_1(t^{1-n},t/s;t^{1-n}/s;t;w)$, is still only computed: $n\le6$ here, $n\le14$ by Clio. It is not needed for the theorem.
 
 \end{document}

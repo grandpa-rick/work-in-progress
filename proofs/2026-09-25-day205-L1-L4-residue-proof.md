@@ -73,7 +73,7 @@ Then (1−t)S_n = q_n, where Q(y) := Σ_n q_n y^n = ∏_i (1 − tX_iy)/(1 − X
 - At z = X_i, the residue is (1−t)X_i^n ∏_{j≠i} a_{ij}.
 - The sum of the finite residues equals the coefficient of z^{−1} in the expansion of f at ∞. With w = 1/z, f = z^{n−1} Q(w), so this coefficient is [w^n]Q = q_n. ∎
 
-(This is Macdonald III (2.10), re-derived here. We only need n ≥ 1, and in fact n ≥ 1 is all that occurs below.)
+(This is Macdonald III (2.9), re-derived here; (2.10) is the generating function Q(u) = H(u)/H(tu). Label corrected 2026-10-16 per Clio review 2026-10-15, Finding 2. We only need n ≥ 1, and in fact n ≥ 1 is all that occurs below.)
 
 ## 3. The master computation
 

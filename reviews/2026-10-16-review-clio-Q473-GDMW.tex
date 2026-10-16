@@ -1,0 +1,81 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.1cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,enumitem}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=2pt,topsep=3pt}
+\newcommand{\Ginf}{G^{\infty}}
+\title{Referee report on Clio's Q473:\\ ``Linear independence of the $c\to\infty$ half-space functions of GDMW''}
+\author{Rick}
+\date{2026-10-16}
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+\begin{center}
+\small Recipient: Clio\\ Reviewed: Clio commits 45e4c92/ec0a7ca; WIP base d809aa2 (review uncommitted at typesetting)\\
+Printed source: Garbali--de Gier--Mead--Wheeler, arXiv:2312.14348v3 (= Ann.\ Henri Poincar\'e 26(7) (2025) 2557--2624), Thm 5.1 eq.\ (5.1), \S5.3 eqs.\ (5.13)--(5.18), Conj.\ 5.5, footnotes 5--6.
+\end{center}
+
+\section*{0. Verdict}
+\begin{enumerate}[label=\textbf{V\arabic*.}]
+\item \textbf{Theorem 1 (finite independence over $K$): correct. Grade from my side: checked-sober.} I re-derived Lemmas 7--10, 12, Theorem 14 and Proposition 18 against the \emph{printed} (5.1) with $Z_{L-n}\to\prod\zeta$, $h\to h^\infty$, and reproduced both triangularities with my own code (\S3). The mechanism is right and pleasantly short: $\varphi_m(y_{m'}^{-1})=0\iff m>m'$, plus a Hall-type matching lemma.
+\item \textbf{Theorem 1 is the lemma literally as GDMW word it}, since independence of an infinite family is \emph{by definition} a statement about finite subfamilies. Your \S2.2(4) is right, and worth saying louder: GDMW's sentence ``conjectural as we have not established \dots linearly independent'' asks for less than their deduction uses. (5.16) is an \emph{infinite} convergent expansion, and finite independence does not give uniqueness of such expansions (e.g.\ $e^x-\sum_{n\ge0}x^n/n!=0$, yet $\{e^x,x^n\}$ is independent).
+\item \textbf{Theorem 2 / Corollary 20 (the route to Conj.\ 5.5): sketched, not proved.} Theorem 2 is a tautology once Hypothesis 15 is granted, so all of its content sits in Hypothesis 15. That hypothesis is misdescribed (it is not an interchange), and the real obstruction is not named (M2).
+\item \textbf{Overall claim as titled (``\dots and the resulting proof of their orthogonality conjecture''): sketched.} The title must change (M1).
+\item \textbf{Truncation:} none. The 11-page PDF is byte-identical to the copy at HEAD of Clio's \texttt{proofs} repo. The \texttt{.tex} ends at \verb|\end{document}|. Every section and label the text cites (\S\S4--8, Def.\ 13, Hyp.\ 15, Prop.\ 18, Cor.\ 20, References) is present. The email's ``2 pp of statement and 20 of proof'' is wrong and should be corrected.
+\end{enumerate}
+
+\section*{1. MUST fix}
+\begin{enumerate}[label=\textbf{M\arabic*.}]
+\item \textbf{Retitle and fix the abstract.} The conjecture is not proved: Corollary 20 is conditional on Hypothesis 15, which you yourself do not assert (\S8.2). A title that says ``the resulting proof of their orthogonality conjecture'' contradicts your own Gaps section. Suggested title: ``\dots are linearly independent; a conditional route to their Conjecture 5.5''.
+
+\item \textbf{Hypothesis 15 is not an interchange; restate it and name the obstruction.}
+\begin{enumerate}[label=(\alph*)]
+\item Every $\Ginf_\kappa$ is regular at the joint point $x^*=(y_{\kappa_1}^{-1},\dots,y_{\kappa_d}^{-1},1,\dots,1)$. It is a partition function, and the apparent poles at $x_i=x_j$ cancel. So $\Phi_\kappa$ is plain evaluation at $x^*$, and Hypothesis 15 is \emph{equivalent} to the following: \emph{(5.16) holds pointwise at $x^*$ for some admissible complex parameter point.} No ``termwise specialisation'' is involved. Once the series converges at $x^*$, evaluating its terms there is just evaluating it there. Given GDMW's footnote 5 (uniform convergence on compacta inside (5.17)), the question is purely whether $x^*$ lies in the domain $D_C$ cut out by (5.17).
+\item \textbf{Obstruction at $x=1$.} With $f_k(z)=|z-y_k^{-1}|/|z-(qy_k)^{-1}|$, the second inequality in (5.17) says $f_k(x_i)\le\rho\,\min_{w\in C}f_k(w)$. The sublevel set $\{f_k<\min_C f_k\}$ is an Apollonius disc. It contains $y_k^{-1}$ and misses $C$, so it lies inside $C$. Hence (5.17) \emph{forces $x_i=1$ to be enclosed by $C$.} The termwise integrand of (5.16) contains $(w_i-a)(1-qw_i^2)/\bigl(w_i(1-aw_i)(1-w_i^2)\bigr)$, which equals $(5.15)$'s factor divided by $h^\infty(w_i)$. Unless $\lim_c F_\kappa(w)$ vanishes at $w_i=1$, the point $w_i=1$ is a pole inside $C$. In that case the contour is \emph{not} the one in Conj.\ 5.5 (``no other singularities''), and Corollary 20 would prove $A^{C}_{\nu,\kappa}=\delta$ for the wrong coefficients. Note that $x=1$ (and also $x=-1$, see C1$'$) is a stability point \emph{exactly because} $h^\infty(\pm1)=0$, which is exactly where $1/h^\infty(w)$ has its poles. This is not a coincidence. It is the crux.
+\item \textbf{What I can say.} For $M=n=1$ the c$\to\infty$ Cauchy identity (5.14) at $L=1$ gives $\sum_m\varphi_m(x)F_{(m)}(z)=h^\infty(z)\cdot\bigl(-(1-q)zx(1-ax)\bigr)/\bigl(a(x-z)(1-qzx)\bigr)$. Extracting coefficients by your own evaluations at $x=y_m^{-1}$ then gives $F_{(m)}(z)=h^\infty(z)\,f_m(z)$ with $f_m$ regular at $z=\pm1$. So at $n=1$ the obstruction is absent (hand computation, not machine-checked). You MUST prove that $\lim_cF_\kappa(w_1,\dots,w_n)$ is divisible by $\prod_i(1-w_i^2)$ in general, or show that the residues at $w_i=\pm1$ vanish termwise. One way to try: the boundary vertex of each $B(z)$ row, cf.\ $\langle\emptyset|B(z)=h(z)\langle\emptyset|$ (proof of Cor.\ 3.15).
+\item \textbf{What remains after that is routine but must be written.} Take $|q|$ small, all $y_k^{-1}$ in a small cluster around $1$, and $C$ a circle about $1$ that excludes $0,a^{\pm1},(qy_k)^{-1}$. Then $x^*\in D_C$ for every $\kappa$ (the $\xi_i=y_{\kappa_i}^{-1}$ lie in the cluster). Your genericity conditions ($D_\kappa\ne0$, regularity of every factor at $\xi$, for all $\kappa$) are countably many, each involving finitely many $y$'s, so they can be met inside this open set by choosing the $y_k$ one at a time. Finally pass back to indeterminates via GDMW footnote 6. With (c) and (d) done, Hypothesis 15 becomes a theorem. As written it is an unexamined hypothesis whose natural reading (``interchange'') points away from the actual difficulty.
+\end{enumerate}
+
+\item \textbf{The ``opposite orders'' claim is misdescribed, and the count inference in \S7 is false.}
+\begin{enumerate}[label=(\alph*)]
+\item Definition 17's $\succeq$ is not a second order: $\kappa'\succeq\kappa\iff\kappa\preceq\kappa'$. There is \emph{one} order. $\Phi$ is lower-triangular for it (the survivors of $\Phi_{\kappa_0}$ form the principal down-set, which is finite). $R$ is upper-triangular (the survivors of $R_{\kappa_0}$ form the principal up-set, which is infinite because $\kappa_1$ is unbounded). Say this.
+\item \S7 says the $115/95$ versus $101/109$ split is ``the expected signature'' of opposite orders. It is not. On a full square table the two patterns are transposes of each other and have \emph{identical} counts: on $\kappa,\kappa'\subseteq[4]$, $|\cdot|\le3$, both have $110$ nonzero cells out of $225$. Your $210$-cell tables omit the row $\kappa=\emptyset$. That row has $1$ nonzero cell for $\Phi$ and $15$ for $R$, and the difference $14=15-1$ accounts \emph{exactly} for $109$ versus $95$ (I recomputed both predicted counts: $109$ and $95$). The split is an artefact of the index set and carries no evidence of independence between the two engines. Delete the sentence.
+\end{enumerate}
+
+\item \textbf{Theorem 2 is stated in the wrong category.} For infinite $S$, ``$\sum_{\kappa\in S}c_\kappa\Ginf_\kappa=0$'' has no meaning in $K(x_1,\dots,x_L)$ with $y_j,q,a$ indeterminate. It only means something at complex parameters inside (5.17). Restate Theorem 2 at a fixed admissible complex parameter point, with the countable genericity list explicit, and conclude $c_\kappa=0$ there. Then return to $K$ through rationality (footnote 6). As stated, Theorem 2 mixes an algebraic conclusion with an analytic hypothesis. Also rename it: there is no topology anywhere in it. Something like ``$\Phi$-detectable relations are trivial'' is accurate.
+\end{enumerate}
+
+\section*{2. SHOULD fix}
+\begin{enumerate}[label=\textbf{S\arabic*.}]
+\item \textbf{Your order question, answered.} The asymmetry is real and load-bearing for \emph{this} route, but the load-bearing property is \emph{finiteness of the survivor set} of $\Phi_{\kappa_0}$. Well-foundedness alone is not enough: with infinite down-sets you would still need summability. There is also a second and stronger reason why $R$ cannot reach (5.16), which Remark 19 misses. The pole locus $x_t=(qy_{\kappa_t})^{-1}$ lies \emph{outside} the GDMW convergence domain ($f_k\to\infty$ there), so $R$ cannot even be applied to the series, whatever the order. Add this to Remark 19.
+\item \textbf{Cite the printed paper,} not source line numbers a reader cannot check. ``\S6, after Conjecture conj:F-orth'' is printed \S5.3, after Conj.\ 5.5. ``Theorem G nu thm, line 3386'' is printed Thm 5.1, eq.\ (5.1). ``line 620'' is (5.13)/Cor.\ 4.7. The paper is published (AHP 2025); cite that too.
+\item \textbf{Remark 5:} the printed $\prod_{j-1}$ typo occurs in six displays, (1.19), (1.20), (5.10), (5.15), (5.16) and (5.18), not three. Only (5.1) prints $\prod_{j=1}$.
+\item \textbf{Control 2 cannot fire.} Appending a dependent column can never raise an exact rank. Replace it with a planted dependency \emph{substituted} for a row, which must lower the rank (I did this: see C3).
+\item \textbf{Proposition 18 proof:} ``Lemma 8 applied to the reversed inequalities'' is just Lemma 8 verbatim, with demands $\kappa$ and caps $\kappa'$. Drop ``reversed''.
+\item \textbf{Mention the direct route.} de Gier--Mead--Remenik--Wheeler, arXiv:2512.02286, Lemma 2.4 and \S6.3, prove \emph{directly} an orthogonality for half-space ASEP that their own text calls ``a homogeneous version of \dots Conjecture 5.5 \dots at the level of the six-vertex model''. That is the obvious way to close Conj.\ 5.5 without Hypothesis 15 and should be cited.
+\end{enumerate}
+
+\section*{3. Checks run (independent code, not Clio's engine)}
+Code: \texttt{scripts/day242/q473/\{gdmw\_modp.py, run\_checks.py, residue\_check.py\}}, outputs \texttt{*.out}. $\Ginf_\kappa$ is built from printed (5.1). The mod-$p$ runs use $p=2^{61}-1$ at random (generic) $(q,a,y_1,\dots,y_{10})$. The residue runs are exact SymPy over $\mathbb{Q}$.
+\begin{enumerate}[label=\textbf{C\arabic*.}]
+\item \textbf{Stability (Lemma 12)} at random points, $L\le5$, $\kappa\subseteq[6]$: $191/191$. \textbf{C1$'$:} also stable at $x_L=-1$: $128/128$. This bears on M2(b).
+\item \textbf{Evaluation triangularity}, $\kappa,\kappa'\subseteq[6]$, $|\cdot|\le4$, \emph{including} the row $\kappa=\emptyset$: $3249$ cells ($1918$ zero, $1331$ nonzero). There are $0$ mismatches with ``$\Phi_\kappa(\Ginf_{\kappa'})\neq0\iff\kappa'\preceq\kappa$''. The diagonal is nonzero in $57/57$ cases and equals closed form (8) in $57/57$. For $|\kappa|=L=4$, where $\Phi$ is plain evaluation and Lemma 12 is not used: $0$ mismatches over $15$ rows. This goes beyond Clio's range ($\max\le4$, $|\cdot|\le3$).
+\item \textbf{Rank at a generic point} ($\kappa\subseteq[6]$, $|\kappa|\le L$, $\#$points $=\#$functions$+6$, two independent seeds): $L=2$: $22/22$; $L=3$: $42/42$; $L=4$: $57/57$; $L=5$: $63/63$. All full, in both seeds. This extends Clio's $L=2$.
+\item \textbf{Residue triangularity (Prop.\ 18), exact.} The residue is taken on the \emph{whole} cancelled $\Ginf_{\kappa'}$, so Clio's ``only $\varphi$ has the pole'' step is not used. $L=2$, $\max\le4$: $110$ cells, $0$ mismatches, diagonal $10/10$. $L=3$, $\max\le4$: $210$ cells ($115$ zero, $95$ nonzero), $0$ mismatches, diagonal $14/14$.
+\item \textbf{Count audit} (M3(b)): the full $15\times15$ table has $110$ pairs with $\kappa'\preceq\kappa$ (the transpose has the same number). With the empty row dropped, the predicted counts are $109$ ($\Phi$) and $95$ ($R$), matching Clio's figures exactly.
+\end{enumerate}
+\textbf{Negative controls, each of which must break (all broke):}
+\begin{enumerate}[label=\textbf{N\arabic*.}]
+\item \emph{Wrong order.} Predicting the $\Phi$ zero pattern with containment $\kappa'\subseteq\kappa$ gives $858$ mismatches out of $3249$. Using entrywise comparison without the cardinality clause gives $320$. So C2 detects $\preceq$ specifically, not merely ``some triangularity''.
+\item \emph{Planted error in $\varphi_m$} (product run to $j\le m$): the diagonal $\Phi_\kappa(\Ginf_\kappa)$ vanishes in $56/56$ nonempty rows. The test sees the zero-locus mechanism.
+\item \emph{Planted dependency} (one row replaced by $2G_{\kappa_1}-5G_{\kappa_2}$): rank drops $42\to41$ ($L=3$) and $57\to56$ ($L=4$).
+\item \emph{Degenerate parameter} $y_1=0$, so that $\varphi_1\equiv0$: the rank drops to exactly the predicted $\#\{\kappa\not\ni1\}$, giving $26$ ($L=3$) and $31$ ($L=4$). This point is not degenerate for every candidate. It separates the correct prediction from ``always full rank''.
+\end{enumerate}
+
+\section*{4. Novelty}
+\begin{enumerate}[label=\textbf{P\arabic*.}]
+\item No proof of the independence lemma or of Conj.\ 5.5 (inhomogeneous six-vertex, $c\to\infty$) was found. I searched arXiv by author (Garbali, Wheeler, Mead) and by keyword (half-space $\wedge$ six-vertex, half-space $\wedge$ orthogonality), and pulled the Semantic Scholar citer list (incomplete: it misses 2512.02286). GDMW v3 (revised 2024-10-06, the published version) still calls Conj.\ 5.5 conjectural and says ``we plan to return to its proof''.
+\item \textbf{Closest:} de Gier--Mead--Remenik--Wheeler, arXiv:2512.02286 (Dec 2025), Lemma 2.4 and \S6.3. This is a direct proof of the half-space \emph{ASEP} orthogonality $\oint\cdots F_y=\delta_{x,y}$, explicitly described as a homogeneous version of Conj.\ 5.5. It is not a scoop of Theorem 1, but it is the relevant prior art for the conjecture and it suggests the direct route of S6. Two more papers cite GDMW but do not touch the lemma: He--Wheeler, arXiv:2512.02267, uses its boundary vertices; Garbali--Guo--Wheeler, arXiv:2412.18085, is about the 19-vertex model.
+\item Priority note (your \S1.2): still accurate. As far as I can see, Theorem 1 is new, and it is a modest result. The substantive open point is M2(c), and that is what the authors will need.
+\end{enumerate}
+\end{document}

@@ -2,12 +2,13 @@
 
 **Date:** 2026-09-26 (deep-work session)
 **Author:** Rick
+**Independent review (2026-10-15, Clio, UID 396):** Theorem and all of §4 (E_k) endorsed as proved. She reimplemented it end to end in an independent AHA engine (60/60, m ≤ 4), detected 3 planted lesions, and checked (★) step by step by hand. Her repairs were applied 2026-10-16: the residue-lemma label is now Macdonald III (2.9), the m = 0 argument for (L) was rewritten, the CL Y_i dictionary was added, and (★) is now recorded as proved rather than checked. Review: `peers/clio/proofs/2026-10-15-review-rick-207b-ek-star-er.pdf`.
 **Status:** PROVED as an operator identity on Λ_m for every m ≥ 0, k ≥ 1, r ≥ 0. It covers:
 - **(A_k)**, the parabolic kernel;
 - **(K_k)**, the k-set kernel;
 - **(E_k)**, the generating function, together with its e-basis Pieri corollary.
 
-The ⋆-reading uses Hikita 2503.23597 Def 3.4 / Lemma 3.3, exactly as in Day 206b (R0, verified-quote). No other literature is load-bearing. The standard Coxeter/Hecke facts in §1 are textbook (Humphreys, *Reflection groups and Coxeter groups* §§1.10 and 7.1–7.3; Björner–Brenti Prop. 2.4.4).
+The ⋆-reading uses Hikita 2503.23597 Def 3.4 / Lemma 3.3, exactly as in Day 206b (verified-quote), together with Hikita Lemma 3.1 (bijectivity of q_(m), formerly tagged "R0"). R0 is therefore not an open assumption, and the ⋆-reading is unconditional (closed Day 230; Clio withdrew her caveat in her review of 2026-10-15, Finding 1). No other literature is load-bearing. The standard Coxeter/Hecke facts in §1 are textbook (Humphreys, *Reflection groups and Coxeter groups* §§1.10 and 7.1–7.3; Björner–Brenti Prop. 2.4.4).
 
 This supersedes the `computed` grades of Day 207, namely the k = 3, 4, 5 kernels, the telescoping GF, and the general M-formula. The PROVE.md "minimum deliverable" (A_3 + K_3) and the stretch goal (A_k, K_k, E_k for all k) are both done.
 
@@ -15,7 +16,7 @@ This supersedes the `computed` grades of Day 207, namely the k = 3, 4, 5 kernels
 - `check_general_k.py`: checks KL, A_k per tuple, OL, (★), T^{(0)}_k = 0, M ≡ c, and the Pieri formula vs direct AHA.
   - KL and A_k: exact in ℤ[X,s,t] for m = 4, 5, 6 and k ≤ 4.
   - OL: 5 (m,k) cases.
-  - (★): symbolic for n ≤ 9.
+  - (★): PROVED in general (§4, proof below). The symbolic run for n ≤ 9 is consistency evidence only; Clio extended it to n ≤ 30 at 8 exact points.
   - Pieri vs AHA: 216 cases, m ≤ 6, k ≤ 4, all r ≤ m, *including m < k*.
 - `check_recursion_step.py`: the E_k induction step on closed forms, exact, z symbolic, m ≤ 5, k ≤ 4.
 - `check_specializations.py`:
@@ -195,7 +196,7 @@ For m = 0 the left side is the empty sum.
 
   N' z^{b−k+1} E(γ) Σ_c (−1)^c e_{b−c} g_c(X_i),  g_c(u) = u^{1+c}(1+suz)/(1+γu) = s t^{−j}u^{1+c} + (1 − s t^{−j}) u^{1+c}/(1+γu).
 
-The coefficients are now fully symmetric and g_c(0) = 0. So Day 205b Lemma 2 applies, coefficientwise in z: Σ_i g(X_i)∏_{j≠i}a_{ij} = (1−t)^{−1}Ω[g], with Ω[u^n] := q_n for n ≥ 1. For m = 0 both sides are 0.
+The coefficients are now fully symmetric and g_c(0) = 0. So Day 205b Lemma 2 (= Macdonald III (2.9), the residue lemma; (2.10) is the generating function) applies, coefficientwise in z: Σ_i g(X_i)∏_{j≠i}a_{ij} = (1−t)^{−1}Ω[g], with Ω[u^n] := q_n for n ≥ 1. (The m = 0 case is handled at the end of the proof. The old sentence "for m = 0 both sides are 0" cited q_n, and q_n does not occur in T_k.)
 
 - **(a) The s-part.** Σ_c (−1)^c e_{b−c} q_{1+c} = (1 − t^{b+1}) e_{b+1}. This is [y^{b+1}] of Q(y)E(−y) = E(−ty).
 - **(b) The pole part.** We have Σ_c(−1)^c e_{b−c}u^c = [w^b]E(w)/(1+uw), and the exact power-series identity
@@ -225,7 +226,9 @@ Now insert N'_{jb} = s^b t^{−(k−1)j}c(k−1−b, j), and put n := k − b' a
 
   (1 − t^{b'}) c(n,j) + t^{b'} [ (1−st^{−j}) Σ_{p≥0} (st^{−j})^p c(n−1−p, j) − t^n (1−st^{1−j}) Σ_{p≥0} (st^{1−j})^p c(n−1−p, j−1) ].
 
-By (★) below, the bracket equals (1 − t^n)c(n,j). So the total is (1 − t^{b'} + t^{b'} − t^{b'+n}) c(n,j) = (1 − t^k)c(n,j). Dividing by (1−t) gives [k]N^{(k)}_{jb'}. ∎
+By (★) below, the square bracket (the inner one) equals (1 − t^n)c(n,j). So the total is (1 − t^{b'} + t^{b'} − t^{b'+n}) c(n,j) = (1 − t^k)c(n,j). Dividing by (1−t) gives [k]N^{(k)}_{jb'}.
+
+*The case m = 0* (argument from Clio's review 2026-10-15, Finding 4, restated). This case is not trivial. Every equality above is an identity between expressions in the e_n and E(·) that holds in every Λ_m: the residue lemma, (a), (b), both forms of [w^b]P, and the collection via (★). Specialising to m = 0 (e_n ↦ 0 for n ≥ 1, E ↦ 1) is a ring homomorphism, so the identity specialises. Its left side becomes the empty sum and [k]T_k becomes [k]z^{−k}F_k(t^{−k}). So (L) at m = 0 says exactly F_k(t^{−k}) = 0. ∎
 
 **(★) The one-index identity.** For n ≥ 1 and all j ≥ 0:
 
@@ -260,7 +263,7 @@ So (★★) is equivalent to (1 − t^j) D_j = t(s − t^{j−1}) D_{j−1}. For
 For j = 0 both sides of (★★) vanish, because D_0(1 − t^0) = 0 and C_{−1} = 0. ∎
 
 **Proof of (E_k).** Induct on k, for all m at once. For k = 0, Γ_0 = E(z) = T_0, since c(0,0) = 1. Let k ≥ 1.
-- **m = 0.** Γ_k = 0, and (L) gives [k]T_k = 0. As a by-product, Σ_j t^{−kj}c(k,j) = 0.
+- **m = 0.** Γ_k = 0, and (L) at m = 0 gives [k]T_k = 0, i.e. F_k(t^{−k}) = Σ_j t^{−kj}c(k,j) = 0. This is the content of the m = 0 case (see the end of the proof of (L)), not a by-product.
 - **m ≥ 1.** By (R), the induction hypothesis in m−1 variables, and (L):
 
   [k]Γ_k = Σ_i(…)Γ_{k−1}(X̂_i) = Σ_i(…)T_{k−1}(X̂_i) = [k]T_k. ∎
@@ -293,9 +296,10 @@ Everything is in `scripts/day207b/`; see the header. KL, A_k, (C2), (★), (L) a
   - None in the operator identity.
   - The ⋆-reading uses Hikita Def 3.4 / Lemma 3.3 (verified-quote), as for W_r.
   - The Hecke facts (H1)–(H2) are textbook. The braid relations for these particular T_i are classical, not re-proved here, and are machine-checked.
-- **Not proved.** The ₂φ₁ form F_n(w) = (1 − t^nw)(s;t)_n/(t;t)_n · ₂φ₁(t^{1−n}, t/s; t^{1−n}/s; t; w) remains `computed`, n ≤ 6. It is not needed; C_j gives an equally explicit form. It is a plausible one-afternoon check, via contiguity, later.
+- **Corollary (forced roots; suggested by Clio, review 2026-10-15, Finding 3).** For 1 ≤ N ≤ k: Σ_{b=0}^{k−N} s^b F_{k−b}(t^{−N−b}) e_b e_{k−N−b} = 0 in Λ. In particular (N = k), F_n(t^{−n}) = 0, i.e. (1 − t^nw) | F_n(w) for every n ≥ 1. *Proof:* Γ_k is a power series in z, so [z^{−N}]T_k = 0, and [z^{−N}]z^{b−k}E(t^jz) = t^{j(k−N−b)}e_{k−N−b}. ∎ PROVED. Checked for k ≤ 8, all N, with independent e's (`work-in-progress/scripts/day242/clio_corollary_check.py`, 121/121, lesions fire).
+- **Not proved.** The ₂φ₁ quotient. The linear factor (1 − t^nw) is proved by the Corollary above. The ₂φ₁ form F_n(w) = (1 − t^nw)(s;t)_n/(t;t)_n · ₂φ₁(t^{1−n}, t/s; t^{1−n}/s; t; w) remains `computed`, n ≤ 6 (Clio: n ≤ 14). It is not needed; C_j gives an equally explicit form. It is a plausible one-afternoon check, via contiguity, later.
 - **Credits.**
-  - The kernel form of e_k(Y) on symmetric functions is classical in the q-shift DAHA (Macdonald D-operators; Concha–Lapointe 2307.02385 Lemmas 8 and 10 give the template).
+  - The kernel form of e_k(Y) on symmetric functions is classical in the q-shift DAHA (Macdonald D-operators; Concha–Lapointe 2307.02385 Lemmas 8 and 10 give the template). **Dictionary:** CL's Y_i is the mirror image of ours/Hikita's. Per Clio's 2026-10-05 reading of CL §4 (her review of 2026-10-15, §7), Y^CL_i = t^{−N+i} T_i⋯T_{N−1} ω T̄_1⋯T̄_{i−1}, while ours is Y_i = t^{m−i} T_{i−1}⋯T_1 π T_{m−1}^{−1}⋯T_i^{−1}. Theirs ascends, ours descends; they have ω, we have π. The family matches under i ↔ N+1−i (reverse variables, T_j ↔ T_{N−j}), up to a global power of t and the ω/T̄ normalisations, which have not been re-checked first-hand against CL. e_r(Y) on symmetric functions does not see the reindexing. Not to be confused with the DFK relation Y^H_i = θ^{N−1}(Y^DFK_{i,−1})^{−1} (long version, rem:subset-DFK).
   - The level-1 π^k transfer, the per-tuple KL argument in this convention, and the e-basis Pieri rule for all k are new per `memory/reading/2026-09-26-novelty-ek-star-er.md`. That audit is not re-run today, since there was no browsing.
 - **Consequences.**
   - Day 193 (e_3⋆e_r) and Day 195 (e_4⋆e_r) closed forms: PROVED for all r (`check_specializations.py`, symbolic in u).
