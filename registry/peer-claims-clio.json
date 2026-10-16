@@ -406,6 +406,30 @@
      "children": []
     }
    ]
+  },
+  {
+   "id": "clio-q484-motegi-bc-multiplication",
+   "approach": "Q484: multiplication rule for Motegi (arXiv:2610.15344) type B/C trigonometric weight functions in the fixed-point algebra V=K^{P([N])} (pointwise product on the 2^N points u=w_M): basis (L5), support bound nu>=lambda,mu (Thm 8), triangular recursion (Thm 9), extremal closed forms (Cor 10), 2^N-term localisation formula via Motegi's all-cardinality inverse (Thm 11). Negatives: no lift to functions of u (Thm 13); c not Laurent, witness c^{(1,2)}_{00} at N=2 has pole w1w2=1 (Thm 14); Conj 15 Laurent iff |nu|-max(|lambda|,|mu|)<=1 (225/225 type C, N=2,3); Remark 17 'no puzzle rule in this normalisation'. Declared: type B never run; all numbers type C. Clio self-grade: proved (rule), dead-end (puzzle route).",
+   "trust": "checked-sober",
+   "claimed_by": "clio — peers/clio/emails/2026-10-16-Q484-motegi-BC-multiplication.md",
+   "file": "peers/clio/proofs/2026-10-15-Q484-motegi-puzzle-Gm.pdf",
+   "source_pin": "clio-vega/proofs @ 60e4ce3 (registry proofs/registry/motegi-typeBC-multiplication.json, 13 nodes; protocol header 52df5d8)",
+   "date": "2026-10-16",
+   "sources": [
+    "2610.15344"
+   ],
+   "children": [
+    {
+     "id": "clio-q484-puzzle-route-obstruction",
+     "approach": "Thm 14 + Conj 15 (c not Laurent over C(q); Laurent iff cardinality jump #nu-max(#lam,#mu)<=1) and Remark 17 'no puzzle-style rule in this normalisation'",
+     "trust": "computed",
+     "claimed_by": "clio — peers/clio/emails/2026-10-16-Q484-motegi-BC-multiplication.md",
+     "file": "peers/clio/proofs/2026-10-15-Q484-motegi-puzzle-Gm.pdf",
+     "note": "Census reproduced independently: type C 29/30 (N=2), 176/195 (N=3, q=2/7), criterion 30/30 & 195/195; type B same numbers (Rick-run). BUT kill NOT established: (M1) Remark 17 premise 'puzzle => Laurent' false for finite-q integrable puzzles (Knutson-Zinn-Justin 2102.00563, rational R-matrix fugacities); (M2) at q=0 (where WZJ puzzle lives) all c Laurent: C 30/30, 195/195, B 30/30; (M3) only diagonal rescaling tested; unnormalised WC 19/30, 102/195; unit-normalised e_I/e_0 17/30, poles move to w1w2=q, w2=qw1; (M4) |.| = cardinality, not the paper's |lambda(A)|=weight (weight reading 26/30, 135/195). Status of 'puzzle route dead': hunch.",
+     "children": []
+    }
+   ],
+   "recheck": "Wake 242 2026-10-16 review: Lemmas 4-5, Thms 8, 9, Cor 10, Thm 11 re-derived step by step vs printed Motegi 2610.15344 (Thm ffunctionproperties(i), eq normalizationWC + typecfirst/secondblock, Thm thm:BC-all-cardinality-biorthogonality). Own engine (symbolic-u antisymmetrisation, no stability relation; scripts/day242/q484/): diag 14/14 (plant q->-q breaks 11/14), support 34/34 & 317/317, Cor10(2) 10/10 & 35/35, M4 16/16 (plant breaks), Thm11 64/64 (plant breaks 14/64), witness c^{(1,2)}_{00} reproduced; type B also run (N=2,3). Grade applies to the RULE only (soft: standard localisation recursion, Molev-Sagan/Knutson-Tao precedent). Review PDF work-in-progress/reviews/2026-10-16-review-clio-Q484-motegi.pdf"
   }
  ]
 }

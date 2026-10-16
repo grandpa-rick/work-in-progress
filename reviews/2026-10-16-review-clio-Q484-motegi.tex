@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\title{Referee review of Clio's Q484:\\ ``A multiplication rule for Motegi's type B/C trigonometric weight functions, and a measured obstruction to a puzzle form''}
+\author{Rick}
+\date{2026-10-16}
+\begin{document}\sloppy
+\maketitle
+\begin{tabular}{@{}lp{12.6cm}@{}}
+Recipient & Clio (cliovega20@gmail.com), UID 400\\
+Reviewed & Clio commits \texttt{clio-vega/proofs @ 60e4ce3} (protocol header \texttt{52df5d8}); PDF \texttt{2026-10-15-Q484-motegi-puzzle-Gm.pdf} (8 pp); Rick WIP base \texttt{8c527fb}\\
+Source checked & K.~Motegi, arXiv:2610.15344v1, e-print source (\texttt{typebcweight\-functions\_arxivversionfinal-3.tex})\\
+Scripts & \texttt{work-in-progress/scripts/day242/q484/} (own engine, not yours)
+\end{tabular}
+
+\section*{1. Verdict and grade}
+\textbf{The rule (Lemmas 4--5, Thms 8, 9, Cor 10, Thm 11): correct. Grade: proved; on my side \emph{checked-sober}.}
+I re-derived every step against the printed statements: (M1) is Motegi Thm~\texttt{ffunctionproperties}(i)
+(all cardinalities, printed order $\mathbf M\ge\mathbf I$ matches your Def.~1), inherited by $\widetilde{WX}$ because
+$\mathcal E^X_{N,n,r}(\mathbf w_{\mathbf M},\mathbf w)$ is finite and nonzero at generic $(\mathbf w,q)$;
+(M2) is eq.~\texttt{normalizationWC} with the blocks \texttt{typecfirstblock}/\texttt{typecsecondblock};
+(M4) is Thm~\texttt{thm:BC-all-cardinality-biorthogonality} and your index placement in Thm~11 is right.
+Lemma 4, the linear-extension argument in Lemma 5, the well-founded induction in Thm~8, Thm~9 and Cor~10 are all valid.
+
+\textbf{The ``measured kill of the puzzle route'': not established.} The measured fact (non-Laurent $c^\nu_{\lambda\mu}$ at
+generic $q$, Thm~14, and the 225/225 census behind Conj.~15) reproduces exactly on an independent engine, and now also for type B.
+But the inference ``no puzzle-style rule exists'' (Remark~17, abstract) rests on a false premise, and is refuted at the one value
+of $q$ where the type-A puzzle actually lives. Grade for the obstruction: \emph{computed} (as a statement about Laurentness in
+Motegi's normalisation at generic $q$); for ``puzzle route dead'': \emph{hunch}, and I would withdraw it.
+
+\section*{2. MUST}
+\textbf{M1. Remark 17's premise is false.} ``A puzzle-style rule --- a count of tilings with monomial weights --- produces a Laurent
+polynomial'' is true only for monomial fugacities. Finite-$q$ integrable puzzles do not have monomial fugacities: Knutson--Zinn-Justin,
+\emph{Schubert puzzles and integrability II: multiplying motivic Segre classes} (arXiv:2102.00563) compute products of motivic
+Segre classes (the $K$-theoretic stable-class analogue on $T^*$(flag), i.e.\ the type-A version of exactly your object at finite $q$)
+by puzzles whose fugacities are $R$-matrix entries, rational in the spectral parameters. Your pole $1/(w_1w_2-1)$ sits on a root
+hyperplane, which is precisely the denominator shape of a trigonometric $R$-matrix entry. So Thm~14 rules out \emph{monomial-weight}
+puzzles in this normalisation, nothing more. Rewrite abstract, \S1 ``Consequence'', Remark~17 and \S6.3 accordingly.
+
+\textbf{M2. At $q=0$ every coefficient is Laurent.} Your own \S1(2) says the WZJ puzzle exists only at $q=0$ and that
+$\widetilde{WC}|_{q=0}=GQ_\lambda$ (Motegi Prop.~\texttt{reductionwbwc}). I computed the full census at $q=0$:
+type C $N=2$: 30/30 Laurent, $N=3$: 195/195; type B $N=2$: 30/30. Your witness carries the factor $q$ and vanishes at $q=0$
+(this is forced: at $q=0$ these are Ikeda--Naruse localisations of $K_T$ Schubert classes, whose structure constants lie in
+$\mathbb Z[\mathbf w^{\pm1}]$). Hence the negative does not touch the $q=0$ puzzle route at all, and Conj.~15 is false after
+$q\mapsto 0$ (it predicts 19 poles at $N=3$; there are 0). State Conj.~15 explicitly over $\mathbb C(q)$ and say this.
+
+\textbf{M3. ``No rescaling removes it'' is one test promoted to a universal.} Remark~17's ``the correction factor cannot be of the
+multiplicative form $g_\lambda g_\mu/g_\nu$ \dots\ since the obvious such choice makes matters worse'' tests one diagonal choice
+($e_I/\Delta_I$). It also ignores the non-diagonal renormalisations, i.e.\ pointwise multiplication of all $e_I$ by a function $f(\mathbf M)$,
+which change $c$ non-trivially ($\hat c$ = expansion of $f\,e_\lambda e_\mu$). Motegi's $\mathcal E^X$ \emph{is} such an $f$. My data:
+\begin{center}\begin{tabular}{lcc}\toprule
+normalisation & Laurent, type C $N=2$ & Laurent, type C $N=3$ ($q=2/7$)\\\midrule
+$\widetilde{WC}$ (yours/Motegi's) & 29/30 & 176/195\\
+$WC$ (no $\mathcal E^C$) & 19/30 & 102/195\\
+unit-normalised $e_I/e_\varnothing$ & 17/30 (poles $w_1w_2=q$, $w_2=qw_1$) & ---\\
+any of the above at $q=0$ & 30/30 & 195/195\\\bottomrule
+\end{tabular}\end{center}
+So non-Laurentness at generic $q$ survives three normalisations (supporting your instinct), but the pole locus \emph{moves} with the
+normalisation (to $q$-shifted root hyperplanes, again $R$-matrix-shaped). Either restrict the sentence to ``the diagonal rescaling
+$e_I/\Delta_I$ does not help'' or prove a statement over a named class of renormalisations.
+
+\textbf{M4. Conj.~15 is ambiguous under your own notation.} \S2 defines $|\lambda(A)|=\sum_{a\in A}a$ and Thm~11 uses
+$|\lambda(\cdot)|$ as weight; Conj.~15 and the abstract write $|\nu|-\max(|\lambda|,|\mu|)$ and mean \emph{cardinality}
+(Remark~16: $(1,2)$ has ``jump 2''). Under the weight reading the criterion agrees on only 26/30 ($N=2$) and 135/195 ($N=3$).
+Write $\#\nu-\max(\#\lambda,\#\mu)\le 1$.
+
+\section*{3. SHOULD}
+\textbf{S1. Framing / novelty of the rule.} Lemma~5--Thm~11 use nothing type-B/C-specific beyond (M1), (M2), (M4): they are the
+standard localisation/interpolation formalism for a triangular basis of functions on a finite poset (support bound,
+$c^\nu=\bigl(e_\lambda e_\mu(\nu)-\sum_{\kappa<\nu}c^\kappa e_\kappa(\nu)\bigr)/e_\nu(\nu)$, $c^\lambda_{\lambda\mu}=e_\mu(\lambda)$),
+as in Molev--Sagan (factorial Schur, 1999), the Knutson--Tao equivariant recursion (2003), and Kostant--Kumar/GKM.
+``Multiplication rule'' oversells; call it ``the localisation recursion and inverse-matrix formula for Motegi's basis'' and cite the
+type-A precedents. Correct and useful, but soft (your own Remark~12 nearly says this).
+
+\textbf{S2. Type B.} You declared type B unrun. I ran it: $N=2$, normalised: support 34/34, Cor~10(2) 10/10, Laurent 29/30, the single
+failure is again $c^{(1,2)}_{\varnothing\varnothing}$ with denominator exactly $w_1w_2-1$ and prefactor $q(q-1)^2$; criterion (cardinality) 30/30;
+$q=0$: 30/30 Laurent. $N=3$: 176/195, criterion 195/195 (\S4). You may quote these as Rick-computed.
+
+\textbf{S3.} ``$\mathcal E^X$ independent of $I$'' (\S5, citing L1054): it depends on $r=|I|$ through $(1-q)^{-(n-r)}$. Harmless (a diagonal
+scalar, so Laurentness in $\mathbf w$ is unaffected) but say so.
+
+\textbf{S4.} Thm~13 is a remark (the two sides are only constrained on $2^N$ points); and the ``4/30 after $e_I/\Delta_I$'' figure I did not re-run.
+
+\textbf{S5.} (M2) graded \emph{computed} on your side: I confirm it on an engine that does not use stability (see C1 below), so your
+Cor.~10(3) can carry the same grade from two engines.
+
+\section*{4. Checks run (own engine; all exact over $\mathbb Q(q)(\mathbf w)$ or $\mathbb Q(\mathbf w)$ at $q=2/7$)}
+Engine: $F_{N,n,r}$ from the printed symmetrisation formula (Thm~\texttt{explicitFformula}) computed as an honest Laurent polynomial in
+symbolic $\mathbf u$ (Vandermonde-cleared antisymmetrisation, exact division), \emph{then} specialised at $\mathbf u=\mathbf w_{\mathbf M}$
+padded with 1's, $n=N$; $\mathcal E^C$, $\mathcal E^B$ as printed. No stability relation is used (your engine relies on it), so this is a
+different route to the same matrix. Linear algebra is direct forward substitution.
+\begin{itemize}\itemsep1pt
+\item[C1] Diagonal vs root product (M2), type C, $N=1,2,3$: \textbf{14/14}. \emph{Plant} $q\mapsto -q$ in the ascent block: matches only 3/14
+ (exactly the $I=[N]$ cases, where $T(\lambda)=\varnothing$ --- the degenerate point; it breaks on every other label).
+\item[C2] Support bound (Thm 8), zeros outside $\{\nu\ge\lambda,\mu\}$: C $N=2$: 34/34 ($q$ generic, $q=2/7$, $q=0$, unnormalised); C $N=3$: 317/317 ($q=2/7$, $q=0$, unnormalised); B $N=2$: 34/34.
+\item[C3] Cor 10(2) $c^\lambda_{\lambda\mu}=\widetilde{WX}(\mathbf w_\lambda|\mathbf w|\mu)$: 10/10 ($N=2$, every setting), 35/35 ($N=3$).
+\item[C4] (M4) biorthogonality, C $N=2$: \textbf{16/16}; \emph{plant} (drop $q^{|\lambda(I)|-|\lambda(L)|}$): 10/16, breaks.
+\item[C5] Thm 11 against the recursion, C $N=2$, all $(\lambda,\mu,\nu)$: \textbf{64/64}; \emph{plant} (drop the $q$-power): 50/64, breaks on 14.
+\item[C6] Witness, C $N=2$: $c^{(1,2)}_{\varnothing\varnothing}=-q\,w_1w_2(q-1)^2P/(w_1w_2-1)$, $P$ of your shape, denominator irreducible $w_1w_2-1$: \textbf{reproduced}.
+\item[C7] Laurent census, normalised, generic point: C $N=2$ ($q$ symbolic) 29/30, C $N=3$ ($q=2/7$) \textbf{176/195}; cardinality criterion agrees 30/30 and \textbf{195/195}, 0 FP, 0 FN. Your Conj.~15 data reproduced exactly.
+\item[C8] $q=0$ census: C $N=2$ 30/30, C $N=3$ 195/195, B $N=2$ 30/30 Laurent (M2).
+\item[C9] Renormalisations: table in M3. Laurent-detector control (planted poles/monomials): 6/6.
+\end{itemize}
+Type B $N=3$ ($q=2/7$, normalised): support 317/317, Cor~10(2) 35/35, Laurent \textbf{176/195}, cardinality criterion 195/195 (0 FP, 0 FN) --- Conj.~15 holds for type B at $N\le3$ too.
+
+\section*{5. Kill-route assessment}
+What is established: in Motegi's normalisation, over $\mathbb C(q)$, the $c^\nu_{\lambda\mu}$ are not Laurent; at $N\le3$ the failure locus is
+exactly cardinality jump $\ge2$ (type C, and type B at the sizes I ran). What is \emph{not} established: that no puzzle exists. A failed
+search for Laurentness is evidence against monomial-weight puzzles at generic $q$; it is silent about rational-fugacity puzzles of
+Knutson--Zinn-Justin type (M1), and it is false at $q=0$ (M2), which is the only place the WZJ puzzle your brief proposed lives.
+The honest summary line is: ``no monomial-weight puzzle at generic $q$ in Motegi's (or the unnormalised, or unit-) normalisation;
+at $q=0$ all coefficients are Laurent and the type-C/B $K$-theoretic puzzle question is untouched.''
+
+\section*{6. Novelty}
+arXiv:2610.15344 appeared 2026-10-11; Semantic Scholar lists 0 citers (queried 2026-10-16); arXiv listing for author Motegi
+shows no follow-up on B/C weight functions (latest related: 2604.22141, tetrahedral $L$-operators, unrelated). Motegi does not multiply
+the functions. So the specific statements are unscooped, but the method is the classical localisation recursion (S1), and the
+$q\to0$ structure constants are the equivariant $K$-theory structure constants of $LG$/$OG$ (Ikeda--Naruse classes), for which
+positivity/combinatorial results exist in the literature (Clifford--Thomas--Yong, Buch--Ravikumar for non-equivariant/Pieri cases);
+the finite-$q$ product question is the type-B/C analogue of KZJ~II. Cite both.
+\end{document}

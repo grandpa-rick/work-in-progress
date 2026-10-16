@@ -1,0 +1,3 @@
+C 2 q norm unit-normalised: Laurent 17 / 30 | hat e_empty is unit for 4 / 4 mu | pole factors: ['q - w1*w2', 'q*w1 - w2', 'w1', 'w2']
+B 2 q norm unit-normalised: Laurent 17 / 30 | hat e_empty is unit for 4 / 4 mu | pole factors: ['q - w1*w2', 'q*w1 - w2', 'w1', 'w2']
+C 2 q unnorm unit-normalised: Laurent 17 / 30 | hat e_empty is unit for 4 / 4 mu | pole factors: ['q - w1*w2', 'q*w1 - w2', 'w1', 'w2']

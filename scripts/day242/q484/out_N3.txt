@@ -1,0 +1,4 @@
+C 3 2/7 norm support-zero 317 / 317 Cor10(2) 35 / 35 {'laurent': 176, 'pole': 19, 'agree': 0, 'FP': 0, 'FN': 0, 'tot': 195, 'agree_card': 195, 'agree_wt': 135}
+C 3 0 norm support-zero 317 / 317 Cor10(2) 35 / 35 {'laurent': 195, 'pole': 0, 'agree': 0, 'FP': 0, 'FN': 0, 'tot': 195, 'agree_card': 176, 'agree_wt': 116}
+C 3 2/7 unnorm support-zero 317 / 317 Cor10(2) 35 / 35 {'laurent': 102, 'pole': 93, 'agree': 0, 'FP': 0, 'FN': 0, 'tot': 195, 'agree_card': 121, 'agree_wt': 157}
+B 3 2/7 norm support-zero 317 / 317 Cor10(2) 35 / 35 {'laurent': 176, 'pole': 19, 'agree': 0, 'FP': 0, 'FN': 0, 'tot': 195, 'agree_card': 195, 'agree_wt': 135}
