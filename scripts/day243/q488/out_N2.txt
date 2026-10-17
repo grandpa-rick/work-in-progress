@@ -1,0 +1,11 @@
+# qorder X=C N=2 mode=norm KMAX=4  time=2.9s
+# support-bound violations (nonzero c outside nu>=lam,mu): 0
+# key: (jump, Laurent over Q(q), first non-Laurent q-order or None) : count
+  (0, True, None) : 19
+  (1, True, None) : 10
+  (2, False, 1) : 1
+  jump 0: 19 triples, zero c: 0, q-valuation range (0, 1)
+  jump 1: 10 triples, zero c: 0, q-valuation range (0, 1)
+  jump 2: 1 triples, zero c: 0, q-valuation range (1, 1)
+# non-Laurent / failing triples: lam mu nu jump Laurent v first denominator(c_first)
+  () () (1, 2) 2 False 1 1 w1*w2 - 1

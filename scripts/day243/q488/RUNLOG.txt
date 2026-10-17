@@ -1,0 +1,1 @@
+N=3 run (out_N3.txt) used qorder.py before the control modes were added: identical logic, support bound enforced by assert (passed) rather than counted. N=3 symbolic q took 19m07s; N=4 not attempted (> 15 min budget).

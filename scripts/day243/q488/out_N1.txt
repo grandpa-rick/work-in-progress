@@ -1,0 +1,7 @@
+# qorder X=C N=1 mode=norm KMAX=4  time=0.1s
+# key: (jump, Laurent over Q(q), first non-Laurent q-order or None) : count
+  (0, True, None) : 4
+  (1, True, None) : 1
+  jump 0: 4 triples, zero c: 0, q-valuation range (0, 0)
+  jump 1: 1 triples, zero c: 0, q-valuation range (1, 1)
+# non-Laurent / failing triples: lam mu nu jump Laurent v first denominator(c_first)

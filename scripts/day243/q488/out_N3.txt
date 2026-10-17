@@ -1,0 +1,30 @@
+# qorder X=C N=3 mode=norm KMAX=4  time=1144.2s
+# key: (jump, Laurent over Q(q), first non-Laurent q-order or None) : count
+  (0, True, None) : 102
+  (1, True, None) : 74
+  (2, False, 1) : 18
+  (3, False, 1) : 1
+  jump 0: 102 triples, zero c: 0, q-valuation range (0, 1)
+  jump 1: 74 triples, zero c: 0, q-valuation range (0, 1)
+  jump 2: 18 triples, zero c: 0, q-valuation range (1, 1)
+  jump 3: 1 triples, zero c: 0, q-valuation range (1, 1)
+# non-Laurent / failing triples: lam mu nu jump Laurent v first denominator(c_first)
+  () () (1, 2) 2 False 1 1 w1*w2 - 1
+  () () (1, 3) 2 False 1 1 (w1*w2 - 1)*(w1*w3 - 1)
+  () () (2, 3) 2 False 1 1 (w1*w2 - 1)*(w1*w3 - 1)*(w2*w3 - 1)
+  () () (1, 2, 3) 3 False 1 1 (w1*w2 - 1)*(w1*w3 - 1)*(w2*w3 - 1)
+  () (1,) (1, 2, 3) 2 False 1 1 (w1*w2 - 1)*(w1*w3 - 1)*(w2*w3 - 1)
+  () (2,) (1, 2, 3) 2 False 1 1 (w1*w2 - 1)*(w1*w3 - 1)
+  () (3,) (1, 2, 3) 2 False 1 1 w1*w2 - 1
+  (1,) () (1, 2, 3) 2 False 1 1 (w1*w2 - 1)*(w1*w3 - 1)*(w2*w3 - 1)
+  (1,) (1,) (1, 2, 3) 2 False 1 1 (w1*w2 - 1)*(w1*w3 - 1)*(w2*w3 - 1)
+  (1,) (2,) (1, 2, 3) 2 False 1 1 w2*w3*(w1*w2 - 1)*(w1*w3 - 1)
+  (1,) (3,) (1, 2, 3) 2 False 1 1 w3**2*(w1*w2 - 1)
+  (2,) () (1, 2, 3) 2 False 1 1 (w1*w2 - 1)*(w1*w3 - 1)
+  (2,) (1,) (1, 2, 3) 2 False 1 1 w2*w3*(w1*w2 - 1)*(w1*w3 - 1)
+  (2,) (2,) (1, 2, 3) 2 False 1 1 w2**2*w3**2*(w1*w2 - 1)*(w1*w3 - 1)
+  (2,) (3,) (1, 2, 3) 2 False 1 1 w2*w3**3*(w1*w2 - 1)
+  (3,) () (1, 2, 3) 2 False 1 1 w1*w2 - 1
+  (3,) (1,) (1, 2, 3) 2 False 1 1 w3**2*(w1*w2 - 1)
+  (3,) (2,) (1, 2, 3) 2 False 1 1 w2*w3**3*(w1*w2 - 1)
+  (3,) (3,) (1, 2, 3) 2 False 1 1 w3**4*(w1*w2 - 1)
