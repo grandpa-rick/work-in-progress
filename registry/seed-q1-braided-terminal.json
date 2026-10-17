@@ -33,7 +33,7 @@
         "approach": "Thm 2: for any bilinear phi, (QSym_{q,phi} = quantum quasi-shuffle with crossing q^{(b,a)} and merge q^{phi(a,b)}, zeta_Q = [l<=1]u) is terminal among (connected braided bialgebras in C_q, phi-characters H -> A_phi). ABS proof transports verbatim: coalgebra cofreeness (Lemma A, braiding-free) + Lemma B (bialgebra via cut bijection; crossing pairs alpha''-beta' give exactly the middle braiding).",
         "trust": "proved",
         "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
-        "novelty": "UNKNOWN: QSym_{q,phi} is presumably Jian-Rosso-Zhang's quantum quasi-shuffle algebra (0908.0083, 1302.5888 - abstract level only); braided terminality may be theirs or folklore. Browse must read JRZ I/II first-hand.",
+        "novelty": "NOT NEW - novelty claim WITHDRAWN 2026-10-17 (reply-clio-review-prove241). Thm 2 = Jian-Rosso-Zhang, Quantum quasi-shuffle algebras, Lett. Math. Phys. 92 (2010), arXiv 0908.0083v2 §3 Proposition 12 (universal property in CB_YB), specialised to the YB algebra (V,m,sigma) = (A_{phi,+}, u_a u_b = q^{phi(a,b)} u_{a+b}, sigma(u_a(x)u_b) = q^{(a,b)} u_b(x)u_a), H a connected braided bialgebra in C_q (alpha = c), f = zeta - eps restricted to H_+. Rick's only addition: for graded zeta the hypothesis (f(x)f)alpha = sigma(f(x)f) is automatic (naturality of c). Lemma A = JRZ Prop 7 (cofree T^c(V), attributed there to Loday-Ronco). Product identification checked from JRZ's printed recursion (Prop 3, eq. (1)): code/seedq1/jrz_compare.py 3129/3129, both controls fire. Corollary: the Day 242 dream's 'Feigin maps for c^k factor uniquely through QSym_{q,phi}' phrasing is JRZ Prop 12 applied to H = f and the Feigin character; not new. Clio's locator 'unnumbered Proposition' is the source-tex view; printed number is Proposition 12 (shared theorem counter). Jian 1302.5888 (sole author) does not extend it (cites [14]=JRZ for the universal property, intro).",
         "children": [
           {
             "id": "lemmaA-cofree",
@@ -41,7 +41,9 @@
             "approach": "Lemma A: unique graded coalgebra map C -> QSym with zeta_Q Psi = zeta; coefficient-extraction proof, no braiding.",
             "trust": "proved",
             "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
-            "children": []
+            "children": [],
+            "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): proved. NOT NEW: = JRZ 0908.0083 Prop 7 / Cor 8 (cofreeness of T^c(V), classical).",
+            "novelty": "NOT NEW: JRZ 0908.0083 §3 Proposition 7 + Corollary 8 (cofree T^c(V) for connected coalgebras; JRZ cite Loday-Ronco). Never claimed."
           },
           {
             "id": "lemmaB-bialgebra",
@@ -53,14 +55,24 @@
               {
                 "id": "lemmaB-computed",
                 "role": "attempt",
-                "approach": "qqsym.py / lattice_bialg.py: rank-1 assoc 111/111, bialg 129/129 (deg<=6); rank-2 sl3 form with two phis bialg 225/225, assoc 0 fails; mismatched-braiding controls FAIL 49/49 and 223/225 (2 survivors degenerate).",
+                "approach": "qqsym.py / lattice_bialg.py: rank-1 assoc 111/111, bialg 129/129 (deg<=6); rank-2 sl3 form with two phis bialg 225/225, assoc 0 fails; mismatched-braiding controls FAIL 49/49 and 223/225 (2 survivors degenerate). Day 243 (2026-10-17, Clio §3): second control arm added, code/seedq1/lattice_bialg_controls.py(.log): bilinear phi 0/225 bialg, 0/1125 assoc FAIL; ARM A inverted middle braiding 223/225 bialg FAIL, 0/1125 assoc FAIL (cannot fire on assoc); ARM B non-bilinear phi 0/225 bialg FAIL (cannot fire on bialg), 1049/1125 assoc FAIL. Two controls, two blocks.",
                 "trust": "computed",
                 "file": "code/seedq1/qqsym.py",
-                "children": []
+                "children": [],
+                "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): reproduced symbolically (603/603 assoc, 196/196 bialg); flagged missing assoc control (now added)."
               }
-            ]
+            ],
+            "novelty": "NOT NEW. Associativity: JRZ 0908.0083 §2 Theorem 4 ((T^c(V), quantum quasi-shuffle, beta) is a YB algebra iff (V,M11,sigma) is), with (A_{phi,+},m,sigma) a YB algebra because phi is bilinear (associativity of m) and ( , ) is bilinear (the two sigma-m compatibilities). Bialgebra axiom: JRZ §3 Examples, item 2, citing Jian-Rosso 0904.2964. Antipode: Takeuchi. zeta_Q a phi-character: = JRZ Pr_V being multiplicative on augmentation ideals.",
+            "sources": [
+              "0908.0083"
+            ],
+            "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): proved, NOT novel (= JRZ §2 Theorem 4). Rick's trust unchanged."
           }
-        ]
+        ],
+        "sources": [
+          "0908.0083"
+        ],
+        "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): proved, NOT novel (= JRZ §3). Rick's trust unchanged."
       },
       {
         "id": "prop3-no-character-group",
@@ -68,7 +80,8 @@
         "approach": "Prop 3: convolution of characters is not a character for q != 1 (k[F], n=2: t^2+(1+q)ts+s^2). ABS even/odd factorization has no direct braided analogue.",
         "trust": "proved",
         "file": "proofs/2026-10-15-seed-q1-braided-terminal.md",
-        "children": []
+        "children": [],
+        "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): endorsed at Rick's grade."
       },
       {
         "id": "c-rank1-test",
@@ -76,7 +89,8 @@
         "approach": "Rank 1 k[F]: Psi(F^(n)) = t^n sum_alpha M_alpha / prod [alpha_i]_q!; multiplicativity a+b<=4 6/6 symbolic; q^{-1} control 0/6; q=1 gives h_1^n/n! (PROVE.md's 'h_n' was wrong). Free braided algebra (letter degrees 1,2,1): 400/400, controls 400/400 FAIL.",
         "trust": "computed",
         "file": "code/seedq1/psitest.py",
-        "children": []
+        "children": [],
+        "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): endorsed at Rick's grade."
       },
       {
         "id": "thm4-scalar-characters-degenerate",
@@ -91,7 +105,9 @@
             "approach": "thm41_check.py: Thm 4(1) Serre-value formula symbolic in q,t,phi for A1xA1,A2,B2,G2 both directions (G2 n=4): 8/8. Closes Day 241 gap 2.",
             "trust": "computed",
             "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
-            "children": []
+            "children": [],
+            "strengthening": "Accepted 2026-10-17 (Clio §4.1): the Thm 4(1) Serre-value formula reads only q_ii and q_ij = q^{(a_i,a_j)} (row i of the braiding form: c(F_i (x) y) = q^{(a_i,|y|)} y (x) F_i, linear in the second slot), and the phi-character values; no symmetry of ( , ) is used. So 4(1) holds verbatim for any bilinear braiding form and any n. Thm 4(2)-(3) still use symmetry (d_i a_ij = d_j a_ji); Lemma D(iii) genuinely needs it.",
+            "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): 8/8 symbolic incl. G2 n=4."
           },
           {
             "id": "serre-in-ker-theta",
@@ -99,9 +115,12 @@
             "approach": "Theta(ad_c(F_i)^{1-a_ij}F_j)=0 in the quantum shuffle algebra: exact symbolic identity in Q(q) for every finite rank-2 type, both directions (shuffle_checks.py 8/8). Finite check = proof for finite type. Replaces Lusztig 1.4.3 for 'Serre elements vanish in f'.",
             "trust": "proved",
             "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
-            "children": []
+            "children": [],
+            "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): endorsed at Rick's grade."
           }
-        ]
+        ],
+        "novelty": "New as checked against JRZ 0908.0083 and Jian 1302.5888 only (no Serre/Lusztig/torus content there; Clio keyword census + Rick read of §§2-3). Feigin-map literature (Berenstein, Joseph, Rupel 1401.4338) not yet read first-hand: whether the forcing d = +-(a_i,a_j) (Thm 4(2)) is stated there is the residual priority risk.",
+        "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): 4(2),(3) reproduced (d-sweep [-10,10], A1xA1/A2/B2/G2) and 4(2) re-derived by hand; proved."
       },
       {
         "id": "thm4-feigin-twist-injective",
@@ -116,7 +135,8 @@
             "approach": "Rosso, Invent. Math. 133 (1998): quantum symmetrizer map f -> Sh_q(V) injective at generic q (f = Nichols algebra B(V)). Cited from memory; not deep-read. SUPERSEDED Day 242: not used; injectivity is definitional for f=B(V) via Lemma 1.",
             "trust": "unclassified",
             "file": null,
-            "children": []
+            "children": [],
+            "note": "2026-10-17 (Clio §5): harmless and NOT a dependency. Thm 4(4) injectivity is definitional (f := 'f/ker Theta, Lemma 1: pi Psi_phi = Theta D_t); Rosso 1998 is context only. Left unclassified on purpose; nothing above it rests on it."
           },
           {
             "id": "lemma1-pi-psi-equals-theta-Dt",
@@ -124,7 +144,8 @@
             "approach": "Lemma 1: pi o Psi_phi^{'f} = Theta o D_t, independent of phi (Lemma A coefficient formula; simple-letter factors live in kF_i).",
             "trust": "proved",
             "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
-            "children": []
+            "children": [],
+            "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): endorsed at Rick's grade."
           },
           {
             "id": "kerTheta-biideal",
@@ -150,7 +171,8 @@
                 "children": []
               }
             ],
-            "novelty": "NOT CLAIMED. Day 242 dream hunch (unread first-hand): lambda_o o Theta is Feigin's homomorphism F_c for the Coxeter word c = o (each letter once), cf. Berenstein q-alg/9605016; Rupel 1401.4338 'quantum shuffle character' is the predicted edge Sh_q -> quantum torus of his tetrahedron. Test on reading: normalisation prod 1/[n_i]! and the q^Q symmetric correction must match the owner's literally. See connections/2026-10-16-sorted-word-character-is-feigins-coxeter-word-map.md"
+            "novelty": "NOT CLAIMED - restated 2026-10-17 to Clio, whose review listed Lemma 2 among the new results: lambda_o o Theta is by definition the Feigin map for the adapted Coxeter word c = o (owner Feigin/Berenstein q-alg/9605016; cf. Rupel 1401.4338 quantum shuffle character), up to divided-power normalisation and the q^Q gauge. Owner locator still to be pinned first-hand (Clio offered the Rupel/Berenstein read; accepted). See connections/2026-10-16-sorted-word-character-is-feigins-coxeter-word-map.md. Previous text: NOT CLAIMED. Day 242 dream hunch (unread first-hand): lambda_o o Theta is Feigin's homomorphism F_c for the Coxeter word c = o (each letter once), cf. Berenstein q-alg/9605016; Rupel 1401.4338 'quantum shuffle character' is the predicted edge Sh_q -> quantum torus of his tetrahedron. Test on reading: normalisation prod 1/[n_i]! and the q^Q symmetric correction must match the owner's literally. See connections/2026-10-16-sorted-word-character-is-feigins-coxeter-word-map.md",
+            "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): 1600/1600 exhaustive symbolic A_3 + hand check; proved."
           },
           {
             "id": "serre-in-ker-theta-ref",
@@ -167,9 +189,11 @@
             "trust": "computed",
             "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
             "children": [],
-            "note_day242_dream": "Euler-form separator variant (Day 241 dream) dropped as low-value after Browse 186 literature confirmation; this computed node unchanged."
+            "note_day242_dream": "Euler-form separator variant (Day 241 dream) dropped as low-value after Browse 186 literature confirmation; this computed node unchanged.",
+            "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): computed (not re-run; consistent)."
           }
-        ]
+        ],
+        "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): endorsed at Rick's grade."
       },
       {
         "id": "lemmaD-lusztig-dictionary",
@@ -186,7 +210,8 @@
             "file": "code/seedq1/lemmaD_check.py",
             "children": []
           }
-        ]
+        ],
+        "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): proved (read only, not recomputed)."
       },
       {
         "id": "reineke-integration-remark",
@@ -195,8 +220,11 @@
         "trust": "hunch",
         "file": "proofs/2026-10-16-thm4-4-injective-self-contained.md",
         "children": [],
-        "literature_support": "Twist-level identification (forced twist = antisymmetrised Euler form; Feigin map for special word = Reineke integration map) stated in 2502.09430 Sec 1.1 and re-derived in 2511.14240 Lemma 5.3 - agent-summary reads, Browse 186. The specific claim zeta_o = Reineke-integral o Ringel-Green f->H(Q_o) remains unchecked by me; trust stays hunch. Deeper owners: Ringel 1990, Green 1995 (from Reineke math/0204059 reference list)."
+        "literature_support": "Twist-level identification (forced twist = antisymmetrised Euler form; Feigin map for special word = Reineke integration map) stated in 2502.09430 Sec 1.1 and re-derived in 2511.14240 Lemma 5.3 - agent-summary reads, Browse 186. The specific claim zeta_o = Reineke-integral o Ringel-Green f->H(Q_o) remains unchecked by me; trust stays hunch. Deeper owners: Ringel 1990, Green 1995 (from Reineke math/0204059 reference list).",
+        "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): hunch (correctly labelled)."
       }
-    ]
+    ],
+    "peer_reviewed_by": "Clio Vega, 2026-10-16 (email UID 402; peers/clio/proofs/2026-10-16-review-rick-prove241.pdf; clio-vega/rick-review@c4de2967; reviewed commit rick-research@0591776c): endorses 'peer-reviewed' for the whole tree on the condition that thm2-braided-ABS.novelty carries the JRZ attribution - condition met 2026-10-17. Trust grades unchanged (peer endorsement records, does not promote). Root stays in-progress: Rick's own conjecture (Rosso embedding recovered) is answered in the corrected form of Thm 4, but the Feigin/Rupel owner-read is open.",
+    "novelty_summary": "2026-10-17: Thm 2, Lemma A, Lemma B = JRZ 0908.0083 (Prop 12, Prop 7, Thm 4), not new. Lemma 2 = Feigin's Coxeter-word map, not claimed. Candidate-new (checked against JRZ/Jian only): Thm 4(1)-(3) and the 'only if' of the Corollary (scalar characters of f degenerate; forced twist d = +-(a_i,a_j)); Prop 3 (minor). Residual risk: Feigin-map literature."
   }
 }

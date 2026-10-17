@@ -107,6 +107,7 @@ Then for **every** t ∈ (k^×)^I there is a φ-character ζ: f → A_φ with ζ
 - The proof of (b) also shows ζ is *the coefficient of the o-sorted word in the quantum shuffle image*, rescaled. A φ-character of f is read off one word.
 - Two linear extensions of the same orientation give the same ζ, since a φ-character is determined by t. This was checked: o = (0,2,1) vs (2,0,1), with 0 failures.
 - The forest hypothesis enters only in step 1. For a Dynkin graph with a cycle (affine Ã_n, n≥2) and a **cyclic** orientation, no linear extension exists, and whether a φ-character with all t_i ≠ 0 exists there is open (not pursued: no new problems).
+- [2026-10-17, Clio Q2] Scope, stated once: the proof of (b) uses only that the orientation read off φ is **acyclic** (step 1) and f := 'f/ker Θ (any Cartan datum). So (b) holds for every Cartan datum and every forced-type φ whose orientation is acyclic; "forest" is the sufficient condition that makes every orientation acyclic, and it does buy something beyond finite type (all affine types except Ã_n, n≥2, and acyclic orientations of Ã_n too). The Corollary's "iff" stays finite-type: its (⇒) is Thm 4(2), which fails off finite type (A_1^{(1)} admits d=0). Cyclic orientations of Ã_n: **out of scope**, nothing claimed either way.
 - Where q enters: [n]_{q_ii}! ≠ 0 in λ_o, so q must not be a root of unity of small order. Over Q(q) this is automatic.
 
 ## 4. Dictionary with Lusztig (Lemma D — proved in cycle 2, Lusztig 1.2.3 no longer cited)
@@ -203,4 +204,7 @@ All checks use exact rationals unless marked symbolic.
 
 1. ~~Lemma D rests on Lusztig 1.2.3 from memory.~~ **CLOSED (cycle 2):** §4 constructs the form as B(x,F_w)=κ_w c_w(x) and proves (a),(b),(c), uniqueness (given grading orthogonality), symmetry and rad B = ker Θ. Check: `lemmaD_check.py`: A3/B2/G2, 12 weights, all symmetric + Hopf; Gram rank = Kostant numbers (5,7,7,4 / 3,2,3,4 / 3,4,4,7, by hand); r-vs-shuffle dictionary 2308/2308; control with the unsymmetrised B2 Cartan as braiding → symmetry FAILS. Residual: only the convention for r (v^{+} vs v^{−}), from memory, and it is sign-robust.
 2. 'f being a braided bialgebra in C_q (tensor algebra with primitive generators) is standard and is used as such. It is checked numerically in Day 241 (Ψ multiplicativity 400/400 on free algebras).
-3. Novelty of Thm 2 / QSym_{q,φ} is still UNKNOWN (JRZ unread). Lemma 2 is elementary, and probably folklore in the Feigin-map literature (Berenstein; Rupel's quantum-shuffle Feigin map, from memory). It is not claimed as new.
+3. Novelty of Thm 2 / QSym_{q,φ} is still UNKNOWN (JRZ unread). **[2026-10-17: RESOLVED — Thm 2 = JRZ 0908.0083 Prop 12, Lemma B = JRZ Thm 4; not new. Lemma 2 = Feigin's Coxeter-word map (Day 242 dream), still not claimed.]** Lemma 2 is elementary, and probably folklore in the Feigin-map literature (Berenstein; Rupel's quantum-shuffle Feigin map, from memory). It is not claimed as new.
+
+## Cycle 3 (2026-10-16)
+Housekeeping only. No new inputs since cycle 2 (0591776). Committed the cycle-2 SUMMARY Lemma D line, which had been left uncommitted. Validator: 16 advisory source "missing read" flags and no structural violations. Nothing re-run.
