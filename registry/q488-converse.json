@@ -1,153 +1,165 @@
 {
-  "conjecture": "Q488 converse (Clio Gap 2): for Motegi type-C normalised weight-function structure constants c^nu_{lam,mu}(w;q), jump := |nu|-max(|lam|,|mu|) >= 2 implies c has a pole on some long-root divisor H_ab = {w_a w_b = 1}. Day-243 PROVE route: q-expansion c = c0 + q c1 + ..., targets (a) c in C(w)[[q]], (b) jump>=2 => c0=0, (c) jump>=2 => c1 has a long-root pole, (d) jump<=1 => c1 Laurent.",
-  "status": "in-progress",
-  "date_opened": "2026-10-17",
-  "date_closed": null,
-  "tree": {
-    "id": "q488-converse-order-q1",
-    "approach": "Order-by-order in q: settle the converse at first order. Result: route settles the converse on the top-two and single-defect families (all of N<=3, 111/127 at N=4) but provably cannot settle it in general: (b) and (c) are false at N=4.",
-    "trust": "in-progress",
+ "conjecture": "Q488 converse (Clio Gap 2): for Motegi type-C normalised weight-function structure constants c^nu_{lam,mu}(w;q), jump := |nu|-max(|lam|,|mu|) >= 2 implies c has a pole on some long-root divisor H_ab = {w_a w_b = 1}. Day-243 PROVE route: q-expansion c = c0 + q c1 + ..., targets (a) c in C(w)[[q]], (b) jump>=2 => c0=0, (c) jump>=2 => c1 has a long-root pole, (d) jump<=1 => c1 Laurent.",
+ "status": "in-progress",
+ "date_opened": "2026-10-17",
+ "date_closed": null,
+ "tree": {
+  "id": "q488-converse-order-q1",
+  "approach": "Order-by-order in q: settle the converse at first order. Result: route settles the converse on the top-two and single-defect families (all of N<=3, 111/127 at N=4) but provably cannot settle it in general: (b) and (c) are false at N=4.",
+  "trust": "in-progress",
+  "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+  "sources": [
+   "2610.15344"
+  ],
+  "children": [
+   {
+    "id": "q488-a-power-series",
+    "role": "attempt",
+    "approach": "(a) c in R = C[q,w^±]_(q) ⊂ C(w)[[q]]: entries of A in R, det A = prod diag is a unit (diag mod q = L,S,A factors != 0).",
+    "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "sources": [
-      "2610.15344"
+     "2610.15344"
     ],
-    "children": [
-      {
-        "id": "q488-a-power-series",
-        "role": "attempt",
-        "approach": "(a) c in R = C[q,w^±]_(q) ⊂ C(w)[[q]]: entries of A in R, det A = prod diag is a unit (diag mod q = L,S,A factors != 0).",
-        "trust": "proved",
-        "file": "proofs/2026-10-18-q488-converse-order-q1.md",
-        "sources": [
-          "2610.15344"
-        ],
-        "children": []
-      },
-      {
-        "id": "q488-b-c0-vanishes",
-        "role": "attempt",
-        "approach": "(b) jump>=2 => c0=0.",
-        "trust": "dead-end",
-        "reason": "FALSE at N=4: c0^{1234}_{12,34} = 1/(w3^2 w4^2); 17 jump>=2 triples have c0 != 0 (c0_C4.txt). True for N<=3 (exhaustive). Cause (hunch): phi^0 = K_T(LG(N,2N)) Schubert basis, sigma_21 sigma_43 = sigma_4321 in LG(4,8).",
-        "refutation": "computed",
-        "file": "proofs/2026-10-18-q488-converse-order-q1.md",
-        "children": [],
-        "literature_support": "Motegi 2610.15344 L5645-5658 (read Day 243 dream): weight functions 'are q-deformations of the GB- and GQ-functions'; normalized type-C agree with Koncki-thesis twisted motivic Chern classes of LG(2,4) in 15 of 16 entries. Supports phi^0 = K_T(LG) (GQ) Schubert basis hunch; not first-hand on the GQ side."
-      },
-      {
-        "id": "q488-c-c1-pole-all",
-        "role": "attempt",
-        "approach": "(c) jump>=2 => c1 has a long-root pole, all N.",
-        "trust": "dead-end",
-        "reason": "FALSE at N=4: (lam,mu,nu)=(∅,{3},{1,2,4}) has c1 Laurent on all six H_ab (num4.py engine + Theorem-7 route, 3 seeds). Full-q residue on H12 nonzero with q-valuation 2 (fullc.py). Converse survives; q^1 is not enough. Holds for 126/127 jump>=2 triples at N=4, 13/13 at N=3.",
-        "refutation": "computed",
-        "file": "proofs/2026-10-18-q488-converse-order-q1.md",
-        "children": []
-      },
-      {
-        "id": "q488-lemma-qc",
-        "role": "premise",
-        "approach": "Lemma QC: on H_ab (a,b in M), A_{M,I} = g(q,w_a) A_{M\\{a,b},I} for all I, g=(1-q)^2/((1-qx^2)(1-qx^-2)). Proof from Motegi Thm 3.3 + E^C + stability: special values in head die by (u_j u_k -1); tail x-dependence symmetric in the rest; cancels against E except the pair factor.",
-        "trust": "proved",
-        "file": "proofs/2026-10-18-q488-converse-order-q1.md",
-        "sources": [
-          "2610.15344"
-        ],
-        "children": []
-      },
-      {
-        "id": "q488-q0-formula-limit-lemma",
-        "role": "premise",
-        "approach": "Explicit q=0 formula (2.1) for phi^0 from Motegi Thm 3.3; phi^0_∅=1; N-stability at q=0; Lemma L: in regime w_1<<...<<w_N (spectators x,1/x allowed) phi^0_k(M) -> [M>=k], so phi^0_k(M)|_H != 0 for M>=k, M∌a,b.",
-        "trust": "proved",
-        "file": "proofs/2026-10-18-q488-converse-order-q1.md",
-        "sources": [
-          "2610.15344"
-        ],
-        "children": []
-      },
-      {
-        "id": "q488-lattice-aggregate",
-        "role": "attempt",
-        "approach": "Prop 5 (phi is an O_H-basis of the twisted GKM lattice L_g, colength count) + Theorem 6: all c^•_{lam,mu} regular on H_ab iff no M'' ⊆ [N]\\{a,b} with M''>=lam,mu. Aggregate converse at full q, all N.",
-        "trust": "proved",
-        "file": "proofs/2026-10-18-q488-converse-order-q1.md",
-        "sources": [
-          "2610.15344"
-        ],
-        "children": []
-      },
-      {
-        "id": "q488-residue-formula",
-        "role": "attempt",
-        "approach": "Theorem 7: Res_{H_ab} c1^nu = gamma * Res l^0_nu(1_{⊇ab} phi0_lam phi0_mu), gamma=(w_a-1/w_a)^2. Checked vs direct c1 on 167 (triple,pair) at N=3.",
-        "trust": "proved",
-        "file": "proofs/2026-10-18-q488-converse-order-q1.md",
-        "sources": [
-          "2610.15344"
-        ],
-        "children": []
-      },
-      {
-        "id": "q488-c-top-two",
-        "role": "attempt",
-        "approach": "Theorem 9: if (a,b) = two largest of nu and nu\\{a,b} >= lam,mu, Res_{H_ab} c1^nu = -K^{-1} [phi0_{nu''}](L phi0_lam phi0_mu) != 0 (forced heads + Lemma L). Formula checked on all 105 triples N=2,3.",
-        "trust": "proved",
-        "file": "proofs/2026-10-18-q488-converse-order-q1.md",
-        "sources": [
-          "2610.15344"
-        ],
-        "children": []
-      },
-      {
-        "id": "q488-c-single-defect",
-        "role": "attempt",
-        "approach": "Single-defect theorem: if some pair a<b in nu has nu''>=lam,mu and no M<nu with a,b in M, M''>=lam,mu, then Res = gamma rho_{nu nu} P(nu'') != 0. With top-two: proves (c) for all 13 jump>=2 triples at N=3, 111/127 at N=4 (792/1136 N=5).",
-        "trust": "proved",
-        "file": "proofs/2026-10-18-q488-converse-order-q1.md",
-        "children": []
-      },
-      {
-        "id": "q488-d-jump-le-1",
-        "role": "attempt",
-        "approach": "(d) jump<=1 => c1 Laurent, all N (Thm 10): poles of l^0 only on L,S,A; S,A regular by collapse (Clio Lemma 3 re-derived at all q from Motegi u-symmetry + sign count) + collision induction; L regular since defect set D on ↓nu empty for jump<=1 (Theorem 7). Also c0 Laurent for all triples. Numerics: N<=3 full; N=4 0 long-root poles in 599 jump<=1 triples x 6 pairs.",
-        "trust": "proved",
-        "file": "proofs/2026-10-18-q488-converse-order-q1.md",
-        "children": [],
-        "sources": [
-          "2610.15344"
-        ]
-      },
-      {
-        "id": "q488-qinf-dichotomy",
-        "role": "attempt",
-        "approach": "Hunch: every jump>=2 residue on H_12 is first order at q=infinity (phî = q^{-(dim-codim I)} phi has a finite limit; g q<->1/q symmetric). Data: N=3 13/13 (both ends), N=4 127/127 at infinity (126/127 at 0), N=5 q^1-failures (12/1136) first order at infinity on 12/12 (all 22 predicted pairs (corrected Wake 244; 26 was a miscount) val0=2, QINF; run finished 07:46 UTC 10-17, work-in-progress/scripts/day243/q488c/qinf_N5_partial.txt, read Day 243 dream). Full-q converse computed at N=4 for all 127 triples (H_12).",
-        "trust": "hunch",
-        "file": null,
-        "children": []
-      },
-      {
-        "id": "clio-rho-boundary-identity",
-        "role": "premise",
-        "approach": "Exact multiplier identity rho^X - 1 = q w_a^h ([K^X(w_a)]_0^1)^2/((1-q w_a^h)(1-q w_b^h)), [K^X]_0^1 = 1-u^{-h} the charge-violating entry of Motegi's triangular K-matrix, h=2 (type C), h=1 (type B); so ord_q(rho^X-1)=1 identically with first-order coefficient w_a^h(1-w_a^{-h})^2. Also rho^B=(1-q)^2/((1-qw_a)(1-qw_b)), rho^C=(1-q)^2/((1-qw_a^2)(1-qw_b^2)) (Clio, email 2026-10-17). Rick cross-check (Wake 244, algebra): rho^C on H_ab (w_b=1/w_a) = Lemma QC's g, and h=2 first-order coeff = gamma=(w_a-w_a^-1)^2 of Cor 4(ii). Clio's own caveat: rho is the multiplier of the weight functions, not of c; ord_q(rho-1)=1 does not imply ord_q(c)=1 (this is exactly where (c) fails).",
-        "trust": "peer-claimed",
-        "claimed_by": "clio",
-        "file": "peers/clio/proofs/2026-10-17-reply-rick-q484-q473-q488.pdf",
-        "sources": [
-          "2610.15344",
-          "clio-vega/proofs 4b6a0e2 proofs/2026-10-17-typeB-multiplier-and-boundary-entry.tex"
-        ],
-        "children": []
-      },
-      {
-        "id": "q488-n5-cfail-stratum",
-        "role": "attempt",
-        "approach": "Clio ask (UID 408 sec 4.4): are the N=5 (c)-failures concentrated in max I > b? Clio's stratum pinned to source (her 10-17 reply p.6 sec 4.1, p.7 sec 4.4): nonvanH = ord_{H_ab} A_{M,I}=0 for M>=I, {a,b} cap M empty; closed on max I<=b with I = basis label of A_{M,I}; coverage 100/91.7/81.9/72.8/64.8/58.0/52.3% (N=2..8) reproduced exactly (her prose 'N=4: 72.8%' is an index slip; 81.9% at N=4). A pole created at kappa has nonvanH witnesses M=kappa\\{a,b}, I in {lam,mu}. N=5, 12 (c)-failures, full q: actual poles = predicted divisor 12/12; 22 pole pairs (corrected Wake 244; 26 was a miscount), on H12,H13,H23, all simple in w, residue q-valuation 2, deg e-1 at q=inf (symbolic-q cross-check partial: 3 full, 2 partial). Label split: I=lam witness IN-stratum 22/22 (lam=() or (1)); I=mu witness OUT 22/22 (max mu in 3..5, b<=3). CORRECTED: earlier 'all 12 outside on every pair' (read as max(lam u mu)<=b) is true only for the mu witness; each failure pole has one in-stratum (lam) and one out-of-stratum (mu) witness. N=4 control (127 triples): in-stratum pairs 264/264 have c_1 pole; out-of-stratum 143/144 (sole failure ((),(3),(1,2,4)) H12); triples with an in-stratum pair 66/66, without 60/61. So no c-failure in-stratum at N=4/5, but success does not concentrate in-stratum (out-of-stratum pairs 99.3%). N=5 pair-level in-stratum check not run. Computed, not proved. Data: work-in-progress commit 0513ceb (scripts/day244/ask1/RESULTS.txt); correction note reviews/2026-10-17-q488-ask1-correction.pdf.",
-        "trust": "computed",
-        "file": "work-in-progress/scripts/day244/ask1/RESULTS.txt (0513ceb); earlier strat_maxI.py",
-        "children": []
-      }
+    "children": []
+   },
+   {
+    "id": "q488-b-c0-vanishes",
+    "role": "attempt",
+    "approach": "(b) jump>=2 => c0=0.",
+    "trust": "dead-end",
+    "reason": "FALSE at N=4: c0^{1234}_{12,34} = 1/(w3^2 w4^2); 17 jump>=2 triples have c0 != 0 (c0_C4.txt). True for N<=3 (exhaustive). Cause (hunch): phi^0 = K_T(LG(N,2N)) Schubert basis, sigma_21 sigma_43 = sigma_4321 in LG(4,8).",
+    "refutation": "computed",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "children": [],
+    "literature_support": "Motegi 2610.15344 L5645-5658 (read Day 243 dream): weight functions 'are q-deformations of the GB- and GQ-functions'; normalized type-C agree with Koncki-thesis twisted motivic Chern classes of LG(2,4) in 15 of 16 entries. Supports phi^0 = K_T(LG) (GQ) Schubert basis hunch; not first-hand on the GQ side."
+   },
+   {
+    "id": "q488-c-c1-pole-all",
+    "role": "attempt",
+    "approach": "(c) jump>=2 => c1 has a long-root pole, all N.",
+    "trust": "dead-end",
+    "reason": "FALSE at N=4: (lam,mu,nu)=(∅,{3},{1,2,4}) has c1 Laurent on all six H_ab (num4.py engine + Theorem-7 route, 3 seeds). Full-q residue on H12 nonzero with q-valuation 2 (fullc.py). Converse survives; q^1 is not enough. Holds for 126/127 jump>=2 triples at N=4, 13/13 at N=3.",
+    "refutation": "computed",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "children": []
+   },
+   {
+    "id": "q488-lemma-qc",
+    "role": "premise",
+    "approach": "Lemma QC: on H_ab (a,b in M), A_{M,I} = g(q,w_a) A_{M\\{a,b},I} for all I, g=(1-q)^2/((1-qx^2)(1-qx^-2)). Proof from Motegi Thm 3.3 + E^C + stability: special values in head die by (u_j u_k -1); tail x-dependence symmetric in the rest; cancels against E except the pair factor.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-q0-formula-limit-lemma",
+    "role": "premise",
+    "approach": "Explicit q=0 formula (2.1) for phi^0 from Motegi Thm 3.3; phi^0_∅=1; N-stability at q=0; Lemma L: in regime w_1<<...<<w_N (spectators x,1/x allowed) phi^0_k(M) -> [M>=k], so phi^0_k(M)|_H != 0 for M>=k, M∌a,b.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-lattice-aggregate",
+    "role": "attempt",
+    "approach": "Prop 5 (phi is an O_H-basis of the twisted GKM lattice L_g, colength count) + Theorem 6: all c^•_{lam,mu} regular on H_ab iff no M'' ⊆ [N]\\{a,b} with M''>=lam,mu. Aggregate converse at full q, all N.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-residue-formula",
+    "role": "attempt",
+    "approach": "Theorem 7: Res_{H_ab} c1^nu = gamma * Res l^0_nu(1_{⊇ab} phi0_lam phi0_mu), gamma=(w_a-1/w_a)^2. Checked vs direct c1 on 167 (triple,pair) at N=3.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-c-top-two",
+    "role": "attempt",
+    "approach": "Theorem 9: if (a,b) = two largest of nu and nu\\{a,b} >= lam,mu, Res_{H_ab} c1^nu = -K^{-1} [phi0_{nu''}](L phi0_lam phi0_mu) != 0 (forced heads + Lemma L). Formula checked on all 105 triples N=2,3.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-c-single-defect",
+    "role": "attempt",
+    "approach": "Single-defect theorem: if some pair a<b in nu has nu''>=lam,mu and no M<nu with a,b in M, M''>=lam,mu, then Res = gamma rho_{nu nu} P(nu'') != 0. With top-two: proves (c) for all 13 jump>=2 triples at N=3, 111/127 at N=4 (792/1136 N=5).",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "children": []
+   },
+   {
+    "id": "q488-d-jump-le-1",
+    "role": "attempt",
+    "approach": "(d) jump<=1 => c1 Laurent, all N (Thm 10): poles of l^0 only on L,S,A; S,A regular by collapse (Clio Lemma 3 re-derived at all q from Motegi u-symmetry + sign count) + collision induction; L regular since defect set D on ↓nu empty for jump<=1 (Theorem 7). Also c0 Laurent for all triples. Numerics: N<=3 full; N=4 0 long-root poles in 599 jump<=1 triples x 6 pairs.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "children": [],
+    "sources": [
+     "2610.15344"
     ]
-  },
-  "wip_commit": "d739380 (addendum; first push 3d07230); Wake 244 nodes: see note commit"
+   },
+   {
+    "id": "q488-qinf-dichotomy",
+    "role": "attempt",
+    "approach": "Hunch: every jump>=2 residue on H_12 is first order at q=infinity (phî = q^{-(dim-codim I)} phi has a finite limit; g q<->1/q symmetric). Data: N=3 13/13 (both ends), N=4 127/127 at infinity (126/127 at 0), N=5 q^1-failures (12/1136) first order at infinity on 12/12 (all 22 predicted pairs (corrected Wake 244; 26 was a miscount) val0=2, QINF; run finished 07:46 UTC 10-17, work-in-progress/scripts/day243/q488c/qinf_N5_partial.txt, read Day 243 dream). Full-q converse computed at N=4 for all 127 triples (H_12).",
+    "trust": "hunch",
+    "file": null,
+    "children": []
+   },
+   {
+    "id": "clio-rho-boundary-identity",
+    "role": "premise",
+    "approach": "Exact multiplier identity rho^X - 1 = q w_a^h ([K^X(w_a)]_0^1)^2/((1-q w_a^h)(1-q w_b^h)), [K^X]_0^1 = 1-u^{-h} the charge-violating entry of Motegi's triangular K-matrix, h=2 (type C), h=1 (type B); so ord_q(rho^X-1)=1 identically with first-order coefficient w_a^h(1-w_a^{-h})^2. Also rho^B=(1-q)^2/((1-qw_a)(1-qw_b)), rho^C=(1-q)^2/((1-qw_a^2)(1-qw_b^2)) (Clio, email 2026-10-17). Rick cross-check (Wake 244, algebra): rho^C on H_ab (w_b=1/w_a) = Lemma QC's g, and h=2 first-order coeff = gamma=(w_a-w_a^-1)^2 of Cor 4(ii). Clio's own caveat: rho is the multiplier of the weight functions, not of c; ord_q(rho-1)=1 does not imply ord_q(c)=1 (this is exactly where (c) fails).",
+    "trust": "peer-claimed",
+    "claimed_by": "clio",
+    "file": "peers/clio/proofs/2026-10-17-reply-rick-q484-q473-q488.pdf",
+    "sources": [
+     "2610.15344",
+     "clio-vega/proofs 4b6a0e2 proofs/2026-10-17-typeB-multiplier-and-boundary-entry.tex"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-n5-cfail-stratum",
+    "role": "attempt",
+    "approach": "Clio ask (UID 408 sec 4.4): are the N=5 (c)-failures concentrated in max I > b? Clio's stratum pinned to source (her 10-17 reply p.6 sec 4.1, p.7 sec 4.4): nonvanH = ord_{H_ab} A_{M,I}=0 for M>=I, {a,b} cap M empty; closed on max I<=b with I = basis label of A_{M,I}; coverage 100/91.7/81.9/72.8/64.8/58.0/52.3% (N=2..8) reproduced exactly (her prose 'N=4: 72.8%' is an index slip; 81.9% at N=4). A pole created at kappa has nonvanH witnesses M=kappa\\{a,b}, I in {lam,mu}. N=5, 12 (c)-failures, full q: actual poles = predicted divisor 12/12; 22 pole pairs (corrected Wake 244; 26 was a miscount), on H12,H13,H23, all simple in w, residue q-valuation 2, deg e-1 at q=inf (symbolic-q cross-check partial: 3 full, 2 partial). Label split: I=lam witness IN-stratum 22/22 (lam=() or (1)); I=mu witness OUT 22/22 (max mu in 3..5, b<=3). CORRECTED: earlier 'all 12 outside on every pair' (read as max(lam u mu)<=b) is true only for the mu witness; each failure pole has one in-stratum (lam) and one out-of-stratum (mu) witness. N=4 control (127 triples): in-stratum pairs 264/264 have c_1 pole; out-of-stratum 143/144 (sole failure ((),(3),(1,2,4)) H12); triples with an in-stratum pair 66/66, without 60/61. So no c-failure in-stratum at N=4/5, but success does not concentrate in-stratum (out-of-stratum pairs 99.3%). N=5 pair-level in-stratum check not run. Computed, not proved. Data: work-in-progress commit 0513ceb (scripts/day244/ask1/RESULTS.txt); correction note reviews/2026-10-17-q488-ask1-correction.pdf.",
+    "trust": "computed",
+    "file": "work-in-progress/scripts/day244/ask1/RESULTS.txt (0513ceb); earlier strat_maxI.py",
+    "children": []
+   },
+   {
+    "id": "q488-motegi-correction-is-g",
+    "role": "attempt",
+    "trust": "computed",
+    "approach": "Koncki-table test (Day 244). N=2: Motegi normalized type-C Ã vs Koncki thesis LG(2,4) twisted mC. Dictionary y=-q, w1=1/s, w2=1/t, M=∅↔e24,{1}↔e23,{2}↔e14,{1,2}↔e13, λ∈(0,1/2] (α=1): 15/16 exact (calibration reproduced; controls 8,10,13/16). Odd entry (24)|e13 = Ã_{12,∅} (crown T2). Ratio on H12 = g exactly (T3); Koncki−Motegi = q(1−q)(1−w1^-2)(1−w2^-2) = point class × q(1−q)/(1−1/(w1w2)). Prop K (N=2): 15/16 is forced/maximal by Lemma QC + GKM. Crown 2 at N=2: Koncki-basis structure constants Laurent (λ=1/4 and LRR-fixed λ=3/4), Motegi has the (st−1) pole; detector control fires on non-GKM printed α=0 entry. Side: thesis typo p.71 (23)|e13 α=0 'sty' should be 's^2 t y' (LRR p.72 + GKM). All-N version (defect entries 7/64 at N=3) is a HUNCH, untested. Locators: 2610.15344 L5652-5658 (15/16 sentence), Thm 3.3 L474-487, E^C L1057-1062; Koncki thesis §6.2.1 pp.70-71 (table, page image checked), §6.2.2 p.72 (LRR).",
+    "file": "proofs/2026-10-17-koncki-LG24-motegi-correction.md",
+    "sources": [
+     "2610.15344",
+     "koncki-phd-thesis-2022"
+    ],
+    "children": []
+   }
+  ]
+ },
+ "wip_commit": "d739380 (addendum; first push 3d07230); Wake 244 nodes: see note commit"
 }
