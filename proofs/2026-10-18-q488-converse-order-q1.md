@@ -299,3 +299,25 @@ is a **hunch** (strong): nothing above uses it.
 2. (d) is closed (Thm 10). Not closed: (d) at full q, which is Clio's thm:main and still needs her Gap q.
 3. Theorem 6 and Prop 5 need "no factor of Ã_{I,I} other than the long root vanishes on H_ab", which I read off
    (M4) and Clio's eq:diag (and checked at N ≤ 3). Fine, but noted.
+
+## Addendum (same session): full-q converse data and the q = 0 / q = ∞ dichotomy
+
+- **N=4, full q, H₁₂ (`dich.py`, `dich_N4_12.txt`): all 127 jump-≥2 triples have a pole on H₁₂.** So Clio's converse
+  holds at N=4 for every triple (computed; her census stopped at N=3).
+  - q-valuation of the residue at q=0 is 1 for 126 triples and 2 for (∅,{3},{1,2,4}).
+  - **Degree at q=∞ equals e−1 for 127/127**, where e = dim + codim ν − codim λ − codim μ (dim = N(N+1)/2, codim = sum
+    of elements). Since φ̂_I := q^{−(dim−codim I)}φ_I has a finite limit φ^∞ (exponent derived from Motegi's formula and
+    checked at N=2), this says the residue is *first order at q=∞* in every case.
+  - N=3: 13/13 first order at both ends.
+- **N=5, q¹ only (`n5scan.py`):** (c) fails for exactly 12 of 1136 jump-≥2 triples, all with "high-block" data:
+  λ=∅ (and one (λ,μ) = ({1},{4})), with μ supported on the top of ν. The other 332 triples not covered by Thms 9/9'
+  have a q¹ pole numerically.
+- **N=5, the q¹ failures at full q (`qinftest.py`, so far 5/12, rest running):** every predicted pair has q-valuation 2
+  at q=0 and is first order at q=∞.
+
+**Hunch (registered): every jump-≥2 residue on H_{12} is first order at q=∞.** True on 127/127 at N=4. If it holds,
+the converse would follow from a q=∞ mirror of Theorem 7 plus a non-vanishing argument at q=∞. Note that at q=∞ the
+QC twist, the triangularity support and the forced heads are unchanged; what changes is the pair/tail ordering in the
+leading coefficient, which is reversed. Unlike (2.1), each term also carries an assignment-dependent monomial
+Π_j h_j^{κ_j+n−2N−1} Π_{k>κ_j} w_k · Π_t t^{r−2N}. So a q=∞ "Lemma L" needs a genuine dominant-term analysis. That is
+the next PROVE on this arc.

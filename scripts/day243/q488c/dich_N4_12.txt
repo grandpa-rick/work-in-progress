@@ -70,3 +70,60 @@ A built 165.10789370536804
 (2,) (3,) (1, 3, 4) val0 1 deg_inf 12 e-1 12 Q0 QINF
 (2,) (3,) (2, 3, 4) val0 1 deg_inf 13 e-1 13 Q0 QINF
 (2,) (3,) (1, 2, 3, 4) val0 1 deg_inf 14 e-1 14 Q0 QINF
+(2,) (4,) (1, 2, 4) val0 1 deg_inf 10 e-1 10 Q0 QINF
+(2,) (4,) (1, 3, 4) val0 1 deg_inf 11 e-1 11 Q0 QINF
+(2,) (4,) (2, 3, 4) val0 1 deg_inf 12 e-1 12 Q0 QINF
+(2,) (4,) (1, 2, 3, 4) val0 1 deg_inf 13 e-1 13 Q0 QINF
+(2,) (1, 2) (1, 2, 3, 4) val0 1 deg_inf 14 e-1 14 Q0 QINF
+(2,) (1, 3) (1, 2, 3, 4) val0 1 deg_inf 13 e-1 13 Q0 QINF
+(2,) (1, 4) (1, 2, 3, 4) val0 1 deg_inf 12 e-1 12 Q0 QINF
+(2,) (2, 3) (1, 2, 3, 4) val0 1 deg_inf 12 e-1 12 Q0 QINF
+(2,) (2, 4) (1, 2, 3, 4) val0 1 deg_inf 11 e-1 11 Q0 QINF
+(2,) (3, 4) (1, 2, 3, 4) val0 1 deg_inf 10 e-1 10 Q0 QINF
+(3,) (3,) (1, 2, 3) val0 1 deg_inf 9 e-1 9 Q0 QINF
+(3,) (3,) (1, 2, 4) val0 1 deg_inf 10 e-1 10 Q0 QINF
+(3,) (3,) (1, 3, 4) val0 1 deg_inf 11 e-1 11 Q0 QINF
+(3,) (3,) (2, 3, 4) val0 1 deg_inf 12 e-1 12 Q0 QINF
+(3,) (3,) (1, 2, 3, 4) val0 1 deg_inf 13 e-1 13 Q0 QINF
+(3,) (4,) (1, 2, 4) val0 1 deg_inf 9 e-1 9 Q0 QINF
+(3,) (4,) (1, 3, 4) val0 1 deg_inf 10 e-1 10 Q0 QINF
+(3,) (4,) (2, 3, 4) val0 1 deg_inf 11 e-1 11 Q0 QINF
+(3,) (4,) (1, 2, 3, 4) val0 1 deg_inf 12 e-1 12 Q0 QINF
+(3,) (1, 2) (1, 2, 3, 4) val0 1 deg_inf 13 e-1 13 Q0 QINF
+(3,) (1, 3) (1, 2, 3, 4) val0 1 deg_inf 12 e-1 12 Q0 QINF
+(3,) (1, 4) (1, 2, 3, 4) val0 1 deg_inf 11 e-1 11 Q0 QINF
+(3,) (2, 3) (1, 2, 3, 4) val0 1 deg_inf 11 e-1 11 Q0 QINF
+(3,) (2, 4) (1, 2, 3, 4) val0 1 deg_inf 10 e-1 10 Q0 QINF
+(3,) (3, 4) (1, 2, 3, 4) val0 1 deg_inf 9 e-1 9 Q0 QINF
+(4,) (4,) (1, 2, 4) val0 1 deg_inf 8 e-1 8 Q0 QINF
+(4,) (4,) (1, 3, 4) val0 1 deg_inf 9 e-1 9 Q0 QINF
+(4,) (4,) (2, 3, 4) val0 1 deg_inf 10 e-1 10 Q0 QINF
+(4,) (4,) (1, 2, 3, 4) val0 1 deg_inf 11 e-1 11 Q0 QINF
+(4,) (1, 2) (1, 2, 3, 4) val0 1 deg_inf 12 e-1 12 Q0 QINF
+(4,) (1, 3) (1, 2, 3, 4) val0 1 deg_inf 11 e-1 11 Q0 QINF
+(4,) (1, 4) (1, 2, 3, 4) val0 1 deg_inf 10 e-1 10 Q0 QINF
+(4,) (2, 3) (1, 2, 3, 4) val0 1 deg_inf 10 e-1 10 Q0 QINF
+(4,) (2, 4) (1, 2, 3, 4) val0 1 deg_inf 9 e-1 9 Q0 QINF
+(4,) (3, 4) (1, 2, 3, 4) val0 1 deg_inf 8 e-1 8 Q0 QINF
+(1, 2) (1, 2) (1, 2, 3, 4) val0 1 deg_inf 13 e-1 13 Q0 QINF
+(1, 2) (1, 3) (1, 2, 3, 4) val0 1 deg_inf 12 e-1 12 Q0 QINF
+(1, 2) (1, 4) (1, 2, 3, 4) val0 1 deg_inf 11 e-1 11 Q0 QINF
+(1, 2) (2, 3) (1, 2, 3, 4) val0 1 deg_inf 11 e-1 11 Q0 QINF
+(1, 2) (2, 4) (1, 2, 3, 4) val0 1 deg_inf 10 e-1 10 Q0 QINF
+(1, 2) (3, 4) (1, 2, 3, 4) val0 1 deg_inf 9 e-1 9 Q0 QINF
+(1, 3) (1, 3) (1, 2, 3, 4) val0 1 deg_inf 11 e-1 11 Q0 QINF
+(1, 3) (1, 4) (1, 2, 3, 4) val0 1 deg_inf 10 e-1 10 Q0 QINF
+(1, 3) (2, 3) (1, 2, 3, 4) val0 1 deg_inf 10 e-1 10 Q0 QINF
+(1, 3) (2, 4) (1, 2, 3, 4) val0 1 deg_inf 9 e-1 9 Q0 QINF
+(1, 3) (3, 4) (1, 2, 3, 4) val0 1 deg_inf 8 e-1 8 Q0 QINF
+(1, 4) (1, 4) (1, 2, 3, 4) val0 1 deg_inf 9 e-1 9 Q0 QINF
+(1, 4) (2, 3) (1, 2, 3, 4) val0 1 deg_inf 9 e-1 9 Q0 QINF
+(1, 4) (2, 4) (1, 2, 3, 4) val0 1 deg_inf 8 e-1 8 Q0 QINF
+(1, 4) (3, 4) (1, 2, 3, 4) val0 1 deg_inf 7 e-1 7 Q0 QINF
+(2, 3) (2, 3) (1, 2, 3, 4) val0 1 deg_inf 9 e-1 9 Q0 QINF
+(2, 3) (2, 4) (1, 2, 3, 4) val0 1 deg_inf 8 e-1 8 Q0 QINF
+(2, 3) (3, 4) (1, 2, 3, 4) val0 1 deg_inf 7 e-1 7 Q0 QINF
+(2, 4) (2, 4) (1, 2, 3, 4) val0 1 deg_inf 7 e-1 7 Q0 QINF
+(2, 4) (3, 4) (1, 2, 3, 4) val0 1 deg_inf 6 e-1 6 Q0 QINF
+(3, 4) (3, 4) (1, 2, 3, 4) val0 1 deg_inf 5 e-1 5 Q0 QINF
+time 1345.839337348938

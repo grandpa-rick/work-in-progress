@@ -120,11 +120,12 @@
    {
     "id": "q488-qinf-dichotomy",
     "role": "attempt",
-    "approach": "Hunch: every jump>=2 residue is first-order at q=0 OR at q=infinity (A q^{-(dim-codim I)} has a finite limit; g symmetric under q<->1/q). Exceptional N=4 triple has residue degree exactly e-1 = 13 (first order at infinity). N=3: 13/13 first order at both ends.",
+    "approach": "Hunch: every jump>=2 residue on H_12 is first order at q=infinity (ph\u00ee = q^{-(dim-codim I)} phi has a finite limit; g q<->1/q symmetric). Data: N=3 13/13 (both ends), N=4 127/127 at infinity (126/127 at 0), N=5 q^1-failures (12/1136) first order at infinity on 5/5 tested so far. Full-q converse computed at N=4 for all 127 triples (H_12).",
     "trust": "hunch",
     "file": null,
     "children": []
    }
   ]
- }
+ },
+ "wip_commit": "3d07230"
 }

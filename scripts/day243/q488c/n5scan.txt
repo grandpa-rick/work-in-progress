@@ -1,0 +1,350 @@
+N 2 jump>=2 triples (lam<=mu order) 1 top-two 1 single-defect 1 uncovered 0
+N 3 jump>=2 triples (lam<=mu order) 13 top-two 6 single-defect 12 uncovered 0
+N 4 jump>=2 triples (lam<=mu order) 127 top-two 31 single-defect 99 uncovered 16
+[((), (2,), (1, 3, 4)), ((), (3,), (1, 2, 4)), ((), (3,), (1, 2, 3, 4)), ((), (4,), (1, 2, 3, 4)), ((1,), (2,), (1, 3, 4)), ((1,), (3,), (1, 2, 4)), ((1,), (3,), (1, 2, 3, 4)), ((1,), (4,), (1, 2, 3, 4)), ((2,), (2,), (1, 3, 4)), ((2,), (3,), (1, 2, 4)), ((2,), (3,), (1, 2, 3, 4)), ((2,), (4,), (1, 2, 3, 4)), ((3,), (3,), (1, 2, 4)), ((3,), (3,), (1, 2, 3, 4)), ((3,), (4,), (1, 2, 3, 4)), ((4,), (4,), (1, 2, 3, 4))]
+N 5 jump>=2 triples (lam<=mu order) 1136 top-two 171 single-defect 690 uncovered 344
+() (2,) (1, 3, 4) q1-pole at (1, 2) 3 pairs tried
+() (2,) (1, 3, 5) q1-pole at (1, 2) 4 pairs tried
+() (2,) (1, 4, 5) q1-pole at (1, 2) 4 pairs tried
+() (3,) (1, 2, 4) q1-pole at NONE (c fails) 1 pairs tried
+() (3,) (1, 2, 5) q1-pole at NONE (c fails) 1 pairs tried
+() (3,) (1, 4, 5) q1-pole at (1, 2) 4 pairs tried
+() (3,) (2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+() (3,) (1, 2, 3, 4) q1-pole at (1, 2) 5 pairs tried
+() (3,) (1, 2, 3, 5) q1-pole at (1, 2) 7 pairs tried
+() (3,) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+() (4,) (1, 2, 5) q1-pole at NONE (c fails) 1 pairs tried
+() (4,) (1, 3, 5) q1-pole at NONE (c fails) 2 pairs tried
+() (4,) (2, 3, 5) q1-pole at NONE (c fails) 3 pairs tried
+() (4,) (1, 2, 3, 4) q1-pole at (1, 2) 3 pairs tried
+() (4,) (1, 2, 3, 5) q1-pole at NONE (c fails) 3 pairs tried
+() (4,) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+() (4,) (1, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+() (4,) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+() (4,) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+() (5,) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+() (5,) (1, 2, 4, 5) q1-pole at (1, 2) 5 pairs tried
+() (5,) (1, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+() (5,) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+() (5,) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+() (1, 3) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+() (1, 4) (1, 2, 3, 5) q1-pole at NONE (c fails) 3 pairs tried
+() (1, 4) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+() (1, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+() (1, 5) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+() (1, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+() (2, 3) (1, 2, 4, 5) q1-pole at (1, 2) 4 pairs tried
+() (2, 3) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+() (2, 4) (1, 2, 3, 5) q1-pole at NONE (c fails) 2 pairs tried
+() (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+() (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+() (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+() (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+() (3, 4) (1, 2, 3, 5) q1-pole at NONE (c fails) 1 pairs tried
+() (3, 4) (1, 2, 4, 5) q1-pole at NONE (c fails) 1 pairs tried
+() (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 7 pairs tried
+() (3, 5) (1, 2, 4, 5) q1-pole at NONE (c fails) 1 pairs tried
+() (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+() (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1,) (2,) (1, 3, 4) q1-pole at (1, 2) 3 pairs tried
+(1,) (2,) (1, 3, 5) q1-pole at (1, 2) 4 pairs tried
+(1,) (2,) (1, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1,) (3,) (1, 2, 4) q1-pole at (1, 2) 1 pairs tried
+(1,) (3,) (1, 2, 5) q1-pole at (1, 2) 1 pairs tried
+(1,) (3,) (1, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1,) (3,) (2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(1,) (3,) (1, 2, 3, 4) q1-pole at (1, 2) 5 pairs tried
+(1,) (3,) (1, 2, 3, 5) q1-pole at (1, 2) 7 pairs tried
+(1,) (3,) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(1,) (4,) (1, 2, 5) q1-pole at (1, 2) 1 pairs tried
+(1,) (4,) (1, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(1,) (4,) (2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(1,) (4,) (1, 2, 3, 4) q1-pole at (1, 2) 3 pairs tried
+(1,) (4,) (1, 2, 3, 5) q1-pole at NONE (c fails) 3 pairs tried
+(1,) (4,) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(1,) (4,) (1, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1,) (4,) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1,) (4,) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1,) (5,) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(1,) (5,) (1, 2, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(1,) (5,) (1, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1,) (5,) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1,) (5,) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1,) (1, 3) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(1,) (1, 4) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(1,) (1, 4) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1,) (1, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1,) (1, 5) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1,) (1, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1,) (2, 3) (1, 2, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1,) (2, 3) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1,) (2, 4) (1, 2, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(1,) (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1,) (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1,) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1,) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1,) (3, 4) (1, 2, 3, 5) q1-pole at (1, 2) 1 pairs tried
+(1,) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(1,) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(1,) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(1,) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(1,) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(2,) (2,) (1, 3, 4) q1-pole at (1, 2) 3 pairs tried
+(2,) (2,) (1, 3, 5) q1-pole at (1, 2) 4 pairs tried
+(2,) (2,) (1, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(2,) (3,) (1, 2, 4) q1-pole at (1, 2) 1 pairs tried
+(2,) (3,) (1, 2, 5) q1-pole at (1, 2) 1 pairs tried
+(2,) (3,) (1, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(2,) (3,) (2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(2,) (3,) (1, 2, 3, 4) q1-pole at (1, 2) 5 pairs tried
+(2,) (3,) (1, 2, 3, 5) q1-pole at (1, 2) 7 pairs tried
+(2,) (3,) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(2,) (4,) (1, 2, 5) q1-pole at (1, 2) 1 pairs tried
+(2,) (4,) (1, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(2,) (4,) (2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(2,) (4,) (1, 2, 3, 4) q1-pole at (1, 2) 3 pairs tried
+(2,) (4,) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(2,) (4,) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(2,) (4,) (1, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(2,) (4,) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(2,) (4,) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(2,) (5,) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(2,) (5,) (1, 2, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(2,) (5,) (1, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(2,) (5,) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(2,) (5,) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(2,) (1, 3) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(2,) (1, 4) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(2,) (1, 4) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(2,) (1, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(2,) (1, 5) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(2,) (1, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(2,) (2, 3) (1, 2, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(2,) (2, 3) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(2,) (2, 4) (1, 2, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(2,) (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(2,) (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(2,) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(2,) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(2,) (3, 4) (1, 2, 3, 5) q1-pole at (1, 2) 1 pairs tried
+(2,) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(2,) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(2,) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(2,) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(2,) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(3,) (3,) (1, 2, 4) q1-pole at (1, 2) 1 pairs tried
+(3,) (3,) (1, 2, 5) q1-pole at (1, 2) 1 pairs tried
+(3,) (3,) (1, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(3,) (3,) (2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(3,) (3,) (1, 2, 3, 4) q1-pole at (1, 2) 5 pairs tried
+(3,) (3,) (1, 2, 3, 5) q1-pole at (1, 2) 7 pairs tried
+(3,) (3,) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(3,) (4,) (1, 2, 5) q1-pole at (1, 2) 1 pairs tried
+(3,) (4,) (1, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(3,) (4,) (2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(3,) (4,) (1, 2, 3, 4) q1-pole at (1, 2) 3 pairs tried
+(3,) (4,) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(3,) (4,) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(3,) (4,) (1, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(3,) (4,) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(3,) (4,) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(3,) (5,) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(3,) (5,) (1, 2, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(3,) (5,) (1, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(3,) (5,) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(3,) (5,) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(3,) (1, 2) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(3,) (1, 3) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(3,) (1, 4) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(3,) (1, 4) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(3,) (1, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(3,) (1, 5) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(3,) (1, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(3,) (2, 3) (1, 2, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(3,) (2, 3) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(3,) (2, 4) (1, 2, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(3,) (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(3,) (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(3,) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(3,) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(3,) (3, 4) (1, 2, 3, 5) q1-pole at (1, 2) 1 pairs tried
+(3,) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(3,) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(3,) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(3,) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(3,) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(4,) (4,) (1, 2, 5) q1-pole at (1, 2) 1 pairs tried
+(4,) (4,) (1, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(4,) (4,) (2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(4,) (4,) (1, 2, 3, 4) q1-pole at (1, 2) 3 pairs tried
+(4,) (4,) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(4,) (4,) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(4,) (4,) (1, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(4,) (4,) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(4,) (4,) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(4,) (5,) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(4,) (5,) (1, 2, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(4,) (5,) (1, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(4,) (5,) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(4,) (5,) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(4,) (1, 2) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(4,) (1, 2) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(4,) (1, 2) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(4,) (1, 3) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(4,) (1, 3) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(4,) (1, 3) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(4,) (1, 4) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(4,) (1, 4) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(4,) (1, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(4,) (1, 5) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(4,) (1, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(4,) (2, 3) (1, 2, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(4,) (2, 3) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(4,) (2, 3) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(4,) (2, 4) (1, 2, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(4,) (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(4,) (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(4,) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(4,) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(4,) (3, 4) (1, 2, 3, 5) q1-pole at (1, 2) 1 pairs tried
+(4,) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(4,) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(4,) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(4,) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(4,) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(5,) (5,) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(5,) (5,) (1, 2, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(5,) (5,) (1, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (5,) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (5,) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (1, 2) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (1, 2) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (1, 3) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (1, 3) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (1, 4) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (1, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (1, 5) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (1, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (2, 3) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(5,) (2, 3) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(5,) (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(5,) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(5,) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(5,) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(5,) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(5,) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(5,) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 2) (1, 3) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(1, 2) (1, 4) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 2) (1, 4) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1, 2) (1, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1, 2) (1, 5) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 2) (1, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 2) (2, 3) (1, 2, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1, 2) (2, 3) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1, 2) (2, 4) (1, 2, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(1, 2) (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1, 2) (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1, 2) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 2) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 2) (3, 4) (1, 2, 3, 5) q1-pole at (1, 2) 1 pairs tried
+(1, 2) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(1, 2) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(1, 2) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(1, 2) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(1, 2) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 3) (1, 3) (1, 2, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(1, 3) (1, 4) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 3) (1, 4) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1, 3) (1, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1, 3) (1, 5) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 3) (1, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 3) (2, 3) (1, 2, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1, 3) (2, 3) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1, 3) (2, 4) (1, 2, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(1, 3) (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1, 3) (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1, 3) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 3) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 3) (3, 4) (1, 2, 3, 5) q1-pole at (1, 2) 1 pairs tried
+(1, 3) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(1, 3) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(1, 3) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(1, 3) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(1, 3) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 4) (1, 4) (1, 2, 3, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 4) (1, 4) (2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1, 4) (1, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1, 4) (1, 5) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 4) (1, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 4) (2, 3) (1, 2, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(1, 4) (2, 3) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1, 4) (2, 3) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1, 4) (2, 4) (1, 2, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(1, 4) (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(1, 4) (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(1, 4) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 4) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 4) (3, 4) (1, 2, 3, 5) q1-pole at (1, 2) 1 pairs tried
+(1, 4) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(1, 4) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(1, 4) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(1, 4) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(1, 4) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 5) (1, 5) (2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 5) (1, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 5) (2, 3) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 5) (2, 3) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 5) (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 5) (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 5) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(1, 5) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(1, 5) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(1, 5) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(1, 5) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(1, 5) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(1, 5) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(2, 3) (2, 3) (1, 2, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(2, 3) (2, 3) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(2, 3) (2, 4) (1, 2, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(2, 3) (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(2, 3) (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(2, 3) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(2, 3) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(2, 3) (3, 4) (1, 2, 3, 5) q1-pole at (1, 2) 1 pairs tried
+(2, 3) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(2, 3) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(2, 3) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(2, 3) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(2, 3) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(2, 4) (2, 4) (1, 2, 3, 5) q1-pole at (1, 2) 2 pairs tried
+(2, 4) (2, 4) (1, 3, 4, 5) q1-pole at (1, 2) 4 pairs tried
+(2, 4) (2, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 9 pairs tried
+(2, 4) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(2, 4) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(2, 4) (3, 4) (1, 2, 3, 5) q1-pole at (1, 2) 1 pairs tried
+(2, 4) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(2, 4) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(2, 4) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(2, 4) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(2, 4) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(2, 5) (2, 5) (1, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(2, 5) (2, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 6 pairs tried
+(2, 5) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(2, 5) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(2, 5) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(2, 5) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(2, 5) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(3, 4) (3, 4) (1, 2, 3, 5) q1-pole at (1, 2) 1 pairs tried
+(3, 4) (3, 4) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(3, 4) (3, 4) (1, 2, 3, 4, 5) q1-pole at (1, 2) 7 pairs tried
+(3, 4) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(3, 4) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(3, 4) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(3, 5) (3, 5) (1, 2, 4, 5) q1-pole at (1, 2) 1 pairs tried
+(3, 5) (3, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 5 pairs tried
+(3, 5) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+(4, 5) (4, 5) (1, 2, 3, 4, 5) q1-pole at (1, 2) 3 pairs tried
+uncovered 344 c-fails 12 time 1728.6962518692017
