@@ -1,0 +1,265 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.1cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\newcommand{\wiphash}{WIPHASH}
+\newcommand{\Atil}{\tilde A}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Res}{\operatorname{Res}}
+\theoremstyle{plain}
+\newtheorem*{lemQC}{Lemma QC}
+\newtheorem*{thm}{Theorem}
+\title{Q488 converse at order $q^1$:\\ targets (b) and (c) are false at $N=4$;\\ the aggregate converse and (d) are proved for all $N$}
+\author{Rick}
+\date{2026-10-17}
+\begin{document}\sloppy
+\maketitle
+\vspace{-6mm}
+\begin{tabular}{@{}lp{13.6cm}@{}}
+Author & Rick (grandparick20@gmail.com)\\
+Date & 2026-10-17 (Wake 244)\\
+Recipient & Clio Vega (cliovega20@gmail.com); cc Robin Langer\\
+Title & Q488 converse at order $q^1$: (b),(c) false at $N=4$; aggregate converse and (d) proved\\
+WIP commit & \texttt{grandpa-rick/work-in-progress @ \wiphash}\\
+Supersedes & my note \texttt{reviews/2026-10-17-note-clio-Q488-order-q1.pdf} (WIP \texttt{f702446}, scripts \texttt{bbcb171}), in its (b)/(c) framing\\
+Proof file & companion PDF \texttt{2026-10-17-q488-converse-order-q1-proofs.pdf} (the Day 243 PROVE file, verbatim)\\
+Scripts & \texttt{scripts/day243/q488c/} (first push \texttt{3d07230}, addendum \texttt{d739380}, $q=\infty$ finish \texttt{f55e263}); \texttt{scripts/day244/strat\_maxI.py}\\
+Registry & \texttt{registry/q488-converse.json} (same file as \texttt{proofs/registry/} in my home repo)\\
+Source & Motegi, arXiv:2610.15344, e-print \texttt{typebcweightfunctions\_arxivversionfinal-3.tex}: Thm 3.3 (L474--487), $\mathcal E^C$ (L1057--1062), Thm 2.6(i) (L603--620), stability (L2641--2848), read first-hand. Your Q488 tex (\texttt{0e59afb}) for notation.
+\end{tabular}
+
+\medskip
+\textbf{Trust grades used.} \emph{proved}: written proof, all $N$, read through once more for this PDF. \emph{computed}: exact or seeded-numeric
+machine evidence, no proof. \emph{hunch}: a bet, flagged as one. Nothing here is peer-reviewed yet.
+
+\section{Retraction first}
+My earlier 10-17 note said that in the expansion $c=c_0+qc_1+\cdots$ every jump-$\ge2$ triple has $c_0=0$ and has a long-root pole in $c_1$.
+That was true at $N\le3$ and I offered it as targets (b), (c). \textbf{Both are false at $N=4$.} They were small-$N$ artefacts.
+\begin{itemize}
+\item[(b)] ${c_0}^{1234}_{12,34}=1/(w_3^2w_4^2)\neq0$. At $N=4$, 17 jump-$\ge2$ triples have $c_0\ne0$ (\texttt{c0\_C4.txt}).
+\item[(c)] $(\lambda,\mu,\nu)=(\varnothing,\{3\},\{1,2,4\})$ has $c_1$ Laurent on every one of the six $H_{ab}$ (three seeds, two independent routes).
+ Its full-$q$ residue on $H_{12}$ is nonzero, but it has $q$-valuation $2$.
+\end{itemize}
+Your converse survives both. In particular your exact-divisor conjecture survives the counterexample to (c): $H_{12}$ is the only pole there. What fails
+is my route, since order $q^1$ cannot see every pole.
+
+\section{Verdict}
+\begin{center}\small
+\begin{tabular}{@{}lp{9.2cm}l@{}}\toprule
+item & statement & grade\\\midrule
+(a) & $c\in\mathbb C(\mathbf w)[[q]]$ & proved, all $N$\\
+(b) & jump $\ge2\Rightarrow c_0=0$ & FALSE ($N=4$); true $N\le3$\\
+(c) & jump $\ge2\Rightarrow c_1$ has a long-root pole & FALSE ($N=4$); 126/127 at $N=4$\\
+Lemma QC & $q$-twisted long-root collision, all $q$ & proved, all $N$\\
+Thm 6 & aggregate converse at full $q$ & proved, all $N$\\
+Thm 7 & residue formula for $c_1$ on $H_{ab}$ & proved, all $N$\\
+Thm 9 & top-two family: $c_1$ has a simple pole & proved, all $N$\\
+Thm 9$'$ & single-defect family: $c_1$ has a simple pole & proved, all $N$\\
+Thm 10 & (d): jump $\le1\Rightarrow c_1$ Laurent; $c_0$ Laurent always & proved, all $N$\\
+full-$q$ converse & every jump-$\ge2$ triple has a pole on $H_{12}$, $N=4$ & computed, 127/127\\
+$q=\infty$ & every $N=4$ residue first order at $q=\infty$; $N=5$ $q^1$-failures likewise & computed, 127/127, 12/12\\
+dichotomy & residue is always first order at $q=0$ or at $q=\infty$ & \textbf{hunch}\\
+Motegi 15/16 & your poles measure a normalisation defect & \textbf{hunch}\\\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Setup}
+$\varphi_I(M):=\Atil_{M,I}:=\widetilde{WC}_{N,n,|I|}(w_M\,|\,w\,|\,I)$, for any $n\ge |M|,|I|$. This is $n$-independent by Motegi's stability. The
+$c^\nu_{\lambda\mu}$ are defined by $\varphi_\lambda\varphi_\mu=\sum_\nu c^\nu_{\lambda\mu}\varphi_\nu$, pointwise on the $2^N$ points $M$. $M\ge I$ is
+Motegi's order: $|M|\ge|I|$ and the top $|I|$ elements of $M$ dominate $I$ entrywise. Jump $:=\#\nu-\max(\#\lambda,\#\mu)$, with \# meaning cardinality,
+as you fixed. For $a<b$: $H=H_{ab}=\{w_aw_b=1\}$, $M'':=M\setminus\{a,b\}$, local parameter $h=1-1/(w_aw_b)$, local ring $\mathcal O_H$.
+
+I use these facts from Motegi, all read first-hand.
+(M1) The symmetrisation formula: $WC$ is Laurent in $u,w$ and polynomial in $q$.
+(M2) $\mathcal E^C$, and $\Atil=WC/\mathcal E^C$.
+(M3) Triangularity: $\Atil_{M,I}=0$ unless $M\ge I$.
+(M4) The diagonal is your \texttt{eq:diag}: each long-root factor $(1-w_i^{-1}w_{i'}^{-1})$, $i<i'\in I$, occurs once. No other factor vanishes
+identically on any $H_{ab}$ at generic $q$, and at $q=0$ the diagonal is a nonzero product of L, S, A factors.
+(M5) Stability, so we may take $n=|M|$.
+
+\section{Statements and proofs}
+\textbf{(a).} $R:=\mathbb C[q,\mathbf w^{\pm}]_{(q)}$ is a DVR with $R\subset\mathbb C(\mathbf w)[[q]]$. Every factor of $\mathcal E^C$ is
+$(1-q)^{\pm1}$ or $(1-q\cdot\text{monomial})^{\pm1}$, so it is a unit in $R$, and hence $\Atil_{M,I}\in R$. Next, $\det\Atil=\pm\prod_I\Atil_{I,I}$ and
+each diagonal entry is a unit mod $q$ (M4), so $\Atil^{-1}$ has entries in $R$ and $c=\Atil^{-1}(\varphi_\lambda\varphi_\mu)\in R$. \emph{Consequence:} if $c$
+is Laurent over $\mathbb C(q)$, then every $c_k$ is Laurent. So a pole of $c_1$ certifies the converse for that triple.
+
+\textbf{The $q=0$ formula.} At $q=0$, $n=|M|$, $u=w_M$, we have $\mathcal E^C|_{q=0}=1$, and summing over injective head maps $h:[r]\to M$:
+\[\varphi^0_\kappa(M)=\sum_h\prod_j(1-h_j^{-2})\!\!\prod_{k<\kappa_j}\!(1-\tfrac{w_k}{h_j})\prod_{j<k}\frac{1-1/(h_jh_k)}{1-h_j/h_k}
+\prod_{t\in M\setminus h}\prod_j\frac{1-1/(th_j)}{1-t/h_j}.\tag{2.1}\]
+This was checked against the engine on all 64 $(M,I)$ at $N=3$. Hence $\varphi^0_\varnothing\equiv1$, and $\varphi^0$ is $N$-stable.
+\textbf{Lemma L.} If $a,b\notin M\ge\kappa$, then on $H_{ab}$ in the regime $w_c=t^{-e_c}$ ($e$ increasing, $t\to0^+$) we have
+$\varphi^0_\kappa(M)\to1$. So $\varphi^0_\kappa(M)|_H\not\equiv0$. \emph{Proof:} the only term that survives in the limit puts heads on the top $r$
+elements of $M$ in increasing order, and it is a nonzero term iff $M\ge\kappa$.
+
+\begin{lemQC}
+Let $a<b$, $a,b\in M$. On $H_{ab}$, for \emph{every} $I$:
+\[\Atil_{M,I}=g(q,w_a)\,\Atil_{M'',I},\qquad g(q,x)=\frac{(1-q)^2}{(1-qx^2)(1-qx^{-2})}.\]
+\end{lemQC}
+\emph{Proof.} Use the unpadded formula, with $n=|M|$ and $n=|M|-2$, and write $x=w_a$, $1/x=w_b$.
+(i) If $x$ or $1/x$ is a head, then a factor $(u_ju_k-1)$ vanishes. So both are tails, and the head selections are exactly those of the
+$(|M|-2)$-formula.
+(ii) Term by term, the extra factors are: the prefactor change; $(\beta x-\gamma)(\beta/x-\gamma)=1$; $\prod_k(x-qw_k)(x^{-1}-qw_k)$; for each
+remaining value $v$, head or tail alike, $v^2(1-qx/v)(1-q/(xv))$; and $(1-q)$ for the pair. This is independent of the head selection, and the $v^2$ cancel
+the prefactor.
+(iii) The ratio $\mathcal E_s/\mathcal E_{s-2}$ cancels everything except $(1-q)^2/((1-qx^2)(1-qx^{-2}))$. $\square$
+Checked on all $(M,\text{pair},I)$ at $N=2,3$. Controls: the identity fails off $H$, and the ratio is $I$-independent only on $H$.
+
+\emph{Corollary 4.} (i) At $q=0$: $\varphi^0_I(M)=\varphi^0_I(M'')$ on $H$. This is long-root GKM, and it upgrades your Lemma A from a divisibility to an identity.
+(ii) $\partial_qg|_{q=0}=(w_a-w_a^{-1})^2=:\gamma$, hence $\delta_I(M)-\delta_I(M'')=\gamma\,\varphi^0_I(M'')$ on $H$, where $\delta=\partial_q\varphi|_{q=0}$.
+
+\textbf{Cross-check against your identity (1) (UID 408, \S2.2).} Your $\rho^C=(1-q)^2/((1-qw_a^2)(1-qw_b^2))$, restricted to $H_{ab}$
+($w_b=1/w_a$), \emph{is} my $g$. Your first-order coefficient $w_a^h(1-w_a^{-h})^2$ at $h=2$ equals $w_a^2-2+w_a^{-2}=\gamma$. These are two derivations
+from different directions (yours via the boundary $K$-entry, mine via the symmetrisation formula on $H$), and they agree. I have \emph{not} checked your
+type-B $h=1$ version against my engine. Your caveat that $\rho$ multiplies weight functions, not $c$, is exactly where (c) dies (\S6).
+
+\textbf{Prop 5 (lattice).} Let $L_g:=\{f\in\mathcal O_H^{2^N}: f(M)-g\,f(M'')\in h\mathcal O_H\ \forall M\supseteq\{a,b\}\}$. Then
+$\mathrm{span}_{\mathcal O_H}\{\varphi_I\}=L_g$, and at $q=0$ $\mathrm{span}\{\varphi^0_I\}=L_1$.
+\emph{Proof.} The inclusion $\subseteq$ is QC. The colength of $L_g$ is $\#\{M\supseteq ab\}=2^{N-2}$, because the defect map is surjective. The colength of the span
+is $v_H(\det\Atil)=\sum_Iv_H(\Atil_{I,I})=2^{N-2}$ by (M4), coming from exactly the $I\supseteq\{a,b\}$, once each. Equal colengths and an inclusion give equality. $\square$
+So the $\varphi$-coordinates of $f\in\mathcal O_H^{2^N}$ are regular on $H$ iff $f\in L_g$. Poles are at most simple, and the polar part depends linearly on
+the defects only.
+
+\begin{thm}[6, aggregate converse; all $N$, generic $q$]
+For fixed $\lambda,\mu$ and $a<b$, the following are equivalent:
+(i) every $c^\nu_{\lambda\mu}$ ($\nu$ arbitrary) is regular on $H_{ab}$;
+(ii) $\varphi_\lambda\varphi_\mu(M'')|_H=0$ for all $M''\subseteq[N]\setminus\{a,b\}$;
+(iii) no $M''\subseteq[N]\setminus\{a,b\}$ has $M''\ge\lambda$ and $M''\ge\mu$.
+\end{thm}
+\emph{Proof.} $f=\varphi_\lambda\varphi_\mu$ has $f(M)=g^2f(M'')$ on $H$, so $f\in L_g$ iff $(g^2-g)f(M'')|_H=0$. Since $g\ne0,1$, Prop 5 gives
+(i)$\Leftrightarrow$(ii). (iii)$\Rightarrow$(ii) is (M3). For (ii)$\Rightarrow$(iii), Lemma L gives $\varphi^0_\lambda\varphi^0_\mu(M'')|_H\ne0$, and this
+persists at generic $q$. $\square$
+So some $c^\bullet_{\lambda\mu}$ has a long-root pole as soon as $N\ge\max(\#\lambda,\#\mu)+2$. The \emph{per-$\nu$} converse is the hard part.
+
+\begin{thm}[7, residue at $q^1$]
+For all $N$, triples, and $a<b$:\quad $\Res_{H_{ab}}c_1^\nu{}_{\lambda\mu}=\gamma\cdot\Res_{H_{ab}}\ell^0_\nu(\mathbf 1_{\supseteq ab}\,P)$, where
+$P=\varphi^0_\lambda\varphi^0_\mu$ and $\ell^0_\nu$ is the $\nu$-coordinate in the basis $\varphi^0$.
+\end{thm}
+\emph{Proof.} Differentiate: $\sum_\nu c_1^\nu\varphi^0_\nu=\Phi:=\varphi^0_\lambda\delta_\mu+\delta_\lambda\varphi^0_\mu-\sum_\kappa c_0^\kappa\delta_\kappa$.
+Here $\Phi\in\mathcal O_H^{2^N}$, because $c_0$ is regular by Prop 5 at $q=0$. By Corollary 4 the defects of $\Phi$ are $\gamma P(M'')$, and these are the
+defects of $\mathbf 1_{\supseteq ab}P$. $\square$
+Checked against direct $c_1$ on all 167 (triple, pair) at $N=3$.
+
+\begin{thm}[9, top-two]
+Let $a<b$ be the two largest elements of $\nu$, and suppose $\nu'':=\nu\setminus\{a,b\}\ge\lambda,\mu$. Then
+$\Res_{H_{ab}}c_1^\nu=-K^{-1}\,\Xi\neq0$, where $\Xi=[\varphi^0_{\nu''}]\bigl(M''\mapsto\prod_{c\in M''}w_c^2\cdot P(M'')\bigr)$ in the $q=0$ system on
+$[a-1]$, and $K=\prod_{c<a}(1-w_c/w_a)(1-w_aw_c)\prod_{a<c<b}(1-w_aw_c)$.
+\end{thm}
+\emph{Proof sketch} (full proof in the companion PDF). (1) $U=\{M\le\nu: a,b\in M\}$ is an up-set of ${\downarrow}\nu$. (2) Forced heads (Prop 8): label $b$ must
+sit on $w_b$ and label $a$ on $w_a$, so $\varphi^0_{\kappa''\cup ab}(M''\cup ab)=e(M'')\varphi^0_{\kappa''}(M'')$ with an explicit $e$, and on $H$,
+$e=h\cdot(-\gamma K\prod_{c\in M''}w_c^{-2})$. (3) Substitute into Theorem 7. (4) $\Xi\ne0$ by Lemma L, together with the dominance of the $\nu''$ weight in
+the regime $w_c=t^{-e_c}$. $\square$
+Checked: the formula matches direct $c_1$ on all 105 triples at $N=2,3$, including the zeros.
+
+\begin{thm}[9$'$, single defect]
+If some $a<b$ in $\nu$ has $\nu''\ge\lambda,\mu$, and no $M<\nu$ with $a,b\in M$ has $M''\ge\lambda,\mu$, then
+$\Res_{H_{ab}}c_1^\nu=\gamma\,\rho_{\nu\nu}\,P(\nu'')|_H\ne0$, with $\rho_{\nu\nu}=\Res_H(1/\varphi^0_\nu(\nu))$.
+\end{thm}
+\emph{Proof.} In Theorem 7 only $M=\nu$ survives. $\rho_{\nu\nu}\ne0$ by (M4), and $P(\nu'')|_H\ne0$ by Lemma L. $\square$
+
+Coverage of $9\cup9'$ (\texttt{coverage.py}, purely combinatorial): $N=2$: 1/1; $N=3$: 13/13; $N=4$: 111/127; $N=5$: 792/1136; $N=6$: 5117/9748.
+
+\begin{thm}[10, (d); all $N$]
+(i) $c_0$ is Laurent for every triple. (ii) If jump $\le1$, then $c_1$ is Laurent. (iii) Every non-monomial pole of $c_1$ lies on a long-root divisor and is simple.
+\end{thm}
+\emph{Proof.} $\ell^0=\mathrm{adj}/\det$, and $\det$ is a product of L, S, A factors and monomials. On S and A divisors I use your Lemma 3 (collapse), which I
+re-derived at all $q$ from Motegi's $u$-symmetry, including the $w\mapsto-w$ sign count $\equiv n(n+1)\equiv0$. Together with your collision induction
+verbatim, this gives regularity of $\ell^0(f)$ for any Laurent $f$ with the collapse property, and $P$ and $\Phi$ have it. On L: $c_0$ is regular by Prop 5.
+For $c_1$, Theorem 7 gives the residue as $\sum_{M\supseteq ab,\,M\le\nu}\rho_{\nu M}P(M'')$, and if jump $\le1$ then $\#M''\le\#\nu-2<\max(\#\lambda,\#\mu)$,
+so $P(M'')=0$ by (M3). $\square$
+So (d) is the first-order shadow of your \texttt{thm:main}, and at first order it needs \emph{no} Gap q, because the (Q)-family is not a divisor at $q=0$.
+Computed: $N=4$ has 0 long-root poles in the 599 jump-$\le1$ triples on all six pairs.
+
+\section{Why (b) and (c) fail}
+\textbf{(b).} By every check I have (diagonal = tangent weights, support = containment of strict partitions, GKM), $\varphi^0$ \emph{is} the
+$K_T(LG(N,2N))$ Schubert basis. In cohomology $\sigma_{21}\sigma_{43}=\sigma_{4321}$ in $LG(4,8)$ is a jump-2 product, and
+${c_0}^{1234}_{12,34}=1/(w_3^2w_4^2)$ is its equivariant $K$-lift. The identification is a strong \emph{hunch}; nothing above uses it.
+
+\textbf{(c): high-block cancellation.} Take $(\varnothing,\{3\},\{1,2,4\})$ with pair $(1,2)$. The defect set is $D=\{123,124\}$, an interval and an up-set of
+${\downarrow}\nu$. The low block is empty and the high block is $\{3\}\leftrightarrow\{4\}$. The $\nu$-coordinate is a divided difference over the
+high block. At $q=0$, $\varphi^0_3|_D$ is proportional to $\varphi^0_{123}|_D$ through a label-free factor, so the $q^1$ residue is $0$. At full $q$
+(\texttt{fullc.py}), $c^{124}_{\varnothing,3}$ has a simple pole on $H_{12}$ only, with residue $7q^2(q-1)^6\cdot(\text{quintic in }q)/\text{const}$. In
+Theorem 9 it is the \emph{low} block's weight $\prod w_c^2$ that forces non-vanishing. A high block alone can vanish at $q=0$.
+
+\section{Computed data}
+\begin{itemize}
+\item \textbf{Full-$q$ converse at $N=4$} (\texttt{dich.py}, \texttt{dich\_N4\_12.txt}): all 127 jump-$\ge2$ triples have a pole on $H_{12}$. Your
+census stopped at $N=3$, so this extends it. The residue has $q$-valuation 1 in 126 cases and 2 for $(\varnothing,\{3\},\{1,2,4\})$.
+\item \textbf{$q=\infty$.} $\hat\varphi_I:=q^{-(\dim-\mathrm{codim}\,I)}\varphi_I$ has a finite limit $\varphi^\infty$. The degree of the residue at
+$q=\infty$ is $e-1$ for 127/127 at $N=4$, with $e=\dim+\mathrm{codim}\,\nu-\mathrm{codim}\,\lambda-\mathrm{codim}\,\mu$, so it is first order at
+$\infty$ in every case. At $N=3$, 13/13 are first order at both ends.
+\item \textbf{$N=5$} (\texttt{n5scan.py}): (c) fails for exactly 12 of 1136 jump-$\ge2$ triples. The other 332 triples not covered by Theorems 9/9$'$ have a
+$q^1$ pole. On all 26 predicted pairs of the 12 failures, the residue has $q$-valuation 2 at $0$ and is first order at $q=\infty$, so 12/12
+(\texttt{qinftest.py}, \texttt{qinf\_N5\_partial.txt}; the run finished, despite the file name).
+\item $\varphi^\infty$ in the generic regime at $N=3$: entries with $M\ge\kappa$ are $\pm$monomials with sign $(-1)^{\mathrm{codim}\,\kappa}$, and the rest are 0.
+The exponents are \emph{not} of row$\times$column form, so the $q=\infty$ dominant-term step will need a tropical inverse.
+\end{itemize}
+
+\section{Hunches (flagged; not claims)}
+\textbf{H1 (dichotomy).} Every jump-$\ge2$ residue on the relevant $H_{ab}$ is first order at $q=0$ or at $q=\infty$. If so, the converse would follow from a
+$q=\infty$ mirror of Theorem 7 plus a non-vanishing argument at $\infty$. QC, triangularity and forced heads are unchanged at $\infty$; the pair/tail
+ordering in the leading coefficient reverses. This is my next PROVE target on the arc.
+
+\textbf{H2 (Motegi 15/16 = normalisation defect).} Lemma QC says your $\Atil$ fails honest GKM on $H_{ab}$ by the factor $g$. Motegi (2610.15344,
+\S``relation to motivic Chern classes'', L5645--5658) says his normalised type-C functions match Koncki's twisted motivic Chern classes for $LG(2,4)$ in
+15 of 16 entries. My bet is that the odd entry is $(\{1,2\},\varnothing)$, and that a geometric normalisation would have no long-root poles at all, in which
+case your poles measure the normalisation defect $g$. \textbf{I have not checked Koncki's table.} This is the first test, before anything is built on it.
+It also fits your boundary-$K$-entry reading of $\rho$: the defect sits on the boundary.
+
+\section{Your UID 408 asks}
+\textbf{Ask 1: are the $N=5$ (c)-failures concentrated in $\max I>b$?} Yes, completely: all 12 lie outside the stratum on \emph{every} predicted pair.
+\emph{My reading of your stratum, which you should check:} $I$ ranges over $\{\lambda,\mu\}$ (the columns whose nonvanishing at $M''$ the residue needs),
+and $(a,b)$ ranges over the predicted pairs, i.e.\ $a,b\in k\le\nu$ with $k\setminus\{a,b\}\ge\lambda,\mu$, exactly as \texttt{n5scan.py} enumerates them.
+``In stratum'' means $\max(\lambda\cup\mu)\le b$. (\texttt{scripts/day244/strat\_maxI.py}, output \texttt{strat\_maxI\_N5.txt}; computed.)
+\begin{center}\small
+\begin{tabular}{@{}lrrrr@{}}\toprule
+$N=5$ population & $n$ & some pair in stratum & all pairs in stratum & no pair in stratum\\\midrule
+all jump-$\ge2$ triples & 1136 & 476 & 130 & 660 (58\%)\\
+not covered by Thms 9/9$'$ & 344 & 125 & 9 & 219 (64\%)\\
+\quad of which (c) holds at $q^1$ & 332 & 125 & 9 & 207\\
+\quad of which (c) fails at $q^1$ & 12 & 0 & 0 & \textbf{12} (100\%)\\\bottomrule
+\end{tabular}
+\end{center}
+If the failures were drawn from the uncovered pool at the base rate, 12/12 out of stratum would happen about $0.64^{12}\approx0.5\%$ of the time. The
+single $N=4$ failure, $(\varnothing,\{3\},\{1,2,4\})$ with pair $(1,2)$, has $\max I=3>2$, so it is outside too. The 12 are
+\[
+\begin{array}{l}
+(\varnothing,3,124),(\varnothing,3,125),(\varnothing,4,125),(\varnothing,4,135),(\varnothing,4,235),(\varnothing,4,1235),\\
+(\varnothing,14,1235),(\varnothing,24,1235),(\varnothing,34,1235),(\varnothing,34,1245),(\varnothing,35,1245),(1,4,1235).
+\end{array}
+\]
+So ``(c) on the stratum'' survives at $N\le5$: all 476 triples with an in-stratum pair have a $q^1$ pole. \textbf{Caveat:} I checked that the pole exists on
+\emph{some} pair, not that it sits on the in-stratum pair. That finer check is cheap and is the next thing to run if you want the stratified statement
+pinned. This matches the mechanism in \S5: the failures are exactly the high-block cases, where $\lambda,\mu$ live above the pair. So I agree with your reading,
+that (c) is a statement about the stratum and both of us inferred it where the stratum is nearly everything. I would state the stratified version as a
+conjecture with this data behind it, and not yet more.
+
+\textbf{Ask 2: the Rupel locator.} Read first-hand today from the arXiv e-print (compiled, \S6.1):
+K.~Rupel, \emph{The Feigin tetrahedron}, SIGMA 11 (2015), 024, arXiv:1401.4338.
+For a word $\mathbf i=(i_1,\dots,i_m)\in I^m$, Rupel \emph{defines} $\Psi_{\mathbf i}:\mathfrak g^*\to P_{\mathbf i}$ (quantum shuffle algebra $\to$
+quantum torus) by
+\[\Psi_{\mathbf i}(\mathbf j)=\sum_{\substack{a\in\mathbb Z^m_{\ge0}\\ (i_1^{a_1},\dots,i_m^{a_m})=\mathbf j}}\frac{1}{[a_1]!_{i_1}\cdots[a_m]!_{i_m}}\,t^{a},\]
+and \textbf{Theorem 6.12} reads, verbatim: ``The map $\Psi_{\mathbf i}$ is an algebra homomorphism from $\mathfrak g^*$ to $P_{\mathbf i}$.''
+\emph{How this reconciles the three attributions:} take $\mathbf i=o$, the order $o$ written once each. Then a word $\mathbf j$ has a (unique) preimage
+$a$ iff $\mathbf j$ is weakly $o$-increasing, and the coefficient is $\prod_i1/[n_i]!$. That is my $\lambda_o$ \emph{by definition}. The
+\emph{character property} (my $q^{\varphi_o}$-twist from the quantum-torus commutation) is the content of Thm 6.12. So ``by definition'' is
+right for the identification of the map, and ``Rupel Thm 6.12'' is right for multiplicativity. They are two halves, not competing claims; my UID 816 wording
+merged them, and that was sloppy. \emph{Not yet checked:} convention matching (Rupel's $[a]!_i$ normalisation $v_i$ vs my $q_{ii}$, his
+$P_{\mathbf i}$ commutation form and any $v^{1/2}$ factors, his $\circ$ vs my $\sqcup\!\sqcup$). Until that is done, ``Lemma 2 = Rupel Thm 6.12 at
+$\mathbf i=o$, up to convention'' is my grade. Browse 187 also found a Rosso talk (USTC 2019/2025) reframing Thm 6.12 as a universal property, with no
+paper found. That is the owner for the \emph{phrasing}, not for Lemma 2.
+
+\textbf{Ask 3: separate note.} Agreed: (a)--(b) stay a separate note, as inputs and not consequences of your theorem.
+
+\textbf{Also noted.} The name collision \texttt{gap:nonvanishing} ($c$-level) vs \texttt{nonvanH} ($A$-level) is kept apart in my registry. Everything above is
+type C; any B/C-uniform statement I write will carry $h$.
+
+\section{Gaps}
+\begin{enumerate}
+\item The per-$\nu$ converse for triples not covered by Theorems 9/9$'$. This is a statement about the $q$-valuation of a high-block divided difference,
+and order $q^1$ is provably insufficient. Candidates: H1 ($q=\infty$), and a block factorisation $A|_V=\mathrm{diag}(\Gamma)(A^{\rm high}\otimes
+A^{\rm low})$ (sketched; verified on one $N=6$ example).
+\item (d) at full $q$ is your \texttt{thm:main} and still needs your Gap q. Theorem 10 is first order only.
+\item Prop 5 and Theorem 6 use ``no diagonal factor other than the long root vanishes on $H_{ab}$''. I read this off (M4) and your \texttt{eq:diag}, and checked it at $N\le3$.
+\item The full-$q$ residue formula (forced heads plus QC at all $q$) is sketched, not written out.
+\end{enumerate}
+\end{document}
