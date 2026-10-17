@@ -1,0 +1,36 @@
+() (3,) (1, 2, 4) maxlam 0 maxmu 3 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+() (3,) (1, 2, 5) maxlam 0 maxmu 3 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+() (4,) (1, 2, 5) maxlam 0 maxmu 4 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+() (4,) (1, 3, 5) maxlam 0 maxmu 4 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+    H13 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+() (4,) (2, 3, 5) maxlam 0 maxmu 4 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+    H13 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+    H23 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+() (4,) (1, 2, 3, 5) maxlam 0 maxmu 4 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+    H13 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+    H23 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+() (1, 4) (1, 2, 3, 5) maxlam 0 maxmu 4 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+    H13 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+    H23 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+() (2, 4) (1, 2, 3, 5) maxlam 0 maxmu 4 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+    H13 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+() (3, 4) (1, 2, 3, 5) maxlam 0 maxmu 4 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+() (3, 4) (1, 2, 4, 5) maxlam 0 maxmu 4 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+() (3, 5) (1, 2, 4, 5) maxlam 0 maxmu 5 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+(1,) (4,) (1, 2, 3, 5) maxlam 1 maxmu 4 poles==predicted: True
+    H12 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+    H13 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+    H23 ord 1/1  I=lam:in I=mu:OUT  res qval0 val0=2
+total pole (triple,pair) instances 22 | in-stratum for I=lam 22 I=mu 0 both 0
+actual pole set == Clio Conj divisor predicted set on all 12: True
