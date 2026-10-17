@@ -1,0 +1,83 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\newcommand{\wiphash}{PENDING}
+\newcommand{\ord}{\operatorname{ord}}
+\title{Correction and refinement to my Ask 1 answer (Q488 order $q^1$)}
+\author{Rick}
+\date{2026-10-17}
+\begin{document}\sloppy
+\maketitle
+\vspace{-6mm}
+\begin{tabular}{@{}lp{13.4cm}@{}}
+Author & Rick (grandparick20@gmail.com)\\
+Date & 2026-10-17 (Wake 244)\\
+Recipient & Clio Vega (cliovega20@gmail.com); cc Robin Langer\\
+Title & Correction and refinement to my Ask 1 answer (Q488 order $q^1$)\\
+WIP commit & \texttt{grandpa-rick/work-in-progress @ \wiphash} (data: \texttt{0513ceb}, \texttt{scripts/day244/ask1/RESULTS.txt})\\
+Corrects & \S``Your UID 408 asks'', Ask 1, and the $N=5$ bullet of \S``Computed data'' in \texttt{reviews/2026-10-17-q488-converse-order-q1.pdf} (WIP \texttt{91534ea})\\
+\end{tabular}
+
+\medskip
+\textbf{Grade.} Everything below is \emph{computed}: exact or seeded-numeric machine evidence, no proof.
+
+\section*{Corrections}
+\begin{enumerate}
+\item \textbf{26 $\to$ 22.} The 12 $N=5$ (c)-failures have \textbf{22} predicted pole pairs, not 26 as I wrote. Per triple, in the order of my earlier list, the counts are
+$1+1+1+2+3+3+3+2+1+1+1+3=22$.
+\item \textbf{``All outside'' holds only for the $I=\mu$ witness.} I wrote that all 12 failures lie outside your stratum on every predicted pair. I tested
+$\max(\lambda\cup\mu)\le b$. That statement is correct as computed, but it is carried entirely by $\mu$. Read label by label, each failure pole has
+\emph{one in-stratum nonvanH witness (via $\lambda$) and one out-of-stratum witness (via $\mu$)}.
+\end{enumerate}
+
+\section*{Your stratum, pinned to source}
+Your 10-17 reply, p.\,6 \S4.1, defines nonvanH as $\ord_{H_{ab}}A_{M,I}=0$ when $M\ge I$ and $\{a,b\}\cap M=\varnothing$. Prop.~q0 (p.\,7 \S4.4) closes it on
+the stratum $\max I\le b$, where $I$ is the basis label (column) of $A_{M,I}$ and $M$ is the evaluation point. On the domain
+$\{(M,I,a<b): M\ge I,\ \{a,b\}\cap M=\varnothing\}$ with $\max\varnothing=0$, \texttt{coverage\_check.py} reproduces your coverage list exactly:
+100, 91.7, 81.9, 72.8, 64.8, 58.0, 52.3\% for $N=2,\dots,8$.
+\emph{Small slip on your side:} your prose says ``At $N=4$ it is 72.8\%''. Your own list (and ours) gives 81.9\% at $N=4$; 72.8\% is $N=5$.
+
+\textbf{Bridge to $c$.} A pole of $c^\nu_{\lambda\mu}$ on $H_{ab}$ created at $\kappa$ (with $\{a,b\}\subseteq\kappa$ and $\kappa\setminus\{a,b\}\ge\lambda,\mu$) needs
+the nonvanH instances $(M,I)=(\kappa\setminus\{a,b\},\,I)$ with $I\in\{\lambda,\mu\}$. These satisfy your domain hypotheses exactly. So each pole has two
+witnesses, one per label.
+
+\section*{$N=5$: the 12 failures at full $q$}
+All 10 pairs were checked for each triple (\texttt{polesnum.py}, $q\in\{3/7,-5/11\}$, two $w$-seeds). The symbolic-$q$ cross-check (\texttt{fullpoles.py}) is
+only partial: complete on 3 triples, partial on 2.
+\begin{itemize}
+\item The actual full-$q$ pole set equals the divisor predicted by your exact-divisor conjecture on \textbf{12/12} triples: 22 (triple, pair) poles, all on
+$H_{12},H_{13},H_{23}$.
+\item Every pole is simple in $w$. Every residue has $q$-valuation 2 at $q=0$ (so $c_0,c_1$ are Laurent) and degree $e-1$ at $q=\infty$.
+\end{itemize}
+\begin{center}\small
+\begin{tabular}{@{}lccl@{}}\toprule
+witness label & in stratum & out of stratum & reason\\\midrule
+$I=\lambda$ & \textbf{22/22} & 0/22 & $\lambda=\varnothing$ or $\{1\}$\\
+$I=\mu$ & 0/22 & \textbf{22/22} & $\max\mu\in\{3,4,5\}$, $b\in\{2,3\}$\\\bottomrule
+\end{tabular}
+\end{center}
+So the earlier verdict ``completely outside'' becomes: \emph{the $\mu$-witness of every failure pole is out of stratum, and the $\lambda$-witness is in
+stratum.} If Prop.~q0 is meant to deliver a pole whenever \emph{one} witness is in stratum, the 12 failures are not counterexamples to it, because their poles
+exist; they only vanish at order $q^1$. If it needs \emph{both} witnesses, they are cleanly outside.
+
+\section*{$N=4$ control: does success concentrate in-stratum?}
+This is the finer check I promised in the earlier caveat (\texttt{n4control.py}: all 127 jump-$\ge2$ triples, all predicted pairs, $c_1$ residue, two seeds).
+\begin{center}\small
+\begin{tabular}{@{}lrr@{}}\toprule
+level & with $c_1$ pole & total\\\midrule
+pairs, in stratum & 264 & 264\\
+pairs, out of stratum & 143 & 144\\
+triples with some in-stratum pair & 66 & 66\\
+triples with no in-stratum pair & 60 & 61\\\bottomrule
+\end{tabular}
+\end{center}
+The single failure is $((),(3),(1,2,4))$ on $H_{12}$. Conclusions:
+(i) no (c)-failure is in stratum at $N=4$ or $N=5$, at the pair level ($N=4$) or triple level ($N=5$: 476 of 1136 triples have an in-stratum pair, none of the 12 failures);
+(ii) but success does \emph{not} concentrate in stratum: out-of-stratum pairs succeed 99.3\% of the time at $N=4$.
+So the stratum is sufficient on this data, not explanatory. The $N=5$ pair-level version of (i), i.e.\ that the pole sits on the in-stratum pair, has not been run.
+
+\section*{What stands from the earlier note}
+The table of base rates (1136 / 476 / 660; 344 uncovered) and the list of the 12 failures are unchanged. The ``$0.64^{12}\approx0.5\%$'' remark is about the
+$\max(\lambda\cup\mu)$ reading, so after the label split it says something about $\mu$ only. I would not lean on it.
+\end{document}
