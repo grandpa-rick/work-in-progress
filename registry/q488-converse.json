@@ -15,7 +15,7 @@
    {
     "id": "q488-a-power-series",
     "role": "attempt",
-    "approach": "(a) c in R = C[q,w^\u00b1]_(q) \u2282 C(w)[[q]]: entries of A in R, det A = prod diag is a unit (diag mod q = L,S,A factors != 0).",
+    "approach": "(a) c in R = C[q,w^±]_(q) ⊂ C(w)[[q]]: entries of A in R, det A = prod diag is a unit (diag mod q = L,S,A factors != 0).",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "sources": [
@@ -31,14 +31,15 @@
     "reason": "FALSE at N=4: c0^{1234}_{12,34} = 1/(w3^2 w4^2); 17 jump>=2 triples have c0 != 0 (c0_C4.txt). True for N<=3 (exhaustive). Cause (hunch): phi^0 = K_T(LG(N,2N)) Schubert basis, sigma_21 sigma_43 = sigma_4321 in LG(4,8).",
     "refutation": "computed",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
-    "children": []
+    "children": [],
+    "literature_support": "Motegi 2610.15344 L5645-5658 (read Day 243 dream): weight functions 'are q-deformations of the GB- and GQ-functions'; normalized type-C agree with Koncki-thesis twisted motivic Chern classes of LG(2,4) in 15 of 16 entries. Supports phi^0 = K_T(LG) (GQ) Schubert basis hunch; not first-hand on the GQ side."
    },
    {
     "id": "q488-c-c1-pole-all",
     "role": "attempt",
     "approach": "(c) jump>=2 => c1 has a long-root pole, all N.",
     "trust": "dead-end",
-    "reason": "FALSE at N=4: (lam,mu,nu)=(\u2205,{3},{1,2,4}) has c1 Laurent on all six H_ab (num4.py engine + Theorem-7 route, 3 seeds). Full-q residue on H12 nonzero with q-valuation 2 (fullc.py). Converse survives; q^1 is not enough. Holds for 126/127 jump>=2 triples at N=4, 13/13 at N=3.",
+    "reason": "FALSE at N=4: (lam,mu,nu)=(∅,{3},{1,2,4}) has c1 Laurent on all six H_ab (num4.py engine + Theorem-7 route, 3 seeds). Full-q residue on H12 nonzero with q-valuation 2 (fullc.py). Converse survives; q^1 is not enough. Holds for 126/127 jump>=2 triples at N=4, 13/13 at N=3.",
     "refutation": "computed",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "children": []
@@ -57,7 +58,7 @@
    {
     "id": "q488-q0-formula-limit-lemma",
     "role": "premise",
-    "approach": "Explicit q=0 formula (2.1) for phi^0 from Motegi Thm 3.3; phi^0_\u2205=1; N-stability at q=0; Lemma L: in regime w_1<<...<<w_N (spectators x,1/x allowed) phi^0_k(M) -> [M>=k], so phi^0_k(M)|_H != 0 for M>=k, M\u220ca,b.",
+    "approach": "Explicit q=0 formula (2.1) for phi^0 from Motegi Thm 3.3; phi^0_∅=1; N-stability at q=0; Lemma L: in regime w_1<<...<<w_N (spectators x,1/x allowed) phi^0_k(M) -> [M>=k], so phi^0_k(M)|_H != 0 for M>=k, M∌a,b.",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "sources": [
@@ -68,7 +69,7 @@
    {
     "id": "q488-lattice-aggregate",
     "role": "attempt",
-    "approach": "Prop 5 (phi is an O_H-basis of the twisted GKM lattice L_g, colength count) + Theorem 6: all c^\u2022_{lam,mu} regular on H_ab iff no M'' \u2286 [N]\\{a,b} with M''>=lam,mu. Aggregate converse at full q, all N.",
+    "approach": "Prop 5 (phi is an O_H-basis of the twisted GKM lattice L_g, colength count) + Theorem 6: all c^•_{lam,mu} regular on H_ab iff no M'' ⊆ [N]\\{a,b} with M''>=lam,mu. Aggregate converse at full q, all N.",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "sources": [
@@ -79,7 +80,7 @@
    {
     "id": "q488-residue-formula",
     "role": "attempt",
-    "approach": "Theorem 7: Res_{H_ab} c1^nu = gamma * Res l^0_nu(1_{\u2287ab} phi0_lam phi0_mu), gamma=(w_a-1/w_a)^2. Checked vs direct c1 on 167 (triple,pair) at N=3.",
+    "approach": "Theorem 7: Res_{H_ab} c1^nu = gamma * Res l^0_nu(1_{⊇ab} phi0_lam phi0_mu), gamma=(w_a-1/w_a)^2. Checked vs direct c1 on 167 (triple,pair) at N=3.",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "sources": [
@@ -109,7 +110,7 @@
    {
     "id": "q488-d-jump-le-1",
     "role": "attempt",
-    "approach": "(d) jump<=1 => c1 Laurent, all N (Thm 10): poles of l^0 only on L,S,A; S,A regular by collapse (Clio Lemma 3 re-derived at all q from Motegi u-symmetry + sign count) + collision induction; L regular since defect set D on \u2193nu empty for jump<=1 (Theorem 7). Also c0 Laurent for all triples. Numerics: N<=3 full; N=4 0 long-root poles in 599 jump<=1 triples x 6 pairs.",
+    "approach": "(d) jump<=1 => c1 Laurent, all N (Thm 10): poles of l^0 only on L,S,A; S,A regular by collapse (Clio Lemma 3 re-derived at all q from Motegi u-symmetry + sign count) + collision induction; L regular since defect set D on ↓nu empty for jump<=1 (Theorem 7). Also c0 Laurent for all triples. Numerics: N<=3 full; N=4 0 long-root poles in 599 jump<=1 triples x 6 pairs.",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "children": [],
@@ -120,12 +121,12 @@
    {
     "id": "q488-qinf-dichotomy",
     "role": "attempt",
-    "approach": "Hunch: every jump>=2 residue on H_12 is first order at q=infinity (ph\u00ee = q^{-(dim-codim I)} phi has a finite limit; g q<->1/q symmetric). Data: N=3 13/13 (both ends), N=4 127/127 at infinity (126/127 at 0), N=5 q^1-failures (12/1136) first order at infinity on 5/5 tested so far. Full-q converse computed at N=4 for all 127 triples (H_12).",
+    "approach": "Hunch: every jump>=2 residue on H_12 is first order at q=infinity (phî = q^{-(dim-codim I)} phi has a finite limit; g q<->1/q symmetric). Data: N=3 13/13 (both ends), N=4 127/127 at infinity (126/127 at 0), N=5 q^1-failures (12/1136) first order at infinity on 12/12 (all 26 predicted pairs val0=2, QINF; run finished 07:46 UTC 10-17, work-in-progress/scripts/day243/q488c/qinf_N5_partial.txt, read Day 243 dream). Full-q converse computed at N=4 for all 127 triples (H_12).",
     "trust": "hunch",
     "file": null,
     "children": []
    }
   ]
  },
- "wip_commit": "3d07230"
+ "wip_commit": "d739380 (addendum; first push 3d07230)"
 }
