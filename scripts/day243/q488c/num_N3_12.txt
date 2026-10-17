@@ -1,0 +1,115 @@
+() () () jump 0 c0pole False c1pole False
+() () (1,) jump 1 c0pole False c1pole False
+() () (2,) jump 1 c0pole False c1pole False
+() () (3,) jump 1 c0pole False c1pole False
+() () (1, 2) jump 2 c0pole False c1pole True
+() () (1, 3) jump 2 c0pole False c1pole True
+() () (2, 3) jump 2 c0pole False c1pole True
+() () (1, 2, 3) jump 3 c0pole False c1pole True
+() (1,) (1,) jump 0 c0pole False c1pole False
+() (1,) (2,) jump 0 c0pole False c1pole False
+() (1,) (3,) jump 0 c0pole False c1pole False
+() (1,) (1, 2) jump 1 c0pole False c1pole False
+() (1,) (1, 3) jump 1 c0pole False c1pole False
+() (1,) (2, 3) jump 1 c0pole False c1pole False
+() (1,) (1, 2, 3) jump 2 c0pole False c1pole True
+() (2,) (2,) jump 0 c0pole False c1pole False
+() (2,) (3,) jump 0 c0pole False c1pole False
+() (2,) (1, 2) jump 1 c0pole False c1pole False
+() (2,) (1, 3) jump 1 c0pole False c1pole False
+() (2,) (2, 3) jump 1 c0pole False c1pole False
+() (2,) (1, 2, 3) jump 2 c0pole False c1pole True
+() (3,) (3,) jump 0 c0pole False c1pole False
+() (3,) (1, 3) jump 1 c0pole False c1pole False
+() (3,) (2, 3) jump 1 c0pole False c1pole False
+() (3,) (1, 2, 3) jump 2 c0pole False c1pole True
+() (1, 2) (1, 2) jump 0 c0pole False c1pole False
+() (1, 2) (1, 3) jump 0 c0pole False c1pole False
+() (1, 2) (2, 3) jump 0 c0pole False c1pole False
+() (1, 2) (1, 2, 3) jump 1 c0pole False c1pole False
+() (1, 3) (1, 3) jump 0 c0pole False c1pole False
+() (1, 3) (2, 3) jump 0 c0pole False c1pole False
+() (1, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+() (2, 3) (2, 3) jump 0 c0pole False c1pole False
+() (2, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+() (1, 2, 3) (1, 2, 3) jump 0 c0pole False c1pole False
+(1,) (1,) (1,) jump 0 c0pole False c1pole False
+(1,) (1,) (2,) jump 0 c0pole False c1pole False
+(1,) (1,) (3,) jump 0 c0pole False c1pole False
+(1,) (1,) (1, 2) jump 1 c0pole False c1pole False
+(1,) (1,) (1, 3) jump 1 c0pole False c1pole False
+(1,) (1,) (2, 3) jump 1 c0pole False c1pole False
+(1,) (1,) (1, 2, 3) jump 2 c0pole False c1pole True
+(1,) (2,) (2,) jump 0 c0pole False c1pole False
+(1,) (2,) (3,) jump 0 c0pole False c1pole False
+(1,) (2,) (1, 2) jump 1 c0pole False c1pole False
+(1,) (2,) (1, 3) jump 1 c0pole False c1pole False
+(1,) (2,) (2, 3) jump 1 c0pole False c1pole False
+(1,) (2,) (1, 2, 3) jump 2 c0pole False c1pole True
+(1,) (3,) (3,) jump 0 c0pole False c1pole False
+(1,) (3,) (1, 3) jump 1 c0pole False c1pole False
+(1,) (3,) (2, 3) jump 1 c0pole False c1pole False
+(1,) (3,) (1, 2, 3) jump 2 c0pole False c1pole True
+(1,) (1, 2) (1, 2) jump 0 c0pole False c1pole False
+(1,) (1, 2) (1, 3) jump 0 c0pole False c1pole False
+(1,) (1, 2) (2, 3) jump 0 c0pole False c1pole False
+(1,) (1, 2) (1, 2, 3) jump 1 c0pole False c1pole False
+(1,) (1, 3) (1, 3) jump 0 c0pole False c1pole False
+(1,) (1, 3) (2, 3) jump 0 c0pole False c1pole False
+(1,) (1, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+(1,) (2, 3) (2, 3) jump 0 c0pole False c1pole False
+(1,) (2, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+(1,) (1, 2, 3) (1, 2, 3) jump 0 c0pole False c1pole False
+(2,) (2,) (2,) jump 0 c0pole False c1pole False
+(2,) (2,) (3,) jump 0 c0pole False c1pole False
+(2,) (2,) (1, 2) jump 1 c0pole False c1pole False
+(2,) (2,) (1, 3) jump 1 c0pole False c1pole False
+(2,) (2,) (2, 3) jump 1 c0pole False c1pole False
+(2,) (2,) (1, 2, 3) jump 2 c0pole False c1pole True
+(2,) (3,) (3,) jump 0 c0pole False c1pole False
+(2,) (3,) (1, 3) jump 1 c0pole False c1pole False
+(2,) (3,) (2, 3) jump 1 c0pole False c1pole False
+(2,) (3,) (1, 2, 3) jump 2 c0pole False c1pole True
+(2,) (1, 2) (1, 2) jump 0 c0pole False c1pole False
+(2,) (1, 2) (1, 3) jump 0 c0pole False c1pole False
+(2,) (1, 2) (2, 3) jump 0 c0pole False c1pole False
+(2,) (1, 2) (1, 2, 3) jump 1 c0pole False c1pole False
+(2,) (1, 3) (1, 3) jump 0 c0pole False c1pole False
+(2,) (1, 3) (2, 3) jump 0 c0pole False c1pole False
+(2,) (1, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+(2,) (2, 3) (2, 3) jump 0 c0pole False c1pole False
+(2,) (2, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+(2,) (1, 2, 3) (1, 2, 3) jump 0 c0pole False c1pole False
+(3,) (3,) (3,) jump 0 c0pole False c1pole False
+(3,) (3,) (1, 3) jump 1 c0pole False c1pole False
+(3,) (3,) (2, 3) jump 1 c0pole False c1pole False
+(3,) (3,) (1, 2, 3) jump 2 c0pole False c1pole True
+(3,) (1, 2) (1, 3) jump 0 c0pole False c1pole False
+(3,) (1, 2) (2, 3) jump 0 c0pole False c1pole False
+(3,) (1, 2) (1, 2, 3) jump 1 c0pole False c1pole False
+(3,) (1, 3) (1, 3) jump 0 c0pole False c1pole False
+(3,) (1, 3) (2, 3) jump 0 c0pole False c1pole False
+(3,) (1, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+(3,) (2, 3) (2, 3) jump 0 c0pole False c1pole False
+(3,) (2, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+(3,) (1, 2, 3) (1, 2, 3) jump 0 c0pole False c1pole False
+(1, 2) (1, 2) (1, 2) jump 0 c0pole False c1pole False
+(1, 2) (1, 2) (1, 3) jump 0 c0pole False c1pole False
+(1, 2) (1, 2) (2, 3) jump 0 c0pole False c1pole False
+(1, 2) (1, 2) (1, 2, 3) jump 1 c0pole False c1pole False
+(1, 2) (1, 3) (1, 3) jump 0 c0pole False c1pole False
+(1, 2) (1, 3) (2, 3) jump 0 c0pole False c1pole False
+(1, 2) (1, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+(1, 2) (2, 3) (2, 3) jump 0 c0pole False c1pole False
+(1, 2) (2, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+(1, 2) (1, 2, 3) (1, 2, 3) jump 0 c0pole False c1pole False
+(1, 3) (1, 3) (1, 3) jump 0 c0pole False c1pole False
+(1, 3) (1, 3) (2, 3) jump 0 c0pole False c1pole False
+(1, 3) (1, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+(1, 3) (2, 3) (2, 3) jump 0 c0pole False c1pole False
+(1, 3) (2, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+(1, 3) (1, 2, 3) (1, 2, 3) jump 0 c0pole False c1pole False
+(2, 3) (2, 3) (2, 3) jump 0 c0pole False c1pole False
+(2, 3) (2, 3) (1, 2, 3) jump 1 c0pole False c1pole False
+(2, 3) (1, 2, 3) (1, 2, 3) jump 0 c0pole False c1pole False
+(1, 2, 3) (1, 2, 3) (1, 2, 3) jump 0 c0pole False c1pole False

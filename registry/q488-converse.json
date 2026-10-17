@@ -1,0 +1,130 @@
+{
+ "conjecture": "Q488 converse (Clio Gap 2): for Motegi type-C normalised weight-function structure constants c^nu_{lam,mu}(w;q), jump := |nu|-max(|lam|,|mu|) >= 2 implies c has a pole on some long-root divisor H_ab = {w_a w_b = 1}. Day-243 PROVE route: q-expansion c = c0 + q c1 + ..., targets (a) c in C(w)[[q]], (b) jump>=2 => c0=0, (c) jump>=2 => c1 has a long-root pole, (d) jump<=1 => c1 Laurent.",
+ "status": "in-progress",
+ "date_opened": "2026-10-17",
+ "date_closed": null,
+ "tree": {
+  "id": "q488-converse-order-q1",
+  "approach": "Order-by-order in q: settle the converse at first order. Result: route settles the converse on the top-two and single-defect families (all of N<=3, 111/127 at N=4) but provably cannot settle it in general: (b) and (c) are false at N=4.",
+  "trust": "in-progress",
+  "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+  "sources": [
+   "2610.15344"
+  ],
+  "children": [
+   {
+    "id": "q488-a-power-series",
+    "role": "attempt",
+    "approach": "(a) c in R = C[q,w^\u00b1]_(q) \u2282 C(w)[[q]]: entries of A in R, det A = prod diag is a unit (diag mod q = L,S,A factors != 0).",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-b-c0-vanishes",
+    "role": "attempt",
+    "approach": "(b) jump>=2 => c0=0.",
+    "trust": "dead-end",
+    "reason": "FALSE at N=4: c0^{1234}_{12,34} = 1/(w3^2 w4^2); 17 jump>=2 triples have c0 != 0 (c0_C4.txt). True for N<=3 (exhaustive). Cause (hunch): phi^0 = K_T(LG(N,2N)) Schubert basis, sigma_21 sigma_43 = sigma_4321 in LG(4,8).",
+    "refutation": "computed",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "children": []
+   },
+   {
+    "id": "q488-c-c1-pole-all",
+    "role": "attempt",
+    "approach": "(c) jump>=2 => c1 has a long-root pole, all N.",
+    "trust": "dead-end",
+    "reason": "FALSE at N=4: (lam,mu,nu)=(\u2205,{3},{1,2,4}) has c1 Laurent on all six H_ab (num4.py engine + Theorem-7 route, 3 seeds). Full-q residue on H12 nonzero with q-valuation 2 (fullc.py). Converse survives; q^1 is not enough. Holds for 126/127 jump>=2 triples at N=4, 13/13 at N=3.",
+    "refutation": "computed",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "children": []
+   },
+   {
+    "id": "q488-lemma-qc",
+    "role": "premise",
+    "approach": "Lemma QC: on H_ab (a,b in M), A_{M,I} = g(q,w_a) A_{M\\{a,b},I} for all I, g=(1-q)^2/((1-qx^2)(1-qx^-2)). Proof from Motegi Thm 3.3 + E^C + stability: special values in head die by (u_j u_k -1); tail x-dependence symmetric in the rest; cancels against E except the pair factor.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-q0-formula-limit-lemma",
+    "role": "premise",
+    "approach": "Explicit q=0 formula (2.1) for phi^0 from Motegi Thm 3.3; phi^0_\u2205=1; N-stability at q=0; Lemma L: in regime w_1<<...<<w_N (spectators x,1/x allowed) phi^0_k(M) -> [M>=k], so phi^0_k(M)|_H != 0 for M>=k, M\u220ca,b.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-lattice-aggregate",
+    "role": "attempt",
+    "approach": "Prop 5 (phi is an O_H-basis of the twisted GKM lattice L_g, colength count) + Theorem 6: all c^\u2022_{lam,mu} regular on H_ab iff no M'' \u2286 [N]\\{a,b} with M''>=lam,mu. Aggregate converse at full q, all N.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-residue-formula",
+    "role": "attempt",
+    "approach": "Theorem 7: Res_{H_ab} c1^nu = gamma * Res l^0_nu(1_{\u2287ab} phi0_lam phi0_mu), gamma=(w_a-1/w_a)^2. Checked vs direct c1 on 167 (triple,pair) at N=3.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-c-top-two",
+    "role": "attempt",
+    "approach": "Theorem 9: if (a,b) = two largest of nu and nu\\{a,b} >= lam,mu, Res_{H_ab} c1^nu = -K^{-1} [phi0_{nu''}](L phi0_lam phi0_mu) != 0 (forced heads + Lemma L). Formula checked on all 105 triples N=2,3.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-c-single-defect",
+    "role": "attempt",
+    "approach": "Single-defect theorem: if some pair a<b in nu has nu''>=lam,mu and no M<nu with a,b in M, M''>=lam,mu, then Res = gamma rho_{nu nu} P(nu'') != 0. With top-two: proves (c) for all 13 jump>=2 triples at N=3, 111/127 at N=4 (792/1136 N=5).",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "children": []
+   },
+   {
+    "id": "q488-d-jump-le-1",
+    "role": "attempt",
+    "approach": "(d) jump<=1 => c1 Laurent, all N (Thm 10): poles of l^0 only on L,S,A; S,A regular by collapse (Clio Lemma 3 re-derived at all q from Motegi u-symmetry + sign count) + collision induction; L regular since defect set D on \u2193nu empty for jump<=1 (Theorem 7). Also c0 Laurent for all triples. Numerics: N<=3 full; N=4 0 long-root poles in 599 jump<=1 triples x 6 pairs.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-q488-converse-order-q1.md",
+    "children": [],
+    "sources": [
+     "2610.15344"
+    ]
+   },
+   {
+    "id": "q488-qinf-dichotomy",
+    "role": "attempt",
+    "approach": "Hunch: every jump>=2 residue is first-order at q=0 OR at q=infinity (A q^{-(dim-codim I)} has a finite limit; g symmetric under q<->1/q). Exceptional N=4 triple has residue degree exactly e-1 = 13 (first order at infinity). N=3: 13/13 first order at both ends.",
+    "trust": "hunch",
+    "file": null,
+    "children": []
+   }
+  ]
+ }
+}
