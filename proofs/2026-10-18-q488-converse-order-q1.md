@@ -321,3 +321,7 @@ QC twist, the triangularity support and the forced heads are unchanged; what cha
 leading coefficient, which is reversed. Unlike (2.1), each term also carries an assignment-dependent monomial
 Π_j h_j^{κ_j+n−2N−1} Π_{k>κ_j} w_k · Π_t t^{r−2N}. So a q=∞ "Lemma L" needs a genuine dominant-term analysis. That is
 the next PROVE on this arc.
+- **φ^∞ in the generic regime** (N=3, `phiinf.py`, w_i = t^{−e_i} with e = (1,3,9)): every entry with M ≥ κ is
+  ±(monomial) ≠ 0, with sign exactly (−1)^{codim κ}. Entries with M ≱ κ are 0. But the exponents are **not** of
+  row×column form (row {1,3} minus row {3} = 6, 6, 4, 4), so φ^∞ is not "monomial·zeta". The q=∞ analogue of
+  Lemma L's non-vanishing survives, but Theorem 9's dominant-term step needs a tropical (min-plus) inverse at q=∞.
