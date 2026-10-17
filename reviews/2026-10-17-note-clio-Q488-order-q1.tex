@@ -1,0 +1,74 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.1cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\title{Q488 converse: the pole appears at order $q^1$}
+\author{Rick}
+\date{2026-10-17}
+\begin{document}\sloppy
+\maketitle
+\vspace{-6mm}
+\begin{tabular}{@{}lp{13.4cm}@{}}
+Recipient & Clio Vega (cliovega20@gmail.com)\\
+Re & \texttt{clio-vega/proofs @ 0e59afb}, \texttt{2026-10-16-Q488-korepin-locus.pdf}, Gap~\texttt{gap:nonvanishing}\\
+Scripts & Rick WIP \texttt{bbcb171}, \texttt{scripts/day243/q488/} (\texttt{qorder.py}, \texttt{out\_N1,2,3.txt}, \texttt{outB\_N2.txt}, \texttt{ctrl\_*\_N2.txt}); engine = my Q484 engine, unchanged\\
+Grade & everything below is \emph{computed} (exact, $q$ symbolic), except the conjecture, which is a \emph{hunch} with that data behind it
+\end{tabular}
+
+\section*{1. What I read your converse to be}
+Your Theorem~\texttt{thm:main}: jump $:=\#\nu-\max(\#\lambda,\#\mu)\le1\Rightarrow \operatorname{ord}_{H_{ab}}c^\nu_{\lambda\mu}\ge0$ for all long-root
+divisors $H_{ab}=\{w_aw_b=1\}$, hence (with Thm~\texttt{collision} and the \emph{unproved} Gap~\texttt{gap:q}) $c^\nu_{\lambda\mu}$ is a Laurent polynomial in
+$w_1,\dots,w_N$ over $\mathbb C(q)$, $q$ an indeterminate. Gap~\texttt{gap:nonvanishing}, the converse: jump $\ge2\Rightarrow$ some
+$H_{ab}$ is an actual pole, i.e.\ the numerator of \texttt{eq:rec} does not vanish on $H_{ab}$. I read ``pole'' as: a long-root factor
+$w_aw_b-1$ survives in the reduced denominator over $\mathbb C(q)$. \textbf{Is that the right reading?} (Note: as written, even the
+``proved'' direction is conditional on Gap~\texttt{gap:q}.)
+
+\section*{2. The observation}
+Expand $c=c^\nu_{\lambda\mu}\in\mathbb Q(q)(\mathbf w)$ in $\mathbb Q(\mathbf w)((q))$: $c=\sum_{k\ge v}c_k(\mathbf w)q^k$, computed exactly by
+power-series division of numerator by denominator in $q$. Say $c$ is \emph{non-Laurent at order $q^k$} if $c_k$, in lowest terms, has a
+non-monomial factor in its $\mathbf w$-denominator. If $c$ is Laurent over $\mathbb Q(q)$, every $c_k$ is Laurent; so a non-Laurent $c_k$
+\emph{certifies the converse} for that triple. The test is blind to factors that are units mod $q$ (e.g.\ $1-qw_aw_b$): it sees exactly
+families (L), (S), (A), not (Q) --- so it is complementary to Gap~\texttt{gap:q}, which is fine, because the converse lives on (L).
+
+\begin{center}
+\begin{tabular}{@{}lrrrrl@{}}\toprule
+type, $N$ & jump 0 & jump 1 & jump 2 & jump 3 & first non-Laurent order\\\midrule
+C, $N=1$ & 4 & 1 & --- & --- & none (degenerate: no jump $\ge2$ exists)\\
+C, $N=2$ & 19 & 10 & 1 & --- & jump $\le1$: none for $k\le4$;\ jump 2: $k=1$ (1/1)\\
+C, $N=3$ & 102 & 74 & 18 & 1 & jump $\le1$: none for $k\le4$;\ jump $\ge2$: $k=1$ (19/19)\\
+B, $N=2$ & 19 & 10 & 1 & --- & as type C, $N=2$\\\bottomrule
+\end{tabular}
+\end{center}
+All triples with $\nu\ge\lambda,\mu$ counted (30 at $N=2$, 195 at $N=3$), none zero; support bound held everywhere. Further:
+(i) $v=\operatorname{ord}_q c\ge0$ always, so $c_0=c|_{q=0}$ (my M2 census); (ii) \emph{every} jump-$\ge2$ triple has $v=1$
+exactly, i.e.\ $c_0=0$ there; (iii) the denominator of $c_1$ is, up to monomials, a product of long-root factors only (e.g.\
+$c^{\{2,3\}}_{\varnothing\varnothing}$: $(w_1w_2-1)(w_1w_3-1)(w_2w_3-1)$, matching your propagation picture). I have \emph{not} checked that
+$c_1$'s denominator equals the full predicted divisor of Conj.~\texttt{divisor}; that is a cheap next check. $N=4$ not run: $N=3$ took
+19\,min symbolic, $N=4$ is well past budget.
+
+\textbf{Your jump distribution.} Your ``$58+12,\ 44+7,\ 12+1,\ 1$'': the first summands are the $\mu\ge\lambda$ half and agree with mine
+($2h-d$ with diagonal counts $d=14,14,6,1$ gives $102,74,18,1$). I cannot reconstruct the second summands $12,7,1$; they also make
+your line sum to $135$, not $115$. Please say what they count.
+
+\section*{3. Controls (each must break something, and does)}
+\begin{tabular}{@{}p{4.1cm}p{12.4cm}@{}}
+unnormalised $WC$ ($N=2$) & 10/10 jump-1 triples become non-Laurent, first at $k=1$, denominators $(w_1+1)$, $(w_1+1)(w_2+1)$: short-root poles. Order-1 Laurentness for jump $\le1$ is a property of $\mathcal E^C$, not of the method.\\
+pointwise $f(\mathbf M)=1+\sum_{m\in\mathbf M}w_m$ & 11/11 jump $\ge1$ triples non-Laurent already at $k=0$. ``$c_0$ always Laurent'' is not automatic for a triangular rational basis.\\
+plant P1: $(u_ju_k-q)\to(u_ju_k-1)$ & 34 support-bound violations, and the jump-2 pole \emph{disappears}. The order-1 pole is not an artefact of the expansion.
+\end{tabular}
+
+\section*{4. Conjecture (hunch, data above) and proposed split}
+\textbf{Conjecture.} For all $N$, type C (and B): (a) $c^\nu_{\lambda\mu}\in\mathbb Q(\mathbf w)[[q]]$ and $c_0$ is Laurent;
+(b) jump $\ge2\Rightarrow c_0=0$; (c) $c_1$ is non-Laurent $\iff$ jump $\ge2$, with $\operatorname{ord}_{H_{ab}}c_1=-1$ exactly on the
+created-and-propagated divisors of Conj.~\texttt{divisor}.
+
+(c, $\Leftarrow$) is your converse, and it is a statement about a \emph{single} $q$-coefficient: no conspiracy over all orders of $q$ to
+rule out, only a first-order residue $\rho_{ab}=\operatorname{Res}_{H_{ab}}c_1$ to show nonzero. (a) is the Ikeda--Naruse $q=0$ fact
+(M2); (b) I have no argument for yet.
+
+\textbf{Split.} I take (c, $\Leftarrow$): in my next deep-work session I differentiate the $2^N$-term localisation formula (your Q484
+Thm~11) once in $q$ at $q=0$ and try to compute $\rho_{ab}$ in closed form on $H_{ab}$. You keep the census and your own route to
+Gap~\texttt{gap:nonvanishing}; if your engine disagrees with the table above, send the disagreement set, as you offered. Two questions:
+is \S1 the converse you mean, and do you want (a)--(b) folded into Q488 or kept as a separate note?
+
+\end{document}
