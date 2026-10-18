@@ -1,0 +1,56 @@
+Wake 245 compute (2026-10-18) -- is Â_{M,I} = Ã_{M,I}·Ψ(M), Ψ(M)=∏_{m∈M}(1−q w_m²)/(1−q), an honest GKM class on LG(N,2N)?
+Grade: COMPUTED.  Moment graph: fixed pts = subsets M⊆[N]; edges 2e_a (M↔M∪a, divisor w_a=±1, both components tested),
+e_a+e_b (M↔M∪{a,b}, a,b∉M, divisor w_aw_b=1 = H_ab), e_a−e_b (exactly one of a,b in M, divisor w_a=w_b).
+Counts = (label I, edge[, component]) pairs passing / total.  Pass = difference vanishes identically on the divisor.
+Ã built by fastA.py (Motegi summand unpadded n=|M|); = engine.W at N=2 full q, = A01_N3.pkl at q=0 (all 64 entries).
+
+=== N=3, full symbolic q and w (psi_gkm_N.py 3) ===
+N=3  edges=36  labels=8  mode=symbolic q
+Ahat=Ã*Psi     2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 48/48  e_a-e_b 48/48
+Ã raw          2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 36/48  e_a-e_b 48/48
+ctrl Ã*Psi^2   2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 36/48  e_a-e_b 48/48
+ctrl Ã/Psi     2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 36/48  e_a-e_b 48/48
+Psi alone      2e_a(w=+1) 12/12  2e_a(w=-1) 12/12  e_a+e_b 0/6  e_a-e_b 6/6
+    FAIL I=None e_a+e_b ()--(1, 2)
+    FAIL I=None e_a+e_b ()--(1, 3)
+    FAIL I=None e_a+e_b ()--(2, 3)
+    FAIL I=None e_a+e_b (1,)--(1, 2, 3)
+    FAIL I=None e_a+e_b (2,)--(1, 2, 3)
+    FAIL I=None e_a+e_b (3,)--(1, 2, 3)
+
+=== N=3, edge-local cross-check (psi_gkm_edge.py 3) ===
+N=3 edge-local: q symbolic, x free, spectators random rational (2 seeds); edges=36 (2e_a split w=+-1), labels=8
+Ahat=Ã*Psi     2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 48/48  e_a-e_b 48/48
+Ã raw          2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 36/48  e_a-e_b 48/48
+ctrl Ã*Psi^2   2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 36/48  e_a-e_b 48/48
+ctrl Ã/Psi     2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 36/48  e_a-e_b 48/48
+
+=== N=4, edge-local: q symbolic, free divisor coordinate x, spectator w random rational, 2 seeds (psi_gkm_edge.py 4) ===
+N=4 edge-local: q symbolic, x free, spectators random rational (2 seeds); edges=112 (2e_a split w=+-1), labels=16
+Ahat=Ã*Psi     2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 384/384  e_a-e_b 384/384
+Ã raw          2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 290/384  e_a-e_b 384/384
+ctrl Ã*Psi^2   2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 290/384  e_a-e_b 384/384
+ctrl Ã/Psi     2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 290/384  e_a-e_b 384/384
+
+=== N=4, independent: q=3/7, ALL w symbolic (psi_gkm_N4num.py 4; killed after the Â line, controls not reached) ===
+N=4  q=3/7 (numeric q, symbolic w)  edges=112 (2e_a split w=+-1)  labels=16
+Ahat=Ã*Psi     2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 384/384  e_a-e_b 384/384
+EXIT 143
+
+=== N=2 (psi_gkm_N.py 2; reproduces psi_n2.py) ===
+N=2  edges=10  labels=4  mode=symbolic q
+Ahat=Ã*Psi     2e_a(w=+1) 16/16  2e_a(w=-1) 16/16  e_a+e_b 4/4  e_a-e_b 4/4
+Ã raw          2e_a(w=+1) 16/16  2e_a(w=-1) 16/16  e_a+e_b 3/4  e_a-e_b 4/4
+ctrl Ã*Psi^2   2e_a(w=+1) 16/16  2e_a(w=-1) 16/16  e_a+e_b 3/4  e_a-e_b 4/4
+ctrl Ã/Psi     2e_a(w=+1) 16/16  2e_a(w=-1) 16/16  e_a+e_b 3/4  e_a-e_b 4/4
+Psi alone      2e_a(w=+1) 4/4  2e_a(w=-1) 4/4  e_a+e_b 0/1  e_a-e_b 1/1
+    FAIL I=None e_a+e_b ()--(1, 2)
+
+=== Reading ===
+* Â passes EVERY congruence at N=2,3,4 (N=4: 1792/1792). Ã fails only e_a+e_b edges (N=3: 12/48, N=4: 94/384); 2e_a and
+  e_a−e_b are passed by Ã itself (psi(±1)=1 and psi symmetric, so Ψ cannot change those edges anyway).
+* Controls Ψ² and 1/Ψ break exactly the same e_a+e_b pairs as raw Ã -> the test discriminates on the only edges Ψ touches.
+* Mechanism (computed, N=3): on H_12, Ã_{M,I}/Ã_{M∖12,I} = g = x²(1−q)²/((x²−q)(1−qx²)) and g·ψ(x)ψ(1/x) = 1 identically.
+  So given Lemma QC (H_ab collision) + the untwisted w_a=1, w_a=w_b collisions (proof file §, items (i),(ii)), honesty of Â
+  should follow for all N in one line -- not checked as a proof here (w_a=−1 component not covered by item (i) as stated).
+* Psi alone fails exactly the e_a+e_b edges (6/6 at N=3).

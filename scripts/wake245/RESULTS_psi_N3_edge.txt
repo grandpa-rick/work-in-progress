@@ -1,0 +1,5 @@
+N=3 edge-local: q symbolic, x free, spectators random rational (2 seeds); edges=36 (2e_a split w=+-1), labels=8
+Ahat=Ã*Psi     2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 48/48  e_a-e_b 48/48
+Ã raw          2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 36/48  e_a-e_b 48/48
+ctrl Ã*Psi^2   2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 36/48  e_a-e_b 48/48
+ctrl Ã/Psi     2e_a(w=+1) 96/96  2e_a(w=-1) 96/96  e_a+e_b 36/48  e_a-e_b 48/48

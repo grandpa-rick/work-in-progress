@@ -1,0 +1,7 @@
+N=2  edges=10  labels=4  mode=symbolic q
+Ahat=Ã*Psi     2e_a(w=+1) 16/16  2e_a(w=-1) 16/16  e_a+e_b 4/4  e_a-e_b 4/4
+Ã raw          2e_a(w=+1) 16/16  2e_a(w=-1) 16/16  e_a+e_b 3/4  e_a-e_b 4/4
+ctrl Ã*Psi^2   2e_a(w=+1) 16/16  2e_a(w=-1) 16/16  e_a+e_b 3/4  e_a-e_b 4/4
+ctrl Ã/Psi     2e_a(w=+1) 16/16  2e_a(w=-1) 16/16  e_a+e_b 3/4  e_a-e_b 4/4
+Psi alone      2e_a(w=+1) 4/4  2e_a(w=-1) 4/4  e_a+e_b 0/1  e_a-e_b 1/1
+    FAIL I=None e_a+e_b ()--(1, 2)
