@@ -1,0 +1,4 @@
+N=4 mode=formula: 127 jump>=2 triples x 6 pairs
+pair (1,2) done, 194s
+stats: {'tot': 127, 'f_inf_ok': 0, 'f_0_ok': 0, 'Z0': 1, 'Zinf': 0, 'both0': 0, 'only0': 1, 'onlyinf': 0, 'prop': 0}
+(triple,pair) where exactly one end vanishes: [('H12', (), (3,), (1, 2, 4), 'R0=0')]

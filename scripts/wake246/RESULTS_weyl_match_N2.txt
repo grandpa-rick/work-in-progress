@@ -1,0 +1,13 @@
+N=2: 12 (sigma,I,J) matches; columns I matched: [(), (1, 2), (2,)] of 4
+  pi=(1, 2) eps=(1, 1)  phiinf_() ~ phi0_()
+  pi=(1, 2) eps=(1, 1)  phiinf_(2,) ~ phi0_(2,)
+  pi=(1, 2) eps=(1, 1)  phiinf_(1, 2) ~ phi0_(1, 2)
+  pi=(1, 2) eps=(1, -1)  phiinf_() ~ phi0_()
+  pi=(1, 2) eps=(-1, 1)  phiinf_() ~ phi0_()
+  pi=(1, 2) eps=(-1, 1)  phiinf_(2,) ~ phi0_(2,)
+  pi=(1, 2) eps=(-1, -1)  phiinf_() ~ phi0_()
+  pi=(2, 1) eps=(1, 1)  phiinf_() ~ phi0_()
+  pi=(2, 1) eps=(1, 1)  phiinf_(1, 2) ~ phi0_(1, 2)
+  pi=(2, 1) eps=(1, -1)  phiinf_() ~ phi0_()
+  pi=(2, 1) eps=(-1, 1)  phiinf_() ~ phi0_()
+  pi=(2, 1) eps=(-1, -1)  phiinf_() ~ phi0_()

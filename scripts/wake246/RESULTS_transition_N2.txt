@@ -1,0 +1,6 @@
+entries with deg_q != dim-codim I: []
+col J=(): {(): -w1**3*w2**3}
+col J=(1,): {(1,): -w1*w2**3, (2,): -w1**2*w2**2}
+col J=(2,): {(2,): -w1**3*w2}
+col J=(1, 2): {(1, 2): -w1*w2}
+non-monomial T entries: 0

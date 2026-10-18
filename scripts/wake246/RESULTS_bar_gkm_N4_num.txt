@@ -1,0 +1,15 @@
+N=4 mode=num edges=112 labels=16  (counts = passing (edge,label) pairs / total)  time 778s
+P1  Ã^bar * Psi^bar       2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 384/384  e_a-e_b 384/384
+P1m Ã^bar * Psi           2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 384/384  e_a-e_b 384/384
+Cq  Ã(w,1/q)*Psi(w,1/q)   2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 384/384  e_a-e_b 384/384
+Cqm Ã(w,1/q)*Psi          2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 384/384  e_a-e_b 384/384
+Cw  Ã(1/w,q)*Psi(1/w,q)   2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 384/384  e_a-e_b 384/384
+Cwm Ã(1/w,q)*Psi          2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 384/384  e_a-e_b 384/384
+K1  Ã^bar raw (no Psi)    2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 290/384  e_a-e_b 384/384
+K2  Ã^bar * Psi(w,q^2)    2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 290/384  e_a-e_b 384/384
+K3  Ã * Psi(w,q^2)        2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 290/384  e_a-e_b 384/384
+ref Ã * Psi (Thm Psi)     2e_a(w=+1) 512/512  2e_a(w=-1) 512/512  e_a+e_b 384/384  e_a-e_b 384/384
+generic-label spot check (fails of K-controls at the largest non-degenerate label):
+  K1  Ã^bar raw (no Psi) e.g. [((1,), 'e_a+e_b', (1,), (1, 2, 3)), ((1,), 'e_a+e_b', (1,), (1, 2, 4))]
+  K2  Ã^bar * Psi(w,q^2) e.g. [((1,), 'e_a+e_b', (1,), (1, 2, 3)), ((1,), 'e_a+e_b', (1,), (1, 2, 4))]
+  K3  Ã * Psi(w,q^2) e.g. [((1,), 'e_a+e_b', (1,), (1, 2, 3)), ((1,), 'e_a+e_b', (1,), (1, 2, 4))]

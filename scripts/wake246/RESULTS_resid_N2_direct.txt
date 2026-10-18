@@ -1,0 +1,4 @@
+N=2 mode=direct: 1 jump>=2 triples x 1 pairs
+pair (1,2) done, 5s
+stats: {'tot': 1, 'f_inf_ok': 1, 'f_0_ok': 1, 'Z0': 0, 'Zinf': 0, 'both0': 0, 'only0': 0, 'onlyinf': 0, 'prop': 0}
+(triple,pair) where exactly one end vanishes: []

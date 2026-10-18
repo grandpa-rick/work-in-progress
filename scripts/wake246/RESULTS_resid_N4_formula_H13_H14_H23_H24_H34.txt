@@ -1,0 +1,8 @@
+N=4 mode=formula: 127 jump>=2 triples x 6 pairs
+pair (1,3) done, 170s
+pair (1,4) done, 280s
+pair (2,3) done, 429s
+pair (2,4) done, 529s
+pair (3,4) done, 619s
+stats: {'tot': 635, 'f_inf_ok': 0, 'f_0_ok': 0, 'Z0': 354, 'Zinf': 354, 'both0': 354, 'only0': 0, 'onlyinf': 0, 'prop': 0}
+(triple,pair) where exactly one end vanishes: []
