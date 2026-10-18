@@ -1,0 +1,168 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1.8cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=2pt,topsep=2pt}
+\newcommand{\tri}{\mathbin{\triangleleft}}
+\newcommand{\St}{\mathsf{St}}
+\newcommand{\cst}{\mathrm{const}}
+\newcommand{\wiphash}{CONTENTHASH}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\pagestyle{plain}
+
+\begin{document}
+\begin{center}
+{\large\bfseries Review: \emph{The worker is the constant-branch slice of the weld}}\\[2pt]
+{\small (MacBeth, 2026-10-18, email UID 412; rework of my UID 405 MUSTs M1--M3)}\\[6pt]
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-18\\
+To: & Scot MacBeth (Kodamai); cc Robin\\
+Reviewed: & MacBeth WIP \texttt{585de70} (8 pp.; reachable from \texttt{scotmacbeth/work-in-progress} HEAD,\\
+          & attached PDF byte-identical to \texttt{papers/2026-10-18-weld-worker-bicomodule.pdf})\\
+This review: & Rick WIP commit \texttt{\wiphash}\\
+Check script: & \texttt{scripts/day245/macbeth412/check\_weld\_worker.py} (+\texttt{.log}), $<$1\,s
+\end{tabular}
+\end{center}
+
+Notation as yours: $\St_X = Xy^X$, $n=|S|$, $m=|T|$, $S,T\neq\emptyset$. A position of $B=\St_S\tri\St_T$
+is $(s,g)$ with $g\colon S\to T$; a direction is $(a,t')$, $a\in S$, $t'\in T$ (a morphism $g(a)\to t'$ in $\St_T$).
+
+\section*{Verdict}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Your hardest question: yes, $B'$ is coaction-closed.} The reason is sharper than
+  ``$\lambda,\rho$ fix $g$'', and it shows that constancy plays no role (below). The explicit coactions are
+  \[
+    \lambda(s,g)=\bigl(s,\ a\mapsto (a,g)\bigr),\quad \lambda^\sharp\bigl(a,(a',t')\bigr)=(a',t');\qquad
+    \rho(s,g)=\bigl((s,g),\ (a,t')\mapsto t'\bigr),\quad \rho^\sharp\bigl((a,t'),t''\bigr)=(a,t'').
+  \]
+  So $\lambda$ fixes $g$ but \emph{moves} $s$ to every $a\in S$, and $\rho$ fixes the whole position.
+  A set of positions is closed iff it is $S$-saturated, i.e.\ of the form $S\times G$. Since
+  $B'=S\times\cst(T)$, it is closed. \textbf{checked-sober} (by hand, and by brute force at all nine
+  shapes $n,m\in\{1,2,3\}$; all five bicomodule laws hold on $B$ and on $B'$).
+\item \textbf{But closure does not single out $B'$.} Every $S\times G$, $G\subseteq T^S$, is a
+  sub-bicomodule, the non-constant part $S\times\mathrm{NC}$ included. Each slice $B_g=S\times\{g\}$ is a minimal
+  closed set, the structure maps above do not depend on $g$, and so $B\cong T^S\cdot B_{g_0}$ as bicomodules.
+  Any injection $T\hookrightarrow T^S$ gives a bicomodule iso from $A$ onto its image (checked with $m$
+  non-constant maps). $\cst$ is canonical for a different reason: it is the \emph{unique natural} map
+  $T\to T^S$ (Yoneda: $\mathrm{Nat}(\mathrm{Hom}(1,-),\mathrm{Hom}(S,-))\cong\mathrm{Hom}(S,1)=1$). Say so (S1).
+\item \textbf{Clause (2), Thm 5: correct as a statement about $\bar F_A\subseteq\bar F_B$}, and the
+  verdict sentence is wrong at $(1,2)$, $(1,3)$ (M2).
+\item \textbf{Clause (3), Thm 6: the counts and the refutation are correct.} However, $e(s,g)=(s,\cst_{g(s)})$ is \emph{not} a
+  bicomodule map. It fails $\lambda$-equivariance at every non-constant $g$, i.e.\ on exactly your interesting
+  locus (M1). The repair is cheap and keeps every number.
+\item \textbf{MUST: 2. SHOULD: 3. NIT: 2.} M1--M3 of UID 405: all three addressed. M3 is fully landed,
+  M1 is landed apart from the verdict sentence (new M2), and M2 is landed apart from the retract's type (new M1).
+\end{itemize}
+
+\section*{Grades}
+\begin{tabular}{@{}p{0.47\textwidth}p{0.47\textwidth}@{}}
+\toprule
+Claim & Grade\\\midrule
+Lemma 2 (unit-composite $d\tri c$ is a $(c,d)$-bicomodule) & checked-sober (standard; all 5 laws computed)\\
+Lemma 3 ($B'$ sub-bicomodule) & \textbf{checked-sober}; proof text needs S3\\
+Prop.~1 ($\sigma\colon A\cong B'$) & as written \textbf{sketched} (circular, S2). With $A$'s cobase-change structure: \textbf{checked-sober} (proof below)\\
+Thm 5 ($\bar F_A=T\cdot V^S\subseteq T^S\cdot V^S$; $=$ iff $n=1\vee m=1$) & \textbf{checked-sober}\\
+Clause-(2) verdict sentence (``true when $|S|=1$'') & \textbf{false} at $(1,2),(1,3)$ under your own reading (M2)\\
+Thm 6 (idempotent, image, fibre $T^{S\setminus\{s\}}$; $3\ne6\ne9$) & \textbf{checked-sober} as a map of position sets\\
+``Worker arises from the weld by the retract $e$'' & \textbf{false} at bicomodule level for $n,m\ge2$ (M1); true for $r_{s_0}$\\
+Thm 7 (unified) & \textbf{sketched} until M1, M2; checked-sober after\\
+Remark 1, Example 1 numbers ($16,64,128$; $8,16$; $4$; $6$) & computed, all agree\\
+\bottomrule
+\end{tabular}
+
+\section*{Findings}
+\subsection*{MUST}
+\begin{enumerate}[label=\textbf{M\arabic*.},leftmargin=*]
+\item \textbf{\S6 opening, Thm 6, Thm 7: $e$ is not a bicomodule retraction.} By hand:
+  \[
+    \lambda(e(s,g))=\bigl(s,\ a\mapsto(a,\cst_{g(s)})\bigr),\qquad
+    (\St_S\tri e)(\lambda(s,g))=\bigl(s,\ a\mapsto e(a,g)=(a,\cst_{g(a)})\bigr).
+  \]
+  These differ as soon as $g(a)\neq g(s)$ for some $a$, i.e.\ for every non-constant $g$. The script finds the first
+  failure at $(2,2)$, position $(0,(a,b))$, and fails likewise at $(2,3),(3,2),(3,3)$. $e$ is $\rho$-equivariant. ``Evaluate at
+  the \emph{current} input'' is what breaks it, because $\lambda$ changes the current input. Also,
+  ``the retract $T^S\twoheadrightarrow\cst(T)$'' is ill-typed: $e$ needs $s$, so it is a map
+  $S\times T^S\to S\times T^S$, not a map $T^S\to T$.\\
+  \emph{Fix.} Either (a) say explicitly that $e$ is a retraction of position sets only and drop ``the worker
+  arises from the weld by'' it. Or (b) use $r_{s_0}(s,g)=(s,\cst_{g(s_0)})$, $r^\sharp=\mathrm{id}$, for a
+  chosen base input $s_0$. This one \emph{is} a bicomodule retraction $B\twoheadrightarrow B'$ (checked, all shapes). It
+  forgets $g|_{S\setminus\{s_0\}}$, with fibre $m^{n-1}$, so every number in (ii)--(iii) survives with $s\to s_0$.
+  It is honestly non-canonical: natural maps $(-)^S\Rightarrow\mathrm{id}$ correspond to elements of $S$
+  (Yoneda), so there is \emph{no} choice-free bicomodule retraction when $n\ge2$. On $\bar F$, which you
+  already evaluate at a fixed $\St_S$-object, $e$ and $r_{s_0}$ agree. This is probably what you meant.
+\item \textbf{p.\,6, ``Verdict for clause (2)'', and the email's ``worker = content iff $|S|=1\vee|T|=1$''.}
+  Your Thm 5 makes the content factor the power $V\mapsto V^S$. Then $\bar F_A=T\cdot V^S$ equals the content iff
+  $m=1$. At $(1,2)$ we have $A=B$ on the nose, but $\bar F_A=2V\neq V$. So the ``true when $|S|=1$'' half
+  is false as literally stated. What Thm 5 proves is \emph{worker $=$ whole weld} ($\bar F_A=\bar F_B$, and $A=B$)
+  iff $n=1\vee m=1$. Under the literal reading, clause (2) (\emph{worker $=$ content factor}) holds iff $m=1$,
+  and fails at $(1,2)$, $(1,3)$ as well as on $n,m\ge2$. Pick one reading and state it. I share the blame here:
+  my UID 405 M1 wrote ``$B=A$ on the nose, yet Theorem 6 says the worker is not the content'', which runs the
+  two readings together.
+\end{enumerate}
+
+\subsection*{SHOULD}
+\begin{enumerate}[label=\textbf{S\arabic*.},leftmargin=*]
+\item \textbf{Lemma 3 and Def.~3 framing.} The proof never uses constancy, so state the general fact: the
+  sub-bicomodules supported on position subsets are exactly $S\times G$, and $B\cong\coprod_{g\in T^S}B_g$
+  with all $B_g$ isomorphic. Then ``$B'$ is canonical'' rests on Yoneda (diagonal $=$ unique natural $T\to
+  T^S$), not on closure. Positive control in the script: $S\times\mathrm{NC}$ is closed at every shape.
+\item \textbf{Prop.~1 is circular as written, and Remark 2's caveat can go.} Thm 1 \emph{defines} $A$'s
+  structure by transport along $\sigma$, which makes $\sigma$ an iso trivially. The non-trivial statement uses the
+  cobase-change structure of Remark 2, which takes three lines. Take the cofunctors
+  $\pi_S(s,t)=s$, $\pi_S^\sharp(a)=(a,t)$ and $\pi_T(s,t)=t$, $\pi_T^\sharp(t')=(s,t')$. Then
+  $\lambda_A=(\pi_S\tri A)\delta_A$ and $\rho_A=(A\tri\pi_T)\delta_A$ give
+  $\lambda_A(s,t)=(s,a\mapsto(a,t))$, $\lambda_A^\sharp(a,(a',t'))=(a',t')$,
+  $\rho_A(s,t)=((s,t),(a,t')\mapsto t')$ and $\rho_A^\sharp((a,t'),t'')=(a,t'')$.
+  Apply $\sigma$ and you get the displayed $\lambda,\rho$ of $B'$ with $g=\cst_t$, since
+  $\lambda_B(s,\cst_t)=(s,a\mapsto\sigma(a,t))$. So $\sigma$ is a bicomodule iso from the
+  \emph{intrinsic} structure. All five laws for $A$ and both equivariances of $\sigma$ are computed at all nine shapes,
+  and $\bar F_A(V)=T\cdot V^S$ is recomputed from $A$'s own structure, not via $\sigma$.
+\item \textbf{Lemma 3 proof text.} (a) The $\rho$ bullet: in $B\tri\St_T$ the copy of $B$ is \emph{outer}. $\rho$
+  keeps $(s,g)$ entirely and labels direction $(a,t')$ by $t'$. (b) ``$\delta_T(t,\psi)$'': positions of $\St_T$
+  are bare $t\in T$, and there is no $\psi$. Likewise $\delta_S(s,\varphi)$. (c) The $\lambda$ bullet should say that
+  $\lambda$ moves $s$, which is why the closure needs $S$-saturation and not just ``$g$ fixed''. My negative control NEG1
+  is exactly this: $\{(s_0,\cst_t)\}$ is not closed once $n\ge2$.
+\end{enumerate}
+
+\subsection*{NIT}
+\begin{enumerate}[label=\textbf{N\arabic*.},leftmargin=*]
+\item \S6 end, ``It is nonempty --- the retract actually loses something''. Fibres always have $m^{n-1}\ge1$ points.
+  You mean the fibre is \emph{non-trivial} ($>1$ point). Same for ``empty discard'' in Thm 7.
+\item Thm 6(iii) is true but weaker than it reads: the fibre omits \emph{every} $g$ with $g(s)\ne t$,
+  constant or not. Drop it, since (i) and (ii) already refute the claim.
+\end{enumerate}
+
+\section*{Controls (the test separates)}
+\begin{itemize}[leftmargin=*]
+\item \textbf{NEG1} (non-saturated subset $\{(s_0,\cst_t)\}$): closure FAILS at every shape with $n\ge2$ and passes iff $n=1$, as predicted.
+\item \textbf{NEG2} (a \emph{valid} twisted left coaction, $S=T=\mathbb Z/n$,
+  $\lambda_{\rm tw}(s,g)=(s,a\mapsto(a,g+(a-s)w))$, $w=\delta_0$ non-constant): all five laws PASS and the
+  closure of $B'$ FAILS at $(2,2)$ and $(3,3)$. So the closure test is not vacuous for genuine bicomodules, and
+  it is the specific form of $\lambda$ that makes $B'$ closed.
+\item \textbf{NEG3} (invalid bump of $g$ in each $\lambda$-slot): counit and coassociativity FAIL, and closure FAILS, at every $n,m\ge2$.
+\item The retract test separates too: $e$ fails $\lambda$-equivariance and $r_{s_0}$ passes, at the same shapes.
+\end{itemize}
+
+\section*{Appendix: script output (abridged, shape $(2,3)$; full log in repo)}
+{\footnotesize\begin{verbatim}
+B laws: lam counit, lam coassoc, rho counit, rho coassoc, compat: all True
+lam(s,g)=(s,a->(a,g)) True; lam#(a,(a',t))=(a',t) True; rho(s,g)=((s,g),(a,t)->t) True; rho#((a,t),t'')=(a,t'') True
+(i) B' = S x const(T) closed under lam, rho: True
+every slice S x {g} is a minimal closed set (so closed subsets = S x G, any G <= T^S): True
+positive control: NC = S x (non-constant) also closed: True
+NEG1 non-S-saturated {(s0,const_t)} closed: False
+A (cobase change of regular A along projections) laws: all True
+Prop 1: sigma(s,t)=(s,const_t), sigma#=id is a bicomodule map A -> B: True; injective True; image = B' True
+sigma_G onto S x G, G = 3 NON-constant maps, also a bicomodule iso onto image: True
+V=2: F_B=36 (=T^S V^S), F_B'=12, F_A(own)=12 (=T V^S), content V^S=4
+M2: e idempotent True; image = B' True; fibre sizes [3] = T^(S-1) True; |NC|=6 |T^S|=9
+e is rho-equivariant: True; e is lam-equivariant: False  <-- FAILS at (0, ((0, 'a'), (1, 'b')))
+r_s0(s,g)=(s,const_g(s0)): bicomodule map True, retraction onto B' True, fibre 3
+shapes (1,1),(1,2),(2,1),(1,3),(3,1),(2,2),(2,3),(3,2),(3,3): ALL ASSERTIONS PASSED
+\end{verbatim}}
+\end{document}
