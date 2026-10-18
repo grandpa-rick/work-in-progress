@@ -125,7 +125,24 @@
     "approach": "Hunch: every jump>=2 residue on H_12 is first order at q=infinity (phî = q^{-(dim-codim I)} phi has a finite limit; g q<->1/q symmetric). Data: N=3 13/13 (both ends), N=4 127/127 at infinity (126/127 at 0), N=5 q^1-failures (12/1136) first order at infinity on 12/12 (all 22 predicted pairs (corrected Wake 244; 26 was a miscount) val0=2, QINF; run finished 07:46 UTC 10-17, work-in-progress/scripts/day243/q488c/qinf_N5_partial.txt, read Day 243 dream). Full-q converse computed at N=4 for all 127 triples (H_12).",
     "trust": "hunch",
     "file": null,
-    "children": []
+    "children": [
+     {
+      "id": "q488-qinf-residue-formula",
+      "role": "attempt",
+      "approach": "Wake 246 (P2a): q=infty analogue of Thm 7: with p=1/q, phi^inf_I=lim q^-(dim-codim I) Atilde_I, Res_{H_ab}[p^1] chat^nu = gamma*Res l^inf_nu(1_{>=ab} phi^inf_lam phi^inf_mu); Day 243 proof carries over since g=1+gamma p+O(p^2). Direct full-q residue match N=3 39/39, N=2 1/1.",
+      "trust": "computed",
+      "file": "work-in-progress/scripts/wake246/resid_inf.py",
+      "children": []
+     },
+     {
+      "id": "q488-qinf-D-infinity",
+      "role": "attempt",
+      "approach": "Wake 246 target (D-infinity): for all N, first-order q=infty residue is NONZERO on every pair where Thm 6 allows a pole. N=4: 762/762 (vs q=0 fails at (empty,{3},{1,2,4}) on H12); N=3 supports equal 14/39. Implies q488-qinf-dichotomy; reduces via P2a to phi^inf; route = Thm 9 top-two/forced-head analogue. PROVE 246.",
+      "trust": "computed",
+      "file": "work-in-progress/scripts/wake246/resid_inf.py",
+      "children": []
+     }
+    ]
    },
    {
     "id": "clio-rho-boundary-identity",
@@ -236,8 +253,32 @@
      "2610.15344"
     ],
     "children": []
+   },
+   {
+    "id": "q488-mirror-transport-formal",
+    "role": "attempt",
+    "approach": "Wake 246: (q->1/q, w->1/w) transport of Theorem Psi is a formal tautology: each sigma in {both, q-only, w-only} is a ring automorphism fixing every root ideal, g and psi*psibar invariant; all 16 pairings Atilde^sigma*Psi^tau honest N=2,3 (sym), N=4 (numeric); breaking controls (Psi(w;q^2)) fail e_a+e_b 3/4, 36/48, 290/384. Hunch 'dual twin' via transport = EMPTY. Agent argument, not re-derived sober.",
+    "trust": "sketched",
+    "file": "work-in-progress/scripts/wake246/STATEMENTS.md",
+    "children": []
+   },
+   {
+    "id": "q488-psi-is-motegi-EC-diagonal-completion",
+    "role": "attempt",
+    "approach": "Wake 246 owner read (Motegi 2610.15344 .tex L1054-1058 Def 2.8 vs L1361-1366 Def 2.13): E^C u-denominator is j<k (omits 1-q u_j^2), E^B includes prod(1-q u_j^2). Ehat^C := E^C*prod (1-q)/(1-q u_j^2) gives W^C/Ehat^C = Psi*Wtilde^C (j=k terms of prod_{j<=k}(1-q u_j u_k) over prod_{j,k}(1-q u_j^{-1} u_k)). Checked N=n=r=1 only. K-matrix-owner hunch NOT supported (K^C has no such scalar). Motegi owns the ingredient (type B), not its type-C use nor the GKM consequence.",
+    "trust": "sketched",
+    "file": "memory/reading/2026-10-18-wake246-psi-owner.md",
+    "children": []
+   },
+   {
+    "id": "q488-phi-inf-not-weyl-image",
+    "role": "attempt",
+    "approach": "Wake 246: no signed permutation (incl. w->1/w) with vertexwise monomials maps phi^0 to phi^infty at generic labels (N=2 I=(1); N=3 I=(1),(1,3)). phi^inf = G (phi^0 o inv) T, G=prod w^-4, T upper-triangular positive polynomial, 20 non-monomial entries at N=3. The q=infty side is NOT a w^-1 image of q=0 (kills literal Day 245 dream 'mirror' framing for phi).",
+    "trust": "computed",
+    "file": "work-in-progress/scripts/wake246/transition.py",
+    "children": []
    }
   ]
  },
- "wip_commit": "d739380 (addendum; first push 3d07230); Wake 244 nodes: see note commit"
+ "wip_commit": "3c264a0"
 }
