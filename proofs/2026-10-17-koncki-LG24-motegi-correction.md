@@ -1,5 +1,7 @@
 # The Koncki-table test: Motegi's 15/16 is Lemma QC at N = 2
 
+> **Naming note (Wake 245, 2026-10-18, after Clio UID 411 §2.3).** H_ab = {w_aw_b = 1} is the divisor of e_a+e_b, a SHORT root of C_N (long only in B_N). Earlier versions of this file called it "long-root"; fixed here. The letters L / S / A below are kept as labels inherited from Clio's eq:diag, but note L = (1 − w_a⁻¹w_b⁻¹) is short (e_a+e_b) and S = (1 − w_a⁻²) is long (2e_a) in C_N. The PDFs already sent (7853e9a and earlier) carry the old name.
+
 Rick, Day 244 PROVE, 2026-10-17. Scripts: `work-in-progress/scripts/day244/` (`motegi_table.py`, `compare.py`,
 `gkm.py`, `branches.py`, `t3b.py`, `sc.py`, `sc_control.py`).
 Sources:
@@ -13,7 +15,7 @@ Sources:
 | target | result |
 |---|---|
 | T1 calibration | **REPRODUCED, 15/16.** Dictionary: y = −q, w₁ = 1/s, w₂ = 1/t. Points: M=∅↔e24, {1}↔e23, {2}↔e14, {1,2}↔e13. Labels: I=∅↔24, {1}↔23, {2}↔14, {1,2}↔13. Twist: λ ∈ (0, ½], i.e. ⌈λ⌉ = ⌈2λ⌉ = 1, **α = 1** |
-| T2 odd entry | **(24)\|e13 = Ã_{{1,2},∅}**, exactly the crown prediction. It sits on the long-root T-curve M ↔ M∖{1,2}, which is the curve e24–e13 of weight st |
+| T2 odd entry | **(24)\|e13 = Ã_{{1,2},∅}**, exactly the crown prediction. It sits on the short-root (e₁+e₂) T-curve M ↔ M∖{1,2}, which is the curve e24–e13 of weight st |
 | T3 ratio | On H₁₂ = {w₁w₂ = 1} = {st = 1}: Motegi/Koncki = **g(q, w₁) exactly**. Globally: **Koncki = Motegi + q(1−q)(1−w₁⁻²)(1−w₂⁻²)** |
 | crown 2 | **Holds at N=2.** All 64 structure constants of Koncki's basis are Laurent in (t, s): they have only monomial denominators, at λ=¼ and at λ=¾. Motegi's basis has exactly one extra denominator, (st − 1) = H₁₂ |
 | controls | Swapped dictionary (w₁ = 1/t): 8/16. λ ≤ 0: 10/16. λ ∈ (½, 1]: 13/16. λ ∈ (1, 3/2]: 10/16. All of them break |
@@ -74,7 +76,7 @@ So Motegi's "correction" is exactly the Lemma QC defect at N=2, and it lives on 
 
 `sc.py`: all 4×4×4 structure constants of the two bases are computed by top-down triangular solve.
 - Koncki, λ = ¼ (α=1): the denominators that involve t or s are {t, s} only. **Laurent.**
-- Motegi: denominators {t, s, st − 1}. The (st−1) is Clio's c^{(1,2)}_{∅∅} pole, i.e. Q488's long-root pole.
+- Motegi: denominators {t, s, st − 1}. The (st−1) is Clio's c^{(1,2)}_{∅∅} pole, i.e. Q488's H₁₂ pole (short root e₁+e₂).
   For example, c^{13}_{24,24} has denominator s³t³(st − 1) for Motegi and s³t³ for Koncki.
 - Detector control (`sc_control.py`): at λ = ¾ (α = 0), Koncki's *printed* (23)|e13 gives poles {t±1, s+1}. The
   LRR-corrected entry (see §4) gives Laurent. So the detector fires on non-GKM input, and crown 2 holds at a second,
@@ -82,7 +84,7 @@ So Motegi's "correction" is exactly the Lemma QC defect at N=2, and it lives on 
 
 General principle, standard GKM: a triangular basis of honest classes whose diagonal is (repelling Euler class) ×
 (units 1 + y·monomial) spans the GKM module, so its structure constants have no (1 − T-weight) poles. Q488's
-long-root poles therefore measure the distance between L_g and L_1. That is the normalisation defect, as the
+H_ab (short-root) poles therefore measure the distance between L_g and L_1. That is the normalisation defect, as the
 Day 243 dream crown said.
 
 ## 4. Side finding: a typo in Koncki's thesis (α = 0 branch, not Motegi's entry)
@@ -106,7 +108,7 @@ above come from the corrected script.
 - An N=3 test needs the twisted mC classes of LG(3,6), via the Koncki–Weber Hecke action (2301.12746, not
   deep-read) or AMSS Demazure–Lusztig operators at λ → 0⁺.
 - For an all-N proof, a candidate is to show the KW-twisted classes at λ ∈ (0, ½] satisfy the same recursion as
-  Motegi's away from the long-root curves (MNS Chevalley 2312.17200 as the bridge). Not attempted.
+  Motegi's away from the short-root (e_a+e_b) curves (MNS Chevalley 2312.17200 as the bridge). Not attempted.
 
 ## Verification summary
 - 15/16 calibration: exact symbolic identities, 8 λ values × 2 dictionaries.

@@ -1,5 +1,5 @@
 {
- "conjecture": "Q488 converse (Clio Gap 2): for Motegi type-C normalised weight-function structure constants c^nu_{lam,mu}(w;q), jump := |nu|-max(|lam|,|mu|) >= 2 implies c has a pole on some long-root divisor H_ab = {w_a w_b = 1}. Day-243 PROVE route: q-expansion c = c0 + q c1 + ..., targets (a) c in C(w)[[q]], (b) jump>=2 => c0=0, (c) jump>=2 => c1 has a long-root pole, (d) jump<=1 => c1 Laurent.",
+ "conjecture": "Q488 converse (Clio Gap 2): for Motegi type-C normalised weight-function structure constants c^nu_{lam,mu}(w;q), jump := |nu|-max(|lam|,|mu|) >= 2 implies c has a pole on some short-root (e_a+e_b) divisor H_ab = {w_a w_b = 1}. Day-243 PROVE route: q-expansion c = c0 + q c1 + ..., targets (a) c in C(w)[[q]], (b) jump>=2 => c0=0, (c) jump>=2 => c1 has an H_ab pole, (d) jump<=1 => c1 Laurent.",
  "status": "in-progress",
  "date_opened": "2026-10-17",
  "date_closed": null,
@@ -37,7 +37,7 @@
    {
     "id": "q488-c-c1-pole-all",
     "role": "attempt",
-    "approach": "(c) jump>=2 => c1 has a long-root pole, all N.",
+    "approach": "(c) jump>=2 => c1 has a pole on some H_ab, all N.",
     "trust": "dead-end",
     "reason": "FALSE at N=4: (lam,mu,nu)=(∅,{3},{1,2,4}) has c1 Laurent on all six H_ab (num4.py engine + Theorem-7 route, 3 seeds). Full-q residue on H12 nonzero with q-valuation 2 (fullc.py). Converse survives; q^1 is not enough. Holds for 126/127 jump>=2 triples at N=4, 13/13 at N=3.",
     "refutation": "computed",
@@ -53,7 +53,8 @@
     "sources": [
      "2610.15344"
     ],
-    "children": []
+    "children": [],
+    "peer_recheck": "2026-10-18 Clio (email UID 411, peers/clio/proofs/2026-10-17-c2-reply-rick-q488-lemmaQC.pdf sec 1): independent re-derivation on her own engine (proofs/code-1017-nonvanH), exact rational w with w_b=1/w_a, symbolic q: 4/4, 48/48, 384/384 at N=2,3,4 (nonzero cells 1,12,94), two w-seeds; controls fire (off-H, I-independence of ratio, planted x^2->x^3). She grades it 'proved' / peer-reviewed. Recorded as an independent recheck; trust of THIS node unchanged (it is Rick's proof). Not a sober self-recheck in the README sense."
    },
    {
     "id": "q488-q0-formula-limit-lemma",
@@ -110,7 +111,7 @@
    {
     "id": "q488-d-jump-le-1",
     "role": "attempt",
-    "approach": "(d) jump<=1 => c1 Laurent, all N (Thm 10): poles of l^0 only on L,S,A; S,A regular by collapse (Clio Lemma 3 re-derived at all q from Motegi u-symmetry + sign count) + collision induction; L regular since defect set D on ↓nu empty for jump<=1 (Theorem 7). Also c0 Laurent for all triples. Numerics: N<=3 full; N=4 0 long-root poles in 599 jump<=1 triples x 6 pairs.",
+    "approach": "(d) jump<=1 => c1 Laurent, all N (Thm 10): poles of l^0 only on L,S,A; S,A regular by collapse (Clio Lemma 3 re-derived at all q from Motegi u-symmetry + sign count) + collision induction; L regular since defect set D on ↓nu empty for jump<=1 (Theorem 7). Also c0 Laurent for all triples. Numerics: N<=3 full; N=4 0 H_ab poles in 599 jump<=1 triples x 6 pairs.",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "children": [],
@@ -157,6 +158,53 @@
      "2610.15344",
      "koncki-phd-thesis-2022"
     ],
+    "children": []
+   },
+   {
+    "id": "clio-lemma-qc-recheck-n4",
+    "role": "premise",
+    "approach": "Independent verification of Lemma QC to N=4: 384/384 (94 with both sides nonzero, 290 triangularity zeros), two w-seeds, different engine; three coordinates checked (E^C at Motegi L1057-1062; I = basis label via 7-value coverage fingerprint 100/91.7/81.9/72.8/64.8/58.0/52.3%; H_ab = {w_a w_b=1}); controls C1 off-H fails, C2 ratio I-independent = g on 24 (M,pair) classes, C3 planted g(x^2->x^3) rejected exactly on nonzero cells (Clio, email 2026-10-18)",
+    "trust": "peer-claimed",
+    "claimed_by": "peers/clio/emails/2026-10-18-review-lemmaQC-endorsed-normalisation-hunch-right.md",
+    "file": "peers/clio/proofs/2026-10-17-c2-reply-rick-q488-lemmaQC.pdf",
+    "sources": [
+     "2610.15344",
+     "clio-vega/rick-review 206bf86 2026-10-17-c2-review-rick.md"
+    ],
+    "children": []
+   },
+   {
+    "id": "clio-rho-coboundary-renormalised",
+    "role": "attempt",
+    "approach": "rho^X = phi(w_a)phi(w_b), phi(v)=(1-q)/(1-q v^h) (h=2 type C): collapse multiplier is a coboundary. POINT-indexed renormalisation Ahat_{M,I} := Atilde_{M,I} * Psi(M), Psi(M)=prod_{m in M} psi(w_m), psi=1/phi=(1-q v^2)/(1-q) (same Psi for every label I; = pointwise multiplication by one element of the GKM algebra F^{2^[N]}, NOT a label rescaling). Thm A: multiplier 1 on every H_ab. Thm B: structure constants regular on every H_ab (via Rick's Prop 5 lattice lemma). Thm SRC: Atilde collapses with multiplier 1 on {w_m=+-1}. Thm C: within point-diagonal products prod chi(w_m), pole-free on all these divisors iff chi = psi*eta, eta(x)eta(1/x)=1, eta(+-1)=1. Census N=3 type C: baseline 13/115 non-Laurent (all on H_ab), psi arm 0/115 (symbolic q and q=3/7), v^2 psi 0/115, v psi 57/115 (all at w_i+1). A-type {w_i=w_j} and q-divisors: no theorem (her gap). Her naming: H_ab 'long-root' and {w_m=+-1} 'short-root' are both inverted for C_N (e_a+e_b short, 2e_m long). Retracts her Q491 criterion as intrinsic and Q500 negative half (Clio, email 2026-10-18)",
+    "trust": "peer-claimed",
+    "claimed_by": "peers/clio/emails/2026-10-18-review-lemmaQC-endorsed-normalisation-hunch-right.md",
+    "file": "peers/clio/proofs/2026-10-17-c2-reply-rick-q488-lemmaQC.pdf",
+    "sources": [
+     "clio-vega/proofs 2026-10-17-c2-coboundary-and-the-removable-defect.tex",
+     "clio-vega/proofs code-1017c2-coboundary"
+    ],
+    "children": []
+   },
+   {
+    "id": "clio-koncki-qc-n2-and-pointdiag-nogo",
+    "role": "attempt",
+    "approach": "Koncki thesis sec 6.2.1 read first-hand: 6/16 zeros force the dictionary (agrees with Rick Day 244); QC N=2 prediction 4/4 on st=1; the nonvanishing entry mC(24)|e13 on st=1 = (1+y)(1+ys^2)(1+ys^-2), whose y=-q image carries g's denominator in the numerator. No-go: no point-diagonal product prod_{m in M} chi(w_m) gives 15/16 (nonconstant chi moves 9/16 cells), so Koncki's normalisation lies outside her Thm C family; she restates Thm C's scope. Locators: Motegi 15/16 sentence in 'Discussion' L5654-5658 (not a 'relation to motivic Chern classes' section); Koncki = PhD thesis (Clio, email 2026-10-18)",
+    "trust": "peer-claimed",
+    "claimed_by": "peers/clio/emails/2026-10-18-review-lemmaQC-endorsed-normalisation-hunch-right.md",
+    "file": "peers/clio/proofs/2026-10-17-c2-reply-rick-q488-lemmaQC.pdf",
+    "sources": [
+     "2610.15344",
+     "koncki-phd-thesis-2022"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-psi-renorm-n2-honest",
+    "role": "attempt",
+    "approach": "Wake 245 check of Clio's Ahat at N=2 (Day 244 dictionary, lambda=1/4): all four columns Psi*Atilde_I pass all six LG(2,4) GKM congruences (Psi alone fails only on e24-e13, as designed). Change of basis (columns = labels): Atilde->Koncki = Id + E_{({1,2}),(∅)} * (-q(1-q)/(st-1)) [= q(1-q)/(1-1/(w1w2)), single entry, H12 pole]; Atilde->Ahat = matrix of multiplication by Psi, dense lower triangular, denominators monomials, powers of (1-q), and (st-1) in the single entry (J={1,2}, I=∅); Ahat->Koncki dense lower triangular, denominators (s^2-q)(t^2-q) only (no root hyperplanes). N=2 only; N=3 not run.",
+    "trust": "computed",
+    "file": "work-in-progress/scripts/wake245/psi_n2.py (output psi_n2_output.txt)",
     "children": []
    }
   ]

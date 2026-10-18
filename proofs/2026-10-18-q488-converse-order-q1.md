@@ -1,5 +1,7 @@
 # Q488 converse at first order in q — what's true, what's false, what's proved
 
+> **Naming note (Wake 245, 2026-10-18, after Clio UID 411 §2.3).** H_ab = {w_aw_b = 1} is the divisor of e_a+e_b, a SHORT root of C_N (long only in B_N). Earlier versions of this file called it "long-root"; fixed here. The letters L / S / A below are kept as labels inherited from Clio's eq:diag, but note L = (1 − w_a⁻¹w_b⁻¹) is short (e_a+e_b) and S = (1 − w_a⁻²) is long (2e_a) in C_N. The PDFs already sent (7853e9a and earlier) carry the old name.
+
 Rick, Day 243 PROVE (session dated 2026-10-17; file name per PROVE.md).
 Scripts: `work-in-progress/scripts/day243/q488c/`.
 Source: Motegi, arXiv:2610.15344, e-print source `typebcweightfunctions_arxivversionfinal-3.tex`. I deep-read
@@ -14,23 +16,23 @@ PROVE asked for (a)–(d). **Two of the three main targets are FALSE as stated, 
 |---|---|---|
 | (a) | c ∈ C(w)[[q]] | **PROVED**, all N (§2) |
 | (b) | jump ≥ 2 ⇒ c₀ = 0 | **FALSE** at N = 4: c₀^{1234}_{12,34} = 1/(w₃²w₄²). 17 jump-≥2 triples at N=4 have c₀ ≠ 0. True for N ≤ 3 (exhaustive) |
-| (c) | jump ≥ 2 ⇒ c₁ has a long-root pole | **FALSE** at N = 4: (λ,μ,ν) = (∅,{3},{1,2,4}) has c₁ Laurent on every H_ab. Its full-q residue on H₁₂ is ≠ 0 but has q-valuation **2**. Holds at N ≤ 3 (13/13), and for 126/127 jump-≥2 triples at N=4 |
+| (c) | jump ≥ 2 ⇒ c₁ has a pole on some H_ab | **FALSE** at N = 4: (λ,μ,ν) = (∅,{3},{1,2,4}) has c₁ Laurent on every H_ab. Its full-q residue on H₁₂ is ≠ 0 but has q-valuation **2**. Holds at N ≤ 3 (13/13), and for 126/127 jump-≥2 triples at N=4 |
 | (c-top) | if ν minus its two largest elements is ≥ λ, μ, then c₁^ν has a simple pole on H_{top two} | **PROVED**, all N, all jumps (§6, Thm 9) |
 | (c-agg) | for each (λ,μ): some c^ν_{λμ} (some ν) has a pole on H_ab ⇔ ∃ M'' ⊆ [N]∖{a,b} with M'' ≥ λ, μ | **PROVED**, all N, full q (§4, Thm 6) |
-| (d) | jump ≤ 1 ⇒ c₁ Laurent | **PROVED**, all N (§6bis, Thm 10). Also c₀ is Laurent for every triple. Computed: N ≤ 3 full; N = 4, 0 long-root poles in 599 jump-≤1 triples on all six pairs |
+| (d) | jump ≤ 1 ⇒ c₁ Laurent | **PROVED**, all N (§6bis, Thm 10). Also c₀ is Laurent for every triple. Computed: N ≤ 3 full; N = 4, 0 H_ab poles in 599 jump-≤1 triples on all six pairs |
 
 So **the order-q¹ route cannot settle Clio's converse (Gap 2) in general**. It settles the converse exactly
 on the "top-two" family, which includes every (∅,∅,ν) with |ν| ≥ 2, the N=2 witness, and 6/13 of the N=3 jump-≥2
 triples; with the single-defect theorem (§6, Thm 9') all 13 at N=3 and 111/127 at N=4. The missing triples are those whose created pole sits in a *high block* (§7). There the q¹ coefficient of
 the residue can vanish identically while the full-q residue survives.
 
-Engine of everything: **Lemma QC (§3)**, a q-twisted collision on the long-root divisors, proved from Motegi's
+Engine of everything: **Lemma QC (§3)**, a q-twisted collision on the short-root (e_a+e_b) divisors H_ab, proved from Motegi's
 formula:
 > a<b ∈ M, on H_ab = {w_a w_b = 1}:  Ã_{M,I} = g(q,w_a) · Ã_{M∖{a,b},I} for every I,
 > g(q,x) = (1−q)² / ((1−qx²)(1−qx⁻²)).
 
 At q=0 we have g=1: that's GKM, and the q=0 basis is a K_T(LG(N,2N))-type Schubert basis. At first order,
-g' = (x − x⁻¹)² =: γ. Clio's long-root poles are exactly the failure of the twisted GKM condition to be untwisted.
+g' = (x − x⁻¹)² =: γ. Clio's H_ab poles are exactly the failure of the twisted GKM condition to be untwisted.
 
 ## 1. Setup and the facts I take from Motegi
 
@@ -44,7 +46,7 @@ Used from Motegi (all deep-read today):
   polynomial in q (a symmetrised rational function with at most simple poles on u_j = u_k, which cancel).
 - (M2) E^C (L1057–1062); Ã = WC/E^C.
 - (M3) Triangularity: Ã_{M,I} = 0 unless M ≥ I (Thm 2.6(i)).
-- (M4) The diagonal Ã_{I,I} is Clio's eq:diag: a product over all positive roots of C_N. Long-root factors
+- (M4) The diagonal Ã_{I,I} is Clio's eq:diag: a product over all positive roots of C_N. Short-root (e_i+e_{i'}) factors
   (1 − w_{i}^{-1}w_{i'}^{-1}) for i<i' in I each occur once. (Q)-factors (1 − q·monomial). No other factor vanishes
   identically on any H_ab for generic q. At q=0 the diagonal is the product of the L, S, A factors, and it is ≠ 0.
 - (M5) Stability (L2641–2647, L2823–2848), so we may take n = |M| ("unpadded", all u-values distinct).
@@ -93,7 +95,7 @@ when the numerator variable has the smaller index, and to ∞ otherwise. So a te
 and every tail lies below every head, and to 0 otherwise. Exactly one such h exists: the top r elements of M, in
 increasing order. It is a surviving term iff m_{s−r+j} ≥ κ_j for all j, i.e. iff M ≥ κ. ∎
 
-## 3. Lemma QC (q-twisted long-root collision), all q — PROVED
+## 3. Lemma QC (q-twisted collision on the short-root divisor H_ab), all q — PROVED
 
 **Lemma QC.** Let a < b with a, b ∈ M. On H_ab, for every I: Ã_{M,I} = g(q, w_a) · Ã_{M'',I}, where
 g = (1−q)²/((1−qw_a²)(1−qw_a^{-2})).
@@ -121,7 +123,7 @@ g = (1−q)²/((1−qw_a²)(1−qw_a^{-2})).
 
 Computed on all (M, pair, I) at N=2, 3 (`ratio.py`).
 
-**Corollary 4.** (i) At q=0: φ⁰_I(M) = φ⁰_I(M'') on H_ab (long-root GKM). (ii) At first order, since g(0) = 1 and
+**Corollary 4.** (i) At q=0: φ⁰_I(M) = φ⁰_I(M'') on H_ab (untwisted GKM on the e_a+e_b curve). (ii) At first order, since g(0) = 1 and
 ∂_q g(0) = x² + x⁻² − 2 = γ := (w_a − w_a⁻¹)²: δ_I(M) − δ_I(M'') = γ φ⁰_I(M'') on H_ab.
 
 ## 4. Lattice lemma and the aggregate converse, full q — PROVED
@@ -147,7 +149,7 @@ give equality. The rest follows because h·O^{2^N} ⊆ L_g. ∎
 on H, Prop 5 gives (i)⇔(ii). (iii)⇒(ii) is (M3). (ii)⇒(iii): if M'' ≥ λ, μ, then by Lemma L
 φ⁰_λ(M'')φ⁰_μ(M'')|_H ≠ 0, and so its deformation φ_λφ_μ(M'')|_H is ≠ 0 at generic q. ∎
 
-So, for every (λ, μ), *some* structure constant c^•_{λμ} acquires a long-root pole as soon as N ≥ max(|λ|,|μ|) + 2,
+So, for every (λ, μ), *some* structure constant c^•_{λμ} acquires a pole on some H_ab as soon as N ≥ max(|λ|,|μ|) + 2,
 which is exactly when a jump-≥2 ν exists. The per-ν converse is the hard part.
 
 ## 5. The first-order residue formula — PROVED
@@ -241,8 +243,8 @@ order 0 otherwise. The last holds because the S-factor (1 − w_a⁻²) is prese
 (1 − w_a/w_b) is present iff a ∉ ν ∋ b, each once. ∎
 
 **Theorem 10.** For all N: (i) c₀^ν_{λμ} is a Laurent polynomial in w for every triple; (ii) if jump ≤ 1, then
-c₁^ν_{λμ} is a Laurent polynomial in w. (iii) For every triple, every non-monomial pole of c₁ lies on a long-root
-divisor, and it is simple.
+c₁^ν_{λμ} is a Laurent polynomial in w. (iii) For every triple, every non-monomial pole of c₁ lies on a short-root
+(e_a+e_b) divisor H_ab, and it is simple.
 
 *Proof.* ℓ⁰ = A₀⁻¹ = adj/det, and det A₀ = Π_I A₀_{I,I} is a product of L, S, A factors and monomials. So for a
 Laurent f, the only possible non-monomial poles of ℓ⁰(f) lie on L, S, A divisors. The vectors P = φ⁰_λφ⁰_μ and Φ
@@ -250,7 +252,7 @@ Laurent f, the only possible non-monomial poles of ℓ⁰(f) lie on L, S, A divi
 Laurent by (i), which is proved first.)
 - S, A divisors: P and Φ have the collapse property. φ⁰ and δ have it by Lemma C (differentiate in q), and c₀ is
   regular on D. Lemma C' applies.
-- Long roots: c₀ is regular, because P ∈ L₁ (Corollary 4, Prop 5). For c₁, Theorem 7 gives Res = γ Res ℓ_ν(1_{⊇ab}P).
+- H_ab (L-divisors, e_a+e_b): c₀ is regular, because P ∈ L₁ (Corollary 4, Prop 5). For c₁, Theorem 7 gives Res = γ Res ℓ_ν(1_{⊇ab}P).
   The residue is Σ_{M⊇ab, M≤ν} ρ_{νM}·P(M'')|_H. When jump ≤ 1, every such M has |M''| ≤ |ν| − 2 < max(|λ|,|μ|),
   so P(M'') = 0 by (M3). Simplicity of the poles comes from Prop 5. ∎
 
@@ -297,7 +299,7 @@ is a **hunch** (strong): nothing above uses it.
    ν and V is an interval with fixed block sizes (sketched, verified on the N=6 example (5,5,{1,3,4,6}), where the
    poles are exactly Clio's predicted pairs).
 2. (d) is closed (Thm 10). Not closed: (d) at full q, which is Clio's thm:main and still needs her Gap q.
-3. Theorem 6 and Prop 5 need "no factor of Ã_{I,I} other than the long root vanishes on H_ab", which I read off
+3. Theorem 6 and Prop 5 need "no factor of Ã_{I,I} other than the short-root factor (1 − w_a⁻¹w_b⁻¹) vanishes on H_ab", which I read off
    (M4) and Clio's eq:diag (and checked at N ≤ 3). Fine, but noted.
 
 ## Addendum (same session): full-q converse data and the q = 0 / q = ∞ dichotomy
