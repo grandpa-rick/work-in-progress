@@ -145,7 +145,7 @@
     "role": "attempt",
     "approach": "Clio ask (UID 408 sec 4.4): are the N=5 (c)-failures concentrated in max I > b? Clio's stratum pinned to source (her 10-17 reply p.6 sec 4.1, p.7 sec 4.4): nonvanH = ord_{H_ab} A_{M,I}=0 for M>=I, {a,b} cap M empty; closed on max I<=b with I = basis label of A_{M,I}; coverage 100/91.7/81.9/72.8/64.8/58.0/52.3% (N=2..8) reproduced exactly (her prose 'N=4: 72.8%' is an index slip; 81.9% at N=4). A pole created at kappa has nonvanH witnesses M=kappa\\{a,b}, I in {lam,mu}. N=5, 12 (c)-failures, full q: actual poles = predicted divisor 12/12; 22 pole pairs (corrected Wake 244; 26 was a miscount), on H12,H13,H23, all simple in w, residue q-valuation 2, deg e-1 at q=inf (symbolic-q cross-check partial: 3 full, 2 partial). Label split: I=lam witness IN-stratum 22/22 (lam=() or (1)); I=mu witness OUT 22/22 (max mu in 3..5, b<=3). CORRECTED: earlier 'all 12 outside on every pair' (read as max(lam u mu)<=b) is true only for the mu witness; each failure pole has one in-stratum (lam) and one out-of-stratum (mu) witness. N=4 control (127 triples): in-stratum pairs 264/264 have c_1 pole; out-of-stratum 143/144 (sole failure ((),(3),(1,2,4)) H12); triples with an in-stratum pair 66/66, without 60/61. So no c-failure in-stratum at N=4/5, but success does not concentrate in-stratum (out-of-stratum pairs 99.3%). N=5 pair-level in-stratum check not run. Computed, not proved. Data: work-in-progress commit 0513ceb (scripts/day244/ask1/RESULTS.txt); correction note reviews/2026-10-17-q488-ask1-correction.pdf.",
     "trust": "computed",
-    "file": "work-in-progress/scripts/day244/ask1/RESULTS.txt (0513ceb); earlier strat_maxI.py",
+    "file": "work-in-progress/scripts/day244/ask1/RESULTS.txt",
     "children": []
    },
    {
@@ -204,7 +204,7 @@
     "role": "attempt",
     "approach": "Wake 245 check of Clio's Ahat at N=2 (Day 244 dictionary, lambda=1/4): all four columns Psi*Atilde_I pass all six LG(2,4) GKM congruences (Psi alone fails only on e24-e13, as designed). Change of basis (columns = labels): Atilde->Koncki = Id + E_{({1,2}),(∅)} * (-q(1-q)/(st-1)) [= q(1-q)/(1-1/(w1w2)), single entry, H12 pole]; Atilde->Ahat = matrix of multiplication by Psi, dense lower triangular, denominators monomials, powers of (1-q), and (st-1) in the single entry (J={1,2}, I=∅); Ahat->Koncki dense lower triangular, denominators (s^2-q)(t^2-q) only (no root hyperplanes). N=2 only; N=3 not run.",
     "trust": "computed",
-    "file": "work-in-progress/scripts/wake245/psi_n2.py (output psi_n2_output.txt)",
+    "file": "work-in-progress/scripts/wake245/psi_n2_output.txt",
     "children": []
    },
    {
@@ -212,7 +212,29 @@
     "role": "attempt",
     "approach": "Wake 245 census: Ahat=Atilde*Psi(M), Psi=prod psi(w_m), psi(v)=(1-qv^2)/(1-q) (Clio's coboundary renorm) satisfies ALL LG(N,2N) GKM congruences. N=3 fully symbolic: 2e_a(+1) 96/96, 2e_a(-1) 96/96, e_a+e_b 48/48, e_a-e_b 48/48; raw Atilde fails e_a+e_b 12/48 only; controls Psi^2, 1/Psi fail the same 12. N=4 edge-local (divisor-restricted, random rational w, 2 seeds): Ahat 512/512/384/384; Atilde fails 94 e_a+e_b; controls fail same. Mechanism observed: on H_12 g*psi(x)psi(1/x)=1 exactly -> with Lemma QC suggests one-line all-N proof (w_a=-1 component needs own argument). PROVE 245 target.",
     "trust": "computed",
-    "file": "work-in-progress/scripts/wake245/RESULTS_psi_N3.txt (+ _N3_edge, _N4_edge; fastA.py, psi_gkm_edge.py), WIP d7dba31",
+    "file": "work-in-progress/scripts/wake245/RESULTS_psi_N3.txt",
+    "children": []
+   },
+   {
+    "id": "q488-theorem-psi-honest-gkm",
+    "role": "attempt",
+    "approach": "Theorem Psi (all N): Ahat=Atilde*Psi(M), psi(v)=(1-qv^2)/(1-q) (CLIO's renormalisation) satisfies every LG(N,2N) GKM congruence. 2e_a: psi(+-1)=1 + Lemma C(i)/(iii) (w=-1 via evenness Atilde(-w)=Atilde(w), unpadded n=|M|); e_a-e_b: Psi symmetric + Lemma C(ii); e_a+e_b: Lemma QC + g*psi(x)psi(1/x)=1. Laurentness cited from Motegi Prop L3305. QC E^C-ratio re-derived from print today.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-theorem-psi-honest-gkm.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "q488-psi-corollary-no-root-poles",
+    "role": "attempt",
+    "approach": "Corollary (all N): structure constants of Ahat are regular on every C_N root divisor (w_a=+-1, H_ab, w_a=w_b); only possible non-monomial poles on q-divisors (1-q*monomial). Proof: local colength count span_O{Ahat}=L_D (diag root factors once each, Psi a unit at D) + products preserve L_D. Computed: N=2 symbolic 0 vs raw 1 (H12); N=3 exact line test 0 on all 12 divisors vs raw H12:13,H13:8,H23:4.",
+    "trust": "proved",
+    "file": "proofs/2026-10-18-theorem-psi-honest-gkm.md",
+    "sources": [
+     "2610.15344"
+    ],
     "children": []
    }
   ]
