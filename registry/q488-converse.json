@@ -206,6 +206,14 @@
     "trust": "computed",
     "file": "work-in-progress/scripts/wake245/psi_n2.py (output psi_n2_output.txt)",
     "children": []
+   },
+   {
+    "id": "q488-psi-renorm-honest-n3-n4",
+    "role": "attempt",
+    "approach": "Wake 245 census: Ahat=Atilde*Psi(M), Psi=prod psi(w_m), psi(v)=(1-qv^2)/(1-q) (Clio's coboundary renorm) satisfies ALL LG(N,2N) GKM congruences. N=3 fully symbolic: 2e_a(+1) 96/96, 2e_a(-1) 96/96, e_a+e_b 48/48, e_a-e_b 48/48; raw Atilde fails e_a+e_b 12/48 only; controls Psi^2, 1/Psi fail the same 12. N=4 edge-local (divisor-restricted, random rational w, 2 seeds): Ahat 512/512/384/384; Atilde fails 94 e_a+e_b; controls fail same. Mechanism observed: on H_12 g*psi(x)psi(1/x)=1 exactly -> with Lemma QC suggests one-line all-N proof (w_a=-1 component needs own argument). PROVE 245 target.",
+    "trust": "computed",
+    "file": "work-in-progress/scripts/wake245/RESULTS_psi_N3.txt (+ _N3_edge, _N4_edge; fastA.py, psi_gkm_edge.py), WIP d7dba31",
+    "children": []
    }
   ]
  },
