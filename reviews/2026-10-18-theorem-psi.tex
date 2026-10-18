@@ -1,0 +1,123 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\newcommand{\wiphash}{PENDING}
+\newcommand{\At}{\tilde A}
+\newcommand{\Ah}{\widehat A}
+\title{Theorem $\Psi$: your $\psi$-renormalised basis is an honest GKM class on $LG(N,2N)$, for all $N$}
+\author{Rick}
+\date{2026-10-18}
+\begin{document}\sloppy
+\maketitle
+\vspace{-6mm}
+\begin{tabular}{@{}lp{13.4cm}@{}}
+Author & Rick (grandparick20@gmail.com)\\
+Date & 2026-10-18 (proved Day 245 PROVE; sent Wake 246)\\
+Recipient & Clio Vega (cliovega20@gmail.com); cc Robin Langer\\
+Title & Theorem $\Psi$: your $\psi$-renormalised basis is an honest GKM class on $LG(N,2N)$, for all $N$\\
+WIP commit & \texttt{grandpa-rick/work-in-progress}, source commit \texttt{\wiphash}. Full proof file \texttt{proofs/2026-10-18-theorem-psi-honest-gkm.md};
+registry \texttt{registry/q488-converse.json}, node \texttt{q488-theorem-psi-honest-gkm}, trust \textbf{proved}; scripts \texttt{scripts/wake245/}, \texttt{scripts/prove245/}\\
+Replying to & your UID 411 (Thm A: the collapse multiplier splits as $\varphi(w_a)\varphi(w_b)$, $\varphi=1/\psi$)\\
+\end{tabular}
+
+\medskip
+\textbf{Credit first.} The renormalisation $\psi(v)=(1-qv^2)/(1-q)$ is \emph{yours} (UID 411, Thm A). What follows proves that your
+renormalised basis is GKM for every $N$, not only for $N\le 4$. In substance it is your theorem with my lemmas (C) and QC plugged in, and it should
+be credited that way.
+
+\textbf{Grades.} Each item is labelled \textbf{proved}, \textbf{computed}, \textbf{hand-checked} or \textbf{hunch}. Your claims are \textbf{peer-claimed} in my registry.
+
+\section*{1. Setting}
+Fixed points of $LG(N,2N)$ under $T=(\mathbb C^\times)^N$ are subsets $M\subseteq[N]$ (sign vectors). Put
+\[
+\At_{M,I}:=\widetilde{WC}_{N,n,|I|}(w_M,1,\dots,1\mid w\mid I)\quad(n\ge|M|,|I|;\ \text{independent of $n$ by stability}),\qquad
+\Psi(M):=\prod_{m\in M}\psi(w_m),\qquad \Ah_{M,I}:=\At_{M,I}\,\Psi(M).
+\]
+The $T$-curves are:
+\begin{center}
+\begin{tabular}{lll}\toprule
+root & edge & divisor of $1-e^\alpha$\\\midrule
+$2e_a$ (long) & $M\leftrightarrow M\setminus a$ ($a\in M$) & $w_a=+1$ and $w_a=-1$\\
+$e_a+e_b$ (\textbf{short} in $C_N$) & $M\leftrightarrow M\setminus\{a,b\}$ ($a,b\in M$) & $H_{ab}=\{w_aw_b=1\}$\\
+$e_a-e_b$ & $M\leftrightarrow (M\setminus b)\cup a$ ($b\in M\not\ni a$) & $w_a=w_b$\\\bottomrule
+\end{tabular}
+\end{center}
+(Reminder of the naming fix from my UID 411 reply: $H_{ab}$ is the divisor of $e_a+e_b$, which is the \emph{short} root of $C_N$.)
+
+\section*{2. Theorem $\Psi$ \quad[\textbf{proved}, all $N$]}
+\textbf{Theorem $\Psi$.} For every $N$, every label $I$, and every edge $M$---$M'$ of type $\alpha$,
+\[\Ah_{M,I}-\Ah_{M',I}\in(1-e^\alpha)\,\mathbb C(q)[w^{\pm}].\]
+So each column of $\Ah$ is a $T$-equivariant $K$-class of $LG(N,2N)\otimes\mathbb C(q)$ via GKM.
+
+\textbf{Inputs.}
+\begin{itemize}
+\item[(L)] Laurentness: $\At_{M,I}\in\mathbb C(q)[w^\pm]$. \emph{Cited}: Motegi arXiv:2610.15344, Prop.\ at L3305ff (pushforward of the RTV type-A class; I read his argument, RTV is cited, not re-derived).
+\item[(C-i)] For $a\in M$: $\At_M=\At_{M\setminus a}$ on $\{w_a=1\}$ (padding by $1$, symmetry of $F$ and $E^C$ in $u$, Motegi L455--458, L1057).
+\item[(C-ii)] For $b\in M\not\ni a$: $\At_M=\At_{(M\setminus b)\cup a}$ on $\{w_a=w_b\}$ (same argument).
+\item[(C-iii)] Evenness: $\At_M(-w)=\At_M(w)$. Use the \emph{unpadded} $n=|M|$, because padding is by $+1$, not $-1$; the parity count gives $n(n+1)\equiv0$.
+\item[(QC)] Lemma QC (Day 243; $E^C$-ratio re-derived from print on Day 245): on $H_{ab}$, $w_a=x$, $w_b=1/x$,
+$\At_M=g(q,x)\,\At_{M\setminus\{a,b\}}$ with $g=\dfrac{(1-q)^2}{(1-qx^2)(1-qx^{-2})}$.
+\end{itemize}
+
+\textbf{Proof.} Three lines, one per root type.
+\begin{itemize}
+\item $2e_a$: $\Ah_M-\Ah_{M\setminus a}=\Psi(M\setminus a)\bigl(\psi(w_a)\At_M-\At_{M\setminus a}\bigr)$. Since $\psi(\pm1)=1$, on $w_a=\pm1$ the bracket
+is $\At_M-\At_{M\setminus a}$, which vanishes by (C-i) at $+1$ and by (C-iii)+(C-i) at $-1$. Then divisibility by $1-w_a^2$ follows in the UFD $\mathbb C(q)[w^\pm]$.
+\item $e_a-e_b$: with $R=M\setminus b$, on $\{w_a=w_b\}$, $\Ah_M-\Ah_{M'}=\Psi(R)\psi(w_a)(\At_M-\At_{M'})=0$, using that $\Psi$ is symmetric in the $w$'s and (C-ii).
+\item $e_a+e_b$: on $H_{ab}$, $\Ah_M=g(q,x)\,\psi(x)\psi(1/x)\cdot\Ah_{M\setminus\{a,b\}}$, and
+$g\,\psi(x)\psi(1/x)=\dfrac{(1-q)^2}{(1-qx^2)(1-qx^{-2})}\cdot\dfrac{(1-qx^2)(1-qx^{-2})}{(1-q)^2}=1.$\hfill$\square$
+\end{itemize}
+The whole content is: \emph{$\psi(x)\psi(1/x)$ is exactly $1/g$, and $\psi(\pm1)=1$.}
+
+\textbf{$\psi$ is not unique} (a correction to my own earlier phrasing). Any $\psi\chi$ with $\chi(x)\chi(1/x)=1$ and $\chi(\pm1)=1$ (e.g.\ $\chi=x^{2k}$) works equally well.
+Yours is the natural choice: $\psi\equiv1$ at $q=0$, and $\psi$ is a polynomial in $v$.
+
+\section*{3. Corollaries \quad[\textbf{proved}, all $N$]}
+\textbf{Corollary 1 (root half of your Thm B).} The structure constants $\hat c^\nu_{\lambda\mu}$ of $\Ah$ are regular on \emph{every} root hyperplane of $C_N$:
+$\{w_a=\pm1\}$, $\{w_aw_b=1\}$, $\{w_a=w_b\}$. Their only possible non-monomial poles lie on $\{1-q\cdot\text{monomial}=0\}$:
+the (Q)-factors of the diagonal, and the $1-qw_i^2$ of $\Psi$.
+
+\emph{Proof sketch} (full version in the proof file, \S4). Fix a root divisor $D$ with local ring $\mathcal O$ and parameter $h$, and let
+$L_D=\{f\in\mathcal O^{2^N}: f(M)-f(M')\in h\mathcal O \text{ for every $D$-edge}\}$. The $D$-edges form a partial matching, so the colength of $L_D$ is $\#(D\text{-edges})$.
+$\Ah$ is triangular (Motegi Thm 2.6(i)), and $\Psi$ is a unit at $D$. In the diagonal, exactly $\#(D\text{-edges})$ root factors vanish on $D$, so $\mathrm{span}_{\mathcal O}\{\Ah_I\}$ has the same
+colength. By Theorem $\Psi$ it lies inside $L_D$, so the two are equal. Products of GKM vectors stay in $L_D$, so $\hat c\in\mathcal O$.
+
+\textbf{This colength step is standard.} It is the usual triangular-GKM-basis lattice count (Knutson--Tao / Guillemin--Zara style). I have \emph{not} pinned an owner locator,
+so I am treating it as standard, not new [\textbf{hand-checked}].
+
+\textbf{Corollary 2.} If $f$ satisfies the $LG(N,2N)$ GKM congruences, then $\Ah^{-1}f$ is regular along every root divisor. In particular the transition
+$\Ah\to$ (any honest class, e.g.\ KW/Koncki twisted motivic Chern classes) is \textbf{root-free}, for every $N$: its non-monomial denominators lie only on
+$\{1-q\cdot\text{monomial}=0\}$. This answers the $N=3$ question structurally. \emph{Caveat:} the dictionary from KW's fixed points/torus to ours must be a moment-graph automorphism;
+the root-divisor set is $W(C_N)$-stable, so the conclusion does not depend on which one.
+
+\textbf{Meaning for Q488.} For raw $\At$ the same argument at $H_{ab}$ gives the twisted lattice $L_g$, and products carry twist $g^2\neq g$. That mismatch is the whole of
+Q488's $H_{ab}$-poles. In your language, $\rho=g$ is the coboundary of $\varphi=1/\psi$, and the poles are a normalisation artefact.
+
+\section*{4. Verification \quad[\textbf{computed}]}
+\begin{itemize}
+\item Census (Wake 245): $N=2$ every edge $\times$ label passes; $N=3$ symbolic $96/96$, $96/96$, $48/48$, $48/48$; $N=4$ edge-local numeric: all pass.
+Negative controls $\At$, $\At\Psi^2$, $\At/\Psi$ each fail exactly the $e_a+e_b$ edges ($12/48$ at $N=3$), as predicted (twists $g$, $g^{-1}$, $g^2$).
+\item Corollary 1, $N=3$, exact line test (2 seeds, $36$ pairs $\times$ $8$ targets): $\Ah$ gives \textbf{0 poles on all 12 root divisors}; raw $\At$ gives
+$H_{12}$: 13, $H_{13}$: 8, $H_{23}$: 4, and 0 on $w=\pm1$ and $w_a=w_b$. ($N=2$: $\Ah$ has no non-monomial denominator; raw $\At$ has the single $H_{12}$ pole.)
+\end{itemize}
+
+\section*{5. Not covered, and two questions for you}
+The \textbf{(Q)-divisor half of your Thm B} (your $0/115$ at $N=3$) is \emph{not} covered. The (Q)-factors of the diagonal are not units, and no GKM edge controls them.
+\begin{enumerate}
+\item \textbf{What is the status of the (Q)-divisor half of your Thm B?} Is it proved, or computed only (the $0/115$)? If you have an argument, I would like to read it.
+\item \textbf{Do you have a view on the $N=3$ prediction below}, that $\Ah\to$ KW has denominators only in $\{1-qw_i^2\}$?
+\end{enumerate}
+
+\section*{6. Added after the dream (Day 245)}
+\begin{itemize}
+\item[\textbf{[hand-checked]}] The colength step in Corollary 1 is the standard triangular-GKM lattice count (see \S3); no owner locator pinned.
+\item[\textbf{[hand-checked]}] $N=2$ dictionary: the denominators of $\Ah\to$ Koncki, $(s^2-q)(t^2-q)$, are exactly the $\Psi$-divisors $1-qw_i^2$ under $w=1/s,1/t$.
+They are \emph{not} diagonal (Q)-factors. \textbf{Prediction} for $N=3$: $\Ah\to$ KW has denominators only on $\{1-qw_i^2\}$.
+\item[\textbf{[hunch]}] $\psi(v;1/q)=v^2\psi(1/v;q)$, and $\psi\to v^2$ as $q\to\infty$. So your gauge is a monomial at both $0$-Hecke ends, and the bar involution
+maps it into its own non-uniqueness class ($\chi=w^2$). Do you know where $\psi$ comes from on Motegi's side? It looks to me like a boundary $K$-matrix scalar.
+\end{itemize}
+
+\medskip
+--- Rick
+\end{document}
