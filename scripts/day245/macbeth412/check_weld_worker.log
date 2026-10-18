@@ -1,0 +1,156 @@
+
+=== (1,1): |B(1)|=1, |B[i]|=1
+  B laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  lam(s,g)=(s,a->(a,g)) True; lam#(a,(a',t))=(a',t) True; rho(s,g)=((s,g),(a,t)->t) True; rho#((a,t),t'')=(a,t'') True
+  (i) B' = S x const(T) closed under lam, rho: True
+  every slice S x {g} is a minimal closed set (so closed subsets = S x G, any G <= T^S): True
+  positive control: NC = S x (non-constant) also closed: True (|NC|=0)
+  NEG1 non-S-saturated {(s0,const_t)} closed: True  (expected False iff |S|>=2)
+  A (cobase change of regular A along projections) laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  Prop 1: sigma(s,t)=(s,const_t), sigma#=id is a bicomodule map A -> B: True; injective True; image = B' True
+  V=2: F_B=2 (=T^S V^S), F_B'=2, F_A(own)=2 (=T V^S), content V^S=2
+  V=3: F_B=3 (=T^S V^S), F_B'=3, F_A(own)=3 (=T V^S), content V^S=3
+  M1: F_A = F_B (worker = whole weld): True; predicted |S|=1 or |T|=1: True; F_A = content (-)^S: True; A = B carriers: True
+  M2: e idempotent True; image = B' True; fibre sizes [1] = T^(S-1) True; |NC|=0 |T^S|=1
+  e is rho-equivariant: True; e is lam-equivariant: True
+  r_s0(s,g)=(s,const_g(s0)): bicomodule map True, retraction onto B' True, fibre 1
+
+=== (1,2): |B(1)|=2, |B[i]|=2
+  B laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  lam(s,g)=(s,a->(a,g)) True; lam#(a,(a',t))=(a',t) True; rho(s,g)=((s,g),(a,t)->t) True; rho#((a,t),t'')=(a,t'') True
+  (i) B' = S x const(T) closed under lam, rho: True
+  every slice S x {g} is a minimal closed set (so closed subsets = S x G, any G <= T^S): True
+  positive control: NC = S x (non-constant) also closed: True (|NC|=0)
+  NEG1 non-S-saturated {(s0,const_t)} closed: True  (expected False iff |S|>=2)
+  A (cobase change of regular A along projections) laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  Prop 1: sigma(s,t)=(s,const_t), sigma#=id is a bicomodule map A -> B: True; injective True; image = B' True
+  V=2: F_B=4 (=T^S V^S), F_B'=4, F_A(own)=4 (=T V^S), content V^S=2
+  V=3: F_B=6 (=T^S V^S), F_B'=6, F_A(own)=6 (=T V^S), content V^S=3
+  M1: F_A = F_B (worker = whole weld): True; predicted |S|=1 or |T|=1: True; F_A = content (-)^S: False; A = B carriers: True
+  M2: e idempotent True; image = B' True; fibre sizes [1] = T^(S-1) True; |NC|=0 |T^S|=2
+  e is rho-equivariant: True; e is lam-equivariant: True
+  r_s0(s,g)=(s,const_g(s0)): bicomodule map True, retraction onto B' True, fibre 1
+
+=== (2,1): |B(1)|=2, |B[i]|=2
+  B laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  lam(s,g)=(s,a->(a,g)) True; lam#(a,(a',t))=(a',t) True; rho(s,g)=((s,g),(a,t)->t) True; rho#((a,t),t'')=(a,t'') True
+  (i) B' = S x const(T) closed under lam, rho: True
+  every slice S x {g} is a minimal closed set (so closed subsets = S x G, any G <= T^S): True
+  positive control: NC = S x (non-constant) also closed: True (|NC|=0)
+  NEG1 non-S-saturated {(s0,const_t)} closed: False  (expected False iff |S|>=2)
+  A (cobase change of regular A along projections) laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  Prop 1: sigma(s,t)=(s,const_t), sigma#=id is a bicomodule map A -> B: True; injective True; image = B' True
+  V=2: F_B=4 (=T^S V^S), F_B'=4, F_A(own)=4 (=T V^S), content V^S=4
+  V=3: F_B=9 (=T^S V^S), F_B'=9, F_A(own)=9 (=T V^S), content V^S=9
+  M1: F_A = F_B (worker = whole weld): True; predicted |S|=1 or |T|=1: True; F_A = content (-)^S: True; A = B carriers: True
+  M2: e idempotent True; image = B' True; fibre sizes [1] = T^(S-1) True; |NC|=0 |T^S|=1
+  e is rho-equivariant: True; e is lam-equivariant: True
+  r_s0(s,g)=(s,const_g(s0)): bicomodule map True, retraction onto B' True, fibre 1
+
+=== (1,3): |B(1)|=3, |B[i]|=3
+  B laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  lam(s,g)=(s,a->(a,g)) True; lam#(a,(a',t))=(a',t) True; rho(s,g)=((s,g),(a,t)->t) True; rho#((a,t),t'')=(a,t'') True
+  (i) B' = S x const(T) closed under lam, rho: True
+  every slice S x {g} is a minimal closed set (so closed subsets = S x G, any G <= T^S): True
+  positive control: NC = S x (non-constant) also closed: True (|NC|=0)
+  NEG1 non-S-saturated {(s0,const_t)} closed: True  (expected False iff |S|>=2)
+  A (cobase change of regular A along projections) laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  Prop 1: sigma(s,t)=(s,const_t), sigma#=id is a bicomodule map A -> B: True; injective True; image = B' True
+  V=2: F_B=6 (=T^S V^S), F_B'=6, F_A(own)=6 (=T V^S), content V^S=2
+  V=3: F_B=9 (=T^S V^S), F_B'=9, F_A(own)=9 (=T V^S), content V^S=3
+  M1: F_A = F_B (worker = whole weld): True; predicted |S|=1 or |T|=1: True; F_A = content (-)^S: False; A = B carriers: True
+  M2: e idempotent True; image = B' True; fibre sizes [1] = T^(S-1) True; |NC|=0 |T^S|=3
+  e is rho-equivariant: True; e is lam-equivariant: True
+  r_s0(s,g)=(s,const_g(s0)): bicomodule map True, retraction onto B' True, fibre 1
+
+=== (3,1): |B(1)|=3, |B[i]|=3
+  B laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  lam(s,g)=(s,a->(a,g)) True; lam#(a,(a',t))=(a',t) True; rho(s,g)=((s,g),(a,t)->t) True; rho#((a,t),t'')=(a,t'') True
+  (i) B' = S x const(T) closed under lam, rho: True
+  every slice S x {g} is a minimal closed set (so closed subsets = S x G, any G <= T^S): True
+  positive control: NC = S x (non-constant) also closed: True (|NC|=0)
+  NEG1 non-S-saturated {(s0,const_t)} closed: False  (expected False iff |S|>=2)
+  A (cobase change of regular A along projections) laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  Prop 1: sigma(s,t)=(s,const_t), sigma#=id is a bicomodule map A -> B: True; injective True; image = B' True
+  V=2: F_B=8 (=T^S V^S), F_B'=8, F_A(own)=8 (=T V^S), content V^S=8
+  V=3: F_B=27 (=T^S V^S), F_B'=27, F_A(own)=27 (=T V^S), content V^S=27
+  M1: F_A = F_B (worker = whole weld): True; predicted |S|=1 or |T|=1: True; F_A = content (-)^S: True; A = B carriers: True
+  M2: e idempotent True; image = B' True; fibre sizes [1] = T^(S-1) True; |NC|=0 |T^S|=1
+  e is rho-equivariant: True; e is lam-equivariant: True
+  r_s0(s,g)=(s,const_g(s0)): bicomodule map True, retraction onto B' True, fibre 1
+
+=== (2,2): |B(1)|=8, |B[i]|=4
+  B laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  lam(s,g)=(s,a->(a,g)) True; lam#(a,(a',t))=(a',t) True; rho(s,g)=((s,g),(a,t)->t) True; rho#((a,t),t'')=(a,t'') True
+  (i) B' = S x const(T) closed under lam, rho: True
+  every slice S x {g} is a minimal closed set (so closed subsets = S x G, any G <= T^S): True
+  positive control: NC = S x (non-constant) also closed: True (|NC|=4)
+  NEG1 non-S-saturated {(s0,const_t)} closed: False  (expected False iff |S|>=2)
+  NEG2 twisted lam_tw laws {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}; B' closed under lam_tw: False  (expected laws all True, closure False)
+  NEG3 bumped lam_bad laws {'lam counit': False, 'lam coassoc': False, 'rho counit': True, 'rho coassoc': True, 'compat': True}; B' closed: False  (expected counit False, closure False)
+  A (cobase change of regular A along projections) laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  Prop 1: sigma(s,t)=(s,const_t), sigma#=id is a bicomodule map A -> B: True; injective True; image = B' True
+  sigma_G onto S x G, G = 2 NON-constant maps, also a bicomodule iso onto image: True
+  V=2: F_B=16 (=T^S V^S), F_B'=8, F_A(own)=8 (=T V^S), content V^S=4
+  V=3: F_B=36 (=T^S V^S), F_B'=18, F_A(own)=18 (=T V^S), content V^S=9
+  M1: F_A = F_B (worker = whole weld): False; predicted |S|=1 or |T|=1: False; F_A = content (-)^S: False; A = B carriers: False
+  M2: e idempotent True; image = B' True; fibre sizes [2] = T^(S-1) True; |NC|=2 |T^S|=4
+  e is rho-equivariant: True; e is lam-equivariant: False  <-- FAILS at (0, ((0, 'a'), (1, 'b')))
+  r_s0(s,g)=(s,const_g(s0)): bicomodule map True, retraction onto B' True, fibre 2
+
+=== (2,3): |B(1)|=18, |B[i]|=6
+  B laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  lam(s,g)=(s,a->(a,g)) True; lam#(a,(a',t))=(a',t) True; rho(s,g)=((s,g),(a,t)->t) True; rho#((a,t),t'')=(a,t'') True
+  (i) B' = S x const(T) closed under lam, rho: True
+  every slice S x {g} is a minimal closed set (so closed subsets = S x G, any G <= T^S): True
+  positive control: NC = S x (non-constant) also closed: True (|NC|=12)
+  NEG1 non-S-saturated {(s0,const_t)} closed: False  (expected False iff |S|>=2)
+  NEG3 bumped lam_bad laws {'lam counit': False, 'lam coassoc': False, 'rho counit': True, 'rho coassoc': True, 'compat': True}; B' closed: False  (expected counit False, closure False)
+  A (cobase change of regular A along projections) laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  Prop 1: sigma(s,t)=(s,const_t), sigma#=id is a bicomodule map A -> B: True; injective True; image = B' True
+  sigma_G onto S x G, G = 3 NON-constant maps, also a bicomodule iso onto image: True
+  V=2: F_B=36 (=T^S V^S), F_B'=12, F_A(own)=12 (=T V^S), content V^S=4
+  V=3: F_B=81 (=T^S V^S), F_B'=27, F_A(own)=27 (=T V^S), content V^S=9
+  M1: F_A = F_B (worker = whole weld): False; predicted |S|=1 or |T|=1: False; F_A = content (-)^S: False; A = B carriers: False
+  M2: e idempotent True; image = B' True; fibre sizes [3] = T^(S-1) True; |NC|=6 |T^S|=9
+  e is rho-equivariant: True; e is lam-equivariant: False  <-- FAILS at (0, ((0, 'a'), (1, 'b')))
+  r_s0(s,g)=(s,const_g(s0)): bicomodule map True, retraction onto B' True, fibre 3
+
+=== (3,2): |B(1)|=24, |B[i]|=6
+  B laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  lam(s,g)=(s,a->(a,g)) True; lam#(a,(a',t))=(a',t) True; rho(s,g)=((s,g),(a,t)->t) True; rho#((a,t),t'')=(a,t'') True
+  (i) B' = S x const(T) closed under lam, rho: True
+  every slice S x {g} is a minimal closed set (so closed subsets = S x G, any G <= T^S): True
+  positive control: NC = S x (non-constant) also closed: True (|NC|=18)
+  NEG1 non-S-saturated {(s0,const_t)} closed: False  (expected False iff |S|>=2)
+  NEG3 bumped lam_bad laws {'lam counit': False, 'lam coassoc': False, 'rho counit': True, 'rho coassoc': True, 'compat': True}; B' closed: False  (expected counit False, closure False)
+  A (cobase change of regular A along projections) laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  Prop 1: sigma(s,t)=(s,const_t), sigma#=id is a bicomodule map A -> B: True; injective True; image = B' True
+  sigma_G onto S x G, G = 2 NON-constant maps, also a bicomodule iso onto image: True
+  V=2: F_B=64 (=T^S V^S), F_B'=16, F_A(own)=16 (=T V^S), content V^S=8
+  V=3: F_B=216 (=T^S V^S), F_B'=54, F_A(own)=54 (=T V^S), content V^S=27
+  M1: F_A = F_B (worker = whole weld): False; predicted |S|=1 or |T|=1: False; F_A = content (-)^S: False; A = B carriers: False
+  M2: e idempotent True; image = B' True; fibre sizes [4] = T^(S-1) True; |NC|=6 |T^S|=8
+  e is rho-equivariant: True; e is lam-equivariant: False  <-- FAILS at (0, ((0, 'a'), (1, 'a'), (2, 'b')))
+  r_s0(s,g)=(s,const_g(s0)): bicomodule map True, retraction onto B' True, fibre 4
+
+=== (3,3): |B(1)|=81, |B[i]|=9
+  B laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  lam(s,g)=(s,a->(a,g)) True; lam#(a,(a',t))=(a',t) True; rho(s,g)=((s,g),(a,t)->t) True; rho#((a,t),t'')=(a,t'') True
+  (i) B' = S x const(T) closed under lam, rho: True
+  every slice S x {g} is a minimal closed set (so closed subsets = S x G, any G <= T^S): True
+  positive control: NC = S x (non-constant) also closed: True (|NC|=72)
+  NEG1 non-S-saturated {(s0,const_t)} closed: False  (expected False iff |S|>=2)
+  NEG2 twisted lam_tw laws {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}; B' closed under lam_tw: False  (expected laws all True, closure False)
+  NEG3 bumped lam_bad laws {'lam counit': False, 'lam coassoc': False, 'rho counit': True, 'rho coassoc': True, 'compat': True}; B' closed: False  (expected counit False, closure False)
+  A (cobase change of regular A along projections) laws: {'lam counit': True, 'lam coassoc': True, 'rho counit': True, 'rho coassoc': True, 'compat': True}
+  Prop 1: sigma(s,t)=(s,const_t), sigma#=id is a bicomodule map A -> B: True; injective True; image = B' True
+  sigma_G onto S x G, G = 3 NON-constant maps, also a bicomodule iso onto image: True
+  V=2: F_B=216 (=T^S V^S), F_B'=24, F_A(own)=24 (=T V^S), content V^S=8
+  V=3: F_B=729 (=T^S V^S), F_B'=81, F_A(own)=81 (=T V^S), content V^S=27
+  M1: F_A = F_B (worker = whole weld): False; predicted |S|=1 or |T|=1: False; F_A = content (-)^S: False; A = B carriers: False
+  M2: e idempotent True; image = B' True; fibre sizes [9] = T^(S-1) True; |NC|=24 |T^S|=27
+  e is rho-equivariant: True; e is lam-equivariant: False  <-- FAILS at (0, ((0, 'a'), (1, 'a'), (2, 'b')))
+  r_s0(s,g)=(s,const_g(s0)): bicomodule map True, retraction onto B' True, fibre 9
+
+ALL ASSERTIONS PASSED
