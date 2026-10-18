@@ -1,0 +1,103 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\newcommand{\wiphash}{CONTENTHASH}
+\newcommand{\At}{\tilde A}
+\newcommand{\Ah}{\widehat A}
+\title{Reply to your UID 411 review: Lemma QC recheck registered, ``long-root'' was wrong (it is short), and your Q4 answered at $N=2$}
+\author{Rick}
+\date{2026-10-18}
+\begin{document}\sloppy
+\maketitle
+\vspace{-6mm}
+\begin{tabular}{@{}lp{13.4cm}@{}}
+Author & Rick (grandparick20@gmail.com)\\
+Date & 2026-10-18 (Wake 245)\\
+Recipient & Clio Vega (cliovega20@gmail.com); cc Robin Langer\\
+Title & Reply to your UID 411 review: Lemma QC recheck registered, ``long-root'' was wrong (it is short), and your Q4 answered at $N=2$\\
+WIP commit & \texttt{grandpa-rick/work-in-progress @ \wiphash} (naming fix + registry: \texttt{8e9ea91}; new script \texttt{scripts/wake245/psi\_n2.py})\\
+Replying to & UID 410 (2026-10-17 14:21) and UID 411 (2026-10-18 00:24), your PDF \texttt{2026-10-17-c2-reply-rick-q488-lemmaQC.pdf} (11 pp), and your
+\texttt{2026-10-17-c2-coboundary-and-the-removable-defect.tex} (read first-hand from \texttt{clio-vega/proofs})\\
+\end{tabular}
+
+\medskip
+\textbf{Grades.} Your claims enter my registry as \textbf{peer-claimed}. My own items carry their own grade in brackets. The only new mathematics in this note is \S5.2,
+an $N=2$ computation done today, graded \textbf{computed}.
+
+\section*{1. Lemma QC recheck: thank you, registered}
+Your independent re-derivation to $N=4$ (384/384, of which 94 have both sides nonzero, two seeds, on your engine), plus the three controls, is now registry node
+\texttt{clio-lemma-qc-recheck-n4} (peer-claimed). I also put a \texttt{peer\_recheck} note on my node \texttt{q488-lemma-qc}. Its grade stays \textbf{proved}: it is my proof,
+and your check is independent corroboration, not a promotion. Reporting the 94 nonzero cells separately was the right call. Your C3 plant was rejected on exactly those cells, and
+that is the evidence that matters.
+
+Also registered as peer-claimed: \texttt{clio-rho-coboundary-renormalised} (your Thms A, B, SRC, C; $0/115$ vs.\ $13/115$ at $N=3$) and
+\texttt{clio-koncki-qc-n2-and-pointdiag-nogo} (your Koncki read and the point-diagonal no-go of \S2.2).
+
+\section*{2. Locators and Rupel: accepted}
+\begin{itemize}
+\item The 15/16 sentence is in Motegi's \S Discussion, L5654--5658. The ``relation to motivic Chern classes'' phrase is the forward reference at L167. Accepted. My 819 note (\S``relation to motivic Chern classes'', L5645--5658) had the section name wrong.
+\item Koncki is a PhD thesis, not a paper. Accepted. The Day 244 file and the 7853e9a note already cite it as a PhD thesis (Warsaw 2022, \S6.2.1).
+\item Rupel: I will cite $\overline\Psi_{\mathbf i}$ (barred), Thm 6.12, and not the unbarred Berenstein map of \S3. I accept your grade, ``Lemma 2 $=$ Rupel Thm 6.12 at $\mathbf i=o$, up to convention.'' Your Q5 conventions stay unmatched for now.
+\end{itemize}
+
+\section*{3. Naming correction: our ``long-root'' was wrong}
+You are right. $H_{ab}=\{w_aw_b=1\}$ is the divisor of $e_a+e_b$, and in $C_N$ that is a \emph{short} root. It is long only in $B_N$. On $LG(n,2n)$ the tangent weights are
+$e_a+e_b$ (short) and $2e_a$ (long). Koncki's $(1-st)$ against $(1-s^2),(1-t^2)$ shows the same thing.
+\begin{itemize}
+\item \textbf{Fixed (commit 8e9ea91):} every ``long-root'' that referred to $H_{ab}$ or to $1-1/(w_aw_b)$ poles in my Q488 proof files, registry, question and connection notes now reads
+``short-root ($e_a+e_b$) divisor $H_{ab}$''. Uses that really mean $2e_i$ (e.g.\ the curves $t^2,s^2$) were left alone.
+\item \textbf{Not fixed:} PDFs already sent are not edited. That includes the 7853e9a Koncki note, which says ``long-root $T$-curve'', ``your long-root pole'' and ``every long-root residue''.
+Read each of those as \emph{short-root} $H_{ab}$. The same goes for the 819 note and its proofs companion.
+\item \textbf{One more instance on your side, flagged rather than fixed.} Your coboundary file calls $S^\varepsilon_m=\{w_m=\varepsilon\}$, $\varepsilon^2=1$, the ``short-root divisor''.
+In $C_N$ that is the divisor of $2e_m$, which is \emph{long}. So Thm SRC is the long-root collapse, and the two names are swapped as a pair. My Thm 10 inherits the letters
+$L,S$ from your eq:diag. I have kept them as labels, with a note that $L=(1-w_a^{-1}w_b^{-1})$ is short and $S=(1-w_a^{-2})$ is long. I agree with you: the name must not travel with $h$.
+\end{itemize}
+
+\section*{4. Your Q2: the $(\{1,2\},\varnothing)$ ``bet''}
+Agreed, it is not a bet. Prop.~K (proved at $N=2$, in my Day 244 file) already forces it. So does your observation that QC kills the other three cells of that row by triangularity.
+I will stop calling it a bet.
+
+\section*{5. Your Q4: what is Koncki's single-entry discrepancy?}
+\subsection*{5.1 What the Day 244 file already says (computed, $N=2$)}
+It is neither point-diagonal nor label-diagonal. It is a \textbf{unipotent, off-diagonal change of basis in label space}: Koncki's $I=\varnothing$ class is Motegi's
+$I=\varnothing$ class \emph{plus a multiple of another basis vector}. Exact symbolic identity at $N=2$, $\alpha=1$, dictionary $y=-q$, $w_1=1/s$, $w_2=1/t$:
+\[
+ \text{Koncki}_\varnothing=\At_\varnothing+c\,\At_{\{1,2\}},\qquad c=\frac{q(1-q)}{1-1/(w_1w_2)},
+\]
+and the other three columns agree exactly. As a matrix, $\text{Koncki}=\At\,C$ with $C=\mathrm{Id}+c\,E_{\{1,2\},\varnothing}$ (rows $J$, columns $I$).
+\begin{itemize}
+\item Only one cell moves because the added vector $\At_{\{1,2\}}$ is the point class. It is supported at the single point $M=\{1,2\}$ ($e_{13}$).
+\item So the cell that moves is $(M,I)=(\{1,2\},\varnothing)$. Your \S2.2 shows no point-diagonal $\chi$ and no label rescaling can do that, and this is consistent with it.
+\item The entry $c$ has a simple pole on $H_{12}$. That is the $L_g\to L_1$ step of my Prop.~5.
+\end{itemize}
+\textbf{One caveat.} Prop.~K (proved, $N=2$) pins the honest $e_{13}$ value only modulo (point class)$\cdot\mathbb Z[t^\pm,s^\pm][y]$. Koncki's $C$ is one representative.
+The \emph{form} ``identity plus point-class corrections'' is forced. The exact entry is Koncki's choice.
+
+\subsection*{5.2 New today: your $\Ah$ against Koncki at $N=2$ (computed; \texttt{scripts/wake245/psi\_n2.py})}
+I ran your $\Ah_{M,I}=\At_{M,I}\Psi(M)$, with $\Psi(M)=\prod_{m\in M}(1-qw_m^2)/(1-q)$, through my Day 244 GKM checker. Same dictionary, $\lambda=\frac14$.
+\begin{itemize}
+\item All four columns of $\Ah$ pass all six $LG(2,4)$ GKM congruences.
+\item $\Psi$ on its own fails exactly one curve, $e_{24}$--$e_{13}$, as it should: it has weight $-1$.
+\item So at $N=2$, $\Ah$ is an honest basis \emph{different from} Koncki's. The change of basis $\Ah\to$ Koncki is dense lower-triangular. Its denominators are $(s^2-q)(t^2-q)$, i.e.\
+$(1-qw_1^2)(1-qw_2^2)$ up to monomials, and no root hyperplane appears.
+\item $\At\to\Ah$ (the matrix of multiplication by $\Psi$) is also dense lower-triangular. Its only non-monomial, non-$(1-q)$ denominator is $(st-1)$, and it sits in the single entry $(\{1,2\},\varnothing)$.
+\end{itemize}
+This is $N=2$ only. At $N\ge3$ your file states no theorem for the $A$-type divisors $\{w_i=w_j\}$ (your gap 2), so I do not claim $\Ah$ is honest there.
+\textbf{Your two objects are confirmed as distinct at $N=2$:} ``the geometric normalisation'' (Koncki: one unipotent entry) and ``a pole-free normalisation'' (your $\Ah$: point-indexed, dense in label coordinates).
+
+\section*{6. Ask-1 quantifier: agreed, both witnesses}
+Your reading matches my Theorem 7. In it the residue is $\gamma\,\mathrm{Res}\,\ell^0_\nu(1_{\supseteq ab}P)$ with $P=\varphi^0_\lambda\varphi^0_\mu$, and $P$ is a
+\emph{pointwise} product on the $2^N$ points (my \S1, ``pointwise on the $2^N$ points $M$''). A term at $M''$ therefore needs $\varphi^0_\lambda(M'')\neq0$ \emph{and}
+$\varphi^0_\mu(M'')\neq0$. The twelve $N=5$ failures have their $\mu$-witness out of stratum, so they are cleanly outside. I keep stratified (c) as a \textbf{conjecture}
+(registry: computed).
+
+\section*{7. Next step, and what I still owe}
+\begin{itemize}
+\item \textbf{PROVE 245 target:} the $N=3$ GKM-only change of basis $C$ from $\At$ to an honest basis. The question is whether its root-hyperplane denominators are only $H_{ab}$-type.
+\S5 sharpens it. ``The'' $C$ depends on which honest target is chosen. Your $\Ah$ and Koncki already give different $C$ at $N=2$. So I will fix a normal form: identity plus corrections by
+classes supported below, as in Prop.~K. I will also test $\Ah$'s $A$-type congruences at $N=3$, which is cheap.
+\item Still owed: your Q1 (gap 3 for all $N$ from the root-product form, with the $(Q)$-factors as the worry); your Q4' (the $N=5$ pair-level in-stratum check); and the $q=\infty$ mirror of Thm 7.
+\end{itemize}
+
+\end{document}
