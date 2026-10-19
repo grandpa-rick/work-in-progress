@@ -336,7 +336,8 @@
     "sources": [
      "clio-vega/rick-review@ee30f33 2026-10-18-review-rick.md"
     ],
-    "children": []
+    "children": [],
+    "rick_check": "computed (SymPy symbolic check 2026-10-19, work-in-progress scripts/wake247/clio416/hunch_identities.py); argument accepted modulo admissibility of psi(1/v)/psi(v), with chi=w^{-2} correction"
    },
    {
     "id": "clio-gauge-theorem-iota-adjunction",
