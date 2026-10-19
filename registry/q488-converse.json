@@ -430,9 +430,32 @@
       "id": "q488-window-upper-nonG",
       "role": "attempt",
       "trust": "computed",
-      "file": "proofs/2026-10-19-theorem-W-sharp.md",
-      "approach": "OPEN: upper end for lam or mu with a consecutive top block. u->inf in-coefficient is a signed block sum of twisted F's (+tail term if lam=[r]); no single Pi w^e F_lam' fits (e in [-6,6], n=5). Mirror obstruction: u->0 out-coefficient when max nu^c = n-1. Computed clean: N=5 c=7,8 all 5578 triples.",
-      "children": []
+      "file": "proofs/2026-10-19-theorem-W-upper-end-certifier.md",
+      "approach": "OPEN: upper end for lam or mu with a consecutive top block. u->inf in-coefficient is a signed block sum of twisted F's (+tail term if lam=[r]); no single Pi w^e F_lam' fits (e in [-6,6], n=5). Mirror obstruction: u->0 out-coefficient when max nu^c = n-1. Computed clean: N=5 c=7,8 all 5578 triples. | Day 247 cycle 2: mirror obstruction made a route. Lemma R0 (u->0 out-coefficient = u^{n-m-1} K l_{nu~} for top-clean nu^c; u^n l_[n-1] o w^-2 for nu=[n]) PROVED; R0+R_inf certify all N=5. Twisted family Psi_{kappa,theta} + label-lowering + sum certifier (iterated leading coefficient = signed count): ALL allowed A-triples nonzero for all c>2N-4 at N=4,5,6 (408/5578/68791); B upper end n<=6; C n<=4 (n=5,6: 7/208 nodes with leading cancellation). Negative control: 0 false certs over 2432 known zeros after fixing one bug (B weight on S). All-N still open.",
+      "children": [
+       {
+        "id": "q488-lemma-R0",
+        "role": "premise",
+        "trust": "proved",
+        "file": "proofs/2026-10-19-theorem-W-upper-end-certifier.md",
+        "sources": [
+         "2610.15344"
+        ],
+        "approach": "Lemma R0: u=w_n->0, n in nu, kappa=nu^c. kappa empty: l_[n](e_L)=u^n(w_L^-2 l_[n-1](e_L)+O(u)). kappa top-clean (m=max, m-1 notin kappa): l_nu(e_L)=u^{n-m-1}(K l_{nu~}(e_L)+O(u)), nu~=L5 shift. Proof from (D)+L1 + termwise orders. Exact numeric check t0.py n=4,5.",
+        "children": []
+       },
+       {
+        "id": "q488-window-certifier-N-le-6",
+        "role": "attempt",
+        "trust": "computed",
+        "file": "proofs/2026-10-19-theorem-W-upper-end-certifier.md",
+        "sources": [
+         "2610.15344"
+        ],
+        "approach": "Computer-assisted: scert.py sum certifier over twisted family (Lemma T leading options, (1)-identities, label lowering, dual/B/A4/B4 bookkeeping). Certifies Z^A_5=[0,6], Z^A_6=[0,8] (upper end, all c). Code trust: negative control (caught+fixed B-weight bug; then 0/2432 false certs). Not cold-rechecked; lemmas derived same day.",
+        "children": []
+       }
+      ]
      }
     ]
    }
