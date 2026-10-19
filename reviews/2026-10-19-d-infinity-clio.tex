@@ -1,0 +1,91 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\newcommand{\wiphash}{PENDING}
+\newcommand{\At}{\tilde A}
+\title{Your converse (Q488 Gap 2) holds for all $N$ on the $H$-divisors,\\ via $q=\infty$ and Motegi's biorthogonality}
+\author{Rick}
+\date{2026-10-19}
+\begin{document}\sloppy
+\maketitle
+\vspace{-6mm}
+\begin{tabular}{@{}lp{13.4cm}@{}}
+Author & Rick (grandparick20@gmail.com)\\
+Date & 2026-10-19 (proved Day 246 PROVE, 2026-10-18; sent Wake 247)\\
+Recipient & Clio Vega (cliovega20@gmail.com); cc Robin Langer\\
+Title & Your converse (Q488 Gap 2) holds for all $N$ on the $H$-divisors, via $q=\infty$ and Motegi's biorthogonality\\
+WIP commit & \texttt{grandpa-rick/work-in-progress}, source commit \texttt{\wiphash}. Full proof file \texttt{proofs/2026-10-18-q488-d-infinity.md} (attached);
+registry \texttt{registry/q488-converse.json}, nodes \texttt{q488-qinf-D-infinity} and \texttt{q488-converse-all-N}, trust \textbf{proved}; scripts \texttt{scripts/prove246/}\\
+\end{tabular}
+
+\medskip
+Clio,
+
+Your converse is now proved for all $N$ at generic $q$, on the short-root divisors $H_{ab}$. One cited input is not
+re-derived: Motegi's all-cardinality biorthogonality, arXiv:2610.15344, Thm \texttt{thm:BC-all-cardinality-biorthogonality},
+L4365--4411 of the e-print.
+
+\section*{Statement \quad[\textbf{proved}, all $N$, mod Motegi]}
+$c^\nu_{\lambda\mu}$ has a pole on $H_{ab}=\{w_aw_b=1\}$ if and only if some $M''\subseteq[N]\setminus\{a,b\}$ has $M''\cup\{a,b\}\le\nu$ and
+$M''\ge\lambda,\mu$. For a jump-$\ge2$ triple, take $a<b$ to be the two smallest elements of $\nu$ and $M''=\nu\setminus\{a,b\}$. For a
+jump-$\le1$ triple, no such $M''$ exists. The pole is simple, and it is already visible in the first order of the
+$q\to\infty$ expansion ($p=1/q$).
+
+\section*{Why $q=\infty$ and not $q=0$}
+Day 243 showed that the $q^1$ coefficient cannot do it: at $N=4$ the triple
+$(\emptyset,\{3\},\{1,2,4\})$ on $H_{12}$ has its $q=0$ residue only at order $q^2$. At $q=\infty$ the corresponding residue is first order
+in every case, and this session proves that in general.
+
+\section*{How (three pieces)}
+\begin{enumerate}
+\item \emph{Closed form.} $\varphi^\infty_I(M):=\lim q^{-(\dim-|I|)}\At_{M,I}=\tau(I)\cdot\prod_{m\in M}w_m^{-2N}\cdot F_I(M)$. Here $F$ is the $q=0$ sum
+(2.1) with each head $x_j$ weighted by $x_j^{\kappa_j-2j}$, times $\prod_M w^{2|\kappa|}$. The derivation is the leading
+$q$-coefficient of Motegi's summand, ordering by ordering.
+\item \emph{Exact dual.} Motegi's theorem says $(A(q)^{-1})_{I,L}=q^{|I|-|L|}A_{L^c,I^c}(q^{-1})$ (row-normalised $A$). As $q\to\infty$
+this becomes
+\[\ell^\infty_\nu(e_L)=\frac{\varphi^0_{\nu^c}(L^c)}{\varphi^\infty_L(L)\,\varphi^0_{L^c}(L^c)}.\]
+So the residue functional at $q=\infty$ is the
+$q=0$ basis at complements, and the $H_{ab}$-residue becomes an explicit finite sum over the $M''$ above, with weight
+$\prod_{m\in M''}w_m^{-2N}$. (Checked exactly at $N\le5$.)
+\item \emph{Induction.} That sum is nonzero for every weight exponent $c\le-2$; $q=\infty$ is $c=-2N$. Peel the top variable $n$:
+\begin{itemize}
+\item a forced head factorises the sum exactly;
+\item otherwise $w_n\to0$, and the weight makes the $n$-containing terms dominate;
+\item in the ``stuck'' case, $w_n\to\infty$ replaces $\nu$ by $\nu$ with $n$ swapped for its largest missing element, and the
+support is unchanged.
+\end{itemize}
+At $n=b$ the residue turns into a plain coordinate of a function supported on $\{M\ni a\}$; at $n=a$ it becomes a
+plain coordinate with weight $c-2$. The base case is the number $1$.
+\end{enumerate}
+
+\section*{Control}
+The $q=0$ problem is the same sum at weight $c=0$. At $c=0$ the sum vanishes on exactly one $N=4$
+case: $(\emptyset,\{3\},\{1,2,4\})$ on $H_{12}$, our old separator. There the dominance step ties.
+
+\section*{What it does not do}
+Nothing here touches the $S/A$ divisors at full $q$ (your \texttt{thm:main} and Gap $q$). I plan to leave $S/A$ to you.
+
+\section*{Two corrections to my own earlier claims}
+\begin{itemize}
+\item Wake 246 said (D$\infty$) holds ``on every pair where Thm 6 allows a pole''. That is the wrong condition, because
+Thm 6 aggregates over $\nu$. The per-$\nu$ condition is the one above.
+\item The ``762/762 at $N=4$'' tally mixed cases: 408 allowed cases are all nonzero, and 354 non-allowed cases are all
+zero.
+\end{itemize}
+
+Rick
+
+\bigskip\hrule\medskip
+\textbf{Dream addendum} (Day 246 dream; labels intact)
+\begin{itemize}
+\item \textbf{(Hunch, framing only.)} On $LG(N,2N)$, $I\mapsto I^c$ is $w_0=-1\in W(C_N)$. So Motegi's biorthogonality reads
+``inverse $=$ $w_0$-conjugate of the bar image''. That is the shape of KL inversion and of opposite-chamber
+stable-envelope duality, and Motegi's own proof goes through RTV's $U\mapsto U^\perp$. I have \emph{not} run a separator test
+against the $C_2$ inverse KL polynomials, so please treat the KL reading as a shape match.
+\item \textbf{(Computed, $N=4/5$.)} In the weighted sum, $q=\infty$ is weight $c=-2N$ and $q=0$ is $c=0$. At $N=4$, zeros occur only for
+$c\in\{0,2,4\}$. So bar swaps the two ends but not their genericity: the $q=0$ end sits on the edge of a wall window,
+which is why our old separator vanishes there. If you know a reason the window should be $[0,2N-4]$, I'd like
+to hear it.
+\end{itemize}
+\end{document}
