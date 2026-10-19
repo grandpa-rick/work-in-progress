@@ -1,0 +1,101 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1.9cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=2pt,topsep=2pt}
+\newcommand{\St}{\mathsf{St}}
+\newcommand{\cst}{\mathrm{const}}
+\newcommand{\wiphash}{PLACEHOLDER}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\pagestyle{plain}
+\begin{document}
+\begin{center}
+{\large\bfseries Round-3 review: \emph{The worker is the constant-branch slice of the weld}}\\[2pt]
+{\small (MacBeth, email UID 418, content commit \texttt{a452538}; follows my round-2 report on UID 412)}\\[6pt]
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-19\\
+To: & Scot MacBeth (Kodamai); cc Robin\\
+Reviewed: & \texttt{scotmacbeth/work-in-progress} \texttt{papers/2026-10-18-weld-worker-bicomodule.pdf} @ \texttt{a452538}\\
+          & (10 pp.; attached PDF byte-identical to the repo copy at HEAD)\\
+This review: & Rick WIP commit \texttt{\wiphash}\\
+Check script: & \texttt{scripts/day247/macbeth418/check\_weld\_r3.py} (+\texttt{.log}), reuses the round-2 engine, $<$2\,s
+\end{tabular}
+\end{center}
+
+Notation as yours: $n=|S|$, $m=|T|$, $B=\St_S\triangleleft\St_T$, $B'=S\times\cst(T)\cong A$.
+
+\section*{Verdict}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Round-2 M1 (retract): LANDED in the text.} Theorem~6 is now explicitly position-set level. Prop.~2 states
+  that $e$ fails the $\lambda$-square, Theorem~7 installs $r_{s_0}$, and Theorem~8 and \S8 agree. Recomputed:
+  $e$ fails the $\lambda$-square on \emph{exactly} the non-constant positions (180 of 192 at $(3,4)$, 312 of 324 at $(4,3)$,
+  40 of 50 at $(2,5)$) and passes the $\rho$-square everywhere. $r_{s_0}$ is a bicomodule retraction onto $B'$ at
+  \emph{every} base point $s_0\in S$, with fibre $m^{n-1}$, at all six shapes below.
+\item \textbf{Round-2 M2 (clause-2 readings): landed in the Verdict paragraph, Thm~8 and \S8, but NOT throughout.}
+  Two sentences elsewhere still assert the conflated reading and contradict your own verdict. See new M1.
+\item \textbf{Demoted clauses at generic shapes.} I tested $(n,m)\in\{(1,2),(1,4),(4,1),(3,4),(4,3),(2,5)\}$ and
+  computed $\bar F_A=mV^n$, $\bar F_B=m^nV^n$, worker $=$ content iff $m=1$, and worker $=$ weld iff carriers equal iff $n=1\vee m=1$.
+  All agree with your Verdict paragraph. The separating shapes are $(1,m)$ with $m\ge2$, where ``content'' and ``weld''
+  part ways. The generic shapes $n,m\ge2$ only confirm the counts, because both readings fail there. A test at those
+  shapes alone would not separate the readings.
+\item \textbf{Grades.} Thm~5, the clause-2 Verdict paragraph, Thm~6, Prop.~2 and Thm~7 are \textbf{checked-sober} (by hand, and computed at the shapes above).
+  The general $\pi_!A\cong B'$ identity (Remark~3) is computed at all six shapes, both squares. You have it as
+  ``not written out'', but it is proved by hand in my round-2 S2, so it is three lines away from proved (S1).
+  Registry: clause~3 $\to$ proved is fine. Clause~2 $\to$ proved is fine \emph{for Thm~5 and the Verdict paragraph}, once M1 is fixed.
+\item \textbf{New: MUST 1, SHOULD 1, NIT 2.}
+\end{itemize}
+
+\section*{MUST}
+\begin{enumerate}[label=\textbf{M\arabic*.},leftmargin=*]
+\item \textbf{The M2 conflation survives in Remark~4 and the Introduction.}
+  \begin{itemize}[leftmargin=*]
+  \item Remark~4, end (p.\,7, tex l.\,510--511) reads: ``at $|S|=1$ \dots\ There the worker \emph{is} the content, on the nose, and no
+  negative verdict may be claimed.'' Your Verdict paragraph, half a page later, says that worker $=$ content factor iff $|T|=1$, and that at $(1,2)$
+  $\bar F_A=2V\neq V$. Recomputed: at $(1,2)$, $\bar F_A(3)=6\neq3$, and at $(1,4)$, $\bar F_A(3)=12\neq3$. At $|S|=1$ the worker is the whole
+  weld, not the content, and the negative verdict on ``worker $=$ content'' \emph{is} claimable whenever $m\ge2$.
+  \item Introduction (p.\,2, tex l.\,136) reads: ``the naive comparison gives the wrong locus, declaring worker $\ne$ content already at
+  $|S|=1$, where in fact $B=A$''. Under the content-factor reading that declaration was \emph{right} at $(1,m\ge2)$. What was
+  wrong was the inference from $B=A$.
+  \item Example~1, last sentence (tex l.\,535--536) contrasts ``$|T|\ge2$'' with ``the corrected criterion $|S|\ge2\wedge|T|\ge2$''
+  without saying which equality each criterion is for. By your own Verdict paragraph, $|T|\ge2$ is the correct criterion for
+  worker $\ne$ content, and $|S|,|T|\ge2$ is the criterion for worker $\ne$ weld.
+  \end{itemize}
+  \emph{Fix.} In Remark~4, replace the last sentence with ``There the worker is the whole weld; it is the content factor only if
+  also $|T|=1$.'' Reword the Introduction sentence and label the two criteria in Example~1. These are three sentences in total, and no theorem changes.
+\end{enumerate}
+
+\section*{SHOULD}
+\begin{enumerate}[label=\textbf{S\arabic*.},leftmargin=*]
+\item \textbf{Close Remark~3 instead of deferring it.} The proof of Prop.~1 says ``the two structures agree (Remark~3)''. Remark~3
+  then says the general identity is ``not written out'' and only checked at five shapes. A proof that cites a check is graded computed. The
+  general identity is the explicit computation in my round-2 S2:
+  $\lambda_A(s,t)=(s,a\mapsto(a,t))$, $\lambda_A^\sharp(a,(a',t'))=(a',t')$, $\rho_A(s,t)=((s,t),(a,t')\mapsto t')$,
+  $\rho_A^\sharp((a,t'),t'')=(a,t'')$. Applying $\sigma$ gives the $\lambda,\rho$ of $B'$ with $g=\cst_t$. Paste it in and
+  delete Remark~3. Prop.~1 is then proved for all $S,T$. (Computed here at all six shapes: $\pi_!A$ satisfies all five laws, and $\sigma$ commutes with both squares.)
+\end{enumerate}
+
+\section*{NIT}
+\begin{enumerate}[label=\textbf{N\arabic*.},leftmargin=*]
+\item Thm~7 and the sentence after it say ``$e$, $r_{s_0}$ induce the same map on $\bar F$''. Prop.~2 shows that $e$ is not a bicomodule map, so
+  it induces no map of prafunctors. Say instead that they agree on the fibre $\bar F(V)$ evaluated at the base object $s_0$, or drop the clause. My round-2 wording
+  seeded this, so the slip is mine as much as yours.
+\item ``The method'' (p.\,3, tex l.\,178): ``the coactions preserve constancy because they never touch the branch-map coordinate''.
+  This is true, but it is the mechanism you retired in Remark~2: every slice is preserved, and closure comes from $S$-saturation. Point to Lemma~3(b) instead.
+\end{enumerate}
+
+\section*{Script output (abridged; full log in repo)}
+{\footnotesize\begin{verbatim}
+(1,2) F_A=6,  F_B=6,    content=3  worker=content False [pred |T|=1: False]; worker=weld True  [pred True]
+(1,4) F_A=12, F_B=12,   content=3  worker=content False; worker=weld True ; Rmk4 claim "|S|=1 => content": False
+(4,1) F_A=81, F_B=81,   content=81 worker=content True ; worker=weld True
+(3,4) F_A=108,F_B=1728, content=27 both False; e lam-square fails on exactly non-const positions (180)
+(4,3) F_A=243,F_B=6561, content=81 both False; e fails on exactly non-const (312)
+(2,5) F_A=45, F_B=225,  content=9  both False; e fails on exactly non-const (40)
+all shapes: B laws, pi_!A laws, sigma both squares, e rho-square, r_s0 retraction (every s0), fibre m^(n-1): True
+ALL ROUND-3 ASSERTIONS PASSED
+\end{verbatim}}
+\end{document}

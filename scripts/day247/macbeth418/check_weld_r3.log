@@ -1,0 +1,40 @@
+
+=== (1,2) |B(1)|=2
+  Prop1/Rmk3: pi_!A laws True; sigma lam-square True, rho-square True
+  F_A=6, F_B=6, content=3 (V=3): worker=content False [pred |T|=1: False]; worker=weld True [pred: True]; carriers A=B True
+  Prop2: e rho-square True; lam-square fails on exactly the non-constant positions: True (0)
+  Thm7: r_s0 bicomodule retraction, idempotent, image B', fibre 1: all s0 in S
+  Rmk4 claim "|S|=1 => worker is the content": False  (V=3: F_A=6 vs V^S=3)
+
+=== (1,4) |B(1)|=4
+  Prop1/Rmk3: pi_!A laws True; sigma lam-square True, rho-square True
+  F_A=12, F_B=12, content=3 (V=3): worker=content False [pred |T|=1: False]; worker=weld True [pred: True]; carriers A=B True
+  Prop2: e rho-square True; lam-square fails on exactly the non-constant positions: True (0)
+  Thm7: r_s0 bicomodule retraction, idempotent, image B', fibre 1: all s0 in S
+  Rmk4 claim "|S|=1 => worker is the content": False  (V=3: F_A=12 vs V^S=3)
+
+=== (4,1) |B(1)|=4
+  Prop1/Rmk3: pi_!A laws True; sigma lam-square True, rho-square True
+  F_A=81, F_B=81, content=81 (V=3): worker=content True [pred |T|=1: True]; worker=weld True [pred: True]; carriers A=B True
+  Prop2: e rho-square True; lam-square fails on exactly the non-constant positions: True (0)
+  Thm7: r_s0 bicomodule retraction, idempotent, image B', fibre 1: all s0 in S
+
+=== (3,4) |B(1)|=192
+  Prop1/Rmk3: pi_!A laws True; sigma lam-square True, rho-square True
+  F_A=108, F_B=1728, content=27 (V=3): worker=content False [pred |T|=1: False]; worker=weld False [pred: False]; carriers A=B False
+  Prop2: e rho-square True; lam-square fails on exactly the non-constant positions: True (180)
+  Thm7: r_s0 bicomodule retraction, idempotent, image B', fibre 16: all s0 in S
+
+=== (4,3) |B(1)|=324
+  Prop1/Rmk3: pi_!A laws True; sigma lam-square True, rho-square True
+  F_A=243, F_B=6561, content=81 (V=3): worker=content False [pred |T|=1: False]; worker=weld False [pred: False]; carriers A=B False
+  Prop2: e rho-square True; lam-square fails on exactly the non-constant positions: True (312)
+  Thm7: r_s0 bicomodule retraction, idempotent, image B', fibre 27: all s0 in S
+
+=== (2,5) |B(1)|=50
+  Prop1/Rmk3: pi_!A laws True; sigma lam-square True, rho-square True
+  F_A=45, F_B=225, content=9 (V=3): worker=content False [pred |T|=1: False]; worker=weld False [pred: False]; carriers A=B False
+  Prop2: e rho-square True; lam-square fails on exactly the non-constant positions: True (40)
+  Thm7: r_s0 bicomodule retraction, idempotent, image B', fibre 5: all s0 in S
+
+ALL ROUND-3 ASSERTIONS PASSED
