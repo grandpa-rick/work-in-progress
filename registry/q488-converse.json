@@ -169,10 +169,11 @@
        {
         "id": "q488-weighted-theorem-W",
         "role": "premise",
-        "approach": "Theorem W: for integer c<=-2, R^A(lam,mu,nu;a,b;c) = Res l^F_nu(1_{>=ab} w^c F_lam F_mu) != 0 iff E != {}; same for types B (support on M ni a, x=w_a free) and C (plain coordinate). Induction on top variable with lemmas L1-L6. Each reduction step also checked numerically (test_red*.py). Hypothesis c<=-2 is what q=0 (c=0) violates: F-system at c=0 vanishes exactly on the separator (empty,{3},{1,2,4}) H12, which is case A2 with tie c+1-delta=0.",
+        "approach": "Theorem W: for integer c<=-2, R^A(lam,mu,nu;a,b;c) = Res l^F_nu(1_{>=ab} w^c F_lam F_mu) != 0 iff E != {}; same for types B (support on M ni a, x=w_a free) and C (plain coordinate). Induction on top variable with lemmas L1-L6. Each reduction step also checked numerically (test_red*.py). Hypothesis c<=-2 is what q=0 (c=0) violates: F-system at c=0 vanishes exactly on the separator (empty,{3},{1,2,4}) H12, which is case A2 with tie c+1-delta=0. | Day 247 cold re-read (Part 1): A2/A3/B2/B3/C2/C3 re-derived before reading the text; all orders/leading coefficients/supports agree; the ONLY use of c<=-2 is c+1-delta<0 at delta=0 (A2,C2); B2 needs c<=-1. Forced case n in lam covered by L2's kappa_r=n clause (no out-terms).",
         "trust": "proved",
         "file": "proofs/2026-10-18-q488-d-infinity.md",
-        "children": []
+        "children": [],
+        "recheck": "2026-10-19 proofs/2026-10-19-theorem-W-sharp.md §1"
        }
       ],
       "sources": [
@@ -376,6 +377,64 @@
      "clio-vega/rick-review@ee30f33 2026-10-18-review-rick.md"
     ],
     "children": []
+   },
+   {
+    "id": "q488-theorem-W-sharp-window",
+    "role": "attempt",
+    "trust": "computed",
+    "file": "proofs/2026-10-19-theorem-W-sharp.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "approach": "Weight window Z^X_n := {c : some instance with nonempty support vanishes}. Census: Z^A = {},{2},[0,4],[0,6] (N=2..5), Z^B=[1,2n-2] (n>=3), Z^C=[0,2n-2]. Day-246 prediction 'Z = even c in [0,2N-4]' DEAD (c=1 zero, exact). Full characterisation Z^A_N=[0,2N-4] (N>=4) is proved except the upper end for lam or mu with two consecutive parts (N>=5): computed only (N=5 clean at c=7,8; N=6 c=9 in A6.txt).",
+    "children": [
+     {
+      "id": "q488-theorem-W-c-minus-1",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-10-19-theorem-W-sharp.md",
+      "sources": [
+       "2610.15344"
+      ],
+      "approach": "Theorem W+: A, C nonvanishing for c<=-1, B for c<=0, iff support nonempty, all n. New branch A2inf/C2inf: delta=0 mixed case peeled at u->inf: in-degree <= c-n < -1, out-degree exactly -1 with coefficient X(empty,empty,nu~;c) whose support contains the empty set. Sharp: c=0 in Z^A_N (N>=4) and Z^C_n. Checked: chk_inf.py (ratio const per m*), census c=-1 clean A N<=6, B,C n<=5.",
+      "children": []
+     },
+     {
+      "id": "q488-det-lemma-l-full",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-10-19-theorem-W-sharp.md",
+      "sources": [
+       "2610.15344"
+      ],
+      "approach": "Lemma Delta: l^F_[n](prod_{i in L} g_i) = K_n det(g_i w_i^{-k} - w_i^k)_{i, 0<=k<n}; equivalently l_[n](e_L) ∝ (-1)^{|L^c|} Vandermonde(y^L), y_i = w_i^{-1} (i in L), w_i (else). Proof: (D) at nu=[n] is a product; pairwise factor bookkeeping gives L-free monomial exponent -m+2 and L-free sign; tau sign convention not needed (multiplicative sign pinned by l_[n](1)=0 + generic-rank argument). Cor: C(empty,empty,[n];c)=0 iff c in [0,2n-2] (C_n Weyl numerator). Checked n<=5 mod p.",
+      "children": []
+     },
+     {
+      "id": "q488-window-lower-inclusion",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-10-19-theorem-W-sharp.md",
+      "approach": "Prop Z: [2,2N-4] in Z^A_N (N>=3) via A4,B4 exact + Lemma Delta at (empty,empty,[N];N-1,N); {0,1} in Z^A_N (N>=4) via exact symbolic zeros in Q(x,w2,w3,w4): (empty,{3},{1,2,4}) H12 c=0; (empty,{2},{1,3,4}) H12,H13,H14 c=1; controls nonzero; A1 exact propagates. Refutes 'Z in evens'.",
+      "children": []
+     },
+     {
+      "id": "q488-window-upper-G",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-10-19-theorem-W-sharp.md",
+      "approach": "Theorem U_G: for lam,mu in G (consecutive gaps >=2; incl. empty and (1)), X != 0 for c > U^X_n (U^C=U^B=2n-2, U^A=2n-4); sharp at (empty,empty,[n]). Key Lemma L3': top u-degree of F_lam(M) is u^{lam_r} Pi w^2 F_{lam-} if lam_r-1 not in lam+{0}; F_(1)(M) = u(1+O(1/u)) via residue identity phi0_(1)(M) = 1 - Pi w^{-2}. Corollary: Z^A_2={}, Z^A_3={2}, Z^A_4=[0,4] PROVED (non-G triples at N=4 are single-term, c-independent).",
+      "children": []
+     },
+     {
+      "id": "q488-window-upper-nonG",
+      "role": "attempt",
+      "trust": "computed",
+      "file": "proofs/2026-10-19-theorem-W-sharp.md",
+      "approach": "OPEN: upper end for lam or mu with a consecutive top block. u->inf in-coefficient is a signed block sum of twisted F's (+tail term if lam=[r]); no single Pi w^e F_lam' fits (e in [-6,6], n=5). Mirror obstruction: u->0 out-coefficient when max nu^c = n-1. Computed clean: N=5 c=7,8 all 5578 triples.",
+      "children": []
+     }
+    ]
    }
   ]
  },
