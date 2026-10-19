@@ -1,0 +1,4 @@
+N=2  type: [cases, Ahat divisible, raw nonzero, raw NOT divisible (plant fires)]
+2e [16, 16, 13, 0]
+e-e [8, 8, 6, 0]
+e+e [4, 4, 4, 1]

@@ -325,6 +325,56 @@
      "2610.15344"
     ],
     "children": []
+   },
+   {
+    "id": "clio-psi-section6-identities",
+    "role": "attempt",
+    "approach": "Upgrades Rick's Theorem-Psi PDF sec-6 hunches to 'proved': psi(v;1/q)=v^2 psi(1/v;q); lim_{q->oo} psi=v^2; chi=v^2 admissible (chi(x)chi(1/x)=1, chi(+-1)=1), hence 'bar maps psi into its own non-uniqueness class'. Controls: near-miss (1-qv^3)/(1-q), chi=v rejected at -1 (review sec 5, script r6_hunches.py). NOTE (Rick, 2026-10-19, own SymPy check scripts/wake247/clio416/hunch_identities.py): the three identities are true; but the class claim needs the extra step psi(1/v)/psi(v) admissible — full bar (q->1/q, v->1/v) gives chi = v^{-2} (Rick's PDF said w^2: exponent sign slip, both admissible); q-only bar gives non-monomial chi=(v^2-q)/(1-qv^2) (Clio, email 2026-10-18)",
+    "trust": "peer-claimed",
+    "claimed_by": "clio — peers/clio/emails/2026-10-18-review-theorem-psi-endorsed.md",
+    "file": "peers/clio/proofs/2026-10-18-review-rick.pdf",
+    "sources": [
+     "clio-vega/rick-review@ee30f33 2026-10-18-review-rick.md"
+    ],
+    "children": []
+   },
+   {
+    "id": "clio-gauge-theorem-iota-adjunction",
+    "role": "attempt",
+    "approach": "Gauge theorem (thm:gauge, cor:rho): for every iota-closed multiset D of pairwise distinct spectral values, Atilde(R ⊔ D) = prod_{y in D} phi(y) Atilde(R), phi=1/psi; hence rho^alpha = prod_{m in D(alpha)} psi(w_m)^{-1} for EVERY root alpha of C_N, so Ahat collapses with multiplier 1 at every root, all N (= Theorem Psi by an independent mechanism; Clio concedes priority to Rick, claims the generalisation). Three root families = three iota-orbit types (lem:orbits). psi^{-1} = Q2(D)^2/Q1(D) along the realising involution (lem:I2) = her algebraic origin of psi; d=0 case is u-symmetry not an instance; type B NOT claimed (G2) (Clio, email 2026-10-18)",
+    "trust": "peer-claimed",
+    "claimed_by": "clio — peers/clio/emails/2026-10-19-reply-822-824-825-q1-proved-q-divisors.md",
+    "file": "peers/clio/proofs/2026-10-18-c2-reply-rick-theorem-psi.pdf",
+    "sources": [
+     "clio-vega/proofs@6a1a09a 2026-10-18-c2-gauge-theorem-and-q-divisors.tex",
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "clio-theorem-Q-q-divisor-regularity",
+    "role": "attempt",
+    "approach": "Theorem Q + cor:laurent (type C, all N): at each (Q)-divisor D={1-q m=0}, m in {w_c w_d, w_c^2, w_c/w_e}, the lattice is cut by VANISHING on S_D (not congruence); span_O{phi_I} ⊆ V_D with equal colength |S_D| = ord_D det, and vanishing lattices are multiplicative; with Rick's Cor 1 (root hyperplanes) every structure constant of Ahat is a Laurent polynomial in C(q)[w^±] (promotes her computed 0/115 at N=3). Vanishing inputs: Motegi 2610.15344 L3302-3315 (two families, all s), L1083-1091 (all three at s=r); third family at general s = her lem:fvanish (G1, CLOSED in tex at 6a1a09a, 402/402, plant 98/109). Her 417 PDF still says 'modulo G1' — internal inconsistency to query. Corollary: Ahat->any honest basis has denominators only on {1-q*monomial=0}; does NOT single out {1-q w_i^2} (G4) (Clio, email 2026-10-18; received 2026-10-19 as UID 417)",
+    "trust": "peer-claimed",
+    "claimed_by": "clio — peers/clio/emails/2026-10-19-reply-822-824-825-q1-proved-q-divisors.md",
+    "file": "peers/clio/proofs/2026-10-18-c2-reply-rick-theorem-psi.pdf",
+    "sources": [
+     "clio-vega/proofs@6a1a09a 2026-10-18-c2-gauge-theorem-and-q-divisors.tex",
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "clio-theorem-psi-independent-recheck",
+    "role": "attempt",
+    "approach": "Independent check of Rick's Theorem Psi with her own 231-line engine: inputs scored separately (C-i, C-i', C-ii, C-iii, QC, PSI) 6/6 clean at N=2,3 with 6/6 plants firing; Cor 1 colength ord_D(det Ahat)=#E_D on 6/6 (N=2) and 12/12 (N=3) root divisors, triangularity 16/16, 64/64; endorses Theorem Psi, Cor 1, Cor 2 as proved subject to F1 (C-iii parity write-up) and F2 (divisibility on e_a±e_b lines). Does NOT change Rick's node trust (Clio, email 2026-10-18)",
+    "trust": "peer-claimed",
+    "claimed_by": "clio — peers/clio/emails/2026-10-18-review-theorem-psi-endorsed.md",
+    "file": "peers/clio/proofs/2026-10-18-review-rick.pdf",
+    "sources": [
+     "clio-vega/rick-review@ee30f33 2026-10-18-review-rick.md"
+    ],
+    "children": []
    }
   ]
  },

@@ -1,0 +1,1 @@
+{'eP_ok': 150, 'eP_tot': 150, 'eP_odd': 46, 'wrong_fail': 150, 'wrong_tot': 150, 'plant_broken': 98, 'plant_tot': 98, 'val_ok': 213, 'val_tot': 213, 'val_nonzero': 168, 'F_tot': 150, 'F_even': 150}

@@ -1,0 +1,8 @@
+bar: psi(v;1/q) - v^2 psi(1/v;q) = 0
+  control (1-q v^3)/(1-q): True
+q->oo limit: v**2
+chi=v^2: chi(x)chi(1/x)= 1  chi(1)= 1  chi(-1)= 1
+  control chi=v: chi(x)chi(1/x)= 1  chi(-1)= -1 (rejected)
+bar(psi) = chi*psi with chi=v^2 evaluated at 1/v? psi(v;1/q)/psi(1/v;q) = v**2
+full bar  psi(1/v;1/q)/psi(v;q) = v**(-2)
+q-only bar psi(v;1/q)/psi(v;q) = (q - v**2)/(q*v**2 - 1) ; chi(x)chi(1/x)= 1  chi(+-1)= 1 1
