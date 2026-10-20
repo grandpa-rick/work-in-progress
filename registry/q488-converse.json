@@ -140,7 +140,7 @@
      {
       "id": "q488-qinf-D-infinity",
       "role": "premise",
-      "approach": "PROVED all N (Day 246): Res_{H_ab}[p^1]chat^nu_{lam mu} != 0 <=> E(lam,mu,nu;ab) := {M'' in [N]-ab : M''+ab <= nu, M'' >= lam,mu} != {}. CORRECTION to the Wake-246 wording: 'Thm 6 allows a pole' is the wrong condition (aggregate over nu); the per-nu condition is E != {}. N=4: 408 allowed cases all nonzero, 354 non-allowed all zero; the old '762/762' tally mixed the two. Route: phi^inf = tau(I)*prod_{m in M} w_m^{-2N}*F_I(M) (closed form) + exact dual of phi^inf = phi^0 at complements (from Motegi biorthogonality) => residue = explicit sum over E with weight w^{-2N}; Theorem W (c<=-2) by peeling the top variable (forced head exact / w_n->0 dominance / stuck: w_n->inf, nu->nu~ / n=b: A->B / n=a: B->C, c->c-2); base value 1.",
+      "approach": "PROVED all N (Day 246): Res_{H_ab}[p^1]chat^nu_{lam mu} != 0 <=> E(lam,mu,nu;ab) := {M'' in [N]-ab : M''+ab <= nu, M'' >= lam,mu} != {}. CORRECTION to the Wake-246 wording: 'Thm 6 allows a pole' is the wrong condition (aggregate over nu); the per-nu condition is E != {}. N=4: 408 allowed cases all nonzero, 354 non-allowed all zero; the old '762/762' tally mixed the two. Route: phi^inf = tau(I)*prod_{m in M} w_m^{-2N}*F_I(M) (closed form) + exact dual of phi^inf = phi^0 at complements (from Motegi biorthogonality) => residue = explicit sum over E with weight w^{-2N}; Theorem W (c<=-2) by peeling the top variable (forced head exact / w_n->0 dominance / stuck: w_n->inf, nu->nu~ / n=b: A->B / n=a: B->C, c->c-2); base value 1. [Wake 248: grade is 'proved mod motegi-rtv-biorthogonality-root' -- the Motegi all-cardinality biorthogonality / RTV stable-envelope uniqueness, cited not re-derived.]",
       "trust": "proved",
       "file": "proofs/2026-10-18-q488-d-infinity.md",
       "children": [
@@ -178,6 +178,9 @@
       ],
       "sources": [
        "2610.15344"
+      ],
+      "depends_on": [
+       "motegi-rtv-biorthogonality-root"
       ]
      }
     ]
@@ -319,13 +322,16 @@
    {
     "id": "q488-converse-all-N",
     "role": "attempt",
-    "approach": "COROLLARY (Day 246): Clio's converse (Gap 2) for all N, generic q: c^nu_{lam mu} has a pole on H_ab iff E(lam,mu,nu;ab) != {}; every jump>=2 triple has one (a<b = two smallest elements of nu), jump<=1 none. (=>) from D-infinity + Day 243 sec. 2 Laurent argument in p; (<=) Prop 5 on the down-set of nu. Does NOT cover S/A divisors at full q (Clio thm:main / Gap q).",
+    "approach": "COROLLARY (Day 246): Clio's converse (Gap 2) for all N, generic q: c^nu_{lam mu} has a pole on H_ab iff E(lam,mu,nu;ab) != {}; every jump>=2 triple has one (a<b = two smallest elements of nu), jump<=1 none. (=>) from D-infinity + Day 243 sec. 2 Laurent argument in p; (<=) Prop 5 on the down-set of nu. Does NOT cover S/A divisors at full q (Clio thm:main / Gap q). [Wake 248: grade is 'proved mod motegi-rtv-biorthogonality-root' -- the Motegi all-cardinality biorthogonality / RTV stable-envelope uniqueness, cited not re-derived.]",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-d-infinity.md",
     "sources": [
      "2610.15344"
     ],
-    "children": []
+    "children": [],
+    "depends_on": [
+     "motegi-rtv-biorthogonality-root"
+    ]
    },
    {
     "id": "clio-psi-section6-identities",
@@ -407,8 +413,11 @@
       "sources": [
        "2610.15344"
       ],
-      "approach": "Lemma Delta: l^F_[n](prod_{i in L} g_i) = K_n det(g_i w_i^{-k} - w_i^k)_{i, 0<=k<n}; equivalently l_[n](e_L) ∝ (-1)^{|L^c|} Vandermonde(y^L), y_i = w_i^{-1} (i in L), w_i (else). Proof: (D) at nu=[n] is a product; pairwise factor bookkeeping gives L-free monomial exponent -m+2 and L-free sign; tau sign convention not needed (multiplicative sign pinned by l_[n](1)=0 + generic-rank argument). Cor: C(empty,empty,[n];c)=0 iff c in [0,2n-2] (C_n Weyl numerator). Checked n<=5 mod p.",
-      "children": []
+      "approach": "Lemma Delta: l^F_[n](prod_{i in L} g_i) = K_n det(g_i w_i^{-k} - w_i^k)_{i, 0<=k<n}; equivalently l_[n](e_L) ∝ (-1)^{|L^c|} Vandermonde(y^L), y_i = w_i^{-1} (i in L), w_i (else). Proof: (D) at nu=[n] is a product; pairwise factor bookkeeping gives L-free monomial exponent -m+2 and L-free sign; tau sign convention not needed (multiplicative sign pinned by l_[n](1)=0 + generic-rank argument). Cor: C(empty,empty,[n];c)=0 iff c in [0,2n-2] (C_n Weyl numerator). Checked n<=5 mod p. [Wake 248: grade is 'proved mod motegi-rtv-biorthogonality-root' -- the Motegi all-cardinality biorthogonality / RTV stable-envelope uniqueness, cited not re-derived.]",
+      "children": [],
+      "depends_on": [
+       "motegi-rtv-biorthogonality-root"
+      ]
      },
      {
       "id": "q488-window-lower-inclusion",
@@ -458,6 +467,44 @@
       ]
      }
     ]
+   },
+   {
+    "id": "motegi-rtv-biorthogonality-root",
+    "role": "premise",
+    "approach": "SHARED CITED ROOT (agreed with Clio, UIDs 421/422; Rick's Wake-248 note bf04c92): Motegi 2610.15344 Thm 4.18 (thm:BC-all-cardinality-biorthogonality, (A^X)^{-1}_{I,L} = q^{|lam(I)|-|lam(L)|} A^X_{L^c,I^c}(w,q^{-1})) via lem:allcard-Phihat-inverse (L4424-4432), whose proof rests on RTV stable-envelope uniqueness under U -> U^perp. Statement read first-hand by Rick (L4365-4411) and by Clio; the RTV uniqueness argument is UNREAD by both. Evidence: Rick exact checks of (D) N<=5 (1024/1024 at N=5); Clio independent symmetrisation-engine check 336/336, N<=3, both types (Delta^X_A = her Atilde_{A,A} by definition) -- discharges D-infinity Gap 1 for N<=3 only. No 'cited' grade exists in proofs/registry/README.md, so filed at peer-claimed. Underlies q488-qinf-D-infinity, q488-converse-all-N, q488-det-lemma-l-full (field depends_on) and Clio's inverse lemma / Q530.",
+    "trust": "peer-claimed",
+    "claimed_by": "Motegi 2610.15344 Thm 4.18 / lem:allcard-Phihat-inverse; RTV stable-envelope uniqueness unread by Rick and Clio; Clio engine check 336/336 N≤3 (UID 422)",
+    "file": "proofs/2026-10-18-q488-d-infinity.md",
+    "sources": [
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "clio-sa-prop-A-no-converse",
+    "role": "attempt",
+    "approach": "Clio prop:A (UID 422, clio-vega/proofs@6fad30c): on the A-type family of S/A divisors at full q there is NO converse -- the collision multiplier is 1 for every unit of the A-type GKM ring, so no renormalisation produces an A-type pole ('pole <=> condition' has RHS identically false). Corrects Rick's grouping: 'S/A' is two families. Clio grades proved. Open gaps in her doc: G1 (Hyp L^S, measured N<=4 only), G3 (type-B (BD), 34/34 N<=3 only); G2 bypassed. Rick to cold-read prop:A first (shortest).",
+    "trust": "peer-claimed",
+    "claimed_by": "Clio — peers/clio/emails/2026-10-20-sa-divisors-full-q-converse-proved-two-families.md",
+    "file": "peers/clio/proofs/2026-10-19-c2-sa-divisors-full-q.pdf",
+    "sources": [
+     "clio-vega/proofs@6fad30c 2026-10-19-c2-sa-divisors-full-q.tex",
+     "2610.15344"
+    ],
+    "children": []
+   },
+   {
+    "id": "clio-sa-thm-S-chi-quantifier",
+    "role": "attempt",
+    "approach": "Clio thm:S / thm:Sprime (UID 422, clio-vega/proofs@6fad30c): boundary (S) family of divisors at full q HAS a pole converse, with a quantifier over chi(epsilon) (forced: untwisted constants have no poles on this family). Clio grades proved IN TYPE C; CONDITIONAL ON G3 IN TYPE B (G3: (BD) type B measured 34/34 at N<=3 only). G1 (Hypothesis L^S, sharp triangularity after boundary restriction) OPEN: measured 699/699, plant 1179/1179, N<=4 only. G2 (non-cancellation at fixed chi) open, bypassed by the quantifier. Not type-uniform.",
+    "trust": "peer-claimed",
+    "claimed_by": "Clio — peers/clio/emails/2026-10-20-sa-divisors-full-q-converse-proved-two-families.md",
+    "file": "peers/clio/proofs/2026-10-19-c2-sa-divisors-full-q.pdf",
+    "sources": [
+     "clio-vega/proofs@6fad30c 2026-10-19-c2-sa-divisors-full-q.tex",
+     "2610.15344"
+    ],
+    "children": []
    }
   ]
  },
