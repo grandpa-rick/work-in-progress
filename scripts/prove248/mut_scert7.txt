@@ -1,0 +1,2 @@
+scert7 A N=4 zeros 74 falsecert 0
+scert7 total zeros 1774 falsecert 0 PSTAT {'P': 357, 'P1': 13}

@@ -1,0 +1,15 @@
+nus [(), (1,), (6,), (1, 6)]
+6 c -1 inst 110 zeros 0 falsecert [v4, P2-mutant] [0, 0] [0, 0] 0 s
+6 c 0 inst 110 zeros 25 falsecert [v4, P2-mutant] [0, 0] [1, 1] 1 s
+6 c 1 inst 110 zeros 22 falsecert [v4, P2-mutant] [0, 1] [6, 6] 1 s
+6 c 2 inst 110 zeros 15 falsecert [v4, P2-mutant] [0, 2] [15, 15] 1 s
+6 c 3 inst 110 zeros 5 falsecert [v4, P2-mutant] [0, 0] [17, 17] 0 s
+6 c 4 inst 110 zeros 4 falsecert [v4, P2-mutant] [0, 0] [19, 19] 0 s
+6 c 5 inst 110 zeros 0 falsecert [v4, P2-mutant] [0, 0] [19, 19] 0 s
+6 c 6 inst 110 zeros 0 falsecert [v4, P2-mutant] [0, 0] [19, 19] 0 s
+6 c 7 inst 110 zeros 0 falsecert [v4, P2-mutant] [0, 0] [19, 19] 0 s
+6 c 8 inst 110 zeros 0 falsecert [v4, P2-mutant] [0, 0] [19, 19] 0 s
+6 c 9 inst 110 zeros 0 falsecert [v4, P2-mutant] [0, 0] [19, 19] 0 s
+6 c 10 inst 110 zeros 0 falsecert [v4, P2-mutant] [0, 0] [19, 19] 0 s
+6 c 11 inst 110 zeros 0 falsecert [v4, P2-mutant] [0, 0] [19, 19] 0 s
+6 c 12 inst 110 zeros 0 falsecert [v4, P2-mutant] [0, 0] [19, 19] 0 s

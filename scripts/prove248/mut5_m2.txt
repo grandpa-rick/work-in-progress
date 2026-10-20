@@ -1,0 +1,1 @@
+scert5m2 A N=5 zeros 1226 falsecert 0 PSTAT {'P': 122, 'P1': 0}

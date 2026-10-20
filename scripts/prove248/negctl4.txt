@@ -1,0 +1,16 @@
+4 c -1 zeros 0 FALSE-CERT 0 [] | nonzero certified 408 / 408
+4 c 0 zeros 1 FALSE-CERT 0 [] | nonzero certified 407 / 407
+4 c 1 zeros 3 FALSE-CERT 0 [] | nonzero certified 405 / 405
+4 c 2 zeros 52 FALSE-CERT 0 [] | nonzero certified 342 / 356
+4 c 3 zeros 6 FALSE-CERT 0 [] | nonzero certified 402 / 402
+4 c 4 zeros 12 FALSE-CERT 0 [] | nonzero certified 396 / 396
+4 c 5 zeros 0 FALSE-CERT 0 [] | nonzero certified 408 / 408
+4 c 6 zeros 0 FALSE-CERT 0 [] | nonzero certified 408 / 408
+5 c 0 zeros 19 FALSE-CERT 0 [] | nonzero certified 5558 / 5559
+5 c 1 zeros 53 FALSE-CERT 0 [] | nonzero certified 5517 / 5525
+5 c 2 zeros 719 FALSE-CERT 0 [] | nonzero certified 4508 / 4859
+5 c 3 zeros 130 FALSE-CERT 0 [] | nonzero certified 5413 / 5448
+5 c 4 zeros 255 FALSE-CERT 0 [] | nonzero certified 5298 / 5323
+5 c 5 zeros 20 FALSE-CERT 0 [] | nonzero certified 5554 / 5558
+5 c 6 zeros 30 FALSE-CERT 0 [] | nonzero certified 5548 / 5548
+5 c 7 zeros 0 FALSE-CERT 0 [] | nonzero certified 5578 / 5578

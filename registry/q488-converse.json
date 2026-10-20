@@ -440,7 +440,7 @@
       "role": "attempt",
       "trust": "computed",
       "file": "proofs/2026-10-19-theorem-W-upper-end-certifier.md",
-      "approach": "OPEN: upper end for lam or mu with a consecutive top block. u->inf in-coefficient is a signed block sum of twisted F's (+tail term if lam=[r]); no single Pi w^e F_lam' fits (e in [-6,6], n=5). Mirror obstruction: u->0 out-coefficient when max nu^c = n-1. Computed clean: N=5 c=7,8 all 5578 triples. | Day 247 cycle 2: mirror obstruction made a route. Lemma R0 (u->0 out-coefficient = u^{n-m-1} K l_{nu~} for top-clean nu^c; u^n l_[n-1] o w^-2 for nu=[n]) PROVED; R0+R_inf certify all N=5. Twisted family Psi_{kappa,theta} + label-lowering + sum certifier (iterated leading coefficient = signed count): ALL allowed A-triples nonzero for all c>2N-4 at N=4,5,6 (408/5578/68791); B upper end n<=6; C n<=4 (n=5,6: 7/208 nodes with leading cancellation). Negative control: 0 false certs over 2432 known zeros after fixing one bug (B weight on S). All-N still open.",
+      "approach": "OPEN: upper end for lam or mu with a consecutive top block. u->inf in-coefficient is a signed block sum of twisted F's (+tail term if lam=[r]); no single Pi w^e F_lam' fits (e in [-6,6], n=5). Mirror obstruction: u->0 out-coefficient when max nu^c = n-1. Computed clean: N=5 c=7,8 all 5578 triples. | Day 247 cycle 2: mirror obstruction made a route. Lemma R0 (u->0 out-coefficient = u^{n-m-1} K l_{nu~} for top-clean nu^c; u^n l_[n-1] o w^-2 for nu=[n]) PROVED; R0+R_inf certify all N=5. Twisted family Psi_{kappa,theta} + label-lowering + sum certifier (iterated leading coefficient = signed count): ALL allowed A-triples nonzero for all c>2N-4 at N=4,5,6 (408/5578/68791); B upper end n<=6; C n<=4 (n=5,6: 7/208 nodes with leading cancellation). Negative control: 0 false certs over 2432 known zeros after fixing one bug (B weight on S). All-N still open. | Day 248: dual-block obstruction removed (alternant form; P/P1/P2 proved); certificate now N<=7 (A), n<=6 (B,C). All-N reduces to (SC) single-coefficient conjecture + multi-block tie identity (alpha).",
       "children": [
        {
         "id": "q488-lemma-R0",
@@ -462,6 +462,52 @@
          "2610.15344"
         ],
         "approach": "Computer-assisted: scert.py sum certifier over twisted family (Lemma T leading options, (1)-identities, label lowering, dual/B/A4/B4 bookkeeping). Certifies Z^A_5=[0,6], Z^A_6=[0,8] (upper end, all c). Code trust: negative control (caught+fixed B-weight bug; then 0/2432 false certs). Not cold-rechecked; lemmas derived same day.",
+        "children": []
+       },
+       {
+        "id": "q488-alternant-form",
+        "role": "premise",
+        "trust": "proved",
+        "file": "proofs/2026-10-20-dual-block-identity.md",
+        "sources": [],
+        "approach": "Lemma A: Psi_{kap,th}(M)=sum_{|H|=r} S0^M(H) Alt[prod x_j^{j-1+th_j} rho_{kap_j}(x_j)]/V. Cor A1: consecutive kap=(s..s+r-1), const twist t: Psi=sum_H S0(H) prod x^t rho_s(x) (factorial Vandermonde). Algebraic, no external input.",
+        "children": []
+       },
+       {
+        "id": "q488-lemma-T-exact",
+        "role": "premise",
+        "trust": "proved",
+        "file": "proofs/2026-10-20-dual-block-identity.md",
+        "sources": [],
+        "approach": "Lemma H (exact peel): Psi = tail part + (1-u^-2) g_{M-}(u) u^{-(r-1)} Phi_{M-}[A(u,x')prod(u-x')]; Laplace along u-row gives exact Lemma T* (s_j(u) prefactors). Cold re-derivation of Day 247b Lemma T: survives. sympy identity check t4.py (3 cases, diff 0).",
+        "recheck": "2026-10-20 proofs/2026-10-20-dual-block-identity.md §3 (derived from definition, independent of 247b text)",
+        "children": []
+       },
+       {
+        "id": "q488-dual-block-identity",
+        "role": "premise",
+        "trust": "proved",
+        "file": "proofs/2026-10-20-dual-block-identity.md",
+        "sources": [],
+        "approach": "Theorem B: certifier dual block sum B_L = single instance Psi_{(s..s+L-1),(1^L)} all L; identity Psi_{(s,s+1),(1,0)}=w_s Psi_{(s,s+1),(0,0)} explains gap-2 cancellation (formal zero). Lemma P: top consecutive block with constant twist t collapses to one option (head p data, child labels kap[:-1], twist t+1 on block). Exact checks t2/t4/t5 (6/6 ratio 1).",
+        "children": []
+       },
+       {
+        "id": "q488-tie-identities",
+        "role": "premise",
+        "trust": "proved",
+        "file": "proofs/2026-10-20-dual-block-identity.md",
+        "sources": [],
+        "approach": "Head/tail tie at t=kap_p-p+1 (whole block). P1 (s=1): Psi_[r],0 + e^-2 Psi_[r-1],2 = Psi_[r-1],0 (Lagrange interpolation + one-variable residue). Lemma Lambda (general residue reduction). P1' (r=1) and P2 (s>=2, any length): exact finite sum of twisted instances with labels (1,s,..,s+m-2). sympy checks t6 (5), t7 (3), t8 (3), t9 (4): all diff 0.",
+        "children": []
+       },
+       {
+        "id": "q488-window-certifier-v2-N-le-7",
+        "role": "attempt",
+        "trust": "computed",
+        "file": "proofs/2026-10-20-dual-block-identity.md",
+        "sources": [],
+        "approach": "Certifier v2-v4 (scert5/6/7 = scert + Lemma P/P* block collapse + tie identities P1, P1', P2; fallback v1). A N<=7 all allowed certified for c>2N-4 (N=7: 0/789998, was 325) => Z^A_7=[0,10]; B,C n<=6: 0 uncertified (C was 7+208). Negative control 0 false certs; mutation test: wrong P/P1/P1'/P2 give 129/7/3/3 false certs. Base signed counts all +-1 (A5, C5).",
         "children": []
        }
       ]

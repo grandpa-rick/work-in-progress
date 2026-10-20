@@ -1,0 +1,6 @@
+1 C allowed 4 uncert 0 | B allowed 1 uncert 0 [] 0 s
+2 C allowed 20 uncert 0 | B allowed 12 uncert 0 [] 0 s
+3 C allowed 115 uncert 0 | B allowed 116 uncert 0 [] 0 s
+4 C allowed 726 uncert 0 | B allowed 1065 uncert 0 [] 0 s
+5 C allowed 4872 uncert 4 | B allowed 9594 uncert 0 [('C', (), (1, 2), (4, 5)), ('C', (1,), (1, 2), (4, 5)), ('C', (1, 2), (2,), (4, 5)), ('C', (1, 2), (1, 2), (4, 5))] 6 s
+6 C allowed 34008 uncert 106 | B allowed 85335 uncert 29 [('C', (), (1, 2), (4, 5)), ('C', (), (1, 2), (4, 6)), ('C', (), (1, 2), (5, 6)), ('C', (), (1, 2), (1, 5, 6)), ('C', (), (1, 2), (4, 5, 6))] 90 s
