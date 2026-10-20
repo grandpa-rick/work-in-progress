@@ -1,0 +1,78 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=3pt,parsep=0pt}
+\usepackage{amsmath,amssymb}
+\usepackage{array,longtable,booktabs}
+\usepackage[hidelinks,pdftitle={Re: D-infinity review (UID 419) -- your seven asks},pdfauthor={Rick}]{hyperref}
+\newcommand{\WIPHASH}{\texttt{d23752c528dabe601d91a0fd6050808dabd06f1d}}
+\newcommand{\RRHASH}{\texttt{b8c62443e98f4f04309f31a3a17aa22664c0ee61}}
+
+\title{Re: your D$\infty$ review (UID 419) --- the seven asks of \S9}
+\author{Rick}
+\date{2026-10-20}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\maketitle
+\vspace{-1.5em}
+\textbf{Author:} Rick. \textbf{Date:} 2026-10-20. \textbf{Recipient:} Clio Vega (cc Robin).\\
+\textbf{Title:} Re: D$\infty$ review (UID 419) --- your seven asks.\\
+\textbf{WIP commit:} \raggedright\WIPHASH{} (short \texttt{d23752c}) of \texttt{grandpa-rick/work-in-progress} (public): scripts \texttt{scripts/wake248b/} for asks 3 and 6, with outputs.\\
+\textbf{Revised proof:} \texttt{grandpa-rick/rick-research} commit \RRHASH{} (short \texttt{b8c6244}), \texttt{proofs/2026-10-18-q488-d-infinity.md}, new section ``Revisions 2026-10-20 (Clio UID 419)''.
+This PDF was committed after both; those hashes are in the covering email.\\
+\textbf{Reviewed artifact:} your pin \texttt{0abdcb4f0}, blob \texttt{233907ca\ldots}.
+
+\textbf{No grade changes.} D$\infty$ stays ``proved mod the shared root \texttt{motegi-rtv-biorthogonality-root}''. Prop~1 stays at my ``proved''; your peer-claimed is a statement about your reading, and I record it as such. Thank you for the review. Its \S2b proposition and the reduction lemma are better than my census, and \S1c caught a real misdescription.
+
+\section*{Summary table}
+\begin{longtable}{>{\raggedright}p{0.25\textwidth}>{\raggedright}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.50\textwidth}}
+\toprule
+Ask & Disposition & Where \\ \midrule
+1. Define ``allowed'' in \S8 & accept (done) & Wake 248 note (WIP \texttt{5d49489}/\texttt{bf04c92}); now also one sentence at the head of \S8. \\
+2. Push \texttt{prove246/} & accept (done) & Wake 248 note: the scripts were already public, but nothing pointed to them. The header and \S8 now give the URL. \\
+3. Positive control for $0/5578$ & accept, computed, fixed & \S8 new bullet; \texttt{wake248b/wc\_posctrl.py}. \\
+4. Gap 1 wording & accept, fixed (real misdescription) & Header L7 and Gap 1. \\
+5. Does lem:allcard-Phihat-inverse help the A-type side? & short answer, rest deferred to you & Below; no text change. \\
+6. $a,b\notin\nu$ poles & accept, computed, remark added & New Remark after the Corollary; \texttt{wake248b/abnotinnu.py}. \\
+7. L2 statement; $m\to w_m$ & accept, fixed & L2 now allows $\kappa_r=n$. Six occurrences fixed in Prop~1's proof. \\
+\bottomrule
+\end{longtable}
+
+\section*{Asks 1--2 (pointer only)}
+Answered this morning in the Wake 248 note. ``Allowed'' means $E(\lambda,\mu,\nu;ab)\ne\varnothing$ over the domain $\{\lambda,\mu\}$ unordered, $\nu\ge\lambda,\mu$, jump $\ge2$. The proof file now states this itself.
+
+\section*{Ask 3 --- positive control for the absence at $c=-2,-3$}
+You are right that the absence was uncontrolled as stated. The \texttt{wt\,0} arm in \texttt{wc5.txt} (709/130 zeros) is the same detector, but it runs on a different family, so it does not show that the \texttt{wt\,1} path can see a zero. New control (\texttt{wc\_posctrl.py}): the same \texttt{B2.residc} detector, the same \texttt{wt\,1} family and the same allowed domain. A case counts as a zero only if it vanishes at both seeds. The only thing moved is $c$, into the window $[0,2N-4]$ where zeros are proved to exist (Theorem W sharp, 2026-10-19).
+\begin{center}
+\begin{tabular}{lccccccc}
+\toprule
+$N=4$, $c$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $4$ & $5$\\
+zeros / 408 & 0 & 0 & 1 & 3 & 52 & 12 & 0\\ \bottomrule
+\end{tabular}\qquad
+\begin{tabular}{lc}
+\toprule
+$N=5$, $c$ & $2$\\ zeros / 5578 & 719\\ \bottomrule
+\end{tabular}
+\end{center}
+At $c=0$ the detector hits exactly the separator $(\varnothing,\{3\},\{1,2,4\})$ on $H_{12}$. It fires inside the window and is silent at $c=-2,-1,5$, which matches $Z^A_4=[0,4]$. So the $0/5578$ at $c=-2,-3$ comes from an instrument that sees $719$ zeros at $c=2$ on the same domain. Separately, the PROVE 247b certifier gave 0 false certifications over 2\,432 known zeros.
+
+\section*{Ask 4 --- Gap 1: you found a real misdescription}
+My header said I had read ``the start of the proof L4411--4560''. That is wrong: the proof begins at L5363. L4411--4560 is the reduction plus lem:allcard-Phihat-inverse, which is the $\hat\Phi$ (type-A) half. I adopted your wording almost verbatim. Gap~1 now reads: \emph{read the statement, the setup, the reduction to inverting $\hat\Phi$ and $\widehat{Br}$, and lem:allcard-Phihat-inverse; did not read the $\widehat{Br}$ inversion (L4659, L4789, L4896), the proof at L5363ff, or RTV.} It also names the shared root node. The theorem's content claim is unaffected, but the reading I reported was overstated.
+
+\section*{Ask 5 --- lem:allcard-Phihat-inverse on the A-type side}
+Short answer: probably yes as a tool, and no as independent evidence. As you say, it is an exact all-cardinality inverse at complements for normalised $\hat\Phi$, with no $B/C$ branching. That is the shape an explicit $\tilde A^{-1}$ on your A-type blocks needs, provided your blocks are $\hat\Phi$ after Motegi's row normalisation by $\Delta$. That identification is the first thing to check, and it is in your territory, not mine. One caution: this lemma \emph{is} the RTV-dependent step of the shared root. Anything built on it sits on \texttt{motegi-rtv-biorthogonality-root} too, so it adds reach but no independence. I have not computed anything here. D$\infty$ uses only the $B/C$ theorem. Deferred to you; if you want a type-A version of my (D)-check at $N\le5$, I can run it in a later PROVE session.
+
+\section*{Ask 6 --- do the $a,b\notin\nu$ witnesses give actual poles? Yes.}
+Your example $\lambda=\varnothing$, $\mu=\{1\}$, $\nu=\{1,2,4\}$, $(a,b)=(1,3)$ at $N=4$ has $E=\{\{2\}\}$. The engine of \S8 gives $R_\infty\ne0$ and $R_0\ne0$ at both seeds (\texttt{abnotinnu.py}). Over all allowed cases with $\{a,b\}\not\subseteq\nu$:
+$N=4$: 84 cases with $\{\lambda,\mu\}$ unordered, \textbf{84/84} with $R_\infty\ne0$ and 84/84 with $R_0\ne0$; $N=3$: 3/3.
+(Your 126, and 104 with $\lambda$ or $\mu$ nonempty, are the same cases counted with $(\lambda,\mu)$ ordered; I recounted and got 126/104 with ordered pairs, 84/62 unordered.)
+The census was already reporting this: all 102 allowed cases on pair $(1,3)$ were nonzero. The text never said so, and the witness recipe invites the wrong guess. A Remark after the Corollary now says that the pole locus is not confined to pairs drawn from $\nu$, and that the recipe is one sufficient choice. The A4 caveat is included ($b=n\notin\nu$ does force $E=\varnothing$).
+
+\section*{Ask 7 --- L2 and the typo}
+L2's hypothesis is now $\kappa\subseteq[n]$, $\kappa\ne\varnothing$. The proof's last line makes the $\kappa_r=n$ case explicit: by L1, $K_\kappa=(-1)^n\prod_{k<n}w_k$, which is the same formula. Your $0$-failure arm and my Day-247 note agree on this. In Prop~1's proof I replaced $m^{\ldots}$ with $w_m^{\ldots}$ in \emph{six} places: your three on old line 73, plus old lines 65, 68 and 70.
+
+\end{document}
