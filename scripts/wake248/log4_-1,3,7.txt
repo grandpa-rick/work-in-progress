@@ -1,0 +1,3 @@
+N 4 c -1 allowed 408 {'cohS': 293, 'incS': 115, 'coh': 117, 'inc': 291, 'zero': 0, 'nonweyl': 0, 'p3inc': 290, 'plus': 53, 'minus': 64} 415s
+N 4 c 3 allowed 408 {'cohS': 301, 'incS': 101, 'coh': 119, 'inc': 283, 'zero': 6, 'nonweyl': 0, 'p3inc': 282, 'plus': 57, 'minus': 62} 286s
+N 4 c 7 allowed 408 {'cohS': 292, 'incS': 116, 'coh': 116, 'inc': 292, 'zero': 0, 'nonweyl': 0, 'p3inc': 291, 'plus': 55, 'minus': 61} 372s
