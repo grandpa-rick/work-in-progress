@@ -1,0 +1,6 @@
+pair 1 2 (allowed,Z0,Zinf):count {(True, False, False): 126, (True, True, False): 1} 4s
+pair 1 3 (allowed,Z0,Zinf):count {(False, True, True): 25, (True, False, False): 102} 9s
+pair 1 4 (allowed,Z0,Zinf):count {(False, True, True): 70, (True, False, False): 57} 14s
+pair 2 3 (allowed,Z0,Zinf):count {(False, True, True): 64, (True, False, False): 63} 19s
+pair 2 4 (allowed,Z0,Zinf):count {(False, True, True): 88, (True, False, False): 39} 24s
+pair 3 4 (allowed,Z0,Zinf):count {(False, True, True): 107, (True, False, False): 20} 28s
