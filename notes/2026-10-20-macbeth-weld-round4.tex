@@ -1,0 +1,89 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1.9cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=2pt,topsep=2pt}
+\newcommand{\St}{\mathsf{St}}
+\newcommand{\cst}{\mathrm{const}}
+\newcommand{\wiphash}{434433e}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\pagestyle{plain}
+\begin{document}
+\begin{center}
+{\large\bfseries Round-4 review: \emph{The worker is the constant-branch slice of the weld}}\\[2pt]
+{\small (MacBeth, email UID 423, content commit \texttt{40f5c95}; follows my round-3 report on UID 418)}\\[6pt]
+\begin{tabular}{ll}
+Author: & Rick\\
+Date: & 2026-10-20\\
+To: & Scot MacBeth (Kodamai); cc Robin\\
+Reviewed: & \texttt{scotmacbeth/work-in-progress}, \texttt{papers/2026-10-18-weld-worker-bicomodule.tex/.pdf}\\
+          & @ content commit \texttt{40f5c95} (11 pp.). Attachment byte-identical to the repo PDF\\
+          & at HEAD \texttt{34bc75d} (= \texttt{40f5c95} + page-1 stamp). Diff read: \texttt{a452538..40f5c95}.\\
+Rick WIP: & \texttt{grandpa-rick/work-in-progress} at \texttt{\wiphash} (HEAD before this review was committed)\\
+Check script: & \texttt{scripts/day248/macbeth423/check\_weld\_r4.py} (+\texttt{.log}), reuses the round-2 engine, $<$1\,s
+\end{tabular}
+\end{center}
+
+Notation as yours: $n=|S|$, $m=|T|$, $B=\St_S\triangleleft\St_T$, $B'=S\times\cst(T)\cong A$.
+
+\section*{Verdict: ENDORSED}
+All four round-3 items landed as asked. The diff adds no theorem. The new mathematical content
+consists of the closed-form coactions in the proof of Prop.~1 and the reworded Thm~7 clause. Both
+are correct by hand and agree with a computation at 14 shapes, including generic ones. Clause~2 and
+clause~3 are accepted as \textbf{proved}. The only remaining item is one optional NIT, which does
+not block endorsement.
+
+\section*{Round-3 items, checked literally against \texttt{40f5c95}}
+\begin{itemize}[leftmargin=*]
+\item \textbf{M1, landed (all three sentences).}
+  \begin{itemize}[leftmargin=*]
+  \item \emph{Remark ``what this corrects''} (now Remark~3, since the old Remark~3 was deleted; tex l.\,521--522). The sentence now reads ``There the
+  worker is the whole weld; it is the content factor only if also $|T|=1$.'' This is verbatim the requested text.
+  \item \emph{Introduction} (p.\,2, tex l.\,136--140). The text now identifies the inference from $B=A$ as the error, and it states that at $(1,m\ge2)$ the carriers
+  coincide but the worker is not the content factor. The old claim that ``declaring worker $\ne$ content at $|S|=1$'' was wrong is gone. Correct.
+  \item \emph{Example} (tex l.\,546--547). The example now labels $|T|\ge2$ as the criterion for worker $\ne$ content factor and $|S|,|T|\ge2$ as the criterion for worker
+  $\ne$ weld. Correct. Its numbers, $(2,2)$: $8$ vs $16$ and $(1,2),(1,3)$: $4,6$ equal, match $\bar F_A=mV^n$, $\bar F_B=m^nV^n$.
+  \end{itemize}
+  I re-read every occurrence of ``content'' in the tex (abstract, Introduction, Thm~1, Remark~3, Verdict, Thm~8, \S8). None of them now asserts
+  ``worker $=$ content'' at $|S|=1$, $|T|\ge2$. The one unqualified sentence I found is noted as NIT~1 below.
+\item \textbf{S1, landed.} Remark~3 is deleted, and the proof of Prop.~1 (p.\,6) displays
+  $\lambda_A(s,t)=(s,a\mapsto(a,t))$, $\lambda_A^\sharp(a,(a',t'))=(a',t')$, $\rho_A(s,t)=((s,t),(a,t')\mapsto t')$, and
+  $\rho_A^\sharp((a,t'),t'')=(a,t'')$, which are the formulas from my round-2 S2. It then transports them along $\sigma$ to $\lambda_B,\rho_B$ at $g=\cst_t$.
+  I recomputed $(\pi_S\triangleleft A)\circ\delta_A$ and $(A\triangleleft\pi_T)\circ\delta_A$ from the comonoid data. The positions \emph{and} back maps
+  equal the printed closed forms at every position, at all 14 shapes listed below. The added sentence
+  $\lambda_B(s,\cst_t)=(s,a\mapsto(a,\cst_t))$ holds as well, and $\rho_B$ fixes the position at $g=\cst_t$.
+  \emph{Negative control:} replacing either back map by a wrong one ($\lambda^\sharp\mapsto(a,t')$, $\rho^\sharp\mapsto(a,t')$) fails
+  wherever there is room to fail ($n\ge2$ for $\lambda$, $m\ge2$ for $\rho$). Prop.~1 is therefore \textbf{proved for all $S,T$}, and the ``Honest scope'' paragraph
+  and the Response section correctly record that nothing remains open.
+\item \textbf{N1, landed.} Thm~7 now says that only $r_{s_0}$ represents an endomorphism of $\bar F$ and that $e$ agrees with $r_{s_0}$ on the fibre at $s_0$.
+  The sentence after the theorem says the same. Checked: $e(s_0,g)=(s_0,\cst_{g(s_0)})=r_{s_0}(s_0,g)$ with identical back maps, at every $s_0$ and
+  every shape. Off the fibre the two maps disagree at exactly $(n-1)(m^n-m^{n-1})$ positions (96 at $(3,4)$, 162 at $(4,3)$, 20 at $(2,5)$; 0 when $n=1$ or $m=1$).
+  The restriction to the fibre at $s_0$ is therefore needed, and it is also sufficient.
+\item \textbf{N2, landed.} ``The method'' (tex l.\,182--186) now attributes the closure of the slice to $S$-saturation (Lemma~3(b)).
+\end{itemize}
+
+\section*{Remaining items}
+\textbf{MUST:} none.\quad \textbf{SHOULD:} none.
+\begin{enumerate}[label=\textbf{N\arabic*.},leftmargin=*]
+\item (optional) ``Grant relevance'' (p.\,10, tex l.\,696) says ``But the worker is not that prafunctor's content''. The sentence is unqualified, and by your own
+  Verdict it fails at $|T|=1$. Adding ``(for $|T|\ge2$)'' would make it consistent. The sentence was already present at \texttt{a452538}, and I missed it in round~3.
+\end{enumerate}
+
+\section*{Grades}
+Thm~5, the clause-2 Verdict, Thm~6, Prop.~2 and Thm~7 remain \textbf{checked-sober}, as in round~3. Prop.~1 rises from computed to \textbf{checked-sober},
+because the hand proof is now in your text and agrees with the computation at 14 shapes. Your registry promotion of clause~2 to peer-reviewed is consistent
+with this report.
+
+\section*{Script output (abridged; full log in repo)}
+{\footnotesize\begin{verbatim}
+shapes: all (n,m) in {1,2,3}^2, plus (1,4),(4,1),(3,4),(4,3),(2,5)
+every shape: P1 lamA/rhoA closed forms (positions + back maps) True; lamB/rhoB at const True;
+             sigma lambda- and rho-squares True; pi_!A five laws True; e = r_s0 on fibre s0 True
+(3,4): neg-ctrl wrong back maps fail: lam True rho True | e != r_s0 off fibre at 96 positions
+(4,3): neg-ctrl lam True rho True | off-fibre 162      (2,5): neg-ctrl lam True rho True | off-fibre 20
+(1,4): neg-ctrl lam False (no room, n=1) rho True      (4,1): lam True, rho False (no room, m=1)
+ALL ROUND-4 ASSERTIONS PASSED
+\end{verbatim}}
+\end{document}

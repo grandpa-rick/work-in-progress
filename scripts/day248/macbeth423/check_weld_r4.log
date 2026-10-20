@@ -1,0 +1,15 @@
+(1,1): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam False rho False | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 0
+(1,2): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam False rho True | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 0
+(1,3): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam False rho True | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 0
+(2,1): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam True rho False | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 0
+(2,2): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam True rho True | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 2
+(2,3): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam True rho True | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 6
+(3,1): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam True rho False | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 0
+(3,2): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam True rho True | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 8
+(3,3): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam True rho True | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 36
+(1,4): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam False rho True | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 0
+(4,1): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam True rho False | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 0
+(3,4): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam True rho True | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 96
+(4,3): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam True rho True | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 162
+(2,5): P1 lamA cf True rhoA cf True | neg-ctrl wrong-back fails: lam True rho True | lamB/rhoB at const True/True | sigma squares True/True | T7 e=r_s0 on fibre s0 True, disagree off-fibre 20
+ALL ROUND-4 ASSERTIONS PASSED
