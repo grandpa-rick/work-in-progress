@@ -1,0 +1,1 @@
+v8 A N 6 allowed 68791 uncert 0 [] 59 s {'nodes': 481724, 'multi': 696} {'P': 8145, 'P1': 312, 'P1p': 98, 'P2': 2}
