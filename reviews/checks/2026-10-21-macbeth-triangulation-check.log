@@ -1,0 +1,36 @@
+== C1 Lemma 9.3 witness (exact)
+ gh = [[Fraction(2, 3), Fraction(0, 1)], [Fraction(0, 1), Fraction(1, 2)]]  masses [Fraction(2, 3), Fraction(1, 2)]
+ (f#g)#h = [[Fraction(8, 11), Fraction(3, 11)]]  K(fgh) = [[Fraction(8, 11), Fraction(3, 11)]]  f#(g#h) = [[Fraction(2, 3), Fraction(1, 3)]]
+ D_gh = [Fraction(3, 2), Fraction(2, 1)]
+== C2 (LA) for row-normalization, all substochastic x,c; control: column normalization
+ LA violations row-K 0/3000; column-K (control) 945/3000
+== C3 Thm 8.1 and defect census on Norm; supports of the two bracketings
+ Thm 8.1 OK on 3000; non-assoc triples 240; pointwise-comparable among those 0; support mismatches 0/3000
+== C4 recovery regime: h total (g arbitrary Norm, with bot rows) => associative; control h with a bot row
+ h total: non-assoc 0/2000 (g has bot rows ~40%); control (h has bot row, mid>=3): non-assoc 1085/2000
+== C5 minimal shape a->b->c->d for a Norm defect (random search 600 per shape)
+  shape (1, 2, 2, 2): defects 0/600
+  shape (1, 2, 3, 1): defects 0/600
+  shape (1, 1, 3, 2): defects 0/600
+  shape (1, 2, 3, 2): defects 101/600
+  shape (2, 2, 2, 3): defects 0/600
+  shape (1, 3, 2, 3): defects 0/600
+  shape (1, 2, 4, 2): defects 147/600
+== C6 monoids: normalizers with (K1),(U),(LA), # non-assoc
+  order 1: 1 monoid tables (labelled, e=0), handed normalizers 0, of which Im K closed under . : 0
+  order 2: 2 monoid tables (labelled, e=0), handed normalizers 0, of which Im K closed under . : 0
+  order 3: 11 monoid tables (labelled, e=0), handed normalizers 0, of which Im K closed under . : 0
+  order 4: 156 monoid tables (labelled, e=0), handed normalizers 6, of which Im K closed under . : 0
+== C7 the Lean model: M={e,z,a,b}, z zero, aa=z, ab=a, bb=b, K(z)=b; b.a undetermined in the PDF
+  b.a=z: monoid True; LA True; (a#a)#a=b, a#(a#a)=a
+  b.a=a: monoid True; LA False; (a#a)#a=a, a#(a#a)=a
+== C8 principal normalizers K=k.x, x.k, k.x.k (k idempotent), WITHOUT (U): # associative? (orders<=4)
+  principal normalizers tested 1434; non-associative 0; satisfying (U) but K!=id 0
+== C9 octonions as twisted group algebra of Z2^3 (Albuquerque-Majid): associator = coboundary of a 2-cochain
+  non-associative basis triples 168/512; phi=dF is a 3-cocycle: True; left-alternative: True; norm multiplicative: True
+== C10 order-4 handed normalizers up to isomorphism (permutations fixing e)
+  iso classes: 1
+  table ((0, 1, 2, 3), (1, 1, 1, 1), (2, 1, 1, 2), (3, 1, 1, 3)) K (0, 3, 2, 3)
+== C11 group transversals (Baer/Lal right loops) are normalizers in the sense of Def 7.1
+  |H|=2: normalized transversals 4, all satisfy (K1),(U),(LA); non-associative # : 3
+  |H|=3: normalized transversals 3, all satisfy (K1),(U),(LA); non-associative # : 0
