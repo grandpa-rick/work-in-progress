@@ -1,0 +1,210 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\newcommand{\Norm}{\mathbf{Norm}}
+\renewcommand{\Im}{\operatorname{Im}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+
+\title{Review: \emph{What the weld's non-associativity is --- and is not:\\
+a triangulation across four obstruction theories, and the idempotent normalizer that receives it}}
+\author{Rick\\[2pt]\small To: Scot MacBeth (Kodamai)}
+\date{2026-10-21}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{ll}
+Reviewed: & MacBeth content \texttt{ac07a05} (pushed \texttt{24c88bc}), 10 pp., email UID 425\\
+This review: & WIP commit: TBD\\
+Check script: & \texttt{checks/2026-10-21-macbeth-triangulation-check.py} (+\,\texttt{.log})
+  \\ & exact arithmetic, ${<}10$\,s
+\end{tabular}
+\end{center}
+
+Locators are page numbers of the PDF, plus the number of the displayed item. You call the results
+``Theorem A/B'' and ``Prop 5.1'' in the email. In the PDF they are Theorem 8.1, Theorem 8.2 and
+Proposition 10.1, and I use the PDF numbers throughout.
+
+\section*{Verdict}
+\begin{itemize}[leftmargin=*]
+\item \textbf{The algebra of Movement II is correct.} I checked these by hand and by machine:
+  Lemma 5.1, Theorem 5.2, Lemma 6.3, Theorems 8.1 and 8.2, Lemma 9.2, the Lemma 9.3 witness
+  (exact: $(f\#g)\#h=(\tfrac{8}{11},\tfrac{3}{11})$, $f\#(g\#h)=(\tfrac23,\tfrac13)$,
+  $D_{gh}=\mathrm{diag}(\tfrac32,2)$), Proposition 10.1 and the Lean model of Remark 10.4. Your claim
+  that no model exists at order ${\le}3$ is right. At order 4 the model is \emph{unique} up to
+  isomorphism (C6, C10).
+\item \textbf{The framing claims do not yet stand.} The note never names a map from the weld to
+  $\Norm$ (M1). The general argument in Refutation I is false as stated (M2). Proposition 10.1 is
+  vacuous under your own axiom (U), and it does not prove ``never element-level'' (M3). The positive
+  home is, structurally, the classical transversal construction of right loops, so ``original
+  ground'' cannot stand as written (M4).
+\item \textbf{Grade.} \S\S7--9 and Prop.\,10.1 as an algebraic statement: \textbf{checked-sober}.
+  The triangulation thesis, the ``element-level never'' clause and the originality: \textbf{sketched}.
+\end{itemize}
+
+\section*{Your two questions}
+\textbf{Q1 (triangulation or list?).} As written it is a list with a good taxonomy. It is not yet a
+triangulation. Three reasons.
+(a) Movement~I holds the associative corner plus \emph{three} refutations (\S\S4--6). The fourth is in
+Movement~II (\S10). The email's phrase ``Movement I's four kinds'' does not match the PDF.
+(b) Rows 1 and 2 of the \S11 table probe the same object, the single transformation $k$, and
+\S11 says they are ``the same fact read twice''. So at most three kinds are independent.
+(c) The three refutations in Movement~I all die for \emph{one} reason. Each tests a property of $k$,
+and $k$ is a unary datum: a 1-cell $DM\Rightarrow DM$ that never sees a triple. The defect is a
+ternary datum, $Z_K=\{(f,g,h):K(f\cdot K(g\cdot h))\neq K(f\cdot g\cdot h)\}$. That single
+reason is the real content. It is one theorem read three ways, not three independent bearings.
+A genuine triangulation has to test each candidate home on the invariant itself (on $Z_K$, or on the
+cocycle $\varphi(f,g)=D_{fg}$ of M4). It also needs, for each pair of homes, an example that one
+home's stated reason kills and the other's does not. As things stand the cocycle row is not even
+settled (M2, M4). My recommendation: retitle Movement~I as ``one reason, three readings''. That is
+honest, and it is a stronger statement than a triangulation claim that cannot be cashed.
+
+\textbf{Q2 (is Prop.\,10.1 decisive?).} It is correct. I find 1434 principal normalizers
+($\kappa x$, $x\kappa$ and $\kappa x\kappa$ with $\kappa^2=\kappa$, over all monoids of order
+${\le}4$) and none is non-associative (C8). But it is not decisive for the claim it is used for.
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item \emph{Under (U) it is vacuous.} $K(1_X)=\kappa\cdot 1_X=\kappa$, so (U) forces $\kappa=1$ and
+  $K=\mathrm{id}$. Machine check: no principal $K\neq\mathrm{id}$ satisfies (U) (C8). Dropping (U), it
+  is true, but $N_K$ then has no units.
+\item \emph{The real mechanism is closure, not elements.} If $\Im K$ is closed under $\cdot$, then
+  for $f,g\in\Im K$ we get $f\#g=K(fg)=fg$, so $\#$ is the restriction of $\cdot$ and is associative.
+  This one line covers $\kappa x$, $x\kappa$ and $\kappa x\kappa$ at once. Conversely, every handed
+  normalizer found has a non-closed image (C6: 6/6 at order 4). Your own Remark 7.3 already says
+  this: ``composing two normalized kernels de-normalizes''.
+\item \emph{``Element vs operator'' is the wrong dichotomy.} Norm's $K$ is $x\mapsto D_x\cdot x$:
+  left multiplication by an \emph{element} that depends on $x$. The group-transversal $K$ of M4 is
+  the same, $g\mapsto h(g)^{-1}g$ with $h(g)\in H$. What Prop.\,10.1 rules out is a
+  \emph{constant} multiplier. The decisive statement is: handed $\Rightarrow$ $\Im K$ is not closed.
+\item The near-semiring translation $K=\kappa\cdot(-)$ is one formalization that you chose. A
+  literally left-absorbing $\kappa$ ($\kappa a=\kappa$) gives a constant $K$ with
+  $\Im K=\{\kappa\}$. So the refutation hits your formalization and not the near-semiring idea in
+  general. Say which formalization is being refuted.
+\end{enumerate}
+
+\section*{Findings}
+\subsection*{MUST}
+\begin{enumerate}[label=\textbf{M\arabic*.},leftmargin=*]
+\item \textbf{Title; p.\,1 l.\,``The weld is not associative in general''; p.\,2 Rem.\,1.3; p.\,3
+  Rem.\,3.3; \S12.} There is no named map from the weld to $\Norm$, and the note contradicts itself on
+  the weld. Rem.\,3.3 says the weld, once well defined, ``is a genuine comodule'' and lives in the
+  associative regime. Def.\,1.1 and the abstract say the weld is non-associative. The note never
+  defines which operation on welds fails to associate, or on which triple. Rem.\,1.3 calls $k$ a
+  ``faithful stand-in'' and cites \S9 as computational justification. But \S9 computes $\Norm$, not the
+  weld, so the justification is circular. The ``principle'' (both are idempotents measuring departure
+  from a distributive law) is the vocabulary match that your own Rem.\,2.1 says ``has earned
+  nothing''. You have two options. Exhibit the structure map from weld triples to $\Norm$ triples.
+  Or retitle the note as being about $\Norm$ (the DLRS sesquilaw magmoid) and demote the weld to
+  motivation.
+\item \textbf{p.\,3, Claim 4.1, ``Why the receptacle is empty''.} The general sentence ``one cannot
+  carry the non-associativity as a cohomology class'' is false. The octonions are the twisted group
+  algebra $k_F[\mathbb{Z}_2^3]$ for a 2-cochain $F$ that is \emph{not} a cocycle. Their associator
+  $\phi=\partial F$ is a 3-cocycle (Albuquerque--Majid, \emph{Quasialgebra structure of the
+  octonions}, J.\ Algebra 220 (1999)). I recomputed this: 168/512 basis triples are non-associative,
+  $\partial\phi=1$, the algebra is alternative, and the norm is multiplicative (C9). Quasi-Hopf
+  algebras (Drinfeld) are the same picture. In both, the standard cohomological home of
+  non-associativity is in degree 3, on an associative base, and that is exactly your setting: $A$ is
+  associative and $\#$ is a deformation of it. Moreover $\Norm$ carries a 2-cochain of its own:
+  $f\#g=\varphi(f,g)\cdot fg$ with $\varphi(f,g)=D_{fg}$, valued in positive diagonals (see M4). What
+  you have actually shown is a type statement: $k$ is a unary 1-cell, so it is not a 2-cocycle. State
+  that. Then either test the degree-3 / $\varphi$-valued candidate or drop the general sentence, and
+  revisit the registry node. ``Román's magmads'' (l.\,130) is uncited and cannot carry weight here.
+\item \textbf{p.\,8, Prop.\,10.1, Cor.\,10.2; abstract (``provably operator-level, never
+  element-level''); Rem.\,10.3; \S12.} This is the scope issue of Q2(i)--(iii). Under Def.\,7.1 (U),
+  ``principal'' means $K=\mathrm{id}$. What is proved does not cover ``element-level''
+  ($\Norm$ itself is $D_x\cdot x$). Replace it with the closure criterion: if $\Im K$ is closed under
+  $\cdot$, then $\#=\cdot|_{\Im K}$, so a handed $K$ has a non-closed image. Rewrite the abstract
+  clause and the fourth row of the table to match. Typing: in a multi-object $A$, ``a fixed
+  $\kappa\in A$'' should be a family $\kappa_X\in A(X,X)$.
+\item \textbf{Rem.\,10.3 last line (``its home is original ground''); \S12; Rem.\,11.1.}
+  Def.\,7.1 contains the classical transversal construction. Take a group $G$, a subgroup $H$, and a
+  right transversal $S\ni 1$. Set $K(g)$ to be the representative of $Hg$. Then (K1), (U) and (LA)
+  hold, the last because $K(g)\in Hg$ gives $K(g)c\in Hgc$. The operation $s\#t=K(st)$ is the
+  right-loop operation on a transversal (Baer, \emph{Nets and groups}, 1939; R.\ Lal,
+  \emph{Transversals in groups}, J.\ Algebra 181 (1996); Kiechle, LNM 1778). In $S_3$ with $|H|=2$,
+  3 of the 4 normalized transversals give a non-associative $\#$, and the subgroup $A_3$ gives an
+  associative one. With $H$ normal, all are associative (C11). Your structure in general: given (K1),
+  (LA) is \emph{equivalent} to $\ker K$ being a right congruence ($K(x)=K(y)\Rightarrow K(xc)=K(yc)$),
+  so a normalizer is a right congruence together with a transversal containing the identities.
+  $\Norm$ is the multi-object case with $H_X=$ positive diagonals acting on the left: on rows of
+  positive mass, every substochastic $x$ factors uniquely as $D\cdot K(x)$. That is an exact
+  factorization (Zappa--Szép-type, which is a pleasant irony given the weld). Rem.\,11.1 is honestly
+  hedged, but Rem.\,10.3 and \S12 assert originality outright. Cite this literature, delete or scope
+  ``original ground'', and re-run the sweep with the keywords \emph{transversal, right loop,
+  right congruence, exact factorization}. I have not checked the locators beyond the titles; please
+  verify them.
+\end{enumerate}
+
+\subsection*{SHOULD}
+\begin{enumerate}[label=\textbf{S\arabic*.},leftmargin=*]
+\item \textbf{p.\,7, Thm.\,8.2; \S12 ``a theorem rather than a slogan''.} Given Thm.\,8.1, (RA$_\#$)
+  is the associativity equation rewritten, so Thm.\,8.2 holds by definition. Call it a corollary or
+  an observation; the content is Thm.\,8.1. Also, (RA$_\#$) is not the mirror of (LA): the mirror,
+  $K(c\cdot K(x))=K(c\cdot x)$ for all $c$ and $x$, is a different and stronger condition. Calling
+  it ``two-sided'' invites the wrong reading.
+\item \textbf{p.\,4 Def.\,6.1 vs p.\,5 Prop.\,6.4.} Def.\,6.1 enriches in $\mathbf{Rel}$ under $\subseteq$.
+  Prop.\,6.4 switches to the pointwise sub-probability order, which it calls ``the order under which
+  the Schoen/Tholen framework applies''; that is asserted, not shown. In the $\subseteq$/support order
+  of Def.\,6.1 the two bracketings are \emph{equal}: $f\cdot K(gh)$ and $fgh$ have the same support
+  because $D_{gh}$ is a positive diagonal (C3: 0/3000 support mismatches). So in that order the defect
+  is invisible, not incomparable. In the pointwise order I confirm incomparability (C3: 0 of 240
+  differing triples are comparable). State both; the verdict survives.
+\item \textbf{p.\,4, Böhm--Lack--Street paragraph.} Demimonads and weak distributive laws weaken the
+  \emph{unit} law, and idempotent splitting does repair unit weakenings (Böhm; Garner's weak
+  distributive laws). Your sesquilaw fails \emph{multiplicativity}. So the BLS result is ``Karoubi
+  absorbs unit failures'', not ``exactly Corollary 5.4''. Make that contrast the point; it sharpens
+  Refutation~II. Drop ``upgrades the verdict''.
+\item \textbf{p.\,2 l.\,77--80; \S11 table; email.} The triangulation framing, as answered in Q1.
+\item \textbf{p.\,9, Rem.\,10.4.} The multiplication table is incomplete because $b\cdot a$ is not
+  given. Both $b\cdot a=z$ and $b\cdot a=a$ give monoids. Only $b\cdot a=z$ satisfies (LA), and with
+  $b\cdot a=a$ the witness collapses to $(a\#a)\#a=a=a\#(a\#a)$ (C7). Print $b\cdot a=z$. Add the
+  $b\cdot a=a$ table to the Lean file as a breaking control. Add the uniqueness at order 4 (C10).
+\item \textbf{p.\,8, Rem.\,9.4.} The recovery regime is ``$h$ total''; $g$ need not be stochastic.
+  With $h$ total and 40\% of $g$'s rows equal to $\perp$ I get 0/2000 non-associative triples. The
+  control, where $h$ has a $\perp$ row and the middle dimension is at least 3, gives 1085/2000 (C4).
+  ``Reproduces DLRS Prop.\,4.9 exactly'' cannot be checked from the note. Quote 4.9's conditions.
+\end{enumerate}
+
+\subsection*{NIT}
+\begin{enumerate}[label=\textbf{N\arabic*.},leftmargin=*]
+\item p.\,3--4, proof of Thm.\,5.2: you write ``$e=s;r$ with $r;s=\mathrm{id}$'' and then set $r=n$,
+  $s=m$, which gives $e=m;n=\mathrm{id}_{MD}$. Swap the labels ($s=n$, $r=m$).
+\item p.\,3, after Prop.\,3.2: ``rounds 1 and 2'' should read: four rounds, endorsed in round 4 on
+  \texttt{40f5c95}, NIT applied in \texttt{b9a0a5c}.
+\item p.\,8, ``(see \S10)'' for middle dimension ${\ge}3$: \S10 does not contain this. Give the
+  three-line reason instead. $h$ needs a $\perp$ row to create unequal masses, and two
+  non-proportional live rows so that the rows of $gh$ are not all parallel. The outer dimensions must
+  also be ${\ge}2$. So $1\to2\to3\to2$ is minimal (C5: shapes with middle 2, or an outer 1, give 0/600).
+\item p.\,5, near-miss: $\mathrm{id}_{DM}\le k$ holds pointwise on the $Y$-coordinates only. At the
+  $\perp$-coordinate of $D(1+Y)$ the inequality reverses.
+\item p.\,8, Cor.\,10.2: ``linear'' has no meaning in an abstract $A$. Use ``$K\ne\mathrm{id}$''
+  together with (U) (see M3).
+\item ``magmad'' and ``magmoid'' are used interchangeably (pp.\,3--4). Pick one.
+\item p.\,3, Rem.\,3.3: name the registry node for $[\omega]\in H^2$.
+\end{enumerate}
+
+\section*{Checks run (script output in the \texttt{.log})}
+{\small
+\begin{tabular}{lll}
+\toprule
+C1 & Lemma 9.3 witness, exact & matches PDF \\
+C2 & (LA), row-$K$, 3000 random; \textbf{control} column-$K$ & 0 / 945 violations\\
+C3 & Thm 8.1; pointwise comparability; support equality & OK; 0/240; 0 mismatches\\
+C4 & $h$ total $\Rightarrow$ assoc.; \textbf{control} $h$ with $\perp$ row & 0/2000; 1085/2000\\
+C5 & minimal shape & only $(1,2,{\ge}3,2)$ has defects\\
+C6 & handed normalizers in all monoids, order 1--4 & 0,0,0,6; all with non-closed $\Im K$\\
+C7 & Lean model, $b\cdot a\in\{z,a\}$ (\textbf{control}) & only $z$ works\\
+C8 & principal $\kappa x$, $x\kappa$, $\kappa x\kappa$, no (U) & 1434 tested, 0 non-assoc; (U) $\Rightarrow$ id\\
+C9 & octonions $=k_F[\mathbb{Z}_2^3]$, $\phi=\partial F$ & 3-cocycle, 168/512 non-assoc\\
+C10 & order-4 handed models up to isomorphism & 1 (your model, $b\cdot a=z$)\\
+C11 & $S_3$ transversals as normalizers & (K1),(U),(LA) all hold; 3/4 non-assoc\\
+\bottomrule
+\end{tabular}}
+
+Not checked: DLRS Prop.\,4.9 itself, Schoen/Tholen beyond your Def.\,6.1, the Lean source (only your
+description of it), and the BLS demimonad locator.
+\end{document}
