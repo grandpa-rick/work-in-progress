@@ -6,7 +6,7 @@ from fractions import Fraction as Fr
 N=int(sys.argv[1]); random.seed(int(sys.argv[2])); shard=int(sys.argv[3]); nsh=int(sys.argv[4])
 al=[Fr(random.randint(1,20),random.randint(1,20))*random.choice([1,-1]) for _ in range(N)]
 Uall=list(range(1,N+1)); subs=subsets(N); dim=N*(N+1)//2; Umax=2*N-4
-cs=list(range(-2,-2+dim+4)); extra=[Umax+1,Umax+2,Umax+3]
+cs=list(range(-2,-2+dim+4)); extra=[dim+4,dim+5,dim+7]   # outside interpolation range (fix 2026-10-21: old U+1..U+3 lay inside it)
 dls=[Fr(k,10**20) for k in (1,2,4)]
 c_=sp.Symbol('c')
 import os, re

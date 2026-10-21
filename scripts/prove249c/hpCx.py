@@ -6,7 +6,7 @@ n=int(sys.argv[1]); random.seed(int(sys.argv[2])); shard=int(sys.argv[3]); nsh=i
 al=[Fr(random.randint(1,20),random.randint(1,20))*random.choice([1,-1]) for _ in range(n)]
 U=list(range(1,n+1)); subs=[list(S) for r in range(n+1) for S in itertools.combinations(U,r)]
 dim=n*(n+1)//2; Umax=2*n-2
-cs=list(range(-2,-2+dim+4)); extra=[Umax+1,Umax+2,Umax+3]; allc=cs+extra
+cs=list(range(-2,-2+dim+4)); extra=[dim+4,dim+5,dim+7]; allc=cs+extra  # extra outside interpolation range (fix 2026-10-21: old U+1..U+3 lay inside it)
 dls=[Fr(k,10**20) for k in (1,2,4)]
 c_=sp.Symbol('c'); t_=sp.Symbol('t')
 W={dl:{i:1+al[i-1]*dl for i in range(1,n+1)} for dl in dls}
