@@ -1,0 +1,5 @@
+n 5 pairs (kappa,L) 1024 mismatches 0
+
+real	1m25.244s
+user	1m24.957s
+sys	0m0.267s
