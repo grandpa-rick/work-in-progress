@@ -1,0 +1,1 @@
+n 4 nonzero F values 110 non-Laurent 0
