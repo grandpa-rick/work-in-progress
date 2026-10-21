@@ -1,0 +1,70 @@
+=== kappa=(1, 2) M=(1, 2, 3, 4) theta=(0, 0) ===
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)                       | EQUAL (symbolic)
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | n/a (zero part)
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | n/a (zero part)
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)                       | EQUAL (symbolic)
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)-1 (connection file)   | n/a (zero part)
+=== kappa=(2, 3) M=(2, 3, 4, 5) theta=(0, 0) ===
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)                       | EQUAL (symbolic)
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
+=== kappa=(1, 3) M=(1, 2, 3, 4) theta=(0, 0) ===
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)                       | EQUAL (symbolic)
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | n/a (zero part)
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | n/a (zero part)
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)-1 (connection file)   | n/a (zero part)
+=== kappa=(2, 4) M=(2, 3, 4, 5) theta=(0, 0) ===
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)                       | EQUAL (symbolic)
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
+=== kappa=(2, 5) M=(1, 3, 5, 6) theta=(0, 0) ===
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)                       | EQUAL (3 rational pts)
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF ratios=[108703627781461443/6235257355251584, -1184970602347518114000/1334439172821158957267, 211179311589082651419/51013615204798584614]
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF ratios=[38832328243027227861608278843548555902807926162492125/14001022615990421088195171544653850927300645763045441344, -187633609300560353006508670536597208599477539062500000/5129090668304344022415829175391559867346378291990667433, 4976652391580354333138367926711871565004800000000000000/805242999324616952651371790994238570348604469360545677893]
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF ratios=[-44894015187835652532881055172703895854047925625/32240437645768915322519386704217549323807699290176, 40425085042325718903986310306991054687500000000/2936350430142454859156613756459289911159009691669, -445024286962718748318201138592153600000000000000/54788845208794905906365188364989250702436488059299]
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)                       | DIFF ratios=[-26741843615844750481055965942864793/46453961773961615748768030720000, 2963930740591992733324353550999025/117142513610163448383387195135494, -7*2**(78/491)*3**(373/491)*5**(459/491)*7**(66/491)/75]
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)-1 (connection file)   | DIFF ratios=[47596295339592121405086451/791916184635606693273600, -67046978350487122654599954000/202668708668102851874372309923, 1744974452489262802159745067/3621966679540699507594000000]
+=== kappa=(3, 4) M=(2, 4, 5, 7) theta=(0, 0) ===
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)                       | EQUAL (3 rational pts)
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF ratios=[-2940653405130013944823/6085687886496102192, 2318756965163788204660/42685548107579164871583, -15237836488522946941364743952/32592138335457692290132764645]
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF ratios=[578719849281707877352533292145434651231695/1015654693297639401808505106689312263693936018, -5252380978977494923548281682811/112340602583425851642630356737010000000000, -12202025154865021286729807071928068576229118981808000000000/4232751568375436271700223288768646866967843511157555073]
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF ratios=[8182228167592684238726494949566215/78849539819213191495274686234727490658, -3632881353918520100009393/68926613133732409736786390061000000, 7276879990083649753565561197258941175456000000000/3167617882170447954023981381402415004724273482689]
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)                       | DIFF ratios=[-1051843296557757099492891115805/602146267896994917472567296, 350140842907913034574756084/122911133655519731819159587, 171264893605320363860809938004754377/3259213833545769229013276464500000000]
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)-1 (connection file)   | DIFF ratios=[-5282380891097691708085/17208112365597705689088, 1621303445084692202768/148627992808317815034789, -326663849525714836411680056597/325921383354576922901327646450000]
+=== kappa=(2,) M=(1, 2, 4, 5) theta=(0,) ===
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)                       | EQUAL (3 rational pts)
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF ratios=[-104995710736/53620346721, 731362076227120/694201560798039, 1543804418250199/351554488830199]
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF ratios=[-757286620349440162594816/1450651749254293450527, -1822691949790768202362445248149/430590364951592992150081735504, -1774788616090143061124291242402301/1424504814014772684339151050000000]
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF ratios=[1496187198056628224/56102863799137311, -4417292436160887427531140/745213574321561820103013, -3826298580699058250733847159/995774222512161535311000000]
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)                       | DIFF ratios=[-288028354428079/270300167820561, -57295048211201296/56230326424641159, -217947121617033161/126911170467701839]
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)-1 (connection file)   | DIFF ratios=[-104995710736/53620346721, 731362076227120/694201560798039, 1543804418250199/351554488830199]
+=== kappa=(1, 3, 4) M=(1, 2, 3, 4, 5) theta=(0, 0, 0) ===
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)                       | EQUAL (3 rational pts)
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | n/a (zero part)
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF ratios=[-11080966573211589476618217532328549650264122285009/4610113846282439007764797228155874972928000000000000, 1591686897847296750738858602628933734945566515422984892723200000/6571569049483388758466966349770365300670252656420746981531407043, 45719823187176432713411924104170412053094503799869754337651753370821/10874208993507847465792977922863607512192749536247312315520000000000]
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | n/a (zero part)
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)                       | DIFF ratios=[-9959753278927384705895549085/117471456641005257974192338, 26201994788534337852497405281955963328/30940290176249898014592453188459148941, 3239519410204829356674457994498484481/55533008696642352318743714967553]
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)-1 (connection file)   | n/a (zero part)
+=== kappa=(2, 4) M=(2, 3, 4, 5) theta=(1, 0) ===
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
+=== kappa=(2, 4) M=(2, 3, 4, 5) theta=(1, 1) ===
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  X=1/w,B=w (x=1-1/w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  CONTROL X=w (x=1-w_m, b=1-w_k)             | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)                       | DIFF; ratio=<non-constant>
+  CONTROL B=1/w (x=1-1/w_m, b=1-1/w_k)       | lam=rev(kappa)-1 (connection file)   | DIFF; ratio=<non-constant>
