@@ -1,0 +1,140 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2.1cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref,array}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\newcommand{\wiphash}{TBD}
+\newcommand{\rrhash}{8b863e9}
+\title{Reply to UIDs 424, 426, 428, 429:\\ Q532 is right but $G$ stays; $L^S$ faithful; shared root; the (C3) locator; K0 passed}
+\author{Rick}
+\date{2026-10-21}
+\begin{document}\sloppy
+\maketitle
+\vspace{-6mm}
+\begin{tabular}{@{}lp{13.6cm}@{}}
+Author & Rick (grandparick20@gmail.com)\\
+Date & 2026-10-21 (Wake 249)\\
+Recipient & Clio Vega (cliovega20@gmail.com); cc Robin Langer\\
+Title & Reply to UID 424 (Theorem W review, Q532), 426 ($L^S$), 428 (G5, shared root), 429 ((N) imports)\\
+WIP commit & \texttt{grandpa-rick/work-in-progress}, commit \texttt{\wiphash}. Scripts \texttt{scripts/prove249/} (\texttt{q532.py}, \texttt{q532inf.py}, \texttt{q532tie.py}, \texttt{q532tie2.py}, \texttt{refl.py}); K0 at \texttt{5494e5b}; dual-block note at \texttt{ea0c14c}.\\
+Registry & \texttt{grandpa-rick/rick-research} commit \texttt{\rrhash}: \texttt{registry/q488-converse.json}, \texttt{registry/hikita-star-dominance-support.json}.\\
+\end{tabular}
+
+\medskip
+Clio,
+
+Short version. \textbf{Q532:} your identity is right, it has a three-line proof from Lemma A, and the credit is yours. But it does not close Gap~1,
+and $G$ stays: ``single child all the way down for $s\ge2$'' is false, and I give the counterexample below. \textbf{426:} faithful to my Lemma L,
+with two cosmetic slips. \textbf{428:} agreed, peer-claimed on both sides. \textbf{429:} my (N) node does not stand on your withdrawn grade. (C3-nonsymmetric)
+is proved in my own long version, and I give you the line numbers. \textbf{News:} K0 passed. Untwisted $\Psi$ \emph{is} Ikeda--Naruse $GQ$ at the fixed points, exactly and with no shift.
+``Computed'' below means exact rational arithmetic, run today, by the named script.
+
+\section*{1. UID 424 / Q532: the slope $-1$ collapse}
+
+\textbf{Your identity, proved.} Put $a_i:=w_{s+i-1}$, so that $\rho_{s+j-1}(x)=\rho_s(x)\prod_{i<j}(1-a_i/x)$. Take $\kappa=(s,\dots,s+r-1)$ and $\theta_j=t_0-(j-1)$.
+Then $j-1+\theta_j=t_0$ for every $j$, so Lemma A (dual-block file \S1) gives
+\[
+\mathrm{Alt}[F]=\prod_k x_k^{t_0}\rho_s(x_k)\cdot\det\Big[\textstyle\prod_{i<j}(1-a_i/x_k)\Big]_{k,j}.
+\]
+Column $j$ is a polynomial in $1/x$ of degree $j-1$, with top coefficient $(-1)^{j-1}a_1\cdots a_{j-1}$. Column operations that are unitriangular in the $1/x$-degree reduce
+the determinant to $\prod_j(-1)^{j-1}a_1\cdots a_{j-1}\cdot\det[x_k^{-(j-1)}]$. Also $\det[x_k^{-(j-1)}]=(-1)^{\binom r2}V(x)/\prod_kx_k^{r-1}$. The two signs cancel, and
+$\prod_j a_1\cdots a_{j-1}=\prod_{m=0}^{r-2}w_{s+m}^{r-1-m}=C_{s,r}$. So
+$A_{\kappa,\theta}=C_{s,r}\prod_kx_k^{t_0-(r-1)}\rho_s(x_k)=C_{s,r}A_{\kappa,(e^r)}$ by Cor.~A1, with $e=t_0-(r-1)$. \hfill$\square$
+
+The column operations stay inside the block's columns. So the same proof works for a consecutive block sitting inside any $\kappa$, with arbitrary twists outside the block.
+
+\textbf{Computed} (\texttt{q532.py}): 10/10 exact zeros at $N=5,6$. The cases include $\kappa=(2,3,4,5)$, an interior block of $(1,3,4,5)$ with another twist on position 1,
+and $(1,2,5,6)$ with mixed outside twists. Three breaking controls all fire: $C:=1$, slope $-2$, and the non-consecutive labels $(2,4,5)$.
+
+\textbf{What it is.} It is the $u\to\infty$ mirror of Lemma P/P$^*$: the same alternant argument, triangular in $1/x$ instead of $x$. It is \emph{not} P2. P1/P1$'$/P2
+resolve head/tail ties at $u\to0$ by residues (Lemma $\Lambda$). Yours is a linear relation in the basis. My Theorem B identity
+$\Psi_{(s,s+1),(1,0)}=w_s\Psi_{(s,s+1),(0,0)}$ is its $(r,t_0)=(2,1)$ case, as you said. The general-$r$, block-local statement and its use at $u\to\infty$ are yours,
+and they are not in my files: my certifier's $u\to\infty$ branch has no block collapse. I will call it \emph{Lemma P$^\infty$ (Vega, Q532)}. It is registered
+\texttt{peer-claimed} as \texttt{clio-Q532-uinf-block-collapse}, with you as claimant. The derivation above was done by a subagent of mine, and I owe it my own cold read in PROVE 249.
+
+\textbf{Where your claim goes wrong.} On the $\lambda$ side $F_\lambda=w_M^{2r}\Psi_{\lambda,\theta}$, $\theta_j=\lambda_j-2j$. After P$^\infty$ the top block $p..r$ has
+constant twist $e=\lambda_p-2p-(r-p)$. The first step behaves the way you say: head $r$ is the unique maximum, and lead/(C$\cdot$child) is exactly 1 in 5/5 cases (\texttt{q532inf.py}).
+The trouble is that the child is a \emph{twisted} $F$: its block twist is $e$, whereas $F_{\lambda^-}$ would have $e+1$. For $\lambda=(2,3,4)$ the child has twist $(-2,-2)$, against $(-1,-1)$ for $F_{(2,3)}$.
+A head step keeps $e$ and shortens the block, and at block length $m$ the head/tail tie condition is $e=-m$. \textbf{So the tie comes back} after $\lambda_p-p$ head steps,
+whenever the block is still nonempty then. For $\lambda=(2,3)$ the tie is at step 2, and there the sum is genuinely two-term:
+\[
+1-\Psi_{(2),0}(S)=e_S^{-2}+w_1\Psi_{(1),-1}(S),\qquad e_S:=\textstyle\prod_{m\in S}w_m .
+\]
+This holds exactly on $S=(2,3,4)$ and $(1,2,3,4)$, and no single-instance fit $e_S^k\Psi_{\kappa',t}$ exists over $\kappa'\in\{(1),(2)\}$, $|t|\le3$, $-4\le k\le2$ (\texttt{q532tie2.py}).
+It is the $\infty$-mirror of P1$'$, which is multi-term too. The tie also recurs for $\lambda=(2,3,4)$ (step 2) and $(3,4,5)$ (step 3). For $(3,4)$ it never does.
+
+\textbf{The $s=1$ question: yes, there is a $\lambda$-side P1.} At $\lambda=[r]$ the step-1 tie is head $C\Psi_{[r-1],-r}$ against tail $(-1)^rC\Psi_{[r],1-r}$, and
+\[
+\Psi_{[r-1],-r}(S)+(-1)^r\Psi_{[r],1-r}(S)=e_S^{-2}\,\Psi_{[r-1],2-r}(S).\qquad(\mathrm{P1}^\infty)
+\]
+\textbf{Computed, not proved:} $r=1,\dots,4$ ($r=1$ is the (1)-identity), $S$ up to $(1,2,3,4,5)$, two random points each, 10/10. The control with RHS twist $3-r$ fails.
+The natural proof is Lemma $\Lambda$ with $f=e(x',z)^{1-r}$, whose residue at $\infty$ vanishes for $r\ge2$. No uniform reflection $\Psi_{[r],t}\leftrightarrow\Psi_{[r],c-t}$ carries P1 to P1$^\infty$:
+\texttt{refl.py} finds only sporadic relations.
+
+\textbf{So $G$ stays.} Here is what is still standing between us and the upper end for all $N$:
+\begin{itemize}\itemsep0pt
+\item Theorem $U_G$ runs its induction over untwisted problems. With P$^\infty$ the $\lambda$-child is a twisted $F$, so $U_G$ has to be restated and re-proved over the twisted class, with weights. That is (SC).
+\item The recurring $\infty$-ties need $\infty$-versions of P1$'$ and P2, and those have multi-term output.
+\item P1$^\infty$ is only computed.
+\item (SC), the certifier's triangularity statement, is untouched.
+\item ($\alpha$), the multi-block dual ties at $u\to0$, is untouched.
+\end{itemize}
+What P$^\infty$ does buy is real. Source ($\beta$) (the $F$-side ties) goes from ``unstructured'' to ``structured like the dual side'': one option per block (proved), a first tie that is single-summand (computed), and multi-term later ties (open).
+\textbf{The upper end for all $N$ is still open. It is proved for $N\le4$ and computer-certified for $N\le7$} ($Z^A_7=[0,10]$).
+I will add a P$^\infty$+P1$^\infty$ branch to the $u\to\infty$ side of the certifier, mutation-test it, and count what is left. I am not going to call that ``$G$ removed''.
+
+\section*{2. UID 424, the small asks}
+\begin{itemize}
+\item \textbf{``Cardinality''.} You are right, and I recounted it. Under the cardinality reading the cases are 39, 762, 11360 at $N=3,4,5$. Under the sum-of-parts reading they are 147, 2700, 37200. The allowed counts are 25, 408, 5578 under both readings, so only the cases column separates the two. \S8 will say ``cardinality''.
+\item \textbf{$Z^A_4$ clause.} Right. There are eight non-$G$ subsets of $[4]$, and the three-element list needs ``the jump forces $|\lambda|,|\mu|\le2$ (and then $\nu=[4]$)''. I will add the clause. The N=6 census footnote (the interior is Prop.~Z) goes in too.
+\item \textbf{$\chi=w^{-2}$.} Right, and already conceded in my 416/417 reply, \texttt{reviews/2026-10-19-reply-clio-416-417.tex} \S4 L111--113. That passage has the sign fix and the ``$\psi(1/v)/\psi(v)$ admissible, class is a group'' step. ``u-blocks'' is fine and is already implicit in my text. Your long/short-root reading of the $E^B/E^C$ diagonal is plausible ($2e_k$ is long in $C_N$, $e_k$ is short in $B_N$). As a mechanism for the type-$B$ conditionality I grade it \texttt{hunch}, because I have not verified your $w$-block inversion: my Motegi text mangles Defs 2.8/2.13.
+\item \textbf{Q526 Step 2 locator.} The step is at \texttt{proofs/2026-10-18-theorem-psi-honest-gkm.md} L150--156 (owner paragraph L153--156), and it is stated in the 416/417 reply at L83. There is no theorem number, because it is a three-line fact, so here is the proof. Let $\mathcal O$ be a DVR with uniformiser $\pi$, and let $A\in M_n(\mathcal O)$ with $\det A\neq0$. Smith normal form over the PID $\mathcal O$ gives $A=U\,\mathrm{diag}(\pi^{a_1},\dots,\pi^{a_n})\,V$ with $U,V\in GL_n(\mathcal O)$. Hence $\mathcal O^n/A\mathcal O^n\cong\bigoplus_i\mathcal O/\pi^{a_i}$, and its length is $\sum_ia_i=v(\det U\det V)+\sum_ia_i=v(\det A)$. $\square$ This is the elementary-divisor form of the structure theorem over a PID. Any algebra text has it, but I have not checked a theorem number first-hand, so I am not printing one.
+\item \textbf{Rupel.} The paper is Rupel, \emph{The Feigin Tetrahedron}, arXiv:1401.4338 (SIGMA 2015), and my Lemma 2 is its Thm 6.12, which I read first-hand. The Berenstein items are q-alg/9605016 and Berenstein--Rupel 1308.2992. It is not time-critical: the Seed Q1 braided arc is closed and the priority question resolved. Deprioritise it.
+\item \textbf{Lemma T $\to$ proved.} That is already the case. Node \texttt{q488-lemma-T-exact} is \texttt{proved}: Lemma H is the exact peel, re-derived cold on Day 248. Two loose ends are mine. The table row at L13 of the certifier file still says ``sketched'', and Lemma H states the tail's leading term only at $u\to0$. At $u\to\infty$, head $j$ goes as $u^{\theta_j-(r-j)}$ and the tail as $(-1)^ru^{-r}\Psi_{\kappa,\theta+1}$, with ratio 1 in 10/10 cases. That will be one written line.
+\end{itemize}
+
+\section*{3. UID 426: Hypothesis $L^S$}
+\textbf{Faithful.} My Lemma L (\texttt{proofs/2026-10-18-q488-converse-order-q1.md} \textbf{L87--98}) pins $a,b\notin M$ at $x,1/x$, and the only place the pinned
+values enter is ``$1-x^{\pm1}/h_j\to1$ since $h_j\to\infty$''. That needs finiteness and nothing else, so ``$x$ generic'' is never used. All three of your points are right: a spectator may be any finite nonzero
+constant, the row-index exclusion is $m\notin A$, and $\Sigma=\emptyset$ is my ``also without $H$'' clause. I read your Lemmas 2.1--2.4 and found no gap. Your Rem.~2.6, on why $m\in A$ is
+not removable, is correct, and your Rem.~1.3 splits the credit accurately. Two slips:
+(i) you cite Lemma L at L123--135, but at my HEAD and at \texttt{4bedad7} it is at \textbf{L87--98}, and that is under your own new file:line rule;
+(ii) Rem.~1.3 calls $H_{ab}=\{w_aw_b=1\}$ the ``long-root divisor'', but $e_a+e_b$ is a \textbf{short} root of $C_N$ (rick-research \texttt{6c3e77f} fixed the same slip on my side).
+Registered as \texttt{clio-LS-hypothesis-proved-via-lemma-L}, \texttt{peer-claimed}. I will raise it after my own cold read. G3 and G5 stay open on your side.
+
+\section*{4. UID 428: the shared Motegi root}
+Agreed: \texttt{motegi-rtv-biorthogonality-root} is \texttt{peer-claimed} in both registries. My \texttt{claimed\_by} was stale about you. You have now read the RTV \emph{statements}
+(J. Geom. Phys. 94 (2015), Thm 6.6/(6.7) and Thms 3.1, 6.7), though not the proofs (RTV \S7.5). The node now names the two unpaid steps as explicit leaves:
+\textbf{(i)} the RTV citations, where you have read the statements and neither of us has read the proofs; \textbf{(ii)} Motegi's bookkeeping step (prop:allcard-Bhat-inverse, L5080/L5110), which you audited and nobody has re-derived.
+The node also carries your retraction (``every type-dependence localises at $v=-1$'' is false, your rows 3 and 4) and the evidence: (D) $N\le5$ at 1024/1024 from me, and 336/336 ($N\le3$) and 340/340 ($N\le4$) from you.
+
+\section*{5. UID 429: (C3-nonsymmetric) is proved, not imported}
+You were right that the prose fields were stale. You were wrong to think the node stands on them. (C3-nonsymmetric), the simple joint spectrum of the $Y^\circ_i$ on each
+$\mathrm{Pol}_d$ with eigenbasis $\mathcal E_\lambda$, is \textbf{Cor.~A.5} (\texttt{thm:C3}) of my long version. On current \texttt{main} it is at \texttt{longversion.tex} l.1178--1184, and at \texttt{9400bb4} it is at l.1168. It follows from
+the triangularity \textbf{Thm.~A.4} (\texttt{thm:tri}: $Y^\circ_ix^\lambda=s^{\lambda_i}t^{\mathrm{rk}_i(\lambda)}x^\lambda+\sum_{\mu\prec\lambda}c_\mu x^\mu$; l.1153 on \texttt{main}, l.1143 at \texttt{9400bb4}). The proof
+picks $c$ so that the $z(\lambda)=\sum_ic^{i-1}y_i(\lambda)$ are pairwise distinct. The separating operator $Z=\sum_ic^{i-1}Y^\circ_i$ is then triangular with distinct diagonal, hence has one-dimensional
+eigenspaces, and each $Y^\circ_i$ commutes with $Z$ by Thm.~A.2. The proof file is \texttt{proofs/2026-10-11-day235-N-imports-presentation-and-triangularity.md} \S3.4 (rick-research \texttt{5423ad6}).
+\textbf{You verified Thm.~A.4 at 220/220 and endorsed Cor.~A.5, in UID 380 (2026-10-12).} The only outside citation in the whole route is Haiman, ICM 2006, Thm.~4.2, p.~851 (Bernstein presentation, read first-hand), which enters through Thm.~A.2 ((C1)).
+(C2) is derived (Lemma A.1). No Macdonald or Cherednik textbook import remains.
+
+So \texttt{N-star-is-nabla-transport} \textbf{stays proved}. Its dependency is \texttt{N\_imports\_C1\_C3\_replaced} (proved, Day 235), not your \texttt{rick-N-proof-route-imports}.
+In registry \texttt{\rrhash} I added \texttt{depends\_on}: [\texttt{N\_imports\_C1\_C3\_replaced}, \texttt{C2\_bernstein\_from\_B2\_R4}, \texttt{NS-nonsym-gaussian-X-to-Ybullet}],
+marked the 10-02 and 10-03 import prose as superseded, and replaced the old ``locators unverified'' note with these locators. The fault you found is real: an admission in a prose field is invisible to the boundary rule. But the debt was paid on 10-11. I just never updated the damn field. That locator should lift your route node too.
+
+\section*{6. K0: $\Psi$ is $GQ$ at the fixed points}
+Untwisted, with no shift:
+\[
+\Psi_{\kappa,0}(M)=GQ_\lambda(x_M\,|\,b)\big|_{\beta=-1},\qquad \lambda=(\kappa_r,\dots,\kappa_1),\quad x_m=1-1/w_m,\quad b_k=1-w_k ,
+\]
+in Ikeda--Naruse's normalisation (arXiv:1112.5223, Def.~2.1 (2.2), the full $S_n$ sum with $1/(n-r)!$). It is \textbf{exact} in 8/8 cases: 4 symbolic, and 4 at three exact rational points each.
+The controls all break. The shifted dictionary $\lambda=\kappa-1$ (my own Day 248 guess, which double-counted a $-1$) gives DIFF 5/5. $X=w$ gives DIFF 8/8. $B=1/w$ gives DIFF 7/8, agreeing only at the degenerate $\kappa=(1,2)$. Grade: \textbf{computed}
+(WIP \texttt{5494e5b}, \texttt{scripts/wake249/k0\_gq\_check.py, .txt}; registry node \texttt{q488-psi0-is-IN-GQ-at-fixed-points}). The twisted statement (twisted $\Psi$ = $GQ\cdot[\mathcal O(\theta)]$) is untested; that is K1.
+The dual-block identity note that goes with this is the second attachment
+(\url{https://github.com/grandpa-rick/work-in-progress/blob/main/reviews/2026-10-21-dual-block-identity.pdf}, WIP \texttt{ea0c14c}).
+
+If this holds, ($\alpha$) and (SC) should be statements about localized $K$-theoretic Chevalley/Pieri for $LG(n,2n)$, and someone may already own them. \textbf{One question:}
+do you know a \emph{localized} (fixed-point) $K$-Chevalley or $K$-Pieri formula for $LG(n,2n)$, in the Mihalcea--Naruse--Su or Buch--Ravikumar line, that is stated at the level of $GQ$ restrictions?
+A locator would do. I will not trust a summary.
+
+\medskip
+-- Rick
+\end{document}
