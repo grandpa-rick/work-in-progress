@@ -1,0 +1,363 @@
+[] [] [] d 0 deg 0 chk True desc True P 1
+[] [1] [1] d 0 deg 0 chk True desc True P 1
+[] [] [2] d 0 deg 2 chk True desc True P c**2/4
+[] [2] [2] d 0 deg 0 chk True desc True P 1
+[1] [2] [2] d 1 deg 0 chk True desc True P -34
+[] [] [3] d 0 deg 3 chk True desc True P c*(c - 2)*(2*c + 1)/24
+[] [2] [3] d 0 deg 1 chk True desc True P c
+[1] [1] [3] d 0 deg 1 chk True desc True P 2*c - 1
+[1] [3] [3] d 1 deg 0 chk True desc True P 8
+[2] [3] [3] d 2 deg 0 chk True desc True P 448/9
+[] [] [4] d 0 deg 4 chk True desc True P c*(c - 2)*(c**2 - 2*c - 2)/48
+[] [2] [4] d 0 deg 2 chk True desc True P c*(c - 1)/2
+[] [4] [4] d 0 deg 0 chk True desc True P 1
+[1] [2] [4] d 0 deg 1 chk True desc True P 2*c - 1
+[1] [4] [4] d 1 deg 0 chk True desc True P -2/3
+[2] [3] [4] d 1 deg 0 chk True desc True P 106/9
+[3] [3] [4] d 2 deg 0 chk True desc True P 6644/27
+[4] [4] [4] d 4 deg 0 chk True desc True P 22100/243
+[] [1] [1, 2] d 0 deg 2 chk True desc True P c*(c - 2)/4
+[] [1, 2] [1, 2] d 0 deg 0 chk True desc True P 1
+[1] [2] [1, 2] d 0 deg 0 chk True desc True P 1
+[2] [2] [1, 2] d 1 deg 0 chk True desc True P -34
+[1, 2] [1, 2] [1, 2] d 3 deg 0 chk True desc True P -235280/81
+[] [1] [1, 3] d 0 deg 3 chk True desc True P c*(c - 2)*(4*c - 1)/24
+[] [3] [1, 3] d 0 deg 1 chk True desc True P c/2
+[] [1, 3] [1, 3] d 0 deg 0 chk True desc True P 1
+[1] [2] [1, 3] d 0 deg 1 chk True desc True P 2*c
+[1] [1, 2] [1, 3] d 0 deg 0 chk True desc True P 2
+[2] [2] [1, 3] d 0 deg 0 chk True desc True P 2
+[3] [3] [1, 3] d 2 deg 0 chk True desc True P 168
+[1, 2] [3] [1, 3] d 2 deg 0 chk True desc True P 128/9
+[1, 2] [1, 3] [1, 3] d 3 deg 0 chk True desc True P -5120/81
+[1, 3] [3] [1, 3] d 3 deg 0 chk True desc True P 896/3
+[] [] [1, 4] d 0 deg 5 chk True desc True P c*(c - 2)*(c - 1)*(3*c**2 - 6*c - 4)/480
+[] [2] [1, 4] d 0 deg 3 chk True desc True P c**2*(c - 1)/4
+[] [4] [1, 4] d 0 deg 1 chk True desc True P c/2
+[] [1, 3] [1, 4] d 0 deg 1 chk True desc True P c
+[1] [1] [1, 4] d 0 deg 3 chk True desc True P c*(c - 2)*(c - 1)/2
+[1] [3] [1, 4] d 0 deg 1 chk True desc True P 2*c
+[1] [1, 2] [1, 4] d 0 deg 1 chk True desc True P 2*c - 1
+[1] [1, 4] [1, 4] d 1 deg 0 chk True desc True P -46/9
+[2] [3] [1, 4] d 0 deg 0 chk True desc True P 2
+[3] [3] [1, 4] d 1 deg 0 chk True desc True P 124/3
+[4] [4] [1, 4] d 3 deg 0 chk True desc True P 1300/27
+[1, 2] [3] [1, 4] d 1 deg 0 chk True desc True P 26/9
+[1, 2] [1, 2] [1, 4] d 1 deg 0 chk True desc True P -80/9
+[1, 2] [1, 4] [1, 4] d 3 deg 0 chk True desc True P -1840/243
+[1, 3] [3] [1, 4] d 2 deg 0 chk True desc True P 1684/27
+[1, 3] [1, 3] [1, 4] d 3 deg 0 chk True desc True P -67360/243
+[1, 4] [2] [1, 4] d 2 deg 0 chk True desc True P 46/27
+[1, 4] [4] [1, 4] d 4 deg 0 chk True desc True P -29900/243
+[] [] [2, 3] d 0 deg 5 chk True desc True P c*(c - 2)*(c - 1)*(c**2 - 2*c + 2)/240
+[] [2] [2, 3] d 0 deg 3 chk True desc True P c*(4*c**2 - 3*c + 2)/24
+[] [1, 2] [2, 3] d 0 deg 2 chk True desc True P c*(c - 1)/2
+[] [2, 3] [2, 3] d 0 deg 0 chk True desc True P 1
+[1] [2] [2, 3] d 0 deg 2 chk True desc True P c*(2*c - 1)/2
+[1] [1, 2] [2, 3] d 0 deg 1 chk True desc True P 2*c - 1
+[1] [2, 3] [2, 3] d 1 deg 0 chk True desc True P -26
+[2] [3] [2, 3] d 0 deg 0 chk True desc True P 1
+[3] [3] [2, 3] d 1 deg 0 chk True desc True P 8
+[1, 2] [3] [2, 3] d 1 deg 0 chk True desc True P 8
+[1, 2] [1, 3] [2, 3] d 2 deg 0 chk True desc True P -2192/9
+[1, 3] [2] [2, 3] d 1 deg 0 chk True desc True P -18
+[1, 3] [1, 3] [2, 3] d 3 deg 0 chk True desc True P -4736/3
+[2, 3] [3] [2, 3] d 3 deg 0 chk True desc True P -5824/9
+[] [] [2, 4] d 0 deg 6 chk True desc True P c**2*(c - 2)**2*(c - 1)**2/576
+[] [2] [2, 4] d 0 deg 4 chk True desc True P c**2*(5*c**2 - 6*c + 4)/48
+[] [4] [2, 4] d 0 deg 2 chk True desc True P c**2/4
+[] [1, 3] [2, 4] d 0 deg 2 chk True desc True P c**2
+[] [2, 3] [2, 4] d 0 deg 1 chk True desc True P c
+[1] [1] [2, 4] d 0 deg 4 chk True desc True P c*(c - 2)*(5*c**2 - 10*c + 2)/24
+[1] [3] [2, 4] d 0 deg 2 chk True desc True P 3*c**2/2
+[1] [1, 2] [2, 4] d 0 deg 2 chk True desc True P 2*c*(c - 1)
+[1] [1, 4] [2, 4] d 0 deg 0 chk True desc True P 2
+[1] [2, 4] [2, 4] d 1 deg 0 chk True desc True P -104/3
+[2] [3] [2, 4] d 0 deg 1 chk True desc True P 3*c + 2
+[2] [2, 3] [2, 4] d 1 deg 0 chk True desc True P -506/9
+[3] [3] [2, 4] d 0 deg 0 chk True desc True P 2
+[4] [4] [2, 4] d 2 deg 0 chk True desc True P 26/9
+[1, 2] [3] [2, 4] d 0 deg 0 chk True desc True P 2
+[1, 2] [1, 2] [2, 4] d 0 deg 0 chk True desc True P 4
+[1, 2] [1, 4] [2, 4] d 2 deg 0 chk True desc True P 704/27
+[1, 2] [2, 4] [2, 4] d 3 deg 0 chk True desc True P -3536/9
+[1, 3] [3] [2, 4] d 1 deg 0 chk True desc True P 44/3
+[1, 3] [1, 3] [2, 4] d 2 deg 0 chk True desc True P -10096/27
+[1, 3] [2, 3] [2, 4] d 3 deg 0 chk True desc True P 141712/27
+[1, 4] [2] [2, 4] d 1 deg 0 chk True desc True P -106/3
+[1, 4] [4] [2, 4] d 3 deg 0 chk True desc True P -52/27
+[1, 4] [2, 3] [2, 4] d 4 deg 0 chk True desc True P -60112/81
+[2, 3] [3] [2, 4] d 2 deg 0 chk True desc True P -4168/27
+[2, 3] [2, 3] [2, 4] d 4 deg 0 chk True desc True P -18847696/243
+[2, 4] [3] [2, 4] d 3 deg 0 chk True desc True P 1768/81
+[2, 4] [2, 4] [2, 4] d 6 deg 0 chk True desc True P -103933648/2187
+[] [1] [3, 4] d 0 deg 6 chk True desc True P c**2*(c - 4)*(c - 2)**2*(c - 1)/288
+[] [3] [3, 4] d 0 deg 4 chk True desc True P c**3*(c - 2)/16
+[] [1, 2] [3, 4] d 0 deg 4 chk True desc True P c*(c - 2)*(c - 1)**2/12
+[] [1, 4] [3, 4] d 0 deg 2 chk True desc True P c*(c - 1)/2
+[] [2, 4] [3, 4] d 0 deg 1 chk True desc True P c
+[1] [1] [3, 4] d 0 deg 5 chk True desc True P c*(c - 2)*(2*c**3 - 11*c**2 + 14*c - 2)/48
+[1] [3] [3, 4] d 0 deg 3 chk True desc True P c**2*(2*c - 3)/4
+[1] [1, 2] [3, 4] d 0 deg 3 chk True desc True P 2*c*(c - 2)*(c - 1)/3
+[1] [1, 4] [3, 4] d 0 deg 1 chk True desc True P 2*c - 1
+[1] [2, 4] [3, 4] d 0 deg 0 chk True desc True P 2
+[2] [2] [3, 4] d 0 deg 3 chk True desc True P c*(10*c**2 - 3*c + 2)/12
+[2] [4] [3, 4] d 0 deg 1 chk True desc True P c
+[2] [2, 4] [3, 4] d 1 deg 0 chk True desc True P -206/9
+[3] [3] [3, 4] d 0 deg 1 chk True desc True P 2*c + 1
+[3] [3, 4] [3, 4] d 3 deg 0 chk True desc True P 73084/81
+[1, 2] [2] [3, 4] d 0 deg 2 chk True desc True P c*(2*c - 1)
+[1, 2] [4] [3, 4] d 1 deg 1 chk True desc True P -2*c/3
+[1, 2] [1, 3] [3, 4] d 0 deg 0 chk True desc True P 4
+[1, 2] [2, 3] [3, 4] d 1 deg 0 chk True desc True P -160/3
+[1, 2] [3, 4] [3, 4] d 3 deg 0 chk True desc True P -176/9
+[1, 3] [3] [3, 4] d 0 deg 0 chk True desc True P 2
+[1, 3] [1, 3] [3, 4] d 1 deg 0 chk True desc True P 88/3
+[1, 3] [2, 3] [3, 4] d 2 deg 0 chk True desc True P -8480/27
+[1, 3] [3, 4] [3, 4] d 4 deg 0 chk True desc True P -36256/81
+[1, 4] [3] [3, 4] d 1 deg 0 chk True desc True P 20/3
+[1, 4] [1, 4] [3, 4] d 3 deg 0 chk True desc True P -8/27
+[1, 4] [2, 4] [3, 4] d 4 deg 0 chk True desc True P -44336/243
+[2, 3] [3] [3, 4] d 1 deg 0 chk True desc True P 106/9
+[2, 3] [2, 3] [3, 4] d 3 deg 0 chk True desc True P 1123088/243
+[2, 3] [3, 4] [3, 4] d 5 deg 0 chk True desc True P -167552/729
+[2, 4] [4] [3, 4] d 3 deg 0 chk True desc True P 68/81
+[2, 4] [3, 4] [3, 4] d 6 deg 0 chk True desc True P -8377600/2187
+[3, 4] [3, 4] [3, 4] d 7 deg 0 chk True desc True P -58643200/729
+[] [1] [1, 2, 3] d 0 deg 5 chk True desc True P c*(c - 4)*(c - 3)*(c - 2)*(c - 1)/240
+[] [3] [1, 2, 3] d 0 deg 3 chk True desc True P c*(c - 2)*(c - 1)/24
+[] [1, 3] [1, 2, 3] d 0 deg 2 chk True desc True P c*(c - 2)/4
+[] [1, 2, 3] [1, 2, 3] d 0 deg 0 chk True desc True P 1
+[1] [2] [1, 2, 3] d 0 deg 3 chk True desc True P c*(c - 2)*(4*c - 7)/24
+[1] [1, 2] [1, 2, 3] d 0 deg 2 chk True desc True P (c - 2)*(c - 1)/2
+[1] [2, 3] [1, 2, 3] d 0 deg 0 chk True desc True P 1
+[2] [2] [1, 2, 3] d 0 deg 2 chk True desc True P c*(c - 1)/2
+[2] [2, 3] [1, 2, 3] d 1 deg 0 chk True desc True P -26
+[1, 2] [2] [1, 2, 3] d 0 deg 1 chk True desc True P c - 1
+[1, 2] [1, 2] [1, 2, 3] d 1 deg 1 chk True desc True P -274*(c - 1)/9
+[1, 2] [2, 3] [1, 2, 3] d 2 deg 0 chk True desc True P 3562/9
+[1, 3] [2] [1, 2, 3] d 0 deg 0 chk True desc True P 1
+[1, 3] [1, 3] [1, 2, 3] d 2 deg 0 chk True desc True P -2192/9
+[2, 3] [3] [1, 2, 3] d 2 deg 0 chk True desc True P -104
+[1, 2, 3] [2] [1, 2, 3] d 2 deg 0 chk True desc True P 3562/9
+[1, 2, 3] [1, 3] [1, 2, 3] d 4 deg 0 chk True desc True P 575744/81
+[1, 2, 3] [1, 2, 3] [1, 2, 3] d 6 deg 0 chk True desc True P 391505920/729
+[] [1] [1, 2, 4] d 0 deg 6 chk True desc True P c*(c - 4)*(c - 3)*(c - 2)*(c - 1)*(7*c - 2)/2880
+[] [3] [1, 2, 4] d 0 deg 4 chk True desc True P c**2*(c - 2)*(c - 1)/24
+[] [1, 2] [1, 2, 4] d 0 deg 4 chk True desc True P c*(c - 2)*(3*c**2 - 8*c + 2)/48
+[] [1, 4] [1, 2, 4] d 0 deg 2 chk True desc True P c*(c - 2)/4
+[] [2, 4] [1, 2, 4] d 0 deg 1 chk True desc True P c/2
+[] [1, 2, 4] [1, 2, 4] d 0 deg 0 chk True desc True P 1
+[1] [2] [1, 2, 4] d 0 deg 4 chk True desc True P c*(c - 2)*(7*c**2 - 14*c + 4)/48
+[1] [4] [1, 2, 4] d 0 deg 2 chk True desc True P c*(c - 2)/4
+[1] [1, 3] [1, 2, 4] d 0 deg 2 chk True desc True P c*(3*c - 4)/2
+[1] [2, 3] [1, 2, 4] d 0 deg 1 chk True desc True P 2*c
+[1] [1, 2, 3] [1, 2, 4] d 0 deg 0 chk True desc True P 2
+[2] [2] [1, 2, 4] d 0 deg 3 chk True desc True P c*(7*c**2 - 6*c + 2)/12
+[2] [4] [1, 2, 4] d 0 deg 1 chk True desc True P c/2
+[2] [2, 4] [1, 2, 4] d 1 deg 0 chk True desc True P -104/3
+[3] [4] [1, 2, 4] d 1 deg 1 chk True desc True P -c/3
+[1, 2] [2] [1, 2, 4] d 0 deg 2 chk True desc True P 3*c*(c - 1)/2
+[1, 2] [4] [1, 2, 4] d 0 deg 0 chk True desc True P 1
+[1, 2] [1, 3] [1, 2, 4] d 0 deg 0 chk True desc True P 2
+[1, 2] [2, 3] [1, 2, 4] d 1 deg 0 chk True desc True P -586/9
+[1, 2] [1, 2, 3] [1, 2, 4] d 2 deg 0 chk True desc True P 96880/81
+[1, 3] [2] [1, 2, 4] d 0 deg 1 chk True desc True P 3*c
+[1, 3] [4] [1, 2, 4] d 1 deg 0 chk True desc True P -2/3
+[1, 3] [1, 4] [1, 2, 4] d 2 deg 0 chk True desc True P 704/27
+[1, 3] [2, 4] [1, 2, 4] d 3 deg 0 chk True desc True P -34216/81
+[1, 4] [3] [1, 2, 4] d 1 deg 0 chk True desc True P -2/3
+[1, 4] [1, 4] [1, 2, 4] d 3 deg 0 chk True desc True P -9152/81
+[1, 4] [2, 4] [1, 2, 4] d 4 deg 0 chk True desc True P 444808/243
+[2, 3] [4] [1, 2, 4] d 2 deg 0 chk True desc True P 104/9
+[2, 3] [2, 4] [1, 2, 4] d 4 deg 0 chk True desc True P 183872/27
+[2, 4] [4] [1, 2, 4] d 3 deg 0 chk True desc True P -1352/27
+[1, 2, 3] [2] [1, 2, 4] d 1 deg 0 chk True desc True P -586/9
+[1, 2, 3] [4] [1, 2, 4] d 3 deg 0 chk True desc True P -2392/81
+[1, 2, 3] [1, 4] [1, 2, 4] d 4 deg 0 chk True desc True P 827632/729
+[1, 2, 3] [2, 4] [1, 2, 4] d 5 deg 0 chk True desc True P -14069744/729
+[1, 2, 3] [1, 2, 4] [1, 2, 4] d 6 deg 0 chk True desc True P 562789760/6561
+[1, 2, 4] [3] [1, 2, 4] d 3 deg 0 chk True desc True P -2392/81
+[1, 2, 4] [1, 3] [1, 2, 4] d 4 deg 0 chk True desc True P 827632/729
+[1, 2, 4] [2, 3] [1, 2, 4] d 5 deg 0 chk True desc True P -14069744/729
+[1, 2, 4] [1, 2, 4] [1, 2, 4] d 7 deg 0 chk True desc True P -7316266880/19683
+[] [1] [1, 3, 4] d 0 deg 7 chk True desc True P c*(c - 4)*(c - 3)*(c - 2)*(c - 1)*(24*c**2 - 47*c + 34)/40320
+[] [3] [1, 3, 4] d 0 deg 5 chk True desc True P c*(c - 2)*(c - 1)*(7*c**2 - 4*c + 4)/480
+[] [1, 2] [1, 3, 4] d 0 deg 5 chk True desc True P c*(c - 2)**2*(c - 1)**2/48
+[] [1, 4] [1, 3, 4] d 0 deg 3 chk True desc True P c*(c - 2)*(4*c - 1)/24
+[] [2, 4] [1, 3, 4] d 0 deg 2 chk True desc True P c**2/2
+[] [1, 2, 3] [1, 3, 4] d 0 deg 2 chk True desc True P c*(c - 1)/2
+[] [1, 3, 4] [1, 3, 4] d 0 deg 0 chk True desc True P 1
+[1] [2] [1, 3, 4] d 0 deg 5 chk True desc True P c*(c - 2)*(c - 1)*(6*c**2 - 12*c + 7)/120
+[1] [4] [1, 3, 4] d 0 deg 3 chk True desc True P c*(c - 2)*(4*c - 1)/24
+[1] [1, 3] [1, 3, 4] d 0 deg 3 chk True desc True P c*(2*c - 1)*(5*c - 8)/12
+[1] [2, 3] [1, 3, 4] d 0 deg 2 chk True desc True P c*(3*c - 2)/2
+[1] [3, 4] [1, 3, 4] d 0 deg 0 chk True desc True P 1
+[1] [1, 2, 4] [1, 3, 4] d 0 deg 0 chk True desc True P 2
+[2] [2] [1, 3, 4] d 0 deg 4 chk True desc True P c*(6*c**3 - 7*c**2 + 9*c - 2)/24
+[2] [4] [1, 3, 4] d 0 deg 2 chk True desc True P c**2/2
+[2] [2, 4] [1, 3, 4] d 0 deg 0 chk True desc True P 2
+[3] [3] [1, 3, 4] d 0 deg 2 chk True desc True P c*(2*c + 1)/2
+[3] [3, 4] [1, 3, 4] d 2 deg 0 chk True desc True P 1364/9
+[1, 2] [2] [1, 3, 4] d 0 deg 3 chk True desc True P c*(10*c**2 - 15*c + 8)/12
+[1, 2] [4] [1, 3, 4] d 0 deg 1 chk True desc True P c
+[1, 2] [1, 3] [1, 3, 4] d 0 deg 1 chk True desc True P 4*c - 1
+[1, 2] [2, 3] [1, 3, 4] d 0 deg 0 chk True desc True P 2
+[1, 2] [3, 4] [1, 3, 4] d 2 deg 0 chk True desc True P 286/27
+[1, 2] [1, 2, 4] [1, 3, 4] d 2 deg 0 chk True desc True P 12880/81
+[1, 3] [2] [1, 3, 4] d 0 deg 2 chk True desc True P 5*c**2/2
+[1, 3] [4] [1, 3, 4] d 0 deg 0 chk True desc True P 1
+[1, 3] [1, 4] [1, 3, 4] d 1 deg 0 chk True desc True P 14/9
+[1, 3] [2, 4] [1, 3, 4] d 2 deg 0 chk True desc True P 812/27
+[1, 3] [1, 3, 4] [1, 3, 4] d 4 deg 0 chk True desc True P -1003904/729
+[1, 4] [3] [1, 3, 4] d 0 deg 0 chk True desc True P 1
+[1, 4] [1, 4] [1, 3, 4] d 2 deg 0 chk True desc True P 104/27
+[1, 4] [2, 4] [1, 3, 4] d 3 deg 0 chk True desc True P -7916/81
+[2, 3] [3] [1, 3, 4] d 0 deg 0 chk True desc True P 2
+[2, 3] [2, 3] [1, 3, 4] d 2 deg 0 chk True desc True P 6400/9
+[2, 3] [3, 4] [1, 3, 4] d 4 deg 0 chk True desc True P -1936/27
+[2, 4] [4] [1, 3, 4] d 2 deg 0 chk True desc True P 4/9
+[2, 4] [3, 4] [1, 3, 4] d 5 deg 0 chk True desc True P -96800/81
+[3, 4] [3, 4] [1, 3, 4] d 6 deg 0 chk True desc True P -677600/27
+[1, 2, 3] [3] [1, 3, 4] d 1 deg 0 chk True desc True P 26/9
+[1, 2, 3] [1, 3] [1, 3, 4] d 2 deg 0 chk True desc True P -7280/81
+[1, 2, 3] [2, 3] [1, 3, 4] d 3 deg 0 chk True desc True P 355088/243
+[1, 2, 3] [3, 4] [1, 3, 4] d 5 deg 0 chk True desc True P 64768/729
+[1, 2, 3] [1, 2, 4] [1, 3, 4] d 5 deg 0 chk True desc True P -26922880/6561
+[1, 2, 4] [2] [1, 3, 4] d 1 deg 0 chk True desc True P -286/9
+[1, 2, 4] [4] [1, 3, 4] d 3 deg 0 chk True desc True P -92/81
+[1, 2, 4] [1, 4] [1, 3, 4] d 4 deg 0 chk True desc True P 183632/729
+[1, 2, 4] [2, 4] [1, 3, 4] d 5 deg 0 chk True desc True P -8555632/2187
+[1, 2, 4] [1, 2, 4] [1, 3, 4] d 6 deg 0 chk True desc True P 342225280/19683
+[1, 3, 4] [2] [1, 3, 4] d 2 deg 0 chk True desc True P 286/27
+[1, 3, 4] [4] [1, 3, 4] d 4 deg 0 chk True desc True P 25300/243
+[1, 3, 4] [2, 3] [1, 3, 4] d 5 deg 0 chk True desc True P 64768/729
+[1, 3, 4] [3, 4] [1, 3, 4] d 7 deg 0 chk True desc True P 22668800/729
+[] [] [2, 3, 4] d 0 deg 9 chk True desc True P c*(c - 4)*(c - 3)*(c - 2)**3*(c - 1)*(c**2 - 4*c + 9)/241920
+[] [2] [2, 3, 4] d 0 deg 7 chk True desc True P c*(c - 2)*(c - 1)*(24*c**4 - 145*c**3 + 441*c**2 - 662*c + 408)/40320
+[] [4] [2, 3, 4] d 0 deg 5 chk True desc True P c*(c - 2)*(c - 1)*(c**2 - 2*c + 2)/240
+[] [1, 3] [2, 3, 4] d 0 deg 5 chk True desc True P c*(c - 2)*(c - 1)*(c**2 - 2*c + 2)/48
+[] [2, 3] [2, 3, 4] d 0 deg 4 chk True desc True P c*(c - 2)*(3*c**2 - 2*c + 2)/48
+[] [3, 4] [2, 3, 4] d 0 deg 2 chk True desc True P c**2/4
+[] [1, 2, 4] [2, 3, 4] d 0 deg 2 chk True desc True P c*(c - 1)/2
+[] [2, 3, 4] [2, 3, 4] d 0 deg 0 chk True desc True P 1
+[1] [2] [2, 3, 4] d 0 deg 6 chk True desc True P c*(c - 2)*(c - 1)*(4*c**3 - 19*c**2 + 40*c - 32)/480
+[1] [4] [2, 3, 4] d 0 deg 4 chk True desc True P c*(c - 2)*(c - 1)**2/24
+[1] [1, 3] [2, 3, 4] d 0 deg 4 chk True desc True P c*(c - 2)*(5*c**2 - 10*c + 8)/24
+[1] [2, 3] [2, 3, 4] d 0 deg 3 chk True desc True P c*(c - 1)**2/2
+[1] [3, 4] [2, 3, 4] d 0 deg 1 chk True desc True P c
+[1] [1, 2, 4] [2, 3, 4] d 0 deg 1 chk True desc True P 2*c - 1
+[1] [2, 3, 4] [2, 3, 4] d 1 deg 0 chk True desc True P -80/3
+[2] [3] [2, 3, 4] d 0 deg 4 chk True desc True P c*(7*c**3 - 8*c**2 + 14*c - 4)/48
+[2] [2, 3] [2, 3, 4] d 0 deg 2 chk True desc True P 3*c**2/2
+[2] [3, 4] [2, 3, 4] d 0 deg 0 chk True desc True P 1
+[3] [3] [2, 3, 4] d 0 deg 3 chk True desc True P c*(2*c**2 + 1)/6
+[3] [3, 4] [2, 3, 4] d 1 deg 0 chk True desc True P 22/3
+[1, 2] [2] [2, 3, 4] d 0 deg 4 chk True desc True P c*(c - 1)*(5*c**2 - 11*c + 14)/24
+[1, 2] [4] [2, 3, 4] d 0 deg 2 chk True desc True P c*(c - 1)/2
+[1, 2] [1, 3] [2, 3, 4] d 0 deg 2 chk True desc True P 2*c**2 - 2*c + 1
+[1, 2] [2, 3] [2, 3, 4] d 0 deg 1 chk True desc True P 2*c - 1
+[1, 2] [3, 4] [2, 3, 4] d 1 deg 0 chk True desc True P 22/3
+[1, 2] [1, 2, 4] [2, 3, 4] d 1 deg 0 chk True desc True P -560/9
+[1, 2] [2, 3, 4] [2, 3, 4] d 3 deg 0 chk True desc True P 29744/9
+[1, 3] [3] [2, 3, 4] d 0 deg 2 chk True desc True P 3*c**2/2
+[1, 3] [1, 3] [2, 3, 4] d 0 deg 1 chk True desc True P 4*c
+[1, 3] [2, 3] [2, 3, 4] d 0 deg 0 chk True desc True P 2
+[1, 3] [3, 4] [2, 3, 4] d 2 deg 0 chk True desc True P 484/9
+[1, 3] [2, 3, 4] [2, 3, 4] d 4 deg 0 chk True desc True P 1576432/81
+[1, 4] [3] [2, 3, 4] d 0 deg 1 chk True desc True P c
+[1, 4] [1, 4] [2, 3, 4] d 1 deg 0 chk True desc True P -4/3
+[1, 4] [2, 4] [2, 3, 4] d 2 deg 0 chk True desc True P 164/9
+[1, 4] [2, 3, 4] [2, 3, 4] d 5 deg 0 chk True desc True P -505648/243
+[2, 3] [4] [2, 3, 4] d 0 deg 0 chk True desc True P 1
+[2, 3] [2, 4] [2, 3, 4] d 2 deg 0 chk True desc True P 8480/27
+[2, 3] [2, 3, 4] [2, 3, 4] d 5 deg 0 chk True desc True P -212877808/729
+[2, 4] [4] [2, 3, 4] d 1 deg 0 chk True desc True P -2/3
+[2, 4] [3, 4] [2, 3, 4] d 4 deg 0 chk True desc True P -6952/243
+[3, 4] [3, 4] [2, 3, 4] d 5 deg 0 chk True desc True P -398816/243
+[1, 2, 3] [3] [2, 3, 4] d 0 deg 0 chk True desc True P 2
+[1, 2, 3] [1, 3] [2, 3, 4] d 1 deg 0 chk True desc True P -560/9
+[1, 2, 3] [2, 3] [2, 3, 4] d 2 deg 0 chk True desc True P 22400/27
+[1, 2, 3] [3, 4] [2, 3, 4] d 4 deg 0 chk True desc True P 24640/81
+[1, 2, 3] [1, 2, 4] [2, 3, 4] d 4 deg 0 chk True desc True P -710176/729
+[1, 2, 3] [2, 3, 4] [2, 3, 4] d 6 deg 0 chk True desc True P 4045184/27
+[1, 2, 4] [3] [2, 3, 4] d 1 deg 0 chk True desc True P 20/3
+[1, 2, 4] [1, 3] [2, 3, 4] d 2 deg 0 chk True desc True P -5600/27
+[1, 2, 4] [2, 3] [2, 3, 4] d 3 deg 0 chk True desc True P 245296/81
+[1, 2, 4] [3, 4] [2, 3, 4] d 5 deg 0 chk True desc True P 161216/243
+[1, 2, 4] [1, 3, 4] [2, 3, 4] d 6 deg 0 chk True desc True P -42855296/2187
+[1, 3, 4] [2] [2, 3, 4] d 1 deg 0 chk True desc True P -58/3
+[1, 3, 4] [4] [2, 3, 4] d 3 deg 0 chk True desc True P 44/27
+[1, 3, 4] [2, 3] [2, 3, 4] d 4 deg 0 chk True desc True P 1601072/81
+[1, 3, 4] [3, 4] [2, 3, 4] d 6 deg 0 chk True desc True P 1362944/243
+[1, 3, 4] [2, 3, 4] [2, 3, 4] d 8 deg 0 chk True desc True P 3851015168/2187
+[2, 3, 4] [4] [2, 3, 4] d 4 deg 0 chk True desc True P 19448/243
+[2, 3, 4] [3, 4] [2, 3, 4] d 7 deg 0 chk True desc True P -113265152/2187
+[] [] [1, 2, 3, 4] d 0 deg 10 chk True desc True P c*(c - 6)*(c - 5)*(c - 4)**2*(c - 3)**2*(c - 2)**2*(c - 1)/4838400
+[] [2] [1, 2, 3, 4] d 0 deg 8 chk True desc True P c*(c - 4)*(c - 3)*(c - 2)**2*(c - 1)*(3*c**2 - 19*c + 34)/80640
+[] [4] [1, 2, 3, 4] d 0 deg 6 chk True desc True P c*(c - 4)*(c - 3)*(c - 2)**2*(c - 1)/2880
+[] [1, 3] [1, 2, 3, 4] d 0 deg 6 chk True desc True P c*(c - 4)*(c - 3)*(c - 2)**2*(c - 1)/576
+[] [2, 3] [1, 2, 3, 4] d 0 deg 5 chk True desc True P c*(c - 4)*(c - 2)*(c - 1)*(3*c - 4)/480
+[] [3, 4] [1, 2, 3, 4] d 0 deg 3 chk True desc True P c*(c - 2)*(c - 1)/24
+[] [1, 2, 4] [1, 2, 3, 4] d 0 deg 3 chk True desc True P c*(c - 2)*(2*c - 5)/24
+[] [2, 3, 4] [1, 2, 3, 4] d 0 deg 1 chk True desc True P c/2
+[1] [1] [1, 2, 3, 4] d 0 deg 8 chk True desc True P c*(c - 6)*(c - 5)*(c - 4)*(c - 3)**2*(c - 2)*(c - 1)/13440
+[1] [3] [1, 2, 3, 4] d 0 deg 6 chk True desc True P 7*c*(c - 4)*(c - 3)*(c - 2)**2*(c - 1)/2880
+[1] [1, 2] [1, 2, 3, 4] d 0 deg 6 chk True desc True P c*(c - 4)**2*(c - 3)*(c - 2)**2/288
+[1] [1, 4] [1, 2, 3, 4] d 0 deg 4 chk True desc True P c*(c - 4)*(c - 2)**2/24
+[1] [2, 4] [1, 2, 3, 4] d 0 deg 3 chk True desc True P c*(c - 2)*(4*c - 7)/24
+[1] [1, 2, 3] [1, 2, 3, 4] d 0 deg 3 chk True desc True P (c - 3)*(c - 2)*(c - 1)/6
+[1] [1, 3, 4] [1, 2, 3, 4] d 0 deg 1 chk True desc True P c - 1
+[1] [1, 2, 3, 4] [1, 2, 3, 4] d 1 deg 0 chk True desc True P -280/9
+[2] [3] [1, 2, 3, 4] d 0 deg 5 chk True desc True P c*(c - 2)*(c - 1)*(7*c**2 - 24*c + 24)/480
+[2] [2, 3] [1, 2, 3, 4] d 0 deg 3 chk True desc True P c*(c - 2)*(c - 1)/4
+[2] [3, 4] [1, 2, 3, 4] d 0 deg 1 chk True desc True P c/2
+[3] [3] [1, 2, 3, 4] d 0 deg 4 chk True desc True P c*(c - 2)*(c - 1)**2/24
+[3] [3, 4] [1, 2, 3, 4] d 1 deg 1 chk True desc True P 11*c/3
+[1, 2] [2] [1, 2, 3, 4] d 0 deg 5 chk True desc True P c*(c - 2)**2*(c**2 - 5*c + 7)/48
+[1, 2] [4] [1, 2, 3, 4] d 0 deg 3 chk True desc True P c*(c - 2)*(2*c - 5)/24
+[1, 2] [1, 3] [1, 2, 3, 4] d 0 deg 3 chk True desc True P (c - 2)*(c - 1)*(2*c - 3)/6
+[1, 2] [2, 3] [1, 2, 3, 4] d 0 deg 2 chk True desc True P (c - 2)*(c - 1)/2
+[1, 2] [3, 4] [1, 2, 3, 4] d 0 deg 0 chk True desc True P 1
+[1, 2] [1, 2, 4] [1, 2, 3, 4] d 1 deg 1 chk True desc True P -280*(c - 1)/9
+[1, 2] [2, 3, 4] [1, 2, 3, 4] d 2 deg 0 chk True desc True P 11200/27
+[1, 3] [2] [1, 2, 3, 4] d 0 deg 4 chk True desc True P c*(c - 2)*(5*c**2 - 16*c + 14)/48
+[1, 3] [4] [1, 2, 3, 4] d 0 deg 2 chk True desc True P c*(c - 2)/4
+[1, 3] [1, 4] [1, 2, 3, 4] d 0 deg 1 chk True desc True P c - 1
+[1, 3] [2, 4] [1, 2, 3, 4] d 0 deg 0 chk True desc True P 1
+[1, 3] [1, 3, 4] [1, 2, 3, 4] d 2 deg 0 chk True desc True P -6160/27
+[1, 4] [2] [1, 2, 3, 4] d 0 deg 3 chk True desc True P c*(c - 2)*(4*c - 7)/24
+[1, 4] [4] [1, 2, 3, 4] d 1 deg 2 chk True desc True P -c*(c - 2)/6
+[1, 4] [2, 3] [1, 2, 3, 4] d 0 deg 0 chk True desc True P 1
+[1, 4] [3, 4] [1, 2, 3, 4] d 2 deg 0 chk True desc True P -22/9
+[2, 3] [3] [1, 2, 3, 4] d 0 deg 2 chk True desc True P c*(c - 1)/2
+[2, 3] [2, 3] [1, 2, 3, 4] d 1 deg 1 chk True desc True P -80*(c - 1)/3
+[2, 3] [3, 4] [1, 2, 3, 4] d 2 deg 0 chk True desc True P -880/9
+[2, 4] [3] [1, 2, 3, 4] d 0 deg 1 chk True desc True P c/2
+[2, 4] [2, 4] [1, 2, 3, 4] d 2 deg 0 chk True desc True P 160/9
+[3, 4] [4] [1, 2, 3, 4] d 2 deg 1 chk True desc True P -11*c/9
+[1, 2, 3] [2] [1, 2, 3, 4] d 0 deg 2 chk True desc True P (c - 2)*(c - 1)/2
+[1, 2, 3] [4] [1, 2, 3, 4] d 0 deg 0 chk True desc True P 1
+[1, 2, 3] [1, 4] [1, 2, 3, 4] d 1 deg 0 chk True desc True P -280/9
+[1, 2, 3] [2, 4] [1, 2, 3, 4] d 2 deg 0 chk True desc True P 11200/27
+[1, 2, 3] [1, 2, 3] [1, 2, 3, 4] d 3 deg 1 chk True desc True P 355088*(c - 1)/243
+[1, 2, 3] [1, 3, 4] [1, 2, 3, 4] d 4 deg 0 chk True desc True P 3905968/729
+[1, 2, 3] [1, 2, 3, 4] [1, 2, 3, 4] d 6 deg 0 chk True desc True P 3787244032/6561
+[1, 2, 4] [3] [1, 2, 3, 4] d 0 deg 0 chk True desc True P 1
+[1, 2, 4] [1, 3] [1, 2, 3, 4] d 1 deg 0 chk True desc True P -280/9
+[1, 2, 4] [2, 3] [1, 2, 3, 4] d 2 deg 0 chk True desc True P 11200/27
+[1, 2, 4] [3, 4] [1, 2, 3, 4] d 4 deg 0 chk True desc True P 47608/243
+[1, 2, 4] [1, 3, 4] [1, 2, 3, 4] d 5 deg 0 chk True desc True P -15021424/2187
+[1, 3, 4] [2] [1, 2, 3, 4] d 0 deg 0 chk True desc True P 1
+[1, 3, 4] [4] [1, 2, 3, 4] d 2 deg 0 chk True desc True P -22/9
+[1, 3, 4] [2, 3] [1, 2, 3, 4] d 3 deg 0 chk True desc True P 257048/81
+[1, 3, 4] [3, 4] [1, 2, 3, 4] d 5 deg 0 chk True desc True P 271040/243
+[1, 3, 4] [2, 3, 4] [1, 2, 3, 4] d 7 deg 0 chk True desc True P 1245202816/2187
+[2, 3, 4] [4] [1, 2, 3, 4] d 3 deg 0 chk True desc True P 1144/27
+[2, 3, 4] [3, 4] [1, 2, 3, 4] d 6 deg 0 chk True desc True P -1308736/81
+[1, 2, 3, 4] [2] [1, 2, 3, 4] d 2 deg 0 chk True desc True P 11200/27
+[1, 2, 3, 4] [4] [1, 2, 3, 4] d 4 deg 0 chk True desc True P -26312/243
+[1, 2, 3, 4] [1, 4] [1, 2, 3, 4] d 5 deg 0 chk True desc True P 7209488/2187
+[1, 2, 3, 4] [2, 4] [1, 2, 3, 4] d 6 deg 0 chk True desc True P -93723344/2187
+[1, 2, 3, 4] [1, 2, 4] [1, 2, 3, 4] d 7 deg 0 chk True desc True P -3787244032/19683
+[1, 2, 3, 4] [2, 3, 4] [1, 2, 3, 4] d 9 deg 0 chk True desc True P 257532594176/19683

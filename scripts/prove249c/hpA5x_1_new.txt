@@ -1,0 +1,187 @@
+(1, 2) () () (1, 3, 4, 5) d 0 deg 4 chk True maxRe 4.0 intzeros>U [] P (c - 4)*(c - 3)*(c - 2)**2/48
+(1, 2) () (3,) (1, 3, 4, 5) d 0 deg 1 chk True maxRe 2.0 intzeros>U [] P (c - 2)/2
+(1, 2) () (1, 2) (1, 3, 4, 5) d 0 deg 1 chk True maxRe 2.0 intzeros>U [] P c - 2
+(1, 2) () (1, 5) (1, 3, 4, 5) d 2 deg 0 chk True maxRe None intzeros>U [] P 1088/1521
+(1, 2) () (2, 5) (1, 3, 4, 5) d 4 deg 1 chk True maxRe 1.0 intzeros>U [] P 7616*(c - 1)/5265
+(1, 2) () (4, 5) (1, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 243712/15795
+(1, 2) (1,) (3,) (1, 3, 4, 5) d 0 deg 0 chk True maxRe None intzeros>U [] P 1
+(1, 2) (1,) (1, 2) (1, 3, 4, 5) d 0 deg 0 chk True maxRe None intzeros>U [] P 2
+(1, 2) (1,) (1, 5) (1, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P -34816/59319
+(1, 2) (1,) (2, 5) (1, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 15232/5265
+(1, 2) (1,) (4, 5) (1, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P 56541184/205335
+(1, 2) (2,) (4,) (1, 3, 4, 5) d 2 deg 0 chk True maxRe None intzeros>U [] P 273616/1521
+(1, 2) (2,) (2, 4) (1, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P -1132166/8775
+(1, 2) (2,) (3, 5) (1, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P 47605446392/200201625
+(1, 2) (3,) (4,) (1, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P 567618548/296595
+(1, 2) (3,) (3, 5) (1, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P 2148463985572/828384319
+(1, 2) (4,) (5,) (1, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 5119749376/451120995
+(1, 2) (1, 2) (2,) (1, 3, 4, 5) d 1 deg 0 chk True maxRe None intzeros>U [] P 2437/130
+(1, 2) (1, 2) (5,) (1, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 487424/771147
+(1, 2) (1, 2) (1, 4) (1, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 718104352/296595
+(1, 2) (1, 2) (2, 4) (1, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P -433844488/342225
+(1, 2) (1, 2) (3, 5) (1, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P -41457517024/66733875
+(1, 2) (1, 3) (3,) (1, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P 506468552351/237276000
+(1, 2) (1, 3) (1, 3) (1, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 16953527053/6591000
+(1, 2) (1, 3) (2, 3) (1, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P -706737311/570375
+(1, 2) (1, 3) (3, 4) (1, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P -835274328119/667338750
+(1, 2) (1, 4) (2,) (1, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P 188857592/98865
+(1, 2) (1, 4) (5,) (1, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -14561371575/557337104
+(1, 2) (1, 4) (2, 3) (1, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -158698921696/13346775
+(1, 2) (1, 4) (3, 4) (1, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -8215243574562/711326311
+(1, 2) (1, 5) (2,) (1, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 40776064/11567205
+(1, 2) (1, 5) (5,) (1, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P -3759743156/526650497
+(1, 2) (1, 5) (2, 4) (1, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P 265370355692/286056109
+(1, 2) (1, 5) (3, 5) (1, 3, 4, 5) d 10 deg 0 chk True maxRe None intzeros>U [] P 375286454251/551939269
+(1, 2) (2, 3) (4,) (1, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P -130241216/205335
+(1, 2) (2, 3) (2, 4) (1, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P 2936882663512/200201625
+(1, 2) (2, 3) (3, 5) (1, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P 1182895238797/117045660
+(1, 2) (2, 4) (4,) (1, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -99460786432/8008065
+(1, 2) (2, 4) (2, 5) (1, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P 4959970733903/572767133
+(1, 2) (2, 4) (4, 5) (1, 3, 4, 5) d 11 deg 0 chk True maxRe None intzeros>U [] P 172854292431249/195951449
+(1, 2) (2, 5) (5,) (1, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P 4135885874/861610429
+(1, 2) (2, 5) (3, 5) (1, 3, 4, 5) d 11 deg 0 chk True maxRe None intzeros>U [] P 4136686019713/653446335
+(1, 2) (3, 4) (5,) (1, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -8884953426/397090607
+(1, 2) (3, 4) (4, 5) (1, 3, 4, 5) d 12 deg 0 chk True maxRe None intzeros>U [] P -85068811192277/201413505
+(1, 2) (3, 5) (3, 5) (1, 3, 4, 5) d 12 deg 0 chk True maxRe None intzeros>U [] P 40492248292055/599623799
+(1, 2) (4, 5) (4, 5) (1, 3, 4, 5) d 14 deg 0 chk True maxRe None intzeros>U [] P 1563900508915263/253925791
+(1, 2) () (2,) (2, 3, 4, 5) d 0 deg 3 chk True maxRe 2.375 intzeros>U [] P (c - 2)*(4*c**2 - 19*c + 24)/24
+(1, 2) () (5,) (2, 3, 4, 5) d 2 deg 2 chk True maxRe 2.0 intzeros>U [] P 272*(c - 2)**2/1521
+(1, 2) () (1, 4) (2, 3, 4, 5) d 1 deg 1 chk True maxRe 2.0 intzeros>U [] P 116*(c - 2)/13
+(1, 2) () (2, 4) (2, 3, 4, 5) d 1 deg 0 chk True maxRe None intzeros>U [] P 116/13
+(1, 2) () (3, 5) (2, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P 56848/7605
+(1, 2) (1,) (2,) (2, 3, 4, 5) d 0 deg 2 chk True maxRe 2.5 intzeros>U [] P (c - 2)*(2*c - 5)/2
+(1, 2) (1,) (5,) (2, 3, 4, 5) d 2 deg 1 chk True maxRe 2.0 intzeros>U [] P 1088*(c - 2)/1521
+(1, 2) (1,) (1, 4) (2, 3, 4, 5) d 1 deg 0 chk True maxRe None intzeros>U [] P 232/13
+(1, 2) (1,) (2, 4) (2, 3, 4, 5) d 2 deg 0 chk True maxRe None intzeros>U [] P 393878/2535
+(1, 2) (1,) (3, 5) (2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 591953192/4448925
+(1, 2) (2,) (3,) (2, 3, 4, 5) d 0 deg 0 chk True maxRe None intzeros>U [] P 1
+(1, 2) (2,) (2, 3) (2, 3, 4, 5) d 2 deg 0 chk True maxRe None intzeros>U [] P 42586361/304200
+(1, 2) (2,) (3, 4) (2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P -179874684211/177957000
+(1, 2) (3,) (3,) (2, 3, 4, 5) d 1 deg 0 chk True maxRe None intzeros>U [] P 2437/130
+(1, 2) (3,) (3, 4) (2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P -1431683504592/130838981
+(1, 2) (4,) (4,) (2, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P 31739456/19773
+(1, 2) (5,) (5,) (2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P -33144832/30074733
+(1, 2) (1, 2) (4,) (2, 3, 4, 5) d 2 deg 0 chk True maxRe None intzeros>U [] P 273616/1521
+(1, 2) (1, 2) (1, 3) (2, 3, 4, 5) d 2 deg 0 chk True maxRe None intzeros>U [] P 5938969/16900
+(1, 2) (1, 2) (2, 3) (2, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P -34332641/76050
+(1, 2) (1, 2) (3, 4) (2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 71596267673/44489250
+(1, 2) (1, 3) (2,) (2, 3, 4, 5) d 1 deg 0 chk True maxRe None intzeros>U [] P 7051/195
+(1, 2) (1, 3) (5,) (2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P -5475904/428415
+(1, 2) (1, 3) (1, 5) (2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P -21457200352/83540925
+(1, 2) (1, 3) (2, 5) (2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -2366517533045/986962046
+(1, 2) (1, 3) (4, 5) (2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -7345830625280/30074733
+(1, 2) (1, 4) (4,) (2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 74536216832/2313441
+(1, 2) (1, 4) (1, 5) (2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -279476047579/112961168
+(1, 2) (1, 4) (2, 5) (2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P -19905710085091/862059366
+(1, 2) (1, 4) (4, 5) (2, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P -2151544582630351/914697494
+(1, 2) (1, 5) (4,) (2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 11499794432/10024911
+(1, 2) (1, 5) (2, 3) (2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P 352246443136/751868325
+(1, 2) (1, 5) (3, 4) (2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -1397033110765/681379767
+(1, 2) (2, 3) (3,) (2, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P 363234570031/237276000
+(1, 2) (2, 3) (2, 3) (2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 156295456912/22244625
+(1, 2) (2, 3) (3, 4) (2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P -5078259043154/169238885
+(1, 2) (2, 4) (3,) (2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 10482831603619/771147000
+(1, 2) (2, 4) (2, 4) (2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P 97563978031063/165837897
+(1, 2) (2, 4) (3, 5) (2, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P 405290615722867/950671196
+(1, 2) (2, 5) (4,) (2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P 8471414698277/791191456
+(1, 2) (2, 5) (3, 4) (2, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P -17598857880639/919659004
+(1, 2) (3, 4) (4,) (2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -45432901451835/435060629
+(1, 2) (3, 4) (3, 5) (2, 3, 4, 5) d 10 deg 0 chk True maxRe None intzeros>U [] P -162176019668608/794511753
+(1, 2) (3, 5) (5,) (2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P 152754520173/977067079
+(1, 2) (4, 5) (5,) (2, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P 1122988625793/751214600
+(1, 2) () (1,) (1, 2, 3, 4, 5) d 0 deg 5 chk True maxRe 6.0 intzeros>U [] P (c - 6)*(c - 5)*(c - 4)*(c - 3)*(c - 2)/240
+(1, 2) () (4,) (1, 2, 3, 4, 5) d 1 deg 3 chk True maxRe 4.0 intzeros>U [] P 29*(c - 4)*(c - 3)*(c - 2)/78
+(1, 2) () (1, 3) (1, 2, 3, 4, 5) d 0 deg 2 chk True maxRe 4.0 intzeros>U [] P (c - 4)*(c - 2)/4
+(1, 2) () (2, 3) (1, 2, 3, 4, 5) d 0 deg 1 chk True maxRe 2.0 intzeros>U [] P (c - 2)/2
+(1, 2) () (3, 4) (1, 2, 3, 4, 5) d 2 deg 1 chk True maxRe 2.0 intzeros>U [] P -3691*(c - 2)/1170
+(1, 2) () (1, 2, 3) (1, 2, 3, 4, 5) d 0 deg 0 chk True maxRe None intzeros>U [] P 1
+(1, 2) () (1, 3, 4) (1, 2, 3, 4, 5) d 2 deg 0 chk True maxRe None intzeros>U [] P -3691/585
+(1, 2) () (2, 3, 4) (1, 2, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P 476/135
+(1, 2) () (3, 4, 5) (1, 2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -4082176/236925
+(1, 2) (1,) (3,) (1, 2, 3, 4, 5) d 0 deg 2 chk True maxRe 4.0 intzeros>U [] P (c - 4)*(c - 2)/4
+(1, 2) (1,) (1, 2) (1, 2, 3, 4, 5) d 0 deg 2 chk True maxRe 4.0 intzeros>U [] P (c - 4)*(c - 3)/2
+(1, 2) (1,) (1, 5) (1, 2, 3, 4, 5) d 2 deg 1 chk True maxRe 3.0 intzeros>U [] P 1088*(c - 3)/1521
+(1, 2) (1,) (2, 5) (1, 2, 3, 4, 5) d 2 deg 0 chk True maxRe None intzeros>U [] P 1088/1521
+(1, 2) (1,) (4, 5) (1, 2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 974848/13689
+(1, 2) (1,) (1, 2, 5) (1, 2, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P 1325728/98865
+(1, 2) (1,) (1, 4, 5) (1, 2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 1187852288/889785
+(1, 2) (1,) (2, 4, 5) (1, 2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -296963072/1026675
+(1, 2) (2,) (3,) (1, 2, 3, 4, 5) d 0 deg 1 chk True maxRe 2.0 intzeros>U [] P (c - 2)/2
+(1, 2) (2,) (2, 3) (1, 2, 3, 4, 5) d 1 deg 0 chk True maxRe None intzeros>U [] P 6791/390
+(1, 2) (2,) (3, 4) (1, 2, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P -25870021/228150
+(1, 2) (2,) (2, 3, 4) (1, 2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 1969410373/3422250
+(1, 2) (2,) (3, 4, 5) (1, 2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -1680988799026/597768023
+(1, 2) (3,) (5,) (1, 2, 3, 4, 5) d 3 deg 1 chk True maxRe 2.0 intzeros>U [] P 97784*(c - 2)/32955
+(1, 2) (3,) (4, 5) (1, 2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P 6191620402688/520524225
+(1, 2) (4,) (5,) (1, 2, 3, 4, 5) d 4 deg 1 chk True maxRe 2.0 intzeros>U [] P 66472448*(c - 2)/2313441
+(1, 2) (1, 2) (2,) (1, 2, 3, 4, 5) d 0 deg 1 chk True maxRe 3.0 intzeros>U [] P c - 3
+(1, 2) (1, 2) (5,) (1, 2, 3, 4, 5) d 2 deg 0 chk True maxRe None intzeros>U [] P 1088/1521
+(1, 2) (1, 2) (1, 4) (1, 2, 3, 4, 5) d 2 deg 0 chk True maxRe None intzeros>U [] P 141346/845
+(1, 2) (1, 2) (2, 4) (1, 2, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P 479940343/329550
+(1, 2) (1, 2) (3, 5) (1, 2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 360647482226/289180125
+(1, 2) (1, 2) (1, 2, 4) (1, 2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P -114601388/54925
+(1, 2) (1, 2) (1, 3, 5) (1, 2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -56162583664/32131125
+(1, 2) (1, 2) (2, 3, 5) (1, 2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P 7524173888/22244625
+(1, 2) (1, 3) (2,) (1, 2, 3, 4, 5) d 0 deg 0 chk True maxRe None intzeros>U [] P 1
+(1, 2) (1, 3) (5,) (1, 2, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P 195568/32955
+(1, 2) (1, 3) (1, 5) (1, 2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 238299608/2142075
+(1, 2) (1, 3) (2, 5) (1, 2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 133657692094/139234875
+(1, 2) (1, 3) (4, 5) (1, 2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P 73658589261824/751868325
+(1, 2) (1, 3) (1, 4, 5) (1, 2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -111799179046948/716285363
+(1, 2) (1, 3) (2, 4, 5) (1, 2, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P 30239833063700/894200173
+(1, 2) (1, 4) (3,) (1, 2, 3, 4, 5) d 2 deg 0 chk True maxRe None intzeros>U [] P 1320097/7605
+(1, 2) (1, 4) (1, 4) (1, 2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 38674527136/1285245
+(1, 2) (1, 4) (2, 4) (1, 2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 28177718364824/250622775
+(1, 2) (1, 4) (3, 5) (1, 2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P 97141832977649/977408104
+(1, 2) (1, 4) (2, 3, 4) (1, 2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -64335448829344/867540375
+(1, 2) (1, 4) (3, 4, 5) (1, 2, 3, 4, 5) d 11 deg 0 chk True maxRe None intzeros>U [] P 216915194199293/598579285
+(1, 2) (1, 5) (4,) (1, 2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 132944896/2313441
+(1, 2) (1, 5) (2, 3) (1, 2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P -43186383296/150373665
+(1, 2) (1, 5) (3, 4) (1, 2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P 908772309437/640083266
+(1, 2) (1, 5) (2, 3, 4) (1, 2, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P 434734279156/684480629
+(1, 2) (1, 5) (3, 4, 5) (1, 2, 3, 4, 5) d 12 deg 0 chk True maxRe None intzeros>U [] P -1935073316845/623486492
+(1, 2) (2, 3) (5,) (1, 2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P -34378624/2313441
+(1, 2) (2, 3) (2, 5) (1, 2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -2048122426799/795243686
+(1, 2) (2, 3) (4, 5) (1, 2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -164366803539461/625928567
+(1, 2) (2, 3) (2, 4, 5) (1, 2, 3, 4, 5) d 10 deg 0 chk True maxRe None intzeros>U [] P -23346412097921/515267881
+(1, 2) (2, 4) (4,) (1, 2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 53885661424/3855735
+(1, 2) (2, 4) (2, 5) (1, 2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P -20865606918285/891970097
+(1, 2) (2, 4) (4, 5) (1, 2, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P -1833635073673678/768764141
+(1, 2) (2, 5) (3,) (1, 2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P 6835925896/57836025
+(1, 2) (2, 5) (2, 5) (1, 2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -428630745588/256143883
+(1, 2) (2, 5) (4, 5) (1, 2, 3, 4, 5) d 10 deg 0 chk True maxRe None intzeros>U [] P -146401333008345/858110227
+(1, 2) (3, 4) (5,) (1, 2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P 63213570137/867890285
+(1, 2) (3, 4) (4, 5) (1, 2, 3, 4, 5) d 10 deg 0 chk True maxRe None intzeros>U [] P 489303528156653/373114675
+(1, 2) (3, 5) (5,) (1, 2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P -91886062983/896464295
+(1, 2) (4, 5) (5,) (1, 2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -859781927985/878201417
+(1, 2) (1, 2, 3) (3,) (1, 2, 3, 4, 5) d 3 deg 0 chk True maxRe None intzeros>U [] P 138847588757/79092000
+(1, 2) (1, 2, 3) (1, 3) (1, 2, 3, 4, 5) d 4 deg 0 chk True maxRe None intzeros>U [] P -2407617091/1098500
+(1, 2) (1, 2, 3) (2, 3) (1, 2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 14515846499/4943250
+(1, 2) (1, 2, 3) (3, 4) (1, 2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P -9173571259178/849431017
+(1, 2) (1, 2, 3) (1, 2, 3) (1, 2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P 124480818/54925
+(1, 2) (1, 2, 3) (1, 3, 4) (1, 2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -51050966582/3570125
+(1, 2) (1, 2, 3) (2, 3, 4) (1, 2, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P 6583652152/823875
+(1, 2) (1, 2, 3) (3, 4, 5) (1, 2, 3, 4, 5) d 12 deg 0 chk True maxRe None intzeros>U [] P -37769338218417/967222012
+(1, 2) (1, 2, 4) (4,) (1, 2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 2498797338688/16708185
+(1, 2) (1, 2, 4) (1, 4) (1, 2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -15678386689504/83540925
+(1, 2) (1, 2, 4) (2, 4) (1, 2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P 236050199410339/978792473
+(1, 2) (1, 2, 4) (3, 5) (1, 2, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P 126147611169686/752775079
+(1, 2) (1, 2, 4) (1, 2, 5) (1, 2, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P 1745608342016/120670225
+(1, 2) (1, 2, 4) (1, 4, 5) (1, 2, 3, 4, 5) d 11 deg 0 chk True maxRe None intzeros>U [] P 1435695711538089/996896834
+(1, 2) (1, 2, 4) (2, 4, 5) (1, 2, 3, 4, 5) d 12 deg 0 chk True maxRe None intzeros>U [] P -307226953922884/984589107
+(1, 2) (1, 2, 5) (3,) (1, 2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 857203333732/682619021
+(1, 2) (1, 2, 5) (1, 3) (1, 2, 3, 4, 5) d 6 deg 0 chk True maxRe None intzeros>U [] P -654871848752/417704625
+(1, 2) (1, 2, 5) (2, 3) (1, 2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P 482807506254/229850017
+(1, 2) (1, 2, 5) (3, 4) (1, 2, 3, 4, 5) d 9 deg 0 chk True maxRe None intzeros>U [] P -6373271859936/824997133
+(1, 2) (1, 2, 5) (1, 2, 5) (1, 2, 3, 4, 5) d 10 deg 0 chk True maxRe None intzeros>U [] P 115396121409/99508340
+(1, 2) (1, 2, 5) (1, 4, 5) (1, 2, 3, 4, 5) d 12 deg 0 chk True maxRe None intzeros>U [] P 21894245463389/189641225
+(1, 2) (1, 2, 5) (2, 4, 5) (1, 2, 3, 4, 5) d 13 deg 0 chk True maxRe None intzeros>U [] P -14246798744535/569544886
+(1, 2) (1, 3, 4) (3,) (1, 2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P -6418342224369/579467264
+(1, 2) (1, 3, 4) (1, 4) (1, 2, 3, 4, 5) d 7 deg 0 chk True maxRe None intzeros>U [] P 28401420692102/214024963
+(1, 2) (1, 3, 4) (2, 4) (1, 2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P -137270354714828/804988105
+(1, 2) (1, 3, 4) (3, 5) (1, 2, 3, 4, 5) d 10 deg 0 chk True maxRe None intzeros>U [] P -61168867810063/516229837
+(1, 2) (1, 3, 4) (1, 3, 5) (1, 2, 3, 4, 5) d 11 deg 0 chk True maxRe None intzeros>U [] P -16592367894108/155228639
+(1, 2) (1, 3, 4) (2, 3, 5) (1, 2, 3, 4, 5) d 12 deg 0 chk True maxRe None intzeros>U [] P 12032653168093/581717718
+(1, 2) (1, 3, 5) (2,) (1, 2, 3, 4, 5) d 5 deg 0 chk True maxRe None intzeros>U [] P 117601933702/96393375
+(1, 2) (1, 3, 5) (5,) (1, 2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P 38465373803/597050040
+(1, 2) (1, 3, 5) (2, 3) (1, 2, 3, 4, 5) d 8 deg 0 chk True maxRe None intzeros>U [] P 13279412590399/604968972

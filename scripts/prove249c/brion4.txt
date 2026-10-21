@@ -1,0 +1,15 @@
+Richardson sign = (-1)^{|kap|-|nu|}? Counter({True: 66, False: 60})
+Richardson signs Counter({1: 126})
+struct-const signs (x (-1)^{|nu|-|lam|-|mu|}): Counter({1: 103, -1: 10})
+decomposition proportional (const ratio) in 230 of 230
+exceptions:
+(2,) (2,) (1, 4) 1
+(2,) (2,) (2, 3) 1
+(2,) (3,) (2, 4) 2
+(2,) (2, 3) (1, 3, 4) 1
+(2,) (2, 4) (2, 3, 4) 1
+(3,) (3,) (3, 4) 1
+(1, 2) (2,) (2, 4) 1
+(1, 3) (2,) (3, 4) 1
+(1, 3) (3,) (1, 3, 4) 1
+(2, 3) (3,) (2, 3, 4) 1
