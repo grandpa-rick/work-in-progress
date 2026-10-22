@@ -1,0 +1,100 @@
+n=3 spec=primes
+base orient twist(w_M^a) | Mobius: #const/total | all-plus control: #const/total
+w    up    a=-2 | 1/8 | 1/8
+w    up    a=-1 | 1/8 | 1/8
+w    up    a=+0 | 1/8 | 1/8
+w    up    a=+1 | 1/8 | 1/8
+w    up    a=+2 | 3/8 | 1/8
+w    down  a=-2 | 0/8 | 0/8
+w    down  a=-1 | 0/8 | 0/8
+w    down  a=+0 | 1/8 | 1/8
+w    down  a=+1 | 0/8 | 0/8
+w    down  a=+2 | 0/8 | 0/8
+1/w  up    a=-2 | 8/8 | 1/8
+1/w  up    a=-1 | 1/8 | 1/8
+1/w  up    a=+0 | 1/8 | 1/8
+1/w  up    a=+1 | 1/8 | 1/8
+1/w  up    a=+2 | 1/8 | 1/8
+1/w  down  a=-2 | 0/8 | 0/8
+1/w  down  a=-1 | 0/8 | 0/8
+1/w  down  a=+0 | 1/8 | 1/8
+1/w  down  a=+1 | 0/8 | 0/8
+1/w  down  a=+2 | 0/8 | 0/8
+winning combos: [('1/w', True, -2)]
+combo 1/w True -2 : ratio == cc(kappa)=(-1)^|k| prod_{k in kappa} w_1..w_k for all kappa: True
+  perturbation control (F_k vs xi^{k'}, k'!=k): spuriously constant 0/56
+n=3 spec=11
+base orient twist(w_M^a) | Mobius: #const/total | all-plus control: #const/total
+w    up    a=-2 | 1/8 | 1/8
+w    up    a=-1 | 1/8 | 1/8
+w    up    a=+0 | 1/8 | 1/8
+w    up    a=+1 | 1/8 | 1/8
+w    up    a=+2 | 3/8 | 1/8
+w    down  a=-2 | 0/8 | 0/8
+w    down  a=-1 | 0/8 | 0/8
+w    down  a=+0 | 1/8 | 1/8
+w    down  a=+1 | 0/8 | 0/8
+w    down  a=+2 | 0/8 | 0/8
+1/w  up    a=-2 | 8/8 | 1/8
+1/w  up    a=-1 | 1/8 | 1/8
+1/w  up    a=+0 | 1/8 | 1/8
+1/w  up    a=+1 | 1/8 | 1/8
+1/w  up    a=+2 | 1/8 | 1/8
+1/w  down  a=-2 | 0/8 | 0/8
+1/w  down  a=-1 | 0/8 | 0/8
+1/w  down  a=+0 | 1/8 | 1/8
+1/w  down  a=+1 | 0/8 | 0/8
+1/w  down  a=+2 | 0/8 | 0/8
+winning combos: [('1/w', True, -2)]
+combo 1/w True -2 : ratio == cc(kappa)=(-1)^|k| prod_{k in kappa} w_1..w_k for all kappa: True
+  perturbation control (F_k vs xi^{k'}, k'!=k): spuriously constant 0/56
+n=4 spec=primes
+base orient twist(w_M^a) | Mobius: #const/total | all-plus control: #const/total
+w    up    a=-2 | 1/16 | 1/16
+w    up    a=-1 | 1/16 | 1/16
+w    up    a=+0 | 1/16 | 1/16
+w    up    a=+1 | 1/16 | 1/16
+w    up    a=+2 | 3/16 | 1/16
+w    down  a=-2 | 0/16 | 0/16
+w    down  a=-1 | 0/16 | 0/16
+w    down  a=+0 | 1/16 | 1/16
+w    down  a=+1 | 0/16 | 0/16
+w    down  a=+2 | 0/16 | 0/16
+1/w  up    a=-2 | 16/16 | 1/16
+1/w  up    a=-1 | 1/16 | 1/16
+1/w  up    a=+0 | 1/16 | 1/16
+1/w  up    a=+1 | 1/16 | 1/16
+1/w  up    a=+2 | 1/16 | 1/16
+1/w  down  a=-2 | 0/16 | 0/16
+1/w  down  a=-1 | 0/16 | 0/16
+1/w  down  a=+0 | 1/16 | 1/16
+1/w  down  a=+1 | 0/16 | 0/16
+1/w  down  a=+2 | 0/16 | 0/16
+winning combos: [('1/w', True, -2)]
+combo 1/w True -2 : ratio == cc(kappa)=(-1)^|k| prod_{k in kappa} w_1..w_k for all kappa: True
+  perturbation control (F_k vs xi^{k'}, k'!=k): spuriously constant 0/240
+n=4 spec=11
+base orient twist(w_M^a) | Mobius: #const/total | all-plus control: #const/total
+w    up    a=-2 | 1/16 | 1/16
+w    up    a=-1 | 1/16 | 1/16
+w    up    a=+0 | 1/16 | 1/16
+w    up    a=+1 | 1/16 | 1/16
+w    up    a=+2 | 3/16 | 1/16
+w    down  a=-2 | 0/16 | 0/16
+w    down  a=-1 | 0/16 | 0/16
+w    down  a=+0 | 1/16 | 1/16
+w    down  a=+1 | 0/16 | 0/16
+w    down  a=+2 | 0/16 | 0/16
+1/w  up    a=-2 | 16/16 | 1/16
+1/w  up    a=-1 | 1/16 | 1/16
+1/w  up    a=+0 | 1/16 | 1/16
+1/w  up    a=+1 | 1/16 | 1/16
+1/w  up    a=+2 | 1/16 | 1/16
+1/w  down  a=-2 | 0/16 | 0/16
+1/w  down  a=-1 | 0/16 | 0/16
+1/w  down  a=+0 | 1/16 | 1/16
+1/w  down  a=+1 | 0/16 | 0/16
+1/w  down  a=+2 | 0/16 | 0/16
+winning combos: [('1/w', True, -2)]
+combo 1/w True -2 : ratio == cc(kappa)=(-1)^|k| prod_{k in kappa} w_1..w_k for all kappa: True
+  perturbation control (F_k vs xi^{k'}, k'!=k): spuriously constant 0/240

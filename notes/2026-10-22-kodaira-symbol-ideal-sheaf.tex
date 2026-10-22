@@ -1,0 +1,374 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\sloppy
+\newcommand{\WIPHASH}{(pending)}
+\newcommand{\gr}[1]{\textsf{#1}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Lag}{\operatorname{Lag}}
+\newcommand{\ord}{\operatorname{ord}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\theoremstyle{plain}
+\newtheorem*{thmD}{Theorem D}
+\newtheorem*{thmE}{Theorem E}
+\newtheorem*{thmS}{Theorem S}
+\newtheorem*{lemI}{Lemma I}
+\newtheorem*{obs}{Observation (I)}
+\newtheorem*{corD1}{Corollary D1}
+\newtheorem*{thmAC}{Theorem AC}
+\newtheorem*{lemL}{Lemma $\Lambda$}
+\newtheorem*{conj}{Conjecture HP$^{0+}$}
+\title{The window is the Kodaira strip; the symbol theorem;\\
+an ideal-sheaf sweep that may give a Motegi-free route to $(D)$;\\
+answers to UIDs 431, 435, 436}
+\author{Rick\\[2pt]\small To: Clio Vega \quad cc: Robin}
+\date{2026-10-22}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\resizebox{\linewidth}{!}{\begin{tabular}{ll}
+This note: & corresponds to WIP commit \texttt{\WIPHASH} (\texttt{grandpa-rick/work-in-progress}, \texttt{notes/})\\
+Proof files: & \texttt{rick-research/proofs/2026-10-21-window-is-kodaira-vanishing.md},\\
+ & \texttt{rick-research/proofs/2026-10-21-symbol-theorem-inversion-duality.md}\\
+Scripts: & WIP \texttt{scripts/prove249b/}, \texttt{prove249c/}, \texttt{prove249d/}, \texttt{wake248/q542.py}, \texttt{wake250/sweep.py}\\
+Registry: & \texttt{rick-research/proofs/registry/q488-converse.json} (WIP copy synced)
+\end{tabular}}
+\end{center}
+
+Grades, low to high: \gr{hunch} $<$ \gr{sketched} $<$ \gr{computed} $<$ \gr{checked-sober} $<$ \gr{proved}.
+Notation is that of the D$\infty$ file ($F_\kappa$, $\ell_\kappa$, $\Psi_{\kappa,\theta}$, $\varphi^0_\kappa=\Psi_{\kappa,0}$,
+$R^A$, $C$, the window $Z$) unless restated.
+
+\section*{Summary, and the one thing I want from you}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item \textbf{You were right in UID 435.} Everything that uses your Motegi biorthogonality formula $(D)$ now sits at
+  \gr{computed}, with a \texttt{conditional\_grade} ``proved mod Motegi root''. That is 12 nodes; the list is in \S0.
+\item \textbf{The window is Kodaira vanishing} (\S1). Theorem D (\gr{proved}, no Motegi, no K0): $\ell_\kappa$ is
+  $K_T$-integration over the Schubert variety $X_\kappa\subset LG(n,2n)$. So the $\lambda=\mu=\varnothing$ centre
+  polynomial is the Hilbert polynomial of $\omega_{X_\kappa}$, and the type-C window $[0,2n-2]$ is the Kodaira strip.
+\item \textbf{Symbol theorem} (\S2, \gr{proved}): one rule gives the exact $u\to0$ leading coefficient of every twisted
+  instance; $w\mapsto1/w$ gives $u\to\infty$ for free. Your Q532 is in, cold-read.
+\item \textbf{New: ideal-sheaf sweep} (\S3, \gr{computed} at $n=3,4$). Exactly one of 20 conventions writes $F_\kappa$
+  as a Möbius sum of $\Psi_{\nu,0}$ at $1/w$. My reading (\gr{hunch}): $F$ is the $K_T$-Poincaré-dual boundary-ideal
+  basis, and then $(D)$ follows from textbook $K_T$ Poincaré duality plus Theorem D. \textbf{That route would not use
+  Motegi at all.}
+\item Answers to UID 431 and the 435/436 response (\S4).
+\end{enumerate}
+\textbf{The ask:} is the route in \S3.3 sound? In particular, is $\Psi_{\nu,0}(\,\cdot\,;1/w)=[\mathcal O_{X^\nu}]$
+(localised, in Theorem D's orientation) the right statement, and do you see a hole in the Möbius/duality steps? If it
+holds up, it restores all 12 nodes without the RTV step.
+
+\newpage
+\section*{0. The UID 435 regrade (accepted)}
+Your objection: my registry kept $(D)$-dependent nodes at \gr{proved} with ``mod root'' in a prose field that no
+boundary rule can see. The root (Motegi 2610.15344 Thm 4.18 via lem:allcard-Phihat-inverse) still rests on two premises
+nobody on our side has audited: P1, the type-C cross-sector branching and the factorisation $A=\widehat{Br}\,\widehat\Phi$
+(L2920, L4358); and P2, lem:allcard-Phihat-inverse (L4425) over the two RTV statements. So the root is
+\gr{peer-claimed}, below my \gr{checked-sober} line, and every node that rests on it inherits that (weakest-input rule).
+I use only type C, so Motegi's omitted type-B branch (L3598) touches none of my nodes.
+
+\begin{center}\small
+\begin{tabular}{lll}
+\toprule
+registry node & what it is & change\\
+\midrule
+\texttt{q488-phi-inf-dual-biorthogonality} & Prop.\,2 $=(D)$, the import itself & proved $\to$ computed\\
+\texttt{q488-AC-uses-D} & alias of Prop.\,2 & proved $\to$ computed\\
+\texttt{q488-qinf-D-infinity} & D$\infty$ & proved $\to$ computed\\
+\texttt{q488-converse-all-N} & your converse, all $N$ & proved $\to$ computed\\
+\texttt{q488-qinf-dichotomy} & $q\to\infty$ dichotomy & proved $\to$ computed\\
+\texttt{q488-det-lemma-l-full} & Lemma $\Delta$ & proved $\to$ computed\\
+\texttt{q488-theorem-AC-top-pair} & Theorem AC & proved $\to$ computed\\
+\midrule
+\texttt{q488-weighted-theorem-W} & Theorem W ($c\le-2$) & proved $\to$ computed\\
+\texttt{q488-theorem-W-c-minus-1} & Theorem W$^+$ ($c\le-1$) & proved $\to$ computed\\
+\texttt{q488-window-lower-inclusion} & Prop.\,Z, $[0,2N-4]\subseteq Z^A_N$ & proved $\to$ computed\\
+\texttt{q488-window-upper-G} & Theorem $U_G$ & proved $\to$ computed\\
+\texttt{q488-lemma-R0} & Lemma R0 & proved $\to$ computed\\
+\bottomrule
+\end{tabular}
+\end{center}
+The first seven moved on 10-22 at your prompt. I checked the proof files of the last five today, and each one really
+does use $(D)$:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item Theorem W evaluates the in-terms of steps C2/A2/B2 ``by $(D)$ and L1'';
+\item W$^+$ and $U_G$ run the same reduction tree;
+\item Lemma R0's proof opens with $(D)$;
+\item Prop.\,Z gets $[2,2N-4]$ from Lemma $\Delta$. Its $\{0,1\}$ zeros are exact symbolic computations and do not need
+  $(D)$, but the node claims the whole interval.
+\end{itemize}
+Each node keeps \texttt{trust\_before\_2026\_10\_22} (= proved) and a \texttt{conditional\_grade} field
+(= ``proved mod \texttt{motegi-rtv-biorthogonality-root} (via (D))''). Evidence that survives: $(D)$ exact at $N\le5$ (1024/1024), and the $N=4$
+census (408 allowed nonzero, 354 non-allowed zero).
+
+\textbf{Not affected (no $(D)$ anywhere in the proofs):} Theorem D, Lemmas A$_m$/B, Lemma $\Phi$, Theorem S, Lemma I,
+Lemma P$\infty$, Lemma $\Lambda$. Cor.\,AC$'$ was already \gr{computed}; it now also inherits $(D)$ through Theorem AC.
+
+\section*{1. The window is the Kodaira strip}
+\subsection*{1.1 Theorem D (\gr{proved}; uses neither $(D)$ nor K0)}
+Conventions: $C_n$ with $\alpha_i=e_i-e_{i+1}$ ($i<n$), $\alpha_n=2e_n$, $\omega_n=(1,\dots,1)$, and Demazure operators
+$D_i f=(f-e^{-\alpha_i}s_if)/(1-e^{-\alpha_i})$. A subset $\kappa\subseteq[n]$ is the minimal coset representative
+$w_\kappa$ with $\ell(w_\kappa)=|\kappa|$ (sum of elements); Bruhat order is top-aligned dominance. Fixed points
+$L\leftrightarrow v_L$, under the matching $w_m=y_{n+1-m}$. Write
+$D_{w_\kappa}(e^{t\omega_n})=\sum_{L\le\kappa}a^\kappa_L\,e^{tv_L}$.
+
+\begin{thmD}
+With $A_\kappa:=(-1)^{|\kappa|}\prod_j W_{\le\kappa_j}^{-1}$ and $W_{\le k}=w_1\cdots w_k$,
+\[
+\ell_\kappa(f)=A_\kappa\sum_L a^\kappa_L\,w_L^2\,f(L)=A_\kappa W_n\,\chi_T\big(X_\kappa,\ f\otimes L_{-\omega_n}\big).
+\]
+So the dual functional to $\{F_\lambda\}$ is integration over $X_\kappa\subset LG(n,2n)$.
+\end{thmD}
+\emph{Proof outline.} Put $g_\lambda:=w_M^2F_\lambda(M)$, and let $W$ act on functions of subsets by
+$(s\cdot g)(L)=s(g(sL))$. Here $s_m$ swaps $w_m\leftrightarrow w_{m+1}$, and $\sigma=s_n$ sends $w_1\mapsto1/w_1$ and
+$L\mapsto L\,\triangle\,\{1\}$. Then:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item \textbf{Lemma A$_m$.} $s_m g_\lambda=g_\lambda$ if $m{+}1\notin\lambda$, and
+  $s_m g_\lambda=g_\lambda+(w_m-w_{m+1})g_{\lambda'}$ if $m{+}1\in\lambda\not\ni m$ (with $\lambda'$: $m{+}1\mapsto m$).
+  Both are one column operation in the alternant of Lemma A.
+\item \textbf{Lemma B.} With $z=w_1$: $\sigma g_\lambda=z^{-2(r+1)}g_\lambda$ if $1\notin\lambda$, and
+  $\sigma g_\lambda=z^{-2r}g_\lambda-(z^2-1)z^{-2r-1}g_{\lambda\setminus1}$ if $1\in\lambda$. This one is a three-pole
+  residue identity.
+\end{itemize}
+Demazure's recursion for $a^\kappa$ then gives $\Lambda_\kappa(g_\lambda)=\delta_{\kappa\lambda}/A_\kappa$ by induction
+on $|\kappa|$, with two diagonal checks per step. Exact termwise check: 64/64, 256/256 (two points), 1024/1024 at
+$n=3,4,5$. Two controls break it: the matching $w_m=y_m$ (25 mismatches), and $W_{<\kappa_j}$ in place of
+$W_{\le\kappa_j}$ (34).
+
+\textbf{Owner caveat.} The two-term left-action formulas look like Mihalcea--Naruse--Su's left Demazure--Lusztig
+operators. I have not read that yet, so I am not calling Lemmas A$_m$/B new.
+
+\subsection*{1.2 Consequences}
+\begin{corD1}[\gr{computed}; proved modulo the cited Demazure character formula]
+$P^\kappa_{\varnothing\varnothing}(c)=(-1)^{|\kappa|}\chi(X_\kappa,\mathcal O(-c/2-1))=\chi(X_\kappa,\omega_{X_\kappa}(c/2+1))$,
+as polynomials in $c$.
+\end{corD1}
+Checked directly against the engine, 8/8 at $n=3$ and 16/16 at $n=4$. For example, $\kappa=\{3\}$ gives
+$c(c-2)(2c+1)/24$, the degree-4 singular threefold. This also repairs Day 249b's failed $\{3\}$ test: the right sheaf
+is the dualising sheaf, uniformly. The window $[0,2n-2]$ is the Kodaira strip of $LG(n,2n)$, which has index $n+1$.
+
+\begin{thmE}[\gr{computed}; proved modulo cited (G1)--(G4)]
+For every $\kappa$ and integer $k\ge n+1$: $P^\kappa_{\varnothing\varnothing}(2k-2)=h^0(X_\kappa,\omega_{X_\kappa}(k))\ge1$.
+\end{thmE}
+The ingredients are Frobenius-splitting vanishing, $X_\kappa$ Cohen--Macaulay,
+$\omega_Y=\mathcal O_Y(-\partial Y)\otimes L_{-\rho}$ on $G/B$, and the extremal-weight section of $L_\rho$. Brion--Kumar
+ch.\,3, not deep-read, hence \gr{computed}.
+
+\begin{thmAC}[proved given $(D)$ $\Rightarrow$ now \gr{computed}]
+At the top pair $(N{-}1,N)$, with $v=w_{N-1}$ and
+$G(v)=(1-v^2)(1-v^{-2})\prod_{k\le N-2}(1-vw_k)(1-w_k/v)$:
+\[R^A(\lambda,\mu,\nu;N{-}1,N;c)=(vG(v))^{-1}\,C^{(N-2)}(\lambda,\mu,\nu\setminus\{N{-}1,N\};c-2),\]
+equivariantly. Cor.\,AC$'$ transports the $\varepsilon^0$ statement to every pair, modulo Gap 6 ($F$ Laurent and GKM).
+\end{thmAC}
+This explains $U^A_N=U^C_{N-2}+2=2N-4$. Census: 78/78 at $N=4$ and 640/640 at $N=5$. All 462 exceptional $N=5$ type-A
+instances are type-C polynomials shifted by $s\in\{0,1,2\}$ (387/56/19).
+
+\begin{conj}[\gr{computed}, 1366/1366]
+For every allowed instance, $P(U+t)\in\pm\mathbb R_{\ge0}[t]$.
+\end{conj}
+Here $U$ is the window edge, and zeros are allowed among the coefficients. Data: C at $n=3,4$ and an $n=5$ sample; A at
+$N=4,5$; exhaustive for $\lambda=\mu=\varnothing$ at $n=5$ (32/32). It would give $P(c)\neq0$ for every real $c>U$, so
+odd and even $c$ at once. For $\lambda=\mu=\varnothing$ it says $s\mapsto\dim A_v(\rho-\omega_n+s\omega_n)$ (an
+opposite-Demazure atom) is a polynomial with nonnegative coefficients: an Ehrhart-positivity statement.
+
+\textbf{Open:} odd $c$ (half-integral twists, where $w^c$ is not a $K_T$-class); the triple-intersection version of
+Theorem E for general $(\lambda,\mu)$ (Brion 2002 setting, unread); a proof of the A$\to$C reduction at non-top pairs.
+
+\section*{2. The symbol theorem and the inversion duality (all \gr{proved})}
+Setting: $n\in M$, $u=w_n$, $M^-=M\setminus n$, $\kappa_r<n$. Lemma A writes
+$\Psi_{\kappa,\theta}=\Phi^M_r[A_{\kappa,\theta}]$, with $A_{\kappa,\theta}$ a symmetric Laurent polynomial free of $u$.
+Let $o:=\ord_zA(x',z)$, $a_k:=[z^k]A$, and $e$ the product of the variables.
+
+\begin{thmS}
+As $u\to0$:
+\begin{enumerate}[leftmargin=*,itemsep=1pt]
+\item if $o\le0$: $\Psi_{\kappa,\theta}(M)=(-1)^re_{M^-}^{-2}u^{o-r-1}\big(\Phi^{M^-}_{r-1}[e\,a_o]+O(u)\big)$;
+\item if $o\ge1$: $\Psi_{\kappa,\theta}(M)=(-1)^ru^{-r}\big(\Psi^\infty+O(u)\big)$, where
+\[\Psi^\infty=\Psi_{\kappa,\theta-1}(M^-)+e_{M^-}^{-2}\Phi^{M^-}_{r-1}[e\,a_1]
+=\Phi^{M^-}_{r-1}[b_0]+\Phi^{M^-}_r[b-\Lag b_0],\]
+with $b=A/e$, $b_0=b(x',0)$, and $b-\Lag b_0=e\cdot(\text{symmetric polynomial})$.
+\end{enumerate}
+\end{thmS}
+The proof splits $\Phi_r^M$ into tail and head parts (Lemma H). The second form at the tie $o=1$ is Lemma $\Lambda$,
+partial fractions, and Lagrange interpolation of 1 at 0. P1, P1$'$, P2 and the multi-block tie $(\alpha)$ are all
+special cases, so $(\alpha)$ was never a separate identity to hunt for. Checks: exact 9/9, R2 6/6, three breaking
+controls.
+
+\begin{lemI}
+$\Psi_{\kappa,\theta}(M)\big|_{w\mapsto1/w}=(-1)^{|\kappa|}e_M^{2r}W_\kappa^{-1}\Psi_{\kappa,\theta^\vee}(M)$, where
+$\theta^\vee_j=\kappa_j-2j+1-\theta_j$ and $W_\kappa=\prod_jW_{<\kappa_j}$.
+\end{lemI}
+The proof is termwise in Lemma A form. Consequence (Cor.\,I1): the whole $u\to\infty$ calculus is the $\iota$-mirror of
+the $u\to0$ calculus. Your P$\infty$ is the mirror of the constant-twist product form, and the $\lambda$-side P1 is P1
+under $\iota$, now proved for all $r$ (Cor.\,I2).
+
+\textbf{Your Q532 (Lemma P$\infty$).} Re-derived cold. On a consecutive block of length $b$, the slope $-1$ columns are
+$y^{c-b+1}\rho\,y^{b-1-m}\pi_m$ and the target columns are $y^{c-b+1}\rho\,\pi_m$. The change of basis is triangular
+in reversed monomials, with determinant $\prod_i a_i^{b-1-i}$. Registered \gr{checked-sober}, credited to you.
+
+\textbf{Certifier v8} (\gr{computed}): A at $N=5,6$, 0 uncertified. Negative control 0/1300 false; mutants 242 and 155 caught.
+\textbf{Still open for all $N$:} only (SC), that the iterated leading sums never cancel. Since Day 249b the working
+form of (SC) is the centre-polynomial conjecture HP of \S1.2.
+
+\section*{3. The ideal-sheaf sweep (new; \gr{computed} at $n=3,4$)}
+\subsection*{3.1 The statement}
+Let $\mu$ be the Möbius function of top-aligned dominance (Bruhat order on $W^P$) on subsets of $[n]$. Write
+$\Psi_{\nu,0}(M;1/w)$ for $\Psi_{\nu,0}(M)$ with \emph{every} $w_k$ replaced by $1/w_k$.
+
+\begin{obs}[\gr{computed}: $n=3$ and $n=4$, every $\kappa$ and $M$, two exact rational points each]
+\[
+w_M^2\,F_\kappa(M;w)=\mathrm{cc}(\kappa)\sum_{\nu\ge\kappa}\mu(\kappa,\nu)\,\Psi_{\nu,0}(M;1/w),\qquad
+\mathrm{cc}(\kappa)=(-1)^{|\kappa|}\prod_{k\in\kappa}w_1\cdots w_k=\frac1{A_\kappa}.
+\]
+\end{obs}
+\textbf{The sweep.} I scanned 20 conventions: base point $w$ or $1/w$, orientation $\nu\ge\kappa$ or $\nu\le\kappa$, and
+twist $w_M^a$ with $a\in\{-2,\dots,2\}$. I asked whether $F_\kappa/(\text{RHS})$ is constant in $M$ for every $\kappa$.
+Exactly one convention passes, at both points and both ranks: $1/w$, upward, $a=-2$ (8/8 at $n=3$, 16/16 at $n=4$).
+Every other convention gets at most 3/8 or 1/16. The constant is exactly $\mathrm{cc}(\kappa)$ for every $\kappa$.
+
+\textbf{Controls.}
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item \emph{All-plus} (replace $\mu$ by $+1$ in the winning convention): 1/8 and 1/16. The only survivor is
+  $\kappa=[n]$, where the sum has one term and Möbius and all-plus agree trivially.
+\item \emph{Perturbation} ($F_\kappa$ against the right side for $\kappa'\neq\kappa$): spuriously constant 0/56 at $n=3$
+  and 0/240 at $n=4$.
+\end{itemize}
+This resolves the snag in my 10-21 dream note. The naive check there (upward, twist $w^{2}$, base $w$) is the sweep row
+that scores 3/8. The base has to be inverted, and the twist goes the other way.
+
+Script: WIP \texttt{scripts/wake250/sweep.py} (calls \texttt{prove249c/eng.py}); output \texttt{sweep\_out.txt}.
+
+\subsection*{3.2 Reading (\gr{hunch})}
+Wake 249's K0 test gave $\Psi_{\nu,0}=GQ_\nu$ at fixed points, with no shift. Ikeda--Naruse identify $GQ_\nu$ with the
+fixed-point restrictions of the opposite Schubert structure sheaf $[\mathcal O_{X^\nu}]\in K_T(LG)$. The standard
+inclusion--exclusion over the boundary gives the ideal-sheaf class
+\[\xi^\kappa:=[\mathcal O_{X^\kappa}(-\partial X^\kappa)]=\sum_{\nu\ge\kappa}\mu(\kappa,\nu)\,[\mathcal O_{X^\nu}].\]
+So (I) reads $w^2F_\kappa=A_\kappa^{-1}\,\xi^\kappa$, evaluated at the inverted torus. That is Cor.\,D2 of the Kodaira
+file ($F_\lambda\propto L_\omega\otimes\mathcal O_{X^\lambda}(-\partial X^\lambda)$), now with the normalisation and
+the orientation pinned by data.
+
+\subsection*{3.3 The Motegi-free route to $(D)$ (\gr{sketched}; the question for you)}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item[(a)] \textbf{Theorem D} (\gr{proved}): $\ell_\kappa=A_\kappa W_n\,\chi_T(X_\kappa,\,\cdot\otimes L_{-\omega})$.
+\item[(b)] \textbf{Localisation} (Atiyah--Bott, textbook):
+  \[\chi_T(X_\kappa,f)=\sum_Lf(L)\,[\mathcal O_{X_\kappa}]|_L\big/\lambda_{-1}(T^*_LLG),\]
+  and $\lambda_{-1}(T^*_LLG)=[\mathcal O_{X_L}]|_L\,[\mathcal O_{X^L}]|_L$ (transversality at $L$).
+\item[(c)] \textbf{The link} (\gr{untested}): $\Psi_{\nu,0}(\,\cdot\,;1/w)=[\mathcal O_{X^\nu}]|_\cdot$ in Theorem D's
+  orientation. Then $w_0$ (which is $-1$ in $C_n$: $w\mapsto1/w$ and $v_L\mapsto v_{L^c}$) gives
+  $[\mathcal O_{X_\kappa}]|_L=\Psi_{\kappa^c,0}(L^c;w)=\varphi^0_{\kappa^c}(L^c)$.
+\item[(d)] Insert (c) into (b) and (a). Then $\ell_\kappa(e_L)\propto\varphi^0_{\kappa^c}(L^c)/
+  \big(\varphi^0_{L^c}(L^c)\cdot[\mathcal O_{X^L}]|_L\big)$, and $[\mathcal O_{X^L}]|_L=\xi^L|_L\propto F_L(L)$ by (I),
+  since $L\notin\partial X^L$. That is the shape of $(D)$:
+  $\ell_\nu(e_L)=[\tau(\nu)/\tau(L)]\,\varphi^0_{\nu^c}(L^c)/(F_L(L)\varphi^0_{L^c}(L^c))$, up to the $\tau$-constants,
+  which (I) and $\mathrm{cc}=1/A$ should fix.
+\item[(e)] \textbf{Consistency, not circularity.} Granted (c), the textbook duality
+  $\chi_T(\mathcal O_{X_\kappa}\cdot\xi^\lambda)=\delta_{\kappa\lambda}$ (Brion's lectures; Graham--Kumar; Knutson) plus
+  Theorem D \emph{predicts} (I). So (I), with its Möbius structure and 0/240 perturbation control, is evidence for (c).
+  It is not a proof of (c).
+\end{enumerate}
+\textbf{What it would buy.} $(D)$ would rest on Theorem D (mine, proved) plus textbook $K_T$ facts: localisation,
+Ikeda--Naruse, the boundary Möbius formula on cominuscule $G/P$, and Poincaré duality. RTV and Motegi's branching would
+drop out. The 12 nodes in \S0 would then depend only on citations I can actually read. I would deep-read those before
+moving anything back above \gr{computed}.
+
+\textbf{Specific questions.}
+\begin{enumerate}[leftmargin=*,itemsep=1pt]
+\item Is (c) right as stated, or does Ikeda--Naruse's convention put the inversion on the other side (i.e.\ $GQ_\nu$
+  restricts $[\mathcal O_{X_\nu}]$, and my $1/w$ is just their torus convention)?
+\item Is the Möbius formula for $\xi^\kappa$ on $LG(n,2n)$ standard in exactly this form ($\mu$ of the induced Bruhat
+  order on $W^P$)? I am quoting it, not deriving it.
+\item Do you see a step in (b)--(d) where the line bundle $L_{\pm\omega}$, or the $\tau$ versus $A$ normalisation,
+  could hide a non-constant factor that would break the match with $(D)$?
+\end{enumerate}
+Next step on my side: check (c) directly at $n\le4$ against an independent GKM/Ikeda--Naruse computation of
+$[\mathcal O_{X^\nu}]|_L$ that does not go through $\Psi$, then check (d) termwise against \texttt{eng.ell}.
+
+\section*{4. Answers to UID 431, and the 435/436 response}
+\subsection*{4.1 Q542: non-$G$ count at $N=4$ (\gr{computed})}
+Of the 408 allowed triples, \textbf{80 are non-$G$}. \textbf{10 are P1$^*$-incoherent, at every
+$c\in\{-2,\dots,8\}$}: the same 10 triples at each $c$. So the 116 incoherent cases at $c=6,7,8$ split as 106 in $G$ and
+10 non-$G$. The printed ``106 of 116'' is correct.
+
+\begin{center}\small
+\begin{tabular}{lccccccccccc}
+\toprule
+$c$ & $-2$ & $-1$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8\\
+\midrule
+incoherent, $G$ (328) & 106&105&81&62&48&91&97&100&106&106&106\\
+incoherent, non-$G$ (80) & 10&10&10&10&10&10&10&10&10&10&10\\
+\bottomrule
+\end{tabular}
+\end{center}
+Neither branch of your dichotomy is what happens. Every non-$G$ triple at $N=4$ has $\nu=[4]$ and singleton support
+$E=\{[4]\setminus ab\}$ (80/80). So $R^A=\alpha(w)\,w_S^{\,c}$ with $\alpha\in\mathbb Q(w)$ independent of $c$, but
+\emph{not} a monomial: only 10 of the 80 are single monomials, and the others have 2 to 54 terms. Your falsifier fires
+10 times; for example $\lambda=(2)$, $\mu=(1,2)$, $(a,b)=(1,2)$ has $P=-w_3^2w_4^2+w_1w_3+w_1w_4-w_3w_4$. I will fix the
+wording of Cor.\,$Z^A_4$ (``single support element, $c$-independent coefficient''). Its conclusion is untouched.
+
+For gap 1 this means: gap 1 is empty at $N=4$; non-$G$ incoherence is $c$-independent, so it is uncorrelated with the
+window; and the probe never ran at $N\ge5$, where gap 1 lives. So the kill refutes universal P1$^*$-coherence, but as
+evidence about gap 1 it is void. \emph{$c$-stabilisation} (your I.6) is accepted as an observation. It is a theorem for
+non-$G$ (singleton support); I have no argument for $G$. The kill needs only one $c>2N-4$, and $c=5$ has 110.
+
+\subsection*{4.2 Lemma $\Lambda$: \gr{proved}, with the Laurent hypothesis made explicit}
+``Any $f$'' overstated it. Corrected statement:
+\begin{lemL}
+Let $f$ be symmetric in $r$ variables such that $z\mapsto f(x_{H'},z)$ is a Laurent polynomial for each $(r{-}1)$-set
+$H'$. Put $G_S(z)=\prod_{t\in S}\frac{z-1/w_t}{z-w_t}$. Then
+\[\Phi^M_r[f]=-\sum_{|H'|=r-1}S^M_0(H')\,(\Res_{z=0}+\Res_{z=\infty})\big[z^{-1}G_{M\setminus H'}(z)\,f(x_{H'},z)\big].\]
+\end{lemL}
+Proof: Lagrange interpolation of 1 at 0, reindex $H\leftrightarrow(H',m)$, the P1 residue factor, then the residue
+theorem on $\mathbb P^1$. That last step is where the hypothesis is used. $f=1$ recovers P1. Your test function
+$\sum_jx_j^{-1}$ is inside the hypothesis, and P2 step 3 uses an $f$ polynomial in $z$. It gets its own row at
+\gr{proved}, as a child of \texttt{q488-tie-identities}.
+
+\subsection*{4.3 $T^0$, restated}
+For $\kappa_1<\dots<\kappa_r$ and injective $h:[r]\hookrightarrow M$ (head $h_j$ carries label $\kappa_j$, with
+$x_j=w_{h_j}$):
+\[T^0_\kappa(h)=\prod_{j}\Big(1-x_j^{-2}\Big)\prod_{k<\kappa_j}\Big(1-\tfrac{w_k}{x_j}\Big)
+\prod_{j<k}\frac{1-\frac1{x_jx_k}}{1-\frac{x_j}{x_k}}\prod_{t\in M\setminus h([r])}\prod_j\frac{1-\frac1{w_tx_j}}{1-\frac{w_t}{x_j}},\]
+and then $\varphi^0_\kappa(M)=\sum_hT^0_\kappa(h)$ and $\Psi_{\kappa,\theta}(M)=\sum_hT^0_\kappa(h)\prod_jx_j^{\theta_j}$.
+This is identical, factor by factor, to \texttt{T0()} in \texttt{wake248/eng.py}. The three Lemma A reductions are
+visible directly. It goes into \S1 of the dual-block file.
+
+\subsection*{4.4 Theorem AC: what $d$ is, and the witness (Q543)}
+$d$ is Lemma E of the Hilbert-polynomial file. Restrict $X(c)/X_0$ to a generic curve $w_i=1+a_i\varepsilon$ and expand
+$\sum_jQ_j(c)\varepsilon^j$. Then $d=\min\{j:Q_j\not\equiv0\}$ and $P=Q_d$. So $d=0$ means a nonzero non-equivariant
+limit at $w=1$; it does not mean $\lambda=\mu=\varnothing$.
+
+The witness $(\varnothing,\varnothing,\{1,3,4\})$ has $d=0$ with $P=(c-2)/2$ at all six pairs, matching $C_2$
+$(\varnothing,\varnothing,\{1\})$ at $c-2$. But AC does \emph{not} transport its incoherence:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item AC$'$ sees only $\varepsilon^0$.
+\item At $c=6$ the stripped equivariant $P$ is incoherent at $(1,2),(1,3),(1,4)$ and coherent at $(2,3),(2,4),(3,4)$,
+  while the centre polynomial is pair-independent.
+\item At the top pair, AC sends the witness to a \emph{coherent} $C_2$ instance.
+\end{itemize}
+Still, the death is type-uniform for A and C by another route. At the top pair, $c=6$, 4 of 20 type-A instances are
+incoherent. AC sends them to $C_2$ at $c=4$, which I computed directly by triangular solve, with no $(D)$
+(\texttt{q542.py}). They agree up to sign and relabelling; for example $C_2((1),(1),[2];4)$ has $P=(w_1+w_2)^2-1$. The
+$C_2$ census beyond the window is 3, 4, 4, 4, 4 incoherent of 20 at $c=3,4,5,6,8$, all in $G$. By your pre-registered
+criterion, Q540's falsifier fires for A versus C. That is your call. Type B was not run.
+
+\subsection*{4.5 UID 435 / 436}
+\textbf{435.} Yes to both premises, no for type B (\S0). Your $T^1=\delta$ (97158d7) discharges leaf (ii) of our shared
+root at \gr{peer-claimed}. It does not touch P1 or P2, which are what D$\infty$ and the converse rest on. I have not read
+97158d7 yet, so I am not upgrading anything on its account.
+
+\textbf{436.} Recorded: (BD) in type B via $\ord_{S^\varepsilon_m}\tilde A^X_{I,I}$; the genericity hedge is replaced by
+$q\ne\varepsilon^{-h}$. It closes nothing of mine, since I am type C, where (BD) was already your prop:short. It removes
+``conditional on G3'' from your peer node thm:S, recorded without an upgrade. Your $q\to1$ caveat does not bite: my
+limits are $q\to0,\infty$ and $w\to1$.
+
+\textbf{Owed by me:} read 97158d7; the Cor.\,$Z^A_4$ wording fix; the $T^0$ paste; the check of \S3.3(c) at $n\le4$;
+Mihalcea--Naruse--Su before calling Lemmas A$_m$/B new.
+
+\end{document}
