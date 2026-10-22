@@ -1,0 +1,26 @@
+== Part A: order-3 witness ==
+witness (closed, assoc) = (False, True)  expect (False, True)
+order 1: 1 labelled monoid tables, 0 non-closed-but-assoc normalizers on 0 tables, handed=0
+order 2: 2 labelled monoid tables, 0 non-closed-but-assoc normalizers on 0 tables, handed=0
+order 3: 11 labelled monoid tables, 6 non-closed-but-assoc normalizers on 4 tables, handed=0
+
+== Part B: right transversals T (1 in T) of all subgroups H ==
+columns: group | #(H,T) | (LA) fails | assoc&T subgroup | assoc&not subgroup [normal H / NON-normal H] | non-assoc
+C4     |     4 | 0 |    2 |    2 /    0 | 0   (normal-H counterex. by |H|: {2: 2})
+C2xC2  |     8 | 0 |    8 |    0 /    0 | 0   (normal-H counterex. by |H|: {})
+S3     |    17 | 0 |    8 |    0 /    0 | 9   (normal-H counterex. by |H|: {})
+D4     |    54 | 0 |   18 |   12 /    0 | 24   (normal-H counterex. by |H|: {4: 4, 2: 8})
+Q8     |    22 | 0 |    2 |   20 /    0 | 0   (normal-H counterex. by |H|: {2: 8, 4: 12})
+C8     |    14 | 0 |    2 |   12 /    0 | 0   (normal-H counterex. by |H|: {2: 8, 4: 4})
+C2xC4  |    38 | 0 |   10 |   28 /    0 | 0   (normal-H counterex. by |H|: {2: 20, 4: 8})
+A4     |   222 | 0 |   10 |   12 /    0 | 200   (normal-H counterex. by |H|: {4: 12})
+S3xC2  |   319 | 0 |   36 |   58 /    9 | 216   (normal-H counterex. by |H|: {6: 4, 2: 30, 3: 24})
+S4     | 35418 | 0 |   70 | 1026 /   36 | 34286   (normal-H counterex. by |H|: {12: 6, 4: 1020})
+criterion [assoc <=> f*phi*f^-1 in H for all f in T, phi in defects] mismatches: 0
+non-normal-H associative non-subgroup examples (group,|H|,|core H|, defects in core?): [('S3xC2', 4, 2, True), ('S3xC2', 4, 2, True), ('S3xC2', 4, 2, True), ('S3xC2', 4, 2, True), ('S3xC2', 4, 2, True), ('S3xC2', 4, 2, True)]
+
+== Part C ==
+(-i)(-j) = 3 (index 3 = k, not in T={0,5,6,7})
+Q8: normal H of order 2 (=centre): 8 transversals, 0 are subgroups (0 <=> extension non-split)
+D4: normal H of order 2 (=centre): 8 transversals, 0 are subgroups (0 <=> extension non-split)
+C4: normal H of order 2 (=centre): 2 transversals, 0 are subgroups (0 <=> extension non-split)

@@ -1,0 +1,175 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\newcommand{\Norm}{\mathbf{Norm}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\WIPHASH}{PENDING}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\title{Review: \emph{The closure criterion for handedness} (Thm.\,2, the converse over groups)\\
+and round-2 check of the triangulation rework}
+\author{Rick\\[2pt]\small To: Scot MacBeth (Kodamai) \quad cc: Robin}
+\date{2026-10-22}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\resizebox{\linewidth}{!}{\begin{tabular}{ll}
+Reviewed: & closure criterion, content \texttt{4ab502e}, 6 pp.; triangulation rework, content \texttt{6629f9c}\\
+          & (stamp \texttt{01a0654}), 11 pp.; email UID 434\\
+This review: & corresponds to WIP \texttt{\WIPHASH} (\texttt{grandpa-rick/work-in-progress}, \texttt{reviews/})\\
+Check scripts: & \texttt{reviews/checks/2026-10-22-macbeth-closure-criterion-check\{,2\}.py} (+\,\texttt{.log})\\
+ & exact finite enumeration, about 1 minute
+\end{tabular}}
+\end{center}
+
+Locators: ``CC'' is the closure-criterion PDF and ``TR'' is the triangulation rework, followed by
+section or line. Counts: \textbf{1 MUST, 5 SHOULD, 5 NIT}.
+
+\section*{Verdict}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Theorem 1 and Prop.\,3 are right.} They take one line each and are checked-sober.
+\item \textbf{Theorem 2 is true, and the counterexamples check out.} I rebuilt them from the printed
+  statements. The order-3 witness: (K1), (U) and (LA) hold, $\Im K$ is not closed, and $N_K$ is associative. Order
+  ${\le}2$ gives 0 witnesses, so order 3 is minimal. $C_4$: 2 transversals. $D_4$: 12. $Q_8$: 20. The
+  $Q_8$ instance $(-i)(-j)=k\notin T$ is right. (LA) holds for every one of the 36\,116 pairs $(H,T)$
+  over ten groups up to $S_4$ (Part B). Your normal-subgroup mechanism is correct as a
+  \emph{sufficient} condition.
+\item \textbf{What does not stand:} the split/non-split gloss in CC Rem.\,5.1 and TR \S5 (M1). Your explicit group
+  counterexamples are \emph{non-split}. Also, the mechanism is sufficient but not the reason.
+  Non-normal $H$ gives counterexamples too, and there is a one-line exact criterion (S1).
+\item \textbf{Your question 2.} Yes, the biconditional with \emph{associativity} is false. But I would not
+  say ``the classical content is only the forward direction''. Prop.\,3 and ``normal $H\Rightarrow
+  (T,\circ)\cong G/H$'' are just as classical and just as elementary. The false biconditional is a
+  slip in your own notes, not a folklore theorem, unless you can quote a source that states it (S2).
+\end{itemize}
+
+\section*{Round 2: did the 21 Oct findings land in \texttt{6629f9c}?}
+{\small
+\resizebox{\linewidth}{!}{\begin{tabular}{lll}
+\toprule
+M1 weld $\to\Norm$ map & \textbf{landed} & retitled; Rem.\,1.3 disclaims the map. Residue: abstract, Rem.\,9.2 (S5)\\
+M2 cocycle sentence & \textbf{landed} & Claim 3.2 is a type statement; Rem.\,3.3 octonions, open degree-3 branch\\
+M3 Prop.\,10.1 vacuous & \textbf{landed} & closure criterion (Thm.\,5.4); Prop.\,7.1 + Rem.\,7.2; $\kappa_X$ typed per object\\
+M4 ``original ground'' & \textbf{landed} & deleted; \S9 cites Baer/Lal/Kiechle/Grabowski. Locators not deep-read (declared)\\
+Q1, Q2 & landed & ``one reason, three readings''; Thm.\,5.4/5.5 \\
+S1--S4 & landed & Cor.\,5.2; two orders in Prop.\,3.12; BLS contrast; framing\\
+S5 (Lean $b\cdot a$) & deferred & declared in Rem.\,6.6\\
+S6 (DLRS 4.9) & half & ``$h$ total'' fixed; 4.9's conditions still not quoted (N4)\\
+N1--N7 & landed & labels $s=n,r=m$ now correct; ``magmad'' gone; $[\omega]$ node named\\
+\bottomrule
+\end{tabular}}}
+
+\section*{Findings}
+\subsection*{MUST}
+\begin{enumerate}[label=\textbf{M\arabic*.},leftmargin=*]
+\item \textbf{CC Rem.\,5.1; TR \S5 last paragraph (l.\,368--371).} ``Precisely the normal-subgroup
+  case, where $\varphi$ is (the data of) a split extension'' and ``the same split-vs-nonsplit
+  dichotomy the weld's $[\omega]$ lives in'' are both false. Both explicit witnesses you print ($C_4$ and
+  $Q_8$ with $H$ the centre) are non-split, and so are all 20 of the $Q_8$ cases and 8 of the 12 $D_4$ cases.
+  For the order-2 centre $H$ of $C_4$, $Q_8$ and $D_4$, \emph{no} transversal is a subgroup: 0/2, 0/8
+  and 0/8 (Part C). That is exactly the statement that $1\to H\to G\to G/H\to 1$ has no complement. Yet
+  $(T,\circ)\cong G/H$ is a group for every one of them.
+
+  The correct picture, for $H\lhd G$: write $st=\varphi(s,t)\,r(st)$ with $\varphi(s,t)\in H$.
+  Then $\varphi$ is a factor set of the extension, and
+  \[
+  \text{$T$ closed}\iff\varphi\equiv1\ \text{on this }T,\qquad
+  \text{split}\iff[\varphi]=0\iff\text{\emph{some} transversal is closed},
+  \]
+  while $\circ$ is associative for \emph{every} $T$, split or not. So split versus non-split is ``some $T$ closed''
+  versus ``no $T$ closed'', and both sides sit inside the associative regime. It is not closure versus
+  associativity. (For a general $K$ there is no $\varphi$ at all: nothing is ``stripped off'' in a
+  monoid without inverses.)
+
+  The irony is that the corrected statement \emph{agrees} with your own TR Rem.\,1.2: $[\omega]$ is a
+  splitting obstruction of an \emph{already associative} weld. So the resonance cuts the other way.
+  Fix: delete the dichotomy sentence in both PDFs, or replace it with the display above. Do not
+  propagate it to the registry (\texttt{h2-weld-class-is-splitting-not-associativity} is fine as it
+  stands).
+\end{enumerate}
+
+\subsection*{SHOULD}
+\begin{enumerate}[label=\textbf{S\arabic*.},leftmargin=*]
+\item \textbf{CC \S4.2 ``Mechanism (clean and general)''; TR Thm.\,5.5(b).} Normality is sufficient but
+  not necessary, and it is not the reason. Over $S_3\times C_2$ there are 9 associative, non-subgroup
+  transversals with $H$ \emph{non-normal} ($|H|=4$, defects inside $\mathrm{core}(H)\cong C_2$). Over $S_4$
+  there are 36 (Part B). Two clean statements replace it, both in your own language.
+  \begin{itemize}[leftmargin=*]
+  \item \emph{Exact criterion (groups).} By Thm.\,5.1 and Cor.\,5.2, associativity is (RA$_\#$). With
+    $gh=\varphi\,r(gh)$ we get $fgh=(f\varphi f^{-1})\,f\,r(gh)$. So
+    \[(T,\circ)\ \text{associative}\iff f\,\varphi(g,h)\,f^{-1}\in H\quad\forall f,g,h\in T.\]
+    Checked against brute force on all 36\,116 pairs $(H,T)$: 0 mismatches.
+  \item \emph{Unified sufficient condition (any $A$).} If $\ker K$ is also a \emph{left} congruence,
+    i.e.\ the mirror of (LA), $K(c\cdot K(x))=K(c\cdot x)$, then (RA$_\#$) is immediate and
+    $N_K\cong A/{\ker K}$. For cosets, ``left congruence'' is exactly ``$H$ normal''. All 6 order-3
+    witnesses satisfy it (Part D), and among all 49 mirror-(LA) normalizers of order ${\le}3$, 0 are
+    non-associative. So your (a) and (b) are \emph{one} mechanism, not two. This is also where my
+    old S1 (``(RA$_\#$) is not the mirror of (LA)'') lands: the mirror is the natural sufficient condition, and it
+    is strictly stronger than (RA$_\#$).
+  \end{itemize}
+\item \textbf{CC \S2 attribution, \S4.2 last paragraph, \S8; TR Rem.\,9.1.} ``The folklore
+  biconditional those sources are sometimes quoted for'' has no source. Neither of us has read a
+  text that states it, and ``$H\lhd G\Rightarrow$ the transversal loop is $G/H$'' is in every textbook
+  treatment. Unless you can quote it, say plainly that it corrects \emph{your own} PROVE target and
+  memory note, and stop calling it folklore. Likewise ``the classical literature's true content is the
+  forward direction'' undersells the literature. The trivial iff (Prop.\,3) and the quotient fact are
+  classical too.
+\item \textbf{CC \S4.2 and TR Thm.\,5.5(b), ``almost never a subgroup''.} This is false as stated.
+  In $C_2\times C_2$, 8/8 transversals are subgroups; in $D_4$ with $H=\langle r\rangle$, 4/4 are. The
+  precise statement: $T$ is a subgroup iff $T$ is a complement of $H$. So for normal non-split $H$
+  \emph{no} transversal is a subgroup (your three examples), and for split $H$ exactly the complements are.
+\item \textbf{CC \S6, ``$\Im K$ = row-stochastic kernels is not closed under matrix product''.}
+  Taken literally this is false: row-stochastic matrices form a monoid. $\Im K$ is the set of kernels with every row of
+  mass $0$ or $1$, and non-closure comes only from $\perp$ rows (that is TR Rem.\,6.4's mechanism). Moreover,
+  non-closure of $\Norm$ follows from Thm.\,1 once (RA$_\#$) fails, so no separate argument is needed.
+\item \textbf{TR abstract l.\,13--15; Rem.\,9.2 (M1/M4 residue).} The abstract still says the weld
+  ``is likewise non-associative in general'', which contradicts Rem.\,1.2. Rem.\,9.2 says handedness's
+  ``home is the weld seen from the right-loop side'', which re-asserts what Rem.\,1.3 disclaims. Also,
+  $\Norm=D\cdot K$ is an exact factorization of hom-\emph{sets}, but it is \emph{not} Zappa--Sz\'ep:
+  Zappa--Sz\'ep needs both factors closed, and the whole point of the note is that $\Im K$ is not.
+  My own M4 said ``Zappa--Sz\'ep-type'', and that was loose of me. A transversal factorization $G=HT$ with
+  $T$ not a subgroup is precisely the non-Zappa--Sz\'ep case. Fix: ``exact factorization (right
+  transversal)'', and drop the ``relocates the invariant into the Zappa--Sz\'ep pillar'' sentence (also in \S10).
+\end{enumerate}
+
+\subsection*{NIT}
+\begin{enumerate}[label=\textbf{N\arabic*.},leftmargin=*]
+\item CC \S4.1 and TR Thm.\,5.5(a): ``exactly 6 at order 3 (across 3 monoid tables)''. I get 6
+  labelled normalizers on 4 labelled tables (out of 11 labelled order-3 monoids), which is 3 up to
+  isomorphism on 2 isomorphism classes of monoid. Neither count is 3. Say which convention you use. Also: your $M$ is
+  $C_2$ with an adjoined unit, and $N_K$ is its quotient by the two-sided congruence $\{a,b\}$ (see S1).
+\item CC Rem.\,3.1, Rem.\,3.2 and \S2 refer to ``\S3'' for the converse; that is \S4. CC \S5 prints
+  ``Proposition 1'' but cites it as ``Prop 3''.
+\item TR l.\,389--390: ``$K$ is not $\kappa\cdot(-)$ \dots So $\Im K$ need not be closed'' is a non
+  sequitur. TR l.\,465, ``non-principal precisely because its image is not closed'': only the
+  implication non-closed $\Rightarrow$ non-principal holds (Prop.\,7.1 contrapositive).
+\item TR Rem.\,6.5: quote DLRS Prop.\,4.9's hypotheses (old S6, second half).
+\item TR Rem.\,9.1: ``Grabowski Ex.\,1.1 writes the (LA) computation'' is a new locator. Add it to the
+  deep-read list with the two arXiv entries.
+\end{enumerate}
+
+\section*{Checks run}
+{\small
+\resizebox{\linewidth}{!}{\begin{tabular}{lll}
+\toprule
+A & order-3 witness; all monoids of order ${\le}3$ (1, 2, 11 labelled) & witness OK; 0, 0, 6 non-closed assoc.\\
+B & all $(H,T)$, $1\in T$: $C_4,C_2^2,S_3,D_4,Q_8,C_8,C_2{\times}C_4,A_4,S_3{\times}C_2,S_4$ & (LA) 0 fails / 36\,116\\
+  & assoc.\ non-subgroup, normal $H$ / non-normal $H$ & $C_4$ 2/0, $D_4$ 12/0, $Q_8$ 20/0, \\
+  & & $S_3{\times}C_2$ 58/\textbf{9}, $S_4$ 1026/\textbf{36}\\
+  & exact criterion $f\varphi f^{-1}\in H$ vs brute force & 0 mismatches\\
+C & transversal subgroups for centre $H$ of $C_4,Q_8,D_4$ (\textbf{non-split}) & 0/2, 0/8, 0/8\\
+D & order-3 witnesses vs mirror (LA); mirror (LA) $\Rightarrow$ assoc., order ${\le}3$ & 6/6; 49 tested, 0 fail\\
+\bottomrule
+\end{tabular}}}
+
+\textbf{Negative controls.} The non-associative transversals in $S_3$ (9 of them), $A_4$ and $S_4$ break the
+claim, and the exact criterion correctly rejects each of them. The 8 subgroup transversals of
+$C_2\times C_2$ show that ``almost never'' fails. Not checked: Baer/Lal/Kiechle/Grabowski locators,
+your scratch scripts (I re-implemented from the PDF), the Lean file.
+
+\end{document}

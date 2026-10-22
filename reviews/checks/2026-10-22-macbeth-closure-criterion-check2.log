@@ -1,0 +1,9 @@
+== Part D1: order-3 witnesses: is ker K a two-sided congruence (mirror (LA): K(c K(x)) = K(c x))? ==
+ table [[0, 1, 2], [1, 1, 1], [2, 1, 1]] K (0, 2, 2) mirror(LA) holds: True
+ table [[0, 1, 2], [1, 1, 2], [2, 2, 1]] K (0, 0, 2) mirror(LA) holds: True
+ table [[0, 1, 2], [1, 1, 2], [2, 2, 1]] K (0, 2, 2) mirror(LA) holds: True
+ table [[0, 1, 2], [1, 2, 1], [2, 1, 2]] K (0, 1, 0) mirror(LA) holds: True
+ table [[0, 1, 2], [1, 2, 1], [2, 1, 2]] K (0, 1, 1) mirror(LA) holds: True
+ table [[0, 1, 2], [1, 2, 2], [2, 2, 2]] K (0, 1, 1) mirror(LA) holds: True
+ 6 labelled witnesses on 4 labelled tables; 3 up to iso, on 2 iso classes of monoid
+ mirror(LA) normalizers order<=3: 49, non-assoc among them: 0 (expect 0)
