@@ -1,0 +1,4 @@
+n=4  G_l := cc(l) xi^l (geometric, Psi/F-free)
+Lemmas A_m(a,b,c)+B(a,b) hold for geometric cc*xi: 64/64 instances pass
+top class: G_[n] supported only at M=[n]: True
+G_[n]([n]) == w^2 F_[n]([n]): True

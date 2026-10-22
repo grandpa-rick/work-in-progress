@@ -1,0 +1,131 @@
+### dfree1 (dictionary search: Willems vs Psi_{nu,0}; 'id' positions = negative controls)
+n=2 seed=0
+length check l(w_nu)=|nu| (rev positions): True
+Bruhat check: support of Willems class = {M: leq(nu,M)}? (computed below)
+positions=rev t=w   | Willems support==dominance:True | Psi base=w   exact=False  prop-per-nu 2/4
+positions=rev t=w   | Willems support==dominance:True | Psi base=1/w exact=True  prop-per-nu 4/4
+positions=rev t=1/w | Willems support==dominance:True | Psi base=w   exact=True  prop-per-nu 4/4
+positions=rev t=1/w | Willems support==dominance:True | Psi base=1/w exact=False  prop-per-nu 2/4
+positions=id t=w   | Willems support==dominance:False | Psi base=w   exact=False  prop-per-nu 2/4
+positions=id t=w   | Willems support==dominance:False | Psi base=1/w exact=False  prop-per-nu 2/4
+positions=id t=1/w | Willems support==dominance:False | Psi base=w   exact=False  prop-per-nu 2/4
+positions=id t=1/w | Willems support==dominance:False | Psi base=1/w exact=False  prop-per-nu 2/4
+n=3 seed=0
+length check l(w_nu)=|nu| (rev positions): True
+Bruhat check: support of Willems class = {M: leq(nu,M)}? (computed below)
+positions=rev t=w   | Willems support==dominance:True | Psi base=w   exact=False  prop-per-nu 2/8
+positions=rev t=w   | Willems support==dominance:True | Psi base=1/w exact=True  prop-per-nu 8/8
+positions=rev t=1/w | Willems support==dominance:True | Psi base=w   exact=True  prop-per-nu 8/8
+positions=rev t=1/w | Willems support==dominance:True | Psi base=1/w exact=False  prop-per-nu 2/8
+positions=id t=w   | Willems support==dominance:False | Psi base=w   exact=False  prop-per-nu 2/8
+positions=id t=w   | Willems support==dominance:False | Psi base=1/w exact=False  prop-per-nu 2/8
+positions=id t=1/w | Willems support==dominance:False | Psi base=w   exact=False  prop-per-nu 2/8
+positions=id t=1/w | Willems support==dominance:False | Psi base=1/w exact=False  prop-per-nu 2/8
+n=3 seed=7
+length check l(w_nu)=|nu| (rev positions): True
+Bruhat check: support of Willems class = {M: leq(nu,M)}? (computed below)
+positions=rev t=w   | Willems support==dominance:True | Psi base=w   exact=False  prop-per-nu 2/8
+positions=rev t=w   | Willems support==dominance:True | Psi base=1/w exact=True  prop-per-nu 8/8
+positions=rev t=1/w | Willems support==dominance:True | Psi base=w   exact=True  prop-per-nu 8/8
+positions=rev t=1/w | Willems support==dominance:True | Psi base=1/w exact=False  prop-per-nu 2/8
+positions=id t=w   | Willems support==dominance:False | Psi base=w   exact=False  prop-per-nu 2/8
+positions=id t=w   | Willems support==dominance:False | Psi base=1/w exact=False  prop-per-nu 2/8
+positions=id t=1/w | Willems support==dominance:False | Psi base=w   exact=False  prop-per-nu 2/8
+positions=id t=1/w | Willems support==dominance:False | Psi base=1/w exact=False  prop-per-nu 2/8
+n=4 seed=0
+length check l(w_nu)=|nu| (rev positions): True
+Bruhat check: support of Willems class = {M: leq(nu,M)}? (computed below)
+positions=rev t=w   | Willems support==dominance:True | Psi base=w   exact=False  prop-per-nu 2/16
+positions=rev t=w   | Willems support==dominance:True | Psi base=1/w exact=True  prop-per-nu 16/16
+positions=rev t=1/w | Willems support==dominance:True | Psi base=w   exact=True  prop-per-nu 16/16
+positions=rev t=1/w | Willems support==dominance:True | Psi base=1/w exact=False  prop-per-nu 2/16
+positions=id t=w   | Willems support==dominance:False | Psi base=w   exact=False  prop-per-nu 2/16
+positions=id t=w   | Willems support==dominance:False | Psi base=1/w exact=False  prop-per-nu 2/16
+positions=id t=1/w | Willems support==dominance:False | Psi base=w   exact=False  prop-per-nu 2/16
+positions=id t=1/w | Willems support==dominance:False | Psi base=1/w exact=False  prop-per-nu 2/16
+
+### dfree2 (full chain, AB localisation; all classes from Graham-Willems)
+n=2 seed=0
+X_u support = {M<=u}: True
+AB sign +1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: True
+AB sign -1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: False
+xi^v (chi_T-dual of O_{X_u}) == sum_{x>=v} mu(v,x) O_{X^x}  : True
+mu values on W^P intervals: [-1, 0, 1]  mu==(-1)^{len diff} where nonzero: True
+Psi_{nu,0}(M;1/w)==O_{X^nu}|_M all: True
+Psi_{nu,0}(M;w) ==O_{X^nu}|_M all (neg control): False  #mismatch= 6 / 16
+LEMMA  w_M^2 F_k(M) == cc(k) xi^k(M)  mismatches: 0/16
+chi_T(O_{X_k} . w^2 F_l) == cc(k) delta_{kl}  mismatches: 0/16
+explicit ell_k(e_L) == O_{X_k}|_L w_L^2/(cc(k) eul_L)  mismatches: 0/16
+(i) Psi_{k^c,0}(L^c; w) / O_{X_k}|_L constant in L for every k: True  constants==1: True
+(i-ctrl) same with base 1/w constant per k: 2 / 4
+(ii) cc(L)/(F_L(L)Psi_{L^c,0}(L^c)) == w_L^2/eul_L  mismatches: 0/4
+n=3 seed=0
+X_u support = {M<=u}: True
+AB sign +1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: True
+AB sign -1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: False
+xi^v (chi_T-dual of O_{X_u}) == sum_{x>=v} mu(v,x) O_{X^x}  : True
+mu values on W^P intervals: [-1, 0, 1]  mu==(-1)^{len diff} where nonzero: True
+Psi_{nu,0}(M;1/w)==O_{X^nu}|_M all: True
+Psi_{nu,0}(M;w) ==O_{X^nu}|_M all (neg control): False  #mismatch= 27 / 64
+LEMMA  w_M^2 F_k(M) == cc(k) xi^k(M)  mismatches: 0/64
+chi_T(O_{X_k} . w^2 F_l) == cc(k) delta_{kl}  mismatches: 0/64
+explicit ell_k(e_L) == O_{X_k}|_L w_L^2/(cc(k) eul_L)  mismatches: 0/64
+(i) Psi_{k^c,0}(L^c; w) / O_{X_k}|_L constant in L for every k: True  constants==1: True
+(i-ctrl) same with base 1/w constant per k: 2 / 8
+(ii) cc(L)/(F_L(L)Psi_{L^c,0}(L^c)) == w_L^2/eul_L  mismatches: 0/8
+n=3 seed=7
+X_u support = {M<=u}: True
+AB sign +1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: True
+AB sign -1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: False
+xi^v (chi_T-dual of O_{X_u}) == sum_{x>=v} mu(v,x) O_{X^x}  : True
+mu values on W^P intervals: [-1, 0, 1]  mu==(-1)^{len diff} where nonzero: True
+Psi_{nu,0}(M;1/w)==O_{X^nu}|_M all: True
+Psi_{nu,0}(M;w) ==O_{X^nu}|_M all (neg control): False  #mismatch= 27 / 64
+LEMMA  w_M^2 F_k(M) == cc(k) xi^k(M)  mismatches: 0/64
+chi_T(O_{X_k} . w^2 F_l) == cc(k) delta_{kl}  mismatches: 0/64
+explicit ell_k(e_L) == O_{X_k}|_L w_L^2/(cc(k) eul_L)  mismatches: 0/64
+(i) Psi_{k^c,0}(L^c; w) / O_{X_k}|_L constant in L for every k: True  constants==1: True
+(i-ctrl) same with base 1/w constant per k: 2 / 8
+(ii) cc(L)/(F_L(L)Psi_{L^c,0}(L^c)) == w_L^2/eul_L  mismatches: 0/8
+n=4 seed=3
+X_u support = {M<=u}: True
+AB sign +1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: True
+AB sign -1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: False
+xi^v (chi_T-dual of O_{X_u}) == sum_{x>=v} mu(v,x) O_{X^x}  : True
+mu values on W^P intervals: [-1, 0, 1]  mu==(-1)^{len diff} where nonzero: True
+Psi_{nu,0}(M;1/w)==O_{X^nu}|_M all: True
+Psi_{nu,0}(M;w) ==O_{X^nu}|_M all (neg control): False  #mismatch= 110 / 256
+LEMMA  w_M^2 F_k(M) == cc(k) xi^k(M)  mismatches: 0/256
+chi_T(O_{X_k} . w^2 F_l) == cc(k) delta_{kl}  mismatches: 0/256
+explicit ell_k(e_L) == O_{X_k}|_L w_L^2/(cc(k) eul_L)  mismatches: 0/256
+(i) Psi_{k^c,0}(L^c; w) / O_{X_k}|_L constant in L for every k: True  constants==1: True
+(i-ctrl) same with base 1/w constant per k: 2 / 16
+(ii) cc(L)/(F_L(L)Psi_{L^c,0}(L^c)) == w_L^2/eul_L  mismatches: 0/16
+n=5 seed=0
+X_u support = {M<=u}: True
+AB sign +1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: True
+AB sign -1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: False
+xi^v (chi_T-dual of O_{X_u}) == sum_{x>=v} mu(v,x) O_{X^x}  : True
+mu values on W^P intervals: [-1, 0, 1]  mu==(-1)^{len diff} where nonzero: True
+Psi_{nu,0}(M;1/w)==O_{X^nu}|_M all: True
+Psi_{nu,0}(M;w) ==O_{X^nu}|_M all (neg control): False  #mismatch= 430 / 1024
+LEMMA  w_M^2 F_k(M) == cc(k) xi^k(M)  mismatches: 0/1024
+chi_T(O_{X_k} . w^2 F_l) == cc(k) delta_{kl}  mismatches: 0/1024
+explicit ell_k(e_L) == O_{X_k}|_L w_L^2/(cc(k) eul_L)  mismatches: 0/1024
+(i) Psi_{k^c,0}(L^c; w) / O_{X_k}|_L constant in L for every k: True  constants==1: True
+(i-ctrl) same with base 1/w constant per k: 2 / 32
+(ii) cc(L)/(F_L(L)Psi_{L^c,0}(L^c)) == w_L^2/eul_L  mismatches: 0/32
+
+### dfree3 (left W-action Lemmas A_m/B on geometric cc*xi)
+n=2  G_l := cc(l) xi^l (geometric, Psi/F-free)
+Lemmas A_m(a,b,c)+B(a,b) hold for geometric cc*xi: 8/8 instances pass
+top class: G_[n] supported only at M=[n]: True
+G_[n]([n]) == w^2 F_[n]([n]): True
+n=3  G_l := cc(l) xi^l (geometric, Psi/F-free)
+Lemmas A_m(a,b,c)+B(a,b) hold for geometric cc*xi: 24/24 instances pass
+top class: G_[n] supported only at M=[n]: True
+G_[n]([n]) == w^2 F_[n]([n]): True
+n=4  G_l := cc(l) xi^l (geometric, Psi/F-free)
+Lemmas A_m(a,b,c)+B(a,b) hold for geometric cc*xi: 64/64 instances pass
+top class: G_[n] supported only at M=[n]: True
+G_[n]([n]) == w^2 F_[n]([n]): True

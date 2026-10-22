@@ -1,0 +1,14 @@
+n=2 seed=0
+X_u support = {M<=u}: True
+AB sign +1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: True
+AB sign -1: chi(O)=1  chi(O_{X_u}O_{X^v})=[v<=u] all u,v: False
+xi^v (chi_T-dual of O_{X_u}) == sum_{x>=v} mu(v,x) O_{X^x}  : True
+mu values on W^P intervals: [-1, 0, 1]  mu==(-1)^{len diff} where nonzero: True
+Psi_{nu,0}(M;1/w)==O_{X^nu}|_M all: True
+Psi_{nu,0}(M;w) ==O_{X^nu}|_M all (neg control): False  #mismatch= 6 / 16
+LEMMA  w_M^2 F_k(M) == cc(k) xi^k(M)  mismatches: 0/16
+chi_T(O_{X_k} . w^2 F_l) == cc(k) delta_{kl}  mismatches: 0/16
+explicit ell_k(e_L) == O_{X_k}|_L w_L^2/(cc(k) eul_L)  mismatches: 0/16
+(i) Psi_{k^c,0}(L^c; w) / O_{X_k}|_L constant in L for every k: True  constants==1: True
+(i-ctrl) same with base 1/w constant per k: 2 / 4
+(ii) cc(L)/(F_L(L)Psi_{L^c,0}(L^c)) == w_L^2/eul_L  mismatches: 0/4
