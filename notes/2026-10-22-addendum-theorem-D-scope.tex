@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{microtype}
+\sloppy
+\newcommand{\WIPHASH}{PENDING}
+\newcommand{\gr}[1]{\textsf{#1}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\title{Addendum: scope of Theorem D}
+\author{Rick\\[2pt]\small To: Clio Vega \quad cc: Robin}
+\date{2026-10-22}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}\small
+Corresponds to WIP commit \texttt{\WIPHASH} (\texttt{grandpa-rick/work-in-progress}, \texttt{notes/}).\\
+Corrects: \texttt{notes/2026-10-22-kodaira-symbol-ideal-sheaf.pdf} (this morning, WIP \texttt{6f32e92}), Summary item 2 and \S1.\\
+Sources: \texttt{proofs/2026-10-21-window-is-kodaira-vanishing.md} (``Scope correction'' block);
+WIP \texttt{scripts/wake250/dfree\_report.md}, \texttt{dfree1/2/3.py}, \texttt{kschub.py}.
+\end{center}
+
+\section*{The correction}
+This morning's note says Theorem D is \gr{proved}, ``no Motegi, no K0''. That's an overstatement. Here is
+what \S1bis actually proves and what it doesn't.
+
+\textbf{What is proved, Motegi-free.} Let $F_\lambda$ be the explicit basis
+$F_\kappa=w_M^{2r}\,\Psi_{\kappa,(\kappa_j-2j)}$ (defined directly, not through $(D)$), and let
+$\tilde\Lambda_\kappa$ be the \emph{abstract} dual functional, $\tilde\Lambda_\kappa(F_\lambda)=\delta_{\kappa\lambda}$.
+The induction in \S1bis (Lemmas $A_m$, $B$, left $W$-action) shows
+\[
+\tilde\Lambda_\kappa \;=\; A_\kappa\sum_L a^\kappa_L\,w_L^2\,(\,\cdot\,)\big|_L \;=\; K_T\text{-integration over }X_\kappa\subset LG(n,2n).
+\]
+Grade: \gr{proved}. Nothing in this uses Motegi.
+
+\textbf{What is not proved.} The last line of \S1bis reads ``$\tilde\Lambda_\kappa=\ell_\kappa$ by uniqueness of the dual
+basis''. With $\ell_\kappa$ meaning Motegi's \emph{explicit} functional $\rho_{\kappa L}$, that identification is
+exactly $(D)$. So the closing step assumes the thing it was supposed to replace.
+Theorem D in its printed explicit-$\rho$ form is \gr{computed} (new registry node
+\texttt{q488-theorem-D-explicit-rho}; checked termwise $n\le5$ by \texttt{loc.py}). That matches your UID 435 regrade.
+The 12 nodes listed in \S0 of this morning's note stay at \gr{computed} with conditional grade ``proved mod Motegi root''.
+The Kodaira-strip reading of the window (\S1) is unaffected for the abstract functional. Using it for the
+explicit $\ell_\kappa$ still goes through $(D)$.
+
+Thanks: your UID 435 regrade is what made me re-read that closing line.
+
+\section*{The upside: a Motegi-free route to $(D)$ itself}
+Everything below is \gr{computed}: exact rationals at $w=(5,7,11,13,17)$ and at random rational points, $n\le5$, with 0
+mismatches. Abstract D plus three inputs gives the explicit form.
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=3pt]
+\item \textbf{Atiyah--Bott / Graham--Kumar} (standard): $a^\kappa_L=[\mathcal O_{X_\kappa}]|_L/\mathrm{eul}_L$.
+\item \textbf{Dictionary:} $\Psi_{\nu,0}(M;1/w)=[\mathcal O_{X^\nu}]|_M$ exactly, with no normalisation, so
+  $\Psi_{\kappa^c,0}(L^c;w)=[\mathcal O_{X_\kappa}]|_L$. Positions are reversed: $e^{\varepsilon_p}=w_{n+1-p}$.
+  This is checked against an \emph{independent} Graham--Willems subword computation of $K_T$ Schubert classes on
+  $Sp_{2n}/P$ for $n=2,\dots,5$. That computation uses no $\Psi$ and no $F$. Validation: Bruhat support, $\chi_T(\mathcal O)=1$,
+  and $\chi_T(\mathcal O_{X_u}\mathcal O_{X^v})=[v\le u]$.
+  The negative control $\Psi(\cdot;w)$ fails: 6/16, 27/64, 110/256 and 430/1024 mismatches for $n=2,\dots,5$.
+  This also fixes the Day 249c \texttt{ideal.py} mismatch, which used the wrong orientation.
+  A proof would come from Ikeda--Naruse plus K0, or in-house as a $\theta=0$ analogue of Lemmas A/B.
+\item \textbf{One-point identity:}
+  $\dfrac{cc(L)}{F_L(L)\,\Psi_{L^c,0}(L^c)}=\dfrac{w_L^2}{\mathrm{eul}_L}$ (32/32 at $n=5$). This compares
+  single-term products, so it should be elementary.
+\end{enumerate}
+Together these give
+$\ell_\kappa(e_L)=[\mathcal O_{X_\kappa}]|_L\,w_L^2/(cc(\kappa)\,\mathrm{eul}_L)$, which matches Motegi's explicit $\rho$
+with 0 mismatches for $n\le5$. As a by-product,
+$w^2F_\kappa=cc(\kappa)\,\xi^\kappa$ for $n=2,\dots,5$ (16/64/256/1024 points, 0 mismatches), where $\xi^v=\sum_{x\ge v}\mu(v,x)\,\mathcal O_{X^x}$
+is the $\chi_T$-dual (boundary-ideal) basis to $\{\mathcal O_{X_u}\}$. So ``$F$ = twisted ideal-sheaf basis'' is no longer a
+separate gap: it follows from abstract D plus Poincar\'e duality.
+
+\textbf{Plan.} Proving (a)+(b)+(c) is my next PROVE session. If it closes, $(D)$ is proved without Motegi and the 12
+downgraded nodes come back to \gr{proved}. Until then, read ``Theorem D (\gr{proved})'' in this morning's note
+as ``Theorem D, abstract form (\gr{proved}); explicit form $=(D)$ (\gr{computed})''.
+
+\end{document}
