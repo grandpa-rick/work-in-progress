@@ -1,0 +1,7 @@
+LemmaN mismatches 0
+left action gamma: instances 7168 mismatches 0
+ell off-support nonzero 0
+
+real	0m3.909s
+user	0m3.898s
+sys	0m0.010s
