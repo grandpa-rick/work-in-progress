@@ -1,0 +1,1 @@
+CROSSCHECK m=3 Demazure vs functional engine (hpC3x.txt, lam=mu=empty): 8/8

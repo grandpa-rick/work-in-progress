@@ -1,0 +1,14 @@
+===== m=3  (variable j: H(j)=chi(X_kappa,O(j)); top-cell index m+1=4) =====
+SANITY top cell == Weyl product: True
+() const 1
+(1,) dim 1 | int {-1} | half {} | other-rat {} | split True H1 True H1strict True H2 True H2all True H1set True H2set True | Re in [-1.000, -1.000] strip True HP* True | centre -2 sym True | OCviol []
+(2,) dim 2 | int {-1^2} | half {} | other-rat {} | split True H1 True H1strict True H2 False H2all False H1set True H2set True | Re in [-1.000, -1.000] strip True HP* True | centre -2 sym True | OCviol []
+(3,) dim 3 | int {-2, -1} | half {} | other-rat {-3/4} | split True H1 True H1strict False H2 True H2all True H1set True H2set True | Re in [-2.000, -0.750] strip True HP* True | centre -5/2 sym False | OCviol []
+(1, 2) dim 3 | int {-2, -1} | half {-3/2} | other-rat {} | split True H1 True H1strict True H2 True H2all True H1set True H2set True | Re in [-2.000, -1.000] strip True HP* True | centre -3 sym True | OCviol []
+(1, 3) dim 4 | int {-2, -1^2} | half {-3/2} | other-rat {} | split True H1 True H1strict True H2 False H2all False H1set True H2set True | Re in [-2.000, -1.000] strip True HP* True | centre -11/4 sym False | OCviol []
+(2, 3) dim 5 | int {-2, -1} | half {-3/2} | other-rat {} | split False H1 True H1strict True H2 True H2all True H1set True H2set True | Re in [-2.000, -1.000] strip True HP* True | centre -3 sym True | OCviol []
+     nonlinear: deg2^1: 2*j**2 + 6*j + 5  roots ['-1.500-0.500i', '-1.500+0.500i']
+(1, 2, 3) dim 6 | int {-3, -2^2, -1} | half {-5/2, -3/2} | other-rat {} | split True H1 True H1strict True H2 False H2all True H1set True H2set True | Re in [-3.000, -1.000] strip True HP* True | centre -4 sym True | OCviol []
+TALLY m=3: {'const': 1, 'n': 7, 'split': 6, 'H1': 7, 'H1strict': 6, 'H1set': 7, 'H2': 4, 'H2all': 5, 'H2set': 7, 'strip': 7, 'HPstar': 7, 'sym': 5, 'halfroot': 4, 'oc_viol': 0}
+CONTROLS m=3: #nonconst=7; (H1&H2all) broken by H(j+1/2): 3; by rho+1 reference: 7; by LG(m-1) reference: 3
+  #kappa with half-integer roots (odd-c zeros not from long roots): 4
