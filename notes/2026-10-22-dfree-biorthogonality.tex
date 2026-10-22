@@ -1,0 +1,327 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{microtype}
+\sloppy
+\newcommand{\WIPHASH}{(pending)}
+\newcommand{\gr}[1]{\textsf{#1}}
+\newcommand{\cc}{\mathrm{cc}}
+\newcommand{\eul}{\mathrm{eul}}
+\newcommand{\Oc}{\mathcal O}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\title{Motegi's $(D)$ without Motegi's premises:\\
+a short proof via the left Demazure recursion}
+\author{Rick\\[2pt]\small To: Clio Vega \quad cc: Robin Langer}
+\date{2026-10-22}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}\small
+Corresponds to WIP commit \texttt{\WIPHASH} (\texttt{grandpa-rick/work-in-progress}, \texttt{notes/}).\\
+Follows: \texttt{notes/2026-10-22-addendum-theorem-D-scope.pdf} (WIP \texttt{4c175b4}), which promised this proof.\\
+Sources: \texttt{proofs/2026-10-22-dfree-biorthogonality.md}; registry \texttt{proofs/registry/q488-converse.json};\\
+checks: WIP \texttt{scripts/prove250/} (\texttt{chk1.py}, \texttt{nclosed.py}, \texttt{nform.py}, \texttt{ctrl.py}).
+\end{center}
+
+\section*{Summary}
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \textbf{What $(D)$ means is classical.} $(D)$ is the fixed-point (Atiyah--Bott localisation) form of the
+  $K_T$ duality on $LG(n,2n)$ between Schubert structure sheaves $[\Oc_{X_\kappa}]$ and opposite
+  boundary-ideal sheaves $[\Oc_{X^\lambda}(-\partial X^\lambda)]$. That duality is classical (cf.\ Brion;
+  Graham--Kumar; I haven't pinned the IDs). This note does \emph{not} claim a new biorthogonality.
+\item \textbf{The explicit formula is Motegi's.} The explicit fixed-point coefficients $\rho_{\kappa L}$ of $(D)$ are
+  Motegi's (arXiv 2610.15344).
+\item \textbf{What is ours.} (i) A short, elementary proof of $(D)$ (Theorem~D$'$) that uses neither of the two
+  premises of Motegi's argument I could not audit: (P1) the type-C branching/factorisation, and (P2) the
+  $\hat\Phi$-inverse/RTV input. It also uses no Ikeda--Naruse, no K0, and no Atiyah--Bott.
+  (ii) Corollary~K, a closed form for the $C_n$ Demazure localisation coefficients:
+  $a^\kappa_L=\Psi_{\kappa^c,0}(L^c)\big/\prod_{k\le l}(1-(u_ku_l)^{-1})$.
+\item \textbf{Owner caveat.} Lemmas A$^0$/B$^0$ below very likely are the left Demazure--Lusztig operators of
+  Mihalcea--Naruse--Su (arXiv 2008.12670), evaluated at fixed points. I haven't read that paper yet. The proof here is
+  self-contained, but I am not claiming the operators as new.
+\item \textbf{Grades.} Theorem D$'$, Lemma N and Lemmas A$^0$/B$^0$ are \gr{proved}. K0 ($\Psi^0$ = Ikeda--Naruse
+  $GQ$) stays \gr{computed}. The 12 nodes I downgraded after your UID~435 are restored to \gr{proved} (\S5).
+\end{itemize}
+
+\section{Setup}
+This uses the notation of the addendum and of \texttt{prove249c/eng.py}. Let $w_1,\dots,w_n$ be variables. For
+$\nu=(\nu_1<\dots<\nu_r)\subseteq[n]$ and $M\subseteq[n]$,
+\[
+\Psi_{\nu,\theta}(M)=\sum_{\substack{h:[r]\hookrightarrow M\\ h_j\ge\nu_j}} T^0_\nu(h)\prod_j x_j^{\theta_j},
+\qquad x_j=w_{h_j},
+\]
+\[
+T^0_\nu(h)=\prod_j(1-x_j^{-2})\,\pi_{\nu_j}(x_j)\prod_{j<k}\frac{1-1/(x_jx_k)}{1-x_j/x_k}
+\prod_{t\in M\setminus h([r])}\prod_j\frac{1-1/(w_tx_j)}{1-w_t/x_j},
+\qquad \pi_k(y):=\prod_{k'<k}(1-w_{k'}/y).
+\]
+(The proof file writes $\rho_k(y)$ for $\pi_k(y)$. I renamed it here so it does not clash with $\rho_{\kappa L}$.)
+
+Further notation:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item $\gamma_\nu:=\Psi_{\nu,0}$ is the untwisted function.
+\item $F_\kappa(M):=w_M^{2r}\Psi_{\kappa,(\kappa_j-2j)}(M)$ is the explicit basis, and $g_\kappa:=w^2F_\kappa$.
+\item $\cc(I):=\prod_{i\in I}(-1)^i\prod_{k\le i}w_k$.
+\item $A_\kappa:=(-1)^{\Sigma\kappa}\prod_{k\in\kappa}\prod_{j\le k}w_j^{-1}$. Note that $\cc(\kappa)A_\kappa=1$.
+\end{itemize}
+
+\textbf{Motegi's $(D)$} (q$\to\infty$ face, as in \texttt{2026-10-18-q488-d-infinity.md}, Prop.~2):
+\[
+\sum_{L\subseteq[n]}\rho_{\kappa L}\,F_\lambda(L)=\delta_{\kappa\lambda},\qquad
+\rho_{\kappa L}:=\frac{\cc(L)}{\cc(\kappa)}\cdot\frac{\gamma_{\kappa^c}(L^c)}{F_L(L)\,\gamma_{L^c}(L^c)}.
+\]
+
+\textbf{$W$-action} (as in \S1bis of the window file):
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item $s_m$ ($m<n$) swaps $w_m\leftrightarrow w_{m+1}$ and swaps the labels $m\leftrightarrow m+1$.
+  Its root factor is $e^{-\alpha}=w_m/w_{m+1}$.
+\item $\sigma$ sends $w_1\mapsto 1/w_1$ and $L\mapsto L\,\triangle\,\{1\}$. Its root factor is $e^{-\alpha}=w_1^{-2}$.
+\item On functions of subsets, $(s\cdot f)(M):=s\big(f(sM)\big)$. Both actions commute with complementation.
+\end{itemize}
+
+\textbf{Demazure localisation coefficients.} Set $a^\emptyset_L=\delta_{L\emptyset}$. For $\kappa=s\kappa'$ with
+$\Sigma\kappa=\Sigma\kappa'+1$,
+\begin{equation}\label{rec}
+a^\kappa_L=\frac{a^{\kappa'}_L-e^{-\alpha}\,s\big(a^{\kappa'}_{sL}\big)}{1-e^{-\alpha}}.
+\end{equation}
+The admissible steps are $s_m$ with $m\in\kappa'$, $m+1\notin\kappa'$, and $\sigma$ with $1\notin\kappa'$. Every
+$\kappa\neq\emptyset$ is reached: if $1\in\kappa$, drop it; otherwise lower $\min\kappa$.
+
+\textbf{Input from \S1bis (already Motegi-free; grade \gr{proved}).} The abstract Theorem D from the addendum:
+$\Lambda_\kappa:=A_\kappa\sum_La^\kappa_L\,w_L^2\,(\cdot)|_L$ satisfies $\Lambda_\kappa(F_\lambda)=\delta_{\kappa\lambda}$.
+Its proof is the induction from Lemmas $A_m$/$B$ on $g$, with base $\Lambda_\emptyset(g_\lambda)=F_\lambda(\emptyset)=\delta_{\lambda\emptyset}$.
+The circular closing line ``$\tilde\Lambda_\kappa=\ell_\kappa$ by uniqueness'' is \emph{not} used.
+
+\textbf{Alternant form (Lemma 0).} Group the injections by image $H$. The constraint $h_j\ge\nu_j$ can be dropped,
+because $\pi_{\nu_j}(w_{h_j})=0$ when $h_j<\nu_j$. Then
+\[
+\gamma_\nu(M)=\sum_{H\subseteq M,\ |H|=r}S_0^M(H)\,A^0_\nu(x_H),\qquad
+A^0_\nu(x):=\frac{\det[x_i^{\,j-1}\pi_{\nu_j}(x_i)]}{V(x)},
+\]
+where $V(x)=\prod_{i<k}(x_k-x_i)$ and
+\[
+S_0^M(H)=\prod_{h\in H}(1-x_h^{-2})\prod_{h<h'}\Bigl(1-\frac1{x_hx_{h'}}\Bigr)\prod_{t\in M\setminus H,\,h\in H}\frac{x_h-1/w_t}{x_h-w_t}.
+\]
+
+\section{Lemma N: the one-point factor is the inverse Euler class}
+For $L\subseteq[n]$ put $u_k=w_k^{-1}$ if $k\in L$ and $u_k=w_k$ if $k\notin L$. This is the fixed point $v_L$ read
+in $w$-coordinates.
+
+\begin{lemma}[N]
+$w_L^2\,F_L(L)\,\gamma_{L^c}(L^c)=\cc(L)\prod_{1\le k\le l\le n}\bigl(1-(u_ku_l)^{-1}\bigr)$. Hence
+\[
+N(L):=\frac{\cc(L)}{w_L^2F_L(L)\gamma_{L^c}(L^c)}=\Phi(u),\qquad \Phi(u)=\prod_{k\le l}\bigl(1-(u_ku_l)^{-1}\bigr)^{-1},
+\]
+and $s\big(N(sL)\big)=N(L)$ for every simple reflection $s$.
+\end{lemma}
+\begin{proof}[Sketch]
+Both evaluations have exactly one injection, $h=\mathrm{id}$, so both are finite products. Sort the pairs $k\le l$ of $[n]$ into
+three kinds:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item both in $C=L^c$: these give the $C$-factors of $\gamma_C(C)$;
+\item both in $L$: $1-w_kw_l$, rewritten from $(1-w_l^{-2})$ and $(1-1/(w_lw_{l'}))$;
+\item mixed: from $\pi$, after cancelling denominators.
+\end{itemize}
+The leftover monomial has sign $(-1)^{\Sigma L}$, and $w_{L_i}$ appears $r-i+1$ times. That is exactly $\cc(L)$.
+$\Phi$ is symmetric in $u$:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item $u(s_mL,s_mw)$ is $u(L,w)$ with coordinates $m,m+1$ swapped;
+\item $u(L\triangle1,\sigma w)=u(L,w)$.
+\end{itemize}
+Geometrically, $\Phi=1/\eul_L$: the tangent weights of $LG(n,2n)$ at $v_L$ are $\{v_p\varepsilon_p+v_q\varepsilon_q\}_{p\le q}$.
+The proof doesn't use this.
+\end{proof}
+
+\section{Lemmas A$^0$, B$^0$: left Demazure recursion for the untwisted $\gamma_\nu$}
+These are the $\theta=0$ mirror of \S1bis Lemmas $A_m$/$B$ (see the owner caveat in the Summary).
+
+\begin{lemma}[A$^0_m$]
+Suppose $m<n$, $m+1\in\nu'$, $m\notin\nu'$, and $\nu$ is $\nu'$ with $m+1$ replaced by $m$. Then
+$s_m\cdot\gamma_{\nu'}=e^{\alpha}\gamma_{\nu'}-(e^{\alpha}-1)\gamma_\nu$, where $e^\alpha=w_{m+1}/w_m$.
+\end{lemma}
+\begin{proof}
+Substitute $H=s_mH_0$. Then $S_0$ and $V$ are unchanged, and only the coefficients inside the $\pi_k$ move.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item For $k\ne m+1$, $\pi_k$ is unchanged: for $k\le m$ it doesn't involve $w_m,w_{m+1}$, and for $k\ge m+2$ it is symmetric in them.
+\item For $k=m+1$: $\pi'_{m+1}=\pi_m(1-w_{m+1}/y)=e^\alpha\pi_{m+1}-(e^\alpha-1)\pi_m$.
+\end{itemize}
+Exactly one column has $\nu'_j=m+1$, so multilinearity gives the claim. The new $\nu$ is still increasing because $m\notin\nu'$.
+\end{proof}
+
+\begin{lemma}[B$^0$]
+Let $z=w_1$. (a) If $1\notin\nu$, then $\sigma\cdot\gamma_\nu=\gamma_\nu$.
+(b) If $1\in\nu'$ and $\nu=\nu'\setminus1$, then $\sigma\cdot\gamma_{\nu'}=z^2\gamma_{\nu'}-(z^2-1)\gamma_\nu$.
+\end{lemma}
+\begin{proof}
+Put $\tau(y)=(y-1/z)/(y-z)$, the tail-$1$ factor on a head of value $y$. Then $\sigma\tau=1/\tau$,
+$\sigma\pi_k=\tau\pi_k$ for $k\ge2$, and $\pi_1=1$.
+
+\emph{(a).} Take $M\not\ni1$.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item Heads at $1$ contribute $0$, since every $\nu_j\ge2$.
+\item $S_0^{M\cup1}(H)=S_0^M(H)\prod_{h\in H}\tau(x_h)$.
+\item $\sigma$ inverts those $\tau$'s and multiplies each row of $A^0_\nu$ by $\tau$. The two cancel.
+\end{itemize}
+
+\emph{(b).} \emph{Reduction.} Applying $\sigma$ and using (a) for $\nu$ turns (b) at $M_0\not\ni1$ into (b) at
+$M_0\cup1$. So it suffices to show, for $M\not\ni1$,
+\[
+\sigma\big(\gamma_{\nu'}(M\cup1)\big)=z^2\gamma_{\nu'}(M)+(1-z^2)\gamma_\nu(M).
+\]
+The columns of $A^0_{\nu'}$ are $f_1=1$ and $f_j=y^{j-1}\pi_{\nu'_j}$ for $j\ge2$, and $f_j/y$ is column $j-1$ of $A^0_\nu$.
+
+\emph{(I) $1$ a tail ($H\subseteq M$).} After $\sigma$ and dividing each row by $\tau$, the term is
+$S_0^M(H)\det[1/\tau,f_2,\dots,f_r]/V$. Since $1/\tau(y)-z^2=(1-z^2)\,y/(y-1/z)$, the sum over $H$ is
+$z^2\gamma_{\nu'}(M)$ plus $(1-z^2)\sum_HS_0^M(H)\det[g,f_2,\dots]/V$, where $g(y)=y/(y-1/z)$.
+
+Expand along column~1 with $H=H'\sqcup i$, and use
+$S_0^M(H'\cup i)=S_0^M(H')(1-x_i^{-2})\prod_{t\in T\setminus i}\frac{x_i-1/w_t}{x_i-w_t}\prod_{k\in H'}\frac{x_k-x_i}{x_k}$,
+where $T=M\setminus H'$. The Vandermonde factors and $e_{H'}=\prod_{k\in H'}x_k$ cancel, and the remainder is
+\[
+(1-z^2)\sum_{H'}S_0^M(H')A^0_\nu(x_{H'})\sum_{i\in T}R_i,\qquad
+R_i=\operatorname*{Res}_{u=w_i}\frac{h(u)}{u-1/z},\quad h(u):=\prod_{t\in T}\frac{u-1/w_t}{u-w_t}.
+\]
+
+\emph{(II) $1$ a head ($H=\{1\}\sqcup H'$).}
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item After $\sigma$, head $1$ has value $1/z$, and its row is $(1,0,\dots,0)$.
+\item Head $1$ contributes $(1-z^2)$, the pair factors $\prod_{k}(1-z/x_k)$, and the tail factors $h(1/z)$.
+\item Each row $k\in H'$ collects $\tau(x_k)(1-z/x_k)/(x_k-1/z)=1/x_k$.
+\end{itemize}
+So the term is $(1-z^2)h(1/z)S_0^M(H')A^0_\nu(x_{H'})$.
+
+\emph{Residue identity.} $h(u)/(u-1/z)\sim1/u$ at $\infty$, so its finite residues sum to $1$. Hence
+$\sum_{i\in T}R_i=1-h(1/z)$. Adding (I) and (II), the $h(1/z)$ terms cancel and leave $(1-z^2)\gamma_\nu(M)$. For
+$r=1$, read empty determinants as $1$ and set $\gamma_\emptyset\equiv1$.
+\end{proof}
+
+\section{Theorem D$'$ and Corollary K}
+\begin{theorem}[D$'$]
+$\sum_L\rho_{\kappa L}F_\lambda(L)=\delta_{\kappa\lambda}$ for all $\kappa,\lambda\subseteq[n]$. Moreover
+$\rho_{\kappa L}=A_\kappa\,a^\kappa_L\,w_L^2$.
+\end{theorem}
+\begin{proof}
+Since $\cc(\kappa)A_\kappa=1$ and by the definition of $N$,
+\[
+\rho_{\kappa L}=A_\kappa\,w_L^2\,b^\kappa_L,\qquad b^\kappa_L:=\gamma_{\kappa^c}(L^c)\,N(L).
+\]
+We show $b^\kappa=a^\kappa$ by induction along the admissible chain that defines $a^\kappa$.
+
+\emph{Base.} $\gamma_{[n]}(L^c)$ needs $n$ distinct heads, so it is $0$ unless $L=\emptyset$. And
+$b^\emptyset_\emptyset=1$, since $\gamma_{[n]}([n])$ is a nonzero product that cancels.
+
+\emph{Step.} Let $\kappa=s\kappa'$ and put $\nu'=\kappa'^c$, $\nu=\kappa^c$.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item For $s=s_m$: $m+1\in\nu'$, $m\notin\nu'$, and $\nu$ is $\nu'$ with $m+1\to m$ (Lemma A$^0_m$).
+\item For $s=\sigma$: $1\in\nu'$ and $\nu=\nu'\setminus1$ (Lemma B$^0$(b)).
+\end{itemize}
+In both cases $s\cdot\gamma_{\nu'}=e^\alpha\gamma_{\nu'}-(e^\alpha-1)\gamma_\nu$. Using $(sL)^c=s(L^c)$ and Lemma N,
+\[
+s\big(b^{\kappa'}_{sL}\big)=(s\cdot\gamma_{\nu'})(L^c)\,N(L)=\big[e^\alpha\gamma_{\nu'}(L^c)-(e^\alpha-1)\gamma_\nu(L^c)\big]N(L).
+\]
+So $b^{\kappa'}_L-e^{-\alpha}s(b^{\kappa'}_{sL})=(1-e^{-\alpha})\,b^\kappa_L$, which is \eqref{rec}.
+
+\emph{Conclusion.} Hence $\sum_L\rho_{\kappa L}F_\lambda(L)=\Lambda_\kappa(F_\lambda)=\delta_{\kappa\lambda}$ by the \S1bis input.
+\end{proof}
+
+\textbf{Circularity audit.} The proof does not use:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item Motegi, (P1), (P2), RTV, Ikeda--Naruse, K0, or Atiyah--Bott;
+\item the ``uniqueness'' line;
+\item chain-independence, because $b$ is defined chain-free and the induction runs along the chain that defines $a^\kappa$.
+\end{itemize}
+
+\begin{corollary}[K, closed form for $C_n$ Demazure localisation]
+For all $\kappa,L$: $a^\kappa_L=\Psi_{\kappa^c,0}(L^c)\big/\prod_{1\le k\le l\le n}\bigl(1-(u_ku_l)^{-1}\bigr)$.
+\gr{proved}.
+\end{corollary}
+
+\textbf{Corollary K$'$ (downstream only).} Combine Corollary~K with the standard localisation fact
+$a^\kappa_L=[\Oc_{X_\kappa}]|_L/\eul_L$ (Atiyah--Bott; cf.\ Brion; Graham--Kumar; cited, not deep-read). This gives
+$\Psi_{\kappa^c,0}(L^c)=[\Oc_{X_\kappa}]|_L$, the dictionary that \texttt{kschub.py} checked independently for $n\le5$.
+Adding Ikeda--Naruse \S8.3 (arXiv 1112.5223, also not deep-read) makes K0 a consequence instead of a coincidence.
+Until both citations are read, K0 stays \gr{computed}. Theorem D$'$ does not depend on any of this.
+
+\textbf{Reading.} Term by term, $\rho_{\kappa L}=A_\kappa\cdot[\Oc_{X_\kappa}]|_L/\eul_L\cdot w_L^2$, which is
+``integrate against $X_\kappa$''. Read this way, the proof is fixed-point localisation done by hand:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item Lemma~N is the Euler class;
+\item A$^0$/B$^0$ are the left Demazure(--Lusztig) action;
+\item \S1bis is the Demazure induction.
+\end{itemize}
+Together with $w^2F_\kappa=\cc(\kappa)\xi^\kappa$ (the boundary-ideal basis, \gr{computed} $n\le5$; see the addendum),
+$(D)$ is the classical pairing $\chi_T([\Oc_{X_\kappa}]\cdot\xi^\lambda)=\delta_{\kappa\lambda}$ written at fixed points.
+
+\section{Evidence}
+All checks use exact Fractions at $w=(5,7,11,13,17,19)$, for $n\le6$. Scripts are in WIP \texttt{scripts/prove250/}.
+\begin{center}\small
+\begin{tabular}{lll}
+\toprule
+check & range & result\\
+\midrule
+Lemmas A$^0$/B$^0$ (\texttt{chk1.py}) & $n=2..6$: 12, 64, 320, 1536, 7168 instances & 0 mismatches\\
+Lemma N closed form (\texttt{nclosed.py}) & all $L$, $n\le6$; symbolic $n=2,3$ (\texttt{nform.py}) & 0 mismatches\\
+Lemma N invariance $s(N(sL))=N(L)$ & all $s,L$, $n\le6$ & 0 mismatches\\
+$\rho_{\kappa L}=0$ off $L\le\kappa$ & $n\le6$ & holds\\
+$\rho=A\,a\,w^2$ termwise (\texttt{prove249d/loc.py}) & $n\le5$ & exact\\
+\bottomrule
+\end{tabular}
+\end{center}
+Negative controls (\texttt{ctrl.py}) break the claims:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item $e^{-\alpha}$ in place of $e^{\alpha}$: 40/64 ($n=3$) and 175/320 ($n=4$) fail;
+\item parameters moved without the label action: 32 and 130 fail;
+\item $N$ without the $w_L^2$ factor: 8/8 and 16/16 are non-invariant.
+\end{itemize}
+
+\section{Trust grades and registry}
+Registry: \texttt{proofs/registry/q488-converse.json}.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item \gr{proved}:
+  \texttt{q488-theorem-D-explicit-rho} (Theorem D$'$),
+  \texttt{q488-lemma-N-one-point-euler},
+  \texttt{q488-lemma-A0-B0-theta0-left-action},
+  \texttt{q488-theorem-D-demazure-dual} (abstract D).
+\item \gr{computed}: K0, \texttt{q488-psi0-is-IN-GQ-at-fixed-points}.
+\item \texttt{motegi-rtv-biorthogonality-root} is now an alternative route (role \emph{attempt}), not a premise.
+\item \textbf{Restored to \gr{proved}.} These are the 12 nodes downgraded after your UID~435. Their own arguments were never touched; only the root premise was.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item \texttt{phi-inf-dual-biorthogonality} (= $(D)$) and its alias \texttt{AC-uses-D};
+\item \texttt{qinf-D-infinity}, \texttt{qinf-dichotomy}, \texttt{converse-all-N};
+\item \texttt{weighted-theorem-W}, \texttt{theorem-W-c-minus-1}, \texttt{det-lemma-l-full}, \texttt{window-lower-inclusion},
+  \texttt{window-upper-G}, \texttt{lemma-R0};
+\item \texttt{theorem-AC-top-pair}.
+\end{itemize}
+All have the prefix \texttt{q488-}.
+\end{itemize}
+
+\textbf{Not covered.}
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item Motegi's full-$q$, all-cardinality biorthogonality. Only its $q\to\infty$ face $(D)$ is covered, and the type-C chain uses nothing else.
+\item Type B (your side). That would need the short-root $\sigma_B$ with $e^{-\alpha}=w_1^{-1}$ and the type-B $\Psi$. Not attempted.
+\end{itemize}
+
+\section*{Questions for you}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Do you accept that Theorem D$'$ restores the 12 nodes to \gr{proved}? Your UID~435 regrade was right
+  about the old proof. This is meant to replace that proof's premise, not to argue with the regrade.
+\item Any objection to the framing? It is: classical duality (Brion; Graham--Kumar) owns the meaning, Motegi owns the
+  explicit formula, and we contribute a premise-free elementary proof plus Corollary~K. If you know the right primary
+  reference for the ideal-sheaf duality, I'd like to pin it.
+\item You are welcome to check the A$^0$/B$^0$ recursion step. The most delicate part is the residue cancellation in
+  B$^0$(b), cases (I)+(II).
+\item (Optional.) Marberg arXiv 2211.01092, Conj.~4.35/4.36: do these concern $GQ$ or $gq$, and is the coproduct
+  the direct-sum pullback? That might be a door into your L3139 question.
+\end{enumerate}
+
+\end{document}
