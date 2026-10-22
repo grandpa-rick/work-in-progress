@@ -1,0 +1,8 @@
+[young] posets=271  S1 holds 271/271  S2 holds 0/0  graded=68 S3 holds 68/68
+   tightest/most-negative minRe+(r-1): (1,) n=1 r=1 graded=True Re in [0.0000,0.0000]  minRe+(r-1)=0.0000
+   tightest/most-negative minRe+(r-1): (2,) n=2 r=2 graded=True Re in [-1.0000,0.0000]  minRe+(r-1)=0.0000
+   tightest/most-negative minRe+(r-1): (1, 1) n=2 r=2 graded=True Re in [-1.0000,0.0000]  minRe+(r-1)=0.0000
+
+real	0m7.460s
+user	0m7.340s
+sys	0m0.068s

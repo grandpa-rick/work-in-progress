@@ -1,0 +1,3 @@
+m=3: LS-model (shifted, diag even, N=2j) matches 8/8 on j=0..min(d+1,2); Young-diagram control matches 4/8; bad []
+m=4: LS-model (shifted, diag even, N=2j) matches 16/16 on j=0..min(d+1,2); Young-diagram control matches 5/16; bad []
+m=5: LS-model (shifted, diag even, N=2j) matches 32/32 on j=0..min(d+1,2); Young-diagram control matches 6/32; bad []
