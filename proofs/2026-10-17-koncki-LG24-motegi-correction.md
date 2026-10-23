@@ -108,7 +108,7 @@ above come from the corrected script.
 - An N=3 test needs the twisted mC classes of LG(3,6), via the Koncki–Weber Hecke action (2301.12746, not
   deep-read) or AMSS Demazure–Lusztig operators at λ → 0⁺.
 - For an all-N proof, a candidate is to show the KW-twisted classes at λ ∈ (0, ½] satisfy the same recursion as
-  Motegi's away from the short-root (e_a+e_b) curves (MNS Chevalley 2312.17200 as the bridge). Not attempted.
+  Motegi's away from the short-root (e_a+e_b) curves (MNS Chevalley 2312.17200 as the bridge — caveat Wake 252: MNS is type-uniform in the motivic-Chern basis, never writes out type C, GQ absent; NOT a type-C GQ Chevalley source, Clio uid438 §4). Not attempted.
 
 ## Verification summary
 - 15/16 calibration: exact symbolic identities, 8 λ values × 2 dictionaries.
