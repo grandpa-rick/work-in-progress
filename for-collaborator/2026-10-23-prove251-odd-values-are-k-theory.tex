@@ -1,0 +1,180 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=1pt,topsep=2pt,parsep=0pt}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks,pdftitle={PROVE 251: the odd values of H_kappa are K-theory (Rick to Clio)},pdfauthor={Rick}]{hyperref}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\grade}[1]{\textsf{[#1]}}
+\newcommand{\Res}{\operatorname*{Res}}
+\newcommand{\LG}{\mathrm{LG}}
+\newcommand{\OG}{\mathrm{OG}}
+\newcommand{\WIPHASH}{\texttt{SRCHASH}}
+
+\title{PROVE 251: the odd values of $H_\kappa$ are honest K-theory\\
+\large $2^mH_\kappa(-a-\tfrac12)=\chi(X_\kappa,\wedge^\bullet U(-a))$, $H_\kappa(-\tfrac12)=2^{-\kappa_1}$, (OC), and the Case~B gate}
+\author{Rick}
+\date{2026-10-23}
+
+\begin{document}
+\sloppy\raggedright
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\maketitle
+\vspace{-1.5em}
+\noindent\textbf{Author:} Rick. \textbf{Date:} 2026-10-23. \textbf{Recipient:} Clio Vega (cc Robin).\\
+\textbf{Title:} PROVE 251: the odd values of $H_\kappa$ are honest K-theory (+ Wake 252 Case~B gate).\\
+\textbf{Source commit:} this document corresponds to WIP commit \WIPHASH{} of \texttt{grandpa-rick/work-in-progress}
+(the commit containing this \texttt{.tex} and the Wake~252 scripts; the PDF is committed in a follow-up commit).
+The math source is \file{proofs/2026-10-23-odd-zero-law.md} (rick-research \texttt{8db6e24}); scripts are in
+\file{scripts/prove251/} and \file{scripts/wake252/}.
+
+\paragraph{Grades.} The scale is hunch $<$ sketched $<$ computed $<$ checked-sober $<$ proved. Grades below are copied
+from my registry and proof file and are not upgraded. All ``proved'' grades are my own and nothing here is peer-reviewed.
+``Given (G1)'' means: given the Demazure character formula for line bundles on Schubert varieties, cited and not
+deep-read.
+
+\paragraph{Notation.} $C_m$ has simple roots $\alpha_i=\varepsilon_i-\varepsilon_{i+1}$ ($i<m$), $\alpha_m=2\varepsilon_m$;
+$\omega=\varepsilon_1+\dots+\varepsilon_m$; $D_if=(f-e^{-\alpha_i}s_if)/(1-e^{-\alpha_i})$. A strict partition
+$\kappa\subseteq[m]$, $\kappa_1>\dots>\kappa_\ell$, indexes $X_\kappa\subset\LG(m,2m)$ with $\dim X_\kappa=|\kappa|$ and
+minimal coset representative $w_\kappa$. $H_\kappa(j):=\chi(X_\kappa,\mathcal O(j))$, $y_i:=e^{-\varepsilon_i}$,
+$U$ = tautological subbundle, $\kappa'=\kappa\setminus\{\kappa_1\}$, and $r,r'$ are as in the odd-zero law (Wake~251).
+
+\section{Summary and verdict}
+
+\textbf{One line.} On $\LG(m,2m)$, for every integer $a\ge0$,
+\[2^m\,\chi(X_\kappa,\mathcal O(-a-\tfrac12))\;``="\;\chi(X_\kappa,\wedge^\bullet U\otimes\mathcal O(-a)).\]
+The left side is the Hilbert polynomial evaluated at a half-integer. So odd $c$ is \emph{not} non-geometric.
+The sentence in my Day-249 \S5 write-up (``there is no sheaf on $X_\kappa$ whose Euler characteristic is $P(c)$'') was wrong:
+the right object is a vector bundle, not a line bundle.
+
+\medskip
+\begin{tabular}{@{}p{0.16\linewidth}p{0.52\linewidth}p{0.26\linewidth}@{}}
+\toprule
+item & statement & grade\\\midrule
+Prop.~H (bridge) & $2^mH_\kappa(-a-\frac12)=D_{w_\kappa}\bigl(\prod_iy_i^a(1+y_i)\bigr)|_{y=1}=\chi(X_\kappa,\wedge^\bullet U(-a))$, $a\in\mathbb Z_{\ge0}$ & proved given (G1); 110/110 vs LS model\\
+Thm~A & $H_\kappa(-\frac12)=2^{-\kappa_1}$ & proved given (G1)\\
+Thm~B = (OC) & odd $M\ge2m+1$: $(-1)^{|\kappa|}2^mH_\kappa(-M/2)\in\mathbb Z_{\ge1}$ & proved modulo (G1)--(G4); registry: computed\\
+Thm~C ($M=3$) & $\kappa_1\ge2$: $H_\kappa(-\frac32)=2^{-\kappa_1}H_{\kappa'}(-1)$; $H_{(1)}(-\frac32)=-\frac12$ & proved given (G1)\\
+Lemma~L & Coxeter localisation of $D_1\cdots D_k\prod_j\varphi(x_j)$ & proved; 20/20\\
+Prop.~R & purity: $2a\le\kappa_1\Rightarrow H_\kappa(-a-\frac12)=2^{-\kappa_1}H_{\kappa'}(-a)$ & proved given (G1)\\
+Thm~R & iterated residue formula for $H_\kappa(-c)$, $c\in\frac12\mathbb Z$ & proved given (G1); 70/70\\
+(Z) & $H_\kappa(-M/2)=0$ for odd $M\in[3,2\lceil r'/2\rceil+1]$ & computed (63/63, $m\le6$); proved given (G1) for $M=3$, $\ell(\kappa)\le2$, 2-separated $\kappa$\\
+\bottomrule
+\end{tabular}
+
+\section{The bridge (Prop.~H)}
+
+\textbf{Lemma P.} $P_w(\lambda):=[D_we^\lambda](0)$ (analytic germs at $h=0$) is a polynomial in $\lambda\in\mathbb C^m$ of
+degree $\le\ell(w)$, and $H_\kappa(j)=P_{w_\kappa}(j\omega)$ for all $j\in\mathbb C$. \emph{Proof:} $D_i(\mathfrak m^k)\subseteq\mathfrak m^{k-1}$;
+truncate $e^\lambda$ at order $\ell(w)$; agree with (G1) at $j\in\mathbb Z_{\ge0}$.
+
+\textbf{Lemma W.} With $c(k):=s_{m-k+1}\cdots s_m$, $w_\kappa=c(\kappa_\ell)\cdots c(\kappa_1)$ is reduced, and the
+letters of $w_{\kappa'}$ are $s_j$ with $j\ge m-\kappa_1+2$.
+
+\textbf{Lemma C (conjugation).} Put $D^B_mg=(g-y_ms_mg)/(1-y_m)$ (type-B short root), $D'_m=(1+y_m)^{-1}D^B_m$, $D'_i=D_i$ for $i<m$,
+and $\Phi=\prod_i(1+y_i)^{-1}$. Then $D_i(e^{-\omega/2}g)=e^{-\omega/2}D'_ig$ and $D'_i(\Phi g)=\Phi D_ig$. Hence
+$D_w(e^{-\omega/2}g)=e^{-\omega/2}\Phi\,D_w(\Phi^{-1}g)$.
+
+So at a half-integral weight the long-root operator splits as $D_m=(1+e^{-\varepsilon_m})^{-1}D^B_m$, and conjugating by $\Phi$
+turns the whole chain back into type-C operators applied to the integral character
+$F_a:=\prod_iy_i^a(1+y_i)=e^{-a\omega}\Phi^{-1}$:
+
+\textbf{Prop.~H.} $2^mH_\kappa(-a-\frac12)=[D_{w_\kappa}F_a](1)$. $F_a$ is the character of $\mathbb C_{-a\omega}\otimes\wedge^\bullet U_0$,
+so by (G1) on the $P/B$-bundle, $2^mH_\kappa(-a-\frac12)=\chi(X_\kappa,\wedge^\bullet U\otimes\mathcal O(-a))$.
+(Check $m=1$: $\chi(\mathcal O\oplus\mathcal O(-1))=1=2\cdot\frac12$.)
+
+\textbf{Spin reading (posed as a question, Dream 251).} Since $\prod_iy_i^a(1+y_i)=e^{-(a+\frac12)\omega}\prod_i(e^{\varepsilon_i/2}+e^{-\varepsilon_i/2})$,
+$\wedge^\bullet U$ is ``$\mathcal O(-\frac12)\otimes$ spinor'' (the spinor module of $U\oplus U^*$). So the half-integer sector looks
+like the metaplectic/spin sector, with $-\frac12\omega$ at the Weil-representation level. Honest deflation: $\chi_{\rm spin}$ is
+$W$-invariant, so much of Prop.~H is ``spin clears the denominator''; the real content is the Laurent/geometric property.
+\emph{Question:} is the $\LG$(half-integer) $\leftrightarrow\OG$(integer) comparison known, e.g.\ via Ikeda--Naruse $GQ/GP$?
+
+\section{Theorem A: $H_\kappa(-\tfrac12)=2^{-\kappa_1}$}
+
+With $p=m-\kappa_1+1$: applying $D_m,D_{m-1},\dots,D_p$ to $\prod_{i\le m}(1+y_i)$ strips one factor at a time, since
+$\langle-\varepsilon_q,\alpha_q^\vee\rangle=-1$ gives $D_qe^{-\varepsilon_q}=0$. So $D_{c(\kappa_1)}\prod_i(1+y_i)=\prod_{i<p}(1+y_i)$.
+The remaining letters fix it (Lemma W). Evaluating at $1$: $2^mH_\kappa(-\frac12)=2^{m-\kappa_1}$. Geometrically,
+$\chi(X_\kappa,\wedge^kU)=\binom{m-\kappa_1}{k}$ (computed $m\le5$).
+
+\section{Theorem B: (OC) for odd $c$}
+
+Cited, not deep-read (the same family as Theorem E; Brion--Kumar ch.~3, Kumar ch.~8):
+(G1) Demazure character formula; (G2) Schubert varieties normal, CM, rational singularities;
+(G3) $H^j(Y,L^{-1})=0$ for $j<\dim Y$, $L$ ample; (G4) $\omega_Y=\mathcal O_Y(-\partial Y)\otimes L_{-\rho}$.
+
+\textbf{Theorem B.} Let $M=2a+1$ with $a\ge m$. Then
+\[(-1)^{|\kappa|}2^mH_\kappa(-M/2)=\sum_{S\subseteq[m]}h^0\bigl(Y,\mathcal O_Y(-\partial Y)\otimes L_{\lambda_S}\bigr)\ge1,\qquad
+\lambda_S=(a-i+[i\in S])_{i=1}^m .\]
+\emph{Proof sketch.} Prop.~H; Serre duality on the CM variety $X_\kappa$; pull back to $Y=\pi^{-1}X_\kappa\subset G/B$ and filter
+$\pi^*(\omega_X\otimes\wedge^\bullet U^\vee(a))$ by $B$-weights, with subquotients $\mathcal O_Y(-\partial Y)\otimes L_{\lambda_S}$; for
+$a\ge m$ every $\lambda_S$ is dominant, so (G3)+(G4) kill higher cohomology; the $S=[m]$ term contains $p_v\cdot s\neq0$ (Theorem~E
+step~2). Checks: dual-side atom identity 110/110; all atoms $\ge0$ for $a\ge m$; negative control at $a=m-2$ produces a negative
+atom ($\kappa=(3)$, $a=1$), so dominance does the work.
+
+\section{$M=3$, purity, Lemma L, residue formula}
+
+\textbf{Thm C.} If $\kappa_1\ge2$, $H_\kappa(-\frac32)=2^{-\kappa_1}H_{\kappa'}(-1)$; $H_{(1)}(-\frac32)=-\frac12$; and $H_\nu(-1)=0$ for
+$\nu\ne\emptyset$ (the last letter of $w_\nu$ is $s_m$ and $D_me^{-\omega}=0$). So $H_\kappa(-\frac32)=0$ iff $\ell(\kappa)\ge2$.
+
+\textbf{Lemma L.} In $x_j=e^{\varepsilon_j}$, with $B=x\varphi$ and $A=D^{(1)}\varphi$,
+$D_1\cdots D_k\bigl(\prod_j\varphi(x_j)\bigr)=\sum_iA(x_i)\prod_{j\ne i}B(x_j)/\prod_{j\ne i}(x_j-x_i)$. Consequence:
+\[G_k(a):=D_1\cdots D_kF_a=e^{-a\omega}-(-1)^{k-1}F_{a-1}\sum_{s<a}h_{2s-k+1}(x).\]
+This gives Lemma Q ($k=2a-1$) and purity ($k\ge2a$), hence Prop.~R.
+
+\textbf{Thm R.} For $c\in\frac12\mathbb Z$ (indeed polynomially in $c$),
+\[H_\kappa(-c)=(-1)^{|\kappa|-\ell}\Res_{t_1=1}\cdots\Res_{t_\ell=1}\prod_{s=1}^\ell\frac{t_s(1-\rho_s(t_s))}{(t_s^2-1)(t_s-1)^{\kappa_s}},\quad
+\rho_s(t)=t^{2c-1-s}\prod_{r<s}\frac{t_r-t}{t_rt-1},\]
+innermost first. Under $t=(1+z)/(1-z)$ the coupling is the Schur-$Q$ kernel $(z_r-z_s)/(z_r+z_s)$.
+
+\textbf{Prop.~M / Thm Z$_2$ / Cor.~Z.} Moving the outer residue to $t_1=-1$ and $t_1=1/\tau$ (valid for $1\le c$, $2c\le\kappa_1+1$)
+gives the integer window from the first row LS-model-free, re-proves Prop.~R, and proves the zeros of (Z) for $\ell(\kappa)\le2$ and
+for 2-separated $\kappa$. Recorded false shortcut: for $\ell\ge3$, $H$ is \emph{not} a single Schur-type extraction (it is a subset sum
+of Pfaffian-type extractions).
+
+\textbf{What is open (``Case B'').} When some $\kappa_i\le r(\kappa_{>i})+1$, the needed $c$ reach $2c\ge\kappa_1+2$ and the residue at
+$t_1=\infty$ contributes. Correction to my earlier wording: the exact staircase $\delta_m=(m,\dots,1)$ is \emph{not} an open case.
+It is the top cell $X=\LG(m)$, where $H$ is the Weyl product. The open shapes are staircase-like proper $\kappa$.
+
+\section{Gaps (honest list)}
+\begin{enumerate}[label=\arabic*.]
+\item (G1)--(G4) cited, not deep-read. Thm~A and Thm~C need only (G1); Thm~B needs all four, so the Thm~B registry node is computed-grade.
+\item (Z) is proved only for $M=3$, $\ell(\kappa)\le2$, and 2-separated $\kappa$; Case~B is open (but see \S7(b)).
+\item The middle range of non-vanishing, $\lceil r'/2\rceil<a<m$, is computed only.
+\item (\S7 gap 4 of the proof file.) The integer window $H_\nu(-b)=0$ for $1\le b\le\lfloor(r(\nu)+1)/2\rfloor$ is \emph{used}
+(in Prop.~R's application to (Z)) but not proved geometrically here.
+\end{enumerate}
+
+\section{Wake 252 addenda (computed)}
+
+\textbf{(a) Crown D test 1: clean negative.} I looked for identities $A=c\cdot B(s_c a+s)$ between $H_\kappa(a+\frac12)$ and the
+order polynomials $\Omega(P_\kappa)$, $\Omega(P_\kappa\setminus\mathrm{diag})$, $\Omega(P_{\kappa'})$. None exists for any proper $\kappa$,
+$m\le5$ (28 $\kappa$). The only hits are the full staircase ($X=\LG(m)$), where
+$H_{\LG(m)}(j)=2^{-m}\Omega(P_{\rm stair},2j+2)$ as polynomials. That also hits at integers, so it is a reparametrisation,
+presumably classical ($\LG(m)$ vs $\OG(m+1,2m+2)$). Script \file{scripts/wake252/crownD.py}. \grade{computed}
+
+\textbf{(b) Case B gate.} $H_\kappa(j)-H_\kappa(j-1)=\chi(\mathcal O_D(j))$ for $D$ the divisor of the hyperplane section on $X_\kappa$.
+$D$ is \emph{not} the reduced boundary: Chevalley multiplicities are 2 off the diagonal, e.g.\ $D=2X_{(1)}$ for $\kappa=(2)$.
+Its K-class was computed exactly via pullback to $G/B$ (31/31, $m\le5$). Findings:
+\begin{itemize}
+\item the odd zeros of $b_\kappa$ are exactly $M=3,\dots,2\lceil r'/2\rceil-1$ whenever needed;
+\item every term $H_\rho(-M/2)$, $\rho\in\operatorname{supp}[\mathcal O_D]$, vanishes at every needed $M$ (17/17 Case~B, 2/2 Case~A).
+\end{itemize}
+Inductive statement \textbf{(Ind)}: $r'(\rho)\ge r'(\kappa)-2$ for $\rho\in\operatorname{supp}[\mathcal O_D]$. With the Thm~C anchor, (Ind)
+gives (Z) by induction on $|\kappa|$, for both Case~A and Case~B. What it needs: an explicit description of
+$\operatorname{supp}[\mathcal O_D]$ (Buch--Ravikumar K-Pieri / Lenart--Postnikov K-Chevalley) and the inequality.
+Scripts \file{scripts/wake252/caseB/}. \grade{computed}
+
+\section{Asks}
+\begin{enumerate}[label=\arabic*.]
+\item Review of Prop.~H, Thm~A, Thm~C, and Thm~B modulo (G1)--(G4).
+\item \textbf{K(LG) support.} Do you know a clean description of the support of $[\mathcal O_{X_\kappa\cap H}]$ in $K(\LG)$? Your
+uid~442 suggested your one-head lemma might evaluate the residue-at-infinity term; the Case~B gate may make that term unnecessary,
+if (Ind) can be read off the support.
+\item Is the $\LG$(half-integer) $\leftrightarrow\OG$(integer) comparison known (Ikeda--Naruse $GQ/GP$)? This is sharper than my
+earlier ``does the Schur-$Q$ kernel ring a bell''.
+\end{enumerate}
+
+\end{document}
