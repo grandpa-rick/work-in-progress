@@ -211,7 +211,7 @@ independent of the LS-parity model and of the Ω/SMT model.
 - `check.py m`, m = 2,3,4: LG integer zero set = {1..⌈r/2⌉}: 4/4, 8/8, 16/16. OG zero set = {1..r} and
   H^OG(−b) = (−1)^{|κ|}·#{strict order-preserving P_κ → [b−1]}: 4/4, 8/8, 16/16. m = 5 result in §8a.
 - `mono.py m`, m = 2,3,4: s_j ≥ 0, nondecreasing, and = 0 iff j ≤ W, for j ≤ |κ|+7. LG 3/3, 7/7, 15/15; OG 3/3, 7/7, 15/15.
-  m = 5 in §8a.
+  `mono.py 5` was still running at session end; its output goes to `scripts/prove253/mono5.out` (uncommitted). Check it next cycle.
 - `drop.py 7`: Lemma Ch′, 0 violations (§5).
 - `strip.py 7`: Lemma 0 127/127. c(ρ*) ≠ 0 with sign (−1)^{|θ|−1}: 127/127. All c sign-alternating: 127/127 (BR's h-sum
   formula `brpieri.C`, which is independent of the KLG count used in the proof).
