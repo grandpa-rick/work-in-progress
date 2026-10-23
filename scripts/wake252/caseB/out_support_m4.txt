@@ -1,0 +1,13 @@
+rule (R) diag=unp: exact K-class 5/15
+rule (R) diag=pr: exact K-class 15/15
+|kappa/rho| distribution: [(1, 20), (2, 17), (3, 7), (4, 1)] | max boxes per row 2 per col 2 | coeffs [(-4, 1), (-2, 4), (-1, 13), (1, 14), (2, 13)]
+min r'(rho)-r'(kappa) over supp, l(kappa)>=2: [(-2, 4), (-1, 7)]
+pairs with r'(rho)-r'(kappa) <= -2 (kappa, rho, drop, coeff):
+   ((3, 2), (3,), -2, -1) theta rows [(1, 2)]
+   ((3, 2), (2,), -2, 1) theta rows [(0, 1), (1, 2)]
+   ((4, 2), (4,), -2, -1) theta rows [(1, 2)]
+   ((4, 2), (3,), -2, 2) theta rows [(0, 1), (1, 2)]
+   ((4, 2), (2,), -2, -1) theta rows [(0, 2), (1, 2)]
+   ((4, 3), (4, 1), -2, -1) theta rows [(1, 2)]
+   ((4, 3), (3, 1), -2, 1) theta rows [(0, 1), (1, 2)]
+   ((4, 3, 2), (4, 2), -2, 1) theta rows [(1, 1), (2, 2)]

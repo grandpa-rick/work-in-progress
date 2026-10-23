@@ -1,0 +1,66 @@
+(1,) A r' 0 zH [] zb [] need [] prop True law True Kcls True Ind True K {'0': 1} nonvanishing terms {}
+(2,) A r' 0 zH [] zb [1] need [] prop True law True Kcls True Ind True K {'1': 2, '0': -1} nonvanishing terms {}
+(3,) A r' 0 zH [] zb [1] need [] prop True law True Kcls True Ind True K {'2': 2, '1': -1} nonvanishing terms {}
+(4,) A r' 0 zH [] zb [1, 3] need [] prop True law True Kcls True Ind True K {'3': 2, '2': -1} nonvanishing terms {}
+(5,) A r' 0 zH [] zb [1, 3] need [] prop True law True Kcls True Ind True K {'4': 2, '3': -1} nonvanishing terms {}
+(6,) A r' 0 zH [] zb [1, 3, 5] need [] prop True law True Kcls True Ind True K {'5': 2, '4': -1} nonvanishing terms {}
+(2, 1) B r' 1 zH [3] zb [] need [] prop True law True Kcls True Ind True K {'2': 1} nonvanishing terms {}
+(3, 1) A r' 1 zH [3] zb [] need [] prop True law True Kcls True Ind True K {'21': 2, '3': 1, '2': -2} nonvanishing terms {}
+(4, 1) A r' 1 zH [3] zb [] need [] prop True law True Kcls True Ind True K {'31': 2, '21': -1, '4': 1, '3': -2, '2': 1} nonvanishing terms {}
+(5, 1) A r' 1 zH [3] zb [] need [] prop True law True Kcls True Ind True K {'41': 2, '31': -1, '5': 1, '4': -2, '3': 1} nonvanishing terms {}
+(6, 1) A r' 1 zH [3] zb [] need [] prop True law True Kcls True Ind True K {'51': 2, '41': -1, '6': 1, '5': -2, '4': 1} nonvanishing terms {}
+(3, 2) B r' 2 zH [3] zb [] need [] prop True law True Kcls True Ind True K {'31': 2, '21': -1, '3': -1, '2': 1} nonvanishing terms {}
+(4, 2) A r' 2 zH [3] zb [] need [] prop True law True Kcls True Ind True K {'32': 2, '41': 2, '31': -4, '21': 1, '4': -1, '3': 2, '2': -1} nonvanishing terms {}
+(5, 2) A r' 2 zH [3] zb [] need [] prop True law True Kcls True Ind True K {'42': 2, '32': -1, '51': 2, '41': -4, '31': 2, '5': -1, '4': 2, '3': -1} nonvanishing terms {}
+(6, 2) A r' 2 zH [3] zb [] need [] prop True law True Kcls True Ind True K {'52': 2, '42': -1, '61': 2, '51': -4, '41': 2, '6': -1, '5': 2, '4': -1} nonvanishing terms {}
+(4, 3) B r' 3 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'42': 2, '32': -1, '41': -1, '31': 1} nonvanishing terms {}
+(5, 3) A r' 3 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'43': 2, '52': 2, '42': -4, '32': 1, '51': -1, '41': 2, '31': -1} nonvanishing terms {}
+(6, 3) A r' 3 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'53': 2, '43': -1, '62': 2, '52': -4, '42': 2, '61': -1, '51': 2, '41': -1} nonvanishing terms {}
+(5, 4) B r' 4 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'53': 2, '43': -1, '52': -1, '42': 1} nonvanishing terms {}
+(6, 4) A r' 4 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'54': 2, '63': 2, '53': -4, '43': 1, '62': -1, '52': 2, '42': -1} nonvanishing terms {}
+(6, 5) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'64': 2, '54': -1, '63': -1, '53': 1} nonvanishing terms {}
+(3, 2, 1) B r' 3 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'32': 1} nonvanishing terms {}
+(4, 2, 1) B r' 3 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'321': 2, '42': 1, '32': -2} nonvanishing terms {}
+(5, 2, 1) B r' 3 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'421': 2, '321': -1, '52': 1, '42': -2, '32': 1} nonvanishing terms {}
+(6, 2, 1) B r' 3 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'521': 2, '421': -1, '62': 1, '52': -2, '42': 1} nonvanishing terms {}
+(4, 3, 1) B r' 3 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'421': 2, '321': -1, '43': 1, '42': -2, '32': 1} nonvanishing terms {}
+(5, 3, 1) A r' 3 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'431': 2, '521': 2, '421': -4, '321': 1, '53': 1, '43': -2, '52': -2, '42': 4, '32': -1} nonvanishing terms {}
+(6, 3, 1) A r' 3 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'531': 2, '431': -1, '621': 2, '521': -4, '421': 2, '63': 1, '53': -2, '43': 1, '62': -2, '52': 4, '42': -2} nonvanishing terms {}
+(5, 4, 1) B r' 4 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'531': 2, '431': -1, '521': -1, '421': 1, '54': 1, '53': -2, '43': 1, '52': 1, '42': -1} nonvanishing terms {}
+(6, 4, 1) A r' 4 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'541': 2, '631': 2, '531': -4, '431': 1, '621': -1, '521': 2, '421': -1, '64': 1, '54': -2, '63': -2, '53': 4, '43': -1, '62': 1, '52': -2, '42': 1} nonvanishing terms {}
+(6, 5, 1) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'641': 2, '541': -1, '631': -1, '531': 1, '65': 1, '64': -2, '54': 1, '63': 1, '53': -1} nonvanishing terms {}
+(4, 3, 2) B r' 4 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'431': 2, '421': -1, '43': -1, '42': 1} nonvanishing terms {}
+(5, 3, 2) B r' 4 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'432': 2, '531': 2, '431': -4, '521': -1, '421': 2, '53': -1, '43': 2, '52': 1, '42': -2} nonvanishing terms {}
+(6, 3, 2) B r' 4 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'532': 2, '432': -1, '631': 2, '531': -4, '431': 2, '621': -1, '521': 2, '421': -1, '63': -1, '53': 2, '43': -1, '62': 1, '52': -2, '42': 1} nonvanishing terms {}
+(5, 4, 2) B r' 4 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'532': 2, '432': -1, '541': 2, '531': -4, '431': 2, '521': 1, '421': -1, '54': -1, '53': 2, '43': -1, '52': -1, '42': 1} nonvanishing terms {}
+(6, 4, 2) A r' 4 zH [3, 5] zb [3] need [3] prop True law True Kcls True Ind True K {'542': 2, '632': 2, '532': -4, '432': 1, '641': 2, '541': -4, '631': -4, '531': 8, '431': -2, '621': 1, '521': -2, '421': 1, '64': -1, '54': 2, '63': 2, '53': -4, '43': 1, '62': -1, '52': 2, '42': -1} nonvanishing terms {}
+(6, 5, 2) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'642': 2, '542': -1, '632': -1, '532': 1, '651': 2, '641': -4, '541': 2, '631': 2, '531': -2, '65': -1, '64': 2, '54': -1, '63': -1, '53': 1} nonvanishing terms {}
+(5, 4, 3) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'542': 2, '532': -1, '541': -1, '531': 1} nonvanishing terms {}
+(6, 4, 3) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'543': 2, '642': 2, '542': -4, '632': -1, '532': 2, '641': -1, '541': 2, '631': 1, '531': -2} nonvanishing terms {}
+(6, 5, 3) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'643': 2, '543': -1, '652': 2, '642': -4, '542': 2, '632': 1, '532': -1, '651': -1, '641': 2, '541': -1, '631': -1, '531': 1} nonvanishing terms {}
+(6, 5, 4) B r' 6 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'653': 2, '643': -1, '652': -1, '642': 1} nonvanishing terms {}
+(4, 3, 2, 1) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'432': 1} nonvanishing terms {}
+(5, 3, 2, 1) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'4321': 2, '532': 1, '432': -2} nonvanishing terms {}
+(6, 3, 2, 1) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'5321': 2, '4321': -1, '632': 1, '532': -2, '432': 1} nonvanishing terms {}
+(5, 4, 2, 1) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'5321': 2, '4321': -1, '542': 1, '532': -2, '432': 1} nonvanishing terms {}
+(6, 4, 2, 1) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'5421': 2, '6321': 2, '5321': -4, '4321': 1, '642': 1, '542': -2, '632': -2, '532': 4, '432': -1} nonvanishing terms {}
+(6, 5, 2, 1) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'6421': 2, '5421': -1, '6321': -1, '5321': 1, '652': 1, '642': -2, '542': 1, '632': 1, '532': -1} nonvanishing terms {}
+(5, 4, 3, 1) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'5421': 2, '5321': -1, '543': 1, '542': -2, '532': 1} nonvanishing terms {}
+(6, 4, 3, 1) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'5431': 2, '6421': 2, '5421': -4, '6321': -1, '5321': 2, '643': 1, '543': -2, '642': -2, '542': 4, '632': 1, '532': -2} nonvanishing terms {}
+(6, 5, 3, 1) B r' 5 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'6431': 2, '5431': -1, '6521': 2, '6421': -4, '5421': 2, '6321': 1, '5321': -1, '653': 1, '643': -2, '543': 1, '652': -2, '642': 4, '542': -2, '632': -1, '532': 1} nonvanishing terms {}
+(6, 5, 4, 1) B r' 6 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'6531': 2, '6431': -1, '6521': -1, '6421': 1, '654': 1, '653': -2, '643': 1, '652': 1, '642': -1} nonvanishing terms {}
+(5, 4, 3, 2) B r' 6 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'5431': 2, '5421': -1, '543': -1, '542': 1} nonvanishing terms {}
+(6, 4, 3, 2) B r' 6 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'5432': 2, '6431': 2, '5431': -4, '6421': -1, '5421': 2, '643': -1, '543': 2, '642': 1, '542': -2} nonvanishing terms {}
+(6, 5, 3, 2) B r' 6 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'6432': 2, '5432': -1, '6531': 2, '6431': -4, '5431': 2, '6521': -1, '6421': 2, '5421': -1, '653': -1, '643': 2, '543': -1, '652': 1, '642': -2, '542': 1} nonvanishing terms {}
+(6, 5, 4, 2) B r' 6 zH [3, 5, 7] zb [3, 5] need [3, 5] prop True law True Kcls True Ind True K {'6532': 2, '6432': -1, '6541': 2, '6531': -4, '6431': 2, '6521': 1, '6421': -1, '654': -1, '653': 2, '643': -1, '652': -1, '642': 1} nonvanishing terms {}
+(6, 5, 4, 3) B r' 7 zH [3, 5, 7, 9] zb [3, 5, 7] need [3, 5, 7] prop True law True Kcls True Ind True K {'6542': 2, '6532': -1, '6541': -1, '6531': 1} nonvanishing terms {}
+(5, 4, 3, 2, 1) B r' 7 zH [3, 5, 7, 9] zb [3, 5, 7] need [3, 5, 7] prop True law True Kcls True Ind True K {'5432': 1} nonvanishing terms {}
+(6, 4, 3, 2, 1) B r' 7 zH [3, 5, 7, 9] zb [3, 5, 7] need [3, 5, 7] prop True law True Kcls True Ind True K {'54321': 2, '6432': 1, '5432': -2} nonvanishing terms {}
+(6, 5, 3, 2, 1) B r' 7 zH [3, 5, 7, 9] zb [3, 5, 7] need [3, 5, 7] prop True law True Kcls True Ind True K {'64321': 2, '54321': -1, '6532': 1, '6432': -2, '5432': 1} nonvanishing terms {}
+(6, 5, 4, 2, 1) B r' 7 zH [3, 5, 7, 9] zb [3, 5, 7] need [3, 5, 7] prop True law True Kcls True Ind True K {'65321': 2, '64321': -1, '6542': 1, '6532': -2, '6432': 1} nonvanishing terms {}
+(6, 5, 4, 3, 1) B r' 7 zH [3, 5, 7, 9] zb [3, 5, 7] need [3, 5, 7] prop True law True Kcls True Ind True K {'65421': 2, '65321': -1, '6543': 1, '6542': -2, '6532': 1} nonvanishing terms {}
+(6, 5, 4, 3, 2) B r' 8 zH [3, 5, 7, 9] zb [3, 5, 7] need [3, 5, 7] prop True law True Kcls True Ind True K {'65431': 2, '65421': -1, '6543': -1, '6542': 1} nonvanishing terms {}
+(6, 5, 4, 3, 2, 1) B r' 9 zH [3, 5, 7, 9, 11] zb [3, 5, 7, 9] need [3, 5, 7, 9] prop True law True Kcls True Ind True K {'65432': 1} nonvanishing terms {}
+BR K-class x LS-model reproduces b: 63 / 63
+Case A: 20 kappa, 7 with nonempty need; propagation 20/20; law 20/20; every K-term vanishes 7/7; (Ind) 20/20
+Case B: 43 kappa, 41 with nonempty need; propagation 43/43; law 43/43; every K-term vanishes 41/41; (Ind) 43/43

@@ -1,0 +1,1 @@
+gate2.py 6 (Demazure engine): killed (OOM, exit 137-style 'Killed') after 17m23s, 38/63 kappa written; all 38 identical to gate6 (LS model + Buch-Ravikumar) incl. K-class
