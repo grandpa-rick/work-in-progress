@@ -279,14 +279,30 @@ s_{a+3/2}(κ) = s_{a+½}(κ) + Σ|c_ρ|s_{a+½}(ρ). Every ρ in the support has
 (★) applied to both terms gives
   f(μ,b) = 4f(μ,b−1) + 3s_b(μ) + Σ|c_ρ|(4f(ρ,b−1) + 3s_b(ρ)).
 So f ≥ 0 propagates upward in b from the base b₀ = ⌈μ₁/2⌉:
-- μ₁ even: f(μ,b₀) = 2s_{b₀}(μ′) − s_{b₀+1}(μ). This is ≥ 0 if **(E)** s_{μ₁/2+1}(μ) = s_{μ₁/2}(μ′) holds. (E) is computed
-  exactly at m ≤ 4 (`edge.py`, every even-μ₁ case, zeros included).
-  Hunch: (E) is the lowest-order residue at t₁ = ∞ in Thm R. At integer c the residue at −1 vanishes, and at 2c = κ₁+2 the
-  pole at ∞ is simple, with K(∞,t) = 1/t shifting c by ½.
+- μ₁ even: f(μ,b₀) = 2s_{b₀}(μ′) − s_{b₀+1}(μ) = s_{b₀}(μ′) ≥ 0, by Lemma E below and Theorem I.
+
+**Lemma E (proved given (G1), via Thm R / Prop. M of the odd-zero-law file).** If κ₁ is even and b = κ₁/2, then
+H_κ(−b−1) = H_{κ′}(−b). Equivalently s_{b+1}(κ) = s_b(κ′).
+*Proof.* Put c = b+1, an integer with 2c = κ₁+2. Use the recursive form of Thm R with T = ∅:
+𝓗_κ(c;∅) = Res_{t=1} g, where g(t) = m_{κ₁}(t)(1 − t^{2c−2})𝓗_{κ′}(c−½;{t}) and m_k(t) = t/((t²−1)(t−1)^k).
+The poles of g on ℙ¹ are 1, −1 and ∞ (§6quater "Poles in t₁"; t = 0 is not a pole since c ≥ 1, and T = ∅).
+- At −1: the pole of m is simple, and 1 − (−1)^{2c−2} = 0. So g is regular there.
+- At ∞: put t = 1/u. Then m_{κ₁}(1/u) = u^{κ₁+1}/((1−u²)(1−u)^{κ₁}) and 1 − u^{−(2c−2)} = 1 − u^{−κ₁}. So
+  g(1/u)u^{−2} = (u^{κ₁−1} − u^{−1})·((1−u²)(1−u)^{κ₁})^{−1}·𝓗_{κ′}(c−½;{1/u}).
+  The kernel is K(1/w,t) = (1−tw)/(t−w), which is jointly analytic near (t,w) = (1,0). So the inner residues at t_s = 1
+  commute with w → 0, and 𝓗_{κ′}(c−½;{1/u}) is analytic at u = 0 with value 𝓗_{κ′}(c−½;{∞}), where K(∞,t) = 1/t.
+  Hence Res_{t=∞}g = −Res_{u=0}g(1/u)u^{−2} = 𝓗_{κ′}(c−½;{∞}).
+- The residue theorem gives 𝓗_κ(c;∅) = −𝓗_{κ′}(c−½;{∞}). The kernel 1/t, inserted into every ρ_s, multiplies
+  t^{2c′−1−s} by t^{−1}, which replaces c′ by c′−½. So 𝓗_{κ′}(c−½;{∞}) = 𝓗_{κ′}(c−1;∅).
+- Restoring signs with H_κ(−c) = (−1)^{|κ|−ℓ}𝓗_κ(c;∅): H_κ(−c) = −(−1)^{|κ|−ℓ}(−1)^{|κ′|−ℓ+1}H_{κ′}(−(c−1))
+  = (−1)^{κ₁}H_{κ′}(−b) = H_{κ′}(−b). ∎
+Checked (`edge.py`, Demazure): every even-κ₁ κ at m ≤ 4, e.g. H_{(4,1)}(−3) = H_{(1)}(−2) = −1, H_{(2)}(−2) = H_∅(−1) = 1.
+For odd κ₁ the same point 2c = κ₁+3 has a double pole at ∞, and the derivative of the kernel enters
+(K(1/w,t) = 1/t + w(t^{−2}−1) + O(w²)). There is no clean identity there: data (1): 1 vs 1, (3): 3 vs 1, (3,1): 2 vs 1.
 - μ₁ odd: f(μ,b₀) = 4f(μ′,b₀−1) − s_{b₀+1}(μ). This needs a quantitative bound, e.g. μ = (3): 4·7 − 3 = 25, and
   μ = (3,2): 4·1 − 1 = 3. **Open.**
 
 **Precise gap for the half-integer (NZ) (sign half):**
-1. Prove (E) from Thm R's residue at ∞.
+1. ~~Prove (E)~~ DONE (Lemma E).
 2. Prove 4f(μ′, b₀−1) ≥ s_{b₀+1}(μ) for μ₁ odd.
 3. Strictness (> 0 beyond the window) needs a strict term, as Lemma A supplied in Theorem I. Not attempted.
