@@ -1,0 +1,215 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\newcommand{\WIPHASH}{PENDING}
+\newcommand{\tri}{\mathbin{\triangleleft}}
+\newcommand{\Poly}{\mathbf{Poly}}
+\newcommand{\Cat}{\mathbf{Cat}}
+\newcommand{\Comon}{\mathbf{Comon}}
+\newcommand{\E}{\mathcal{E}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\title{Review: \emph{The Day convolution of two polynomial comonoids is the product internal
+category --- in every Grothendieck topos}}
+\author{Rick\\[2pt]\small To: Scot MacBeth (Kodamai) \quad cc: Robin}
+\date{2026-10-23}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\resizebox{\linewidth}{!}{\begin{tabular}{ll}
+Reviewed: & \texttt{2026-10-22-day-convolution-topos-uniform.pdf}, content \texttt{b553b27}, 8 pp.; email UID 440\\
+This review: & corresponds to WIP \texttt{\WIPHASH} (\texttt{grandpa-rick/work-in-progress}, \texttt{reviews/})\\
+Sources read: & arXiv abstracts of all five references; full text of Shapiro--Spivak 2305.00167 (SS),\\
+ & Gambino--Kock 0906.4931 (GK), Niu--Spivak 2312.00990 (NS). Lean file not run.
+\end{tabular}}
+\end{center}
+
+Counts: \textbf{3 MUST, 4 SHOULD, 6 NIT}.
+
+\section*{Verdict}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Theorem 1.1 is true, and \S3 is sound internally.} No pointwise or Set-based
+  assumption is used (your question (i); details in S2). It is also true in much greater generality
+  than you state, and its Set case is already in print (M3, S1).
+\item \textbf{Theorem 1.2 is false, already for $\E=\Set$.} Comonoid morphisms in $\Poly_\E$
+  are \emph{cofunctors}, not functors. In $\Cat^\sharp$ the product category is \emph{not} the
+  categorical product. Niu--Spivak say so explicitly. (M1)
+\item \textbf{The Gambino--Kock attribution is wrong.} (Your question (ii).) GK's distributive law
+  is $\Pi$ over $\Sigma$. Your $(\star)$ is a finite-limit fact and needs no LCCC at all. The
+  ``LCCC + extensive'' folklore you sharpen has no source. (M2)
+\item \textbf{\S7 draws the line in the wrong place.} (Your question (iii).) Theorem 1.1 holds in any
+  finitely complete $\E$ with exponentiable domain maps. That covers every elementary topos and every
+  LCCC, with no coproducts needed. The one genuinely base-sensitive claim is the word ``Day
+  convolution'' in the title. That is cited from a Set-only proposition and is unproved over $\E$. (M3)
+\item \textbf{Recommendation: not ready for publishable-result.} After the fixes, what remains is a
+  correct, honestly credited short note (proposition level): ``the Dirichlet tensor of internal
+  categories is the product category, internally to any finite-limit category''. I would read a
+  second round gladly.
+\end{itemize}
+
+\section*{Findings}
+\subsection*{MUST}
+\begin{enumerate}[label=\textbf{M\arabic*.},leftmargin=*]
+\item \textbf{Theorem 1.2, \S4, abstract, \S2.2 and Table 1: the universal property is false.}
+  SS Cor.\,5.12 (checked in the full text) is an isomorphism between $\Comon(\Poly_\E)$ and
+  \emph{internal categories with exponentiable source and internal cofunctors} (SS Def.\,5.11). It is
+  not an equivalence with $\Cat(\E)$ (functors). So ``the internal equivalence
+  $\mathrm{cat}(\E)\simeq\Cat(\E)$'', and ``since $p_C$ is a functor, its forward image is a
+  comonoid morphism'' (\S4), are both wrong. In $\mathrm{cat}(\E)$ the product must be computed among
+  cofunctors, and there it fails.
+
+  \emph{Literature.} NS \S8.2.4, opening sentences: ``The usual product of categories
+  is not the categorical product in $\Cat^\sharp$. It is, however, a monoidal product on
+  $\Cat^\sharp$, coinciding with the parallel product $\otimes$.'' NS's chapter summary adds that the
+  $\Cat^\sharp$-product of the walking arrow with itself has infinitely many objects.
+
+  \emph{Explicit witness ($\E=\Set$).} Let $C=D=\mathbf 2=\{0\xrightarrow{a}1\}$, and let $E$ have
+  objects $e,x,z$ and non-identity arrows $u\colon e\to x$, $v\colon e\to z$. Define cofunctors
+  $F,G\colon E\to\mathbf 2$ by $e\mapsto0$, $x,z\mapsto1$, lifting $a$ at $e$ to $u$ (for $F$) and
+  to $v$ (for $G$). The cofunctor laws hold trivially: there are no composable non-identity pairs.
+  Any $H\colon E\to\mathbf2\times\mathbf2$ with $\pi_CH=F$ and $\pi_DH=G$ needs $H(e)=(0,0)$ and
+  $H(x)=H(z)=(1,1)$. It must then lift $(a,\mathrm{id})\colon(0,0)\to(1,0)$ to an arrow out of $e$
+  whose codomain maps to $(1,0)$. No such arrow exists. So $(c\otimes d,\pi_C,\pi_D)$ is not a product.
+  (Your $\pi_C,\pi_D$ \emph{are} cofunctors, lifting $f\mapsto(f,\mathrm{id})$. The cone exists; it
+  is the universality that fails.)
+
+  \emph{Fix.} Delete Theorem 1.2, its row in Table 1, and the abstract sentence. Replace them with
+  a remark: $\otimes$ is a monoidal, non-cartesian product on $\Cat^\sharp(\E)$, generalizing NS
+  Prop.\,8.79. Also correct the description of SS in \S2.2, \S4 and Rem.\,4.1: ``isomorphism with
+  internal categories \emph{and cofunctors}''. If you want a universal property, the honest one is
+  in $\Cat(\E)$ (functors), where $C\times D$ is the product by \S4's first paragraph. But that is a
+  statement about $\Cat(\E)$, not about $\otimes$ on comonoids.
+
+\item \textbf{\S1 bullets, \S2.1, \S3 Step 2, \S5 and Rem.\,4.1: $(\star)$ is not the Gambino--Kock
+  law, and the ``sharpening'' is of an unsourced claim.} GK \S1.2, eq.\,(5)--(6), is the
+  distributivity of \emph{dependent products over dependent sums}:
+  $\Pi_f\Sigma_u\cong\Sigma_v\Pi_g\Delta_e$. In type theory this is the ``type-theoretic axiom of
+  choice'', $\prod\sum\cong\sum\prod$. It is what composition of polynomials uses. Your
+  $(\star)$, $\Sigma_{(i,k)}A_i\times B_k\cong\Sigma_iA_i\times\Sigma_kB_k$, says something else:
+  the total space of a product of bundles is the product of total spaces. Concretely, at the point of
+  use both sides are
+  $(C_1\times_{C_0}C_1)\times(D_1\times_{D_0}D_1)\cong(C_1\times D_1)\times_{C_0\times D_0}(C_1\times D_1)$.
+  That holds in \emph{any finitely complete} category: limits commute with limits. It needs no
+  $\Pi$, no LCCC, and no colimit preservation. The gloss ``$A\times(-)=\Delta_A^*$ is a left adjoint
+  and so preserves the relevant colimits'' is beside the point, because no colimit occurs. (Also,
+  $\Delta_A^*$ lands in $\E/A$. The endofunctor $A\times(-)$ is $\Sigma_A\Delta_A$.)
+
+  On ``LCCC + extensive'': the only extensivity in GK is \S4.3, for free monads and W-types (the
+  coproduct $X+P(TX)$). It has nothing to do with $\tri$ or $\otimes$. Unless you can quote a source
+  that asserts extensivity is needed for $c\otimes d=C\times D$, there is nothing to sharpen.
+  \emph{Fix:} cite GK only for $\Poly(\E)$ and $\tri$ over an LCCC (that attribution is correct).
+  Call $(\star)$ ``products commute with pullbacks''. Delete the sharpening narrative from the
+  abstract, \S1 and \S5.
+
+\item \textbf{Title, abstract, Def.\,2.2 and \S7: wrong scope line; ``Day convolution'' is unproved
+  over $\E$.}
+  \begin{itemize}[leftmargin=*]
+  \item \emph{The theorem is far more general than stated.} SS work throughout in an arbitrary
+    \emph{finitely complete} $\E$: polynomials are exponentiable maps, $\tri$ is defined (SS
+    Thm.\,3.26), $\otimes$ is the product of maps (SS Def.\,4.1, preserved exponentiability by Lemma
+    4.3), normal duoidality holds (SS Thm.\,4.5), and comonoids are internal categories (SS
+    Thm.\,5.6). Your \S3 uses nothing beyond this. So Theorem 1.1 holds in every finitely complete
+    $\E$ for internal categories with exponentiable $\mathrm{dom}$. In particular it holds in every
+    LCCC and every elementary topos, Grothendieck or not, with or without a natural numbers object.
+    \S7's ``a bare LCCC without the requisite coproducts is not covered'' is false. Dependent sums
+    $\Sigma_f$ are postcomposition and exist in any category, and GK polynomials need no coproducts.
+    The ``open upper bound'' is not open: it is the SS setting.
+  \item \emph{The base-sensitive part is the Day-convolution identification.} NS Prop.\,3.79 is
+    about $\Set^\Set$. Its proof is a co-Yoneda computation with coends in $\Set$. Def.\,2.2's
+    ``by Niu--Spivak this $\otimes$ is the Day convolution on $\Poly(\E)$'' is unsupported. Over $\E$
+    you would need to say Day convolution \emph{of what}: $\E$-valued functors on $\E$? $\E$-indexed or
+    enriched? And you would need the coends $\int^{A,B}$ over the large category $\E$, with copowers by
+    hom-\emph{sets} or internal homs, plus a pullback-stability argument. An elementary topos has no
+    infinite coproducts, so this is exactly where Grothendieck vs.\ elementary could matter. Your
+    proof never uses the Day description: $\otimes$ is \emph{defined} as the product of bundles.
+  \item \emph{Fix.} Either (a) retitle to ``the Dirichlet tensor'', state Theorem 1.1 over a
+    finitely complete $\E$ (exponentiable $\mathrm{dom}$), and keep ``Day convolution'' only as the
+    Set-level motivation via NS Prop.\,3.79; or (b) prove the Day-convolution identification over
+    Grothendieck $\E$ in a stated sense. Then that, and only that, is where the Grothendieck
+    hypothesis lives. I recommend (a). Also rewrite \S7 and Table 1 accordingly.
+  \end{itemize}
+\end{enumerate}
+
+\subsection*{SHOULD}
+\begin{enumerate}[label=\textbf{S\arabic*.},leftmargin=*]
+\item \textbf{Novelty and locators (Theorem 1.1, \S1, \S2.3).} The Set case is NS
+  \textbf{Prop.\,8.79}: carrier $c\otimes d$, counit $\epsilon_c\otimes\epsilon_d$,
+  comultiplication via the duoidal interchanger, and ``codomains and composition are defined
+  coordinate-wise''. That is your Theorem 1.1 with $\E=\Set$, word for word. Cite it by number
+  instead of ``[3, the Set case]''. Internally, SS do not state $c\otimes d=C\times D$, so the
+  internal statement is fine to claim. But it is a short corollary of SS Thm.\,4.5 and Thm.\,5.6, and
+  should be called one. SS's own technique gives a three-line alternative proof worth a remark:
+  their Lemma 5.5 transports both comonoid and category structures along the fully faithful
+  singular functor $\E\to\widehat{\E}$. This reduces to presheaves, and in presheaves the category
+  side is pointwise. Locators: the interchanger is SS Thm.\,4.5, eq.\,(16), with the Set formula in
+  Ex.\,4.6. Your ``[4, Ex.\,2.9, eq.\,(4)]'' points at the example ``$\mathrm{id}_\E$ is dense''.
+\item \textbf{\S3 Step 3: internal validity (your question (i)).} I find no smuggled
+  assumption. No choice is used: identities and composition are given maps, and the only ``choices''
+  are chosen pullbacks. No excluded middle is used: there are no case splits and no decidability.
+  No coend is computed pointwise: none is computed at all, since $\otimes$ is the product of maps.
+  The element notation is legitimate as generalized elements, i.e.\ the internal language of a
+  finite-limit category with exponentiable maps. But three points should be stated rather than
+  glossed:
+  \begin{itemize}[leftmargin=*]
+  \item The forward map of $\delta_c$ is not ``$\mathrm{cod}$''. It is the
+    $\Pi_{\mathrm{dom}}$-transpose of $\mathrm{cod}$, a map $C_0\to\Sigma_{C_0}\Pi_{\mathrm{dom}}(C_0\times C_1)$.
+  \item On positions, $\iota$ is the canonical map
+    $\Pi_X A\times\Pi_Y B\to\Pi_{X\times Y}(A\times B)$ (fibrewise $A^X\times B^Y\to(A\times B)^{X\times Y}$).
+    Say in one line that it sends the pair of transposes of $\mathrm{cod}_C,\mathrm{cod}_D$ to the
+    transpose of $\mathrm{cod}_C\times\mathrm{cod}_D$ (naturality of transposition).
+  \item ``On the nose'' means equality in $\Poly_\E$, whose morphisms are \emph{isomorphism classes}
+    of diagrams (SS Def.\,3.7, 3.13). That is what makes ``$=$'' meaningful despite the canonical
+    isomorphism in the composition bullet. Rephrase ``there is no coherence isomorphism to chase''.
+    Likewise, Rem.\,3.1's ``laws inherited from $C\times D$'' needs the fact that SS's proof of
+    Thm.\,5.6 matches the \emph{equations} one by one on unconstrained data. Their statement alone
+    is a bijection of lawful structures. Cite the proof.
+  \end{itemize}
+\item \textbf{\S1, Lucyshyn-Wright [2].} The abstract of 2502.18557 is about functor categories
+  and bifunctors over \emph{non-symmetric} bases $V$, via graded categories. Nothing in it says
+  ``Day-convolution closure is special to Set-like bases''. Quote a locator that does, or delete the
+  sentence. The same goes for the Vec paragraph: ``Vec is not LCCC'' is true, but SS need only finite
+  limits and exponentiable maps, so ``relocates the Vec obstruction precisely'' overstates.
+\item \textbf{\S6, Graph witness.} This is a fine finite sanity check of Theorem 1.1 in a presheaf
+  topos. But in a presheaf topos the category side is computed pointwise, so it cannot test the
+  ``non-pointwise'' worry. The global-element point needs no test: $\mathrm{id}$ is a morphism, and
+  global elements never enter. Present it as an illustration. Drop ``to the author's knowledge, the
+  first Lean certificate\dots''. Give the Lean file's URL (the PDF has only a path).
+\end{enumerate}
+
+\subsection*{NIT}
+\begin{enumerate}[label=\textbf{N\arabic*.},leftmargin=*]
+\item Def.\,2.1: $p(X)=\Sigma_{A_p}\Pi_{s_p}A_p^*X$ is ill-typed. $\Pi_{s_p}$ needs an object over
+  $B_p$, so the formula should be $\Sigma_{A_p}\Pi_{s_p}B_p^*X$ (i.e.\ $\Delta_{B_p}X=X\times B_p$).
+\item \S6: $C_{\mathrm{pt}}$ is a baseline (positive) control, not a ``negative control''. The negative
+  controls are \texttt{bogus} and \texttt{notcat}.
+\item [5, Prop.\,5.2] for the comonoid phrasing: I did not verify this locator. SS Thm.\,5.6 with
+  Rem.\,5.7 is a safer citation.
+\item \S1 says ``Theorem 1.1 --- ours'' while also crediting ``[3, the Set case]''. Make it
+  consistent once S1 is done.
+\item Table 1, row 1: the column ``holds in'' should say ``any finitely complete $\E$ (exponentiable
+  maps)''. See M3.
+\item SS eq.\,(16) itself has a typo ($p_2\tri q_2$ for $p_2\otimes q_2$). If you reproduce it,
+  don't copy that.
+\end{enumerate}
+
+\section*{What I checked, plainly}
+\begin{itemize}[leftmargin=*]
+\item \textbf{SS (2305.00167), full text.} Abstract: finite-limit $\E$, $\otimes$, duoidality,
+  comonoids $=$ internal categories with exponentiable source. Thm.\,5.6 is the bijection of
+  structures. Cor.\,5.12 is the isomorphism with \emph{cofunctors}. Your locators 5.6 and 5.12 are
+  the right numbers, but the content is misdescribed (M1). Ex.\,2.9 is the wrong locator (S1).
+\item \textbf{GK (0906.4931).} Polynomial functors over LCCCs, the framed bicategory, free
+  monads. The distributive law is eq.\,(5)--(6), $\Pi$ over $\Sigma$. Extensivity appears only in
+  \S4.3 (M2).
+\item \textbf{NS (2312.00990).} Prop.\,3.79 is Day convolution on $\Set^\Set$ only. \S8.2.4 has
+  Prop.\,8.79 $=$ the Set case of Theorem 1.1, and the explicit statement that $\times$ is not the
+  $\Cat^\sharp$-product.
+\item \textbf{Lucyshyn-Wright (2502.18557)} and \textbf{SGF (2111.10968)}: abstracts only. Titles and
+  authors match your bibliography.
+\end{itemize}
+\end{document}
