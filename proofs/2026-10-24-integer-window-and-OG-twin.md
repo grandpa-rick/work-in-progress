@@ -248,3 +248,45 @@ independent of the LS-parity model and of the Ω/SMT model.
 The same (★) that has no sign-coherence at half-integers has it for free at integers, because the anchor is **zero**. When an
 alternating-sign recursion refuses to be coherent, look for the specialisation where the base case vanishes: there the signs
 have nothing to fight.
+
+## 12. Stretch: the half-integer (NZ). One range proved, the rest reduced to one base inequality
+
+Notation: s_x(κ) := (−1)^{|κ|}H_κ(−x) for x ∈ ½ℤ, κ′ := κ minus its largest part, r′ := r(κ′). The odd-zero law says the
+zero set at x = a+½ is exactly 1 ≤ a ≤ ⌈r′/2⌉.
+
+**Corollary NZ_R (proved given (G1), (G0), (BR)).** For 1 ≤ a with 2a ≤ κ₁:
+H_κ(−a−½) = 0 ⟺ a ≤ ⌈r′/2⌉, and otherwise sgn H_κ(−a−½) = (−1)^{|κ|−κ₁}.
+*Proof.* Prop. R (odd-zero-law file, proved given (G1)) gives H_κ(−a−½) = 2^{−κ₁}H_{κ′}(−a). Then apply Theorem I to κ′. ∎
+This settles the "⇐" direction that Theorem Z₂ / Cor. Z left as "Theorem E territory": NZ for every κ in the range
+M = 2a+1 ≤ κ₁+1. Checked by Demazure directly (`nzR.py`): 6/6 (m = 3), 22/22 (m = 4).
+
+**Observation (computed m ≤ 4, `nzR.py`).** For M ≥ κ₁+2 beyond the window, every value is nonzero with sign (−1)^{|κ|}:
+14/14 at m = 3 and 36/36 at m = 4. Together with NZ_R this is the Wake 253 fitted sign rule, now with its dividing line
+identified as M = κ₁+1 vs κ₁+2.
+
+**Reduction R1 (proved, given Prop. R + Theorem I + (★)).** Let Q(κ) be the statement: s_{a+½}(κ) ≥ 0 for all a ≥ ⌈κ₁/2⌉.
+If B(κ) holds for every κ with κ₁ odd, then Q(κ) holds for every κ. Here
+  B(κ): s_{a+½}(κ) ≥ 0 at a = (κ₁+1)/2.
+*Proof.* Strong induction on |κ| via (★) at x = a+½ (it is a polynomial identity, valid at every x):
+s_{a+3/2}(κ) = s_{a+½}(κ) + Σ|c_ρ|s_{a+½}(ρ). Every ρ in the support has ρ₁ ≤ κ₁, so a ≥ ⌈κ₁/2⌉ ≥ ⌈ρ₁/2⌉ and Q(ρ) applies.
+- Base, κ₁ even: Prop. R case 1 at 2a = κ₁ gives s_{a+½}(κ) = 2^{−κ₁}(−1)^{κ₁}s_a(κ′) = 2^{−κ₁}s_a(κ′) ≥ 0 (Theorem I).
+- Base, κ₁ odd: this is B(κ).
+- κ = ∅: s ≡ 1. ∎
+
+**Reduction R2.** Prop. R case 2 (2a−1 = κ₁) gives s_{a+½}(κ) = s_{a−½}(κ′) − 2^{−κ₁}s_a(κ′). Hence
+  B(κ) ⟺ f(κ′, b) ≥ 0 with b = (κ₁−1)/2, where f(μ,b) := 2^{2b+1}s_{b+½}(μ) − s_{b+1}(μ) and 2b+1 > μ₁.
+(Computed m ≤ 4, `base.py`: 85/85, minimum ratio 2^{2b+1}s_{b+½}/s_{b+1} = 2, attained at μ = (2),(4),(4,1),(4,2),∅.)
+(★) applied to both terms gives
+  f(μ,b) = 4f(μ,b−1) + 3s_b(μ) + Σ|c_ρ|(4f(ρ,b−1) + 3s_b(ρ)).
+So f ≥ 0 propagates upward in b from the base b₀ = ⌈μ₁/2⌉:
+- μ₁ even: f(μ,b₀) = 2s_{b₀}(μ′) − s_{b₀+1}(μ). This is ≥ 0 if **(E)** s_{μ₁/2+1}(μ) = s_{μ₁/2}(μ′) holds. (E) is computed
+  exactly at m ≤ 4 (`edge.py`, every even-μ₁ case, zeros included).
+  Hunch: (E) is the lowest-order residue at t₁ = ∞ in Thm R. At integer c the residue at −1 vanishes, and at 2c = κ₁+2 the
+  pole at ∞ is simple, with K(∞,t) = 1/t shifting c by ½.
+- μ₁ odd: f(μ,b₀) = 4f(μ′,b₀−1) − s_{b₀+1}(μ). This needs a quantitative bound, e.g. μ = (3): 4·7 − 3 = 25, and
+  μ = (3,2): 4·1 − 1 = 3. **Open.**
+
+**Precise gap for the half-integer (NZ) (sign half):**
+1. Prove (E) from Thm R's residue at ∞.
+2. Prove 4f(μ′, b₀−1) ≥ s_{b₀+1}(μ) for μ₁ odd.
+3. Strictness (> 0 beyond the window) needs a strict term, as Lemma A supplied in Theorem I. Not attempted.
