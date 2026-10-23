@@ -1,0 +1,11 @@
+1 |k| 1 r 1 r' 0 int zeros [-1] half-int zeros [] pred ok True H(-r-1) -1 supp {'0': 1}
+2 |k| 2 r 2 r' 0 int zeros [-2, -1] half-int zeros [] pred ok True H(-r-1) 1 supp {'1': 1}
+3 |k| 3 r 3 r' 0 int zeros [-3, -2, -1] half-int zeros [] pred ok True H(-r-1) -1 supp {'2': 1}
+21 |k| 3 r 3 r' 1 int zeros [-3, -2, -1] half-int zeros [] pred ok True H(-r-1) -1 supp {'2': 1}
+31 |k| 4 r 3 r' 1 int zeros [-3, -2, -1] half-int zeros [] pred ok True H(-r-1) 1 supp {'21': 1, '3': 1, '2': -1}
+32 |k| 5 r 4 r' 2 int zeros [-4, -3, -2, -1] half-int zeros ['-5/2'] pred ok True H(-r-1) -1 supp {'31': 1}
+321 |k| 6 r 5 r' 3 int zeros [-5, -4, -3, -2, -1] half-int zeros [] pred ok True H(-r-1) 1 supp {'32': 1}
+m=3: supp all rook strips 7/7; height (max |theta∩chain|) histogram over all (kappa,rho): [(1, 9)]
+m=3: b=H(j)-H(j-1) == sum_rho c_rho H_rho on half-int grid (KOG rule x Omega model): 7/7
+m=3: integer zero set == {-1..-r(kappa)} exactly: 7/7; failures []
+m=3: kappa with half-integer zeros: 1 [((3, 2), [Fraction(-5, 2)])]
