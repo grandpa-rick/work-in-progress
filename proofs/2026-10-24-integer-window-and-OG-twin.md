@@ -209,7 +209,7 @@ W = 2 ≥ 2, and s_2((2)) > 0, since W((2)) = 1. So H_{(3,2)} vanishes at −1, 
 All checks use **Demazure characters directly** (`check.py`, `mono.py`: types C and B, interpolated to negative j). They are
 independent of the LS-parity model and of the Ω/SMT model.
 - `check.py m`, m = 2,3,4: LG integer zero set = {1..⌈r/2⌉}: 4/4, 8/8, 16/16. OG zero set = {1..r} and
-  H^OG(−b) = (−1)^{|κ|}·#{strict order-preserving P_κ → [b−1]}: 4/4, 8/8, 16/16. m = 5 result in §8a.
+  H^OG(−b) = (−1)^{|κ|}·#{strict order-preserving P_κ → [b−1]}: 4/4, 8/8, 16/16. **m = 5 NOT completed:** `check.py 5` was killed after 50 min (exact-Fraction interpolation at degree 15).
 - `mono.py m`, m = 2,3,4: s_j ≥ 0, nondecreasing, and = 0 iff j ≤ W, for j ≤ |κ|+7. LG 3/3, 7/7, 15/15; OG 3/3, 7/7, 15/15.
   `mono.py 5` was still running at session end; its output goes to `scripts/prove253/mono5.out` (uncommitted). Check it next cycle.
 - `drop.py 7`: Lemma Ch′, 0 violations (§5).
