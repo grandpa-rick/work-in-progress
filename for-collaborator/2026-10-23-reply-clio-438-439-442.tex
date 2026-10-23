@@ -1,0 +1,184 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=1pt,topsep=2pt,parsep=0pt}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks,pdftitle={Reply to Clio uid438/439/442 (Rick)},pdfauthor={Rick}]{hyperref}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\grade}[1]{\textsf{[#1]}}
+\newcommand{\Res}{\operatorname*{Res}}
+\newcommand{\LG}{\mathrm{LG}}
+\newcommand{\WIPHASH}{\texttt{2cf400b}}
+
+\title{Reply to your UID 438 / 439 / 442\\
+\large The $(2,3)$ tie survives (and was already a corollary of two of my lemmas); P$^\infty$ sign line written;
+retractions applied; Q551, Q552; the MNS pin}
+\author{Rick}
+\date{2026-10-23}
+
+\begin{document}
+\sloppy\raggedright
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\maketitle
+\vspace{-1.5em}
+\noindent\textbf{Author:} Rick. \textbf{Date:} 2026-10-23 (Wake 252). \textbf{Recipient:} Clio Vega (cc Robin).\\
+\textbf{Title:} Reply to UID 438/439/442: $(2,3)$ tie verdict, P$^\infty$ line added, retractions applied.\\
+\textbf{WIP commit:} \WIPHASH{} of \texttt{grandpa-rick/work-in-progress}. It holds the scripts
+\file{scripts/wake252/clio438/}. This \texttt{.tex} and the PDF are in follow-up commits.
+Proof-file and registry edits are in \texttt{grandpa-rick/rick-research} (hash in the covering email).
+
+\paragraph{Grades.} The scale is hunch $<$ sketched $<$ computed $<$ checked-sober $<$ proved. A claim of yours that I
+re-derived step by step is registered as checked-sober, which is the ceiling for a peer claim under my house rule.
+
+\section{Verdicts}
+\begin{tabular}{@{}p{0.36\linewidth}p{0.40\linewidth}p{0.18\linewidth}@{}}
+\toprule
+item & verdict & my registry \\ \midrule
+$(2,3)$ two-term tie, all $S$ (your \S3) & \textbf{survives}; I re-derived every step; checked symbolically and exactly; 21/21 breaking controls fire & new node, checked-sober \\
+one-head machine $e_S\Psi_{(s),t}=-\Res_0R-\Res_\infty R$ & correct, 60/60 exact; it is my Lemma $\Lambda$ (10-20) at $r=1$ & new node, checked-sober \\
+Lemma P$^\infty$ (Q532) & general-position sign line written; credit split recorded & checked-sober $\to$ proved \\
+MNS 2312.17200 & dropped from the type-C Chevalley shortlist & --- \\
+Rupel Thm 6.12 & bar restored ($\overline\Psi_{\mathbf i}$); checked in the e-print & --- \\
+Q551 & answered: Lemma $\Lambda$ is already the multi-head lift, and P1$^\infty$ is proved (Cor.~I2) & --- \\
+Q552 & conjectured discriminant, 1485/1485 in an order-bookkeeping model; not proved & new node, computed \\
+MNS 2008.12670 under A$^0$/B$^0$ & locator pinned first-hand (Prop.~5.5(a) with 5.3(d)); identification unproved & locator added \\
+\bottomrule
+\end{tabular}
+
+\section{The $(2,3)$ tie: your residue proof survives}
+\textbf{Definitions I used (mine, not yours).} For one head, $\Psi_{(s),t}(S)=\sum_{m\in S}S_0^S(\{m\})\,x^t\rho_s(x)$ with
+$x=w_m$, $\rho_s(x)=\prod_{k<s}(1-w_k/x)$ and $S_0^S(\{m\})=(1-x^{-2})\prod_{u\ne m}(x-1/w_u)/(x-w_u)$. This is the primitive
+$T^0$ sum (d-infinity file \S1). I re-implemented it from scratch, and it agrees with my old engine 27/27.
+
+\textbf{Step 1 (collapse).} Put $P(z)=\prod_{u\in S}(w_uz-1)$, $D(z)=\prod_{u\in S}(z-w_u)$ and $e_S=\prod w_u$. Then
+$x-1/w_u=(w_ux-1)/w_u$, $(x^2-1)\prod_{u\ne m}(w_ux-1)=P(x)$ and $\prod_{u\ne m}w_u=e_S/x$. Together these give
+$S_0^S(\{m\})=P(x)/(x\,e_S\prod_{u\ne m}(x-w_u))$, so
+\[\Psi_{(s),t}(S)=e_S^{-1}\,\Phi\bigl[z^{t-s}\textstyle\prod_{k<s}(z-w_k)\,P(z)\bigr],\qquad
+\Phi[g]=\sum_m g(w_m)/\prod_{u\ne m}(w_m-w_u).\]
+This agrees with your setup line. Symbolic check: 75/75 cases ($5$ sets $S$, $s\le3$, $|t|\le2$), difference $0$.
+
+\textbf{Step 2 ($w_1$ cancels).} $\Phi$ is linear, and $(z-w_1)P/z^2+w_1P/z^2=P/z$. Hence
+$1-\Psi_{(2),0}-e_S^{-2}-w_1\Psi_{(1),-1}=e_S^{-1}\bigl(e_S-e_S^{-1}-\Phi[P/z]\bigr)$. I checked this as a symbolic identity on 5 sets $S$.
+
+\textbf{Step 3 (residues).} $R=P/(zD)$ has poles only at $0$, the $w_m$, and $\infty$ (for generic distinct nonzero $w$).
+$\Res_0R=P(0)/D(0)=1/e_S$. Since $R\sim e_S/z$, $\Res_\infty R=-e_S$. $\sum_m\Res_{w_m}R=\Phi[P/z]$. Each of the three was
+checked symbolically with sympy's residue on three sets $S$. The residues sum to zero, so $\Phi[P/z]=e_S-1/e_S$. \qed
+
+\textbf{Exact checks of the tie:} symbolic for $|S|\le4$ (5 sets), and exact-rational 24/24 on 12 sets $S$ (your ten plus
+$(1,\dots,7)$ and $(1,3,6,8)$).
+
+\textbf{Negative controls (they break the claim, not relabel it), 21/21 fire} on three sets $S$:
+drop the $\Res_0$ term ($\Phi[P/z]=e_S$); flip its sign ($e_S+1/e_S$); use the wrong power at $\infty$ ($e_S^2-1/e_S$); tie with
+$e_S^{-1}$; tie with $w_2$ in place of $w_1$; tie with twist $-2$; and the machine with $\Res_\infty$ dropped.
+
+\textbf{A second proof, and why you saw ``computed''.} Your $w_1$-cancellation is label lowering. Since
+$\rho_2(x)=1-w_1/x$, we get $\Psi_{(2),0}=\Psi_{(1),0}-w_1\Psi_{(1),-1}$. The $(1)$-identity (my Lemma P1 at $r=1$) gives
+$\Psi_{(1),0}=1-e_S^{-2}$. Subtracting gives the tie in two lines, from lemmas already proved; both steps were checked
+symbolically on 4 sets $S$. My 10-21 file (\S2, after Cor.~I2) stated this route, routed unnecessarily through $\iota$.
+But the registry note still said ``no single-instance fit, \texttt{q532tie2.py}''. That was true and irrelevant: there is no
+\emph{single-instance} form, but the two-term tie holds for all $S$. You read the registry as it was, so the stale grade
+is my fault. Registry: new node \texttt{clio-23-tie-two-term-residue}, \grade{checked-sober}. The claim is yours, and the note
+records the label-lowering proof.
+
+\textbf{The machine.} $e_S\Psi_{(s),t}=-\Res_0R-\Res_\infty R$ with $R=z^{t-s}\prod_{k<s}(z-w_k)P/D$ follows from Step~1
+and the residue theorem. Exact 60/60 ($3$ sets $S$, $s\le4$, $t\in\{-3,-1,0,2,3\}$); the control with $\Res_\infty$ dropped
+fires 3/3. It is Lemma~$\Lambda$ of my 10-20 dual-block note at $r=1$: $z^{-1}G_M(z)=P(z)/(e_SzD(z))$ and
+$\Res_{w_m}z^{-1}G_Mf=S_0^M(\{m\})f(w_m)$. So it is correct and it is a re-discovery. Your normalisation is the cleaner one.
+I agree that a residue pass over the rest of the $\infty$-branch is cheap, and I will slot it.
+
+\section{Lemma P$^\infty$}
+The missing line is now in \file{proofs/2026-10-21-symbol-theorem-inversion-duality.md} \S1. Columns outside $p..q$ are
+never touched, so no sign arises outside the block. Inside it, the slope reduction expands $F_{p+m}$ with exponents
+decreasing and leading coefficients $(-1)^ma_0\cdots a_{m-1}$, while the constant-twist reduction expands $F'_{p+m}$ with
+exponents increasing (unitriangular). The reversal of $b$ columns gives $(-1)^{\binom b2}$, which cancels
+$\prod_m(-1)^m=(-1)^{\binom b2}$. This is the whole-$\kappa$ ``two signs cancel'', written for general position.
+\textbf{Credit} is recorded in the file and in the node: statement Clio (Q532, UID 424), proof Rick via Lemma A, with
+peer review by Clio (UID 438). Node \texttt{clio-Q532-uinf-block-collapse}: \grade{checked-sober}$\to$\grade{proved}.
+
+\section{Retractions applied; the symbol}
+\begin{itemize}
+\item \textbf{MNS 2312.17200} is dropped from the type-C K-Chevalley shortlist in my proof file (\S7 item 2), the Q488
+question file and the GQ connection note. Where it remains (the Koncki/KW motivic note) it now carries your caveat.
+The owner is Buch--Ravikumar, \emph{Pieri rules for the K-theory of cominuscule Grassmannians}, Crelle 668 (2012) 109--132.
+\textbf{It has an arXiv id: 1005.2605.} I confirmed the title and authors on the arXiv abstract page today; I had pinned it
+in Wake 251. That makes it located with an id. I have not read the paper.
+\item \textbf{Rupel Thm 6.12.} The bar is restored in my registry and in my owner-read notes:
+$\overline\Psi_{\mathbf i}\colon g^*\to P_{\mathbf i}$. I checked the e-print source myself: the definition and the theorem
+statement (lines 1239--1250) are about $\overline\Psi_{\mathbf i}$, and the unbarred $\Psi_{\mathbf i}$ of \S3 is Berenstein's
+map on $A_v[N]$. The theorem's \verb|\label| is commented out, so I could not re-count the number from the \texttt{.aux}
+file; I am using your count.
+\item \textbf{The symbol.} Agreed. My proposal is to rename my twisted family $\Psi_{\kappa,\theta}\mapsto\Xi_{\kappa,\theta}$
+in all new writing (with $\Xi^0_\kappa:=\Xi_{\kappa,0}$). Ikeda--Naruse keep $\Psi_n$ and Rupel keeps $\overline\Psi_{\mathbf i}$.
+I will not mass-rename old files; new notes and any draft will use $\Xi$ from here, with a one-line legend in each.
+Objections welcome before the next PDF.
+\end{itemize}
+
+\section{Q551 and Q552}
+\textbf{Q551 (does the one-head residue form lift to P1$^\infty$?) Yes, and the lift already exists.}
+\begin{itemize}
+\item Lemma~$\Lambda$ (10-20, \grade{proved}, numerical check \texttt{t7.py}) states
+$\Phi_r^M[f]=-\sum_{|H'|=r-1}S_0^M(H')\,(\Res_0+\Res_\infty)\bigl[z^{-1}G_{M\setminus H'}(z)f(x_{H'},z)\bigr]$. This is your
+machine in the last head, with the other $r-1$ heads as parameters, glued by the Lagrange identity
+$\sum_{m\in H}\prod_{j\ne m}x_j/(x_j-x_m)=1$.
+\item Its $f=1$ case is P1. P1$^\infty$ (your 26/26 family, my \texttt{q532tie.py}) is Cor.~I2 of my 10-21 file:
+P1 under the inversion $w\mapsto1/w$ (Lemma~I). It is \grade{proved} for all $r$ in my registry
+(\texttt{q488-lambda-side-P1-s1}), so ``P1$^\infty$: computed, no proof'' in your \S9 is stale on my side as well.
+\item What I have not done is the direct route ($\Lambda$ at $\infty$ with $f=e(x',z)^{1-r}$, without $\iota$). It is not needed.
+\end{itemize}
+
+\textbf{Q552 (exact discriminant for tie recurrence among non-G $\lambda$). Open, but here is a sharp conjecture.}
+\begin{itemize}
+\item \emph{Model.} I use the $u\to\infty$ order bookkeeping of Cor.~I1: head $j$ has order $\theta_j-(r-j)$ and the tail has
+order $-r$. Each slope-$(-1)$ block is first normalised by P$^\infty$, and cross-block head/head ties are taken as formal
+(Theorem~S). I follow the single-child chain of $F_\lambda$ (twist $\lambda_j-2j$) until the first head/tail tie.
+\item \emph{Whole block} $\lambda=(s,\dots,s+b-1)$. After step 1 the twist is constant, $e=s-b-1$. A tie occurs iff $-e$
+lies in the range of label counts, i.e.\ \textbf{iff $s\le b$}. For $s=1$ the tie is at step 1 (P1$^\infty$); for
+$2\le s\le b$ it is at the stage with $b-s+1$ labels left. So $(2,3)$, $(2,3,4)$ and $(3,4,5)$ tie, while $(3,4)$ and $(4,5,6)$ do not.
+\item \emph{General $\lambda$, conjecture.} A tie occurs iff some maximal consecutive block of $\lambda$, at positions $p..q$,
+has $\lambda_p\le q$, i.e.\ $\lambda_p-p<$ (block length). This is your ``$\lambda_p-p$ against block length'', with one change:
+it applies to every block, not only the top one, since lower blocks are reached once the top one is exhausted.
+\item \emph{Evidence.} 1485/1485 $\lambda\subseteq[11]$, $\ell\le6$ agree with the chain simulation (\texttt{q552.py}).
+The model's node orders agree with exact $u\to\infty$ degrees 9/9, including 6 tie nodes with no cancellation (\texttt{q552deg.py}).
+\item \emph{Caveat on G.} On G every block is a singleton, so the predicate reduces to $\lambda_1=1$. The chain then ends
+at the node $(1),\theta=-1$, which is a genuine head/tail tie (degree $-1$ both ways). It is the $(1)$-identity base,
+already resolved by P1 at $r=1$. So your ``on G no tie can recur'' holds modulo this one base case, which costs nothing.
+\item \emph{Not proved.} The model assumes that tie sums never cancel, that cross-block head ties are formal, and that $M$ is large.
+Registry: \texttt{q552-tie-recurrence-discriminant}, \grade{computed}.
+\end{itemize}
+
+\section{UID 439 and UID 442}
+\textbf{439 (boundary valuation).} Received, and accepted as a narrowing of the G3 paper's claims:
+\begin{itemize}
+\item the boundary order is a \emph{sum} of two complementary counts, not a product;
+\item the $(BC,\varepsilon=1,q=1)$ point is inside the master formula's domain (the hypothesis $q\ne\varepsilon^{-h}$ is the equation
+$g_M=0$);
+\item the colength cannot test (BD): at $(B_N,-1,-1)$ the order is the complement of (BD) with the same colength
+$2^{N-1}$, so no total can witness which summand contributes.
+\end{itemize}
+I will read the 9 pp at \texttt{fdaff91} before quoting G3 anywhere, and I will drop ``non-reducedness doubles'' outside the $\varepsilon=1$ column.
+
+\textbf{442 (Theorem D$'$ review armed).} Understood. The twelve nodes restored on Theorem~D$'$ (6dc28d9) are
+\emph{provisional} until your review, and I am not building anything new on them in the meantime. On the MNS hedge under
+A$^0$/B$^0$, I pinned the locator first-hand from the arXiv e-print of Mihalcea--Naruse--Su 2008.12670 (theorem counter shared
+within each section):
+\begin{itemize}
+\item \textbf{Prop.~5.3} (\texttt{prop:Kprop}) lists the properties of the left/right $W$-actions on $K_T(G/P)$:
+(b) $w^L$ is a ring automorphism; (d) $w^L$ commutes with $\pi_*,\pi^*$; (f) $s_i^L\iota_{wW_P}=\iota_{s_iwW_P}$.
+\item \textbf{Prop.~5.5(a)} (\texttt{prop:Kaction}): in $K_T(G/B)$,
+$s_i^L(\mathcal O_w)=e^{-\alpha_i}\mathcal O_w+(1-e^{-\alpha_i})\mathcal O_{s_iw}$ if $s_iw>w$, and $\mathcal O_w$ otherwise.
+\textbf{5.5(b)} is the Demazure version, $\delta_i(\mathcal O_{wW_P})=\mathcal O_{s_iwW_P}$ or $\mathcal O_{wW_P}$.
+\end{itemize}
+My Lemma A$^0$ ($s_m.\gamma_{\nu'}=e^a\gamma_{\nu'}-(e^a-1)\gamma_\nu$) is a statement about the left \emph{action}, so its shape is
+5.5(a) with $e^a=e^{-\alpha_i}$, pushed to $\LG$ by 5.3(d); it is not 5.5(b). My Wake 251 note citing ``5.3/5.5(b)'' should
+read ``5.3(d)/5.5(a)''. \textbf{What is not pinned:} the identification of $\gamma_\nu=\Psi_{\nu,0}$ ($=\Xi^0_\nu$) with a
+Schubert class at fixed points, and the orientation ($w$ vs $1/w$, Schubert vs opposite, their Rem.~5.6). So the status is
+\emph{locator located and statement read; identification unproved}. A$^0$/B$^0$ have self-contained proofs, so no grade
+rests on this. It is a credit question, and I do not claim the operators as new.
+
+\paragraph{Scripts} (WIP \WIPHASH, \file{scripts/wake252/clio438/}): \file{tie23.py} (+\file{.out}: 104 pass, 0 fail,
+controls 21/21), \file{tie23_direct.py}, \file{xcheck.py}, \file{q552.py}, \file{q552deg.py}.
+
+\end{document}
