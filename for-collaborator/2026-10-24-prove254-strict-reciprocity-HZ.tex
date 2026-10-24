@@ -1,0 +1,559 @@
+\documentclass[10pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=1pt,topsep=2pt,parsep=0pt}
+\usepackage{amsmath,amssymb,array,longtable,booktabs}
+\usepackage[hidelinks,pdftitle={Strict reciprocity on LG/OG and the half-integer odd-zero law (PROVE 254)},pdfauthor={Rick}]{hyperref}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\grade}[1]{\textsf{[#1]}}
+\newcommand{\LG}{\mathrm{LG}}
+\newcommand{\OG}{\mathrm{OG}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\Ob}{\bar\Omega}
+\newcommand{\eo}{\{e<o\}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\WIPHASH}{\texttt{TBD}}
+\newcommand{\WIPPREV}{\texttt{df91a79}}
+\newcommand{\PHASH}{\texttt{a2dff63}}
+\newcommand{\Purl}{https://github.com/grandpa-rick/rick-research/blob/a2dff638efdd1ff2480aa131b80449cdacfe959c/proofs/2026-10-25-crownF-strict-reciprocity.md}
+\newtheorem*{thmQ}{Theorem Q30}
+\newtheorem*{thmSRLG}{Theorem SR$_{\LG}$}
+\newtheorem*{thmSROG}{Theorem SR$_{\OG}$}
+\newtheorem*{thmHZ}{Theorem HZ}
+\newtheorem*{lemR}{Lemma R}
+\newtheorem*{lemT}{Lemma T}
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{cor}[lem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
+\title{Strict reciprocity on LG and OG, and the half-integer odd-zero law (PROVE 254)}
+\author{Rick}
+\date{2026-10-24}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\maketitle
+\vspace{-1em}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.78\textwidth}@{}}
+\textbf{Author} & Rick (grandparick20@gmail.com)\\
+\textbf{Date} & 2026-10-24 (Wake 255)\\
+\textbf{Recipient} & Clio Vega (cliovega20@gmail.com); cc Robin Langer\\
+\textbf{Title} & Strict reciprocity on LG and OG, and the half-integer odd-zero law (PROVE 254)\\
+\textbf{WIP commit} & This PDF corresponds to WIP commit \WIPHASH\ (\texttt{grandpa-rick/work-in-progress}), which holds
+this note's source. The PROVE 254 scripts and the proof file sit in WIP commit \WIPPREV. The hash was stamped in a
+follow-up commit, which adds this PDF.\\
+\textbf{Proof file} & \texttt{grandpa-rick/rick-research} commit \PHASH,
+\file{proofs/2026-10-25-crownF-strict-reciprocity.md}\newline \url{\Purl}\\
+\textbf{Registry} & \file{proofs/registry/q488-converse.json}: nodes \file{q488-oc-Q30-KLG-strict-fillings},
+\file{q488-oc-HZ-half-integer-law} (trust: proved, given (G0), (G1), BR first-hand).\\
+\textbf{Referee} & \S3.3 and \S9.3 are hand-written case analyses, re-read once. Please referee those two.\\
+\end{tabular}
+
+\medskip
+Grades come from my registry ladder hunch $<$ sketched $<$ computed $<$ checked-sober $<$ proved. Every claim below
+carries one. The file name of the source markdown carries the date PROVE.md asked for (2026-10-25); the work was done
+2026-10-24.
+
+\section*{0. Verdict}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.5\textwidth}>{\raggedright\arraybackslash}p{0.24\textwidth}@{}}
+\toprule
+item & statement & grade\\\midrule
+Lemma R (reduction) & \#strict order-preserving maps $P\to\eo$ with $D\mapsto e$ is $0$ if $P$ has a 3-chain or a
+non-minimal element of $D$, else $2^{\#\text{isolated elements}\notin D}$ & proved (\S2)\\
+\textbf{Theorem Q30} & LG, dimension-indexed: $[\mathcal O_{X_\kappa}]\cdot\mathcal O^1=\sum_\rho c_\rho[\mathcal O_{X_\rho}]$
+with $c_\rho=(-1)^{|\theta|-1}V(\theta)$, $V(\theta)=\#$strict order-preserving $\theta\to\eo$ with diagonal $\mapsto e$,
+for every $\rho\subsetneq\kappa$ (and $c_\rho=0$ for $\rho\not\subseteq\kappa$) & \textbf{proved given BR Cor 5.4 + Thm 5.5}
+(both proved in BR, read first-hand), \S3\\
+Theorem Q30$_{\OG}$ & OG: $c_\rho=(-1)^{|\theta|-1}$ if $\theta$ is a nonempty antichain (= nonempty set of maximal
+boxes of $P_\kappa$), else $0$ & proved given BR Lemma vanishB (I file Lemma 2), \S3.4\\
+\textbf{Theorem SR$_{\LG}$} & $(-1)^{|\kappa|}H_\kappa(-j)=\#\{$strict order-preserving $P_\kappa\to[2j-1]$, diagonal values
+even$\}$, all $j\ge1$ & \textbf{proved given (G0), (G1), (BR)}, \S4\\
+\textbf{Theorem SR$_{\OG}$} & $(-1)^{|\kappa|}H^{\OG}_\kappa(-j)=\Ob(P_\kappa,j-1)=\#\{$strict order-preserving
+$P_\kappa\to[j-1]\}$, all $j\ge1$ & \textbf{proved given (G0), (G1), (BR)}, \S5\\
+Corollary (Theorem I, combinatorial proof) & zero window, sign and monotonicity of Theorem I read off from the count &
+proved, \S6\\
+\textbf{Theorem HZ} (odd-zero law, both halves) & $H_\kappa(-a-\tfrac12)=0\iff a\le\lceil r(\kappa\pr)/2\rceil$; sign
+$(-1)^{|\kappa|-\kappa_1}$ for $2a\le\kappa_1$, $(-1)^{|\kappa|}$ for $2a\ge\kappa_1$; $|\text{value}|\ge
+2^{-\kappa_1}N_{\kappa\pr}(a)$ & \textbf{proved given (G0), (G1), (BR) + Thm A}, \S9\\
+\bottomrule
+\end{longtable}
+
+The point: ($\star$) of the I file is a positive recursion with a trivial anchor. Unrolled to the anchor, it \emph{is} the
+counting formula. The only nontrivial input is that the one-step coefficient $|c_\rho|$ counts one ``layer'' $\eo$, and
+that is Q30. SR$_{\LG}$ no longer depends on the LS-parity model. SR$_{\OG}$ no longer depends on SMT/Stanley reciprocity.
+
+\section*{1. Setup}
+
+As in the I file (\file{proofs/2026-10-24-integer-window-and-OG-twin.md}) \S1; ``the Z file'' is
+\file{proofs/2026-10-24-Z-by-hyperplane-induction.md}. $X=\LG(m,2m)$ or $\OG(m,2m+1)$, $L$ the ample generator,
+$X_\kappa:=X^{\kappa^\vee}$ of dimension $|\kappa|$, $H_\kappa(j)=\chi(X_\kappa,L^j)$. $P_\kappa=D(\kappa)$ is the shifted
+diagram: boxes $(a,b)$ with $0\le a\le b$, 0-indexed, diagonal $=\{a=b\}$. Order: $x\le y$ iff $x$ is weakly NW of $y$
+(product order). For $\rho\subseteq\kappa$, $\theta=D(\kappa)\setminus D(\rho)$ is an up-set (order filter) of $P_\kappa$,
+and every up-set arises this way for a unique strict $\rho$ (I file \S2, Fact).
+
+Inputs: (G0) $\mathcal O^1=1-[L^{-1}]$; (G1) Demazure character formula; (BR) Buch--Ravikumar arXiv:1005.2605, read
+first-hand from the v1 \LaTeX\ source. Used here: \S5 eq.~(11) + \textbf{Cor 5.4} ($c^\nu_{\lambda,p}=\cC(\nu/\lambda,p)$
+for $\lambda\subset\nu$) and \textbf{Thm 5.5} (the arm recursion for $\cC$), both proved in BR. We do \textbf{not} use
+Cor 5.6 (KLG tableaux), whose proof BR leave to the reader; \S3.3 below is that proof at $p=1$. \S4 OG: Lemma vanishB
+(proved in BR).
+
+The I file's ($\star$): with $s_j(\kappa):=(-1)^{|\kappa|}H_\kappa(-j)$,
+\[ s_{j+1}(\kappa)=s_j(\kappa)+\sum_{\rho\subsetneq\kappa}|c_\rho|\,s_j(\rho)\qquad\text{for every integer }j,\tag{$\star$}\]
+valid on LG and OG, given (G0) and the sign rule $c_\rho=(-1)^{|\theta|-1}|c_\rho|$ (re-proved below on LG as part of Q30).
+Anchor: $s_1(\kappa)=0$ for $\kappa\ne\emptyset$ (I file Lemma 1, given (G1)); $s_j(\emptyset)=1$ ($X_\emptyset$ is a point).
+
+\section*{2. Lemma R (counting $\eo$ maps)}
+
+Let $P$ be a finite poset and $D\subseteq P$. Let $V(P,D)=\#\{f:P\to\eo : x<y\Rightarrow f(x)<f(y),\ f(D)\subseteq\{e\}\}$.
+
+\begin{lemR}\grade{proved}
+$V(P,D)=0$ if $P$ has a chain $x<y<z$, or if some $d\in D$ is not minimal. Otherwise $V(P,D)=2^{i}$, where $i$ is the
+number of isolated elements (comparable to nothing else) not in $D$.
+\end{lemR}
+\begin{proof}
+A 3-chain needs three distinct values. If $x<d\in D$ then $f(x)<f(d)=e$ is impossible. Otherwise $P$ has height $\le2$.
+A non-isolated $x$ is then either non-maximal ($x<y$ for some $y$, forcing $f(x)=e$, $f(y)=o$) or non-minimal (forcing
+$f(x)=o$), not both (that would be a 3-chain). These forced values satisfy every relation $x<y$ ($x$ non-maximal $\mapsto
+e$, $y$ non-minimal $\mapsto o$). A non-isolated $d\in D$ is minimal, hence non-maximal, hence forced to $e$, consistent with
+$D$. An isolated element is free (2 choices) unless it is in $D$ (1 choice).
+\end{proof}
+
+In $P_\kappa$: a diagonal box $(c,c)$ of an up-set $\theta$ is non-minimal in $\theta$ iff $(c-1,c)\in\theta$. (The boxes
+below $(c,c)$ in $P_\kappa$ are those weakly NW of it, i.e.\ $(a,b)$ with $a\le b\le c$, $a\le c$. If one of them,
+$(a,b)\ne(c,c)$, lies in $\theta$, then $(c-1,c)$, which lies between $(a,b)$ and $(c,c)$ when $a\le c-1$, $b\le c$, lies in
+$\theta$ since $\theta$ is an up-set. And $a=c$ forces $b=c$.)
+
+\section*{3. Theorem Q30 (LG K-Pieri at $p=1$)}
+
+\subsection*{3.1 Translation to BR's side}
+
+$c_\rho=c^{\rho^\vee}_{\kappa^\vee,1}$ (dimension vs codimension indexing). If $\rho\not\subseteq\kappa$ then $c_\rho=0$ (I
+file \S4, ``$\lambda\not\subseteq\nu$''). If $\rho\subsetneq\kappa$, Lemma S of the Z file gives
+$\theta_{BR}:=D(\rho^\vee)\setminus D(\kappa^\vee)=R(\theta)$, $R(r,c)=(m-1-c,\,m-1-r)$. $R$ is an involution of $\Delta_m$,
+fixes the diagonal setwise, swaps rows and columns, and \textbf{reverses} the NW order. By Cor 5.4, $c_\rho=\cC(\theta_{BR},1)$.
+
+For a shifted skew shape $\varphi$ let $K(\varphi):=\#$labellings $\varphi\to\{1\pr<1\}$ that strictly increase along every
+row (left to right) and every column (top to bottom), with no $1\pr$ on a diagonal box, and $K(\varphi):=0$ if $\varphi$ is
+not a rim. (BR: a rim has no two boxes with one strictly south and strictly east of the other.)
+
+\begin{lemT}[rim and chains]\grade{proved}
+Let $\varphi=\nu/\lambda$ be a shifted skew shape. (a) If $\varphi$ is not a rim, $\varphi$ has a 3-chain in the NW order.
+(b) If $\varphi$ is a rim, two boxes of $\varphi$ are comparable iff they share a row or a column.
+\end{lemT}
+\begin{proof}
+(a) Take $a=(r,c)$, $b=(r\pr,c\pr)\in\varphi$ with $r<r\pr$, $c<c\pr$. Row ends of $\nu$ are weakly decreasing ($\nu$
+strict, shifted), so $(r,c\pr)\in\nu$. Rows of $\lambda$ are initial segments of rows and $(r,c)\notin\lambda$, so
+$(r,c\pr)\notin\lambda$. Then $a<(r,c\pr)<b$. (b) Comparable means weakly NW; not strictly NW (rim) forces same row or
+column.
+\end{proof}
+
+\begin{lem}\label{lem31}\grade{proved}
+For every $\rho\subsetneq\kappa$: $V(\theta):=V(\theta,\text{diagonal})=K(\theta_{BR})$.
+\end{lem}
+\begin{proof}
+If $\theta_{BR}$ is not a rim it has a 3-chain (Lemma T(a)); $R$ reverses order, so $\theta$ has one, and
+$V(\theta)=0=K(\theta_{BR})$ (Lemma R). If $\theta_{BR}$ is a rim, by Lemma T(b) ``strict along rows and columns'' =
+``strict order-preserving'' on $\theta_{BR}$. Compose with $R$ (order-reversing, diagonal-preserving) and rename
+$1\mapsto e$, $1\pr\mapsto o$: strict order-preserving maps $\theta_{BR}\to\{1\pr<1\}$ with diagonal $\mapsto1$ correspond
+bijectively to strict order-preserving maps $\theta\to\eo$ with diagonal $\mapsto e$.
+\end{proof}
+
+So Q30 $\iff$ $\cC(\varphi,1)=T(\varphi):=(-1)^{|\varphi|-1}K(\varphi)$ for every nonempty shifted skew shape $\varphi$.
+(Then $c_\rho=(-1)^{|\theta|-1}V(\theta)$.)
+
+\subsection*{3.2 BR Thm 5.5 at $p=1$}
+
+BR Thm 5.5 (verbatim in \file{proofs/scratch-2026-10-24-q30-br-formula.md} \S1b): $\cC(\theta,p)=0$ if $\theta$ is not a
+rim; $\cC(\theta,p)=\delta_{\theta,\emptyset}$ for $p\le0$; for a nonempty rim, $a=|\theta|-|\hat\theta|$ ($\hat\theta=\theta$
+minus its north-east arm $\psi$):
+\begin{enumerate}[label=(\roman*)]
+\item $\hat\theta=\emptyset$, $\theta$ meets the diagonal: column $\mapsto\delta_{p,|\theta|}-\delta_{p,|\theta|-1}$,
+row $\mapsto\delta_{p,|\theta|}$;
+\item $\hat\theta=\emptyset$, $\theta$ off the diagonal: $2\delta_{p,|\theta|}-\delta_{p,|\theta|-1}$;
+\item $\hat\theta\ne\emptyset$, $\psi$ connected to $\hat\theta$: $\cC(\hat\theta,p-a)-\cC(\hat\theta,p-a+1)$;
+\item $\hat\theta\ne\emptyset$, $\psi$ not connected to $\hat\theta$: $a=1$: $2\cC(\hat\theta,p-1)-2\cC(\hat\theta,p)$;
+$a>1$: $2\cC(\hat\theta,p-a)-3\cC(\hat\theta,p-a+1)+\cC(\hat\theta,p-a+2)$.
+\end{enumerate}
+At $p=1$, using $\cC(\hat\theta,q)=0$ for $q\le0$ ($\hat\theta\ne\emptyset$):
+\begin{enumerate}[label=(\roman*)]
+\item diagonal column: $|\theta|=1\mapsto1$, $|\theta|=2\mapsto-1$, $|\theta|\ge3\mapsto0$; diagonal row: $|\theta|=1\mapsto1$,
+else $0$.
+\item off-diagonal row/column: $|\theta|=1\mapsto2$, $|\theta|=2\mapsto-1$, $|\theta|\ge3\mapsto0$.
+\item $a=1\mapsto-\cC(\hat\theta,1)$; $a\ge2\mapsto0$.
+\item $a=1\mapsto-2\cC(\hat\theta,1)$; $a=2\mapsto+\cC(\hat\theta,1)$; $a\ge3\mapsto0$.
+\end{enumerate}
+
+\subsection*{3.3 Proof that $T(\varphi)=\cC(\varphi,1)$ (= BR Cor 5.6 at $p=1$, which BR leave to the reader)
+\quad\textbf{[please referee]}}
+
+Induction on $|\varphi|$. Non-rim: both sides $0$. Let $\varphi$ be a nonempty rim.
+
+Geometry used throughout.
+\begin{enumerate}[label=(g\arabic*)]
+\item Rows and columns of a shifted skew shape are intervals.
+\item A diagonal box $(c,c)$ is the leftmost box of its row and the lowest box of its column (positions $(c,c\pr<c)$ and
+$(r>c,c)$ are not in the shifted plane).
+\item Let $r$ be the top row of $\varphi$ and $B=(r,c)$ its rightmost box. Then $c$ is the maximal column of $\varphi$: a box
+$(r\pr,c\pr)$ with $c\pr>c$ has $r\pr>r$, and $B$ would be strictly NW of it. So nothing of $\varphi$ lies above or right of
+$B$, and the only possible neighbours of $B$ are $L=(r,c-1)$ and $D=(r+1,c)$.
+\item $L$ and $D$ are not both in $\varphi$ ($D$ is strictly SE of $L$). $B$ is BR's ``upper-right box''; the arm $\psi$ is
+the largest row or column of the form $\varphi\cap(\text{square with upper-right box }B)$.
+\item In a rim, comparable boxes share a row or column (Lemma T(b)), so $K(\varphi)$ only sees row and column constraints.
+\end{enumerate}
+
+\textbf{(i), (ii): $\varphi=\psi$ is a row or a column.} Two labels, so $K=0$ for length $\ge3$. Diagonal column (diagonal
+box at the bottom, g2): length 1: label $1$, $K=1$, $T=1$; length 2: $1\pr$ over $1$, $K=1$, $T=-1$. Diagonal row (diagonal
+box leftmost): length 1: $K=1$, $T=1$; length 2: the leftmost box would need $1\pr$, forbidden, $K=0$. Off-diagonal:
+length 1: $K=2$, $T=2$; length 2: $K=1$ ($1\pr,1$), $T=-1$. All match \S3.2 (i), (ii).
+
+\textbf{(iii) and (iv), $a\ge3$.} $\psi$ is a row or column of $\ge3$ boxes, so $K(\varphi)=0=\cC(\varphi,1)$.
+
+\textbf{(iii), $a=1$.} $\psi=\{B\}$ and $B$ is adjacent to $\hat\theta$, so exactly one of $L$, $D$ is in $\varphi$ (g3,
+g4). Let $S=(r+1,c-1)$. If $S\notin\varphi$, the $2\times2$ square at $B$ meets $\varphi$ in $\{L,B\}$ or $\{B,D\}$, a row or
+column of 2, so $a\ge2$. Hence $S\in\varphi$, and $S\in\hat\theta$.
+\begin{itemize}
+\item $L\in\varphi$: $L$ is directly above $S$, so every valid labelling of $\hat\theta$ has $L=1\pr$ (column strict). $B$ is
+right of $L$, so $B=1$ is forced and allowed (unprimed). $B$'s column contains only $B$ ($D\notin\varphi$, g1). $B$'s row:
+boxes left of $L$ are also left of $B$, and they already satisfy their constraints with $L=1\pr$ in $\hat\theta$ (a box left
+of $L$ would need a label $<1\pr$, impossible; then $K(\hat\theta)=0$ and $K(\varphi)=0$ too). So $K(\varphi)=K(\hat\theta)$.
+\item $D\in\varphi$: $S$ is directly left of $D$, so $D=1$ in every labelling of $\hat\theta$. $B$ above $D$ forces $B=1\pr$.
+$B$ is off the diagonal: $D=(r+1,c)$ is in the shifted plane, so $c\ge r+1$. $B$'s row contains only $B$ ($L\notin\varphi$).
+Again $K(\varphi)=K(\hat\theta)$.
+\end{itemize}
+Then $T(\varphi)=(-1)^{|\hat\theta|}K(\hat\theta)=-T(\hat\theta)=-\cC(\hat\theta,1)$ by induction. \checkmark
+
+\textbf{(iii), $a=2$.} $\psi=\{L,B\}$ (a row) or $\{B,D\}$ (a column), and the $2\times2$ square meets $\varphi$ in exactly
+$\psi$, so $S,D\notin\varphi$ (resp.\ $S,L\notin\varphi$). Row case: $L$'s neighbours are $(r,c-2)$, $S$ ($\notin$), and the
+box above $L$ ($\notin$, $r$ is the top row). $B$'s other neighbour $D\notin\varphi$. Connection to $\hat\theta$ therefore
+goes through $(r,c-2)\in\varphi$: three boxes in row $r$, $K(\varphi)=0$. Column case: $D$'s neighbours are $(r+2,c)$, $S$
+($\notin$) and $(r+1,c+1)$ ($\notin$, column $c$ is maximal); $B$'s other neighbour $L\notin\varphi$. So $(r+2,c)\in\varphi$: a
+column of three, $K(\varphi)=0$. Both match $\cC=0$. \checkmark
+
+\textbf{(iv), $a\in\{1,2\}$: $\psi$ not connected to $\hat\theta$.}
+\begin{itemize}
+\item No box of $\psi$ shares a row or column with a box of $\hat\theta$: by (g1), walking along the common row/column
+interval from the $\psi$ box to the $\hat\theta$ box we would cross a $\psi$--$\hat\theta$ adjacency.
+\item $\psi$ contains no diagonal box. If $\psi$ is a row in row $r$ containing $(r,r)$, then $\psi=\{(r,r),\dots,(r,c)\}$
+(g2), and any box $(r\pr,c\pr)\in\hat\theta$ has $r\pr>r$ ($r$ is the top row), so $r<r\pr\le c\pr\le c$: column $c\pr$ is a
+column of $\psi$. Contradiction. If $\psi$ is a column in column $c$ containing $(c,c)$, then $\psi=\{(r,c),\dots,(c,c)\}$
+(g2), and any $(r\pr,c\pr)\in\hat\theta$ has $r\le r\pr\le c\pr\le c$: row $r\pr$ is a row of $\psi$. Contradiction.
+($\hat\theta\ne\emptyset$.)
+\item By (g5) and the first bullet, the constraints on $\psi$ and on $\hat\theta$ are independent:
+$K(\varphi)=K(\psi)K(\hat\theta)$, with $K(\psi)=2$ ($a=1$, off-diagonal single box) or $1$ ($a=2$, off-diagonal domino:
+$1\pr,1$).
+\item $T(\varphi)=(-1)^{a+|\hat\theta|-1}K(\psi)K(\hat\theta)=(-1)^aK(\psi)T(\hat\theta)$: $a=1\mapsto-2\cC(\hat\theta,1)$,
+$a=2\mapsto+\cC(\hat\theta,1)$. \checkmark
+\end{itemize}
+All cases of Thm 5.5 are covered ($\hat\theta=\emptyset$ iff $\varphi$ is a row or column; otherwise (iii) or (iv)).
+\qed
+
+\begin{thmQ}[\grade{proved given BR Cor 5.4, Thm 5.5, and Lemma S}]
+$c_\rho=(-1)^{|\theta|-1}V(\theta)$ for all $\rho\subsetneq\kappa$, with $V$ given by Lemma R: $c_\rho=0$ iff $\theta$ has a
+3-chain or a diagonal box $(c,c)$ with $(c-1,c)\in\theta$; otherwise $|c_\rho|=2^{\#\text{off-diagonal boxes of }\theta
+\text{ incomparable to every other box of }\theta}$.
+\end{thmQ}
+
+\begin{rem}
+Route (i) of the scratch (Cor 5.6 at $p=1$ read literally: content $\{1\}$ makes KLG (iii)/(iv) vacuous) gives the same
+statement in one line, but rests on a reader-left proof. \S3.3 replaces it.
+\end{rem}
+
+\subsection*{3.4 OG twin}
+
+I file Lemma 2 (OG): $c_\rho\ne0\Rightarrow\theta$ is a rook strip, and $c_\rho=(-1)^{|\theta|-1}$ for every rook strip
+$\theta=D(\kappa)\setminus D(\rho)$, from BR Lemma vanishB (a)--(c), proved in BR. For an up-set $\theta$: rook strip
+$\iff$ antichain. ($\Rightarrow$: I file Lemma 2. $\Leftarrow$: two boxes in one row or column are comparable.) An up-set is
+an antichain iff it consists of maximal elements of $P_\kappa$, and every set of maximal elements is an up-set. So the OG
+operator is inclusion--exclusion over nonempty sets of corners, $|c_\rho|=1$. \qed
+
+\section*{4. Theorem SR$_{\LG}$}
+
+For a finite poset $P$ with $D\subseteq P$ and $n\ge0$, let $N(P,D;n)=\#\{$strict order-preserving $f:P\to[n]$ with
+$f(D)\subseteq2\mathbb Z\}$. Write $N_\kappa(j):=N(P_\kappa,\text{diagonal};2j-1)$.
+
+\begin{lem}[peeling the top layer]\label{lem41}\grade{proved}
+For $j\ge1$ and every $\kappa$: $N_\kappa(j+1)=N_\kappa(j)+\sum_{\rho\subsetneq\kappa}V(D(\kappa)\setminus D(\rho))\,N_\rho(j)$.
+\end{lem}
+\begin{proof}
+Let $f:P_\kappa\to[2j+1]$ be strict order-preserving with even diagonal values. Put $\theta=f^{-1}\{2j,2j+1\}$.
+\begin{itemize}
+\item $\theta$ is an up-set: $x\in\theta$, $x<y\Rightarrow f(y)>f(x)\ge2j\Rightarrow f(y)=2j+1$, so $y\in\theta$. Hence
+$\theta=D(\kappa)\setminus D(\rho)$ for a unique strict $\rho\subseteq\kappa$ (I file \S2 Fact applied to the down-set
+$P_\kappa\setminus\theta$, an order ideal of $\Delta_m$).
+\item $f|_\theta$ is strict order-preserving into $\{2j<2j+1\}$ with diagonal boxes $\mapsto2j$ (the only even value), i.e.\
+a map counted by $V(\theta)$ under $e=2j$, $o=2j+1$.
+\item $f|_{D(\rho)}$ is strict order-preserving into $[2j-1]$ with even diagonal: counted by $N_\rho(j)$.
+\end{itemize}
+Conversely, given $\rho\subseteq\kappa$, a $V(\theta)$-map $g$ and an $N_\rho(j)$-map $h$, glue $f=g\cup h$. Relations inside
+$\theta$ or inside $D(\rho)$ hold. For $x\in D(\rho)$, $y\in\theta$ with $x<y$: $f(x)\le2j-1<2j\le f(y)$. The case $y<x$ with
+$y\in\theta$, $x\in D(\rho)$ is impossible ($\theta$ is an up-set). Diagonal values are even. The two constructions are
+inverse. $\rho=\kappa$ ($\theta=\emptyset$, $V=1$) gives the term $N_\kappa(j)$.
+\end{proof}
+
+\begin{thmSRLG}[\grade{proved given (G0), (G1), (BR)}]
+For every strict $\kappa$ with parts in $[m]$ and every integer $j\ge1$,
+\[(-1)^{|\kappa|}H_\kappa(-j)=N_\kappa(j)=\#\{\text{strict order-preserving }P_\kappa\to[2j-1]\text{ with even values on
+diagonal boxes}\}.\]
+\end{thmSRLG}
+\begin{proof}
+Induction on $j$, simultaneously for all $\kappa$. $j=1$: $[1]$ has no even value, and every nonempty $P_\kappa$ contains
+the diagonal box $(0,0)$, so $N_\kappa(1)=\delta_{\kappa,\emptyset}=s_1(\kappa)$ (anchor). Step: by Theorem Q30,
+$|c_\rho|=V(\theta)$ for $\rho\subsetneq\kappa$ and $c_\rho=0$ otherwise, so ($\star$) and Lemma~\ref{lem41} are the same
+recursion: $s_{j+1}(\kappa)=s_j(\kappa)+\sum_{\rho\subsetneq\kappa}V(\theta)s_j(\rho)$, and the same for $N$.
+\end{proof}
+
+\textbf{Hand check.} $\kappa=(2,1)$: $P=\{(0,0)<(0,1)<(1,1)\}$, a 3-chain with both ends diagonal. $N(j)=\#\{2\le x<y<z\le
+2j-1,\ x,z\text{ even}\}$: $j=3$ ($[5]$): $(2,3,4)$ only, so $1$. ($\star$): the Pieri support of $(2,1)$ is
+$\{\rho=(2),\ \theta=\{(1,1)\},\ V=1\}$ (the others have $V=0$: $\rho=(1)$ has $\theta=\{(0,1),(1,1)\}$, diagonal
+non-minimal; $\rho=\emptyset$ is a 3-chain). $s_3(2,1)=s_2(2,1)+s_2(2)=0+1=1$ \checkmark\ ($s_2(2)=N_{(2)}(2)=\#\{2\le x<y\le3,\
+x\text{ even}\}=1$). $\kappa=(1)$: $N(j)=\#$even in $[2j-1]$ $=j-1$, $H_{(1)}(x)=x+1$ \checkmark. $\kappa=(2)$:
+$N(j)=\sum_{x\text{ even}\le2j-2}(2j-1-x)=(j-1)^2$, $H_{(2)}(x)=(x+1)^2$ \checkmark.
+
+\section*{5. Theorem SR$_{\OG}$}
+
+\begin{lem}\label{lem51}\grade{proved}
+For $n\ge0$: $\Ob(P_\kappa,n+1)=\Ob(P_\kappa,n)+\sum_{\emptyset\ne A\subseteq\max(P_\kappa)}\Ob(P_\kappa\setminus A,n)$, and
+$P_\kappa\setminus A=D(\rho_A)$.
+\end{lem}
+\begin{proof}
+The preimage of the top value $n+1$ under a strict order-preserving map is an up-set (as in \ref{lem41}) and an antichain
+(strictness), i.e.\ a set $A$ of maximal elements; the rest maps strictly into $[n]$. Gluing is as in \ref{lem41}.
+\end{proof}
+
+\begin{thmSROG}[\grade{proved given (G0), (G1), (BR)}]
+$(-1)^{|\kappa|}H^{\OG}_\kappa(-j)=\Ob(P_\kappa,j-1)$ for all $j\ge1$.
+\end{thmSROG}
+\begin{proof}
+$j=1$: $\Ob(P,0)=\delta_{P,\emptyset}=s_1$ (anchor, I file Lemma 1, both types). Step: ($\star$) on OG with $|c_\rho|=1$
+exactly on $\rho=\rho_A$, $A\ne\emptyset$ a set of corners (\S3.4), is Lemma~\ref{lem51} with $n=j-1$.
+\end{proof}
+
+(This is Stanley reciprocity for the order polynomial $H^{\OG}_\kappa(j)=\Omega(P_\kappa,j+1)$, the SMT model of the I file
+\S9, but proved without SMT.)
+
+\section*{6. Corollary: Theorem I, combinatorially}
+
+Let $r=r(\kappa)$ be the longest chain of $P_\kappa$; by I file Lemma 0 it is realised by a staircase path starting at
+$(0,0)$ and ending at a box with $a+b=r-1$, and $\max(a+b)=r-1$.
+\begin{itemize}
+\item \textbf{LG.} $N_\kappa(j)>0\iff2j-1\ge r+1\iff j\ge\lceil r/2\rceil+1$. ($\Leftarrow$) $f(a,b)=a+b+2$ is strict
+order-preserving ($a+b$ strictly increases along $x<y$), takes values in $[2,r+1]$, and $f(a,a)=2a+2$ is even. ($\Rightarrow$)
+Along the staircase chain, $f((0,0))\ge2$ (even) and $f$ increases strictly over $r$ boxes, so the last value is $\ge r+1$.
+Since $2j-1$ is odd: $r$ even $\Rightarrow j\ge r/2+1$; $r$ odd $\Rightarrow 2j-1\ge r+2\Rightarrow j\ge(r+3)/2=\lceil
+r/2\rceil+1$.
+\item \textbf{OG.} $\Ob(P_\kappa,j-1)>0\iff j-1\ge r$ (a chain of $r$ needs $r$ values; $f(a,b)=a+b+1$ works).
+\item Monotonicity in $j$ is inclusion of alphabets ($[2j-1]\subset[2j+1]$ preserving parity).
+\end{itemize}
+With SR this re-proves Theorem I (zero set exactly $\{-1,\dots,-W\}$, sign $(-1)^{|\kappa|}$ beyond, $s_j$ nondecreasing).
+The inputs are the same (G0), (G1), (BR) plus the full Q30, so this is a second proof, not a weaker one.
+
+\section*{7. Verification}
+
+\begin{itemize}
+\item \file{prove254/srcheck.py m}, $m=2..5$: $H_\kappa(-j)$ computed \textbf{directly from Demazure characters at negative
+weights} (\file{prove249d/dem.py} type C; \file{wake253/og.py} type B), $j=1..4$, against brute-force strict counts. LG
+and OG: 16/16, 32/32, 64/64, 128/128 $(\kappa,j)$ pairs, 0 failures. Independent of ($\star$), of BR, and of the LS/SMT
+models.
+\item Negative controls at $m=4$ (64 pairs): LG alphabet $[2j]$ instead of $[2j-1]$: 34 failures; LG without the diagonal
+parity: 34 failures; OG alphabet $[j]$: 17 failures. The test separates.
+\item Wake 254: Q30 1772/1772 nonzero coefficients $m\le7$, support exact on 8532 pairs (\file{q30.py}); \file{brcheck.py}:
+BR eq.~(11) = literal KLG count = Lemma R closed form on all 2225 shifted skew shapes $2\le n\le6$.
+\end{itemize}
+Scripts: \file{work-in-progress/scripts/prove254/} and \file{work-in-progress/scripts/wake254/q30/} (WIP f17e0cf).
+
+\section*{8. Gaps}
+
+\begin{enumerate}
+\item (G0), (G1): standard, cited, not deep-read (same debt as Theorems Z, I, C).
+\item (BR): Cor 5.4, Thm 5.5 (LG) and Lemma vanishB (OG) read first-hand, proved in BR. Cor 5.6 is NOT used.
+\item \S3.3 is a case analysis I wrote and cold re-read once. It has not been refereed by anyone else.
+\item Nothing else.
+\end{enumerate}
+
+\section*{9. The half-integers: the whole odd-zero law, with signs, from one row}
+
+PROVE.md's stretch (Q31): iterate ($\star$) from the half-integer anchor $H(-\tfrac12)=2^{-\kappa_1}$ and look for
+positivity. It went through. Notation: $s_x(\kappa):=(-1)^{|\kappa|}H_\kappa(-x)$ for $x\in\tfrac12\mathbb Z$;
+$\kappa\pr:=\kappa$ minus its largest part; $r\pr:=r(\kappa\pr)$; $M:=2a-1$; $n:=\kappa_1$.
+
+\begin{thmHZ}[\grade{proved given (G0), (G1), (BR)}]
+For every $\kappa\ne\emptyset$ and every integer $a\ge1$:
+\begin{itemize}
+\item (small $a$) if $2a\le\kappa_1$: $s_{a+\frac12}(\kappa)=(-1)^{\kappa_1}2^{-\kappa_1}N_{\kappa\pr}(a)$;
+\item (large $a$) if $2a\ge\kappa_1$: $s_{a+\frac12}(\kappa)=\sum_g\Phi(u(g))$ with every $\Phi(u(g))\ge2^{-\kappa_1}$, so
+$s_{a+\frac12}(\kappa)\ge2^{-\kappa_1}N_{\kappa\pr}(a)$;
+\item hence $H_\kappa(-a-\tfrac12)=0\iff N_{\kappa\pr}(a)=0\iff\kappa\pr\ne\emptyset$ and $a\le\lceil r\pr/2\rceil$ (\S6), and
+otherwise $\operatorname{sgn}H_\kappa(-a-\tfrac12)=(-1)^{|\kappa|-\kappa_1}$ if $2a\le\kappa_1$, $(-1)^{|\kappa|}$ if
+$2a\ge\kappa_1$ (the two agree at $2a=\kappa_1$, $\kappa_1$ even).
+\end{itemize}
+\end{thmHZ}
+In the odd-zero-law notation ($H(-M/2)$, $M$ odd): zeros exactly at $M=3,5,\dots,2\lceil r\pr/2\rceil+1$, none for single
+rows. That is the \textbf{odd-zero law, both halves}: (Z) (Theorem Z had it by another induction) and (NZ) (open since Wake
+251; PROVE 253 reduced it to an odd-$\mu_1$ base inequality, which is now moot), \textbf{with strictness and signs}. The
+small-$a$ bullet is Prop.~R of the odd-zero-law file, re-proved here without the residue calculus.
+
+Inputs: ($\star$) as a polynomial identity (it holds at all integers, both sides are polynomials, so it holds at every $x$),
+Theorem Q30, Thm A of \file{2026-10-23-odd-zero-law.md} ($H_\kappa(-\tfrac12)=2^{-\kappa_1}$, proved given (G1)), and \S6.
+
+\subsection*{9.1 Layer operators}
+
+For up-sets $\theta=D(\kappa)\setminus D(\nu)$ put $A_o(\kappa,\nu)=[\theta\text{ is an antichain with no diagonal box}]$,
+$A_e(\kappa,\nu)=[\theta\text{ is an antichain}]$.
+
+\begin{lem}\label{lem91}\grade{proved}
+(a) $A_oA_e=I+C$, where $C(\kappa,\nu)=|c_\nu|$. (b) For $a\ge1$, $[(A_oA_e)^{a-1}A_o](\kappa,\nu)=N_{\kappa/\nu}(a):=
+\#\{$strict order-preserving $D(\kappa)\setminus D(\nu)\to[2a-1]$, even values on diagonal boxes$\}$.
+\end{lem}
+\begin{proof}
+(b) Peel values from the top, exactly as in Lemma~\ref{lem41}: the preimage of the current top value is an antichain up-set
+of what remains; the value is odd (no diagonal box allowed: $A_o$) or even ($A_e$). The values $2a-1,2a-2,\dots,1$ alternate
+$o,e,\dots,o$, giving $A_o(A_eA_o)^{a-1}=(A_oA_e)^{a-1}A_o$. Gluing is as in \ref{lem41}. (a) The same with the two-letter
+alphabet $\eo$: $(A_oA_e)(\kappa,\nu)=V(\theta)$ ($\theta=\emptyset$ gives 1), and $V(\theta)=|c_\nu|$ for $\nu\subsetneq\kappa$
+by Q30.
+\end{proof}
+
+So ($\star$) reads $s_{x+1}=A_oA_e\,s_x$ for every $x\in\mathbb C$.
+
+\begin{lem}[the anchor collapses to single rows]\label{lem92}\grade{proved}
+$\varepsilon:=A_e\,s_{\frac12}$ satisfies $\varepsilon(\emptyset)=1$, $\varepsilon((L))=(-1)^{L+1}2^{-L}$ for $L\ge1$, and
+$\varepsilon(\kappa)=0$ if $\ell(\kappa)\ge2$.
+\end{lem}
+\begin{proof}
+$s_{\frac12}(\nu)=(-1)^{|\nu|}2^{-\nu_1}$ (Thm A). $\varepsilon(\kappa)=\sum_{A\subseteq\max P_\kappa}s_{\frac12}(\kappa\setminus
+A)$. If $\ell(\kappa)\ge2$, the last box $z$ of the bottom row is maximal and not in row 0; toggling $z\in A$ changes $|\nu|$
+by one and leaves $\nu_1$ alone, so the terms cancel in pairs. If $\kappa=(L)$, the only maximal box is $(0,L-1)$:
+$\varepsilon=(-1)^L2^{-L}+(-1)^{L-1}2^{-(L-1)}=(-1)^{L+1}2^{-L}$.
+\end{proof}
+
+\begin{cor}[row formula]\label{cor93}\grade{proved}
+For $a\ge1$: \[s_{a+\frac12}(\kappa)=N_\kappa(a)+\sum_{L=1}^{\kappa_1}(-1)^{L+1}2^{-L}N_{\kappa/(L)}(a),\]
+where $\kappa/(L)=P_\kappa$ minus the first $L$ boxes of row 0.
+\end{cor}
+\begin{proof}
+$s_{a+\frac12}=(A_oA_e)^as_{\frac12}=(A_oA_e)^{a-1}A_o\,\varepsilon$, then Lemmas~\ref{lem91}(b) and \ref{lem92}.
+\end{proof}
+(Example $\kappa=(3)$, $a=2$: $0+\tfrac12\cdot3-\tfrac14\cdot3+\tfrac18\cdot1=\tfrac78=s_{5/2}(3)$.)
+
+\subsection*{9.2 Fibre over the rows below row 0}
+
+Rows $\ge1$ of $P_\kappa$ form a copy of $P_{\kappa\pr}$ ($(i,j)\mapsto(i-1,j-1)$ preserves order and the diagonal). Row 0 is
+the chain $(0,0)<\dots<(0,n-1)$; its only relations to rows $\ge1$ are $(0,\beta)<(1,\beta)$ for $1\le\beta\le\kappa_2$, and
+nothing in rows $\ge1$ lies below a row-0 box. Fix $g:\text{rows}\ge1\to[M]$ strict order-preserving with even diagonal
+(there are $N_{\kappa\pr}(a)$ of them) and put $u_\beta:=g(1,\beta)$ ($1\le\beta\le k:=\kappa_2\le n-1$); $u_\beta:=M+1$ (no
+bound) for $k<\beta\le n-1$. For a fixed bound vector $u$ let
+\begin{itemize}
+\item $G_L(M;u):=\#\{$strictly increasing $v_L<\dots<v_{n-1}$ in $[M]$ with $v_\beta<u_\beta\}$, for $1\le L\le n$
+($G_n:=1$);
+\item $E_0(M;u):=$ the same for $L=0$ with $v_0$ even;
+\item $\Phi(u):=E_0-\sum_{L=1}^{n}(-\tfrac12)^LG_L$.
+\end{itemize}
+Corollary~\ref{cor93} sums over $g$: $\boxed{s_{a+\frac12}(\kappa)=\sum_g\Phi(u(g))}$. Bounds from a real $g$ satisfy
+\textbf{(H)}: $u_\beta\ge\beta+1$ for the bounded boxes $1\le\beta\le k$ (unbounded boxes are handled in the proof of
+\ref{lem95}), because $u_1=g(1,1)$ is even ($\ge2$) and row 1 is strictly increasing.
+
+\subsection*{9.3 The one-row lemma \quad\textbf{[please referee]}}
+
+Let $\Psi_L(M;u):=\sum_{L\pr=L}^{n}(-\tfrac12)^{L\pr-L}G_{L\pr}(M;u)$, so $\Psi_n=1$ and $\Phi=E_0+\tfrac12\Psi_1$.
+
+\begin{lem}[shift]\label{lem94}\grade{proved}
+Let $1\le L\le n-1$, $M\ge1$, and $u_{L\pr}\ge2$ for $L\le L\pr\le n-1$. Then
+\[\Psi_L(M;u)=G_L(M-1;u-1)+\tfrac12\Psi_{L+1}(M-1;u-1).\]
+\end{lem}
+\begin{proof}
+For $L\pr\ge L$ let $a_{L\pr}$ (resp.\ $b_{L\pr}$) count the fillings of boxes $L\pr..n-1$ with $v_{L\pr}=1$ (resp.\ $\ge2$);
+$b_n:=1$. Then $G_{L\pr}=a_{L\pr}+b_{L\pr}$ ($L\pr\le n-1$). Deleting box $L\pr$ (value 1) is a bijection onto the fillings
+of $L\pr+1..n-1$ with all values $\ge2$; its inverse puts 1 at box $L\pr$, which is allowed because $u_{L\pr}\ge2$ and
+$M\ge1$. So $a_{L\pr}=b_{L\pr+1}$ for $L\le L\pr\le n-1$ (for $L\pr=n-1$ both are 1). Substituting,
+\begin{align*}
+\Psi_L&=\sum_{L\pr=L}^{n-1}(-\tfrac12)^{L\pr-L}(b_{L\pr}+b_{L\pr+1})+(-\tfrac12)^{n-L}b_n
+=b_L+\sum_{L''=L+1}^{n}b_{L''}(-\tfrac12)^{L''-L-1}(1-\tfrac12)\\
+&=b_L+\tfrac12\sum_{L''>L}(-\tfrac12)^{L''-L-1}b_{L''}.
+\end{align*}
+Finally $v\mapsto v-1$ identifies the fillings with values in $[2,M]$ and bounds $u$ with fillings in $[M-1]$ and bounds
+$u-1$: $b_{L''}(M;u)=G_{L''}(M-1;u-1)$ (also for $L''=n$).
+\end{proof}
+
+\begin{lem}[one row]\label{lem95}\grade{proved}
+Assume (H). (a) If $M\ge n-1$:
+\[\Phi(u)=E_0(M;u)+\sum_{i=0}^{n-2}2^{-i-1}G_{1+i}(M-1-i;\,u-1-i)+2^{-n}\ \ge\ 2^{-n}.\]
+(b) If $M\le n-1$: $\Phi(u)=(-1)^{n-1-M}2^{-n}$.
+\end{lem}
+\begin{proof}
+Apply Lemma~\ref{lem94} repeatedly: step $i$ ($i=0,1,\dots$) rewrites $\Psi_{1+i}(M-i;u-i)$. Its hypotheses are $M-i\ge1$
+and $u_{L\pr}-i\ge2$ for $L\pr\ge1+i$; the second holds by (H) ($u_{L\pr}-i\ge L\pr+1-i\ge2$), also for unbounded boxes while
+$M-i\ge1$. (a) $M\ge n-1$ allows $i=0..n-2$, ending at $\Psi_n=1$:
+$\Psi_1=\sum_{i=0}^{n-2}2^{-i}G_{1+i}(M-1-i;u-1-i)+2^{-(n-1)}$. Every term is $\ge0$. (b) $M\le n-1$ allows $i=0..M-1$,
+ending at $\Psi_{1+M}(0;u-M)=\sum_{L\pr}(-\tfrac12)^{L\pr-1-M}G_{L\pr}(0)=(-\tfrac12)^{n-1-M}$ (only $G_n=1$ survives an empty
+alphabet). The $G$-terms vanish: $G_{1+i}(M-1-i)$ fills $n-1-i$ boxes from $M-1-i<n-1-i$ values. So
+$\Psi_1=2^{-M}(-\tfrac12)^{n-1-M}$. $E_0=0$ ($n$ values $\ge2$ need $M\ge n+1$). Then $\Phi=\tfrac12\Psi_1$.
+\end{proof}
+
+\subsection*{9.4 Proof of Theorem HZ}
+
+$s_{a+\frac12}(\kappa)=\sum_g\Phi(u(g))$ (\S9.2), the bounds satisfy (H), $M=2a-1$. If $2a\le\kappa_1$, then $M\le n-1$ and
+Lemma~\ref{lem95}(b) gives $\Phi\equiv(-1)^{n-2a}2^{-n}=(-1)^{\kappa_1}2^{-\kappa_1}$. If $2a\ge\kappa_1$, then $M\ge n-1$ and
+Lemma~\ref{lem95}(a) gives $\Phi\ge2^{-n}$. The number of $g$ is $N_{\kappa\pr}(a)$ (with $N_\emptyset=1$), and \S6 applied to
+$\kappa\pr$ says $N_{\kappa\pr}(a)=0$ iff $\kappa\pr\ne\emptyset$ and $a\le\lceil r\pr/2\rceil$. \qed
+
+\textbf{Worked example} ($\kappa=(3,2)$, $a=2$, $M=3\ge n-1=2$). Rows $\ge1$: $(1,1)<(1,2)$, $(1,1)$ even, values in $[3]$:
+only $g=(2,3)$, so $u=(2,3)$. $E_0=0$ ($v_1<2$ is impossible above an even $v_0$). $i=0$: $G_1(2;(1,2))=0$ ($v_1<1$).
+Terms: $0+0+0+\tfrac18$. So $s_{5/2}(3,2)=\tfrac18$, which is the value ($\star$) gives, and it equals
+$2^{-\kappa_1}N_{(2)}(2)$: the bound is attained.
+
+\subsection*{9.5 Verification}
+
+\begin{itemize}
+\item \file{prove254/halfthm.py m 5}: $(-1)^{|\kappa|}H_\kappa(-a-\tfrac12)$ computed from \textbf{Demazure characters
+directly} (type C, interpolated to $x=-a-\tfrac12$), against $\sum_g\Phi(u(g))$, all $\kappa$ with parts $\le m$, $a=1..5$.
+Also checks Lemma~\ref{lem95} pointwise for every $g$. $m=2$: 15/15; $m=3$: 35/35; $m=4$: 75/75; Lemma~\ref{lem95}
+pointwise 477/477, 0 failures. ($m=5$ Demazure run: not run to completion, not counted.)
+\item \file{prove254/hz_vs_rec.py 6 4}: Theorem HZ's closed forms against the ($\star$)-recursion values, all $\kappa$ with
+parts $\le6$, $a=1..4$: 252/252. (Checks the algebra of \S9, not the inputs.)
+\item \file{prove254/rowform.py 5 5}: row formula (Cor.~\ref{cor93}) = ($\star$)-recursion values, 155/155.
+\item \file{prove254/rowphi*.py}: Lemma~\ref{lem95} needs (H). Without it $\Phi$ goes negative ($u=(1)$: $-\tfrac14$;
+$u=(2,2)$, weakly increasing: $-\tfrac18$), so the hypothesis is load-bearing and the test separates. With $M\le n-2$,
+$\Phi<0$ is the predicted sign $(-1)^{n-1-M}$.
+\item Data (\file{half.py}): $2^{\kappa_1}s_{a+\frac12}(\kappa)$ is always an integer, e.g.\ $(5,4)$ at $a=3$ gives 1, the
+minimum $2^{-\kappa_1}N_{\kappa\pr}$.
+\end{itemize}
+
+\subsection*{9.6 What this closes}
+
+\begin{itemize}
+\item (NZ) at half-integers: all $\kappa$, all $a$, with strictness. PROVE 253's open base inequality (odd $\mu_1$) is not
+needed.
+\item Prop.~R (odd-zero-law file) gets a second, residue-free proof (\S9.4 small-$a$ case).
+\item (Z) gets a second proof (zero iff $N_{\kappa\pr}(a)=0$), independent of Theorem Z's induction.
+\item Consequence: Thm B ((OC) for Schubert varieties) no longer needs Brion--Kumar G2--G4.
+\item By-product \grade{computed}: $T:=(I+C)^{1/2}$ (so that $s_{x+\frac12}=Ts_x$) has entries $0,\pm2^{-k}$. It is
+multiplicative over connected components of $\theta$; an off-diagonal singleton has weight 1, an off-diagonal component of
+size $\ge2$ has weight 0, and a component containing exactly one diagonal box is a ribbon $D$ with weight $\pm2^{-|D|}$
+(sign $+$ iff its NE end box has a box to its left). Computed $m\le6$ (1716/1716 pairs, \file{tprime.py}). Not proved, not
+needed.
+\end{itemize}
+
+\section*{10. Gaps (updated)}
+
+Theorem HZ adds only Thm A (proved given (G1), odd-zero-law file) to the inputs of \S8. \S9 is self-contained otherwise.
+Lemmas~\ref{lem94}/\ref{lem95} were written once and re-read once; nobody else has refereed them.
+
+\section*{11. Addendum (Dream 254): the models are corollaries, and a question for you}
+
+\begin{itemize}
+\item \textbf{Models come for free} \grade{sketched}. SR$_{\LG}$ + Ehrhart--Macdonald reciprocity on the order polytope
+$\mathcal O_P$ gives $H_\kappa(j)=F_\kappa(2j)$ for all $j$, with the lattice $\mathbb Z$ on diagonal coordinates and
+$\tfrac12\mathbb Z$ off the diagonal, and $F_\kappa$ the even-diagonal order-polynomial count. So the Wake 251 LS-parity
+model is a corollary (not yet written into the proof file). The OG $\Omega$-model follows the same way from SR$_{\OG}$ +
+Stanley reciprocity.
+\item \textbf{Q32 (question for you).} Relabel odd values as primed letters. Then ``diagonal even'' becomes ``no primes on
+the diagonal'', and SR$_{\LG}$ reads as a strict marked-tableau count. Have you seen $H_\kappa(-j)$ for LG Schubert
+varieties stated as a count of strict fillings with even diagonal, i.e.\ an enriched $P$-partition count (Stembridge), or
+in De Concini's symplectic standard tableaux? If it is in print, I cite it and the write-up shrinks.
+\end{itemize}
+
+\end{document}
