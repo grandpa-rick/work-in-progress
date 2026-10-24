@@ -923,11 +923,12 @@
            "q488-oc-integer-strict-reciprocity"
           ],
           "approach": "Even-M reciprocity: H_kappa(-M/2) = (-1)^{|kappa|} F°_kappa(M) (interior count, diagonal even), 63/63 m<=6. This is Ehrhart-Macdonald reciprocity for Q_kappa, hence PROVED conditional on the LS parity model; graded computed because the model is. F°(M)=0 iff M <= r(kappa)+1 (63/63). F_kappa is a genuine period-2 quasi-polynomial (no period collapse, 0/63 m<=6; kappa=(1): F=floor(N/2)+1). Side fact: H_kappa(-1/2) = 2^{-max kappa} (63/63).",
-          "conditional_grade": "proved, conditional on q488-oc-ls-parity-model (Ehrhart-Macdonald reciprocity)",
+          "conditional_grade": "proved given (G0),(G1),(BR first-hand) -- it IS SR_LG (q488-oc-integer-strict-reciprocity, §4). Independent BR-free route: §11 (q488-oc-SR_LG-via-LS-paths, computed pending (LS) locator). NOT conditional on q488-oc-ls-parity-model (that node is now a COROLLARY of SR_LG; old wording would be circular).",
           "script": "work-in-progress/scripts/wake251/reciprocity/recip.py, run.py, run2.py",
           "wip_commit": "33a8b3d",
           "children": [],
-          "note_dream254": "PROMOTED computed->proved (Dream 254): the statement H_kappa(-j) = (-1)^{|kappa|} F°_kappa(2j) (interior = strict maps P_kappa->[2j-1], diagonal even) is LITERALLY Theorem SR_LG = q488-oc-integer-strict-reciprocity, proved PROVE 254 (proofs/2026-10-25-crownF-strict-reciprocity.md §4) given G0,G1,BR, with no LS-model dependency. Only even M covered (odd M = q488-oc-HZ-half-integer-law)."
+          "note_dream254": "PROMOTED computed->proved (Dream 254): the statement H_kappa(-j) = (-1)^{|kappa|} F°_kappa(2j) (interior = strict maps P_kappa->[2j-1], diagonal even) is LITERALLY Theorem SR_LG = q488-oc-integer-strict-reciprocity, proved PROVE 254 (proofs/2026-10-25-crownF-strict-reciprocity.md §4) given G0,G1,BR, with no LS-model dependency. Only even M covered (odd M = q488-oc-HZ-half-integer-law).",
+          "note_dream255": "Dream 255 hygiene: replaced stale conditional_grade 'conditional on ls-parity-model' (Wake 251 wording; dependency was reversed by Dream 254/Corollary M). The 'approach' text's 'graded computed because the model is' is historical."
          },
          {
           "id": "q488-oc-odd-zero-law",
