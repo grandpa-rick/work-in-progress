@@ -1,0 +1,7 @@
+parts<=5: 192 (kappa,t) pairs, t=1..6: model-vs-strict failures 0; polynomiality failures (2 extra pts beyond fit) 0
+  negative controls (failures, should be >0): {'LG[2t]': 116, 'LG-noparity': 116, 'LG F(2j+1)': 81, 'OG[t]': 60}
+  Demazure H(-t), t<= 3: 96 pairs, 0 failures
+
+real	0m5.653s
+user	0m5.796s
+sys	0m0.079s

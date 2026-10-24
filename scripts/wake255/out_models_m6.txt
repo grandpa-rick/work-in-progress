@@ -1,0 +1,6 @@
+parts<=6: 384 (kappa,t) pairs, t=1..6: model-vs-strict failures 0; polynomiality failures (2 extra pts beyond fit) 0
+  negative controls (failures, should be >0): {'LG[2t]': 198, 'LG-noparity': 198, 'LG F(2j+1)': 147, 'OG[t]': 70}
+
+real	0m39.145s
+user	0m39.021s
+sys	0m0.097s

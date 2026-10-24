@@ -1,0 +1,12 @@
+   2  2 components                 T!=0, MN=0
+   2  2 components                 T=0, MN=0
+  12  conn, 0 diag                 T=1, MN=1
+   8  conn, 1 diag                 T=1/2, MN=1/2
+   4  conn, 1 diag box, r>1        |T|=2^(1-r)|MN|, a zero
+   4  conn, 1 diag box, r>1        |T|=2^(1-r)|MN|, opp sign
+   4  conn, 1 diag box, r>1        |T|=2^(1-r)|MN|, same sign
+  10  conn, 2 diag                 T=0, MN=-1/2
+   6  conn, 2 diag                 T=0, MN=1/2
+   4  conn, 3 diag                 T=0, MN=0
+   2  conn, off-diag, r>1          T=0, MN=-1
+   2  conn, off-diag, r>1          T=0, MN=1

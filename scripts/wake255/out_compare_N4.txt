@@ -1,0 +1,24 @@
+N=4: odd-size pairs 60: T == [Q_k] p_r Q_rho on 30, differ on 30
+first discrepancy (kappa, rho, r, T, MN): ((3,), (), 3, Fraction(-1, 8), Fraction(1, 2))
+  r=1: #T!=0 20, #MN!=0 20, both 20, ratios T/MN ['1']
+  r=3: #T!=0 10, #MN!=0 16, both 8, ratios T/MN ['-1/4', '0', '0/0', '1/4', 'T/0']
+  r=5: #T!=0 0, #MN!=0 8, both 0, ratios T/MN ['0', '0/0']
+  r=7: #T!=0 0, #MN!=0 4, both 0, ratios T/MN ['0', '0/0']
+  r=9: #T!=0 0, #MN!=0 0, both 0, ratios T/MN ['0/0']
+sample (kappa, rho, r, T, MN):
+   (1,) () 1 1/2 1/2
+   (2, 1) (2,) 1 1/2 1/2
+   (3, 1) (2, 1) 1 1 1
+   (3, 2) (3, 1) 1 1 1
+   (3, 2, 1) (3, 2) 1 1/2 1/2
+   (4, 2, 1) (3, 2, 1) 1 1 1
+   (4, 3, 2) (4, 3, 1) 1 1 1
+   (2, 1) () 3 0 -1/2
+   (4, 1) (2,) 3 0 0
+   (4, 2) (2, 1) 3 0 -1
+   (4, 3) (4,) 3 -1/8 1/2
+   (4, 2, 1) (3, 1) 3 -1/4 0
+   (4, 3, 2) (4, 2) 3 1/8 -1/2
+   (4, 3, 2, 1) (4, 2, 1) 3 1/8 1/2
+g = T(.,0) in Q-basis: {(): '1', (1,): '1/2', (2,): '1/4', (3,): '-1/8', (4,): '1/16'}
+multiplication-by-g test: 83 ok, 27 fail; smallest failure (kappa, rho, T, [Q_k] g Q_rho): ((3,), (1,), Fraction(0, 1), Fraction(1, 2))
