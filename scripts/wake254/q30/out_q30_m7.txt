@@ -1,0 +1,24 @@
+== LG m=7: 128 kappa, 1168 nonzero BR coefficients; |c| histogram [(1, 565), (2, 477), (4, 117), (8, 9)]
+   theta=kappa/rho equals anti-diagonal reflection of BR nu/lambda: 1168/1168; sign = (-1)^(|theta|-1): 1168/1168
+   support-test skips (|theta|>14, off-support, non-V3 variants; per shape-orientation x2): {'V1 marked P (no diag prime)': 1360, 'V2 marked Q (diag prime ok)': 1360, 'V4a 2^(comp-diagcomp)': 1360, 'V4b 2^(comp-1)': 1360}
+   V1 marked P (no diag prime)    on theta   : |c|==count 568/1168  first fail ('3', '1', -1, 2, [(0, 1), (0, 2)]) | support (c!=0 <=> count!=0 over all rho<kappa) 4736/5627 first fail ('3', '0', 0, 1, [(0, 0), (0, 1), (0, 2)])
+   V1 marked P (no diag prime)    on thetaBR : |c|==count 568/1168  first fail ('3', '1', -1, 2, [(4, 6), (5, 6)]) | support (c!=0 <=> count!=0 over all rho<kappa) 4736/5627 first fail ('3', '0', 0, 1, [(4, 6), (5, 6), (6, 6)])
+   V2 marked Q (diag prime ok)    on theta   : |c|==count 280/1168  first fail ('1', '0', 1, 2, [(0, 0)]) | support (c!=0 <=> count!=0 over all rho<kappa) 4736/5627 first fail ('3', '0', 0, 2, [(0, 0), (0, 1), (0, 2)])
+   V2 marked Q (diag prime ok)    on thetaBR : |c|==count 280/1168  first fail ('1', '0', 1, 2, [(6, 6)]) | support (c!=0 <=> count!=0 over all rho<kappa) 4736/5627 first fail ('3', '0', 0, 2, [(4, 6), (5, 6), (6, 6)])
+   V3e strict e<o, diag=e         on theta   : |c|==count 1168/1168  first fail None | support (c!=0 <=> count!=0 over all rho<kappa) 6307/6307 first fail None
+   V3e strict e<o, diag=e         on thetaBR : |c|==count 999/1168  first fail ('2', '0', -1, 0, [(5, 6), (6, 6)]) | support (c!=0 <=> count!=0 over all rho<kappa) 5969/6307 first fail ('2', '0', -1, 0, [(5, 6), (6, 6)])
+   V3o strict e<o, diag=o         on theta   : |c|==count 999/1168  first fail ('2', '0', -1, 0, [(0, 0), (0, 1)]) | support (c!=0 <=> count!=0 over all rho<kappa) 5969/6307 first fail ('2', '0', -1, 0, [(0, 0), (0, 1)])
+   V3o strict e<o, diag=o         on thetaBR : |c|==count 1168/1168  first fail None | support (c!=0 <=> count!=0 over all rho<kappa) 6307/6307 first fail None
+   V3* strict e<o, diag free      on theta   : |c|==count 869/1168  first fail ('1', '0', 1, 2, [(0, 0)]) | support (c!=0 <=> count!=0 over all rho<kappa) 6138/6307 first fail ('21', '1', 0, 1, [(0, 1), (1, 1)])
+   V3* strict e<o, diag free      on thetaBR : |c|==count 869/1168  first fail ('1', '0', 1, 2, [(6, 6)]) | support (c!=0 <=> count!=0 over all rho<kappa) 6138/6307 first fail ('21', '1', 0, 1, [(5, 5), (5, 6)])
+   V4a 2^(comp-diagcomp)          on theta   : |c|==count 568/1168  first fail ('3', '1', -1, 2, [(0, 1), (0, 2)]) | support (c!=0 <=> count!=0 over all rho<kappa) 1168/5627 first fail ('3', '0', 0, 1, [(0, 0), (0, 1), (0, 2)])
+   V4a 2^(comp-diagcomp)          on thetaBR : |c|==count 568/1168  first fail ('3', '1', -1, 2, [(4, 6), (5, 6)]) | support (c!=0 <=> count!=0 over all rho<kappa) 1168/5627 first fail ('3', '0', 0, 1, [(4, 6), (5, 6), (6, 6)])
+   V4b 2^(comp-1)                 on theta   : |c|==count 676/1168  first fail ('2', '1', 2, 1, [(0, 1)]) | support (c!=0 <=> count!=0 over all rho<kappa) 1168/5627 first fail ('3', '0', 0, 1, [(0, 0), (0, 1), (0, 2)])
+   V4b 2^(comp-1)                 on thetaBR : |c|==count 676/1168  first fail ('2', '1', 2, 1, [(5, 6)]) | support (c!=0 <=> count!=0 over all rho<kappa) 1168/5627 first fail ('3', '0', 0, 1, [(4, 6), (5, 6), (6, 6)])
+== OG m=7: 449 nonzero KOG coefficients: |c|=1 449/449; sign (-1)^(|theta|-1) 449/449; supp thetas == nonempty subsets of corners of P_kappa: 127/127  fails []
+== recursion (*) H values agree with LS-parity model (LG) j=0..3: True; with Omega model (OG) j=0..3: True
+== LG: H(-j) == (-1)^|k| #strict maps P_k->[2j-1] even on diagonal, j=1..9: 128/128
+== OG: H(-j) == (-1)^|k| Omega_bar(P_k, j-1-1) [strict maps to [j-1-1]], j=1..9: 38/128
+== OG: H(-j) == (-1)^|k| Omega_bar(P_k, j-1+0) [strict maps to [j-1+0]], j=1..9: 128/128
+== OG: H(-j) == (-1)^|k| Omega_bar(P_k, j-1+1) [strict maps to [j-1+1]], j=1..9: 17/128
+== OG: H(-j) == (-1)^|k| Omega_bar(P_k, j-1+2) [strict maps to [j-1+2]], j=1..9: 10/128

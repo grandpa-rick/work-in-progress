@@ -1,0 +1,24 @@
+== LG m=3: 8 kappa, 14 nonzero BR coefficients; |c| histogram [(1, 9), (2, 5)]
+   theta=kappa/rho equals anti-diagonal reflection of BR nu/lambda: 14/14; sign = (-1)^(|theta|-1): 14/14
+   support-test skips (|theta|>14, off-support, non-V3 variants; per shape-orientation x2): {}
+   V1 marked P (no diag prime)    on theta   : |c|==count 12/14  first fail ('3', '1', -1, 2, [(0, 1), (0, 2)]) | support (c!=0 <=> count!=0 over all rho<kappa) 22/27 first fail ('3', '0', 0, 1, [(0, 0), (0, 1), (0, 2)])
+   V1 marked P (no diag prime)    on thetaBR : |c|==count 12/14  first fail ('3', '1', -1, 2, [(0, 2), (1, 2)]) | support (c!=0 <=> count!=0 over all rho<kappa) 22/27 first fail ('3', '0', 0, 1, [(0, 2), (1, 2), (2, 2)])
+   V2 marked Q (diag prime ok)    on theta   : |c|==count 4/14  first fail ('1', '0', 1, 2, [(0, 0)]) | support (c!=0 <=> count!=0 over all rho<kappa) 22/27 first fail ('3', '0', 0, 2, [(0, 0), (0, 1), (0, 2)])
+   V2 marked Q (diag prime ok)    on thetaBR : |c|==count 4/14  first fail ('1', '0', 1, 2, [(2, 2)]) | support (c!=0 <=> count!=0 over all rho<kappa) 22/27 first fail ('3', '0', 0, 2, [(0, 2), (1, 2), (2, 2)])
+   V3e strict e<o, diag=e         on theta   : |c|==count 14/14  first fail None | support (c!=0 <=> count!=0 over all rho<kappa) 27/27 first fail None
+   V3e strict e<o, diag=e         on thetaBR : |c|==count 11/14  first fail ('2', '0', -1, 0, [(1, 2), (2, 2)]) | support (c!=0 <=> count!=0 over all rho<kappa) 21/27 first fail ('2', '0', -1, 0, [(1, 2), (2, 2)])
+   V3o strict e<o, diag=o         on theta   : |c|==count 11/14  first fail ('2', '0', -1, 0, [(0, 0), (0, 1)]) | support (c!=0 <=> count!=0 over all rho<kappa) 21/27 first fail ('2', '0', -1, 0, [(0, 0), (0, 1)])
+   V3o strict e<o, diag=o         on thetaBR : |c|==count 14/14  first fail None | support (c!=0 <=> count!=0 over all rho<kappa) 27/27 first fail None
+   V3* strict e<o, diag free      on theta   : |c|==count 9/14  first fail ('1', '0', 1, 2, [(0, 0)]) | support (c!=0 <=> count!=0 over all rho<kappa) 24/27 first fail ('21', '1', 0, 1, [(0, 1), (1, 1)])
+   V3* strict e<o, diag free      on thetaBR : |c|==count 9/14  first fail ('1', '0', 1, 2, [(2, 2)]) | support (c!=0 <=> count!=0 over all rho<kappa) 24/27 first fail ('21', '1', 0, 1, [(1, 1), (1, 2)])
+   V4a 2^(comp-diagcomp)          on theta   : |c|==count 12/14  first fail ('3', '1', -1, 2, [(0, 1), (0, 2)]) | support (c!=0 <=> count!=0 over all rho<kappa) 14/27 first fail ('3', '0', 0, 1, [(0, 0), (0, 1), (0, 2)])
+   V4a 2^(comp-diagcomp)          on thetaBR : |c|==count 12/14  first fail ('3', '1', -1, 2, [(0, 2), (1, 2)]) | support (c!=0 <=> count!=0 over all rho<kappa) 14/27 first fail ('3', '0', 0, 1, [(0, 2), (1, 2), (2, 2)])
+   V4b 2^(comp-1)                 on theta   : |c|==count 10/14  first fail ('2', '1', 2, 1, [(0, 1)]) | support (c!=0 <=> count!=0 over all rho<kappa) 14/27 first fail ('3', '0', 0, 1, [(0, 0), (0, 1), (0, 2)])
+   V4b 2^(comp-1)                 on thetaBR : |c|==count 10/14  first fail ('2', '1', 2, 1, [(1, 2)]) | support (c!=0 <=> count!=0 over all rho<kappa) 14/27 first fail ('3', '0', 0, 1, [(0, 2), (1, 2), (2, 2)])
+== OG m=3: 9 nonzero KOG coefficients: |c|=1 9/9; sign (-1)^(|theta|-1) 9/9; supp thetas == nonempty subsets of corners of P_kappa: 7/7  fails []
+== recursion (*) H values agree with LS-parity model (LG) j=0..3: True; with Omega model (OG) j=0..3: True
+== LG: H(-j) == (-1)^|k| #strict maps P_k->[2j-1] even on diagonal, j=1..5: 8/8
+== OG: H(-j) == (-1)^|k| Omega_bar(P_k, j-1-1) [strict maps to [j-1-1]], j=1..5: 2/8
+== OG: H(-j) == (-1)^|k| Omega_bar(P_k, j-1+0) [strict maps to [j-1+0]], j=1..5: 8/8
+== OG: H(-j) == (-1)^|k| Omega_bar(P_k, j-1+1) [strict maps to [j-1+1]], j=1..5: 1/8
+== OG: H(-j) == (-1)^|k| Omega_bar(P_k, j-1+2) [strict maps to [j-1+2]], j=1..5: 1/8
