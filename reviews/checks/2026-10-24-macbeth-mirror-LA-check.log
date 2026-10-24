@@ -1,0 +1,32 @@
+=== Part A: monoids of order <= 3, normalizers (K1,U,LA) ===
+order 1: 1 labelled monoids; normalizers stats {'norm': 1, 'mLA': 1, 'mLA_notRA': 0, 'mLA_notassoc': 0, 'RA_ne_assoc': 0, 'mLA_ne_lcong': 0, 'LA_ne_rcong': 0, 'sep_RA_notmLA': 0, 'sep_closed_notmLA': 0, 'sep_mLA_notclosed': 0, 'assoc_neither': 0}
+   idempotent unit-fixing K failing (LA): {'K': 0, 'mLA': 0, 'mLA_notassoc': 0}
+order 2: 4 labelled monoids; normalizers stats {'norm': 8, 'mLA': 8, 'mLA_notRA': 0, 'mLA_notassoc': 0, 'RA_ne_assoc': 0, 'mLA_ne_lcong': 0, 'LA_ne_rcong': 0, 'sep_RA_notmLA': 0, 'sep_closed_notmLA': 0, 'sep_mLA_notclosed': 0, 'assoc_neither': 0}
+   idempotent unit-fixing K failing (LA): {'K': 0, 'mLA': 0, 'mLA_notassoc': 0}
+order 3: 33 labelled monoids; normalizers stats {'norm': 138, 'mLA': 132, 'mLA_notRA': 0, 'mLA_notassoc': 0, 'RA_ne_assoc': 0, 'mLA_ne_lcong': 0, 'LA_ne_rcong': 0, 'sep_RA_notmLA': 6, 'sep_closed_notmLA': 6, 'sep_mLA_notclosed': 18, 'assoc_neither': 0}
+   idempotent unit-fixing K failing (LA): {'K': 60, 'mLA': 6, 'mLA_notassoc': 0}
+   separator (RA#) & not (mLA): ([(0, 0, 2), (0, 1, 2), (0, 2, 2)], 1, (0, 1, 1))
+   separator (RA#) & not (mLA): ([(0, 0, 2), (0, 1, 2), (0, 2, 2)], 1, (1, 1, 2))
+   separator (RA#) & not (mLA): ([(0, 1, 0), (0, 1, 1), (0, 1, 2)], 2, (0, 2, 2))
+   separator (RA#) & not (mLA): ([(0, 1, 0), (0, 1, 1), (0, 1, 2)], 2, (2, 1, 2))
+   separator (RA#) & not (mLA): ([(0, 1, 2), (1, 1, 2), (2, 1, 2)], 0, (0, 0, 2))
+   separator (RA#) & not (mLA): ([(0, 1, 2), (1, 1, 2), (2, 1, 2)], 0, (0, 1, 0))
+
+=== Part B: printed separators of Thm 3.1 ===
+Sep1 (printed): table associative = True
+    {'LA': True, 'mLA': False, 'RA': True, 'assoc': True, 'closed': True, 'lcong': False, 'rcong': True}
+Sep2 (as printed: b.b=a): table associative = False
+    non-associative triples: [(1, 1, 2), (1, 2, 2), (2, 1, 1), (2, 2, 1)]
+Sep2 (corrected: b.b=b): table associative = True
+    {'LA': True, 'mLA': True, 'RA': True, 'assoc': True, 'closed': False, 'lcong': True, 'rcong': True}
+
+=== Part C: groups ===
+S3: 6 subgroups; (H,T) pairs (H proper nontrivial) = 15; (LA) fails 0; [(mLA)<=>normal] mismatches 0; [assoc<=>criterion] mismatches 0; [criterion<=>phi in core] mismatches 0; assoc & non-subgroup & non-normal H: 0
+S3xC2: 16 subgroups; (H,T) pairs (H proper nontrivial) = 317; (LA) fails 0; [(mLA)<=>normal] mismatches 0; [assoc<=>criterion] mismatches 0; [criterion<=>phi in core] mismatches 0; assoc & non-subgroup & non-normal H: 9
+S4: 30 subgroups; (H,T) pairs (H proper nontrivial) = 35416; (LA) fails 0; [(mLA)<=>normal] mismatches 0; [assoc<=>criterion] mismatches 0; [criterion<=>phi in core] mismatches 0; assoc & non-subgroup & non-normal H: 36
+S3 witness H=<(12)>, T=A3: LA=True mLA=False closed=True
+
+=== Part D: assoc <=> (C_theta) (closure modulo the syntactic congruence of ker K) ===
+order 2: 2 monoids (unit 0), 4 normalizers, assoc 4, (C_theta) 4, mismatches 0; assoc with neither (mLA) nor closure: 0
+order 3: 11 monoids (unit 0), 46 normalizers, assoc 46, (C_theta) 46, mismatches 0; assoc with neither (mLA) nor closure: 0
+order 4: 156 monoids (unit 0), 1578 normalizers, assoc 1572, (C_theta) 1572, mismatches 0; assoc with neither (mLA) nor closure: 6
