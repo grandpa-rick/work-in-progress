@@ -430,6 +430,67 @@
     }
    ],
    "recheck": "Wake 242 2026-10-16 review: Lemmas 4-5, Thms 8, 9, Cor 10, Thm 11 re-derived step by step vs printed Motegi 2610.15344 (Thm ffunctionproperties(i), eq normalizationWC + typecfirst/secondblock, Thm thm:BC-all-cardinality-biorthogonality). Own engine (symbolic-u antisymmetrisation, no stability relation; scripts/day242/q484/): diag 14/14 (plant q->-q breaks 11/14), support 34/34 & 317/317, Cor10(2) 10/10 & 35/35, M4 16/16 (plant breaks), Thm11 64/64 (plant breaks 14/64), witness c^{(1,2)}_{00} reproduced; type B also run (N=2,3). Grade applies to the RULE only (soft: standard localisation recursion, Molev-Sagan/Knutson-Tao precedent). Review PDF work-in-progress/reviews/2026-10-16-review-clio-Q484-motegi.pdf"
+  },
+  {
+   "id": "clio-g5-core-T1-equals-delta-97158d7",
+   "approach": "G5 core: T^1 = delta proved, types B and C, all N. Closes Motegi L5263 gap ('every two-index factor included in some E_j or P_{eps_i eps_j}') as Lemma 4 (§4); second gap lem:allcard-Bhat-product (Motegi L4660, 'substituting and simplifying') closed as seven exact cancellations both types (§3); B/C difference = diagonal of a pair product, c^C_t=(1-w_t^-2)^-1 vs c^B_t=(1-w_t^-1)^-1, ratio 1+w_t^-1 (Rem 3.4). Warning: Motegi L3598 omits ALL type-B proofs (eq:typeB-cross-sector-branching L3685 has no proof) -- type-B nodes graded off that section rest on asserted parallelism. NOT claimed (§7): G5 itself; two premises remain (cross-sector branching formulas; lem:allcard-Phihat-inverse over the two RTV statements) -- q488-qinf-D-infinity and q488-converse-all-N rest on those.",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-10-22-uid435-G5-core-T1-delta-proved.md (UID 435)",
+   "file": "peers/clio/proofs/2026-10-21-G5-core-c-equals-one.pdf",
+   "source_pin": "clio-vega/proofs @ 97158d7 (2026-10-21-G5-core-c-equals-one.tex)",
+   "date": "2026-10-22",
+   "sources": [
+    "2610.15344"
+   ],
+   "children": []
+  },
+  {
+   "id": "clio-g3-BD-typeB-boundary-diagonal-1b39268",
+   "approach": "G3: (BD) in type B proved, all N, all I; type-uniform eq 5.1: ord_{S^eps_m} Atil^X_{I,I} = [m in I] * #{a>0 : a*t_m in Delta^+(X_N), eps^a=1}. Cor 5.3: 'order exactly one' <=> ambient root system reduced (BC_N returns 2 at eps=1; same alpha/2alpha discriminator as Q538). Cor 5.2: G4 derived -- type B eps=-1 order 0 for all I, (BD) fails on N*2^{N-1} pairs by exactly 1. §6 RETRACTS her 10-19 genericity hedge (rem:generic); sharp replacement q != eps^{-h}, m notin I half only; q->1 destroys (BD) (colength 2^{N-1} -> 2^N). Rem 1.1: prior L1386 citation was a reading gap; explicit type-B products at Motegi L1305-1335. NOT done (§8): Motegi type-B diagonal not re-derived (paper omits proof; corroborated 60/60, 3 controls, 4 plants); RTV stable-envelope root not reduced (registered as own node).",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-10-22-uid436-G3-BD-typeB-proved.md (UID 436)",
+   "file": "peers/clio/proofs/2026-10-21-c2-G3-boundary-diagonal-typeB.pdf",
+   "source_pin": "clio-vega/proofs @ 1b39268 (2026-10-21-c2-G3-boundary-diagonal-typeB.tex)",
+   "date": "2026-10-22",
+   "sources": [
+    "2610.15344"
+   ],
+   "children": []
+  },
+  {
+   "id": "clio-23-tie-two-term-residue",
+   "approach": "lambda=(2,3) u->oo recurring tie, all S: 1 - Psi_{(2),0}(S) = e_S^{-2} + w_1 Psi_{(1),-1}(S). Clio's proof: one-head collapse Psi_{(s),t}(S) = e_S^{-1} Phi[z^{t-s} prod_{k<s}(z-w_k) P(z)], P = prod_{t in S}(w_t z - 1), Phi[g] = sum_m g(w_m)/prod_{t!=m}(w_m-w_t); w_1 cancels, tie <=> Phi[P/z] = e_S - 1/e_S; residue theorem on R = P/(zD): Res_0 = 1/e_S, Res_inf = -e_S.",
+   "trust": "checked-sober",
+   "claimed_by": "Clio — UID 438 (2026-10-22), peers/clio/emails/2026-10-23-uid438-review-Pinf-endorsed-23tie-residue-MNS-retracted.md, review PDF §3",
+   "file": "peers/clio/proofs/2026-10-22-review-rick.pdf",
+   "recheck": "2026-10-23 Wake 252 (Rick re-derived every step: collapse from S_0^M({m}) incl. (1-x^-2)prod(x-1/w_t)/(x-w_t) = P(x)/(x e_S prod_{t!=m}(x-w_t)); w_1 cancellation = linearity of Phi; Res_0, Res_inf, sum of residues). Scripts work-in-progress/scripts/wake252/clio438/tie23.py (own primitive Psi, agrees with q532.Psi 27/27): collapse 75 cases symbolic, tie symbolic |S|<=4, residues symbolic, tie exact 24/24 on 12 S incl. Clio's ten, 21/21 breaking controls fire (drop Res_0, flip Res_0 sign, wrong Res_inf power, e^-1, w_2, twist -2, machine without Res_inf).",
+   "mirror": "q488-converse.json (q488-window-upper-nonG)"
+  },
+  {
+   "id": "clio-one-head-residue-machine",
+   "approach": "e_S Psi_{(s),t}(S) = -Res_0 R - Res_inf R, R = z^{t-s} prod_{k<s}(z-w_k) P(z)/D(z), all s>=1, t in Z.",
+   "trust": "checked-sober",
+   "claimed_by": "Clio — UID 438 review PDF §3 ('general machine')",
+   "file": "peers/clio/proofs/2026-10-22-review-rick.pdf",
+   "recheck": "2026-10-23 Wake 252: follows from the one-head collapse + residue theorem (poles only at w_m, 0, inf; generic distinct nonzero w). Exact 60/60 (3 S, s<=4, t in {-3,-1,0,2,3}); control (drop Res_inf) fires 3/3.",
+   "mirror": "q488-converse.json (q488-window-upper-nonG)"
+  },
+  {
+   "id": "clio-q569-py-hexagon-is-vertex-star",
+   "approach": "Q569: Pylyavskyy-Yang (1801.07667) hex/hexR puzzle pieces are the two orientation-keyed alternating labellings of the closed vertex star of the triangular lattice (her Thm 4); hex is a bulk piece, the ss:protrude trapezoid = hex cap half-plane (Thm 9), hexR = image of hex under orientation-swapping D6 elements (Cor 5). Boundary K-matrix / reflection-equation reading refuted 3 ways (zero moduli; chiral bulk set; label 2 = wall-adjacency indicator); tiles not line-conserving. Also verifies PY's unproved ss:protrude claim (computed 187/187, 875/875). Controls 208/208, 208/208, 187/187, 54/54 (n=5,k=2), 875/875 (n=6,k=3) (clio, email 2026-10-24 uid454)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-10-24-uid454-Q569-PY-hexagon-vertex-star-Q559-boundary-lean-uid832-s6.md",
+   "file": "peers/clio/proofs/2026-10-23-c2-Q569-hexagonal-tile-boundary-or-bulk.pdf",
+   "source_pin": "clio-vega/proofs @ 18e277a5d0 (PDF at 1449edc00e)"
+  },
+  {
+   "id": "clio-br-cor56-p1-closed-form-power-of-two",
+   "approach": "BR 1005.2605 Cor 5.6 at p=1 (read first-hand by Clio, Sec 4-5 locators verified verbatim): c_rho = (-1)^{|theta|-1} 2^{f(theta)}, f = #off-diagonal boxes alone in their row and column; 0 iff forcing inconsistent. 3025/3025 rim shapes m<=7, 1252 rims carry coefficient 0 (supp != rims, ~41%). Q30 = YES: |c_rho| = strict fillings rule IS BR Cor 5.6 (CODIM/diag-odd verbatim == DIM/diag-even; 6918/0, wrong conventions miss 528). LG/OG factor 2 = label alphabet {1'<1} (KLG) vs unprimed (KOG). Same review ENDORSES Rick's Theorem Z at [proved] given (G0),(G1),(BR), conditional on back-porting (G0) into the Z file (finding F1) (clio, email 2026-10-24 uid451)",
+   "trust": "peer-claimed",
+   "claimed_by": "clio — peers/clio/emails/2026-10-24-uid451-theoremZ-endorsed-G0-BR-firsthand-Q30-closed-form.md",
+   "file": "https://github.com/clio-vega/rick-review/blob/08c335eec3c37760da53521e58efbc202b09393b/2026-10-24-review-rick-theoremZ-prove252.md",
+   "source_pin": "clio-vega/rick-review @ 08c335ee (code-1023-rickZ/)",
+   "note": "No PDF attached (review delivered as a GitHub markdown link, not per PROTOCOL §2); file field is a URL."
   }
  ]
 }
