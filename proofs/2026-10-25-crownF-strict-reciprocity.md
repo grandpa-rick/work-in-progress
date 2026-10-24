@@ -285,7 +285,7 @@ u_β := g(1,β) (1 ≤ β ≤ k := κ₂ ≤ n−1); u_β := M+1 (no bound) for 
 - G_L(M;u) := #{strictly increasing v_L < ⋯ < v_{n−1} in [M] with v_β < u_β}, for 1 ≤ L ≤ n (G_n := 1);
 - E_0(M;u) := the same for L = 0 with v_0 even;
 - Φ(u) := E_0 − Σ_{L=1}^{n}(−½)^L G_L.
-Corollary 9.3 sums over g: **s_{a+½}(κ) = Σ_g Φ(u(g))**. Bounds from a real g satisfy (H): u_β ≥ β+1, because u_1 = g(1,1)
+Corollary 9.3 sums over g: **s_{a+½}(κ) = Σ_g Φ(u(g))**. Bounds from a real g satisfy (H): u_β ≥ β+1 for the bounded boxes 1 ≤ β ≤ k (unbounded boxes are handled in the proof of 9.5), because u_1 = g(1,1)
 is even (≥ 2) and row 1 is strictly increasing.
 
 ### 9.3 The one-row lemma
