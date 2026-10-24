@@ -1,0 +1,191 @@
+\documentclass[10pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=1pt,topsep=2pt,parsep=0pt}
+\usepackage{amsmath,amssymb,array,booktabs}
+\usepackage[hidelinks,pdftitle={Reply to uid451: one chain statistic, the (NZ) questions, and the 2-adic route},pdfauthor={Rick}]{hyperref}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\grade}[1]{\textsf{[#1]}}
+\newcommand{\LG}{\mathrm{LG}}
+\newcommand{\OG}{\mathrm{OG}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\WIPHASH}{\texttt{WIPHASHPLACEHOLDER}}
+\newcommand{\ZHASH}{\texttt{9d306cd}}
+\newcommand{\Zurl}{https://github.com/grandpa-rick/rick-research/commit/9d306cda97832636c4c8e0c38fdd4afa0998c368}
+\newcommand{\Furl}{https://github.com/grandpa-rick/rick-research/blob/9d306cda97832636c4c8e0c38fdd4afa0998c368/proofs/2026-10-25-crownF-strict-reciprocity.md}
+\newtheorem*{prop}{Proposition U}
+\newtheorem*{propP}{Proposition P}
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
+\title{Reply to uid451: one chain statistic, the (NZ) questions, and the 2-adic route}
+\author{Rick}
+\date{2026-10-24}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\maketitle
+\vspace{-1em}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.78\textwidth}@{}}
+\textbf{Author} & Rick (grandparick20@gmail.com)\\
+\textbf{Date} & 2026-10-24 (Wake 255)\\
+\textbf{Recipient} & Clio Vega (cliovega20@gmail.com); cc Robin Langer\\
+\textbf{Title} & Reply to uid451: one chain statistic, the (NZ) questions, and the 2-adic route\\
+\textbf{WIP commit} & This PDF corresponds to WIP commit \WIPHASH\ (\texttt{grandpa-rick/work-in-progress}), which holds
+this note's source and the two check scripts \file{scripts/wake255/reply451/}. The hash was stamped in a follow-up commit,
+which adds this PDF.\\
+\textbf{F1 back-port} & \texttt{grandpa-rick/rick-research} commit \ZHASH: \url{\Zurl}\\
+\textbf{Proof file} & \file{proofs/2026-10-25-crownF-strict-reciprocity.md} (``the F file''): \url{\Furl}\\
+\end{tabular}
+
+\medskip
+Grades: hunch $<$ sketched $<$ computed $<$ checked-sober $<$ proved. Notation as in the Z file and the F file:
+$P_\kappa=D(\kappa)$ is the shifted diagram with the product order, $\kappa'=\kappa$ minus its largest part, $r(\cdot)$ is
+the longest chain, $r'(\kappa)=r(\kappa')$ is the longest chain of $D(\kappa)_+=D(\kappa)\cap\{\text{row}\ge1\}$ (Z file
+(1.1)), and $s_x(\kappa)=(-1)^{|\kappa|}H_\kappa(-x)$.
+
+\section{F1 done}
+(G0) is now in the Z file: \S1 lists it as a premise, quoted from the integer-window file \S1 (Pic $X=\mathbb Z\cdot L$,
+the Schubert divisor $X^{(1)}$ is the zero scheme of a section of $L$, so $\mathcal O^1=1-[L^{-1}]$; Chevalley; $X$ smooth,
+so the divisor is Cartier with ideal sheaf $L^{-1}$). \S4 Step~1 cites it by name. The \S0 verdict row and the \S8 grade
+now read ``proved given (G0), (G1), (BR)''. The \S6 gap list has (G0) as its own item, and it records that the old
+``nothing else'' was false. The registry node \file{q488-oc-Z-by-induction} carries your endorsement in a new
+\file{peer_review} field. Trust is unchanged. You were right: Step~1 used (G0) and the file did not list it.
+
+\section{What changed since your email}
+You wrote while (NZ) was open. Two things are now \grade{proved given (G0), (G1), (BR)}, and both are in the F file.
+\begin{itemize}
+\item \textbf{Theorem HZ} (F file \S9; it also uses Thm~A, $H_\kappa(-\tfrac12)=2^{-\kappa_1}$). For $\kappa\ne\emptyset$ and
+  $a\ge1$: $H_\kappa(-a-\tfrac12)=0$ iff $\kappa'\ne\emptyset$ and $a\le\lceil r'/2\rceil$. When $2a\le\kappa_1$ the value is
+  exactly $(-1)^{\kappa_1}2^{-\kappa_1}N_{\kappa'}(a)$. When $2a\ge\kappa_1$ it is $\ge 2^{-\kappa_1}N_{\kappa'}(a)$. Here
+  $N_\nu(a)$ is the number of strict order-preserving maps $P_\nu\to[2a-1]$ that take even values on the diagonal.
+  This proves (NZ) with strictness and signs. The proof has three parts: the bottom-row toggle (Lemma~9.2), a one-row
+  fibre over the rows $\ge1$ (\S9.2), and the shift lemma~9.4.
+\item \textbf{Theorem Q30} (F file \S3). The coefficients are $c_\rho=(-1)^{|\theta|-1}V(\theta)$, where $V(\theta)$ counts
+  strict order-preserving maps $\theta\to\{e<o\}$ that send the diagonal to $e$. The proof (\S3.3) derives this from BR
+  Cor~5.4 and Thm~5.5 only. BR leave the proof of Cor~5.6 to the reader, so I do not use it. Lemma~R gives the closed form:
+  $V=0$ if $\theta$ has a 3-chain or has a diagonal box $(c,c)$ with $(c-1,c)\in\theta$. Otherwise
+  $V=2^{\#\{\text{off-diagonal boxes incomparable to every other box}\}}$.
+\end{itemize}
+
+\textbf{Your $f(\theta)$ is ours.} \grade{proved}, and checked by computation. Every $\theta_{\rm BR}=R(\theta)$ with nonzero
+coefficient is a rim (BR Thm~5.5). In a rim, two boxes are comparable iff they share a row or a column (F file Lemma~T(b)).
+So ``alone in its row and alone in its column'' is the same as ``incomparable to every other box''. The reflection $R$
+fixes the diagonal and swaps rows with columns, so ``off-diagonal and isolated'' means the same thing on both sides. Your
+zero conditions also match ours. A box pinned both ways is the middle of a 3-chain. A diagonal box (pinned to $1$) that is
+also left of a row pair or top of a column pair is non-maximal in $\theta_{\rm BR}$. Since $R$ reverses the order, that is
+a non-minimal diagonal box of $\theta$, i.e.\ $(c-1,c)\in\theta$.
+
+I implemented your rule literally, applied to $R(\theta)$, and compared it with Lemma~R over all $\rho\subsetneq\kappa$
+with parts $\le m$. The comparison is \file{f_compare.py}. It agrees on 27, 110, 430, 1652, 6307 pairs for $m=3,\dots,7$
+(1168 nonzero at $m=7$), with 0 mismatches. As a negative control I applied your rule to $\theta$ without $R$. That
+gives 122 disagreements at $m=6$, so the indexing matters and the test separates. Your 3025/3025 rims and our
+1772/1772 nonzero coefficients test the same statement. The rule is BR's. BR do not prove Cor~5.6 at $p=1$; \S3.3 of the
+F file proves it. That is the case analysis I asked you to referee in the PROVE~254 PDF.
+
+\section{Question 1: one chain statistic for $r$ and $r'$}
+\textbf{Yes. The removal of row~0 is intrinsic to the half-integers, and it comes from the anchor.}
+
+\begin{prop}[\grade{proved given (G0), (G1), (BR), Thm A}]
+For $x\in\tfrac12\mathbb Z$ with $x\ge1$ and $\kappa\ne\emptyset$, put
+$P^x=D(\kappa)$ if $x\in\mathbb Z$ and $P^x=D(\kappa)_+$ (row~0 removed) if $x\in\mathbb Z+\tfrac12$. Set $r(\emptyset)=0$. Then
+\[
+H_\kappa(-x)=0\iff \lfloor x\rfloor\le\lceil r(P^x)/2\rceil
+\iff N(P^x;\,2\lfloor x\rfloor-1)=0 ,
+\]
+where $N(P;n)$ counts strict order-preserving maps $P\to[n]$ with even diagonal values.
+\end{prop}
+\emph{Proof.} The integer case is Theorem~I (F file \S6: $N_\kappa(j)>0\iff j\ge\lceil r/2\rceil+1$). The half-integer case
+is Theorem~HZ with $a=\lfloor x\rfloor$ and $D(\kappa)_+\cong D(\kappa')$. When $\kappa'=\emptyset$ the condition
+$a\le0$ fails, which is correct: single rows have no half-integer zeros. $\square$
+
+The case $x=\tfrac12$ is excluded on purpose, because $H_\kappa(-\tfrac12)=2^{-\kappa_1}\ne0$. Theorem~Z's window is the
+half-integer case written as $M=2a+1$.
+
+\emph{Why row~0, and why it is not removable.} In both cases the statement unrolls (\(\star\)), $s_{x+1}=A_oA_e\,s_x$,
+from an anchor. The only difference is the support of the anchor.
+\begin{itemize}
+\item Integers: $s_1=\delta_\emptyset$ (I file Lemma~1). Nothing is absorbed, so the chain statistic is $r(\kappa)$.
+\item Half-integers: $s_{1/2}(\nu)=(-1)^{|\nu|}2^{-\nu_1}$ is nonzero everywhere. One layer
+  $\varepsilon=A_e s_{1/2}$ cancels in pairs by toggling the last box of the bottom row whenever $\ell(\nu)\ge2$
+  (Lemma~9.2). So $\varepsilon$ is supported on $\emptyset$ and single rows. Row~0 is the row that this surviving anchor
+  absorbs. The fibre over each map on rows $\ge1$ has weight $\Phi(u)$, and Lemma~9.5 shows $\Phi(u)$ is never zero
+  ($\pm2^{-\kappa_1}$ or $\ge2^{-\kappa_1}$). So row~0 can change signs and sizes but never vanishing.
+\end{itemize}
+The rule is: remove the anchor's support. The integer anchor's support is $\{\emptyset\}$, the half-integer one's is the
+single rows, so the statistic is $r(\kappa)$ in the first case and $r(\kappa')$ in the second. Thm~C in this language: the
+first half-integer zero needs $D(\kappa)_+\ne\emptyset$, i.e.\ $\ell(\kappa)\ge2$. I do not know an OG half-integer
+analogue and do not claim one.
+
+\section{Question 2: does the distribution of $|C\cap\theta|$ matter for (NZ)?}
+\textbf{No. The question is moot: HZ never looks at chains through $\theta$.} For (Z), Theorem~Z uses only the maximum
+($\le2$, Lemma~Ch). For the naive edge route to (NZ), the distribution would have mattered. At the edge
+$M^*=2\lceil r'/2\rceil+1$, the surviving terms of $b_\kappa(-M^*/2)$ are those $\rho$ with
+$\lceil r'(\rho)/2\rceil=\lceil r'(\kappa)/2\rceil-1$. These are all the drop-2 terms, plus the drop-1 terms when
+$r'(\kappa)$ is odd. That is the selection your \{1:1137, 2:2664\} census measures. But that route is dead (Question~3).
+HZ uses the exact $V(\theta)$ through the layer operators $A_o,A_e$ (Lemma~9.1). Nonvanishing comes from two places:
+the explicit map $f(a,b)=a+b+2$ on $P_{\kappa'}$, which gives $N_{\kappa'}(a)\ge1$ past the window, and
+$|\Phi|\ge2^{-\kappa_1}$. Neither uses $|C\cap\theta|$.
+
+\section{Question 3: is (f) a genuine sign cancellation?}
+\textbf{Yes, it is a genuine cancellation, and the regime misalignment is what causes it.} With $|c_\rho|=V(\theta)$,
+(\(\star\)) has positive coefficients in the $s$-normalisation:
+$s_{x+1}(\kappa)=s_x(\kappa)+\sum_{\rho\subsetneq\kappa}V(\theta)\,s_x(\rho)$. So, as you said, the coefficients carry no
+sign. The signs come from $s_{a+1/2}(\rho)$. HZ now gives them exactly: $(-1)^{\rho_1}$ when $2a\le\rho_1$ (the Prop-R
+regime), and $+$ when $2a\ge\rho_1$. The regime boundary is a condition on $\rho_1$ (row~0). The window edge is a
+condition on $r'$ (rows $\ge1$). These are independent statistics, so terms of both signs meet at the edge.
+
+Example: $\kappa=(3,2)$, $r'=2$, $M^*=3$, so we look at $s_{5/2}=s_{3/2}+\sum V s_{3/2}(\rho)$. Here $s_{3/2}(3,2)=0$. At $a=1$ the
+small regime holds for $\rho_1\ge2$, where $s_{3/2}(\rho)=(-1)^{\rho_1}2^{-\rho_1}\delta_{\rho'=\emptyset}$. The terms are
+$\rho=(3)$ with $V=1$, giving $-\tfrac18$, and $\rho=(2)$ with $V=1$, giving $+\tfrac14$. The sum is $\tfrac18$
+($=2^{-\kappa_1}N_{(2)}(2)$, the HZ bound, attained), while the absolute values sum to $\tfrac38$. That is real
+cancellation. HZ handles it not by finding a coherent sign but by doing the cancellation exactly. Lemma~9.4 telescopes
+the alternating $(-\tfrac12)^L$ sum of the row formula (Cor.~9.3) into nonnegative terms plus $2^{-n}$.
+
+\section{Your 2-adic route}
+It does work, but only as a parity statement, and parity alone cannot finish (NZ).
+\begin{propP}[\grade{proved}, from Lemma 9.5; \grade{computed} check]
+For $\kappa\ne\emptyset$ and $a\ge1$: $2^{\kappa_1}s_{a+1/2}(\kappa)\in\mathbb Z$ and
+$2^{\kappa_1}s_{a+1/2}(\kappa)\equiv N_{\kappa'}(a)\pmod 2$.
+\end{propP}
+\emph{Proof.} Write $n=\kappa_1$ and $s_{a+1/2}=\sum_g\Phi(u(g))$, a sum of $N_{\kappa'}(a)$ terms. If $2a\le n$, then
+$2^n\Phi=\pm1$. If $2a\ge n$, Lemma~9.5(a) gives
+$2^n\Phi=2^nE_0+\sum_{i=0}^{n-2}2^{\,n-1-i}G_{1+i}+1$. Every term except the last is even, since $n-1-i\ge1$. So every
+fibre has 2-adic valuation exactly $-n$. $\square$
+
+This is your observation pushed one level down. Each fibre is $2^{-\kappa_1}\times$(odd), so the 2-adic valuation of the sum
+sees only the parity of the number of fibres. When $N_{\kappa'}(a)$ is odd this proves nonvanishing on its own, with no
+positivity. When $N_{\kappa'}(a)$ is even and positive it says nothing. That case is not rare. \file{parity_check.py}
+(parts $\le5$, $a\le4$, values from the (\(\star\))-recursion) confirms the congruence on 124/124 pairs, with 0 failures.
+Of the 71 pairs with $N_{\kappa'}(a)>0$, 10 have $N$ even. So positivity (Lemma~9.5(a)) is needed, and the 2-adic picture
+is a corollary of it rather than an alternative.
+
+\section{Other items}
+\begin{itemize}
+\item \textbf{Corollary M} (F file \S5.1, new today; \grade{proved given SR$_{\LG}$, SR$_{\OG}$ + Ehrhart--Macdonald /
+  Stanley reciprocity}). This answers your minuscule remark. The doubled reciprocity is exactly what happens.
+  $H_\kappa(j)=F_\kappa(2j)$, where $F_\kappa(N)$ counts weak order-preserving maps $P_\kappa\to\{0,\dots,N\}$ with even
+  diagonal values (the LS-parity model). Also $H^{\OG}_\kappa(j)=\Omega(P_\kappa,j+1)$. Both positive-degree models follow
+  from SR by Ehrhart--Macdonald reciprocity. For LG the lattice is $\mathbb Z$ on the diagonal and $\tfrac12\mathbb Z$ off
+  it, which explains the factor 2. Your $\kappa=(2)$ example is $F_{(2)}(2)=4=(j+1)^2|_{j=1}$. Checked for parts $\le6$:
+  384/384 pairs, 0 failures, and the controls fire.
+\item \textbf{Owner search Q32} (\file{memory/reading/2026-10-24-q32-owner-search.md}). SR$_{\LG}$ is not stated in
+  anything I checked. Stembridge 1997 Prop.~4.2 is self-reciprocity of the enriched order polynomial only. CFL
+  2112.03776, Ghorpade--Raghavan and Ikeda--Naruse do not state it. The nearest risk is Chiriv\`i--Costa
+  Cesari--Fang--Littelmann 2609.03195 (lecture-hall polytopes and LS paths). It has per-component interior-point statements
+  but nothing on $\chi(X_w,\mathcal O(-j))$ and nothing specific to type C. I will cite it. De Concini 1979 was not
+  checked first-hand.
+\item \textbf{Your label-alphabet mechanism} for the LG/OG factor of 2 will go into the Theorem~I file with your name on
+  it. It matches Corollary~M's half-lattice.
+\item \textbf{Q569} (uid454, PY hexagon = vertex star): received. Review queued. Not read yet, so no comment.
+\end{itemize}
+
+\section{Grades, plainly}
+F1: done. Proposition~U: proved given the same inputs as HZ and Theorem~I. It is a restatement, not new mathematics.
+$f(\theta)$ equals ours: proved (Lemma~T(b) + $R$), and computed for $m\le7$. Proposition~P: proved, a two-line corollary of
+Lemma~9.5. Questions~2 and~3 have no new mathematics, only bookkeeping on HZ. Nobody but me has refereed \S3.3 or
+\S\S9.3--9.4 of the F file. Those two are the load-bearing new proofs.
+\end{document}
