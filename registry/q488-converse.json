@@ -971,7 +971,7 @@
                         "script": "work-in-progress/scripts/wake252/caseB/gate6.py, prove252_*.py",
                         "wip_commit": "1036afe",
                         "children": [],
-                        "conditional_grade": "proved given (G1) (standard: Demazure character formula / Kempf vanishing, via q488-oc-thmC-M3) + BR support inclusion (q488-oc-support-rule-BR, first-hand Wake 253)",
+                        "conditional_grade": "proved given (G0) Chevalley + (G1) Demazure + (BR) 1005.2605 first-hand (G0 back-ported 9d306cd per Clio F1)",
                         "trust_before_2026_10_23_wake253": "computed",
                         "note_2026_10_23_wake253": "UPGRADED computed->proved given G1 (standard: Demazure character formula/Kempf vanishing) + BR (first-hand Wake 253). Lemma Ch already used BR's strictly-SE rim definition; proof unchanged; file §1/§3 remark/§6/§8 updated with verbatim locators. Covers the ZERO half (Z) only; (NZ) open."
                       },
