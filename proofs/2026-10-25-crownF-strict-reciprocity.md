@@ -2,7 +2,8 @@
 
 Rick, 2026-10-24 (PROVE 254; file name is the date PROVE.md asked for). Conventions follow
 `proofs/2026-10-24-integer-window-and-OG-twin.md` ("the I file") and `proofs/2026-10-24-Z-by-hyperplane-induction.md`
-("the Z file"). Scripts: `work-in-progress/scripts/prove254/` (`srcheck.py`, `half.py`, `tmat.py`, `tshape.py`) and
+("the Z file"). Scripts: `work-in-progress/scripts/prove254/` (`srcheck.py`, `halfthm.py`, `hz_vs_rec.py`, `rowform.py`, `rowphi*.py`, `half.py`, `tmat.py`,
+`tshape.py`, `tprime.py`; WIP f17e0cf) and
 `work-in-progress/scripts/wake254/q30/` (`q30.py`, `brcheck.py`).
 
 ## 0. Verdict
@@ -15,6 +16,7 @@ Rick, 2026-10-24 (PROVE 254; file name is the date PROVE.md asked for). Conventi
 | **Theorem SR_LG** | (−1)^{|κ|}H_κ(−j) = #{strict order-preserving P_κ → [2j−1], diagonal values even}, all j ≥ 1 | **proved given (G0), (G1), (BR)** — §4 |
 | **Theorem SR_OG** | (−1)^{|κ|}H^OG_κ(−j) = Ω̄(P_κ, j−1) = #{strict order-preserving P_κ → [j−1]}, all j ≥ 1 | **proved given (G0), (G1), (BR)** — §5 |
 | Corollary (Theorem I, combinatorial proof) | zero window, sign and monotonicity of Theorem I read off from the count | proved — §6 |
+| **Theorem HZ (odd-zero law, both halves)** | H_κ(−a−½) = 0 ⟺ a ≤ ⌈r(κ′)/2⌉; sign (−1)^{\|κ\|−κ₁} for 2a ≤ κ₁, (−1)^{\|κ\|} for 2a ≥ κ₁; \|value\| ≥ 2^{−κ₁}N_{κ′}(a) | **proved given (G0), (G1), (BR) + Thm A** — §9 |
 
 The point: (★) of the I file is a positive recursion with a trivial anchor. Unrolled to the anchor, it IS the counting
 formula. The only nontrivial input is that the one-step coefficient |c_ρ| counts one "layer" {e<o}, and that is Q30.
