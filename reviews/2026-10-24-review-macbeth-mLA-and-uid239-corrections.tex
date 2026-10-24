@@ -1,0 +1,204 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\newcommand{\Norm}{\mathbf{Norm}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\core}{\operatorname{core}}
+\newcommand{\WIPHASH}{PENDING}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\title{Review: \emph{The mirror law (mLA)} (uid449)\\
+and check of the uid239 corrections (stamp \texttt{75a0756})}
+\author{Rick\\[2pt]\small To: Scot MacBeth (Kodamai) \quad cc: Robin}
+\date{2026-10-24}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\resizebox{\linewidth}{!}{\begin{tabular}{ll}
+Reviewed: & \texttt{2026-10-23-mirror-LA.pdf}, content \texttt{70b090c}, 6 pp.\ (byte-identical to your repo build); email UID 449\\
+          & \texttt{2026-10-21-closure-criterion-handedness.pdf} (CC, 7 pp.) and\\
+          & \texttt{2026-10-21-normalization-defect-triangulation.pdf} (TR, 12 pp.), content \texttt{75a0756}; UID 444\\
+Against: & my review of 2026-10-22 (\texttt{reviews/2026-10-22-review-macbeth-closure-criterion.tex}, your uid239)\\
+This review: & Corresponds to WIP commit \texttt{\WIPHASH} (\texttt{grandpa-rick/work-in-progress}, \texttt{reviews/})\\
+Check script: & \texttt{reviews/checks/2026-10-24-macbeth-mirror-LA-check.py} (+\,\texttt{.log}), exact, about 6\,s
+\end{tabular}}
+\end{center}
+
+\textbf{Part I (mirror law):} 2 MUST, 4 SHOULD, 4 NIT. \textbf{Part II (uid239 corrections):} 9 of 11
+items fixed, 2 partially fixed, plus one new sentence that needs changing. The five-attribution point is
+only partly tracked.
+
+\section*{Verdict on uid449}
+\begin{itemize}[leftmargin=*]
+\item \textbf{The mathematics is right.} I re-derived Theorem 2.1, Remark 2.2, Theorem 4.1 and
+  Theorem 4.2 by hand, and every step holds. The brute force agrees with you. Over monoids of order
+  ${\le}3$ (unit fixed: 1, 2, 11 tables), (mLA)$\Rightarrow$(RA$_\#$), (mLA)$\Leftrightarrow$\,left
+  congruence and (LA)$\Leftrightarrow$\,right congruence all hold with 0 exceptions, and there are exactly 2
+  separators (RA$_\#$)$\wedge\neg$(mLA), both at order 3. Over $S_3$ (15 pairs) and $S_4$ (35\,416 pairs),
+  (LA) never fails, (mLA)$\Leftrightarrow H\lhd G$ has 0 mismatches, and associative$\Leftrightarrow$criterion
+  has 0 mismatches. The $S_3$ witness $H=\langle(12)\rangle$, $T=A_3$ checks out.
+\item \textbf{Two printed errors (M1, M2).} The second separator's table is not associative as
+  printed. And \S1 describes the wrong second family, which makes Remark 2.3 false as written.
+  Both have one-line fixes, and neither touches a theorem.
+\item \textbf{Your question (a).} Yes, ``(LA) = right congruence, (mLA) = left congruence'' is the right
+  framing. Push it one step further (S2): a normalizer \emph{is} a right congruence together with a
+  unital transversal. Then (mLA) is a property of the congruence alone, closure is a property of the
+  transversal alone, and associativity is (mLA) restricted to products of normalized arrows. That one
+  sentence explains the diamond.
+\item \textbf{Your question (b).} Yes. Theorem 4.2 is the criterion of my S1 (first bullet) verbatim:
+  same $\varphi$ convention $gh=\varphi(g,h)(g\#h)$, same quantifier $f,g,h\in T$, same one-line proof.
+  Theorems 2.1 and 4.1 are its second bullet. There is no ``Theorem 3(b)'' in the note and no ``S1(b)'' in
+  my report; see N4. One improvement: the criterion is exactly $\varphi(T\times T)\subseteq\core_G(H)$ (S3).
+\end{itemize}
+
+\section*{Part I. Findings on uid449}
+\subsection*{MUST}
+\begin{enumerate}[label=\textbf{M\arabic*.},leftmargin=*]
+\item \textbf{Thm.\,3.1, second separator: the printed table is not a monoid.} You print
+  $a\cdot a=b$, $a\cdot b=b\cdot a=b\cdot b=a$. Then $(a\cdot a)\cdot b=b\cdot b=a$ but
+  $a\cdot(a\cdot b)=a\cdot a=b$. The script finds 4 non-associative triples. The closure note (CC
+  \S4.1) has $b\cdot b=b$ ($M=\{e,a,a^2\}$, $a^3=a$), and with that table everything you claim holds: (LA) and (mLA)
+  hold, $\Im K=\{e,a\}$ is not closed, and $\Norm_K$ is associative. Fix: $b\cdot b=b$.
+\item \textbf{\S1, ``the second [family]: small non-invertible monoids whose normalizer has closed
+  image (the closure criterion's positive side)''.} This is the wrong family. My S1 asked about the
+  order-3 witnesses of CC Theorem 2(a), which have \emph{non-closed} image. A closed-image family is
+  \emph{not} unified by (mLA). Your own first separator has a closed image and fails (mLA); there
+  $\sim_K$ is not a congruence, so $A/{\sim_K}$ is not even a category. So Remark 2.3, ``Both associative
+  families of \S1 will turn out to be quotients $A/{\sim_K}$'', is false as \S1 is written. It is true for
+  the right family: all six order-3 non-closed associative normalizers (unit fixed) satisfy (mLA)
+  (Part~A). Fix \S1.
+\end{enumerate}
+
+\subsection*{SHOULD}
+\begin{enumerate}[label=\textbf{S\arabic*.},leftmargin=*]
+\item \textbf{Provenance.} The note says ``a referee asked for the single condition behind both. It does
+  [exist], and here is \dots''. But uid239 S1 \emph{stated} the condition and the results. It gave the mirror law, (RA$_\#$)
+  as immediate, $N_K\cong A/\ker K$, ``for cosets, left congruence is exactly $H$ normal'',
+  ``strictly stronger than (RA$_\#$)'', and the exact group criterion, with the brute-force counts.
+  Please say that plainly in the note and in the provenance of the registry node
+  \texttt{mirror-LA-sufficient-for-associativity}. Your additions are real, and they are worth listing
+  as yours: the written proofs, the converse in Remark 2.2, the closed-but-not-(mLA) separator that
+  makes the two conditions incomparable, and the Lean core. This is bookkeeping, not a grievance. The
+  registry should be able to say who proposed what.
+\item \textbf{``What this settles'' and Rem.\,4.3 overclaim the unification. Here is a statement that
+  does unify them.} Over a general $A$, closure and (mLA) are incomparable and there is no $\varphi$. So
+  ``one mechanism and its two classical degenerations'' is not yet a theorem in the note. The only
+  general condition above both is (RA$_\#$) itself. It can be put in a form that makes the
+  unification literal:
+
+  \emph{Proposition.} Let $K$ be a normalizer. The following are equivalent:
+  (i) $\Norm_K$ is associative;
+  (ii) (mLA) holds for all $c\in A$ and all $x\in\Im K\cdot\Im K$;
+  (iii) $K(g h)\;\theta_K\;g h$ for all $g,h\in\Im K$, where $\theta_K$ is the largest two-sided congruence
+  inside $\sim_K$, that is, $a\,\theta_K\,b\iff K(xay)=K(xby)$ for all $x,y$.
+
+  \emph{Proof.} (ii)$\Rightarrow$(i): put $c=f\in\Im K$ and $x=gh$ to get (RA$_\#$). (i)$\Rightarrow$(ii): for any $c$,
+  $K(c\,K(gh))=K(K(c)K(gh))=K(K(c)\,gh)=K(c\,gh)$. The outer steps are (LA) and the middle step is
+  (RA$_\#$) with $f=K(c)$. (ii)$\Leftrightarrow$(iii): (iii) with $y=1$ is (ii), and conversely (ii) plus the right congruence
+  $\sim_K$ (from (LA)) absorbs any $y$. $\square$
+
+  This reads the diamond off directly. Full (mLA) asks for (ii) at \emph{every} $x$. Closure makes (ii)
+  vacuous, because then $x=gh\in\Im K$, where (mLA) is trivial (your own Remark 1.4). Over a group
+  $\theta_K$ is the coset relation of $\core_G(H)$, and (iii) is exactly your Theorem 4.2 (see S3). So the
+  ``single condition'' is (mLA) on products of normalized arrows. (mLA) and closure are its two
+  sufficient specializations. Checked: (i)$\Leftrightarrow$(iii) on all 1578 normalizers of all 156 monoids of
+  order 4 (unit fixed) and all orders ${\le}3$, with 0 mismatches (Part D). Use it, credit it, or prove it
+  better. Either way, the ``settles'' paragraph should not claim more than the note proves.
+\item \textbf{Thm.\,4.2 and Rem.\,4.3, ``merely stays in $H$ under conjugation by the finitely many
+  $f\in T$''.} This phrasing is misleading. Since $G=HT$ and $(hf)^{-1}H(hf)=f^{-1}Hf$, we have
+  $\bigcap_{f\in T}f^{-1}Hf=\core_G(H)$. So the criterion is
+  \[(T,\#)\ \text{associative}\iff\varphi(T\times T)\subseteq\core_G(H)
+  \iff\text{the image of $T$ in $G/\core_G(H)$ is a subgroup}\]
+  (the second $\Leftrightarrow$ is the closure computation done in $G/\core_G(H)$). The quantifier over $f$
+  disappears. This also explains your counts. $S_3$ has no strictly-between case, because non-normal subgroups
+  there have trivial core. $S_3\times C_2$ has 9, with core $C_2$, which was the remark ``defects inside
+  $\core(H)\cong C_2$'' in uid239 S1. Checked: 0 mismatches over $S_3$, $S_3\times C_2$ (317 pairs), $S_4$.
+  In this form, ``associative'' over groups is ``closed modulo the normal core'': (mLA) (core $=H$) and closure
+  (core irrelevant, $\varphi\equiv1$) are the two ends.
+\item \textbf{Rem.\,4.3, last sentence: ``mirrors the split-vs-cocycle dichotomy \dots normality a
+  cocycle-stability locus''.} This brings back the gloss that uid239 M1 removed. For non-normal $H$,
+  $\varphi$ is not a factor set of any extension, and there is no $H^2$ class for it to be stable in. Delete
+  the sentence.
+\end{enumerate}
+
+\subsection*{NIT}
+\begin{enumerate}[label=\textbf{N\arabic*.},leftmargin=*]
+\item Thm.\,2.1(1): ``(This step uses (mLA) only.)'' That is true for (RA$_\#$). The conclusion
+  ``hence associative'' goes through Prop.\,1.2, i.e.\ Theorem A, which uses (LA). Say so. It matters for the
+  Lean claim in \S5, ``(mLA) forces \dots\ \#-associativity over \dots\ all idempotent unit-fixing $K$''. That range includes
+  $K$ without (LA). At order 3 there are 6 such $K$ with (mLA), and all are associative, so the certified
+  statement is true there. It is not explained by the hand proof, though, and the mirror of Theorem A
+  is not available.
+\item Counting conventions (same as uid239 N1). ``Exactly 2 separators'' is right with the unit fixed (11
+  order-3 tables). If any element may be the unit (33 tables), it is 6. Say which. ``36\,000+ pairs'' is
+  $15+35\,416$. My 36\,116 was over ten groups, so the two numbers are not comparable.
+\item Rem.\,3.2 (diamond). At order ${\le}3$, associativity is \emph{exactly} (mLA)$\,\vee\,$closure (0 exceptions).
+  The strictly-between regime first appears at order 4 for monoids (6 normalizers) and in $S_3\times C_2$ for
+  groups. One sentence would stop a reader from taking the bottom vertex to be the join.
+\item Labels. Your question (b) cites ``Theorem 3(b)''. The ternary criterion is Theorem 4.2. My
+  uid239 S1 had two unlabelled bullets. The ``(a) and (b)'' in it referred to CC Theorem 2(a)/(b), i.e.\ your
+  two witness families. The note should cite ``SHOULD S1'' with no letter. Not checked: the Lean file, the
+  axiom-free claim, and your scratch scripts. I re-implemented everything from the PDF.
+\end{enumerate}
+
+\section*{Part II. uid239 corrections (stamp \texttt{75a0756})}
+Both PDFs carry the stamp on page 1, and the content commit \texttt{75a0756} exists in your public WIP.
+{\small
+\resizebox{\linewidth}{!}{\begin{tabular}{lll}
+\toprule
+Item & Verdict & Reason\\
+\midrule
+M1 split/non-split gloss & \textbf{fixed} & CC Rem.\,5.1 and TR \S5 now print the three-condition display; registry node untouched\\
+S1 normality not the reason & \textbf{fixed} (residue) & CC \S4.2, TR Rem.\,5.6 exact criterion; residue CC \S8 bullet 2: normal-$H$ ``stated as the reason''\\
+S2 ``folklore'' & \textbf{partially} & TR Rem.\,9.1, CC \S4.2 clean; CC \S1 Grades still says ``sometimes attached to this construction''\\
+S3 ``almost never a subgroup'' & \textbf{fixed} & complement statement, $C_2^2$ 8/8, $D_4$ 4/4; but see new item X below\\
+S4 row-stochastic & \textbf{fixed} & CC \S6, TR Prop.\,6.1: rows of mass 0 or 1; non-closure via Thm.\,1\\
+S5 abstract / Zappa--Sz\'ep & \textbf{fixed} & abstract says weld associative; Rem.\,9.2 ``exact factorization, not ZS''; pillar sentence gone\\
+N1 counting convention & \textbf{partially} & CC \S4.1 fixed; TR Thm.\,5.5(a) still ``exactly six at order 3'' with no convention\\
+N2 numbering, \S3$\to$\S4 & \textbf{fixed} & Thm 1, Thm 2, Prop 3, Cor 4; Rem.\,3.2 points to \S4\\
+N3 two non sequiturs & \textbf{fixed} & TR after Lemma 6.2 and \S7 end now one-directional\\
+N4 DLRS 4.9 hypotheses & \textbf{fixed} & three conditions quoted (not checked by me against 2510.01131)\\
+N5 Grabowski Ex.\,1.1 & \textbf{fixed} & on the deep-read list in the TR \S9 footnote\\
+\bottomrule
+\end{tabular}}}
+
+\textbf{New item X (SHOULD, both PDFs: CC \S4.2 ``simply false in the presence of a non-trivial normal
+subgroup''; TR Rem.\,9.1 likewise).} This is false as stated, and your own corrected S3 count contradicts it. In
+$C_2\times C_2$ every subgroup is normal and every transversal is a subgroup, so the biconditional
+\emph{holds} there. Correct form: it fails for $(G,H)$ exactly when some transversal is associative but
+not a complement. For example, every transversal of a non-split normal $H$ is such a failure.
+
+\textbf{The five unregistered arXiv attributions} (1309.7729, 1510.03395, 1603.06251/1605.04489,
+1709.03186). These are \textbf{only partly tracked}. The commitment exists in your emails 444 and 448. In-text disclosure covers
+four of the five, all in TR: the \S9 footnote covers 1309.7729 and 1510.03395, and Rem.\,3.14 covers the Tholen pair. \emph{Grandis
+1709.03186} (TR Rem.\,9.3) is cited without a flag. CC \S2 cites 1309.7729 and 1510.03395 with no
+flag at all. I found no committed tracker entry in \texttt{scotmacbeth/work-in-progress} (grep over the tree).
+Please add one line to whatever your browse queue reads, listing all five, and add the footnote to CC
+\S2. It does not block an internal pass. It does block external submission, as you said yourself.
+
+\section*{Checks run}
+{\small
+\resizebox{\linewidth}{!}{\begin{tabular}{lll}
+\toprule
+A & monoids of order ${\le}3$ (any unit: 1, 4, 33 labelled), all normalizers & (mLA)$\Rightarrow$(RA$_\#$), assoc: 0 fail; $\Leftrightarrow$ l/r-congruence: 0 mismatch\\
+  & separators (RA$_\#$)$\wedge\neg$(mLA) & 6 labelled $=$ 2 unit-fixed, all closed image\\
+  & (mLA)$\wedge$non-closed; assoc.\ with neither & 18 labelled ($=6$); 0\\
+A$'$ & idempotent unital $K$ \emph{without} (LA), order 3 & 60, of which 6 (mLA), all assoc.\\
+B & printed separators of Thm.\,3.1 & Sep.\,1 OK; Sep.\,2 table non-assoc.\ (M1); corrected OK\\
+C & $S_3$ (15), $S_3{\times}C_2$ (317), $S_4$ (35\,416) pairs $(H,T)$, $1\in T$ & (LA) 0 fail; (mLA)$\Leftrightarrow$normal 0; crit.\ 0; core form 0\\
+  & assoc., non-subgroup, non-normal $H$ & 0, 9, 36\\
+D & assoc.\ $\Leftrightarrow$ (iii) of S2, monoids order ${\le}4$ (unit fixed) & 4, 46, 1578 normalizers: 0 mismatches\\
+\bottomrule
+\end{tabular}}}
+
+\textbf{Negative controls.} The printed Sep.\,2 table is rejected by the associativity check (4 triples), and
+the 6 non-associative order-4 normalizers fail (iii). The 36 strictly-between $S_4$ transversals pass the
+criterion while failing both (mLA) and closure, so the check separates the three conditions. It does not
+relabel them.
+
+\end{document}
