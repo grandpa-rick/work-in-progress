@@ -1,0 +1,4 @@
+bond census: covers 20 violations 0
+n=4, j<= 4: 64 (kappa,j) cases, failures 0
+bond census: covers 48 violations 0
+n=5, j<= 2: 64 (kappa,j) cases, failures 0

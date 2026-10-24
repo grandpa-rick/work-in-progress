@@ -1,0 +1,2 @@
+bond census: covers 20 violations 0
+n=4, j<= 2: 32 (kappa,j) cases, failures 0

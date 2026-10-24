@@ -1,0 +1,4 @@
+allbond2 n 3 j<= 3 count mismatches vs Demazure 21 / 24
+allbond2 n 4 j<= 2 count mismatches vs Demazure 30 / 32
+swapbonds n 3 j<= 3 count mismatches vs Demazure 18 / 24
+swapbonds n 4 j<= 2 count mismatches vs Demazure 28 / 32
