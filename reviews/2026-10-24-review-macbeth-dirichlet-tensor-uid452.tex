@@ -1,0 +1,218 @@
+\documentclass[10pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=1pt,topsep=2pt,parsep=0pt}
+\usepackage{amsmath,amssymb,array,longtable,booktabs}
+\usepackage[hidelinks,pdftitle={Review: The Dirichlet tensor revision (uid452)},pdfauthor={Rick}]{hyperref}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\WIPHASH}{\texttt{PENDING}}
+\newcommand{\tri}{\mathbin{\triangleleft}}
+\newcommand{\Poly}{\mathbf{Poly}}
+\newcommand{\Cat}{\mathbf{Cat}}
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\Vect}{\mathbf{Vec}}
+\newcommand{\Comon}{\mathbf{Comon}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\ok}{\textsf{fixed}}
+
+\title{Review of the uid452 revision: \emph{The Dirichlet tensor of two polynomial comonoids is the product
+internal category}}
+\author{Rick}
+\date{2026-10-24}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\maketitle
+\vspace{-1em}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.78\textwidth}@{}}
+\textbf{Author} & Rick (grandparick20@gmail.com)\\
+\textbf{Date} & 2026-10-24 (Wake 255)\\
+\textbf{Recipient} & Scot MacBeth (scot.macbeth20@gmail.com); cc Robin Langer\\
+\textbf{Title} & Review of the uid452 revision of the Dirichlet-tensor note\\
+\textbf{WIP commit} & This PDF corresponds to WIP commit \WIPHASH\ (\texttt{grandpa-rick/work-in-progress},
+\file{reviews/}), which holds this review's source. The hash was stamped in a follow-up commit, which adds this PDF.\\
+\textbf{Reviewed} & \file{2026-10-22-day-convolution-topos-uniform.pdf}, content \texttt{32fe306}, stamp
+\texttt{255a884}, 8 pp.\ (email UID 452). I compared it against the pre-452 version and against my uid440 report
+(WIP \texttt{0237120}).\\
+\textbf{Sources} & Shapiro--Spivak 2305.00167 (SS), full text re-read today for Def.\,3.7, 3.13, 4.1, Lem.\,4.3,
+5.5, Thm.\,4.5, 5.6 and Cor.\,5.12. Lean file not run.\\
+\end{tabular}
+
+\medskip
+\textbf{Bottom line.} Of the 13 uid440 items, 12 are fixed and 1 is partly fixed (M1: one false display
+survives on page 1). Your question (1): \textbf{OK}. The equality is genuine, but three sentences should say why
+(SHOULD S-A). Your question (2): \textbf{a lemma}, not a standalone note. The revision introduces \textbf{3 further
+SHOULD} (S-B--S-D) and \textbf{3 NIT}, so 4 new SHOULD in all and no new MUST. One of them (S-B, Rem.\,3.1) comes
+from a sentence of mine in uid440 that was too quick. The widened
+hypothesis is enough, and the walking-arrow example is still consistent with Theorem 1.1.
+
+\section{The uid440 items}
+
+\begin{center}\small
+\begin{longtable}{@{}l l p{0.70\textwidth}@{}}
+\toprule
+item & status & evidence in the revision\\ \midrule
+M1 & \textbf{partly} & Thm.\,1.2 is gone. Example 4.1 is the walking-arrow witness, and the remark ``monoidal,
+non-cartesian'' is in. SS is described with cofunctors in \S1 and \S4. \textbf{But} the \S1 display
+$\Comon(\Poly,\tri,y)\simeq\Cat$ (p.\,1) survives. So do the chain ``containers $\simeq$ directed containers $\simeq$
+polynomial comonoids $\simeq$ small categories'' (p.\,1) and ``$\simeq\cdots\simeq\Cat$'' (p.\,8). With comonoid
+morphisms, the category is $\cong\Cat^\sharp$ (SS Cor.\,5.12), and \S4 of your own note shows that $\Cat^\sharp$ is
+not $\Cat$. Fix: write $\cong\Cat^\sharp$, or say ``bijection on objects''. Separately, containers (polynomials) are
+not equivalent to directed containers (comonoids). Drop the first $\simeq$.\\
+M2 & \ok & $(\star)$ is now ``products commute with pullbacks''. GK is cited only for $\Poly(\E)$, $\tri$ over an
+LCCC (p.\,4). The sharpening narrative and the $\Delta_A^*$ gloss are gone.\\
+M3 & \ok & Retitled. Stated over any finitely complete $\E$ with exponentiable $\mathrm{dom}$. Def.\,2.2 makes no Day
+claim over $\E$. \S7 and Table 1 are rewritten.\\
+S1 & \ok & NS Prop.\,8.79 is cited by number, and the result is called a corollary of SS 4.5 + 5.6. The SS
+Thm.\,4.5 eq.\,(16) and Ex.\,4.6 locators are right, and Ex.\,2.9 is gone. The Lem.\,5.5 alternative was added, but
+see new item S-B.\\
+S2 & \ok & The transpose of $\mathrm{cod}$ (\S2.2), $\iota$ on positions and naturality (\S2.3), the iso-class
+remark (\S1), and the citation of the \emph{proof} of SS 5.6 (Step 3) are all in. The wording is still imprecise in
+places; see \S2.\\
+S3 & \ok & Lucyshyn-Wright is removed. The Vec paragraph is softened, but it now contains an inaccurate sentence
+(new S-C).\\
+S4 & \ok & The witness is framed as an illustration, both caveats are stated, ``first Lean certificate'' is dropped,
+and the URL is given.\\
+N1--N6 & \ok & $\Sigma_{A_p}\Pi_{s_p}B_p^*X$ is fixed. $C_{\mathrm{pt}}$ is now the positive control. The [5,
+Prop.\,5.2] citation is replaced by SS 5.6/Rem.\,5.7. ``Ours'' is consistent. Table row 1 is fixed. Eq.\,(16) is not
+reproduced.\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\section{Question (1): is Step 3's ``on the nose'' a genuine equality? Verdict: OK (with a SHOULD on wording)}
+
+\textbf{What the objects and morphisms are.} SS Def.\,3.13 is explicit. The \emph{objects} of $\Poly_\E$ are
+polynomials, i.e.\ actual exponentiable maps $s\colon P^*\to P$ of $\E$. They are not isomorphism classes.
+\emph{Morphisms} are isomorphism classes of diagrams (SS Def.\,3.7), ``where the relevant isomorphisms are between
+choices of the pullback $P\times_QQ^*$''. An object of $\Comon(\Poly_\E)$ is a triple $(c,\varepsilon,\delta)$. So
+$c\otimes d=(C\times D)^\sharp$ in $\Comon$ means three things: (a) the two exponentiable maps are equal, (b) the
+two counits are equal iso-classes, and (c) the two comultiplications are equal iso-classes.
+
+\textbf{(a) holds literally, given one convention.} $c\otimes d$ is $\mathrm{dom}_C\times\mathrm{dom}_D$, formed
+with the chosen binary products of $\E$ (SS Def.\,4.1). Suppose $C\times D$ means the \emph{componentwise} internal
+category, $(C\times D)_i:=C_i\times D_i$, formed with the \emph{same} chosen products. Then its source map is
+literally the same arrow of $\E$. Theorem 1.1 does specify the components, so this is fine. But ``the product
+$C\times D$ in $\Cat(\E)$'' names an object only up to unique isomorphism. For any other product, the statement is
+an isomorphism, not an equality. Say once: ``all limits are the chosen ones, and $C\times D$ is the componentwise
+product formed with them''.
+
+\textbf{(c) holds as an equality of iso-classes.} Both $\delta_{c\otimes d}=\iota\circ(\delta_c\otimes\delta_d)$
+and $\delta_{(C\times D)^\sharp}$ are morphisms $c\otimes d\to(c\otimes d)\tri(c\otimes d)$, between literally the
+same two objects, by (a).
+\begin{itemize}[leftmargin=*]
+\item \emph{Positions.} Both forward maps land in the one chosen object $\Sigma\Pi_{\mathrm{dom}}(\cdots)$. Each is
+  the transpose of a map out of $C_1\times D_1$. Transposes are unique, so the two are equal as arrows of $\E$
+  exactly when $\mathrm{cod}_{c\otimes d}=\mathrm{cod}_C\times\mathrm{cod}_D$. That is your naturality line. No
+  isomorphism is involved.
+\item \emph{Directions.} The backward leg of $\iota$ is the canonical comparison
+  $\kappa\colon(C_1\times D_1)\times_{C_0\times D_0}(C_1\times D_1)\to(C_1\times_{C_0}C_1)\times(D_1\times_{D_0}D_1)$,
+  modulo the choice of pullback. That choice is exactly what Def.\,3.7 quotients by. The backward leg of
+  $\delta_c\otimes\delta_d$ is $\mathrm{comp}_C\times\mathrm{comp}_D$. So the backward leg of $\delta_{c\otimes d}$
+  is $(\mathrm{comp}_C\times\mathrm{comp}_D)\circ\kappa$. And the composition of the componentwise product category
+  is \emph{defined} on the chosen pullback of products as $(\mathrm{comp}_C\times\mathrm{comp}_D)\circ\kappa$.
+  There is nothing else it could be. So the two backward legs are the same arrow, not isomorphic arrows.
+\end{itemize}
+The SS dictionary (proof of Thm.\,5.6) reads $\delta^\sharp$ through an isomorphism
+$\coprod\coprod c[\delta_1(x)(y)]\cong C^*\,{}_t\!\times_c C^*$. That too is a change of pullback representative,
+absorbed by Def.\,3.7.
+
+\textbf{(b) holds, but the one visible isomorphism is in your definition of $\varepsilon$.} $\varepsilon_c\otimes
+\varepsilon_d$ lands in $y\otimes y=(1\times1\to1\times1)$. This equals $y=(1\to1)$ only if the chosen $1\times1$ is
+$1$. Your \S3 writes ``into $y\otimes y\cong y$''. So $\varepsilon_{c\otimes d}$ is $\lambda\circ(\varepsilon_c
+\otimes\varepsilon_d)$, with $\lambda$ the unitor. This is the correct definition of the tensor of comonoids in a
+normal duoidal category. Its iso-class has forward leg $!$ and backward leg $\mathrm{id}_C\times\mathrm{id}_D$, which
+is literally $\varepsilon_{(C\times D)^\sharp}$. So (b) is an equality too.
+
+\textbf{Verdict on (1): OK.} The equality is genuine. No coherence isomorphism is suppressed, because the only two
+candidates, $\kappa$ and $\lambda$, are respectively part of the \emph{definition} of $\mathrm{comp}_{C\times D}$
+and part of the \emph{definition} of $\varepsilon_{c\otimes d}$. But the text does not yet say this:
+\begin{enumerate}[label=\textbf{S-A.},leftmargin=*]
+\item \textbf{(SHOULD) Three wording fixes.}
+  (i) In \S1, ``an equality of polynomials is a genuine equality of such classes'' conflates objects with morphisms.
+  Polynomials are objects, and equality of objects is literal (given chosen products). Only equality of the structure
+  \emph{morphisms} is an equality of iso-classes.
+  (ii) In Step 3 (Composition), ``$\mathrm{comp}_{c\otimes d}=\mathrm{comp}_C\times\mathrm{comp}_D$ under the
+  canonical isomorphism $(\star)$'' reads exactly like a suppressed coherence iso, which is what you asked me to
+  check. Replace it with: ``$\kappa$ is the backward leg of $\iota$. By definition of the componentwise product,
+  $\mathrm{comp}_{C\times D}=(\mathrm{comp}_C\times\mathrm{comp}_D)\circ\kappa$. Hence the backward legs are equal.''
+  (iii) Add the chosen-limits convention of (a). Mention $\lambda$ in the definition of $\varepsilon_{c\otimes d}$
+  (or choose $1\times1=1$).
+\end{enumerate}
+A small simplification follows from (a)--(c). Once the triple equals $(C\times D)^\sharp$, the comonoid laws are
+immediate: $(C\times D)^\sharp$ is a comonoid by the forward direction of SS Thm.\,5.6, applied to the internal
+category $C\times D$. The appeal to the one-by-one matching inside SS's proof is now unnecessary. (I asked for it in
+uid440 when Rem.\,3.1 argued differently.)
+
+\section{Question (2): standalone note or lemma? Verdict: a lemma}
+
+Blunt version. The Set case is NS Prop.\,8.79, word for word. The internal case unwinds SS Def.\,4.1, Thm.\,4.5 and
+Thm.\,5.6, and its proof is half a page (Steps 1--3, which \S2 above compresses further). Example 4.1 makes concrete
+a sentence that NS already print. Table 1 and \S7 are accounting. None of this is wrong now, and the accounting is
+honest. But 8 pages of framing around a half-page corollary will read to a referee as a remark. A referee will also
+note that SS's Lem.\,5.5 technique makes the general-$\E$ step routine. The rhetoric in \S1 (``a question that
+inverted into its own answer'') and \S7 (``what this buys the chain'') promises more than the result delivers.
+
+Recommendation: state it as a lemma, with Example 4.1 as the following remark, in whatever unit uses internal
+polynomial comonoids in presheaf or sheaf models (your Graph models are the natural host). It would become a
+note-grade standalone only with a second result of its own. Two candidates, both unchecked for novelty:
+(a) describe the actual categorical product in $\Cat^\sharp(\E)$, or show it fails to exist over general $\E$. NS
+remark that $\mathbf2\times^\sharp\mathbf2$ has infinitely many objects. An internal version very likely needs infinite
+colimits in $\E$, so the base hypothesis would finally do real work.
+(b) Prove the Day-convolution identification over Grothendieck $\E$ in a stated sense (uid440 option (b)).
+
+\section{New issues introduced by the revision}
+
+\begin{enumerate}[label=\textbf{S-\Alph*.},leftmargin=*,start=2]
+\item \textbf{(SHOULD) Rem.\,3.1, the ``three-line alternative'', has a gap. It contradicts the note's own \S1 and
+  \S6.} ``Pointwise, the claim is the Set case [2, Prop.\,8.79], applied at each object'' is unjustified. SS
+  Lem.\,5.5 transports structures to $\widehat{\mathcal A}$. But there $c\tri c$ is \emph{not} computed at each
+  stage: SS Ex.\,3.21 and diagram (29) use $\mathrm{Hom}_{\widehat{\mathcal A}}(c[x],C)$, not
+  $\mathrm{Hom}_\Set(c_a[x],C_a)$. Evaluation at $a$ does not preserve $\Pi_{\mathrm{dom}}$. Your \S1 (``not computed
+  objectwise in a presheaf topos'') and \S6 caveat say the same. So the Set case at each $a$ concerns a different
+  comonoid, and the reduction proves nothing beyond ``it suffices to prove Theorem 1.1 in $\widehat{\mathcal A}$''.
+  In $\widehat{\mathcal A}$ you would redo Step 3. This is my fault: uid440 S1 said ``in presheaves the category side
+  is pointwise'', which is true but does not finish the argument. Delete Rem.\,3.1, or cut it to that one true
+  sentence.
+\item \textbf{(SHOULD) The \S1 Vec paragraph: ``$\Poly(\Vect)$ has no standard construction'' is not right, and the
+  precise fact is better.} $\Vect$ is finitely complete, so SS applies verbatim. But in $\Vect$ \emph{the
+  exponentiable maps are exactly the isomorphisms}. Proof: $s^*\colon\Vect/A\to\Vect/B$ must preserve the coproduct
+  $A\oplus A\xrightarrow{+}A$ of $\mathrm{id}_A$ with itself. The comparison $B\oplus B\to(A\oplus
+  A)\times_AB$, $(b,b')\mapsto(sb,sb',b+b')$, sends $(b,-b)$ to $(sb,-sb,0)$, so injectivity forces $s$ to be
+  injective. Surjectivity needs every $(a,a',b)$ with $a+a'=sb$ to have $a\in\operatorname{im}s$, and $a$ is
+  arbitrary, so $s$ is surjective. Hence the internal categories with exponentiable $\mathrm{dom}$ are the discrete
+  ones (2-term complexes with zero arrow part). Theorem 1.1 holds over $\Vect$ but is degenerate there. That is the
+  exact location of the ``Vec obstruction'': it is a shortage of exponentiable maps, not a lack of a construction.
+\item \textbf{(SHOULD) Example 4.1 describes the projections as functors.} ``$\pi_C,\pi_D$ are the cofunctors
+  $(f,h)\mapsto f$ and $(f,h)\mapsto h$ on morphisms'' goes the wrong way. A cofunctor acts \emph{backward} on
+  morphisms. $\pi_C=\lambda\circ(\mathrm{id}_c\otimes\varepsilon_d)$ lifts $f\colon x\to x'$ at $(x,y)$ to
+  $(f,\mathrm{id}_y)$, because the backward leg of $\varepsilon_d$ is $\mathrm{id}$. That lift is the one the
+  argument actually uses two lines later, when $H$ must lift $(a,\mathrm{id})$. Rewrite it as ``lifting $f$ at
+  $(x,y)$ to $(f,\mathrm{id}_y)$''.
+\end{enumerate}
+\textbf{NITs.} (N-a) The Lean URL in \S6 runs off the right margin and is visibly cut (``\dots
+convolution-grap''). Use \verb|\url| with \texttt{xurl}, or break it. (N-b) Example 4.1 uses italic $E$ for the test
+category next to the calligraphic base $\E$. Rename it $T$. (N-c) Step 2 says the content of $\iota$ on directions
+``is'' $(\star)$. Say ``is the comparison map $\kappa$ of $(\star)$''. That matters for S-A(ii).
+
+\textbf{Consistency checks (no issue found).}
+\begin{itemize}[leftmargin=*]
+\item \emph{Is ``any finitely complete $\E$'' enough?} Yes. $\mathrm{dom}_C\times\mathrm{dom}_D=(\mathrm{dom}_C\times
+  1)\circ(1\times\mathrm{dom}_D)$ is a composite of pullbacks of exponentiable maps, hence exponentiable (SS
+  Lem.\,4.3). $\tri$ is monoidal on $\Poly_\E$ for finitely complete $\E$ (SS Thm.\,3.26). $\iota$ and normal
+  duoidality exist there (SS Thm.\,4.5). The comonoid--category bijection holds there (SS Thm.\,5.6). Steps 1--3 use
+  only chosen finite limits and the universal property of $\Pi_{\mathrm{dom}}$, which exists by hypothesis. Nothing
+  needs local cartesian closure, coproducts or a subobject classifier.
+\item \emph{Walking arrow against Theorem 1.1.} The theorem now asserts only an identification of the comonoid
+  $c\otimes d$, which is an object of $\Comon$. It asserts no universal property. Example 4.1 refutes only
+  universality among cofunctors. The abstract, \S1, \S4 and \S7 all say ``monoidal, non-cartesian''. I re-ran the
+  witness by hand. $H(e)=(0,0)$ and $H(x)=H(z)=(1,1)$ are forced. $\pi_CH=F$ forces the lift of $(a,\mathrm{id})$ at
+  $e$ to be $u$. But $H(\mathrm{cod}\,u)=(1,1)\neq(1,0)$. Contradiction, as stated. The surviving false sentence is
+  the \S1 display in M1, not the theorem.
+\item \emph{Cat$(\E)$ product.} The sketch argument in \S4 is correct. The projections are internal functors.
+\end{itemize}
+
+\end{document}
