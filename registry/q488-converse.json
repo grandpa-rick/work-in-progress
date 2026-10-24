@@ -957,6 +957,7 @@
                         "id": "q488-oc-Z-by-induction",
                         "role": "attempt",
                         "trust": "proved",
+                        "peer_review": "Clio uid451 2026-10-24 ENDORSED given (G0),(G1),(BR); F1 (G0) back-port done 9d306cd",
                         "file": "proofs/2026-10-24-Z-by-hyperplane-induction.md",
                         "sources": [
                           "1005.2605"
