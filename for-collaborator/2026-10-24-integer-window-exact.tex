@@ -1,0 +1,134 @@
+\documentclass[10pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=1pt,topsep=2pt,parsep=0pt}
+\usepackage{amsmath,amssymb,array}
+\usepackage[hidelinks,pdftitle={Theorem I: the integer zero window is exact on LG and OG (PROVE 253)},pdfauthor={Rick}]{hyperref}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\grade}[1]{\textsf{[#1]}}
+\newcommand{\LG}{\mathrm{LG}}
+\newcommand{\OG}{\mathrm{OG}}
+\newcommand{\WIPHASH}{\texttt{PENDING}}
+\newcommand{\PHASH}{\texttt{7ff2361}}
+\newcommand{\Purl}{https://github.com/grandpa-rick/rick-research/blob/7ff2361d182d258dbf6c829c4aa97bcfd9fffc8a/proofs/2026-10-24-integer-window-and-OG-twin.md}
+\newtheorem*{thmI}{Theorem I}
+\newtheorem*{corNZ}{Corollary NZ$_R$}
+\newtheorem*{lemE}{Lemma E}
+
+\title{Theorem I: the integer zero window is exact on LG and OG (PROVE 253)}
+\author{Rick}
+\date{2026-10-24}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\maketitle
+\vspace{-1em}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.78\textwidth}@{}}
+\textbf{Author} & Rick (grandparick20@gmail.com)\\
+\textbf{Date} & 2026-10-24 (Wake 254)\\
+\textbf{Recipient} & Clio Vega (cliovega20@gmail.com); cc Robin Langer\\
+\textbf{Title} & Theorem I: the integer zero window is exact on LG and OG (PROVE 253)\\
+\textbf{WIP commit} & This PDF corresponds to WIP commit \WIPHASH\ (\texttt{grandpa-rick/work-in-progress}). That commit holds
+this note's source; the hash was stamped in a follow-up commit, which adds this PDF.\\
+\textbf{Proof file} & \texttt{grandpa-rick/rick-research} commit \PHASH,
+\file{proofs/2026-10-24-integer-window-and-OG-twin.md}\newline \url{\Purl}\\
+\end{tabular}
+
+\medskip
+Grades are from my registry ladder
+hunch $<$ sketched $<$ computed $<$ checked-sober $<$ proved, and every claim below carries one.
+
+\section{Statement}
+
+Let $X_\kappa\subset \LG(m,2m)$ or $\OG(m,2m+1)$ be the Schubert variety of dimension $|\kappa|$, put
+$H_\kappa(j)=\chi(X_\kappa,\mathcal O(j))$, and let $r(\kappa)$ be the length of the longest chain in the full shifted
+diagram; it equals $\max_i(\kappa_i+2i-2)$.
+
+\begin{thmI}[\grade{proved given (G1), Demazure, BR}]
+$(-1)^{|\kappa|}H_\kappa(-j)$ is $0$ for $1\le j\le W$, and strictly positive and nondecreasing for $j>W$, where
+\[ W=\lceil r/2\rceil \text{ on } \LG,\qquad W=r \text{ on } \OG. \]
+\end{thmI}
+
+\section{Proof shape}
+
+Strong induction on $|\kappa|$ through
+\[ b_\kappa(j)=H_\kappa(j)-H_\kappa(j-1)=\sum_\rho c_\rho H_\rho(j), \tag{$\star$}\]
+which comes from $\mathcal O^1=1-[\mathcal O(-1)]$, with the coefficients $c_\rho$ given by the Buch--Ravikumar $p=1$
+K-Pieri rule.
+\begin{enumerate}[label=\arabic*.]
+\item \emph{Monotonicity.} BR's signs $(-1)^{|\theta|-1}$ and the anchor $H(-1)=0$ (Demazure: $D_m e^{-\omega_m}=0$) together
+make the sequence monotone.
+\item \emph{Vanishing.} The support is a rim with at most two boxes per row and per column on $\LG$, and a rook strip on
+$\OG$. So a chain meets $\theta$ in at most $2$ boxes on $\LG$ and at most $1$ on $\OG$, which gives the vanishing.
+\item \emph{Strict positivity.} Stripping the top one or two antidiagonals gives a support term with nonzero coefficient
+and a smaller window. The KLG tableau is explicit: the outer antidiagonal is $1'$ and the inner one is $1$. Parity keeps
+primes off the diagonal.
+\end{enumerate}
+
+\textbf{Grade.} \grade{proved} given the Chevalley divisor fact, the Demazure character formula, and BR, which I have read
+first-hand. BR leave the proof of the KLG corollary to the reader. The sign and the nonvanishing agree with BR's fully proved
+$h$-sum formula for all $\kappa$ at $m\le 7$ \grade{computed}. The Demazure checks are independent of the LS model.
+
+\textbf{Why you might care.} In type A the analogue is Stanley reciprocity, i.e.\ the Bruns--Herzog $a$-invariant. $\LG$'s
+window runs at half speed because its K-Pieri strips have height $2$. At half-integers the same recursion has no sign
+coherence, so the half-integer (NZ) is still open (\S3).
+
+\section{Same session: the half-integer (NZ)}
+
+Write $s_x(\kappa):=(-1)^{|\kappa|}H_\kappa(-x)$ for $x\in\tfrac12\mathbb Z$, let $\kappa'$ be $\kappa$ with its largest part
+removed, and put $r'=r(\kappa')$. The odd-zero law says the zero set at $x=a+\tfrac12$ is exactly $1\le a\le\lceil r'/2\rceil$.
+
+\begin{corNZ}[\grade{proved given (G1), (G0), BR}]
+For $a\ge1$ with $2a\le\kappa_1$ (i.e.\ $M=2a+1\le\kappa_1+1$): $H_\kappa(-a-\tfrac12)=0$ if and only if
+$a\le\lceil r'/2\rceil$. Otherwise $\operatorname{sgn}H_\kappa(-a-\tfrac12)=(-1)^{|\kappa|-\kappa_1}$.
+\end{corNZ}
+\emph{Proof.} Prop.~R gives $H_\kappa(-a-\tfrac12)=2^{-\kappa_1}H_{\kappa'}(-a)$. Now apply Theorem I to $\kappa'$. $\square$
+\quad Demazure check: $6/6$ at $m=3$ and $22/22$ at $m=4$.
+
+\textbf{Observation} \grade{computed $m\le4$}. Beyond the window with $M\ge\kappa_1+2$, every value is nonzero with sign
+$(-1)^{|\kappa|}$: $14/14$ at $m=3$ and $36/36$ at $m=4$.
+
+\begin{lemE}[\grade{proved given (G1)}]
+If $\kappa_1$ is even and $b=\kappa_1/2$, then $H_\kappa(-b-1)=H_{\kappa'}(-b)$.
+\end{lemE}
+Proof: a residue computation with the simple pole at $t_1=\infty$. For odd $\kappa_1$ that pole is double and there is no
+clean identity. Example checks: $H_{(4,1)}(-3)=H_{(1)}(-2)=-1$ and $H_{(2)}(-2)=H_\emptyset(-1)=1$.
+
+\textbf{Reductions} \grade{proved}. By induction via $(\star)$ at half-integers, the sign half of (NZ) beyond $\kappa_1+1$
+reduces to one base inequality $B(\kappa)$ for $\kappa_1$ odd. That in turn is $f(\mu,b)\ge0$ with
+$f(\mu,b)=2^{2b+1}s_{b+\frac12}(\mu)-s_{b+1}(\mu)$, and $f$ propagates upward in $b$. If $\mu_1$ is even, the base is settled by
+Lemma E. \textbf{Open:} if $\mu_1$ is odd, we need $4f(\mu',b_0-1)\ge s_{b_0+1}(\mu)$ (computed $85/85$ at $m\le4$, minimum
+ratio $2$). Strictness is not attempted.
+
+\textbf{Caveat.} The $m=5$ Demazure run was killed before it finished, so the direct checks stop at $m\le4$.
+
+\section{Dream 253 addendum (a hunch with one near-proof; nothing claimed)}
+
+\begin{itemize}
+\item \textbf{The K-Pieri sign is inclusion--exclusion} \grade{hunch}. On a minuscule Schubert variety,
+$\mathcal O^1=1-[\mathcal O(-1)]$ and the rook-strip rule with sign $(-1)^{|\theta|-1}$ is literally
+\[ \Omega(P,n)-\Omega(P,n-1)=\sum_{\emptyset\ne A\subseteq\max P}(-1)^{|A|-1}\Omega(P\setminus A,n). \]
+The rook strips are exactly the nonempty sets of corners. At negative $j$ the same recursion becomes the strict one,
+$\bar\Omega(P,n)=\sum_{A\subseteq\max P}\bar\Omega(P\setminus A,n-1)$. So $(\star)$ plus the anchor $H(-1)=0$ gives
+$(-1)^{|\kappa|}H^{\OG}_\kappa(-j)=\#\{\text{strict maps }P_\kappa\to[j-1]\}$ directly from BR, with no SMT. As an identity this is
+classical; the route is the point.
+\item \textbf{On $\LG$} \grade{hunch}, the computed formula (strict maps to $[2j-1]$ with even diagonal values) would follow
+the same way \emph{iff} BR's $p=1$ coefficient $|c_\rho|$ equals the number of strict $\{\text{even}<\text{odd}\}$ fillings of
+$\kappa/\rho$ with even diagonal entries (Q30, untested).
+\item If that holds, iterating $(\star)$ from $H(-\tfrac12)=2^{-\kappa_1}$ writes $2^{\kappa_1}(-1)^{|\kappa|}H(-a-\tfrac12)$ as a
+signed sum over pairs ($\nu\subseteq\kappa$, a filling of $\kappa/\nu$). The open half-integer (NZ) would then become a
+problem of finding a sign-reversing involution.
+\item \emph{Seed-side reading.} Serre duality here is the QSym antipode (ABS). The $\LG$ ``diagonal even'' rule looks like
+Stembridge's peak algebra. I will run an owner search before saying more.
+\end{itemize}
+
+\section{Question for you (Q30)}
+
+Does the BR K-Pieri coefficient $|c_\rho|$ for $\LG$ equal the number of strict $\{\text{even}<\text{odd}\}$ fillings of
+$\kappa/\rho$ with even diagonal entries? Put differently, are BR's KLG tableaux at $p=1$ ``strict'' in this sense, or do they
+allow ``$1\,1$'' in a row? If you know a shifted-tableau rule that settles this, please point me to it.
+
+\end{document}
