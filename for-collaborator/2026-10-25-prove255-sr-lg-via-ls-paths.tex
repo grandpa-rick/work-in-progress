@@ -1,0 +1,196 @@
+\documentclass[10pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=1pt,topsep=2pt,parsep=0pt}
+\usepackage{amsmath,amssymb,array,booktabs}
+\usepackage[hidelinks,pdftitle={PROVE 255: SR_LG via LS paths (BR-free)},pdfauthor={Rick}]{hyperref}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\grade}[1]{\textsf{[#1]}}
+\newcommand{\LG}{\mathrm{LG}}
+\newcommand{\OG}{\mathrm{OG}}
+\newcommand{\WIPHASH}{\texttt{eebd6e3}}
+\newcommand{\PHASH}{\texttt{1ba5f8f}}
+\newcommand{\PROMO}{\texttt{c272fed}}
+\newcommand{\Purl}{https://github.com/grandpa-rick/rick-research/blob/1ba5f8f23261f4238cb774263d30a5661d4fff29/proofs/2026-10-25-crownF-strict-reciprocity.md}
+\newtheorem*{lemA}{Lemma 11.1 (covers and bonds)}
+\newtheorem*{lemB}{Lemma 11.2}
+\newtheorem*{propC}{Proposition 11.3 (LS-parity model, BR-free)}
+\newtheorem*{thmD}{Theorem SR$_{\LG}$ (second proof)}
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
+\title{PROVE 255: strict reciprocity on LG via Lakshmibai--Seshadri paths, without Buch--Ravikumar}
+\author{Rick}
+\date{2026-10-25}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\maketitle
+\vspace{-1em}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.78\textwidth}@{}}
+\textbf{Author} & Rick (grandparick20@gmail.com)\\
+\textbf{Date} & 2026-10-25\\
+\textbf{Recipient} & Clio Vega (cliovega20@gmail.com); cc Robin Langer\\
+\textbf{Title} & PROVE 255: SR$_{\LG}$ via LS paths (BR-free), with the Q39 locator result and the registry promotion\\
+\textbf{WIP commit} & \WIPHASH\ (\texttt{grandpa-rick/work-in-progress}): registry sync, scripts in \file{scripts/prove255/}.
+This PDF and its source are added in a follow-up commit.\\
+\textbf{Proof file} & \texttt{grandpa-rick/rick-research} commit \PHASH, \file{proofs/2026-10-25-crownF-strict-reciprocity.md} \S11:\newline
+\url{\Purl}\\
+\textbf{Registry} & \file{q488-oc-SR_LG-via-LS-paths}: computed $\to$ \textbf{proved} (commit \PROMO).\\
+\end{tabular}
+
+\medskip
+Grades use my ladder: hunch $<$ sketched $<$ computed $<$ checked-sober $<$ proved.
+
+\section{What is new}
+Fix $m$, a strict partition $\kappa$ with parts $\le m$, and the Schubert variety $X_\kappa\subset\LG(m,2m)$ of dimension $|\kappa|$.
+Let $H_\kappa(j)=\chi(X_\kappa,\mathcal O(j))$. Let $P_\kappa$ be the shifted diagram of $\kappa$ with the NW product order.
+Let $F_\kappa(2j)$ be the number of weakly order-preserving maps $G:P_\kappa\to\{0,\dots,2j\}$ that are even on diagonal boxes.
+Then
+\[
+\begin{gathered}H_\kappa(j)=F_\kappa(2j)\quad(j\ge 0),\\ (-1)^{|\kappa|}H_\kappa(-j)=N_\kappa(j):=\#\{\text{strict order-preserving }P_\kappa\to[2j-1],\ \text{diagonal values even}\}\quad(j\ge1).\end{gathered}
+\]
+The first identity is proved by a direct bijection with Littelmann's LS paths of shape $j\omega_m$. The second (SR$_{\LG}$)
+follows from Ehrhart--Macdonald reciprocity for the order polytope $\mathcal O(P_\kappa)$ in the lattice
+$\Lambda=\mathbb Z$ (diagonal coordinates) $\times\ \tfrac12\mathbb Z$ (off-diagonal coordinates). The argument uses no
+Buch--Ravikumar, no (G0), no hyperplane recursion $(\star)$, and not the hand-written \S3.3. The proof file therefore
+contains \textbf{two independent proofs of SR$_{\LG}$}:
+\begin{itemize}
+\item \S4: K-theoretic, (G0)+(G1)+(BR);
+\item \S11: LS paths, (G1$'$)+(LS)+Ehrhart--Macdonald. \grade{proved}, given the cited literature.
+\end{itemize}
+
+\section{Inputs (corrected citation, Q39)}
+\begin{itemize}
+\item[(G1$'$)] For a Schubert variety $X_w\subset G/P$ and dominant $\lambda$ with stabiliser $P$: $H^i(X_w,L_\lambda)=0$ for
+$i>0$, and the geometric Demazure character formula holds:
+$\operatorname{char}H^0(X_w,L_\lambda)^*=\Lambda_w(e^\lambda):=\Lambda_{a_1}\circ\cdots\circ\Lambda_{a_r}(e^\lambda)$ for a
+reduced word $w=s_{a_1}\cdots s_{a_r}$, where
+$\Lambda_\alpha(e^\mu)=\frac{e^{\mu+\rho}-e^{s_\alpha(\mu+\rho)}}{1-e^{-\alpha}}e^{-\rho}$
+(Demazure; Joseph; Andersen; Ramanathan; Kumar; Mathieu). This is the same package as (G1).
+\item[(LS)] \emph{Littelmann's path form of the Demazure character formula is an operator identity:} for every dominant
+$\lambda$ and $w\in W/W_\lambda$,
+$\Lambda_w(e^\lambda)=\sum e^{\pi(1)}$, the sum over LS paths $\pi$ of shape $\lambda$ with initial direction $\tau_1\le w$.
+\emph{Locator:} P.~Littelmann, A Littlewood--Richardson rule for symmetrizable Kac--Moody algebras, Invent.\ Math.\ 116 (1994)
+329--346, \S5.2. It holds for all symmetrizable Kac--Moody algebras, so type $C_m$ is covered.
+\end{itemize}
+Littelmann does \emph{not} prove ``$\operatorname{char}V_w(\lambda)=\sum e^{\pi(1)}$'' directly. That needs (LS) composed
+with the geometric formula in (G1$'$). Together they give
+$h^0(X_w,L_\lambda)=\#\{\text{LS paths of shape }\lambda,\ \tau_1\le w\}$, which we apply with $\lambda=j\omega_m$. Only
+this count is used. Weight multisets appear only in the computer check. Earlier versions of \S11 cited Ann.\ of Math.\ 142
+(1995) from memory and stated the character form. Both are corrected. This was a citation-hygiene fix. There was no
+mathematical gap.
+
+\textbf{First-hand status of the locator.}
+\begin{itemize}
+\item \emph{Read first-hand}, by the owner himself: Littelmann, The path model for representations of symmetrizable
+Kac--Moody algebras, Proc.\ ICM Z\"urich 1994, vol.~1, \S8, p.~305, ``Demazure type character formula [14]'', with
+[14] = Invent.\ 116. It was read from the page image (mathunion.org). Verbatim: ``For any reduced decomposition
+$\tau=s_{a_1}\cdots s_{a_r}$ one has $\Lambda_{a_1}\circ\cdots\circ\Lambda_{a_r}(e^\lambda)=\sum_{\eta\in A\pi_\lambda(\tau)}e^{\eta(1)}$''.
+The LS-path definition on p.~304 matches \S11's definition up to a harmless sign of $\beta$.
+\item \emph{Secondary:} the section number \S5.2 of Invent.\ 116 is quoted from Chirivì--Fang--Littelmann, arXiv
+2207.08904 (``Theorem in Section 5.2 in [L2]''; Littelmann is a coauthor). The Invent.\ text is paywalled and was not
+reached.
+\item Also read (page image): Mathieu, S\'em.\ Bourbaki exp.~798 (1995), Th\'eor\`eme 10, p.~219, which states the same count. The
+Ann.\ of Math.\ 142 (1995) 499--525 paper was not read.
+\end{itemize}
+The Bruhat convention ($\tau_1\le w$ in $W/W_\lambda$) and the duality $H^0(X_w,L_\lambda)^*=V_w(\lambda)$ agree with \S11.
+Counts are insensitive to the dual.
+
+\section{The proof}
+\textbf{Root data.} Type $C_m$, roots $\pm\varepsilon_i\pm\varepsilon_k$, $\pm2\varepsilon_i$; coroots
+$(\varepsilon_i\pm\varepsilon_k)^\vee=\varepsilon_i\pm\varepsilon_k$, $(2\varepsilon_i)^\vee=\varepsilon_i$;
+$\omega_m=(1,\dots,1)$, $W/W_{\omega_m}\cong\{\pm1\}^m$. The cell of $\mu$ has dimension
+$d(\mu)=\sum_{\mu_i=-1}(m-i+1)$, so $\mu\mapsto\kappa(\mu)$ (part set $\{m-i+1:\mu_i=-1\}$) is a bijection onto strict
+partitions with parts $\le m$, with $\dim X_\mu=|\kappa(\mu)|$. For a cover $\kappa_{k-1}=s_\beta\kappa_k$, the
+\emph{bond} is $|\langle\kappa_k(\lambda),\beta^\vee\rangle|$.
+
+\begin{lemA}
+The Bruhat covers in $W/W_{\omega_m}$ are exactly ``add one box to the shifted diagram''. The bond is $1$ if the box is on the
+diagonal (long root $2\varepsilon_m$) and $2$ if it is off the diagonal (short root $\varepsilon_i-\varepsilon_k$). Hence the
+Bruhat order is inclusion of shifted diagrams.
+\end{lemA}
+\begin{proof}[Proof sketch, full in \S11.1]
+$s_{\varepsilon_i-\varepsilon_k}$ replaces a part $q$ by $p=q+1$ (a cover iff $p=q+1$; this is an off-diagonal box with
+bond $|1-(-1)|=2$). $s_{\varepsilon_i+\varepsilon_k}$ raises $d$ by $p+q\ge3$, so it is never a cover. $s_{2\varepsilon_i}$ adds a part $p$, which
+is a cover iff $p=1$: a diagonal box with bond $|\langle\mu,\varepsilon_m\rangle|=1$.
+\end{proof}
+
+\begin{lemB}
+For $j\ge1$, $(\tau_1\supsetneq\cdots\supsetneq\tau_s;\,0<a_1<\cdots<a_{s-1}<1)$ is an LS path of shape $j\omega_m$ iff for each
+$i\le s-1$: $2ja_i\in\mathbb Z$, and if $2ja_i$ is odd then $D(\tau_i)\setminus D(\tau_{i+1})$ contains no diagonal box.
+\end{lemB}
+\begin{proof}
+The bonds of $j\omega_m$ are $j$ times those of $\omega_m$, i.e.\ $jb$ with $b\in\{1,2\}$. An $a$-chain needs $ajb\in\mathbb Z$ at each
+cover, so $2ja\in\mathbb Z$. If $ja\in\mathbb Z$, any saturated chain works. If $2ja$ is odd, only bond-2
+(off-diagonal) covers qualify, and such a chain exists iff the difference has no diagonal box.
+\end{proof}
+
+\begin{propC}
+LS paths of shape $j\omega_m$ with $\tau_1\le\kappa$ are in bijection with order-preserving $G:P_\kappa\to\{0,\dots,2j\}$, even on the
+diagonal. Hence, given (G1$'$) and (LS), $H_\kappa(j)=F_\kappa(2j)$ for $j\ge0$.
+\end{propC}
+\begin{proof}
+For $x\in D(\kappa)$ put $g(x)=2j\,a_{i(x)}$, where $i(x)=\max\{i:x\in D(\tau_i)\}$ ($g=0$ off $D(\tau_1)$, $a_s=1$). The
+$D(\tau_i)$ are down-sets, so $g$ is order-reversing. By Lemma 11.2, $g$ is even on diagonal boxes. Conversely, the distinct interior values
+$v_1<\cdots<v_r$ of $g$ give $a_i=v_i/2j$ and $\tau_i=\{g\ge v_i\}$. The two maps are mutually inverse. Put $G=2j-g$. Count:
+(G1$'$) gives $h^0=\chi$ and $\operatorname{char}H^0(X_\kappa,\mathcal O(j))^*=\Lambda_\kappa(e^{j\omega_m})$, and (LS)
+turns this into the LS-path sum.
+\end{proof}
+
+\begin{thmD}
+Given (G1$'$) and (LS), for all $j\ge1$: $(-1)^{|\kappa|}H_\kappa(-j)=N_\kappa(j)$, the strict count above.
+\end{thmD}
+\begin{proof}
+$H_\kappa$ is a polynomial (Snapper), and $L(j)=\#(j\mathcal O(P_\kappa)\cap\Lambda)=F_\kappa(2j)$ is its Ehrhart polynomial. They agree for
+$j\ge0$, hence identically. Ehrhart--Macdonald reciprocity gives
+$L(-j)=(-1)^{|\kappa|}\#(\operatorname{int}(j\mathcal O)\cap\Lambda)=(-1)^{|\kappa|}N_\kappa(j)$.
+\end{proof}
+
+\section{Verification \grade{computed}}
+\begin{itemize}
+\item \file{scripts/prove255/lspaths.py} enumerates LS paths from the root data (covers, bonds and $a$-chains computed from roots). It checks the
+full weight multiset against Demazure characters and the count against $F_\kappa(2j)$: $m=2,3$ ($j\le3$), $m=4$ ($j\le4$),
+$m=5$ ($j\le2$), 164/164 cases, 0 failures. The bond census gives 0 violations for $m\le5$.
+\item Negative controls that break the bond rule: all bonds 2 fails 21/24 ($m=3$) and 30/32 ($m=4$); swapped bonds fails 18/24 and 28/32.
+\item OG twin (\file{ogpaths.py}): all type-B bonds are 1, and LS count $=\Omega(P_\kappa,j+1)=$ OG Demazure, 72/72. This gives a BR-free
+SR$_{\OG}$ by Stanley reciprocity. The B-analogue of Lemma 11.1 is not written out.
+\end{itemize}
+
+\section{Registry promotion}
+Node \file{q488-oc-SR_LG-via-LS-paths} moved from computed to \textbf{proved} on 2026-10-25 (rick-research \PROMO). The pre-check
+passed: its only child \file{q488-oc-ls-bijection} (Lemmas 11.1, 11.2 and the bijection half of Prop.~11.3) is proved,
+the node has no \file{depends_on} edges, and its remaining inputs are cited literature ((G1$'$), (LS), Ehrhart--Macdonald). The
+node now records the locator and its first-hand status. Stale ``pending (LS)'' text in \file{q488-oc-ls-parity-model} and
+\file{q488-oc-even-reciprocity} was updated. The trustcheck validator reports no new problems (61 edges checked; the 48 pre-existing
+issues are all sources-index format issues).
+
+\section{Novelty and honest gaps}
+\begin{enumerate}
+\item \textbf{Possible overlap: Dehy 1998 (not read first-hand).} Mathieu, Bourbaki 798, \S4, pp.~220--221, reports R.~Dehy,
+\emph{Combinatorial results on Demazure modules}, J.~Algebra 205 (1998) 505--524: $X(w)=\{u\le w\}$ carries a simplicial structure with
+an integral structure $P_w(n)$, and $P_w(n\lambda)\cong P_w(n)$, so that ``les dimensions des modules de Demazure [sont] des
+polyn\^omes d'Ehrhart''. Mathieu adds that it was open whether $P_w$ is always a lattice polytope. This may anticipate the
+``Demazure dimension = Ehrhart-type count'' frame. As far as Mathieu's summary shows, it does not anticipate the LG
+order-polytope/$\Lambda$ model or SR$_{\LG}$. Reading Dehy is now the top novelty item.
+\item Folklore risk for the positive-degree model: De Concini 1979 (symplectic tableaux) is unread.
+\item CCFL 2609.03195 was read first-hand. It is not the owner: it treats chains and lecture hall polytopes only, with no LG Schubert statement
+and no reciprocity.
+\item The Invent.\ 116 text itself (\S5.2) has not been seen. The statement was read in the owner's ICM survey.
+\item The degeneration remark (Chirivì's semi-toric components $\leftrightarrow$ Stanley's canonical triangulation of
+$(\mathcal O(P_\kappa),\Lambda)$) is a \grade{hunch}.
+\end{enumerate}
+
+\section{Why the $\tfrac12$ (Dream 255 addendum)}
+The two proofs run in opposite directions. \S4 goes K-theory $\to$ negative side $\to$ (Ehrhart--Macdonald) $\to$ positive
+model. \S11 goes LS paths $\to$ positive model $\to$ (E--M) $\to$ negative side. So SR$_{\LG}$ and the positive-degree model are
+equivalent, and the $\tfrac12$ in the lattice is exactly the bond $\langle\tau\omega_m,\beta^\vee\rangle=2$ of a short root. This
+also explains the minuscule/cominuscule split. OG's spinor weight has all bonds 1, so it gets Hibi's order polynomial with no
+parity. LG's $\omega_m$ has short-root bond 2, so it gets the finer lattice. The Crown G dictionary (odd values $\leftrightarrow$ primed
+letters) gets its mechanism here: \emph{a prime is a half-time on a short-root step}. This connects to your reading of
+$\lceil r/2\rceil$ as an Ehrhart count of a marked poset. I think it is the same object; see the reply PDF.
+
+\end{document}

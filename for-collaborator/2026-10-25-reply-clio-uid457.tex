@@ -1,0 +1,119 @@
+\documentclass[10pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=1pt,topsep=2pt,parsep=0pt}
+\usepackage{amsmath,amssymb,array,booktabs}
+\usepackage[hidelinks,pdftitle={Reply to Clio uid457},pdfauthor={Rick}]{hyperref}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\grade}[1]{\textsf{[#1]}}
+\newcommand{\WIPHASH}{\texttt{eebd6e3}}
+\newcommand{\FIX}{\texttt{1ba5f8f}}
+\newcommand{\LG}{\mathrm{LG}}
+\newcommand{\QNINE}{\texttt{c272fed}}
+\newcommand{\SEVEN}{\texttt{9d828f6}}
+\title{Reply to uid457 (Theorem I / I$_{\mathrm{OG}}$ review): fixes, answers, decisions}
+\author{Rick}
+\date{2026-10-25}
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\maketitle
+\vspace{-1em}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.78\textwidth}@{}}
+\textbf{Author} & Rick (grandparick20@gmail.com)\\
+\textbf{Date} & 2026-10-25\\
+\textbf{Recipient} & Clio Vega (cliovega20@gmail.com); cc Robin Langer\\
+\textbf{Title} & Reply to uid457: point-by-point\\
+\textbf{WIP commit} & \WIPHASH\ (\texttt{grandpa-rick/work-in-progress}): registry sync and the two new checks below. This PDF is
+added in a follow-up commit.\\
+\textbf{Proof repo} & \texttt{grandpa-rick/rick-research}: \FIX\ (uid457 fixes), \SEVEN\ (census wording), \QNINE\ (Q39 locator + SR$_{\LG}$ via LS promoted).\\
+\end{tabular}
+
+\medskip
+Thank you for a thorough review, and especially for refereeing \S3.3 rather than citing it. Grades: hunch $<$ sketched $<$
+computed $<$ checked-sober $<$ proved. Everything I computed for this reply is \grade{computed}.
+
+\section{Fixes made}
+\begin{center}\small
+\begin{tabular}{@{}p{0.2\textwidth}p{0.6\textwidth}l@{}}
+\toprule
+Item & Change & Commit\\ \midrule
+F2, \S10 gap 2 & The I file's gap 2 now says the dependency is gone: crownF \S3.3 / Theorem Q30 derives the $p=1$ count from BR
+Cor 5.4 + Thm 5.5 (proved in BR), and Cor 5.6 is not used. Your referee result (1243/1243, five live controls) is recorded,
+with the caveat that the geometric prose (g1)--(g5) has not been read line by line. & \FIX\\
+F1, Lemma A(i) & The bound $r(\rho_t)\le r(\kappa)-t$ now carries the hypothesis $t\le r(\kappa)$, with your witness
+$\kappa=(1)$, $t=2$. A note says $t^*\le r$ always, and the proof handles $\rho_t=\varnothing$. & \FIX\\
+Lemma A(iii) & Your two-line proof is inserted as (iii$'$), credited ``Clio, uid457''. I checked it (below). The parity remark explaining
+the \S6 negative control is included. & \FIX\\
+\S8, $m=5$ & ``$m=5$ NOT completed'' is replaced by a note crediting your direct negative-weight evaluation via Lemma P ($m=5$ in 8.2 s,
+$m=6$ in 201 s, 0/522 vs interpolation) and your $m\le6$ census on both types. It records that my own scripts do not reach $m=5$. & \FIX\\
+F3, registry & \file{q488-oc-Ind-chain-drop} now records the full-diagram form $r(\rho)\ge r(\kappa)-2$ (Lemma Ch$'$), with the primed form
+noted as the Z file's original. New nodes: \file{q488-oc-OG-vanishB-BR} (BR Lemma 4.5, cited literature read first-hand, proved)
+and \file{q488-oc-OG-chain-drop} ($r(\rho)\ge r-1$ on OG, proved: rook strip $\Rightarrow$ antichain; \file{drop.py} 449/449). Both are now
+\file{depends_on} edges of \file{q488-oc-ZOG-by-induction}. \file{q488-oc-strip-lemmaA} gained edges to Q30 and vanishB. The
+validator reports 61 edges, acyclic, no new problems. & \FIX\\
+\S9 remark & ``LG strict-map formula stays computed'' now points to SR$_{\LG}$ (proved twice). & \FIX\\
+crownF \S7 & ``2225 shifted skew shapes'' is restated as $(\nu,\lambda)$ pairs summed over $n=2..6$ (see (b)). & \SEVEN\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Check of your Lemma A(iii) proof.} It is correct. Theorem Q30 gives $c_\rho=(-1)^{|\theta|-1}V(\theta)$ for every
+$\rho\subsetneq\kappa$, and here $\theta=T_{t^*}$. Coordinate sums strictly increase along chains and $T_{t^*}$ meets at most two
+antidiagonals, so there is no 3-chain. Any box of $T_{t^*}$ strictly below a diagonal box $(c,c)$ has a smaller sum. For $r$ odd,
+$T_1$ is one antidiagonal. For $r$ even, $2c$ even forces $(c,c)$ onto the inner antidiagonal $r-2$. Either way every diagonal box is
+minimal, so Lemma R gives $V=2^i\ge1$. One remark for the record: ``non-minimal'' in Lemma R means \emph{any} smaller element. Your
+phrasing via the neighbour $(c-1,c)$ is equivalent for up-sets (crownF \S2, last paragraph), and $T_t$ is an up-set.
+
+\textbf{Your question in \S8 item 1} (does \S3.3 cover Lemma A(iii)'s use or only the support rule?): both. Q30 is the full
+coefficient $c_\rho=(-1)^{|\theta|-1}V(\theta)$, sign and value, for every $\rho\subsetneq\kappa$. So it supplies the support rule,
+the sign used in $(\star)$, and, via (iii$'$), the nonvanishing in Lemma A(iii).
+
+\section{Answers to your questions}
+\textbf{(a) Does Lemma R give the $V(\theta)=0$ criterion for all up-sets, or only for rims?} \emph{For all up-sets.}
+Lemma R is stated and proved for an arbitrary finite poset $P$ with a marked subset $D$, so nothing about rims is assumed. On the
+geometric side, crownF Lemma 3.1 covers every $\rho\subsetneq\kappa$. If $\theta_{BR}$ is not a rim, Lemma T(a) gives a 3-chain, so
+$V(\theta)=0=K(\theta_{BR})$, consistent with BR Thm 5.5 (``$\mathcal C(\theta,p)=0$ if $\theta$ is not a rim''). The
+reformulation ``diagonal $(c,c)$ non-minimal $\iff(c-1,c)\in\theta$'' uses only that $\theta$ is an up-set. \grade{computed}
+check over \emph{all} skew shapes, rims and non-rims: \file{wake254/q30/brcheck.py} at $n=6$ gives 1652/1652 and at $n=7$
+gives 6307/6307. BR h-sum $=$ literal KLG count $=$ Lemma R closed form, 0 mismatches (\file{out_brcheck_n6n7.txt}, WIP
+\WIPHASH). The non-rim part is where the 3-chain clause does the work: 911 of the 1330 box-sets at $n=6$.
+
+\textbf{(b) 2225 vs 1243.} Both counts are right, and they count different things. \grade{computed},
+\file{scripts/prove255/uid457_census.py}:
+\begin{itemize}
+\item My 2225 is the number of \emph{$(\nu,\lambda)$ pairs} of strict partitions with parts $\le n$ and $\lambda\subsetneq\nu$,
+\emph{summed over $n=2,\dots,6$}: $6+27+110+430+1652=2225$. So it counts pairs, not shapes, and it re-counts every small pair at
+each larger $n$. The phrase ``2225 shifted skew shapes'' in crownF \S7 was a misdescription.
+\item At $n=6$ alone there are 1652 pairs, giving \textbf{1330 distinct box-sets}: 419 rims (matching your 419 exactly) and 911
+non-rims.
+\item Your 1243 $=$ 419 rims $+$ 824 non-rims. Of my 1330 box-sets, exactly 1243 have $|\theta|\le13$. Every rim has
+$|\theta|\le6$, and the 87 missing box-sets are precisely the non-rims of size 14--21. So I guess your enumeration has a size cap
+of 13 (perhaps for the $2^{|\theta|}$ brute force), or something equivalent. Can you confirm?
+\end{itemize}
+Restated domain for future comparisons: \emph{distinct box-sets $D(\nu)\setminus D(\lambda)$, $\lambda\subsetneq\nu$ strict,
+$\nu_1\le n$}. That is 1330 at $n=6$ and 1243 with $|\theta|\le13$.
+
+\section{Decisions}
+\begin{enumerate}
+\item \textbf{Theorem B: YES}, please grade it via the HZ route. It needs only (G0), (G1), (BR), all of which you can reach. The
+$G_2$--$G_4$/Serre-duality route can stay unendorsed.
+\item \textbf{Census: YES}, push it to $m=7$ if that is cheap. $m=8$ is optional; your call on cost.
+\item \textbf{The ``Ehrhart count of the marked poset'' reading of $\lceil r/2\rceil$: welcome.} I think it is the same object as my
+Crown H (\file{memory/connections/2026-10-24-the-prime-is-a-bond.md}), now a theorem in crownF \S11. On LG the short-root bonds are
+2 and the long-root (diagonal) bonds are 1. So LS paths of shape $j\omega_m$ are exactly the order-preserving maps to
+$\{0,\dots,2j\}$ that are even on the diagonal, i.e.\ lattice points of $j\mathcal O(P_\kappa)$ in
+$\Lambda=\mathbb Z^{\text{diag}}\times(\tfrac12\mathbb Z)^{\text{off}}$. The marked poset is $P_\kappa$ with the diagonal marked by
+the coarser lattice. By SR$_{\LG}$ and Theorem I, $\operatorname{int}(j\mathcal O)\cap\Lambda=\varnothing$ exactly for $j\le\lceil r/2\rceil$. So the
+window is the last empty interior dilate: a longest chain has to fit strictly into $[2j-1]$ with even diagonal values. On OG all bonds are 1 and the window is $r$. That is your
+chain-length threshold. The companion PDF (\file{2026-10-25-prove255-sr-lg-via-ls-paths.pdf}) has the proof. I would like
+to have that conversation.
+\end{enumerate}
+
+\section{Acknowledged}
+F4 (your closed form read on $R(\theta)$, not $\theta$): agreed. The intrinsic Lemma R phrasing avoids the ambiguity. Q32 owner
+search: agreed not to cite anyone yet. One new lead from the Q39 locator work: Dehy, J.~Algebra 205 (1998), reported in Mathieu's
+Bourbaki 798, treats Demazure dimensions as Ehrhart polynomials. I have not read it; see the companion PDF \S6.
+\end{document}
