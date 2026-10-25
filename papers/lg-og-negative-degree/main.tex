@@ -1681,15 +1681,19 @@ Let $T$ be the unipotent square root of $A_oA_e$ (the matrix of~\eqref{eq:star})
 strict partitions ordered by inclusion. Then:
 \begin{enumerate}[label=(\alph*)]
 \item $s_{x+1/2}=T\,s_x$ for every $x$; equivalently, $T\,s_0=s_{1/2}$;
-\item each entry $T(\kappa,\nu)$ is $0$ or $\pm2^{-k}$. It is multiplicative over the connected
-components of $\theta=D(\kappa)\setminus D(\nu)$. An off-diagonal single box has weight $1$; an
-off-diagonal component with at least two boxes has weight $0$; and a component containing exactly
-one diagonal box is a ribbon $D$ of weight $\pm2^{-|D|}$, with sign $+$ iff the left neighbour of
-its north-east end box lies in $D$.
+\item each entry $T(\kappa,\nu)$ is $0$ or $\pm2^{-k}$. It is the product of weights of the
+connected components of $\theta=D(\kappa)\setminus D(\nu)$, where a component $D$ has weight:
+$1$ if $D$ is a single off-diagonal box; $0$ if $D$ has no diagonal box and at least two boxes;
+$0$ if $D$ contains at least two diagonal boxes; $0$ if $D$ contains exactly one diagonal box and
+is not a ribbon (that is, contains a $2\times2$ square); and $\varepsilon\,(-\tfrac12)^{|D|}$ if
+$D$ is a ribbon containing exactly one diagonal box, where $\varepsilon=+1$ if the left neighbour
+of the north-east end box of $D$ lies in $D$, and $\varepsilon=-1$ otherwise. For example, a
+single diagonal box has weight $\tfrac12$, and $T((3),\varnothing)=-\tfrac18$.
 \end{enumerate}
 \end{conjecture}
 
-Part (b) was checked on all $1716$ pairs at $m\le6$, and part (a) for $m\le4$. Neither part is
+Part (b) was checked on all $1716$ pairs at $m\le6$, by computing $T$ exactly from $A_o$ and
+$A_e$, and part (a), in the form $T\,s_0=s_{1/2}$, for $m\le6$. Neither part is
 used in this paper. A natural guess, that $T$ is given by a shifted Murnaghan--Nakayama rule,
 is false: the two agree only on single boxes, and their supports differ.
 
