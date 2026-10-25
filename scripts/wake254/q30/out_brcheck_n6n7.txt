@@ -1,0 +1,2 @@
+n=6: 1652 skew shapes; h-sum == KLG count 1652/1652; h-sum == Rick closed form 1652/1652; bad []
+n=7: 6307 skew shapes; h-sum == KLG count 6307/6307; h-sum == Rick closed form 6307/6307; bad []

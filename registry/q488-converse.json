@@ -865,13 +865,13 @@
            {
             "id": "q488-oc-SR_LG-via-LS-paths",
             "role": "attempt",
-            "trust": "computed",
+            "trust": "proved",
             "file": "proofs/2026-10-25-crownF-strict-reciprocity.md",
             "sources": [
              "2609.03195"
             ],
-            "approach": "PROVE 255 §11: second, BR-free proof of the LS-parity model (Prop 11.3: h^0(X_kappa,O(j)) = F_kappa(2j), j>=0) and hence of SR_LG by Ehrhart-Macdonald on (O(P_kappa), Λ). Inputs: (G1') vanishing + H^0 dual = Demazure module; (LS) Littelmann's LS-path Demazure character formula (Ann. Math. 142 (1995)); no BR, no G0, no (*), no §3.3. OG twin (all bonds 1) gives SR_OG BR-free too (computed 72/72).",
-            "conditional_grade": "proved given (G1'), (LS). Held at computed ONLY because the (LS) locator (Littelmann 1995) is cited from memory, not deep-read (PROVE sessions forbid browsing). Promote to proved after a first-hand read of the Demazure-module theorem in Littelmann 1995 (or LLM 1998 / Lakshmibai-Seshadri SMT).",
+            "approach": "PROVE 255 §11: second, BR-free proof of the LS-parity model (Prop 11.3: h^0(X_kappa,O(j)) = F_kappa(2j), j>=0) and hence of SR_LG by Ehrhart-Macdonald on (O(P_kappa), Λ). Inputs: (G1') vanishing + H^0 dual = Demazure module; (LS) Littelmann's LS-path Demazure character formula, an operator identity Lambda_w(e^lambda)=sum e^{pi(1)} (Invent. Math. 116 (1994) §5.2), composed with the geometric Demazure character formula in (G1'); no BR, no G0, no (*), no §3.3. OG twin (all bonds 1) gives SR_OG BR-free too (computed 72/72).",
+            "conditional_grade": "proved given cited literature (G1') [Demazure/Andersen/Ramanathan/Kumar/Mathieu: vanishing + char H^0(X_w,L_lambda)^* = Lambda_w(e^lambda)] and (LS) [Littelmann]. Proof = §11: Lemma 11.1 + Lemma 11.2 + Prop 11.3 (child q488-oc-ls-bijection, proved) + Ehrhart-Macdonald reciprocity on (O(P_kappa), Λ).",
             "evidence": "LS paths enumerated from root data vs Demazure CHARACTERS (full weight multiset) and F_kappa(2j): m=2,3 (j<=3), m=4 (j<=4), m=5 (j<=2): 164/164, 0 failures. Negative controls (all bonds 2; swapped bonds) fail 21/24,30/32 and 18/24,28/32. OG: type B covers all bond 1, LS count = Omega(P,j+1) = OG Demazure 72/72.",
             "owner_gate": "2609.03195 (CCFL, lecture hall polytopes & LS paths) read first-hand from arXiv LaTeX 2026-10-24: totally ordered chains only (LH polytopes), §7 summarises Chirivì 2000 semi-toric degeneration; no LG Schubert statement, no Λ/order-polytope model, no reciprocity. Not the owner. Model may be SMT folklore (De Concini 1979; Dehy 1998 §4.2.2 unread).",
             "script": "work-in-progress/scripts/prove255/lspaths.py, ogpaths.py (out_n4_j2.txt, out_n4j4_n5j2.txt, out_controls.txt, out_og.txt)",
@@ -887,7 +887,11 @@
               "script": "work-in-progress/scripts/prove255/lspaths.py (bond census 0 violations, m<=5)",
               "children": []
              }
-            ]
+            ],
+            "promotion": "2026-10-25 (Q39 locator read): computed -> proved. Pre-check: only child q488-oc-ls-bijection is proved; no depends_on edges; remaining inputs are cited literature (G1'), (LS), Ehrhart-Macdonald.",
+            "ls_locator": "Littelmann, A Littlewood-Richardson rule for symmetrizable Kac-Moody algebras, Invent. Math. 116 (1994) 329-346, §5.2 (§5.2 number SECONDARY: quoted from Chirivì-Fang-Littelmann arXiv 2207.08904, Littelmann coauthor; Invent. text paywalled, not reached). Statement READ FIRST-HAND in Littelmann, Proc. ICM Zürich 1994 vol. 1, §8, p. 305 (page image, mathunion.org): Lambda_{a1}...Lambda_{ar}(e^lambda) = sum over LS paths with tau_1 <= tau of e^{pi(1)}. Citation corrected: Littelmann gives the Demazure-OPERATOR identity, not char V_w(lambda) directly; h^0 = #paths needs the geometric Demazure formula (G1'). Ann. Math. 142 (1995) 499-525 not read. Also Mathieu Bourbaki 798 Thm 10 (read, page image). Note: memory/reading/2026-10-25-q39-ls-locator.md.",
+            "novelty_flag": "Dehy, J. Algebra 205 (1998) 505-524 (reported by Mathieu, Bourbaki 798 §4): Demazure dimensions as Ehrhart-type polynomials; whether P_w is a lattice polytope was open there. Possible overlap with the Ehrhart frame (not with the LG order-polytope/Λ model or SR_LG as far as Mathieu's summary shows). NOT read first-hand.",
+            "date_promoted": "2026-10-25"
            }
           ],
           "note_2026_10_23": "PROVE 251 results (Prop H, Thms A/B/C) do NOT use the LS model; it remains a computed tool.",
@@ -897,7 +901,7 @@
           "depends_on": [
            "q488-oc-integer-strict-reciprocity"
           ],
-          "note_prove255": "Second proof route q488-oc-SR_LG-via-LS-paths (child): model directly from LS paths, BR-free; computed pending (LS) deep-read."
+          "note_prove255": "Second proof route q488-oc-SR_LG-via-LS-paths (child): model directly from LS paths, BR-free; PROMOTED to proved 2026-10-25 after the Q39 (LS) locator read (ICM 1994 p.305 first-hand; Invent. 116 §5.2 secondary)."
          },
          {
           "id": "q488-oc-strip-lower-bound",
@@ -923,7 +927,7 @@
            "q488-oc-integer-strict-reciprocity"
           ],
           "approach": "Even-M reciprocity: H_kappa(-M/2) = (-1)^{|kappa|} F°_kappa(M) (interior count, diagonal even), 63/63 m<=6. This is Ehrhart-Macdonald reciprocity for Q_kappa, hence PROVED conditional on the LS parity model; graded computed because the model is. F°(M)=0 iff M <= r(kappa)+1 (63/63). F_kappa is a genuine period-2 quasi-polynomial (no period collapse, 0/63 m<=6; kappa=(1): F=floor(N/2)+1). Side fact: H_kappa(-1/2) = 2^{-max kappa} (63/63).",
-          "conditional_grade": "proved given (G0),(G1),(BR first-hand) -- it IS SR_LG (q488-oc-integer-strict-reciprocity, §4). Independent BR-free route: §11 (q488-oc-SR_LG-via-LS-paths, computed pending (LS) locator). NOT conditional on q488-oc-ls-parity-model (that node is now a COROLLARY of SR_LG; old wording would be circular).",
+          "conditional_grade": "proved given (G0),(G1),(BR first-hand) -- it IS SR_LG (q488-oc-integer-strict-reciprocity, §4). Independent BR-free route: §11 (q488-oc-SR_LG-via-LS-paths, proved 2026-10-25 after the Q39 locator read). NOT conditional on q488-oc-ls-parity-model (that node is now a COROLLARY of SR_LG; old wording would be circular).",
           "script": "work-in-progress/scripts/wake251/reciprocity/recip.py, run.py, run2.py",
           "wip_commit": "33a8b3d",
           "children": [],
@@ -977,13 +981,14 @@
             "id": "q488-oc-Ind-chain-drop",
             "role": "premise",
             "trust": "proved",
-            "file": "proofs/2026-10-24-Z-by-hyperplane-induction.md",
+            "file": "proofs/2026-10-24-integer-window-and-OG-twin.md",
             "sources": [],
             "depends_on": [],
-            "approach": "Lemma Ch (pure combinatorics): if theta=D(kappa)\\D(rho) has no strictly-SE pair and <=2 boxes/row/col then any chain meets theta in <=2 boxes, so r'(rho) >= r'(kappa)-2 (r' = longest chain in rows>=1 of the SAME diagram, row 0 = largest part for both). Proof Sec. 3. Checked 3801/3801 admissible pairs m<=8. Sharp.",
+            "approach": "Lemma Ch' (I file §5; generalises Lemma Ch of the Z file §3): if theta=D(kappa)\\D(rho) has no strictly-SE pair and <=2 boxes/row/col then EVERY chain of the FULL diagram D(kappa) meets theta in <=2 boxes, so r(rho) >= r(kappa)-2 with r = longest chain of the full shifted diagram (the form Theorem I draws on). The Z file's original statement was the primed form r'(rho) >= r'(kappa)-2 (rows>=1); its proof never uses row 0, so it gives the full form verbatim. Checked: Z file 3801/3801 admissible pairs m<=8 (primed); drop.py 1337 LG-admissible pairs m=7 (full form), max drop exactly 2. Sharp.",
             "script": "work-in-progress/scripts/wake252/caseB/prove252_rimlemma.py",
             "wip_commit": "1036afe",
-            "children": []
+            "children": [],
+            "note_2026_10_25_uid457": "Recording fix (Clio uid457 F3): the node previously recorded only the primed form r'; Theorem I uses the full-diagram r form (Lemma Ch'). Clio verified the generalisation directly and confirmed by reading that Lemma Ch's proof never uses row 0. This was a recording gap, not a mathematical one. Original file: proofs/2026-10-24-Z-by-hyperplane-induction.md §3."
            },
            {
             "id": "q488-oc-Z-by-induction",
@@ -1071,12 +1076,15 @@
              "1005.2605"
             ],
             "depends_on": [
-             "q488-oc-support-rule-BR"
+             "q488-oc-support-rule-BR",
+             "q488-oc-OG-vanishB-BR",
+             "q488-oc-Q30-KLG-strict-fillings"
             ],
             "approach": "Lemma 0: r(kappa)=max_i(kappa_i+2i-2)=1+max(a+b). Lemma A: rho* = kappa minus top t antidiagonals (t=1 r odd, t=2 r even on LG; t=1 on OG) has r(rho*)<=r-t, so W(rho*)<=W-1, and c_{rho*}!=0: explicit KLG tableau (outer antidiagonal 1', inner 1; outer has odd sum when r even so no diagonal prime) via BR Cor pieriCtab; OG via BR Lemma vanishB(c). Checked vs BR h-sum formula 127/127 m=7; negative control (r odd 2-strip) 67/67, 42 zeros, m<=6.",
             "script": "work-in-progress/scripts/prove253/check.py, mono.py, drop.py, strip.py, negctl.py",
             "children": [],
-            "wip_commit": "ecace5e"
+            "wip_commit": "ecace5e",
+            "note_2026_10_25_uid457": "F1 (Clio): Lemma A(i) now carries the hypothesis t <= r(kappa) (8 witnesses at m<=8, all kappa=(1), t=2; never used since t*<=r). A(iii) now has Clio's two-line proof from Theorem Q30 + Lemma R (I file (iii')), so the LG input is BR Cor 5.4 + Thm 5.5 (proved in BR), not reader-left Cor 5.6; edge to q488-oc-Q30-KLG-strict-fillings added. OG A(iv) edge to q488-oc-OG-vanishB-BR added."
            },
            {
             "id": "q488-oc-Zint-by-induction",
@@ -1096,7 +1104,8 @@
             "conditional_grade": "proved given (G0) Chevalley divisor, (G1) Demazure, (BR) first-hand (Cor pieriCtab proof left to reader in BR; corroborated by BR h-sum formula m<=7)",
             "script": "work-in-progress/scripts/prove253/check.py, mono.py, drop.py, strip.py, negctl.py",
             "children": [],
-            "wip_commit": "ecace5e"
+            "wip_commit": "ecace5e",
+            "note_2026_10_25_uid457": "conditional_grade text superseded: Cor pieriCtab (BR Cor 5.6, reader-left) is no longer used; Lemma A(iii) goes through Theorem Q30 (crownF §3.3, from BR Thm 5.5, proved in BR; Clio refereed conclusion 1243/1243). I file §10 gap 2 updated."
            },
            {
             "id": "q488-oc-NZ-propR-range",
@@ -1349,13 +1358,16 @@
           ],
           "depends_on": [
            "q488-oc-anchor-H-minus-1",
-           "q488-oc-strip-lemmaA"
+           "q488-oc-strip-lemmaA",
+           "q488-oc-OG-vanishB-BR",
+           "q488-oc-OG-chain-drop"
           ],
           "approach": "Theorem I_OG: same monotone induction on OG(m,2m+1) with spinor O(1); BR Lemma vanishB: support = rook strips (antichains in skew shapes, so chains meet theta in <=1 box), c=(-1)^{|theta|-1} exactly; W=r. Exact integer zero set {-1..-r} with sign (-1)^{|kappa|} beyond. Crown E (Day 252) a theorem for LG (height 2) and OG (height 1). Second proof via minuscule SMT + Stanley reciprocity (not deep-read). Checked Demazure m<=4 (16/16, monotone 15/15).",
           "conditional_grade": "proved given (G0),(G1),(BR Lemma vanishB, proved in full in BR, first-hand)",
           "script": "work-in-progress/scripts/prove253/check.py, mono.py, drop.py, strip.py, negctl.py",
           "children": [],
-          "wip_commit": "ecace5e"
+          "wip_commit": "ecace5e",
+          "note_2026_10_25_uid457": "depends_on edges added for the OG-specific premises (BR Lemma 4.5 vanishB; OG chain drop r(rho)>=r-1), which were previously prose-only (Clio uid457 F3)."
          },
          {
           "id": "q488-oc-OG-corner-inclusion-exclusion",
@@ -1403,6 +1415,37 @@
           "script": "work-in-progress/scripts/prove254/tmat.py, tshape.py, tprime.py",
           "children": [],
           "note_wake255": "Q34 REFUTED (computed N<=4, WIP f3918f0 scripts/wake255/compare_T_MN.py): T is NOT shifted Murnaghan–Nakayama. Agree only at r=1; on one-diagonal ribbons |T|=2^{1-r}|MN| but signs agree 4/8; MN nonzero on off-diag and two-diag strips where T=0; T nonzero on disconnected shapes where MN=0; log T not prop. to MN."
+         },
+         {
+          "id": "q488-oc-OG-vanishB-BR",
+          "role": "premise",
+          "trust": "proved",
+          "file": "proofs/2026-10-24-integer-window-and-OG-twin.md",
+          "sources": [
+           "1005.2605"
+          ],
+          "depends_on": [],
+          "approach": "OG Pieri input (cited literature): Buch-Ravikumar 1005.2605 §4, Lemma 4.5 (\\label{vanishB}): (a) theta not a rim => B(theta,p)=0; (b) a row/column of theta with a boxes => B(theta,p)=0 for p<a; (c) theta a rook strip => B(theta,1)=(-1)^{|theta|-1}; with the unlabelled corollary after eq. (hsumB) (c^nu_{lam,p} = B(nu/lam,p), = BR Cor 4.4 per Clio). Dimension-indexed via Lemma S: on OG, c_rho != 0 => theta rook strip (antichain), and c_rho = (-1)^{|theta|-1} for every rook strip. Used in I file Lemma 2 (OG) and Lemma A(iv).",
+          "conditional_grade": "proved = cited statement read literally from the BR v1 LaTeX source (first-hand, Wake 253); BR prove Lemma 4.5 in full. Clio (uid457) reconstructed the theorem counter: vanishB = Lemma 4.5.",
+          "date": "2026-10-25",
+          "origin": "Clio uid457 F3: OG Pieri input previously lived only in prose strings of q488-oc-ZOG-by-induction",
+          "children": []
+         },
+         {
+          "id": "q488-oc-OG-chain-drop",
+          "role": "premise",
+          "trust": "proved",
+          "file": "proofs/2026-10-24-integer-window-and-OG-twin.md",
+          "sources": [],
+          "depends_on": [
+           "q488-oc-OG-vanishB-BR"
+          ],
+          "approach": "Lemma Ch' (OG half, I file §5): if c_rho != 0 on OG then theta = D(kappa)\\D(rho) is a rook strip, hence an antichain (Lemma 2, antichain argument), so a longest chain C of D(kappa) meets theta in <=1 box and C\\theta is a chain of D(rho): r(rho) >= r(kappa)-1. Pure combinatorics given vanishB.",
+          "evidence": "drop.py: 0 violations over 449 OG-admissible pairs at m=7, max drop exactly 1 (sharp); Clio independently gets 449 at m=7.",
+          "script": "work-in-progress/scripts/prove253/drop.py",
+          "date": "2026-10-25",
+          "origin": "Clio uid457 F3",
+          "children": []
          }
         ],
         "note_2026_10_22_wake251": "Wake 251: H_kappa modelled by LS parity order-quasi-polynomial (computed m<=5); strip -(r+1)/2<=Re j<-1/2 computed m<=7; even-M reciprocity = Ehrhart-Macdonald for Q_kappa; odd-zero law (computed m<=6) implies (OC) -- live target. Root-multiset route dead. Node stays in-progress.",

@@ -1,0 +1,6 @@
+n=2: pairs 6, distinct box-sets 6 (rims 5, non-rims 1), cumulative pairs 6
+n=3: pairs 27, distinct box-sets 25 (rims 17, non-rims 8), cumulative pairs 33
+n=4: pairs 110, distinct box-sets 95 (rims 51, non-rims 44), cumulative pairs 143
+n=5: pairs 430, distinct box-sets 355 (rims 147, non-rims 208), cumulative pairs 573
+n=6: pairs 1652, distinct box-sets 1330 (rims 419, non-rims 911), cumulative pairs 2225
+  distinct box-sets with |theta| <= 13: 1243 ; non-rims by size: [(3, 5), (4, 28), (5, 71), (6, 115), (7, 135), (8, 119), (9, 103), (10, 85), (11, 69), (12, 54), (13, 40), (14, 30), (15, 22), (16, 14), (17, 9), (18, 6), (19, 3), (20, 2), (21, 1)]
