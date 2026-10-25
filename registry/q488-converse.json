@@ -1425,14 +1425,44 @@
          {
           "id": "q488-oc-half-step-T-ribbons",
           "role": "attempt",
-          "trust": "computed",
-          "file": "proofs/2026-10-25-crownF-strict-reciprocity.md",
+          "trust": "proved",
+          "file": "proofs/2026-10-25-conjT-half-step-operator.md",
           "sources": [],
           "approach": "T=(I+C)^{1/2} (s_{x+1/2}=T s_x): entries 0,+-2^{-k}; multiplicative over components of theta; off-diag singleton 1, off-diag size>=2 -> 0, component with one diagonal box = ribbon D weight sigma(-1/2)^{|D|}, sigma=+1 iff NE end box has its left neighbour in D. 1716/1716 pairs m<=6. Unproved (would follow from the local identity T'^2=A_oA_e); not used by HZ.",
-          "script": "work-in-progress/scripts/prove254/tmat.py, tshape.py, tprime.py",
-          "children": [],
+          "script": "work-in-progress/scripts/prove257/verify.py (m<=8), ctrl.py (negative control); earlier scripts/prove254/tmat.py, wake257-conjT/check_conjT.py",
+          "children": [
+           {
+            "id": "q488-oc-T-mobius",
+            "role": "premise",
+            "trust": "proved",
+            "file": "proofs/2026-10-25-conjT-half-step-operator.md",
+            "sources": [],
+            "approach": "A_e=S zeta^{-1}S, A_o=S zeta_o^{-1}S: sum over subsets of max(theta) of (-1)^{|A|} = [theta empty] (draft lem:mobius, self-contained)",
+            "children": []
+           },
+           {
+            "id": "q488-oc-T-XP-identities",
+            "role": "premise",
+            "trust": "proved",
+            "file": "proofs/2026-10-25-conjT-half-step-operator.md",
+            "sources": [],
+            "approach": "First-row recursions (RX),(RP); pointwise P(rho,nu')=2^{-rho_1}[nu in rho]; (I2) X zeta=zeta_o P and (I1) XP=I by induction on length (draft lem:XP)",
+            "script": "work-in-progress/scripts/prove257/verify.py",
+            "children": []
+           },
+           {
+            "id": "q488-oc-T-rim-guess",
+            "role": "attempt",
+            "trust": "computed",
+            "file": "proofs/2026-10-25-conjT-half-step-operator.md",
+            "sources": [],
+            "approach": "Discovery step: zeta_o*S T S - I = -2^{-|rim theta|}[connected, length drop 1] read off data m<=6 (qform.py); superseded by the proved sequence form of X",
+            "children": []
+           }
+          ],
           "note_wake255": "Q34 REFUTED (computed N<=4, WIP f3918f0 scripts/wake255/compare_T_MN.py): T is NOT shifted Murnaghan–Nakayama. Agree only at r=1; on one-diagonal ribbons |T|=2^{1-r}|MN| but signs agree 4/8; MN nonzero on off-diag and two-diag strips where T=0; T nonzero on disconnected shapes where MN=0; log T not prop. to MN.",
-          "note_wake257": "Tex-statement fix (WIP f7ecdee, scripts/wake257-conjT/check_conjT.py): printed conj:T(b) had dropped the (-1)^{|D|} factor (+-2^{-|D|}) and omitted the zero cases; old printed rule 1372/1716 at m<=6 (98/126 at m=4 literal; 106/126 if non-ribbons read as 0). New printed text: component weight 1 (off-diag singleton), 0 (off-diag >=2 boxes; >=2 diagonal boxes; one diagonal box but contains a 2x2), eps(-1/2)^{|D|} for a ribbon with one diagonal box (eps=+1 iff left nbr of NE end in D). Re-implemented literally from the new text, T computed independently from A_o,A_e: 1716/1716 m<=6; negative control (unsigned, no 2x2 zero) 1417/1716; T s_0=s_{1/2} verified m<=6. Trust unchanged (computed)."
+          "note_wake257": "Tex-statement fix (WIP f7ecdee, scripts/wake257-conjT/check_conjT.py): printed conj:T(b) had dropped the (-1)^{|D|} factor (+-2^{-|D|}) and omitted the zero cases; old printed rule 1372/1716 at m<=6 (98/126 at m=4 literal; 106/126 if non-ribbons read as 0). New printed text: component weight 1 (off-diag singleton), 0 (off-diag >=2 boxes; >=2 diagonal boxes; one diagonal box but contains a 2x2), eps(-1/2)^{|D|} for a ribbon with one diagonal box (eps=+1 iff left nbr of NE end in D). Re-implemented literally from the new text, T computed independently from A_o,A_e: 1716/1716 m<=6; negative control (unsigned, no 2x2 zero) 1417/1716; T s_0=s_{1/2} verified m<=6. Trust unchanged (computed).",
+          "note_prove257": "PROVED (PROVE 257). conj:T is now Proposition prop:T in sec:half (ssec:halfstep) of the LG/OG draft. Route: A_e=S zeta^{-1} S, A_o=S zeta_o^{-1} S (Moebius, proved inline); explicit X (delete part kappa_{r0} at cost 2^{-kappa_{r0}}, shrink tail, length drop 1) and P (same, any length drop, positive); first-row recursions give X zeta = zeta_o P and XP=I by induction on length; so T = S zeta_o^{-1} X S squares to A_oA_e (unique unitriangular root); (a) from T~zeta=P column (), (b) by inclusion-exclusion over removable maximal boxes + sign-reversing toggle at the lowest 2x2 overlap row (non-ribbons) and S in {empty,{e}} (ribbons). Inputs: lem:layers(a), lem:anchor, thm:A (only for (a)). Verified m<=8 all identities; control fails all."
          },
          {
           "id": "q488-oc-OG-vanishB-BR",

@@ -262,8 +262,9 @@ Section~\ref{sec:ls} gives the LS-path proof of Theorem~\ref{thm:main}.
 Section~\ref{sec:ktheory} gives the $K$-theoretic proof, including the closed form of the
 Pieri coefficients and the $\OG$ case. Section~\ref{sec:window} proves
 Theorem~\ref{thm:window} in two ways. Section~\ref{sec:half} treats half-integers:
-Theorem~\ref{thm:HZ}, Corollary~\ref{cor:OC}, and the hyperplane-section proof of the
-vanishing half. Section~\ref{sec:examples} collects examples, including a complete table for
+Theorem~\ref{thm:HZ}, Corollary~\ref{cor:OC}, the hyperplane-section proof of the
+vanishing half, and an explicit half-step operator $T$ with $s_{x+1/2}=T\,s_x$
+(Proposition~\ref{prop:T}). Section~\ref{sec:examples} collects examples, including a complete table for
 $\LG(3,6)$. Section~\ref{sec:open} lists open questions.
 
 %======================================================================
@@ -1557,6 +1558,180 @@ Every $\lambda_S$ is dominant for $a\ge m$, and the term $S=[m]$ is nonzero. We 
 remark because the proof given above needs only (G0), (G1) and (BR).
 \end{remark}
 
+\subsection{The half-step operator}\label{ssec:halfstep}
+% Registry: q488-oc-half-step-T-ribbons (proved, proofs/2026-10-25-conjT-half-step-operator.md).
+By Lemma~\ref{lem:layers}(a), $s_{x+1}=A_oA_e\,s_x$. In this subsection all matrices are
+indexed by strict partitions with parts at most $m$ and vanish unless $\nu\subseteq\kappa$.
+Such matrices form an algebra, and a matrix in it with $1$'s on the diagonal (unitriangular)
+has at most one unitriangular square root: if $U^2=V$, then
+$V(\kappa,\nu)=2U(\kappa,\nu)+\sum_{\nu\subsetneq\rho\subsetneq\kappa}U(\kappa,\rho)U(\rho,\nu)$
+determines $U(\kappa,\nu)$ by induction on $|\kappa|-|\nu|$. Let $T$ be the unitriangular
+square root of $A_oA_e$.
+
+\begin{proposition}\label{prop:T}
+\begin{enumerate}[label=(\alph*)]
+\item $s_{x+1/2}=T\,s_x$ for every $x\in\C$.
+\item Each entry $T(\kappa,\nu)$ is the product of weights of the connected components of
+$\theta=D(\kappa)\setminus D(\nu)$, where a component $D$ has weight: $1$ if $D$ is a single
+off-diagonal box; $0$ if $D$ has no diagonal box and at least two boxes; $0$ if $D$ contains at
+least two diagonal boxes; $0$ if $D$ contains exactly one diagonal box and contains a $2\times2$
+square; and $\varepsilon\,(-\tfrac12)^{|D|}$ if $D$ is a ribbon (contains no $2\times2$ square)
+with exactly one diagonal box, where $\varepsilon=+1$ if the left neighbour of the north-east
+end box of $D$ lies in $D$, and $\varepsilon=-1$ otherwise. In particular every entry is $0$
+or $\pm2^{-k}$.
+\end{enumerate}
+\end{proposition}
+
+For example, a single diagonal box has weight $\tfrac12$, and $T((3),\varnothing)=-\tfrac18$.
+A natural guess, that $T$ is given by a shifted Murnaghan--Nakayama rule, is false: the two agree
+only on single boxes, and their supports differ.
+
+The proof rests on two explicit matrices. Write $\kappa'=(\kappa_2,\kappa_3,\dots)$, set
+$\kappa_r=0$ for $r>\ell(\kappa)$, and use the conventions $\nu_1=0$ and $\nu'=\varnothing$ for
+$\nu=\varnothing$. For $\nu\ne\kappa$ let $r_0=\min\{r:\nu_r\ne\kappa_r\}$, and put
+\[ [\nu\prec\kappa]=[\nu_s\le\kappa_{s+1}\text{ for all }s\ge r_0]. \]
+In words, $\nu$ keeps the first $r_0-1$ parts of $\kappa$, and its remaining parts fit under
+$(\kappa_{r_0+1},\kappa_{r_0+2},\dots)$; this forces $\nu\subseteq\kappa$ and
+$\ell(\nu)<\ell(\kappa)$. Define
+\begin{align*}
+X(\kappa,\nu)&=\delta_{\kappa\nu}-[\nu\ne\kappa]\,[\ell(\nu)=\ell(\kappa)-1]\,2^{-\kappa_{r_0}}[\nu\prec\kappa],\\
+P(\kappa,\nu)&=\delta_{\kappa\nu}+[\nu\ne\kappa]\,2^{-\kappa_{r_0}}[\nu\prec\kappa].
+\end{align*}
+Let $\zeta(\kappa,\nu)=[\nu\subseteq\kappa]$, let $\zeta_o(\kappa,\nu)=[\nu\subseteq\kappa,\
+\ell(\nu)=\ell(\kappa)]$, and let $S$ be the diagonal matrix with entries $(-1)^{|\kappa|}$.
+
+\begin{lemma}[M\"obius functions]\label{lem:mobius}
+$A_e=S\zeta^{-1}S$ and $A_o=S\zeta_o^{-1}S$.
+\end{lemma}
+
+\begin{proof}
+Fix $\nu\subseteq\kappa$. By Lemma~\ref{lem:ideals}, $A_e(\kappa,\rho)\ne0$ means that
+$A=D(\kappa)\setminus D(\rho)$ is an antichain and an up-set, that is, a set of maximal boxes of
+$P_\kappa$; and $\nu\subseteq\rho$ means $A\subseteq\theta$. Since $\theta$ is an up-set, its
+maximal boxes are maximal in $P_\kappa$. Hence
+\[ (SA_eS\,\zeta)(\kappa,\nu)=\sum_{A\subseteq\max\theta}(-1)^{|A|}=[\max\theta=\varnothing]=\delta_{\kappa\nu}. \]
+For $A_o$, the sets $A$ are sets of off-diagonal maximal boxes, and $\zeta_o(\rho,\nu)$ adds the
+condition $\ell(\nu)=\ell(\rho)=\ell(\kappa)$. The diagonal boxes of $\theta$ are the $(i,i)$ with
+$\ell(\nu)\le i<\ell(\kappa)$, so then $\theta$ has no diagonal box, and the same computation gives
+$(SA_oS\,\zeta_o)(\kappa,\nu)=[\ell(\nu)=\ell(\kappa)][\theta=\varnothing]=\delta_{\kappa\nu}$.
+\end{proof}
+
+\begin{lemma}\label{lem:XP}
+\begin{enumerate}[label=(\alph*)]
+\item For $\kappa\ne\varnothing$ and all $\nu$,
+$X(\kappa,\nu)=[\nu_1=\kappa_1]X(\kappa',\nu')-2^{-\kappa_1}\zeta_o(\kappa',\nu)$ and
+$P(\kappa,\nu)=[\nu_1=\kappa_1]P(\kappa',\nu')+2^{-\kappa_1}\zeta(\kappa',\nu)$.
+\item If $\nu_1\le\rho_1$, then $P(\rho,\nu')=2^{-\rho_1}[\nu\subseteq\rho]$.
+\item $X\zeta=\zeta_oP$.
+\item $XP=I$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $\nu_1=\kappa_1$, then $r_0$ and all conditions shift by one when the first parts are
+removed, and $\zeta_o(\kappa',\nu)=\zeta(\kappa',\nu)=0$ because $\nu_1>\kappa_2$. If
+$\nu_1\ne\kappa_1$, then $r_0=1$ and $[\nu\prec\kappa]=[\nu\subseteq\kappa']$.
+
+(b) If $\rho=\varnothing$, then $\nu=\nu'=\varnothing$ and both sides are $1$. Otherwise
+$\nu'_1<\rho_1$, so $\nu'\ne\rho$ and $r_0=1$, and
+$P(\rho,\nu')=2^{-\rho_1}[\nu_{s+1}\le\rho_{s+1}\text{ for }s\ge1]$. Together with
+$\nu_1\le\rho_1$ the bracket is $[\nu\subseteq\rho]$.
+
+(c) Induction on $\ell(\kappa)$; for $\kappa=\varnothing$ both sides are
+$\delta_{\varnothing\nu}$. Let $\ell=\ell(\kappa)\ge1$. By (a), and since
+$[\nu\subseteq(\kappa_1,\rho')]=[\nu_1\le\kappa_1][\nu'\subseteq\rho']$,
+\[ (X\zeta)(\kappa,\nu)=[\nu_1\le\kappa_1](X\zeta)(\kappa',\nu')-2^{-\kappa_1}(\zeta_o\zeta)(\kappa',\nu). \]
+On the other side, $\rho\subseteq\kappa$ with $\ell(\rho)=\ell$ means $\rho=(a,\rho')$ with
+$\zeta_o(\kappa',\rho')=1$ and $\rho'_1<a\le\kappa_1$. By (a) and
+$\sum_{a=\rho'_1+1}^{\kappa_1}2^{-a}=2^{-\rho'_1}-2^{-\kappa_1}$,
+\[ (\zeta_oP)(\kappa,\nu)=\sum_{\rho'}[\rho'_1<\nu_1\le\kappa_1]P(\rho',\nu')
++\sum_{\rho'}2^{-\rho'_1}\zeta(\rho',\nu)-2^{-\kappa_1}(\zeta_o\zeta)(\kappa',\nu), \]
+with $\rho'$ running over $\zeta_o(\kappa',\rho')=1$. By induction,
+$(X\zeta)(\kappa',\nu')=\sum_{\rho'}P(\rho',\nu')$. So it remains to show
+$[\nu_1\le\kappa_1]\sum_{\rho'}[\rho'_1\ge\nu_1]P(\rho',\nu')=\sum_{\rho'}2^{-\rho'_1}[\nu\subseteq\rho']$.
+If $\nu_1>\kappa_1>\kappa_2$, both sides vanish. Otherwise the two sums agree term by term, by (b)
+when $\rho'_1\ge\nu_1$, and because both terms vanish when $\rho'_1<\nu_1$.
+
+(d) Induction on $\ell(\kappa)$, trivial for $\kappa=\varnothing$. Expanding $X(\kappa,\rho)$ by
+(a), and then $P(\rho,\nu)$ for $\rho=(\kappa_1,\rho')$ by (a),
+\[ (XP)(\kappa,\nu)=[\nu_1=\kappa_1](XP)(\kappa',\nu')+2^{-\kappa_1}\bigl((X\zeta)(\kappa',\nu)-(\zeta_oP)(\kappa',\nu)\bigr). \]
+By induction and (c), this is $[\nu_1=\kappa_1]\delta_{\kappa'\nu'}=\delta_{\kappa\nu}$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:T}]
+Put $\tilde T=\zeta_o^{-1}X$. By Lemma~\ref{lem:XP}(c), $\tilde T=P\zeta^{-1}$. By
+Lemma~\ref{lem:XP}(d),
+\[ \tilde T^2=\zeta_o^{-1}(XP)\zeta^{-1}=\zeta_o^{-1}\zeta^{-1}. \] By
+Lemma~\ref{lem:mobius}, $(S\tilde TS)^2=A_oA_e$, and $S\tilde TS$ is unitriangular, so
+\[ T=S\zeta_o^{-1}XS=A_o\,(SXS),\qquad \tilde T\zeta=P. \]
+
+(a) Lemma~\ref{lem:anchor} gives $s_1=\delta_\varnothing$, so
+$s_0=(A_oA_e)^{-1}\delta_\varnothing=S\zeta\zeta_oS\,\delta_\varnothing$, that is,
+$s_0(\kappa)=(-1)^{|\kappa|}$. Hence $T s_0=S\tilde T\mathbf 1=S\,(\tilde T\zeta)(\cdot,\varnothing)
+=S\,P(\cdot,\varnothing)$, whose $\kappa$-entry is $(-1)^{|\kappa|}2^{-\kappa_1}=s_{1/2}(\kappa)$
+by Theorem~\ref{thm:A}. Since $T$ commutes with $T^2=A_oA_e$, for integers $j\ge0$ we get
+$s_{j+1/2}=(A_oA_e)^jTs_0=T(A_oA_e)^js_0=Ts_j$. Both sides of $s_{x+1/2}=Ts_x$ are polynomial in
+$x$ entrywise, so they agree for all $x$.
+
+(b) We have $T(\kappa,\nu)=\sum_\rho A_o(\kappa,\rho)(-1)^{|\rho|-|\nu|}X(\rho,\nu)$. Here $A_o$
+preserves the length, and $X$ either fixes $\nu$ or lowers the length by exactly one.
+
+If $\ell(\nu)=\ell(\kappa)$, then $T(\kappa,\nu)=A_o(\kappa,\nu)$. The set $\theta$ is convex in
+$\Delta_m$, so two comparable boxes of $\theta$ are joined by a path of adjacent boxes of
+$\theta$. Hence $\theta$ is an antichain iff all its components are single boxes, which are
+off-diagonal. If $\ell(\nu)\le\ell(\kappa)-2$, then $T(\kappa,\nu)=0$, and the diagonal boxes
+$(i,i)$, $\ell(\nu)\le i<\ell(\kappa)$, lie in one component together with the boxes $(i,i+1)$,
+so the product of weights is $0$ as well.
+
+Let $\ell(\nu)=\ell(\kappa)-1=\ell-1$. Give the box $(a,b)$ the content $b-a$. Row $r$ of
+$\rho/\nu$ (rows numbered from $1$) is the content interval $[\nu_r,\rho_r-1]$, and a box of
+content $c$ in row $r$ lies directly above the box of content $c-1$ in row $r+1$. So two
+nonempty rows $r,r+1$ are adjacent iff $\nu_r\le\rho_{r+1}$. A skew shape is connected iff its
+nonempty rows are consecutive and successive rows are adjacent, and its contents then form an
+interval. Since row $\ell(\rho)$ is nonempty and starts at content $0$, for
+$\ell(\nu)=\ell(\rho)-1$ we get
+\[ X(\rho,\nu)=-\,2^{-(1+c(\rho/\nu))}\,[\rho/\nu\text{ is connected}], \]
+where $c(\cdot)$ is the largest content; indeed $r_0$ is the first nonempty row, its largest
+content is $\rho_{r_0}-1$, and $[\nu\prec\rho]$ is the connectivity condition. The term
+$A_o(\kappa,\rho)$ removes a set $A$ of off-diagonal maximal boxes of $\theta$. Hence
+\[ T(\kappa,\nu)=-\sum_A(-1)^{|\theta|-|A|}\,2^{-(1+c(\theta\setminus A))}\,[\theta\setminus A\text{ is connected}]. \]
+Let $D_0$ be the component of $\theta$ containing its unique diagonal box $d$. If
+$\theta\setminus A$ is connected, $A$ contains every other component, so these are single boxes
+(two adjacent boxes are comparable). Hence $T(\kappa,\nu)=0$ unless every other component is a
+single box, and then $T(\kappa,\nu)=w(D_0)$, where
+\[ w(D)=-\sum_{B}(-1)^{|D|-|B|}\,2^{-(1+c(D\setminus B))}, \]
+the sum running over sets $B$ of off-diagonal maximal boxes of $D$ with $D\setminus B$ connected.
+
+Let $D$ occupy rows $r_0,\dots,\ell$ with content intervals $[a_r,b_r]$. Both $a$ and $b$ strictly
+decrease, $a_\ell=0$, and $a_r\le b_{r+1}+1$. The maximal boxes are row ends, and the end of
+row $r$ is maximal iff $r=\ell$ or $b_{r+1}\le b_r-2$. Moreover $D$ contains a $2\times2$ square
+iff $a_{r-1}\le b_r$ for some $r_0<r\le\ell$.
+
+\emph{$D$ contains a $2\times2$ square.} Let $r^*$ be the largest $r$ with $a_{r-1}\le b_r$, and
+let $x$ be the end of row $r^*$. If $x$ were not maximal, then $b_{r^*+1}=b_{r^*}-1$ and
+$a_{r^*}<a_{r^*-1}\le b_{r^*}$ would give $a_{r^*}\le b_{r^*+1}$, contradicting the choice of
+$r^*$. Also $x\ne d$, since its content is at least $a_{r^*-1}\ge1$. Toggling $x$ in $B$
+preserves connectivity: row $r^*$ keeps a box, rows $r^*-1$ and $r^*$ stay adjacent because
+$a_{r^*-1}\le b_{r^*}$, row $r^*-1$ has at least two boxes and so is never emptied, and the
+adjacency of rows $r^*$ and $r^*+1$ does not involve $b_{r^*}$. Toggling $x$ also preserves the
+largest content, which is at least $b_{r^*-1}-1\ge b_{r^*}$. The sign changes, so $w(D)=0$.
+
+\emph{$D$ is a ribbon}, that is, $a_{r-1}=b_r+1$ for $r_0<r\le\ell$. Then $D$ has one box of each
+content, so $|D|=b_{r_0}+1$. Removing the end of a row $r>r_0$ disconnects rows $r-1$ and $r$,
+unless all rows above $r$ are emptied. That would require removing the north-east end box $e$
+from a top row $\{e\}$, but then $a_{r_0}=b_{r_0}=b_{r_0+1}+1$, so $e$ lies above a box of
+$D$ and is not maximal. Hence $B\subseteq\{e\}$. The box $e$ is an off-diagonal maximal box
+iff row $r_0$ has at least two boxes, that is, iff $\varepsilon=+1$, and then
+$D\setminus\{e\}$ is a connected ribbon with largest content $b_{r_0}-1$. Therefore
+\[ w(D)=-(-\tfrac12)^{|D|}+[\varepsilon=+1]\cdot2(-\tfrac12)^{|D|}=\varepsilon\,(-\tfrac12)^{|D|}. \qedhere \]
+\end{proof}
+
+In words: $T=A_o(I+SQS)$ with $Q=X-I$. The half-step removes an off-diagonal antichain and then
+deletes one part $\kappa_{r_0}$, at cost $2^{-\kappa_{r_0}}$, shrinking the parts below it. The
+identities of Lemma~\ref{lem:XP} and Proposition~\ref{prop:T} were also checked by computer
+for all strict partitions with parts at most $8$, and $T$ was compared with the binomial
+series for $(A_oA_e)^{1/2}$ for parts at most $6$.
+
 %======================================================================
 \section{Examples}\label{sec:examples}
 %======================================================================
@@ -1675,27 +1850,6 @@ standard-monomial-type basis of $H^0(X_\kappa,\omega_{X_\kappa}(j))$ indexed by 
 order-preserving maps of Theorem~\ref{thm:main}(b)? Which $X_\kappa$ are Gorenstein, in terms of
 the interior of $(\ord(P_\kappa),\Lambda)$?
 \end{question}
-
-\begin{conjecture}[A half-step operator]\label{conj:T}
-Let $T$ be the unipotent square root of $A_oA_e$ (the matrix of~\eqref{eq:star}), indexed by
-strict partitions ordered by inclusion. Then:
-\begin{enumerate}[label=(\alph*)]
-\item $s_{x+1/2}=T\,s_x$ for every $x$; equivalently, $T\,s_0=s_{1/2}$;
-\item each entry $T(\kappa,\nu)$ is $0$ or $\pm2^{-k}$. It is the product of weights of the
-connected components of $\theta=D(\kappa)\setminus D(\nu)$, where a component $D$ has weight:
-$1$ if $D$ is a single off-diagonal box; $0$ if $D$ has no diagonal box and at least two boxes;
-$0$ if $D$ contains at least two diagonal boxes; $0$ if $D$ contains exactly one diagonal box and
-is not a ribbon (that is, contains a $2\times2$ square); and $\varepsilon\,(-\tfrac12)^{|D|}$ if
-$D$ is a ribbon containing exactly one diagonal box, where $\varepsilon=+1$ if the left neighbour
-of the north-east end box of $D$ lies in $D$, and $\varepsilon=-1$ otherwise. For example, a
-single diagonal box has weight $\tfrac12$, and $T((3),\varnothing)=-\tfrac18$.
-\end{enumerate}
-\end{conjecture}
-
-Part (b) was checked on all $1716$ pairs at $m\le6$, by computing $T$ exactly from $A_o$ and
-$A_e$, and part (a), in the form $T\,s_0=s_{1/2}$, for $m\le6$. Neither part is
-used in this paper. A natural guess, that $T$ is given by a shifted Murnaghan--Nakayama rule,
-is false: the two agree only on single boxes, and their supports differ.
 
 \begin{question}[Orthogonal half-integers]
 On $\OG(m,2m+1)$ the half-integer values of $\HOG_\kappa$ have sporadic zeros, for example
