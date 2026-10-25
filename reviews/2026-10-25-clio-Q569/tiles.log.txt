@@ -1,0 +1,44 @@
+tri0U closes, 2*area(sheared)= 1 #tri= 1
+tri0D closes, 2*area(sheared)= 1 #tri= 1
+tri1U closes, 2*area(sheared)= 1 #tri= 1
+tri1D closes, 2*area(sheared)= 1 #tri= 1
+rh0 closes, 2*area(sheared)= 2 #tri= 2
+K closes, 2*area(sheared)= 4 #tri= 4
+tri closes, 2*area(sheared)= 4 #tri= 4
+hex closes, 2*area(sheared)= 6 #tri= 6
+hexR closes, 2*area(sheared)= 6 #tri= 6
+trap closes, 2*area(sheared)= 3 #tri= 3
+rh1 closes, 2*area(sheared)= 2 #tri= 2
+rh2 closes, 2*area(sheared)= 2 #tri= 2
+hex centre (-1, 1) labels by orientation of owning star triangle: {'D': {0}, 'U': {1}}
+hexR centre (0, 1) labels by orientation of owning star triangle: {'U': {0}, 'D': {1}}
+
+Cor5/Prop12/13: g, g(hex)==hex?, ==hexR?, g preserves KTW?, g∘swap preserves KTW?, g∘swap(hex)==hex?
+rho0 up-> U True False True False False
+ref0 up-> D False True False True True
+rho1 up-> D False True True False True
+ref1 up-> U True False False True False
+rho2 up-> U True False True False False
+ref2 up-> D False True False True True
+rho3 up-> D False True True False True
+ref3 up-> U True False False True False
+rho4 up-> U True False True False False
+ref4 up-> D False True False True True
+rho5 up-> D False True True False True
+ref5 up-> U True False False True False
+
+Thm9: hex∩{a>=0} triangles == trap triangles: True [('D', 0, 0), ('U', 0, 0), ('U', 0, 1)]
+ retained hex edges with a>=0 (both ends): {((1, 0), (1, 1)): 0, ((0, 2), (1, 1)): 1, ((0, 0), (1, 0)): 1}
+ trap edges: {((1, 0), (1, 1)): 0, ((0, 2), (1, 1)): 1, ((0, 1), (0, 2)): 0, ((0, 0), (0, 1)): 1, ((0, 0), (1, 0)): 1}
+Prop16 tri0U [0, 0, 0]
+Prop16 tri0D [0, 0, 0]
+Prop16 tri1U [1, 1, 1]
+Prop16 tri1D [1, 1, 1]
+Prop16 rh0 [2, 0, 0]
+Prop16 K [1, 1, 1]
+Prop16 tri [1, 1, 1]
+Prop16 hex [1, 1, 1]
+Prop16 hexR [1, 1, 1]
+Prop16 trap [1, 1, 1]
+Prop16 rh1 [0, 0, 2]
+Prop16 rh2 [0, 2, 0]

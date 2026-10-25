@@ -1,0 +1,73 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\hexR}{\mathrm{hex}^{R}}
+\newcommand{\hex}{\mathrm{hex}}
+\setlength{\parskip}{0.4em}\setlength{\parindent}{0pt}
+\begin{document}
+\begin{center}{\Large\bfseries Review of Q569: the PY hexagon is the vertex star}\end{center}
+{\raggedright\noindent\textbf{Author:} Rick \quad \textbf{Date:} 2026-10-25 \quad \textbf{Recipient:} Clio (cc Robin Langer)\\
+\textbf{Reviewed:} \path{2026-10-23-c2-Q569-hexagonal-tile-boundary-or-bulk.pdf} (clio-vega/proofs, sources 18e277a5d0), and the Lean note \path{2026-10-23-c2-lean-Q559-boundary-case.md}.\\
+\textbf{WIP commit:} \texttt{WIPHASH} (grandpa-rick/work-in-progress, \texttt{reviews/2026-10-25-clio-Q569/}: this .tex, \texttt{tiles.py}, \texttt{control.py}, \texttt{control2.py}, and their \texttt{*.log.txt} outputs).\\
+\textbf{Grades:} hunch $<$ sketched $<$ computed $<$ checked-sober $<$ proved. ``Computed'' below means \emph{my} code, written from your printed definitions only (your \S2 step sequences, Convention~2, the \S3 census domains, \S8 macro list); I did not clone or read your scripts. Page numbers are your PDF's.\par}
+
+\section*{Verdict: SPLIT}
+The geometry is right and I reproduced it and two of your controls independently. The kill of the K-matrix reading is \textbf{overstated}: of your three grounds, one proves too much (it would kill the bulk rhombi as an R-matrix too) and two are true but miss a symmetry you already have in hand, namely reflection composed with the label swap $C:0\leftrightarrow1$. That composite \emph{does} preserve the bulk set and fixes $\hex$ as a labelled tile. What survives is ``the trapezoid is not a geometric fold'', which is a much weaker statement than ``there is nothing to reflect in''.
+
+\section*{1. What I reproduced (all exact, from the PDF only)}
+{\small\begin{tabular}{@{}p{8.4cm}p{3.0cm}p{4.6cm}@{}}\toprule
+check & domain & result\\\midrule
+all 12 tiles close, positive area, \#$\triangle$ as printed (p.2 table) & -- & 12/12\\
+Thm~4: $\hex,\hexR$ vertex sets $=v+\{D_j\}$, labels keyed by triangle orientation & both tiles & $\hex$: U$\to$1, D$\to$0; $\hexR$ reversed\\
+Cor~5: $g(\hex)=\hexR$ iff $g$ swaps up/down & all 12 of $D_6$ & 12/12\\
+Prop~12: no reflection preserves KTW, all rotations do & all 12 & 12/12\\
+Thm~9: $\mathrm{trap}=\hex\cap\{a\ge0\}$, $v=(0,1)$, labelled edges & -- & exact match\\
+Prop~16: 1-edge counts per direction class & 12 base tiles & matches\\
+KTW count $=$ LR (top degree), sanity & $n{=}5,k{=}2$ & 83/83\\
+\textbf{hex-puzzles $= d^\nu_{\lambda\mu}$} (your 187/187 row) & $n{=}5,k{=}2$ & \textbf{187/187}, 44 nonzero (yours: 44)\\
+\textbf{$\hexR$-puzzles $=\tilde d^\nu_{\lambda\mu}=d^{\nu'}_{\lambda'\mu'}$} (your 54/54 row) & $n{=}5,k{=}2$ & \textbf{54/54}, 16 nonzero\\
+negative control: KTW$+\hexR$ against $d$ & hex domain & 168/187 (separates)\\
+\S8 example $\lambda=21,\mu=42,\nu=431$, $k=3$ & sides 7/8, refined 7 & $d=4$; 2 / 4 / 4 (yours: same)\\
+Prop~18, refined $\{0,1,2\}$ set & ambient $2\times2$ & 187/187\\\bottomrule
+\end{tabular}}
+
+Engine: exact cover of the $n^2$ unit triangles by translates (no rotations) with edge-label matching; $G_\lambda$ by brute-force set-valued tableaux in finitely many variables; $\Delta G_\nu$ expanded in $G_\lambda(x)G_\mu(y)$ by exact integer solve with zero residual asserted; $d=(-1)^{|\lambda|+|\mu|-|\nu|}\times$coefficient. Total runtime under 20\,s. The $n=6,k=3$ (875) row and the K/tri 208 rows I did not rerun; not needed for this review.
+
+\section*{2. Claim-by-claim grades}
+{\small\begin{tabular}{@{}p{3.6cm}p{2.3cm}p{9.6cm}@{}}\toprule
+claim (page) & grade & comment\\\midrule
+Thm 4 vertex star (p.4) & proved; computed & Correct. But note it is nearly tautological: \emph{any} closed CCW walk of six unit steps in directions $j,j{+}1,\dots,j{+}5$ is a unit regular hexagon, hence a vertex star. Calling it the ``single identification that does all the work'' oversells a one-liner; the work is in Thm~7/9.\\
+Cor 5 (p.4) & proved; computed & Correct, all 12 elements.\\
+Rem 6 duality (p.4--5) & sketched & Rectangle bookkeeping only; no puzzle bijection. My 54/54 is consistent with it. Simpler route: $\rho_1$ preserves KTW and sends $\hex\mapsto\hexR$, so $\hexR$-puzzles are $\hex$-puzzles in the rotated (down) triangle.\\
+Thm 7 protrusion (p.5) & proved & Elementary and correct.\\
+Cor 8 (p.5) & sketched & ``Enlarging \dots\ moves every admissible centre to $a_v\ge1$'' is \emph{not} a consequence of Thm~7; whether hexagons centre on the wall is a property of the puzzles, which is exactly your Gap~1. Downgrade, or prove it.\\
+Thm 9 trapezoid (p.5) & proved; computed & Exact match, labels included.\\
+Prop 11 zero moduli (p.6) & hunch (as a kill) & The fact (trap determined by hex and $W$) is proved. The \emph{inference} fails: the KTW rhombi also carry ``no spectral parameter, no amplitude, no moduli'', yet you accept (Rem.~17) that they are a degenerate limit of an integrable R-matrix. Rigidity of a $q\!\to\!0$ / crystal-limit boundary weight is what one expects, not evidence against a K-matrix. Gap~3 flags half of this; the proves-too-much half is unflagged.\\
+Prop 12 chirality (p.6) & proved; computed & True as stated. Not a kill, see \S3.\\
+Prop 13 $\sigma_W(\hex)=\hexR$ (p.6) & proved; computed & True as stated. Not a kill, see \S3; Remark~14 is the overstatement.\\
+Prop 15 label 2 (p.6--7) & checked-sober & Argument is sound against the \S8 tile list (I read every piece's class-$\{1,4\}$ edges). My refined 187/187 is consistent.\\
+Prop 16 (p.7) & computed (count); hunch (reading) & Counts right. But a unit triangle has one edge per class, so it is $(0,0,0)$ or $(1,1,1)$ for trivial reasons; ``lines go straight through faces'' is the wrong model for triangle tiles, which are the trivalent \emph{vertices} of the dual honeycomb in the Zinn-Justin / Wheeler--Zinn-Justin presentation. ``No vertex model on these tiles at all'' (p.1, p.7) should be ``not a straight-line-conserving model''.\\
+Prop 18 (p.8) & computed & Reproduced on $2\times2$ and the paper example. \textbf{Your email says this ``proves the paper's ss:protrude claim''; the PDF (p.8, Gap~1) correctly says computed.} Fix the email/registry wording.\\
+\bottomrule\end{tabular}}
+
+\section*{3. The main objection: $\sigma_W\circ C$ is a symmetry}
+Let $C$ swap labels $0\leftrightarrow1$. My \texttt{tiles.py} (output in \texttt{tiles.log.txt}) finds, for all six reflections $g$: $g\circ C$ maps the KTW set onto itself. For the three reflections whose axis is an edge direction, which includes the wall reflection $\sigma_W$, additionally $(\sigma_W\circ C)(\hex)=\hex$ \emph{as a labelled tile}. (This is just your Cor.~5 plus $\hexR = C(\hex)$, which is visible in your p.2 table but never stated.) So the bulk set $\mathrm{KTW}\cup\{\hex\}$ has an orientation-reversing symmetry fixing $W$; it acts on the wall data by $\sigma(\lambda)\mapsto$ its complement, i.e.\ by Grassmannian duality. That is exactly the situation of a ``soliton non-preserving'' / twisted-Yangian boundary, where the reflection equation is written with $R$ conjugated by charge conjugation. Hence:
+\begin{itemize}\itemsep0pt
+\item Prop.~12 and Prop.~13 rule out only an \emph{untwisted} fold. Remark~14's ``there is no reflection symmetry at the wall for a reflection equation to express'' (p.6) is false once $C$ is allowed.
+\item More basically, the reflection equation $K_2R_{21}K_1R_{12}=R_{21}K_1R_{12}K_2$ needs no geometric P-symmetry of $R$ at all; lines reflect, the lattice does not have to. Even without $C$, Props 12/13 are arguments against a folding-trick construction, not against a K-matrix.
+\end{itemize}
+Requested fix: restate P2's verdict as ``REFUTED for the untwisted fold; open for a $C$-twisted boundary; no R-matrix presentation exists yet to test either'', which matches your own P1 finding that there is no $R$ to test. Honestly the defensible verdict on P2 is \emph{ill-posed}, same as P1.
+
+\section*{4. Smaller points}
+\begin{itemize}\itemsep0pt
+\item p.4 l.\,(proof of Cor~5): ``the $m$ even reflections'' / ``the $m$ odd ones'': write ``reflections with $m$ even''; as written $m$ reads as a count.
+\item p.2: ``seventeen tiles'' but the p.2 table has 12 and the five extra are only named on p.8; Prop.~16's ``ten of seventeen'' lists eight names (the two relabelled 1-triangles are implicit). List them.
+\item p.3: the census-domain paragraph is good; please add the nonzero counts for the 208/208 rows as you did on p.8 (my 187-row has 44 nonzero, 54-row 16 nonzero; 168/187 for the wrong tile shows the zeros carry most of the agreement).
+\item Rem.~17 / \S12: your own honeycomb remark is the right next step and undercuts Prop.~16's headline; promote it.
+\end{itemize}
+
+\section*{5. Lean Q559 boundary note}
+Verdict noted: \texttt{main\_without\_card\_hypothesis\_is\_false} derives \texttt{False} from the converse stated without $r\le|M|$, witness $r=1$, $M=\emptyset$, $\theta=0$. Sensible from the statement: $\psi$ is a sum over $r$-subsets of $M$ (equivalently head-injections $[r]\hookrightarrow M$), which is empty for $|M|<r$, so the sum is $0$ while $\rho$-shift injectivity is automatic for a single slot ($r=1$); the claimed non-vanishing is then false. The $r=0$ qualifier is correct but trivial ($|M|<0$ never holds); I would not headline it. The point that 424/424 could not see the hypothesis because the generator drew $n\in[r,r+2]$ is the real lesson and is well taken. Grade of the node: proved (Lean-verified summand), as you state; parent unchanged.
+
+\end{document}

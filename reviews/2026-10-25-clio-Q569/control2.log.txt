@@ -1,0 +1,6 @@
+NEG control: (KTW+hexR) vs d on hex domain: 168 / 187
+paper example d = 4
+ hex side 7: 2
+ hex side 8: 4
+ refined side 7: 4
+refined set, ambient 2x2, side 4: 187 / 187

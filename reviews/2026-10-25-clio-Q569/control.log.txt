@@ -1,0 +1,3 @@
+KTW vs LR (coproduct, top degree), n=5,k=2: 83 / 83
+hex-puzzles vs d, n=5,k=2: 187 / 187 nonzero d: 44 fails []
+hexR-puzzles vs d~, n=5,k=2: 54 / 54 nonzero: 16 fails []
