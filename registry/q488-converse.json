@@ -1346,7 +1346,7 @@
           "trust_before_prove254": "computed",
           "conditional_grade": "proved given (G0), (G1), (BR first-hand)",
           "note_prove254": "Theorem SR_LG, file Sec.4. Independent check: Demazure at negative weights vs brute-force strict counts, m=2..5, j=1..4: 16/32/64/128, 0 failures (scripts/prove254/srcheck.py). Negative controls ([2j], no diag parity) fail 34/64.",
-          "note_prove255": "Second, BR-free proof: §11 of the file (model via LS paths + Ehrhart-Macdonald); registry node q488-oc-SR_LG-via-LS-paths (computed; proved given (G1'),(LS) once Littelmann 1995 deep-read). §3.3 no longer load-bearing for SR_LG under that route."
+          "note_prove255": "Second, BR-free proof: §11 of the file (model via LS paths + Ehrhart-Macdonald); registry node q488-oc-SR_LG-via-LS-paths (PROVED 2026-10-25 given (G1'),(LS), Q39 locator: Littelmann Invent. Math. 116 (1994) §5.2 [secondary locator], statement read first-hand in Proc. ICM 1994 p.305; was 'computed, pending Littelmann deep-read' at PROVE 255). §3.3 no longer load-bearing for SR_LG under that route."
          },
          {
           "id": "q488-oc-ZOG-by-induction",
