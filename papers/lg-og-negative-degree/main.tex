@@ -1,0 +1,1623 @@
+% Negative-degree Hilbert functions of Lagrangian and orthogonal Schubert varieties
+% First draft, 2026-10-25.  Source files (Rick's proof notes) and registry nodes are
+% recorded in LaTeX comments next to each result; they are not part of the paper.
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\CHECK}[1]{\textbf{[CHECK: #1]}}
+\newcommand{\LG}{\mathrm{LG}}
+\newcommand{\OG}{\mathrm{OG}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Om}{\Omega}
+\newcommand{\Omb}{\overline{\Omega}}
+\newcommand{\dg}{\mathrm{diag}}
+\newcommand{\HOG}{H^{\OG}}
+\newcommand{\ord}{\mathcal{O}}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\title[Negative-degree Hilbert functions of LG and OG Schubert varieties]{Negative-degree Hilbert functions of\\ Lagrangian and orthogonal Schubert varieties}
+\author{Rick (grandpa-rick), autonomous research agent}
+\thanks{Prepared for Robin Langer's publication queue. First draft, 25 October 2026.}
+
+\begin{document}
+
+\begin{abstract}
+Let $X_\kappa$ be the Schubert variety of dimension $|\kappa|$ in the Lagrangian
+Grassmannian $\LG(m,2m)$, indexed by a strict partition $\kappa$, and let
+$H_\kappa(j)=\chi(X_\kappa,\cO(j))$ be its Hilbert polynomial. For every $j\ge 1$, the
+number $(-1)^{|\kappa|}H_\kappa(-j)$ counts the strictly order-preserving maps from the
+shifted diagram of $\kappa$ to $\{1,\dots,2j-1\}$ that take even values on diagonal
+boxes. Equivalently, $H_\kappa$ is the Ehrhart polynomial of the order polytope of the
+shifted diagram with respect to the lattice that is $\Z$ on diagonal coordinates and
+$\tfrac12\Z$ off the diagonal. The half-integral coordinates come from short-root steps
+of Lakshmibai--Seshadri paths, which have bond $2$. Two proofs are given: one by
+Lakshmibai--Seshadri paths and Ehrhart--Macdonald reciprocity, and one by the
+$K$-theoretic Pieri rule of Buch and Ravikumar. As consequences, the integer zeros of
+$H_\kappa$ are exactly $-1,\dots,-\lceil r/2\rceil$, where $r$ is the length of a longest
+chain in the diagram, and the sign beyond them is $(-1)^{|\kappa|}$. The half-integer
+zeros and signs are determined completely, and $H_\kappa(-M/2)\neq 0$ for every odd
+$M\ge 2m+1$. For orthogonal Grassmannians $\OG(m,2m+1)$ the analogous statements follow
+classically from minuscule standard monomial theory; $K$-theoretic proofs are included.
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+
+%======================================================================
+\section{Introduction}\label{sec:intro}
+%======================================================================
+
+Let $X$ be a projective variety with an ample line bundle $L$, and let
+$H(j)=\chi(X,L^j)$ be its Hilbert polynomial. The values of $H$ at negative $j$ are where
+duality lives. If $X$ is Cohen--Macaulay, then Serre duality gives
+$(-1)^{\dim X}H(-j)=\chi(X,\omega_X\otimes L^{j})$. When the higher cohomology of
+$\omega_X\otimes L^j$ vanishes, the negative values count sections of twisted canonical
+sheaves. The first $j$ at which they become nonzero measures how negative $\omega_X$ is.
+
+For Schubert varieties in a Grassmannian, or more generally in a minuscule $G/P$, all of
+this is combinatorics. The homogeneous coordinate ring of a Schubert variety is an algebra
+with straightening law on a distributive lattice $J(P)$ and degenerates to the Hibi ring
+of that lattice~\cite{Hibi87,GL96,Seshadri}. Its Hilbert function is Stanley's order
+polynomial $j\mapsto\Om(P,j+1)$. Stanley's reciprocity theorem
+$\Om(P,-n)=(-1)^{|P|}\Omb(P,n)$~\cite{Stanley70,EC1} then expresses the negative values as
+counts of strictly order-preserving maps; these index a basis of the canonical module of the
+Hibi ring.
+
+The Lagrangian Grassmannian $\LG(m,2m)=\mathrm{Sp}_{2m}/P_m$ is cominuscule but not
+minuscule, and the order-polynomial picture fails at once. Its Schubert varieties
+$X_\kappa$ are indexed by strict partitions $\kappa$ with parts at most $m$. The relevant
+poset is the shifted diagram $P_\kappa$ of $\kappa$, exactly as for the orthogonal
+Grassmannian $\OG(m,2m+1)$, but the Hilbert functions are different. For $\kappa=(2,1)$,
+$X_\kappa=\LG(2,4)$ is a three-dimensional quadric with $H(j)=(j+1)(j+2)(2j+3)/6$. The
+order polynomial of the three-element chain $P_{(2,1)}$ is instead $\binom{j+3}{3}$, the
+Hilbert function of $\OG(2,5)\cong\mathbb{P}^3$. This paper answers the question of
+what replaces Stanley reciprocity on $\LG$.
+
+\subsection{Main results}
+For a strict partition $\kappa=(\kappa_1>\dots>\kappa_\ell>0)$, the shifted diagram
+$D(\kappa)$ is the set of boxes $(a,b)$ with $0\le a<\ell$ and $a\le b\le a+\kappa_{a+1}-1$.
+We write $P_\kappa$ for $D(\kappa)$ with the product order ($(a,b)\le(a',b')$ iff $a\le a'$
+and $b\le b'$). The boxes $(a,a)$ are the \emph{diagonal boxes}. Let $r(\kappa)$ denote
+the number of elements of a longest chain in $P_\kappa$; by Lemma~\ref{lem:chain},
+$r(\kappa)=\max_i(\kappa_i+2i-2)$. For $\kappa$ with parts at most $m$, let
+$X_\kappa\subseteq\LG(m,2m)$ be the Schubert variety of dimension $|\kappa|$
+(\S\ref{ssec:schubert}), and put $H_\kappa(j)=\chi(X_\kappa,\cO(j))$, where $\cO(1)$ is
+the ample generator of $\mathrm{Pic}\,\LG(m,2m)$.
+
+\begin{theorem}[Strict reciprocity on $\LG$]\label{thm:main}
+Let $\kappa$ be a strict partition with parts at most $m$.
+\begin{enumerate}[label=(\alph*)]
+\item For every integer $j\ge 0$, $H_\kappa(j)$ is the number of order-preserving maps
+\[ g\colon P_\kappa\to\{0,1,\dots,2j\}\quad\text{with } g(x) \text{ even for every diagonal box } x. \]
+\item For every integer $j\ge 1$, $(-1)^{|\kappa|}H_\kappa(-j)$ is the number of strictly
+order-preserving maps
+\[ f\colon P_\kappa\to\{1,\dots,2j-1\}\quad\text{with } f(x) \text{ even for every diagonal box } x. \]
+\item Equivalently, $H_\kappa(j)=\#\bigl(j\,\ord(P_\kappa)\cap\Lambda\bigr)$ for all $j$.
+Here $\ord(P_\kappa)\subseteq\R^{P_\kappa}$ is the order polytope and $\Lambda$ is the
+lattice of vectors whose diagonal coordinates lie in $\Z$ and whose other coordinates lie
+in $\tfrac12\Z$. That is, $H_\kappa$ is the Ehrhart polynomial of $\ord(P_\kappa)$ with
+respect to $\Lambda$.
+\end{enumerate}
+\end{theorem}
+
+Part~(a) is a short consequence of the Lakshmibai--Seshadri path model and may be known to
+experts (see \S\ref{ssec:lit}). The content of the theorem is~(b), together with the
+lattice-polytope structure~(c) that connects (a) and (b).
+
+\begin{example}\label{ex:intro21}
+Take $\kappa=(2,1)$ and $m=2$, so $X_\kappa=\LG(2,4)$. The poset $P_\kappa$ is the chain
+$(0,0)<(0,1)<(1,1)$, and both ends are diagonal. At $j=3$ the only strictly increasing
+triple $x<y<z$ in $\{1,\dots,5\}$ with $x,z$ even is $(2,3,4)$. At $j=4$ there are $5$
+such triples, and at $j=1,2$ there are none. This matches
+$H(-1)=H(-2)=0$, $H(-3)=-1$ and $H(-4)=-5$ for $H(j)=(j+1)(j+2)(2j+3)/6$.
+\end{example}
+
+For the orthogonal Grassmannian $\OG(m,2m+1)$, with Schubert varieties $X^{\OG}_\kappa$ of
+dimension $|\kappa|$ and the spinor line bundle as $\cO(1)$, the analogue is classical.
+
+\begin{theorem}[Strict reciprocity on $\OG$]\label{thm:og}
+For every strict $\kappa$ with parts at most $m$, $\HOG_\kappa(j)=\Om(P_\kappa,j+1)$ for
+all $j$. For $j\ge1$, $(-1)^{|\kappa|}\HOG_\kappa(-j)=\Omb(P_\kappa,j-1)$, the number of
+strictly order-preserving maps $P_\kappa\to\{1,\dots,j-1\}$.
+\end{theorem}
+
+Theorem~\ref{thm:og} is a composite of classical results: minuscule standard monomial
+theory and Stanley reciprocity (Remark~\ref{rem:og-classical}). We also give a $K$-theoretic
+proof (\S\ref{ssec:og-k}) because it runs in parallel with the $\LG$ case.
+
+The counts in Theorems~\ref{thm:main} and~\ref{thm:og} locate the integer zeros exactly.
+
+\begin{theorem}[The integer window]\label{thm:window}
+Put $W(\kappa)=\lceil r(\kappa)/2\rceil$ on $\LG$ and $W(\kappa)=r(\kappa)$ on $\OG$, and
+$s_j(\kappa)=(-1)^{|\kappa|}H_\kappa(-j)$ (resp.\ with $\HOG_\kappa$). Then
+\[ 0=s_1(\kappa)=\dots=s_{W}(\kappa)<s_{W+1}(\kappa)\le s_{W+2}(\kappa)\le\cdots. \]
+In particular, the zero set of $H_\kappa$ on the negative integers is exactly
+$\{-1,\dots,-W(\kappa)\}$, and $\sgn H_\kappa(-j)=(-1)^{|\kappa|}$ for $j>W(\kappa)$.
+\end{theorem}
+
+Since $H_\kappa$ is a polynomial, it can be evaluated at half-integers. These values are
+not artefacts: $2^mH_\kappa(-a-\tfrac12)=\chi(X_\kappa,\textstyle\bigwedge^{\bullet}U\otimes\cO(-a))$,
+where $U$ is the tautological subbundle (Proposition~\ref{prop:bridge} and
+Remark~\ref{rem:wedgeU}). Their zeros obey the following law. Write $\kappa'$ for $\kappa$
+with its largest part removed, and $N_\kappa(j)$ for the count in
+Theorem~\ref{thm:main}(b), with $N_\varnothing\equiv1$.
+
+\begin{theorem}[Half-integer values]\label{thm:HZ}
+Let $\kappa\neq\varnothing$. Then $H_\kappa(-\tfrac12)=2^{-\kappa_1}$, and for every
+integer $a\ge 1$:
+\begin{enumerate}[label=(\roman*)]
+\item $H_\kappa(-a-\tfrac12)=0$ if and only if $\kappa'\ne\varnothing$ and
+$a\le\lceil r(\kappa')/2\rceil$;
+\item otherwise, $\sgn H_\kappa(-a-\tfrac12)=(-1)^{|\kappa|-\kappa_1}$ if $2a\le\kappa_1$
+and $(-1)^{|\kappa|}$ if $2a\ge\kappa_1$;
+\item $|H_\kappa(-a-\tfrac12)|\ge 2^{-\kappa_1}N_{\kappa'}(a)$, with equality when
+$2a\le\kappa_1$, and $2^{\kappa_1}H_\kappa(-a-\tfrac12)\in\Z$.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}\label{cor:OC}
+For every odd $M\ge 2m+1$, the number $(-1)^{|\kappa|}2^mH_\kappa(-M/2)$ is a positive
+integer. In particular $H_\kappa$ has no zero at half-integers $\le -m-\tfrac12$.
+\end{corollary}
+
+The vanishing half of Theorem~\ref{thm:HZ}(i) also has a separate proof
+(Theorem~\ref{thm:Z}) by induction over hyperplane sections. That proof uses only the
+\emph{support} of the $K$-theoretic Pieri rule, not its coefficients.
+
+\subsection{Why the factor two}\label{ssec:why}
+The lattice $\Lambda$ has a simple origin. In the Lakshmibai--Seshadri path model, a path of
+shape $j\omega_m$ is a decreasing sequence of Schubert varieties together with rational
+times at which the path changes direction. A time $a$ is allowed between two consecutive
+directions exactly when $a\,\langle\tau(j\omega_m),\beta^\vee\rangle\in\Z$ for the roots
+$\beta$ along a Bruhat chain joining them. On $\LG$, adding an off-diagonal box to a
+shifted diagram is a reflection in a short root $\varepsilon_i-\varepsilon_{i+1}$, and the
+relevant pairing (the \emph{bond}) is $2$. Adding a diagonal box is a reflection in the long
+root $2\varepsilon_m$, with bond $1$ (Lemma~\ref{lem:bonds}). So off-diagonal boxes may enter
+at half-integral multiples of $1/j$, and diagonal boxes only at integral ones; this is the
+lattice $\Lambda$. Ehrhart--Macdonald reciprocity exchanges the closed polytope (weak
+inequalities, Theorem~\ref{thm:main}(a)) with its interior (strict inequalities,
+Theorem~\ref{thm:main}(b)). Under this exchange, integrality of the diagonal coordinates
+becomes the parity condition. On $\OG$ the weight $\omega_m$ is minuscule, every bond is
+$1$, and one recovers Stanley's order polynomials.
+
+The same dichotomy appears on the $K$-theoretic side. In Buch and Ravikumar's Pieri rule for
+$\LG$~\cite{BR12}, the boxes of a skew shape carry primed and unprimed letters, and diagonal
+boxes must be unprimed. In our recursion an odd value plays the role of a primed letter
+(Remark~\ref{rem:primes}). We do not claim more than this dictionary. In particular, we have
+no general statement for other cominuscule, non-minuscule $G/P$ (Question~\ref{q:cominuscule}).
+
+\subsection{Method}
+The paper contains two proofs of Theorem~\ref{thm:main}.
+
+The first proof (\S\ref{sec:ls}) is elementary given two classical inputs: the Demazure
+character formula and Littelmann's path form of it~\cite{Lit94,LitICM}. We compute the
+Bruhat covers on $W/W_{\omega_m}$ and their bonds. We then show that LS paths of shape
+$j\omega_m$ are in bijection with the maps in Theorem~\ref{thm:main}(a), and finish with
+Ehrhart--Macdonald reciprocity.
+
+The second proof (\S\ref{sec:ktheory}) starts from a hyperplane section:
+$H_\kappa(j)-H_\kappa(j-1)=\sum_\rho c_\rho H_\rho(j)$, where the $c_\rho$ are the
+$K$-theoretic Pieri coefficients for multiplication by the Schubert divisor. We show
+(Theorem~\ref{thm:Q30}) that $c_\rho=(-1)^{|\theta|-1}V(\theta)$, where
+$\theta=D(\kappa)\setminus D(\rho)$ and $V(\theta)$ counts strictly order-preserving maps
+$\theta\to\{e<o\}$ that send diagonal boxes to $e$. The argument uses a recursion of Buch and
+Ravikumar that they prove in full~\cite[Thm.~5.5]{BR12}. With this, the negative-degree
+recursion becomes the recursion that peels the top two values off a strict count, and no
+reciprocity theorem is needed. The second proof is longer, but it extends further: the same
+recursion, started at the half-integer anchor $H_\kappa(-\tfrac12)=2^{-\kappa_1}$, proves
+Theorem~\ref{thm:HZ}.
+
+\subsection{Relation to the literature}\label{ssec:lit}
+On the positive side, De Concini's symplectic standard tableaux~\cite{DeC79} and Littelmann's
+LS paths~\cite{Lit94} give bases of $H^0(X_\kappa,\cO(j))$. Theorem~\ref{thm:main}(a)
+follows quickly from the latter.\footnote{R.~Dehy~\cite{Dehy98}, as reported by
+Mathieu~\cite[\S4]{Mat95}, equips $\{u\le w\}$ with a simplicial structure carrying an
+integral structure $P_w(n)$, and uses LS paths to interpret dimensions of Demazure modules as
+Ehrhart polynomials. Mathieu records that it was open whether $P_w$ can always be realised as
+a lattice polytope. We have not read~\cite{Dehy98} first-hand. As far as Mathieu's summary
+shows, it does not contain the lattice $\Lambda$ or Theorem~\ref{thm:main}(b), but it may
+anticipate the Ehrhart viewpoint of \S\ref{sec:ls}.}
+Chirivì's semi-toric degenerations~\cite{Chi00} and the recent work of Chirivì, Costa Cesari,
+Fang and Littelmann~\cite{CCFL} relate LS paths on chains with prescribed bonds to lecture hall
+polytopes; their Gorenstein results concern interior LS paths on each toric component. We did
+not find in these works a statement about Schubert varieties in $\LG$ specifically, or about
+$\chi(X_\kappa,\cO(-j))$. Stembridge's enriched $P$-partitions~\cite{Stem97} satisfy a
+\emph{self}-reciprocity, which is a different statement. For $\OG$, Theorem~\ref{thm:og} is
+classical (Remark~\ref{rem:og-classical}). The $K$-theoretic Pieri rule we use is that of
+Buch and Ravikumar~\cite{BR12}. To the best of our knowledge, Theorem~\ref{thm:main}(b),
+Theorem~\ref{thm:Q30} as a closed formula, and the half-integer results
+(Theorem~\ref{thm:HZ}) have not appeared before.
+
+\subsection{Outline}
+Section~\ref{sec:prelim} fixes notation and lists the cited inputs.
+Section~\ref{sec:ls} gives the LS-path proof of Theorem~\ref{thm:main}.
+Section~\ref{sec:ktheory} gives the $K$-theoretic proof, including the closed form of the
+Pieri coefficients and the $\OG$ case. Section~\ref{sec:window} proves
+Theorem~\ref{thm:window} in two ways. Section~\ref{sec:half} treats half-integers:
+Theorem~\ref{thm:HZ}, Corollary~\ref{cor:OC}, and the hyperplane-section proof of the
+vanishing half. Section~\ref{sec:examples} collects examples, including a complete table for
+$\LG(3,6)$. Section~\ref{sec:open} lists open questions.
+
+%======================================================================
+\section{Preliminaries}\label{sec:prelim}
+%======================================================================
+
+\subsection{Shifted diagrams}\label{ssec:shifted}
+Let $\Delta_m=\{(a,b)\in\Z^2:0\le a\le b\le m-1\}$, ordered by the product order. We call $a$
+the row and $b$ the column of $(a,b)$, and we draw row $a$ above row $a+1$. Then
+$x\le y$ means that $x$ is weakly north-west of $y$. For a strict partition $\kappa$ with
+$\kappa_1\le m$, $D(\kappa)\subseteq\Delta_m$ is the shifted diagram defined in the
+introduction, and $P_\kappa=(D(\kappa),\le)$. The diagonal box $(a,a)$ is the leftmost box of
+row $a$. For $\rho\subseteq\kappa$ (meaning $\rho_i\le\kappa_i$ for all $i$), row $a$ of
+$D(\rho)$ is an initial segment of row $a$ of $D(\kappa)$.
+
+\begin{lemma}\label{lem:ideals}
+The map $\kappa\mapsto D(\kappa)$ is a bijection from strict partitions with parts at most
+$m$ to order ideals of $\Delta_m$, and $\rho\subseteq\kappa$ iff $D(\rho)\subseteq D(\kappa)$.
+Consequently, for $\rho\subseteq\kappa$ the set $\theta=D(\kappa)\setminus D(\rho)$ is an
+up-set of $P_\kappa$, and every up-set of $P_\kappa$ arises in this way from a unique $\rho$.
+\end{lemma}
+
+\begin{proof}
+$D(\kappa)$ is clearly an order ideal. Conversely, let $I$ be an order ideal. If
+$(a,b)\in I$ and $b>a$, then $(a,b-1)\in I$, so each row of $I$ is an interval starting on
+the diagonal. If $(a,b)\in I$ with $a\ge1$, then $(a-1,b)\in I$, so row $a-1$ reaches at
+least column $b$, that is, it is strictly longer than row $a$. Hence the row lengths form a
+strict partition. The remaining statements follow, since the complement of an up-set of
+$P_\kappa$ is an order ideal of $P_\kappa$, hence of $\Delta_m$.
+\end{proof}
+
+\begin{lemma}\label{lem:chain}
+$r(\kappa)=1+\max\{a+b:(a,b)\in D(\kappa)\}=\max_{1\le i\le\ell(\kappa)}(\kappa_i+2i-2)$, and
+$r(\varnothing)=0$.
+\end{lemma}
+
+\begin{proof}
+Along a chain $x_1<\dots<x_r$ the coordinate sum strictly increases, so
+$r\le1+\max(a+b)$. Conversely, for $(a,b)\in D(\kappa)$ the staircase path
+$(0,0),(0,1),(1,1),(1,2),\dots,(a,a),(a,a+1),\dots,(a,b)$ consists of $a+b+1$ boxes. Each of
+them lies below $(a,b)$, so all of them lie in the order ideal $D(\kappa)$, and the path is a
+chain. The last box of row $i-1$ is $(i-1,i+\kappa_i-2)$, with coordinate sum
+$\kappa_i+2i-3$.
+\end{proof}
+
+For example, $r(4,3,2,1)=7$ and $r(3,2)=4$. Write $\kappa'=(\kappa_2,\kappa_3,\dots)$. The map
+$(a,b)\mapsto(a-1,b-1)$ identifies the rows $\ge1$ of $P_\kappa$ with $P_{\kappa'}$,
+preserving order and diagonal boxes.
+
+\subsection{Counting functions}\label{ssec:counts}
+For a finite poset $P$ and $n\ge0$, let $\Om(P,n)$ (resp.\ $\Omb(P,n)$) be the number of
+order-preserving (resp.\ strictly order-preserving) maps $P\to[n]=\{1,\dots,n\}$. For
+$D\subseteq P$, let
+\[ N(P,D;n)=\#\{f\colon P\to[n]\ \text{strictly order-preserving}: f(D)\subseteq2\Z\}. \]
+For strict $\nu\subseteq\kappa$ and $j\ge1$ put
+\[ N_{\kappa/\nu}(j)=N\bigl(D(\kappa)\setminus D(\nu),\ \text{diagonal boxes};\ 2j-1\bigr),\qquad N_\kappa(j)=N_{\kappa/\varnothing}(j), \]
+so $N_\varnothing\equiv1$. For $N\ge0$ let $F_\kappa(N)$ be the number of order-preserving
+$g\colon P_\kappa\to\{0,\dots,N\}$ that are even on diagonal boxes.
+
+\begin{lemma}\label{lem:Npos}
+Let $\kappa\ne\varnothing$ and $r=r(\kappa)$.
+\begin{enumerate}[label=(\alph*)]
+\item $N_\kappa(j)>0$ iff $j\ge\lceil r/2\rceil+1$, and $N_\kappa(j)\le N_\kappa(j+1)$ for all $j\ge1$.
+\item $\Omb(P_\kappa,n)>0$ iff $n\ge r$, and $\Omb(P_\kappa,n)\le\Omb(P_\kappa,n+1)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) The map $f(a,b)=a+b+2$ is strictly order-preserving with values in $[2,r+1]$
+(Lemma~\ref{lem:chain}), and $f(a,a)=2a+2$ is even. Conversely, along the staircase chain
+of Lemma~\ref{lem:chain}, $f(0,0)\ge2$ because $f(0,0)$ is even, and $f$ increases strictly
+over $r$ boxes, so its last value is at least $r+1$. Hence $N_\kappa(j)>0$ iff
+$2j-1\ge r+1$. Because $2j-1$ is odd, this is $j\ge r/2+1$ for $r$ even and
+$j\ge(r+3)/2$ for $r$ odd, that is, $j\ge\lceil r/2\rceil+1$. Monotonicity holds because
+$[2j-1]\subseteq[2j+1]$, and the inclusion preserves parity. (b) is the same argument with
+$f(a,b)=a+b+1$ and no parity constraint.
+\end{proof}
+
+\subsection{Reciprocity}\label{ssec:reciprocity}
+Let $Q\subseteq\R^d$ be a $d$-dimensional polytope whose vertices lie in a lattice
+$\Gamma\subseteq\R^d$ of rank $d$. Then $L_Q(t)=\#(tQ\cap\Gamma)$ is a polynomial in
+$t\in\Z_{\ge0}$ of degree $d$. \emph{Ehrhart--Macdonald reciprocity}~\cite{Mac71,BeckRobins}
+says that $L_Q(-t)=(-1)^d\#(\interior(tQ)\cap\Gamma)$ for $t\ge1$. (For $\Gamma\ne\Z^d$,
+apply a linear isomorphism $\Gamma\cong\Z^d$.) The order polytope of a finite poset $P$ is
+\[ \ord(P)=\{y\in[0,1]^P: x\le x'\Rightarrow y_x\le y_{x'}\}. \]
+It is full-dimensional, and its vertices are the indicator vectors of the up-sets of
+$P$~\cite{Sta86}. Its interior is cut out by the strict versions of the facet inequalities,
+namely $0<y_x<1$ and $y_x<y_{x'}$ for $x<x'$. \emph{Stanley's reciprocity}~\cite{Stanley70},
+\cite[\S3.15]{EC1} says that $\Om(P,-n)=(-1)^{|P|}\Omb(P,n)$ for $n\ge0$.
+\CHECK{theorem number in EC1, 2nd ed., not verified; cited by section.}
+
+\subsection{Schubert varieties}\label{ssec:schubert}
+\emph{Type $C$.} Let $G=\mathrm{Sp}_{2m}$ with $\varepsilon$-coordinates, simple roots
+$\alpha_i=\varepsilon_i-\varepsilon_{i+1}$ ($i<m$) and $\alpha_m=2\varepsilon_m$, and
+$\omega=\omega_m=\varepsilon_1+\dots+\varepsilon_m$. Coroots are
+$(\varepsilon_i\pm\varepsilon_k)^\vee=\varepsilon_i\pm\varepsilon_k$ and
+$(2\varepsilon_i)^\vee=\varepsilon_i$. Let $P\supseteq B$ be the maximal parabolic subgroup
+with $W_P=\mathrm{Stab}_W(\omega)\cong S_m$. Then $G/P=\LG(m,2m)$, and
+$L_\omega=\cO(1)$ is the ample generator of the Picard group. The orbit $W\omega$ is
+$\{\pm1\}^m\cong W/W_P$. For a sign vector $\mu$, let $w_\mu\in W^P$ be the minimal coset
+representative with $w_\mu\omega=\mu$, and let
+$X_\mu=\overline{Bw_\mu P/P}$, of dimension $\ell(w_\mu)$. Put
+$\kappa(\mu)=\{m-i+1:\mu_i=-1\}$, a strict partition with parts at most $m$. By
+Lemma~\ref{lem:bonds} below, $\mu\mapsto\kappa(\mu)$ is a bijection and
+$\dim X_\mu=|\kappa(\mu)|$. We write $X_\kappa=X_\mu$ and $w_\kappa=w_\mu$ when
+$\kappa=\kappa(\mu)$. Thus $w_\kappa\omega=v_\kappa$, the sign vector with $-1$ exactly in
+positions $m+1-k$, $k\in\kappa$.
+
+\emph{Type $B$.} Let $G=\mathrm{Spin}_{2m+1}$ with $\alpha_m=\varepsilon_m$ (short),
+$\alpha_m^\vee=2\varepsilon_m$, and $\omega_m=\tfrac12(\varepsilon_1+\dots+\varepsilon_m)$.
+Then $G/P_m=\OG(m,2m+1)$ and $L_{\omega_m}$ is the spinor line bundle, the ample generator.
+Schubert varieties $X^{\OG}_\kappa$ are indexed in the same way.
+
+For either type, $H_\kappa(j)=\chi(X_\kappa,L^j)$ is a polynomial in $j$ of degree
+$|\kappa|$~\cite{Kleiman66}, and $H_\varnothing\equiv1$ because $X_\varnothing$ is a point.
+
+\begin{remark}[Two indexings]\label{rem:indexing}
+Buch and Ravikumar~\cite{BR12} index Schubert varieties by codimension: $X^\lambda$ has
+codimension $|\lambda|$, and we put $\lambda^\vee=[m]\setminus\lambda$ (as sets of parts).
+In \S\ref{sec:ktheory} we use that $X_\kappa$ is a $G$-translate of $X^{\kappa^\vee}$, so the
+two have the same Hilbert polynomial and the same class in $K(X)$.
+\CHECK{this dictionary is used but not derived from BR's definitions in the source notes. It
+is confirmed computationally: the $K$-class $[\cO_{X_\kappa}]\cdot\cO^1$ computed from
+Demazure characters in the convention above agrees with BR's formula in all $46$ cases
+checked ($m\le5$), and the Demazure Hilbert polynomials agree with the strict counts of
+Theorem~\ref{thm:main}(b) at $m\le5$. Note that the poset of shifted diagrams alone does not
+fix the dictionary: for $m=3$ it has an automorphism exchanging $(3)$ and $(2,1)$, whose
+Hilbert polynomials differ.}
+\end{remark}
+
+\subsection{Demazure operators and cited inputs}\label{ssec:inputs}
+For a simple root $\alpha_i$, the Demazure operator on $\Z[\text{weights}]$ is
+$D_if=(f-e^{-\alpha_i}s_if)/(1-e^{-\alpha_i})$. For $n=\langle\lambda,\alpha_i^\vee\rangle$,
+\[ D_ie^\lambda=\begin{cases} e^\lambda+e^{\lambda-\alpha_i}+\dots+e^{s_i\lambda}, & n\ge0,\\ 0, & n=-1,\\ -(e^{\lambda+\alpha_i}+\dots+e^{s_i\lambda-\alpha_i}), & n\le-2.\end{cases} \]
+For a reduced word $w=s_{i_1}\cdots s_{i_k}$, put $D_w=D_{i_1}\circ\dots\circ D_{i_k}$; it
+does not depend on the reduced word. Littelmann's operator
+$\Lambda_\alpha(e^\mu)=(e^{\mu+\rho}-e^{s_\alpha(\mu+\rho)})/(1-e^{-\alpha})\cdot e^{-\rho}$
+equals $D_\alpha$, because $s_\alpha(\mu+\rho)=s_\alpha\mu+\rho-\alpha$ for simple $\alpha$.
+
+The following inputs are standard. We cite them and do not reprove them.
+\begin{enumerate}[label=(G\arabic*),start=0,leftmargin=*]
+\item (Chevalley.) $\mathrm{Pic}\,X=\Z L$, and the unique Schubert divisor $X^{(1)}$ is
+the reduced zero scheme of a section of $L$. Hence $\cO^1:=[\cO_{X^{(1)}}]=1-[L^{-1}]$ in
+$K(X)$.
+\item (Demazure character formula~\cite{Dem74,Jos85,And85,Ram85,Kum87,Mat88};
+see~\cite[Ch.~3]{BK05}.) For $w\in W^P$ and dominant $\lambda$ with
+$W_P\subseteq\mathrm{Stab}_W(\lambda)$, $H^i(X_w,L_\lambda)=0$ for $i>0$, and
+$\operatorname{char}H^0(X_w,L_\lambda)^*=D_w(e^\lambda)$.
+\end{enumerate}
+\begin{enumerate}[label=(LS),leftmargin=*]
+\item (Littelmann~\cite[\S5.2]{Lit94}; see~\cite[\S8, p.~305]{LitICM}.) For dominant
+$\lambda$ and $w\in W/W_\lambda$, $D_w(e^\lambda)=\sum_\pi e^{\pi(1)}$, where the sum runs
+over LS paths $\pi$ of shape $\lambda$ with initial direction $\le w$. This holds for every
+symmetrizable Kac--Moody algebra, in particular in type $C_m$.
+\CHECK{the \S5.2 locator in Invent.\ Math.\ 116 is secondary (quoted from Chirivì--Fang--Littelmann,
+arXiv:2207.08904); the statement itself was read in the ICM 1994 survey, p.~305.}
+\end{enumerate}
+\begin{enumerate}[label=(BR),leftmargin=*]
+\item (Buch--Ravikumar~\cite{BR12}.) The $K$-theoretic Pieri rule for $\LG(m,2m)$ and
+$\OG(m,2m+1)$; the precise statements used are quoted in \S\ref{ssec:BR}.
+\end{enumerate}
+Combining (G1) with (LS) gives
+$h^0(X_\kappa,\cO(j))=\#\{\text{LS paths of shape }j\omega\text{ with initial direction}\le w_\kappa\}$.
+Only this count is used in \S\ref{sec:ls}.
+
+The next lemma lets us evaluate Demazure expressions at non-integral weights. Work with
+analytic germs at $h=0$ on $\mathfrak h=\C^m$, with $e^\mu(h)=e^{\langle\mu,h\rangle}$ for
+$\mu\in\C^m$. Each $D_i$ maps germs to germs, because the numerator vanishes on
+$\alpha_i(h)=0$ and $1-e^{-\alpha_i}$ is $\alpha_i$ times a unit.
+
+\begin{lemma}[Polynomial extension]\label{lem:P}
+For $w\in W$, $P_w(\lambda):=[D_we^\lambda](0)$ is a polynomial in $\lambda\in\C^m$ of degree
+at most $\ell(w)$. Given (G1), $H_\kappa(j)=P_{w_\kappa}(j\omega)$ for every $j\in\C$.
+\end{lemma}
+
+\begin{proof}
+Let $\mathfrak m$ be the maximal ideal of germs at $0$. For $f\in\mathfrak m^k$ with $k\ge1$,
+\[ D_if=\frac{f-s_if}{1-e^{-\alpha_i}}+s_if, \]
+and $(f-s_if)/\alpha_i\in\mathfrak m^{k-1}$. Hence $D_i(\mathfrak m^k)\subseteq\mathfrak m^{k-1}$
+and $D_w(\mathfrak m^{\ell(w)+1})\subseteq\mathfrak m$. Expanding
+$e^\lambda=\sum_{k\le\ell(w)}\langle\lambda,h\rangle^k/k!+R$ with $R\in\mathfrak m^{\ell(w)+1}$
+shows that $P_w(\lambda)$ is a polynomial in $\lambda$. For integral $\lambda$, $D_we^\lambda$
+is a Laurent polynomial, and its value at $h=0$ is its coefficient sum. By (G1),
+$H_\kappa(j)=P_{w_\kappa}(j\omega)$ for integers $j\ge0$, and both sides are polynomials in
+$j$.
+\end{proof}
+
+\begin{lemma}[The anchor]\label{lem:anchor}
+If $\kappa\ne\varnothing$, then $H_\kappa(-1)=0$, both on $\LG$ and on $\OG$.
+\end{lemma}
+
+\begin{proof}
+Let $w=w_\kappa$. Since $w$ is minimal in $wW_P$, $ws_i>w$ for every $i\ne m$. Since $w\ne e$,
+it has a right descent, so $ws_m<w$, and we may write $w=w's_m$ with lengths adding. Then
+$D_w=D_{w'}D_m$, and $D_m$ acts first. In both types
+$\langle-\omega_m,\alpha_m^\vee\rangle=-1$, so $D_me^{-\omega_m}=0$. By
+Lemma~\ref{lem:P}, $H_\kappa(-1)=P_w(-\omega_m)=0$.
+\end{proof}
+
+%======================================================================
+\section{The LS-path proof of strict reciprocity}\label{sec:ls}
+%======================================================================
+% Source: proofs/2026-10-25-crownF-strict-reciprocity.md §11 (PROVE 255).
+% Registry: q488-oc-ls-bijection (proved), q488-oc-SR_LG-via-LS-paths (proved, given (G1'),(LS)),
+%           q488-oc-ls-parity-model (proved).
+
+This section proves Theorem~\ref{thm:main} using only (G1) and (LS). It uses neither
+the Buch--Ravikumar Pieri rule nor (G0).
+
+\subsection{LS paths}
+We recall Littelmann's definition~\cite{Lit94,LitICM}. Let $\lambda$ be dominant, and give
+$W^\lambda=W/W_\lambda$ the Bruhat order. For $\sigma>\tau$ in $W^\lambda$ and a rational
+$a\in(0,1)$, an \emph{$a$-chain} for $(\sigma,\tau)$ is a sequence of Bruhat covers
+$\sigma=\kappa_0>\kappa_1>\dots>\kappa_r=\tau$ with $\kappa_{k-1}=s_{\beta_k}\kappa_k$
+($\beta_k>0$) and $a\langle\kappa_k(\lambda),\beta_k^\vee\rangle\in\Z$ for all $k$. An
+\emph{LS path of shape $\lambda$} is a pair
+\[ \pi=(\tau_1>\tau_2>\dots>\tau_s\ ;\ 0=a_0<a_1<\dots<a_s=1) \]
+such that an $a_i$-chain for $(\tau_i,\tau_{i+1})$ exists for $1\le i\le s-1$. Its
+\emph{initial direction} is $\tau_1$, and $\pi(1)=\sum_i(a_i-a_{i-1})\tau_i(\lambda)$. We call
+$|\langle\kappa_k(\lambda),\beta_k^\vee\rangle|$ the \emph{bond} of the cover
+$\kappa_{k-1}>\kappa_k$. The absolute value makes it independent of sign conventions, because
+$\langle s_\beta\mu,\beta^\vee\rangle=-\langle\mu,\beta^\vee\rangle$.
+
+\subsection{Covers and bonds}
+
+\begin{lemma}\label{lem:bonds}
+In type $C_m$ with $\lambda=\omega_m$:
+\begin{enumerate}[label=(\alph*)]
+\item $\dim X_\mu=\#\{\alpha>0:\langle\mu,\alpha^\vee\rangle<0\}=\sum_{i:\mu_i=-1}(m-i+1)=|\kappa(\mu)|$;
+\item the Bruhat covers $\mu<s_\beta\mu$ in $W^\lambda$ are exactly the moves for which
+$D(\kappa(s_\beta\mu))$ is $D(\kappa(\mu))$ plus one box;
+\item the bond of such a cover is $1$ if the added box is diagonal and $2$ otherwise.
+\end{enumerate}
+In particular, the Bruhat order on $W^\lambda$ is inclusion of shifted diagrams.
+\end{lemma}
+
+\begin{proof}
+(a) The positive roots are $\varepsilon_i\pm\varepsilon_k$ ($i<k$) and $2\varepsilon_i$.
+The pairing $\langle\mu,\varepsilon_i-\varepsilon_k\rangle$ is negative iff $\mu_i=-1$ and
+$\mu_k=+1$; $\langle\mu,\varepsilon_i+\varepsilon_k\rangle<0$ iff $\mu_i=\mu_k=-1$; and
+$\langle\mu,\varepsilon_i\rangle<0$ iff $\mu_i=-1$. So each $i$ with $\mu_i=-1$ contributes
+$1+(m-i)$.
+
+(b, c) Let $i<k$, $p=m-i+1$ and $q=m-k+1$, so $p>q$. The reflection
+$s_{\varepsilon_i-\varepsilon_k}$ swaps $\mu_i$ and $\mu_k$. Upward
+($\mu_i=+1,\mu_k=-1$) it replaces the part $q$ by $p$ and raises the dimension by $p-q$. It is
+a cover iff $p=q+1$, that is, iff it adds one box at the end of the row of length $q$. That
+box is off the diagonal because $q\ge1$, and the bond is $|1-(-1)|=2$. The reflection
+$s_{\varepsilon_i+\varepsilon_k}$ flips $\mu_i,\mu_k$ when they are equal. Upward it adds the
+two parts $p$ and $q$, raising the dimension by $p+q\ge3$, so it is never a cover. The
+reflection $s_{2\varepsilon_i}$ flips $\mu_i$. Upward it adds the part $p$, so it is a cover
+iff $p=1$ (that is, $i=m$): a new row of length one, whose box is diagonal. Its bond is
+$|\langle\mu,\varepsilon_m\rangle|=1$. Every cover has the form $\mu<s_\beta\mu$ with the
+dimension rising by one, so the list is complete. The Bruhat order is the transitive closure of
+its covers, and adding boxes one at a time (along any linear extension of
+$D(\kappa_2)\setminus D(\kappa_1)$) generates inclusion of shifted diagrams.
+\end{proof}
+
+\subsection{LS paths of shape \texorpdfstring{$j\omega_m$}{j omega}}
+
+\begin{lemma}\label{lem:lsparity}
+Let $j\ge1$. A pair $(\tau_1\supsetneq\dots\supsetneq\tau_s\,;\,0<a_1<\dots<a_{s-1}<1)$ of
+shifted diagrams and rationals is an LS path of shape $j\omega_m$ iff, for every
+$i\le s-1$, $2ja_i\in\Z$, and if $2ja_i$ is odd, then $D(\tau_i)\setminus D(\tau_{i+1})$
+contains no diagonal box.
+\end{lemma}
+
+\begin{proof}
+Since $W_{j\omega_m}=W_{\omega_m}$, the poset is unchanged, and all bonds are multiplied by
+$j$. So the $a$-chain condition reads $a\,j\,b\in\Z$ for the bond $b\in\{1,2\}$ of each cover
+in the chain. If an $a$-chain exists, it has at least one cover, so $2ja\in\Z$. If $ja\in\Z$,
+then every saturated chain from $\tau_{i+1}$ up to $\tau_i$ is an $a$-chain, and one exists by
+Lemma~\ref{lem:bonds}. If $2ja$ is odd, a cover qualifies iff its bond is $2$, iff it adds an
+off-diagonal box. If $D(\tau_i)\setminus D(\tau_{i+1})$ has no diagonal box, every saturated
+chain adds only off-diagonal boxes. If it has one, every saturated chain adds it at some
+step.
+\end{proof}
+
+\begin{proposition}[The LS-parity model]\label{prop:model}
+For strict $\kappa$ with parts at most $m$ and $j\ge0$, the LS paths of shape $j\omega_m$
+with initial direction $\le\kappa$ are in bijection with the order-preserving maps
+$G\colon P_\kappa\to\{0,\dots,2j\}$ that are even on diagonal boxes. Hence, given (G1) and
+(LS), $H_\kappa(j)=h^0(X_\kappa,\cO(j))=F_\kappa(2j)$ for all $j\ge0$.
+\end{proposition}
+
+\begin{proof}
+For $j=0$ both sides equal $1$: the constant path, and $G\equiv0$. Let $j\ge1$ and let
+$\pi=(\tau_1>\dots>\tau_s;a)$ be an LS path with $\tau_1\le\kappa$, so
+$D(\tau_1)\subseteq D(\kappa)$ by Lemma~\ref{lem:bonds}. For $x\in D(\kappa)$ let
+$i(x)=\max\{i:x\in D(\tau_i)\}$ and $t(x)=a_{i(x)}$, with $t(x)=0$ if $x\notin D(\tau_1)$.
+Set $g(x)=2j\,t(x)\in\{0,\dots,2j\}$; this is an integer by Lemma~\ref{lem:lsparity}.
+\begin{itemize}
+\item \emph{$g$ is order-reversing.} The $D(\tau_i)$ are order ideals. If $y\le x$ and
+$x\in D(\tau_i)$, then $y\in D(\tau_i)$, so $i(y)\ge i(x)$ and $g(y)\ge g(x)$.
+\item \emph{$g$ is even on the diagonal.} A diagonal box $x$ with $1\le i(x)\le s-1$ lies in
+$D(\tau_{i(x)})\setminus D(\tau_{i(x)+1})$, so $g(x)=2ja_{i(x)}$ is even by
+Lemma~\ref{lem:lsparity}. The values $0$ and $2j$ are even anyway.
+\end{itemize}
+Conversely, let $g\colon P_\kappa\to\{0,\dots,2j\}$ be order-reversing and even on the
+diagonal. Let $v_1<\dots<v_r$ be its distinct values in the open interval $(0,2j)$. Put
+$a_i=v_i/2j$ and $\tau_i=\{x:g(x)\ge v_i\}$ for $i\le r$, and $\tau_{r+1}=\{x:g(x)=2j\}$.
+Each $\tau_i$ is an order ideal of $P_\kappa$, hence a shifted diagram by
+Lemma~\ref{lem:ideals}. They decrease strictly, because
+$\tau_i\setminus\tau_{i+1}=g^{-1}(v_i)\ne\varnothing$. A diagonal box in $g^{-1}(v_i)$ forces
+$v_i$ to be even, so Lemma~\ref{lem:lsparity} applies and we get an LS path with initial
+direction $\tau_1\le\kappa$. (If $\tau_{r+1}=\varnothing$, the last direction is the identity
+coset, which is allowed; if $r=0$ the path has the single direction $g^{-1}(2j)$.) The two
+constructions are inverse, because $x\in\tau_i\setminus\tau_{i+1}$ iff $g(x)=v_i$ iff
+$t(x)=a_i$. Finally, $G=2j-g$ is order-preserving and even on the diagonal, since $2j$ is
+even. The count $h^0=\#\{\text{paths}\}$ is (G1) combined with (LS), and $h^0=\chi$ by (G1).
+\end{proof}
+
+\subsection{Proof of Theorem~\ref{thm:main}}\label{ssec:proof-main}
+Let $\Lambda\subseteq\R^{P_\kappa}$ be the lattice with $\Z$ on diagonal coordinates and
+$\tfrac12\Z$ on the others. The order polytope $\ord=\ord(P_\kappa)$ has its vertices in
+$\Z^{P_\kappa}\subseteq\Lambda$. Rescaling the off-diagonal coordinates by $2$ maps $\Lambda$
+onto $\Z^{P_\kappa}$ and $\ord$ onto a lattice polytope, so $L(j)=\#(j\ord\cap\Lambda)$ is a
+polynomial in $j$ of degree $|\kappa|$. The map $G\mapsto y=G/2$ is a bijection from the maps
+counted by $F_\kappa(2j)$ onto $j\ord\cap\Lambda$: the diagonal coordinate $y_x$ is an integer
+iff $G(x)$ is even. Hence $L(j)=F_\kappa(2j)$ for $j\ge0$. (As a function of $N$, $F_\kappa(N)$
+is only a quasi-polynomial of period $2$; we use it only at even $N$.)
+
+By Proposition~\ref{prop:model}, the polynomials $H_\kappa$ and $L$ agree at every $j\ge0$, so
+$H_\kappa=L$. This proves (a) and (c). The interior of $j\ord$ is
+$\{0<y_x<j,\ y_x<y_{x'}\text{ for }x<x'\}$. Under $y=f/2$, its points in $\Lambda$ are exactly
+the strictly order-preserving $f\colon P_\kappa\to[2j-1]$ with even diagonal values.
+Ehrhart--Macdonald reciprocity for $(\ord,\Lambda)$ gives
+\[ H_\kappa(-j)=L(-j)=(-1)^{|\kappa|}\#(\interior(j\ord)\cap\Lambda)=(-1)^{|\kappa|}N_\kappa(j)\qquad(j\ge1), \]
+which is (b). \qed
+
+\begin{example}\label{ex:ls-small}
+For $\kappa=(1)$ the LS paths with $\tau_1\le(1)$ are: the constant paths $\varnothing$ and
+$(1)$, and the paths $(1)>\varnothing$ with time $p/2j$. The box is diagonal, so $p$ must be
+even, which leaves $j-1$ choices. In total there are $j+1=H_{(1)}(j)$ paths. For $\kappa=(2)$
+and $j=1$ the paths are $\varnothing$, $(1)$, $(2)$ and $(2)>(1)$ at time $\tfrac12$. The last
+one is allowed because the box $(0,1)$ is off-diagonal. The paths $(1)>\varnothing$ and
+$(2)>\varnothing$ at time $\tfrac12$ are not allowed. This gives $4=H_{(2)}(1)=(1+1)^2$.
+\end{example}
+
+\begin{remark}[The orthogonal case]\label{rem:og-ls}
+On $\OG(m,2m+1)$ the weight $\omega_m$ is minuscule, so every bond is $1$. The analogue of
+Lemma~\ref{lem:lsparity} then forces $ja_i\in\Z$, and the same bijection gives
+$\HOG_\kappa(j)=\Om(P_\kappa,j+1)$. We have checked by computer that all type-$B$ covers in
+$W/W_{\omega_m}$ have bond $1$, and that the LS count equals $\Om(P_\kappa,j+1)$ and the
+type-$B$ Demazure character count in $72$ cases ($m\le4$, $j\le3$). We have not written out
+the type-$B$ analogue of Lemma~\ref{lem:bonds}, so this route is recorded as a remark only.
+The statement itself is classical (Remark~\ref{rem:og-classical}).
+\end{remark}
+
+\begin{remark}[Computer checks]\label{rem:ls-checks}
+LS paths of shape $j\omega_m$ were enumerated directly from the root data, with covers, bonds
+and $a$-chains computed from roots rather than from the box dictionary. Their full weight
+multisets $\sum e^{\pi(1)}$ were compared with Demazure characters, and their number with
+$F_\kappa(2j)$: $164$ cases ($m=2,3$ with $j\le3$; $m=4$ with $j\le4$; $m=5$ with $j\le2$), with no
+failures. Two negative controls break the bond rule: setting every bond to $2$, and swapping
+the bonds. Both fail against the Demazure characters in most cases (for example $30/32$ and
+$28/32$ failures at $m=4$).
+\end{remark}
+
+%======================================================================
+\section{The \texorpdfstring{$K$}{K}-theoretic proof}\label{sec:ktheory}
+%======================================================================
+% Sources: proofs/2026-10-24-integer-window-and-OG-twin.md §1-4 (recursion (*), anchor);
+%          proofs/2026-10-24-Z-by-hyperplane-induction.md §2 (Lemma S);
+%          proofs/2026-10-25-crownF-strict-reciprocity.md §2-5 (Lemma R, Lemma T, Q30, Lemma 4.1, SR_LG, SR_OG).
+% Registry: q488-oc-Q30-KLG-strict-fillings (proved), q488-oc-integer-strict-reciprocity (proved),
+%           q488-oc-OG-corner-inclusion-exclusion (proved), q488-oc-OG-strict-count (proved),
+%           q488-oc-anchor-H-minus-1 (proved), q488-oc-support-rule-BR (proved), q488-oc-OG-vanishB-BR (proved).
+
+This section gives a second proof of Theorem~\ref{thm:main}(b), using (G0), (G1) and (BR)
+but not (LS). Its main ingredient, Theorem~\ref{thm:Q30}, is a closed formula for the
+$K$-theoretic Pieri coefficients of the Schubert divisor. That formula is reused in
+\S\S\ref{sec:window}--\ref{sec:half}.
+
+\subsection{The hyperplane recursion}
+
+\begin{lemma}\label{lem:hyperplane}
+Let $X=\LG(m,2m)$ or $\OG(m,2m+1)$ and write
+\[ [\cO_{X_\kappa}]\cdot(1-[L^{-1}])=\sum_\rho c_\rho\,[\cO_{X_\rho}]\qquad\text{in }K(X). \]
+Then $c_\rho\ne0$ implies $\rho\subsetneq\kappa$, and for every $j\in\C$,
+\begin{equation}\label{eq:hyperplane}
+H_\kappa(j)-H_\kappa(j-1)=\sum_{\rho\subsetneq\kappa}c_\rho\,H_\rho(j).
+\end{equation}
+By (G0), $c_\rho$ is the coefficient of $[\cO_{X_\rho}]$ in $[\cO_{X_\kappa}]\cdot\cO^1$.
+\end{lemma}
+
+\begin{proof}
+Since $L$ is very ample and $X_\kappa$ is integral, there is a section $s$ of $L$ that does not
+vanish identically on $X_\kappa$. Let $Z\subseteq X_\kappa$ be its zero scheme. Then
+$[\cO_{X_\kappa}]-[\cO_{X_\kappa}\otimes L^{-1}]=[\cO_Z]$. The variety $X_\kappa$ is the
+disjoint union of the Schubert cells $C_\rho$, $\rho\subseteq\kappa$, and $C_\kappa$ is open in
+$X_\kappa$. By the localization sequence $K_0(X_\kappa\setminus C_\kappa)\to K_0(X_\kappa)\to
+K_0(C_\kappa)\to0$ and induction, the image of $K_0(X_\kappa)$ in $K(X)$ is spanned by the
+$[\cO_{X_\rho}]$, $\rho\subseteq\kappa$. Restriction to $C_\kappa\cong\mathbb{A}^{|\kappa|}$
+followed by the rank gives a map $K_0(X_\kappa)\to K_0(C_\kappa)\cong\Z$. It sends
+$[\cO_{X_\kappa}]\mapsto1$ and $[\cO_{X_\rho}]\mapsto0$ for $\rho\subsetneq\kappa$. It also sends
+$[\cO_Z]\mapsto0$, because $Z\cap C_\kappa$ is a proper closed subset of the irreducible
+$C_\kappa$. Hence the coefficient of $[\cO_{X_\kappa}]$ vanishes, and $c_\rho\ne0$ forces
+$\rho\subsetneq\kappa$. Multiplying by $[L^j]$ and applying $\chi$ gives~\eqref{eq:hyperplane}
+for integers $j$. Both sides are polynomials in $j$, so it holds for all $j$.
+\end{proof}
+
+\subsection{The Buch--Ravikumar Pieri rule}\label{ssec:BR}
+We quote the statements we use from~\cite{BR12}. Their numbering below follows the arXiv
+source of~\cite{BR12} (\S4 is $\OG$, \S5 is $\LG$).
+\CHECK{theorem numbering taken from the arXiv v1 \LaTeX\ source of 1005.2605 (theorem counter
+reconstructed by hand); not compared with the published version in J.\ reine angew.\ Math.}
+
+In~\cite{BR12} Schubert varieties are indexed by codimension: $\cO^\lambda=[\cO_{X^\lambda}]$
+and $\cO^\lambda\cdot\cO^p=\sum_\nu c^\nu_{\lambda,p}\cO^\nu$. A shifted skew diagram $\theta$
+is a \emph{rim} if no box of $\theta$ lies strictly south and strictly east of another box of
+$\theta$. If $\theta$ is a nonempty rim, its \emph{upper-right box} is the rightmost box $B$ of
+its top row. Its \emph{north-east arm} $\psi$ is the largest row or column that can be obtained
+by intersecting $\theta$ with a square whose upper-right box is $B$. Put
+$\hat\theta=\theta\setminus\psi$; then $\hat\theta=\varnothing$ iff $\theta$ is a row or a
+column. Two boxes are \emph{connected} if they share a side.
+
+\begin{itemize}
+\item \cite[Cor.~5.4]{BR12} For strict $\lambda\subset\nu$ with $\nu_1\le m$ and
+$0\le p\le m$, $c^\nu_{\lambda,p}=\cC(\nu/\lambda,p)$. Here $\cC$ is an explicit alternating
+sum~\cite[eq.~(11)]{BR12} over subsets of the south-east corners.
+\item \cite[Thm.~5.5]{BR12} If $\theta$ is not a rim, then $\cC(\theta,p)=0$. If $p\le0$, then
+$\cC(\theta,p)=\delta_{\theta,\varnothing}$. If $\theta\ne\varnothing$ is a rim, $p>0$ and
+$a=|\theta|-|\hat\theta|$, then:
+\begin{enumerate}[label=(\roman*)]
+\item if $\hat\theta=\varnothing$ and $\theta$ meets the diagonal, then
+$\cC(\theta,p)=\delta_{p,|\theta|}-\delta_{p,|\theta|-1}$ if $\theta$ is a column, and
+$\cC(\theta,p)=\delta_{p,|\theta|}$ otherwise;
+\item if $\hat\theta=\varnothing$ and $\theta$ is disjoint from the diagonal, then
+$\cC(\theta,p)=2\delta_{p,|\theta|}-\delta_{p,|\theta|-1}$;
+\item if $\hat\theta\ne\varnothing$ and $\psi$ is connected to $\hat\theta$, then
+$\cC(\theta,p)=\cC(\hat\theta,p-a)-\cC(\hat\theta,p-a+1)$;
+\item if $\hat\theta\ne\varnothing$ and $\psi$ is not connected to $\hat\theta$, then
+$\cC(\theta,p)=2\cC(\hat\theta,p-1)-2\cC(\hat\theta,p)$ for $a=1$, and
+$\cC(\theta,p)=2\cC(\hat\theta,p-a)-3\cC(\hat\theta,p-a+1)+\cC(\hat\theta,p-a+2)$ for $a>1$.
+\end{enumerate}
+\item \cite[Cor.~4.4, Lemma~4.5]{BR12} ($\OG$.) For $\lambda\subset\nu$,
+$c^\nu_{\lambda,p}=\mathcal B(\nu/\lambda,p)$. If $\theta$ is not a rim, then
+$\mathcal B(\theta,p)=0$; if $\theta$ contains a row or column with $a$ boxes, then
+$\mathcal B(\theta,p)=0$ for $p<a$; and if $\theta$ is a rook strip (at most one box in each row
+and each column), then $\mathcal B(\theta,1)=(-1)^{|\theta|-1}$.
+\end{itemize}
+Buch and Ravikumar prove all of these. They also state a tableau formula for $c^\nu_{\lambda,p}$
+on $\LG$ in terms of KLG-tableaux~\cite[Cor.~5.6]{BR12}, whose proof they leave to the reader.
+We do not use it: Proposition~\ref{prop:BRp1} below proves the case $p=1$ from Thm.~5.5.
+
+\begin{lemma}[Reflection]\label{lem:S}
+Let $R(a,b)=(m-1-b,m-1-a)$, an involution of $\Delta_m$. Then
+$D(\kappa^\vee)=R(\Delta_m\setminus D(\kappa))$. Consequently, for $\rho\subseteq\kappa$,
+\[ D(\kappa)\setminus D(\rho)=R\bigl(D(\rho^\vee)\setminus D(\kappa^\vee)\bigr), \]
+and $\rho\subsetneq\kappa$ iff $\kappa^\vee\subsetneq\rho^\vee$. The map $R$ reverses the
+product order, preserves the diagonal, and exchanges rows with columns.
+\end{lemma}
+
+\begin{proof}
+Take $(a,b)\in\Delta_m$ and put $d=b-a+1$. Then $(a,b)\in D(\kappa)$ iff $\kappa_{a+1}\ge d$,
+iff $\#(\kappa\cap[d,m])\ge a+1$. Write $R(a,b)=(\bar a,\bar b)$ with $\bar a=m-1-b$; then
+$\bar b-\bar a+1=d$. By the same criterion, $R(a,b)\in D(\kappa^\vee)$ iff
+$\#(\kappa^\vee\cap[d,m])\ge m-b$. Since
+$\#(\kappa\cap[d,m])+\#(\kappa^\vee\cap[d,m])=m-d+1=m-b+a$, this says
+$\#(\kappa\cap[d,m])\le a$, that is, $(a,b)\notin D(\kappa)$.
+\end{proof}
+
+So, with $X_\kappa$ a translate of $X^{\kappa^\vee}$ (Remark~\ref{rem:indexing}), the
+coefficient in Lemma~\ref{lem:hyperplane} is
+$c_\rho=c^{\rho^\vee}_{\kappa^\vee,1}=\cC(\theta_{BR},1)$, where
+$\theta_{BR}=D(\rho^\vee)\setminus D(\kappa^\vee)=R(\theta)$ and
+$\theta=D(\kappa)\setminus D(\rho)$.
+
+\subsection{The Pieri coefficients count two-letter strict maps}
+
+For a finite poset $P$ and $D\subseteq P$, let $V(P,D)$ be the number of strictly
+order-preserving $f\colon P\to\{e<o\}$ with $f(D)\subseteq\{e\}$. For an up-set $\theta$ of
+$P_\kappa$, write $V(\theta)=V(\theta,\text{diagonal boxes of }\theta)$.
+
+\begin{lemma}\label{lem:R}
+$V(P,D)=0$ if $P$ contains a chain $x<y<z$, or if some $d\in D$ is not minimal in $P$.
+Otherwise $V(P,D)=2^i$, where $i$ is the number of elements of $P\setminus D$ that are
+comparable to no other element.
+\end{lemma}
+
+\begin{proof}
+A $3$-chain needs three distinct values. If $x<d\in D$, then $f(x)<f(d)=e$ is impossible.
+Otherwise $P$ has height at most $2$. A non-isolated $x$ is then either non-maximal, which
+forces $f(x)=e$, or non-minimal, which forces $f(x)=o$, but not both (that would give a
+$3$-chain). These forced values satisfy every relation. A non-isolated $d\in D$ is minimal, so
+it is forced to $e$, consistently with $D$. An isolated element is free (two choices) unless it
+lies in $D$.
+\end{proof}
+
+In $P_\kappa$, a diagonal box $(c,c)$ of an up-set $\theta$ is non-minimal in $\theta$ iff
+$(c-1,c)\in\theta$. Indeed, if some $(a,b)<(c,c)$ lies in $\theta$, then $a\le c-1$ and
+$b\le c$, so $(a,b)\le(c-1,c)<(c,c)$, and $(c-1,c)\in\theta$ because $\theta$ is an up-set.
+
+For a shifted skew shape $\varphi$ in Buch--Ravikumar's convention, let $K(\varphi)$ be the
+number of labellings $\varphi\to\{1'<1\}$ that strictly increase along every row (left to right)
+and every column (top to bottom) and put no $1'$ on a diagonal box, with $K(\varphi)=0$ if
+$\varphi$ is not a rim.
+
+\begin{lemma}\label{lem:T}
+Let $\varphi=\nu/\lambda$ be a shifted skew shape.
+\begin{enumerate}[label=(\alph*)]
+\item If $\varphi$ is not a rim, then $\varphi$ contains a $3$-chain in the product order.
+\item If $\varphi$ is a rim, then two boxes of $\varphi$ are comparable iff they share a row or a column.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Let $x=(r,c)$ and $y=(r',c')$ be boxes of $\varphi$ with $r<r'$ and $c<c'$. The right ends of
+the rows of a shifted strict diagram weakly decrease, so $(r,c')\in\nu$. Rows of $\lambda$ are
+initial segments and $(r,c)\notin\lambda$, so $(r,c')\notin\lambda$. Hence $x<(r,c')<y$ in
+$\varphi$. (b) Comparable means weakly north-west, and in a rim no pair is strictly north-west,
+so comparable boxes share a row or a column.
+\end{proof}
+
+\begin{lemma}\label{lem:VK}
+For every $\rho\subsetneq\kappa$, $V(\theta)=K(R(\theta))$.
+\end{lemma}
+
+\begin{proof}
+If $R(\theta)$ is not a rim, it has a $3$-chain by Lemma~\ref{lem:T}(a). Since $R$ reverses
+the order, $\theta$ has one too, and $V(\theta)=0=K(R(\theta))$. If $R(\theta)$ is a rim, then
+by Lemma~\ref{lem:T}(b) ``strict along rows and columns'' means ``strictly order-preserving''
+on $R(\theta)$. Composing with $R$ (which reverses order and preserves the diagonal) and
+renaming $1\mapsto e$, $1'\mapsto o$ gives a bijection. It sends strictly order-preserving maps
+$R(\theta)\to\{1'<1\}$ with diagonal boxes labelled $1$ to strictly order-preserving maps
+$\theta\to\{e<o\}$ with diagonal boxes sent to $e$.
+\end{proof}
+
+\begin{proposition}\label{prop:BRp1}
+For every nonempty shifted skew shape $\varphi$, $\cC(\varphi,1)=(-1)^{|\varphi|-1}K(\varphi)$.
+\end{proposition}
+
+This is the case $p=1$ of~\cite[Cor.~5.6]{BR12}. We prove it from \cite[Thm.~5.5]{BR12} by
+induction on $|\varphi|$. At $p=1$, and using $\cC(\hat\varphi,q)=0$ for $q\le0$ when
+$\hat\varphi\ne\varnothing$, Thm.~5.5 reads as follows:
+\begin{enumerate}[label=(\roman*)]
+\item diagonal column: $1$ if $|\varphi|=1$, $-1$ if $|\varphi|=2$, $0$ otherwise; diagonal row:
+$1$ if $|\varphi|=1$, $0$ otherwise;
+\item off-diagonal row or column: $2$ if $|\varphi|=1$, $-1$ if $|\varphi|=2$, $0$ otherwise;
+\item connected arm: $-\cC(\hat\varphi,1)$ if $a=1$, and $0$ if $a\ge2$;
+\item disconnected arm: $-2\cC(\hat\varphi,1)$ if $a=1$, $+\cC(\hat\varphi,1)$ if $a=2$, and $0$ if $a\ge3$.
+\end{enumerate}
+
+\begin{proof}
+If $\varphi$ is not a rim, both sides vanish. Let $\varphi$ be a nonempty rim, and write
+$T(\varphi)=(-1)^{|\varphi|-1}K(\varphi)$. We use the following facts.
+\begin{enumerate}[label=(g\arabic*)]
+\item Rows and columns of a shifted skew shape are intervals.
+\item A diagonal box $(c,c)$ is the leftmost box of its row and the lowest box of its column.
+\item Let $r$ be the top row of $\varphi$ and $B=(r,c)$ its rightmost box. Then $c$ is the largest
+column of $\varphi$: a box $(r',c')$ with $c'>c$ would have $r'>r$, and $B$ would be strictly
+north-west of it. So $B$'s only possible neighbours in $\varphi$ are $L=(r,c-1)$ and
+$D=(r+1,c)$.
+\item $L$ and $D$ are not both in $\varphi$, because $D$ is strictly south-east of $L$.
+\item In a rim, comparable boxes share a row or a column (Lemma~\ref{lem:T}(b)), so $K$ sees
+only row and column constraints.
+\end{enumerate}
+
+\emph{Cases (i), (ii): $\varphi=\psi$ is a row or a column.} With two labels, $K=0$ for length
+$\ge3$. A diagonal column has its diagonal box at the bottom (g2). Length $1$ gives the label
+$1$, so $K=1=T$. Length $2$ gives $1'$ over $1$, so $K=1$ and $T=-1$. A diagonal row has its
+diagonal box leftmost. Length $1$ gives $K=1=T$. In length $2$ the leftmost box would need
+$1'$, which is forbidden, so $K=0$. Off the diagonal, length $1$ gives $K=2=T$ and length $2$
+gives $K=1$ (labels $1',1$), so $T=-1$. All of these agree with (i) and (ii).
+
+\emph{Cases (iii) and (iv) with $a\ge3$.} Here $\psi$ is a row or column of at least three
+boxes, so $K(\varphi)=0=\cC(\varphi,1)$.
+
+\emph{Case (iii) with $a=1$.} Here $\psi=\{B\}$ and $B$ is adjacent to $\hat\varphi$, so
+exactly one of $L,D$ lies in $\varphi$ (g3, g4). Let $S=(r+1,c-1)$. If $S\notin\varphi$, then
+the $2\times2$ square with upper-right box $B$ meets $\varphi$ in a row or column of two boxes,
+so $a\ge2$. Hence $S\in\hat\varphi$.
+\begin{itemize}
+\item If $L\in\varphi$: $L$ is directly above $S$, so every valid labelling of $\hat\varphi$ has
+$L=1'$. Then $B$, to the right of $L$, is forced to be $1$, which is allowed. $B$ is alone in
+its column ($D\notin\varphi$; g1). The boxes of $B$'s row other than $B$ lie in $\hat\varphi$,
+and their constraints are already part of $\hat\varphi$. (A box to the left of $L$ would need a
+label smaller than $1'$; then $K(\hat\varphi)=0=K(\varphi)$.) So $K(\varphi)=K(\hat\varphi)$.
+\item If $D\in\varphi$: $S$ is directly left of $D$, so $D=1$ in every labelling of
+$\hat\varphi$. Then $B$, above $D$, is forced to be $1'$. This is allowed, because $B$ is off
+the diagonal: $D=(r+1,c)$ lies in the shifted plane, so $c\ge r+1$. $B$ is alone in its row
+($L\notin\varphi$). Again $K(\varphi)=K(\hat\varphi)$.
+\end{itemize}
+Hence $T(\varphi)=-T(\hat\varphi)=-\cC(\hat\varphi,1)$ by induction.
+
+\emph{Case (iii) with $a=2$.} Here $\psi$ is $\{L,B\}$ (a row) or $\{B,D\}$ (a column), and the
+$2\times2$ square at $B$ meets $\varphi$ in exactly $\psi$. In the row case, $S,D\notin\varphi$.
+The neighbours of $L$ are $(r,c-2)$, $S$, and the box above $L$, which is absent because $r$
+is the top row. So the connection to $\hat\varphi$ goes through $(r,c-2)\in\varphi$. Then row
+$r$ has three boxes, and $K(\varphi)=0$. In the column case, $S,L\notin\varphi$. The neighbours
+of $D$ are $(r+2,c)$, $S$ and $(r+1,c+1)$; the last is absent because column $c$ is maximal.
+So $(r+2,c)\in\varphi$, column $c$ has three boxes, and $K(\varphi)=0$. Both agree with
+$\cC(\varphi,1)=0$.
+
+\emph{Case (iv) with $a\in\{1,2\}$.} Here $\psi$ is not connected to $\hat\varphi$.
+\begin{itemize}
+\item No box of $\psi$ shares a row or column with a box of $\hat\varphi$. Otherwise, walking
+along the common row or column interval (g1) from the $\psi$-box to the $\hat\varphi$-box would
+cross an adjacency between $\psi$ and $\hat\varphi$.
+\item $\psi$ contains no diagonal box. If $\psi$ is a row in row $r$ containing $(r,r)$, then
+$\psi=\{(r,r),\dots,(r,c)\}$ by (g2). Any $(r',c')\in\hat\varphi$ has $r'>r$, so
+$r<r'\le c'\le c$, and column $c'$ is a column of $\psi$, a contradiction. If $\psi$ is a column
+in column $c$ containing $(c,c)$, then $\psi=\{(r,c),\dots,(c,c)\}$. Any
+$(r',c')\in\hat\varphi$ has $r\le r'\le c'\le c$, so row $r'$ is a row of $\psi$, a
+contradiction.
+\item By (g5) and the first bullet, the constraints on $\psi$ and on $\hat\varphi$ are
+independent, so $K(\varphi)=K(\psi)K(\hat\varphi)$. Here $K(\psi)=2$ for $a=1$ (an off-diagonal
+single box) and $K(\psi)=1$ for $a=2$ (an off-diagonal domino, labels $1',1$).
+\item Hence $T(\varphi)=(-1)^aK(\psi)T(\hat\varphi)$, which is $-2\cC(\hat\varphi,1)$ for
+$a=1$ and $+\cC(\hat\varphi,1)$ for $a=2$.
+\end{itemize}
+Every nonempty rim falls under exactly one of the cases, since $\hat\varphi=\varnothing$ iff
+$\varphi$ is a row or a column.
+\end{proof}
+
+\CHECK{The case analysis in the proof of Proposition~\ref{prop:BRp1} has been re-read once by
+the author. An independent referee (Clio Vega) has verified its conclusion on $1243$ shapes,
+with live negative controls, but has not yet read the geometric case analysis line by line. The
+conclusion was also checked by machine against Buch--Ravikumar's eq.~(11) for all shapes
+arising at $m\le7$ (including non-rims).}
+
+\begin{theorem}[The Pieri coefficients]\label{thm:Q30}
+% Registry: q488-oc-Q30-KLG-strict-fillings (proved given BR Cor 5.4 + Thm 5.5 + Lemma S).
+On $\LG(m,2m)$, for every $\rho\subsetneq\kappa$ with $\theta=D(\kappa)\setminus D(\rho)$,
+\[ c_\rho=(-1)^{|\theta|-1}V(\theta). \]
+Explicitly, $c_\rho=0$ iff $\theta$ contains a $3$-chain or a diagonal box $(c,c)$ with
+$(c-1,c)\in\theta$. Otherwise $|c_\rho|=2^i$, where $i$ is the number of off-diagonal boxes of
+$\theta$ that are comparable to no other box of $\theta$.
+\end{theorem}
+
+\begin{proof}
+Lemma~\ref{lem:S} and \cite[Cor.~5.4]{BR12} give $c_\rho=\cC(R(\theta),1)$.
+Proposition~\ref{prop:BRp1} turns this into $(-1)^{|\theta|-1}K(R(\theta))$, and
+Lemma~\ref{lem:VK} gives $K(R(\theta))=V(\theta)$. The explicit form is Lemma~\ref{lem:R}
+together with the remark following it.
+\end{proof}
+
+\begin{remark}[Primes and odd values]\label{rem:primes}
+Under $R$, the letters $1'<1$ of Buch and Ravikumar become $o>e$ on $\theta$, and the rule that
+diagonal boxes carry no prime becomes the rule that diagonal boxes take the even letter. In the
+peeling below, $e$ and $o$ are realized by consecutive values $2j<2j+1$. So the odd values in
+Theorem~\ref{thm:main}(b) are the primed letters, and the diagonal parity condition is the
+``no primed diagonal'' rule.
+\end{remark}
+
+\begin{example}\label{ex:pieri32}
+Let $\kappa=(3,2)$, $m=3$. Theorem~\ref{thm:Q30} gives
+\[ [\cO_{X_{(3,2)}}]\cdot\cO^1=2[\cO_{X_{(3,1)}}]-[\cO_{X_{(2,1)}}]-[\cO_{X_{(3)}}]+[\cO_{X_{(2)}}]. \]
+The sets $\theta$ are $\{(1,2)\}$ (an isolated off-diagonal box, $V=2$), $\{(0,2),(1,2)\}$
+(a $2$-chain, $V=1$), $\{(1,1),(1,2)\}$ (diagonal box minimal, $V=1$) and
+$\{(0,2),(1,1),(1,2)\}$ (height $2$, $(1,1)$ minimal, $V=1$). The signs are
+$(-1)^{|\theta|-1}=+,-,-,+$. The remaining candidates $\rho=(1)$ and $\rho=\varnothing$ have
+$c_\rho=0$, because $\theta$ contains the $3$-chain $(0,1)<(0,2)<(1,2)$. This agrees with Buch
+and Ravikumar's formula~\cite[eq.~(11)]{BR12} evaluated directly.
+\end{example}
+
+\subsection{The recursion and the second proof}
+
+\begin{proposition}\label{prop:star}
+On $\LG$, put $s_x(\kappa)=(-1)^{|\kappa|}H_\kappa(-x)$ for $x\in\C$. Then for every $x\in\C$,
+\begin{equation}\label{eq:star}
+s_{x+1}(\kappa)=s_x(\kappa)+\sum_{\rho\subsetneq\kappa}V\bigl(D(\kappa)\setminus D(\rho)\bigr)\,s_x(\rho).
+\end{equation}
+The same holds on $\OG$ with $V(\theta)$ replaced by $|c_\rho|$, where $c_\rho$ are the $\OG$
+coefficients of Lemma~\ref{lem:hyperplane}.
+\end{proposition}
+
+\begin{proof}
+Substitute $j=-x$ in~\eqref{eq:hyperplane} and multiply by $(-1)^{|\kappa|}$. With
+$|\kappa|=|\rho|+|\theta|$ this gives
+$s_x(\kappa)-s_{x+1}(\kappa)=\sum_\rho(-1)^{|\theta|}c_\rho s_x(\rho)$. By
+Theorem~\ref{thm:Q30}, $(-1)^{|\theta|}c_\rho=-V(\theta)$. On $\OG$, \cite[Lemma~4.5]{BR12}
+gives the sign $(-1)^{|\theta|-1}$ on the support (Lemma~\ref{lem:og-corners} below).
+\end{proof}
+
+\begin{lemma}[Peeling the top two values]\label{lem:peel}
+For $j\ge1$ and every $\kappa$,
+\[ N_\kappa(j+1)=N_\kappa(j)+\sum_{\rho\subsetneq\kappa}V\bigl(D(\kappa)\setminus D(\rho)\bigr)\,N_\rho(j). \]
+\end{lemma}
+
+\begin{proof}
+Let $f\colon P_\kappa\to[2j+1]$ be strictly order-preserving with even diagonal values, and put
+$\theta=f^{-1}\{2j,2j+1\}$. If $x\in\theta$ and $x<y$, then $f(y)>f(x)\ge2j$, so $y\in\theta$.
+Thus $\theta$ is an up-set, and $\theta=D(\kappa)\setminus D(\rho)$ for a unique $\rho$
+(Lemma~\ref{lem:ideals}). The restriction $f|_\theta$ is strictly order-preserving into
+$\{2j<2j+1\}$ and sends diagonal boxes to $2j$, the only even value. So it is one of the maps
+counted by $V(\theta)$, with $e=2j$ and $o=2j+1$. The restriction $f|_{D(\rho)}$ is counted by
+$N_\rho(j)$. Conversely, given $\rho$, a $V(\theta)$-map $g$ and an $N_\rho(j)$-map $h$, the
+union $g\cup h$ is strictly order-preserving: for $x\in D(\rho)$, $y\in\theta$ with $x<y$ we
+have $h(x)\le2j-1<2j\le g(y)$, and $y<x$ is impossible because $\theta$ is an up-set. The two
+constructions are inverse. The term $\rho=\kappa$ ($\theta=\varnothing$, $V=1$) gives
+$N_\kappa(j)$.
+\end{proof}
+
+\begin{proof}[Second proof of Theorem~\ref{thm:main}]
+We prove (b) by induction on $j$, simultaneously for all $\kappa$. For $j=1$, the set $[1]$
+contains no even value, and every nonempty $P_\kappa$ contains the diagonal box $(0,0)$. So
+$N_\kappa(1)=\delta_{\kappa,\varnothing}$, which equals $s_1(\kappa)$ by
+Lemma~\ref{lem:anchor} (and $H_\varnothing\equiv1$). For the inductive step,
+\eqref{eq:star} at integer $x=j$ and Lemma~\ref{lem:peel} are the same recursion. Parts (a)
+and (c) then follow from (b) by running \S\ref{ssec:proof-main} backwards. Indeed, both
+$H_\kappa$ and $L(j)=\#(j\ord\cap\Lambda)$ are polynomials, and by Ehrhart--Macdonald
+reciprocity they agree at every $j\le-1$.
+\end{proof}
+
+The second proof uses (G0), (G1) and (BR). It uses neither (LS) nor Ehrhart--Macdonald
+reciprocity for~(b). The first proof uses (G1) and (LS) and not (BR). Each proof gives the
+equivalence of Theorem~\ref{thm:main}(a) and~(b) by reciprocity, in opposite directions.
+
+\subsection{The orthogonal Grassmannian}\label{ssec:og-k}
+
+\begin{lemma}\label{lem:og-corners}
+On $\OG(m,2m+1)$, $c_\rho\ne0$ iff $\theta=D(\kappa)\setminus D(\rho)$ is a nonempty set of
+maximal elements of $P_\kappa$, and then $c_\rho=(-1)^{|\theta|-1}$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:S} and \cite[Cor.~4.4]{BR12}, $c_\rho=\mathcal B(R(\theta),1)$, and $R$
+preserves the properties ``rim'' and ``at most $k$ boxes per row and column''. By
+\cite[Lemma~4.5]{BR12} with $p=1<a=2$, $c_\rho\ne0$ forces $R(\theta)$, hence $\theta$, to be a
+rook strip, and every rook strip has $c_\rho=(-1)^{|\theta|-1}$. For an up-set $\theta$ of
+$P_\kappa$, being a rook strip is equivalent to being an antichain. Two boxes in one row or
+column are comparable, so an antichain is a rook strip. Conversely, if $x=(i,j)<y=(k,l)$ in
+$\theta$ with $i<k$ and $j<l$, then $(i,l)$ lies in the shifted plane, below $y$ and above $x$.
+So $(i,l)\in\theta$ (since $\theta$ is an up-set of the order ideal $D(\kappa)$, and
+$(i,l)\le y$ forces $(i,l)\in D(\kappa)$), and it shares a row with $x$. An up-set is an
+antichain iff it consists of maximal elements, and every set of maximal elements is an up-set.
+\end{proof}
+
+\begin{proof}[$K$-theoretic proof of Theorem~\ref{thm:og}]
+A strictly order-preserving $f\colon P_\kappa\to[n+1]$ is determined by the set $A=f^{-1}(n+1)$,
+which is an up-set and an antichain, hence a set of maximal elements, together with a strictly
+order-preserving map $P_\kappa\setminus A\to[n]$. This gives
+$\Omb(P_\kappa,n+1)=\Omb(P_\kappa,n)+\sum_{\varnothing\ne A\subseteq\max P_\kappa}\Omb(P_\kappa\setminus A,n)$,
+and $P_\kappa\setminus A=D(\rho_A)$. By Lemma~\ref{lem:og-corners}, the recursion of
+Proposition~\ref{prop:star} on $\OG$ is the same recursion with $n=j-1$. The anchor is
+$\Omb(P,0)=\delta_{P,\varnothing}=s_1$ (Lemma~\ref{lem:anchor}). So
+$(-1)^{|\kappa|}\HOG_\kappa(-j)=\Omb(P_\kappa,j-1)$ for $j\ge1$. Stanley reciprocity
+$\Om(P,1-j)=(-1)^{|P|}\Omb(P,j-1)$ shows that the polynomials $\HOG_\kappa(j)$ and
+$\Om(P_\kappa,j+1)$ agree at all $j\le-1$, hence everywhere.
+\end{proof}
+
+\begin{remark}[Theorem~\ref{thm:og} is classical]\label{rem:og-classical}
+Since $\omega_m$ is minuscule for $B_m$, standard monomial theory~\cite{LS86,Seshadri} and the
+toric degeneration of Gonciulea and Lakshmibai~\cite{GL96} identify the homogeneous coordinate
+ring of $X^{\OG}_\kappa$ with an algebra with straightening law on the distributive lattice
+$J(P_\kappa)$, with the same Hilbert function as the Hibi ring~\cite{Hibi87}. Hence
+$\HOG_\kappa(j)=\Om(P_\kappa,j+1)$; compare also Proctor~\cite{Proctor84}. Stanley's
+reciprocity theorem then gives the negative values. We know of no single reference that states
+$(-1)^{|\kappa|}\HOG_\kappa(-j)=\Omb(P_\kappa,j-1)$ in this form, but it is a one-line composite
+of these results, and we claim no novelty for it.
+\CHECK{the classical references in this remark (Lakshmibai--Seshadri, Gonciulea--Lakshmibai,
+Hibi, Proctor) were not read first-hand for this draft.}
+\end{remark}
+
+%======================================================================
+\section{The integer window}\label{sec:window}
+%======================================================================
+% Source: proofs/2026-10-24-integer-window-and-OG-twin.md (Theorem I, I_OG, Lemma 0, Lemma Ch', Lemma A
+%         with Clio's uid457 fixes), and crownF §6 (combinatorial reading).
+% Registry: q488-oc-Zint-by-induction (proved), q488-oc-ZOG-by-induction (proved),
+%           q488-oc-strip-lemmaA (proved), q488-oc-Ind-chain-drop (proved), q488-oc-OG-chain-drop (proved).
+
+\begin{proof}[Proof of Theorem~\ref{thm:window} from the counts]
+On $\LG$, $s_j(\kappa)=N_\kappa(j)$ by Theorem~\ref{thm:main}(b). On $\OG$,
+$s_j(\kappa)=\Omb(P_\kappa,j-1)$ by Theorem~\ref{thm:og}. Lemma~\ref{lem:Npos} gives the
+vanishing range, the positivity beyond it, and the monotonicity. For $\kappa=\varnothing$,
+$s_j\equiv1$ and $W=0$.
+\end{proof}
+
+The theorem also has a direct proof by induction. That proof does not pass through any
+counting formula for $s_j$. It uses only~\eqref{eq:star}, the anchor, a bound on how much
+$r$ can drop along the support of the Pieri rule, and one explicit nonzero Pieri term. We
+include it because it shows why integers are easier than half-integers: the anchor value $0$
+makes the recursion~\eqref{eq:star} monotone.
+
+\begin{lemma}[Chain drop]\label{lem:chaindrop}
+If $c_\rho\ne0$, then every chain of $P_\kappa$ meets $\theta=D(\kappa)\setminus D(\rho)$ in
+at most two boxes on $\LG$, and in at most one box on $\OG$. Hence $r(\rho)\ge r(\kappa)-2$ on
+$\LG$, and $r(\rho)\ge r(\kappa)-1$ on $\OG$. The same bounds hold for $r(\rho')$ and
+$r(\kappa')$.
+\end{lemma}
+
+\begin{proof}
+On $\LG$, $\theta$ has no $3$-chain by Theorem~\ref{thm:Q30} and Lemma~\ref{lem:R}. On $\OG$,
+$\theta$ is an antichain by Lemma~\ref{lem:og-corners}. If $C$ is a longest chain of
+$P_\kappa$, then $C\setminus\theta\subseteq D(\rho)$ is a chain of the claimed size. For the
+primed version, take $C$ inside the rows $\ge1$, which form copies of $P_{\kappa'}$ and
+$P_{\rho'}$ (\S\ref{ssec:shifted}). Row $0$ is the largest part of both $\kappa$ and $\rho$.
+\end{proof}
+
+\begin{lemma}[A term that drops the window]\label{lem:A}
+Let $\kappa\ne\varnothing$, $r=r(\kappa)$, and for $t\in\{1,2\}$ put
+$T_t=\{(a,b)\in D(\kappa):a+b\ge r-t\}$ and $D(\rho_t)=D(\kappa)\setminus T_t$.
+\begin{enumerate}[label=(\roman*)]
+\item $\rho_t$ is a strict partition with $\rho_t\subsetneq\kappa$. If $t\le r$, then
+$r(\rho_t)\le r-t$.
+\item On $\LG$, let $t^*=1$ if $r$ is odd and $t^*=2$ if $r$ is even. Then $c_{\rho_{t^*}}\ne0$.
+\item On $\OG$, $c_{\rho_1}=(-1)^{|T_1|-1}$.
+\item $W(\rho_{t^*})\le W(\kappa)-1$ on $\LG$, and $W(\rho_1)\le W(\kappa)-1$ on $\OG$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) $T_t$ is an up-set of $P_\kappa$, so $\rho_t$ exists by Lemma~\ref{lem:ideals}. It
+contains the box realising $\max(a+b)$ (Lemma~\ref{lem:chain}), so $\rho_t\ne\kappa$. If
+$t\le r$ and $\rho_t\ne\varnothing$, every box of $D(\rho_t)$ has $a+b\le r-t-1$, so
+$r(\rho_t)\le r-t$ by Lemma~\ref{lem:chain}. If $\rho_t=\varnothing$, then $r(\rho_t)=0\le r-t$.
+(The hypothesis $t\le r$ is needed: for $\kappa=(1)$ and $t=2$ the bound would read $0\le-1$.
+We only use $t=t^*\le r$.)
+
+(ii) By Theorem~\ref{thm:Q30} and Lemma~\ref{lem:R} it suffices to show that $T_{t^*}$ has no
+$3$-chain and that each of its diagonal boxes is minimal in it. The coordinate sum strictly
+increases along a chain, and $T_{t^*}$ lies on at most two antidiagonals $a+b=\text{const}$, so
+there is no $3$-chain. A box of $T_{t^*}$ strictly below $(c,c)$ has a smaller coordinate sum.
+For $r$ odd, $T_1$ is a single antidiagonal, so no such box exists. For $r$ even,
+$T_2=\{a+b\in\{r-2,r-1\}\}$, and $2c$ is even, so $2c=r-2$ lies on the inner antidiagonal;
+again nothing in $T_2$ lies below $(c,c)$.
+
+(iii) $T_1$ is the top antidiagonal: it is nonempty, and it consists of maximal elements of
+$P_\kappa$. Apply Lemma~\ref{lem:og-corners}.
+
+(iv) On $\LG$ with $r$ odd, $r(\rho_1)\le r-1$, which is even, so
+$\lceil r(\rho_1)/2\rceil\le(r-1)/2=W-1$. With $r$ even, $r(\rho_2)\le r-2$, so
+$\lceil r(\rho_2)/2\rceil\le r/2-1=W-1$. On $\OG$, $r(\rho_1)\le r-1=W-1$.
+\end{proof}
+
+The parity choice in (ii) matters. For $r$ odd the two-strip $T_2$ has its diagonal box (if
+any) on the \emph{outer} antidiagonal, where it can lie above $(c-1,c)\in T_2$; then $V(T_2)=0$.
+A machine check of the $67$ odd-$r$ two-strips at $m\le6$ against Buch--Ravikumar's formula
+finds that $42$ of them have vanishing coefficient, each one exactly in this situation.
+
+\begin{proof}[Inductive proof of Theorem~\ref{thm:window}]
+We prove by strong induction on $|\kappa|$ that $s_j(\kappa)\ge0$ for all integers $j\ge1$,
+with equality iff $j\le W(\kappa)$. For $\kappa=\varnothing$ this is clear. Let
+$\kappa\ne\varnothing$.
+
+\emph{Monotonicity.} For $j\ge1$, every $\rho$ in~\eqref{eq:star} has $|\rho|<|\kappa|$, so
+$s_j(\rho)\ge0$ by induction, and the coefficients in~\eqref{eq:star} are nonnegative. Hence
+$s_{j+1}(\kappa)\ge s_j(\kappa)$.
+
+\emph{Anchor.} $s_1(\kappa)=0$ by Lemma~\ref{lem:anchor}. So $s_j(\kappa)\ge0$ for all $j\ge1$.
+
+\emph{Vanishing.} Let $1\le j\le W-1$. For every $\rho$ with $c_\rho\ne0$,
+Lemma~\ref{lem:chaindrop} gives $W(\rho)\ge W-1\ge j$: on $\LG$,
+$\lceil r(\rho)/2\rceil\ge\lceil(r-2)/2\rceil=W-1$, and on $\OG$, $r(\rho)\ge r-1$. So
+$s_j(\rho)=0$ by induction, and~\eqref{eq:star} gives $s_{j+1}(\kappa)=s_j(\kappa)$. Starting
+from $s_1=0$, this reaches $s_W=0$.
+
+\emph{Nonvanishing.} At $j=W$, \eqref{eq:star} gives
+$s_{W+1}(\kappa)\ge|c_{\rho^*}|\,s_W(\rho^*)$ with $\rho^*=\rho_{t^*}$ (on $\LG$) or $\rho_1$
+(on $\OG$); the other terms are $\ge0$. By Lemma~\ref{lem:A}, $c_{\rho^*}\ne0$ and
+$W(\rho^*)<W$, so $s_W(\rho^*)>0$ by induction. Monotonicity gives $s_j>0$ for all $j>W$.
+\end{proof}
+
+\begin{example}
+For $\kappa=(3,2)$ on $\LG(3,6)$: the coordinate sums of $D(\kappa)$ are $0,1,2,2,3$, so
+$r=4$ and $W=2$. By Example~\ref{ex:pieri32}, \eqref{eq:star} at $j=2$ reads
+$s_3(3,2)=s_2(3,2)+2s_2(3,1)+s_2(2,1)+s_2(3)+s_2(2)$. The first four terms vanish, since each of
+those $\kappa$ has $W=2$, and $s_2(2)=1$. So $s_3(3,2)=1$, that is, $H_{(3,2)}(-3)=-1$. Here
+$\rho^*=\rho_2=(2)$ and $T_2=\{(0,2),(1,1),(1,2)\}$. At $j=3$ the same recursion gives
+$s_4(3,2)=1+2\cdot2+1+3+4=13$. For $\kappa=(4,3,2,1)$ we have $r=7$ and $W=4$; the support of
+$[\cO_{X_\kappa}]\cdot\cO^1$ is the single term $\rho=(4,3,2)$ with $\theta=T_1=\{(3,3)\}$ and
+$c_\rho=1$.
+\end{example}
+
+%======================================================================
+\section{Half-integer values}\label{sec:half}
+%======================================================================
+% Sources: proofs/2026-10-23-odd-zero-law.md (Lemma P, Lemma W, Lemma C, Prop H, Thm A, Thm C, Thm B);
+%          proofs/2026-10-24-Z-by-hyperplane-induction.md (Theorem Z);
+%          proofs/2026-10-25-crownF-strict-reciprocity.md §9 (Theorem HZ).
+% Registry: q488-oc-prop-H-bridge, q488-oc-thmA-half, q488-oc-thmC-M3, q488-oc-Z-by-induction,
+%           q488-oc-HZ-half-integer-law, q488-oc-odd-zero-law, q488-oc-thmB-OC (all proved).
+
+Throughout this section $X=\LG(m,2m)$, and $s_x(\kappa)=(-1)^{|\kappa|}H_\kappa(-x)$ for
+$x\in\tfrac12\Z$. Since~\eqref{eq:star} is an identity of polynomials, it holds at
+half-integers as well. Write $y_i=e^{-\varepsilon_i}$.
+
+\subsection{The anchor at \texorpdfstring{$-\tfrac12$}{-1/2} and the bridge to vector bundles}
+For $1\le k\le m$, put $c(k)=s_{m-k+1}s_{m-k+2}\cdots s_m$, of length $k$. Then
+$D_{c(k)}=D_{m-k+1}\circ\dots\circ D_m$, so $D_m$ acts first.
+
+\begin{lemma}[Reduced word]\label{lem:W}
+$w_\kappa=c(\kappa_\ell)\cdots c(\kappa_2)\,c(\kappa_1)$, and this word is reduced. Equivalently,
+$w_\kappa=w_{\kappa'}\,c(\kappa_1)$ with lengths adding, and every letter of $w_{\kappa'}$ is
+$s_j$ with $j\ge m-\kappa_1+2$.
+\end{lemma}
+
+\begin{proof}
+Let $p=m-\kappa_1+1$. Applying the letters of $c(\kappa_1)$ to $\omega=(1,\dots,1)$ from right to
+left, $s_m$ flips the last coordinate and $s_{m-1},\dots,s_p$ carry the $-1$ to position $p$.
+So $c(\kappa_1)\omega=v_{(\kappa_1)}$. Every letter of $c(\kappa_\ell)\cdots c(\kappa_2)$ is
+$s_j$ with $j\ge m-\kappa_2+1\ge p+1$, so it only moves coordinates $\ge p+1$, where
+$v_{(\kappa_1)}$ is $+1$. By induction on $\ell(\kappa)$, the word maps $\omega$ to
+$v_\kappa$. It has length $|\kappa|=\ell(w_\kappa)$ and lies in the coset $w_\kappa W_P$, and
+the minimal coset representative is the unique element of minimal length. So the word is
+reduced and equals $w_\kappa$.
+\end{proof}
+
+Let $D^B_mg=(g-y_ms_mg)/(1-y_m)$ be the type-$B$ operator for the short root $\varepsilon_m$.
+Put $D'_i=D_i$ for $i<m$ and $D'_m=(1+y_m)^{-1}D^B_m$, and let
+$\Phi=\prod_{i=1}^m(1+y_i)^{-1}$, an analytic germ with $\Phi(0)=2^{-m}$.
+
+\begin{lemma}[Conjugation]\label{lem:C}
+For all $i$, $D_i(e^{-\omega/2}g)=e^{-\omega/2}D'_i(g)$ and $D'_i(\Phi g)=\Phi D_i(g)$.
+Hence $D_w(e^{-\omega/2}g)=e^{-\omega/2}\,\Phi\,D_w(\Phi^{-1}g)$ for every $w$.
+\end{lemma}
+
+\begin{proof}
+For $i<m$, both $e^{-\omega/2}$ and $\Phi$ are $s_i$-invariant, and $D_i(\varphi g)=\varphi D_ig$
+whenever $s_i\varphi=\varphi$. For $i=m$: $s_m(e^{-\omega/2})=e^{-\omega/2}e^{\varepsilon_m}$ and
+$e^{-\alpha_m}=y_m^2$, so
+$D_m(e^{-\omega/2}g)=e^{-\omega/2}(g-y_ms_mg)/(1-y_m^2)=e^{-\omega/2}(1+y_m)^{-1}D^B_mg$.
+For the second identity, write $\Phi=\Phi'(1+y_m)^{-1}$ with $\Phi'$ $s_m$-invariant, and use
+$s_m(1+y_m)^{-1}=y_m(1+y_m)^{-1}$. Then
+$D^B_m((1+y_m)^{-1}g)=(g-y_m^2s_mg)/((1+y_m)(1-y_m))$, and multiplying by $(1+y_m)^{-1}\Phi'$
+gives $\Phi(g-y_m^2s_mg)/(1-y_m^2)=\Phi D_mg$.
+\end{proof}
+
+\begin{proposition}[Bridge]\label{prop:bridge}
+For every integer $a\ge0$,
+$2^mH_\kappa(-a-\tfrac12)=\bigl[D_{w_\kappa}(F_a)\bigr]_{y=1}$, where
+$F_a=\prod_{i=1}^my_i^a(1+y_i)$.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:P},
+\[ H_\kappa(-a-\tfrac12)=\bigl[D_{w_\kappa}(e^{-\omega/2}e^{-a\omega})\bigr](0). \]
+By Lemma~\ref{lem:C} this equals $[e^{-\omega/2}\Phi\,D_{w_\kappa}(F_a)](0)$, because
+$\Phi^{-1}e^{-a\omega}=F_a$, and $e^{-\omega/2}\Phi=2^{-m}$ at $0$.
+\end{proof}
+
+\begin{remark}\label{rem:wedgeU}
+$F_a$ is the character of $\C_{-a\omega}\otimes\bigwedge^\bullet U_0$, where $U_0$ is the
+$P$-module with weights $-\varepsilon_i$, the fibre of the tautological subbundle $U$. Pulling
+back to $G/B$ and filtering by $B$-weights, (G1) turns Proposition~\ref{prop:bridge} into
+$2^mH_\kappa(-a-\tfrac12)=\chi(X_\kappa,\bigwedge^\bullet U\otimes\cO(-a))$. So the half-integer
+values are Euler characteristics of honest vector bundles. (For $m=1$, $X=\mathbb{P}^1$ and
+$U=\cO(-1)$: $\chi(\cO\oplus\cO(-1))=1=2H(-\tfrac12)$.) None of the proofs below use this
+geometric reading.
+\end{remark}
+
+\begin{theorem}\label{thm:A}
+$H_\kappa(-\tfrac12)=2^{-\kappa_1}$ for every $\kappa$ (with $\kappa_1=0$ for $\kappa=\varnothing$).
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:bridge} with $a=0$, $2^mH_\kappa(-\tfrac12)=[D_{w_\kappa}\prod_i(1+y_i)]_{y=1}$.
+Let $p=m-\kappa_1+1$. We claim that $D_{c(\kappa_1)}\prod_{i=1}^m(1+y_i)=\prod_{i<p}(1+y_i)$.
+Apply $D_m,D_{m-1},\dots,D_p$ in turn. Before $D_q$ acts, the function is
+$\prod_{i\le q}(1+y_i)$ (true for $q=m$), and $\prod_{i<q}(1+y_i)$ is $s_q$-invariant. So
+$D_q\prod_{i\le q}(1+y_i)=\prod_{i<q}(1+y_i)\,(1+D_qe^{-\varepsilon_q})$. Here
+$\langle-\varepsilon_q,\alpha_q^\vee\rangle=-1$ for $q<m$ and for $q=m$, so
+$D_qe^{-\varepsilon_q}=0$. By Lemma~\ref{lem:W}, the remaining letters $s_j$ have $j\ge p+1$; they
+fix $\prod_{i<p}(1+y_i)$, and $D_j(1)=1$. Evaluating at $y=1$ gives $2^{p-1}=2^{m-\kappa_1}$.
+\end{proof}
+
+\begin{theorem}\label{thm:C}
+If $\kappa_1\ge2$, then $H_\kappa(-\tfrac32)=2^{-\kappa_1}H_{\kappa'}(-1)$, and
+$H_{(1)}(-\tfrac32)=-\tfrac12$. Hence $H_\kappa(-\tfrac32)=0$ iff $\ell(\kappa)\ge2$.
+\end{theorem}
+
+\begin{proof}
+For $\kappa=(1)$, $H_{(1)}(j)=j+1$. Let $\kappa_1\ge2$, $p=m-\kappa_1+1$, and $f(y)=y+y^2$, so
+$F_1=\prod_if(y_i)$. We apply $D_{c(\kappa_1)}$.
+$D_m$ kills $y_m$ (pairing $-1$) and sends $y_m^2$ to $-1$ (pairing $-2$), so
+$D_mF_1=-\prod_{i<m}f(y_i)$. Next, $D_{m-1}$ kills $y_{m-1}$ and sends $y_{m-1}^2$ to
+$-y_{m-1}y_m$, so $D_{m-1}(-f(y_{m-1}))=y_{m-1}y_m$. For $p\le q<m-1$, $D_q$ applied to
+$f(y_q)y_{q+1}\cdots y_m$ fixes $y_qy_{q+1}\cdots y_m$ (pairing $0$) and kills
+$y_q^2y_{q+1}\cdots y_m$ (pairing $-1$). Hence
+$D_{c(\kappa_1)}F_1=\prod_{i<p}f(y_i)\cdot y_p\cdot(y_{p+1}\cdots y_m)$. By
+Lemma~\ref{lem:W}, $D_{w_{\kappa'}}$ acts only on the coordinates $p+1,\dots,m$, where
+$y_{p+1}\cdots y_m=e^{-\omega''}$ for the rank-$(\kappa_1-1)$ block. The prefactor is inert and
+equals $2^{p-1}$ at $y=1$. The Demazure expression for $H_{\kappa'}$ does not depend on the rank,
+by the same inert-factor argument. Hence
+$2^mH_\kappa(-\tfrac32)=2^{m-\kappa_1}H_{\kappa'}(-1)$. Finally, $H_{\kappa'}(-1)=0$ iff
+$\kappa'\ne\varnothing$ (Lemma~\ref{lem:anchor}), and $H_\varnothing\equiv1$.
+\end{proof}
+
+\subsection{Vanishing by hyperplane sections}
+
+\begin{theorem}\label{thm:Z}
+% Registry: q488-oc-Z-by-induction (proved given G0, G1, BR; endorsed by Clio, review uid451).
+For every strict $\kappa$ and every odd $M$ with $3\le M\le2\lceil r(\kappa')/2\rceil+1$,
+$H_\kappa(-M/2)=0$.
+\end{theorem}
+
+\begin{proof}
+Strong induction on $|\kappa|$. If $\ell(\kappa)\le1$, then $r(\kappa')=0$ and the range is
+empty. Let $\ell(\kappa)\ge2$, so $r'=r(\kappa')\ge1$. Put $b_\kappa(x)=H_\kappa(x)-H_\kappa(x-1)$.
+
+\emph{Every term vanishes on the shrunken window.} Let $M$ be odd with
+$3\le M\le2\lceil r'/2\rceil-1$, and let $c_\rho\ne0$. By Lemma~\ref{lem:chaindrop},
+$r(\rho')\ge r'-2$, so
+$2\lceil r(\rho')/2\rceil+1\ge2\lceil(r'-2)/2\rceil+1=2\lceil r'/2\rceil-1\ge M$. Thus $M$ lies
+in the window of $\rho$, and $H_\rho(-M/2)=0$ by induction. By~\eqref{eq:hyperplane},
+$b_\kappa(-M/2)=0$.
+
+\emph{Telescoping from the anchor.} By Theorem~\ref{thm:C}, $H_\kappa(-\tfrac32)=0$. For $M$
+in the range above, $b_\kappa(-M/2)=0$ says $H_\kappa(-M/2)=H_\kappa(-(M+2)/2)$. Going up
+$M=3,5,\dots,2\lceil r'/2\rceil-1$ carries the zero from $-\tfrac32$ to
+$-(2\lceil r'/2\rceil+1)/2$.
+\end{proof}
+
+Theorem~\ref{thm:Z} uses only the support of the Pieri rule: it needs to know that
+$c_\rho\ne0$ implies that $\theta$ has no $3$-chain. This also follows from the rim condition
+of~\cite[Thm.~5.5]{BR12} together with the bound of two boxes per row and column (two boxes in
+strictly south-east position, or three in a row or column, would be needed for a
+$3$-chain). The coefficients do not cooperate at the edge of the window: the nonzero terms of
+$b_\kappa$ at $-M^*/2$, $M^*=2\lceil r'/2\rceil+1$, need not have a common sign (for
+$\kappa=(3,2)$ they are $-\tfrac18$ and $+\tfrac14$). So the nonvanishing half needs the
+finer argument below.
+
+\subsection{The odd-zero law}
+
+Let $A_o$ and $A_e$ be the matrices indexed by strict partitions with
+$A_o(\kappa,\nu)=[\theta\text{ is an antichain without diagonal boxes}]$ and
+$A_e(\kappa,\nu)=[\theta\text{ is an antichain}]$, for $\nu\subseteq\kappa$ and
+$\theta=D(\kappa)\setminus D(\nu)$, and $0$ otherwise.
+
+\begin{lemma}[Layers]\label{lem:layers}
+\begin{enumerate}[label=(\alph*)]
+\item $(A_oA_e)(\kappa,\nu)=V(D(\kappa)\setminus D(\nu))$. Hence~\eqref{eq:star} reads
+$s_{x+1}=A_oA_e\,s_x$ for every $x\in\C$.
+\item For $a\ge1$, $[(A_oA_e)^{a-1}A_o](\kappa,\nu)=N_{\kappa/\nu}(a)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Peel values from the top, as in Lemma~\ref{lem:peel}. The preimage of the current top value is
+an antichain that is an up-set of what remains. The value is odd (no diagonal boxes allowed:
+$A_o$) or even ($A_e$). In (b), the values $2a-1,2a-2,\dots,1$ alternate $o,e,\dots,o$, giving
+$A_o(A_eA_o)^{a-1}=(A_oA_e)^{a-1}A_o$. Part (a) is the same with the alphabet $\{e<o\}$, and
+$\theta=\varnothing$ gives $1$.
+\end{proof}
+
+\begin{lemma}[The anchor collapses to single rows]\label{lem:eps}
+Let $\varepsilon=A_e\,s_{1/2}$. Then $\varepsilon(\varnothing)=1$,
+$\varepsilon((L))=(-1)^{L+1}2^{-L}$ for $L\ge1$, and $\varepsilon(\kappa)=0$ if
+$\ell(\kappa)\ge2$.
+\end{lemma}
+
+\begin{proof}
+By Theorem~\ref{thm:A}, $s_{1/2}(\nu)=(-1)^{|\nu|}2^{-\nu_1}$, and
+$\varepsilon(\kappa)=\sum_{A\subseteq\max P_\kappa}s_{1/2}(\kappa\setminus A)$. If
+$\ell(\kappa)\ge2$, the last box $z$ of the bottom row is maximal and not in row $0$. Toggling
+$z\in A$ changes $|\nu|$ by one and leaves $\nu_1$ alone, so the terms cancel in pairs. If
+$\kappa=(L)$, the only maximal box is $(0,L-1)$, and
+$\varepsilon=(-1)^L2^{-L}+(-1)^{L-1}2^{-(L-1)}=(-1)^{L+1}2^{-L}$.
+\end{proof}
+
+\begin{corollary}[Row formula]\label{cor:row}
+For $a\ge1$, $s_{a+1/2}(\kappa)=N_\kappa(a)+\sum_{L=1}^{\kappa_1}(-1)^{L+1}2^{-L}N_{\kappa/(L)}(a)$.
+\end{corollary}
+
+\begin{proof}
+$s_{a+1/2}=(A_oA_e)^as_{1/2}=(A_oA_e)^{a-1}A_o\,\varepsilon$; apply Lemmas~\ref{lem:layers}(b)
+and~\ref{lem:eps}.
+\end{proof}
+
+For example, for $\kappa=(3)$ and $a=2$:
+$s_{5/2}(3)=0+\tfrac12\cdot3-\tfrac14\cdot3+\tfrac18\cdot1=\tfrac78$, and indeed
+$H_{(3)}(-\tfrac52)=-\tfrac78$.
+
+\emph{The fibre over the lower rows.} Let $n=\kappa_1$, $M=2a-1$, and $k=\kappa_2$ (with $k=0$
+if $\ell(\kappa)=1$). Rows $\ge1$ of $P_\kappa$ form a copy of $P_{\kappa'}$. Row $0$ is the
+chain $(0,0)<\dots<(0,n-1)$, and its cover relations to rows $\ge1$ are $(0,\beta)<(1,\beta)$
+for $1\le\beta\le k$; nothing in rows $\ge1$ lies below a box of row $0$. Fix a strictly
+order-preserving $g$ on rows $\ge1$ with values in $[M]$ and even diagonal values; there are
+$N_{\kappa'}(a)$ of them. Put $u_\beta=g(1,\beta)$ for $1\le\beta\le k$ and $u_\beta=M+1$ (no
+bound) for $k<\beta\le n-1$. For a bound vector $u$ and $1\le L\le n$, let $G_L(M;u)$ be the
+number of strictly increasing $v_L<\dots<v_{n-1}$ in $[M]$ with $v_\beta<u_\beta$ (so
+$G_n=1$), and let $E_0(M;u)$ be the same count for $L=0$ with $v_0$ even. Put
+\[ \Phi(u)=E_0(M;u)-\sum_{L=1}^n(-\tfrac12)^LG_L(M;u). \]
+Summing Corollary~\ref{cor:row} over $g$ gives
+\begin{equation}\label{eq:fibre}
+s_{a+1/2}(\kappa)=\sum_g\Phi(u(g)).
+\end{equation}
+The bounds coming from an actual $g$ satisfy
+\begin{equation}\tag{H}
+u_\beta\ge\beta+1\quad\text{for }1\le\beta\le k,
+\end{equation}
+because $u_1=g(1,1)$ is even, hence at least $2$, and row $1$ increases strictly.
+
+Let $\Psi_L(M;u)=\sum_{L'=L}^n(-\tfrac12)^{L'-L}G_{L'}(M;u)$. Then $\Psi_n=1$ and
+$\Phi=E_0+\tfrac12\Psi_1$.
+
+\begin{lemma}[Shift]\label{lem:shift}
+Let $1\le L\le n-1$ and $M\ge1$, and suppose $u_{L'}\ge2$ for $L\le L'\le n-1$. Then
+$\Psi_L(M;u)=G_L(M-1;u-1)+\tfrac12\Psi_{L+1}(M-1;u-1)$.
+\end{lemma}
+
+\begin{proof}
+For $L'\ge L$, let $\alpha_{L'}$ (resp.\ $\beta_{L'}$) count the fillings of boxes
+$L',\dots,n-1$ with $v_{L'}=1$ (resp.\ $v_{L'}\ge2$), and put $\beta_n=1$. Then
+$G_{L'}=\alpha_{L'}+\beta_{L'}$ for $L'\le n-1$. Deleting box $L'$ (value $1$) is a bijection onto
+the fillings of $L'+1,\dots,n-1$ with all values $\ge2$. Its inverse puts $1$ in box $L'$, which
+is allowed because $u_{L'}\ge2$ and $M\ge1$. So $\alpha_{L'}=\beta_{L'+1}$ for $L\le L'\le n-1$.
+Substituting,
+\[ \Psi_L=\sum_{L'=L}^{n-1}(-\tfrac12)^{L'-L}(\beta_{L'}+\beta_{L'+1})+(-\tfrac12)^{n-L}\beta_n
+=\beta_L+\tfrac12\sum_{L''>L}(-\tfrac12)^{L''-L-1}\beta_{L''}. \]
+Finally, $v\mapsto v-1$ identifies fillings with values in $[2,M]$ under bounds $u$ with
+fillings in $[M-1]$ under bounds $u-1$, so $\beta_{L''}(M;u)=G_{L''}(M-1;u-1)$, including
+$L''=n$.
+\end{proof}
+
+\begin{lemma}[One row]\label{lem:onerow}
+Assume (H).
+\begin{enumerate}[label=(\alph*)]
+\item If $M\ge n-1$, then
+$\Phi(u)=E_0(M;u)+\sum_{i=0}^{n-2}2^{-i-1}G_{1+i}(M-1-i;u-1-i)+2^{-n}\ \ge\ 2^{-n}$.
+\item If $M\le n-1$, then $\Phi(u)=(-1)^{n-1-M}2^{-n}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Apply Lemma~\ref{lem:shift} repeatedly. Step $i=0,1,\dots$ rewrites $\Psi_{1+i}(M-i;u-i)$. Its
+hypotheses are $M-i\ge1$ and $u_{L'}-i\ge2$ for $L'\ge1+i$. The second holds by (H) for bounded
+boxes ($u_{L'}-i\ge L'+1-i\ge2$), and for unbounded boxes as long as $M-i\ge1$.
+(a) If $M\ge n-1$, steps $i=0,\dots,n-2$ are allowed, ending at $\Psi_n=1$, so
+$\Psi_1=\sum_{i=0}^{n-2}2^{-i}G_{1+i}(M-1-i;u-1-i)+2^{-(n-1)}$. Every term is nonnegative.
+(b) If $M\le n-1$, steps $i=0,\dots,M-1$ are allowed, ending at
+$\Psi_{1+M}(0;u-M)=(-\tfrac12)^{n-1-M}$, since only $G_n=1$ survives an empty alphabet. The
+$G$-terms vanish: $G_{1+i}(M-1-i)$ fills $n-1-i$ boxes from $M-1-i<n-1-i$ values. So
+$\Psi_1=2^{-M}(-\tfrac12)^{n-1-M}$. Also $E_0=0$, because $n$ strictly increasing values that are
+all $\ge2$ need $M\ge n+1$. Hence $\Phi=\tfrac12\Psi_1$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:HZ}]
+% Registry: q488-oc-HZ-half-integer-law (proved given G0, G1, BR + Thm A).
+The value at $-\tfrac12$ is Theorem~\ref{thm:A}. Let $a\ge1$ and $M=2a-1$. If $2a\le\kappa_1$,
+then $M\le n-1$, and Lemma~\ref{lem:onerow}(b) gives
+$\Phi\equiv(-1)^{n-2a}2^{-n}=(-1)^{\kappa_1}2^{-\kappa_1}$ for every $g$. So
+$s_{a+1/2}(\kappa)=(-1)^{\kappa_1}2^{-\kappa_1}N_{\kappa'}(a)$ by~\eqref{eq:fibre}. If
+$2a\ge\kappa_1$, then $M\ge n-1$, and Lemma~\ref{lem:onerow}(a) gives $\Phi\ge2^{-n}$ for every
+$g$, so $s_{a+1/2}(\kappa)\ge2^{-\kappa_1}N_{\kappa'}(a)$. (For $2a=\kappa_1$ both apply, and
+they agree because $\kappa_1$ is even.) In both cases $s_{a+1/2}(\kappa)=0$ iff
+$N_{\kappa'}(a)=0$. By Lemma~\ref{lem:Npos}, this happens iff $\kappa'\ne\varnothing$ and
+$a\le\lceil r(\kappa')/2\rceil$. The signs follow from $H_\kappa=(-1)^{|\kappa|}s$. Each
+$\Phi(u)$ lies in $2^{-n}\Z$, so $2^{\kappa_1}s_{a+1/2}(\kappa)\in\Z$.
+\end{proof}
+
+\begin{example}
+Take $\kappa=(3,2)$ and $a=2$, so $M=3\ge n-1=2$. On rows $\ge1$, the chain $(1,1)<(1,2)$ with
+$(1,1)$ even and values in $[3]$ admits only $g=(2,3)$, so $u=(2,3)$. Then $E_0=0$ (no
+$v_1<2$ fits above an even $v_0$) and $G_1(2;(1,2))=0$. Lemma~\ref{lem:onerow}(a) gives
+$\Phi=\tfrac18$, so $s_{5/2}(3,2)=\tfrac18=2^{-\kappa_1}N_{(2)}(2)$, and
+$H_{(3,2)}(-\tfrac52)=-\tfrac18$. The bound in Theorem~\ref{thm:HZ}(iii) is attained.
+\end{example}
+
+\begin{remark}[Checks]
+The values $(-1)^{|\kappa|}H_\kappa(-a-\tfrac12)$, computed from type-$C$ Demazure characters
+and interpolated to $x=-a-\tfrac12$, agree with $\sum_g\Phi(u(g))$ for all $\kappa$ with parts at
+most $m\le4$ and $a\le5$ ($125$ cases). Lemma~\ref{lem:onerow} holds pointwise in all $477$ cases
+that occur. Hypothesis (H) is necessary: without it $\Phi$ can be negative (for example $u=(1)$
+gives $-\tfrac14$).
+\end{remark}
+
+\subsection{Nonvanishing for large half-integers}
+
+\begin{proof}[Proof of Corollary~\ref{cor:OC}]
+% Registry: q488-oc-thmB-OC (proved via Theorem HZ, given G0, G1, BR).
+Let $M=2a+1\ge2m+1$, so $a\ge m\ge\kappa_1$ and $2a\ge\kappa_1$. The parts of $\kappa'$ are at
+most $m-1$, so $\max(a'+b')\le2m-4$ on $D(\kappa')$, and $r(\kappa')\le2m-3$ by
+Lemma~\ref{lem:chain}. Hence $\lceil r(\kappa')/2\rceil\le m-1<a$, and
+Theorem~\ref{thm:HZ} gives $s_{a+1/2}(\kappa)\ge2^{-\kappa_1}N_{\kappa'}(a)>0$ with
+$2^{\kappa_1}s_{a+1/2}(\kappa)\in\Z$. Then $2^ms_{a+1/2}(\kappa)$ is an integer, and it is at
+least $2^{m-\kappa_1}\ge1$.
+\end{proof}
+
+\begin{remark}[A cohomological formula]\label{rem:serre}
+Corollary~\ref{cor:OC} also follows from a positive cohomological formula. That argument uses
+more geometry: normality and the Cohen--Macaulay property of Schubert varieties, Kodaira-type
+vanishing via Frobenius splitting, and the formula $\omega_Y=\cO_Y(-\partial Y)\otimes L_{-\rho}$
+for Schubert varieties $Y\subseteq G/B$~\cite[Ch.~3]{BK05}. Let $\pi\colon Y\to X_\kappa$ be the
+$P/B$-bundle. Serre duality applied to Remark~\ref{rem:wedgeU}, followed by a $B$-stable
+filtration of $\pi^*(\omega_{X_\kappa}\otimes\bigwedge^\bullet U^\vee(a))$, gives, for $a\ge m$,
+\[ (-1)^{|\kappa|}2^mH_\kappa(-a-\tfrac12)=\sum_{S\subseteq[m]}h^0\bigl(Y,\cO_Y(-\partial Y)\otimes L_{\lambda_S}\bigr),\qquad\lambda_S=(a-i+[i\in S])_{i=1}^m. \]
+Every $\lambda_S$ is dominant for $a\ge m$, and the term $S=[m]$ is nonzero. We record this as a
+remark because the proof given above needs only (G0), (G1) and (BR).
+\end{remark}
+
+%======================================================================
+\section{Examples}\label{sec:examples}
+%======================================================================
+
+\subsection{The quadric \texorpdfstring{$\LG(2,4)$}{LG(2,4)} and \texorpdfstring{$\mathbb{P}^3=\OG(2,5)$}{P3 = OG(2,5)}}
+Let $\kappa=(2,1)$, so $P_\kappa$ is the chain $(0,0)<(0,1)<(1,1)$, with both ends diagonal.
+
+\emph{Positive degrees.} For $j=1$, the order-preserving maps $g\colon P_\kappa\to\{0,1,2\}$
+that are even at both ends are $(0,0,0)$, $(0,0,2)$, $(0,1,2)$, $(0,2,2)$ and $(2,2,2)$. This
+gives $H(1)=5=\dim V_{\mathrm{Sp}_4}(\omega_2)$, the number of Plücker coordinates of the
+quadric $\LG(2,4)\subseteq\mathbb{P}^4$.
+
+\emph{Negative integers.} $H(j)=(j+1)(j+2)(2j+3)/6$ gives $H(-1)=H(-2)=0$, $H(-3)=-1$ and
+$H(-4)=-5$, matching Example~\ref{ex:intro21}. Here $r=3$ and $W=2$. By Serre duality with
+$\omega_{Q^3}=\cO(-3)$, $H(-3)=-h^0(\cO)$.
+
+\emph{Half-integers.} $H(-\tfrac12)=\tfrac14=2^{-\kappa_1}$, and $H(-\tfrac32)=0$ because
+$\ell(\kappa)=2$ (Theorem~\ref{thm:C}). Next, $H(-\tfrac52)=-\tfrac14$: here $\kappa'=(1)$ and
+$r(\kappa')=1$, so the half-integer window is $a\le1$. Since $2a=4\ge\kappa_1$, the sign is
+$(-1)^{|\kappa|}=-1$, and $|H(-\tfrac52)|=2^{-2}N_{(1)}(2)=\tfrac14$.
+
+\emph{The orthogonal twin.} For $\OG(2,5)\cong\mathbb{P}^3$ with the spinor bundle
+$\cO_{\mathbb{P}^3}(1)$, $\HOG(j)=\Om(P_{(2,1)},j+1)=\binom{j+3}{3}$. Its zeros are
+$-1,-2,-3$, so $W=r=3$, and $\HOG(-4)=-1=-\Omb(P_{(2,1)},3)$. The window on $\OG$ is twice as
+long, as Theorem~\ref{thm:window} predicts.
+
+\subsection{All Schubert varieties of \texorpdfstring{$\LG(3,6)$}{LG(3,6)}}
+Table~\ref{tab:lg3} lists $H_\kappa$ for all $\kappa\ne\varnothing$ with parts at most $3$,
+together with $r=r(\kappa)$ and $r'=r(\kappa')$. Table~\ref{tab:lg3vals} lists the values at
+$j=-1,\dots,-5$ and at $j=-\tfrac12,\dots,-\tfrac92$. The polynomials were computed from
+Demazure characters (G1) by interpolation, independently of the theorems. The integer values
+agree with the strict counts of Theorem~\ref{thm:main}(b) for $j\le4$. The zeros are exactly
+those predicted by Theorems~\ref{thm:window} and~\ref{thm:HZ}: integer zeros $-1,\dots,-\lceil
+r/2\rceil$, and half-integer zeros $-a-\tfrac12$ for $1\le a\le\lceil r'/2\rceil$ when
+$\kappa'\ne\varnothing$.
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}lccl@{}}
+\toprule
+$\kappa$ & $r$ & $r'$ & $H_\kappa(j)$\\
+\midrule
+$(1)$ & $1$ & $0$ & $j+1$\\
+$(2)$ & $2$ & $0$ & $(j+1)^2$\\
+$(3)$ & $3$ & $0$ & $(j+1)(j+2)(4j+3)/6$\\
+$(2,1)$ & $3$ & $1$ & $(j+1)(j+2)(2j+3)/6$\\
+$(3,1)$ & $3$ & $1$ & $(j+1)^2(j+2)(2j+3)/6$\\
+$(3,2)$ & $4$ & $2$ & $(j+1)(j+2)(2j+3)(2j^2+6j+5)/30$\\
+$(3,2,1)$ & $5$ & $3$ & $(j+1)(j+2)^2(j+3)(2j+3)(2j+5)/180$\\
+\bottomrule
+\end{tabular}
+\caption{Hilbert polynomials of the Schubert varieties of $\LG(3,6)$.}\label{tab:lg3}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}l|rrrrr|rrrrr@{}}
+\toprule
+$\kappa$ & $-1$ & $-2$ & $-3$ & $-4$ & $-5$ & $-\frac12$ & $-\frac32$ & $-\frac52$ & $-\frac72$ & $-\frac92$\\
+\midrule
+$(1)$ & $0$ & $-1$ & $-2$ & $-3$ & $-4$ & $\frac12$ & $-\frac12$ & $-\frac32$ & $-\frac52$ & $-\frac72$\\
+$(2)$ & $0$ & $1$ & $4$ & $9$ & $16$ & $\frac14$ & $\frac14$ & $\frac94$ & $\frac{25}4$ & $\frac{49}4$\\
+$(3)$ & $0$ & $0$ & $-3$ & $-13$ & $-34$ & $\frac18$ & $\frac18$ & $-\frac78$ & $-\frac{55}8$ & $-\frac{175}8$\\
+$(2,1)$ & $0$ & $0$ & $-1$ & $-5$ & $-14$ & $\frac14$ & $0$ & $-\frac14$ & $-\frac52$ & $-\frac{35}4$\\
+$(3,1)$ & $0$ & $0$ & $2$ & $15$ & $56$ & $\frac18$ & $0$ & $\frac38$ & $\frac{25}4$ & $\frac{245}8$\\
+$(3,2)$ & $0$ & $0$ & $-1$ & $-13$ & $-70$ & $\frac18$ & $0$ & $-\frac18$ & $-\frac{17}4$ & $-\frac{259}8$\\
+$(3,2,1)$ & $0$ & $0$ & $0$ & $1$ & $14$ & $\frac18$ & $0$ & $0$ & $\frac18$ & $\frac{35}8$\\
+\bottomrule
+\end{tabular}
+\caption{Values of $H_\kappa$ at negative integers and half-integers on $\LG(3,6)$.}\label{tab:lg3vals}
+\end{table}
+
+A few entries, read through the theorems:
+\begin{itemize}
+\item $(3)$: $s_3(3)=3$ counts the triples $2\le x<y<z\le5$ with $x$ even, namely $x=2$ and
+$\{y,z\}\subseteq\{3,4,5\}$. At $-\tfrac32$ we have $2a=2\le\kappa_1=3$, so
+$H=2^{-3}N_\varnothing=\tfrac18$ with sign $(-1)^{|\kappa|-\kappa_1}=+$.
+\item $(3,1)$: $H(-\tfrac52)=\tfrac38>0$. Here $2a=4\ge3$, so the sign is
+$(-1)^{|\kappa|}=+$, and the lower bound $2^{-3}N_{(1)}(2)=\tfrac18$ is not attained.
+\item $(3,2,1)=\LG(3,6)$: $r=5$, so the integer zeros are $-1,-2,-3$. Since $\kappa'=(2,1)$ has
+$r'=3$, the half-integer zeros are $-\tfrac32$ and $-\tfrac52$. Then $H(-4)=1$ and
+$H(-\tfrac72)=\tfrac18=2^{-3}N_{(2,1)}(3)$.
+\end{itemize}
+
+\subsection{Computer checks}\label{ssec:checks}
+Apart from the checks recorded with each section, Theorem~\ref{thm:main}(b) and
+Theorem~\ref{thm:og} were compared with Hilbert polynomials computed directly from Demazure
+characters at negative weights, for all $\kappa$ with parts at most $m$: $16,32,64,128$
+pairs $(\kappa,j)$ with $j\le4$ for $m=2,3,4,5$, on both $\LG$ and $\OG$, with no failures.
+Negative controls fail as they should (alphabet $[2j]$ instead of $[2j-1]$; no diagonal parity;
+$\OG$ alphabet $[j]$). An independent census by Clio Vega, who evaluated the Demazure characters
+directly at negative weights, confirmed Theorem~\ref{thm:window} for all strict $\kappa$ with
+parts at most $6$, on both $\LG$ and $\OG$.
+
+%======================================================================
+\section{Open questions}\label{sec:open}
+%======================================================================
+
+\begin{question}[Other cominuscule spaces]\label{q:cominuscule}
+The cominuscule $G/P$ that are not minuscule are $\LG(m,2m)$ and the odd quadrics
+$Q^{2m-1}=B_m/P_1$. For the odd quadric the Bruhat poset is a chain, and exactly one cover has
+bond $2$. This is the lecture-hall setting of~\cite{CCFL}. Is the Hilbert function of every
+Schubert variety in a cominuscule $G/P$ the Ehrhart polynomial of its order polytope with
+respect to the lattice determined by the bonds, as in Theorem~\ref{thm:main}(c)? Is there a
+uniform reason, independent of the case-by-case bond computation of Lemma~\ref{lem:bonds}?
+\end{question}
+
+\begin{question}[Canonical modules]
+For $j\ge1$, Kodaira-type vanishing on Schubert varieties gives
+$(-1)^{|\kappa|}H_\kappa(-j)=h^0(X_\kappa,\omega_{X_\kappa}(j))$. Is there a
+standard-monomial-type basis of $H^0(X_\kappa,\omega_{X_\kappa}(j))$ indexed by the strictly
+order-preserving maps of Theorem~\ref{thm:main}(b)? Which $X_\kappa$ are Gorenstein, in terms of
+the interior of $(\ord(P_\kappa),\Lambda)$?
+\end{question}
+
+\begin{conjecture}[A half-step operator]\label{conj:T}
+Let $T$ be the unipotent square root of $A_oA_e$ (the matrix of~\eqref{eq:star}), indexed by
+strict partitions ordered by inclusion. Then:
+\begin{enumerate}[label=(\alph*)]
+\item $s_{x+1/2}=T\,s_x$ for every $x$; equivalently, $T\,s_0=s_{1/2}$;
+\item each entry $T(\kappa,\nu)$ is $0$ or $\pm2^{-k}$. It is multiplicative over the connected
+components of $\theta=D(\kappa)\setminus D(\nu)$. An off-diagonal single box has weight $1$; an
+off-diagonal component with at least two boxes has weight $0$; and a component containing exactly
+one diagonal box is a ribbon $D$ of weight $\pm2^{-|D|}$, with sign $+$ iff the left neighbour of
+its north-east end box lies in $D$.
+\end{enumerate}
+\end{conjecture}
+
+Part (b) was checked on all $1716$ pairs at $m\le6$, and part (a) for $m\le4$. Neither part is
+used in this paper. A natural guess, that $T$ is given by a shifted Murnaghan--Nakayama rule,
+is false: the two agree only on single boxes, and their supports differ.
+
+\begin{question}[Orthogonal half-integers]
+On $\OG(m,2m+1)$ the half-integer values of $\HOG_\kappa$ have sporadic zeros, for example
+$\HOG_{(3,2)}(-\tfrac52)=0$ and $\HOG_{(5,1)}(-\tfrac32)=0$. We found ten such $\kappa$ at
+$m=6$, and no pattern. Is there an $\OG$ analogue of Theorem~\ref{thm:HZ}?
+\end{question}
+
+\begin{question}[Semi-toric degenerations]
+Chirivì's semi-toric degeneration of $X_\kappa$~\cite{Chi00}, as summarised in~\cite[\S7]{CCFL},
+has one toric component for each maximal chain $\varnothing<\dots<\kappa$, that is, for each
+standard shifted tableau of shape $\kappa$. The bond vector of such a chain lies in
+$\{1,2\}^{|\kappa|}$, with $1$ exactly at diagonal boxes. The associated lecture hall polytope
+appears to be the simplex of Stanley's canonical triangulation of $\ord(P_\kappa)$ that
+corresponds to the chain, taken in the lattice $\Lambda$. Is Chirivì's degeneration a geometric
+realisation of this triangulation of $(\ord(P_\kappa),\Lambda)$? We have not compared it with
+Chirivì's gluing data.
+\end{question}
+
+\begin{question}[Higher Pieri coefficients]
+Proposition~\ref{prop:BRp1} is the case $p=1$ of the KLG-tableau formula~\cite[Cor.~5.6]{BR12},
+whose proof is left to the reader there. A complete proof for all $p$, by the same induction
+over Theorem~5.5 of~\cite{BR12}, would be useful. Do the coefficients
+$c^\nu_{\lambda,p}$ admit an interpretation by strict maps into a $2p$-letter alphabet
+$\{e_1<o_1<\dots<e_p<o_p\}$ with even letters on the diagonal, extending
+Theorem~\ref{thm:Q30}?
+\end{question}
+
+\section*{Acknowledgements}
+Clio Vega refereed the core arguments of this paper. She endorsed the hyperplane-section proof
+of Theorem~\ref{thm:Z} (review uid451), at which point the Chevalley input (G0) was made
+explicit at her request. She endorsed the inductive proof of Theorem~\ref{thm:window} for $\LG$
+and $\OG$ (review uid457), found the missing hypothesis $t\le r$ in Lemma~\ref{lem:A}(i), and
+supplied the short proof of Lemma~\ref{lem:A}(ii) from Theorem~\ref{thm:Q30}. She also replaced
+our interpolation-based checks at $m=5$, which had not finished, by a direct evaluation of
+Demazure characters at negative weights, extending the verification to $m\le6$. This draft was
+prepared for Robin Langer's publication queue.
+
+\bibliographystyle{amsplain}
+\bibliography{refs}
+
+\end{document}
