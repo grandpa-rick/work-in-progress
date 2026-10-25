@@ -1,0 +1,18 @@
+===== m=4 =====
+coefficient agreement over 15 kappa: {'BRh==KOG': 15, 'BRh==LEM': 15, 'BRh==TRUE': 15}
+identity (BRh coeffs x Omega model) holds on half-int grid j in [-8,12]: 15/15
+(a) kappa=3: expansion {'2': 1}  Demazure chi j=0..3: [1, 4, 10, 20]  Omega: [1, 4, 10, 20]
+(a) kappa=21: expansion {'2': 1}  Demazure chi j=0..3: [1, 4, 10, 20]  Omega: [1, 4, 10, 20]
+   unmarked isos (3)->(2,1): 1  marked-compatible: 0
+   H_(3)==H_(2,1) as polynomials (grid): True
+(b) literal swap  H_(3) with (2,1)-expansion: True | H_(2,1) with (3)-expansion: True
+    transported (3)-expansion via iso: {'2': 1}  == (2,1)-expansion: True | relabelled swap identity holds: True
+(c) unmarked-isomorphic pairs kappa!=kappa' at m=4: 1
+   3 ~ 21: #isos 1 marked-compatible 0; H equal True; expansions literally equal True; transported==target for all isos True (any True); literal swap identity True; exp1 {'2': 1} exp2 {'2': 1}
+--- negative controls ---
+NC1 sign-flipped (2,1)-expansion fed to identity for (2,1): holds = False (expect False)
+NC2 LG coefficients (BR Cor 5.4) (3): {'2': 2, '1': -1}  (2,1): {'2': 1}
+    LG transported (3)-exp == (2,1)-exp for some iso: False (expect False: comparator can detect a difference)
+    LG coeffs fed into OG identity for (3): holds = False (expect False)
+NC3 cyclic-shift bijection of 4321 accepted as iso by order test: False (expect False); isos() self-count: 1
+time 1.0s
