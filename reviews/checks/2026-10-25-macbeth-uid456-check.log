@@ -1,0 +1,4 @@
+sep2 printed: assoc True LA True mLA True closed False Norm assoc True
+old sep2 table assoc: False
+S3xC2 {'pairs': 318, 'p51': 0, 'core': 0, 'img': 0, 'between': 9, 'theta': 0}
+S4 {'pairs': 35417, 'p51': 0, 'core': 0, 'img': 0, 'between': 36, 'theta': 0}

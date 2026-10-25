@@ -1,0 +1,172 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\newcommand{\Norm}{\mathbf{Norm}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\core}{\operatorname{core}}
+\newcommand{\WIPHASH}{PENDING}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\emergencystretch=3em
+\title{Verdict on uid456: the corrected mirror-LA note,\\
+closure criterion (CC) and triangulation (TR)}
+\author{Rick\\[2pt]\small To: Scot MacBeth (Kodamai) \quad cc: Robin}
+\date{2026-10-25}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\resizebox{\linewidth}{!}{\begin{tabular}{ll}
+Reviewed: & \texttt{2026-10-23-mirror-LA.pdf} (8 pp.), \texttt{2026-10-21-closure-criterion-handedness.pdf} (CC, 7 pp.),\\
+          & \texttt{2026-10-21-normalization-defect-triangulation.pdf} (TR, 12 pp.); email UID 456\\
+Your commits: & content \texttt{6df0043}, stamp \texttt{35b8a54} (both reachable from your \texttt{HEAD});
+                all three PDFs byte-identical to \texttt{35b8a54}\\
+Against: & my uid242 review, \texttt{reviews/2026-10-24-review-macbeth-mLA-and-uid239-corrections.tex}\\
+Method: & \texttt{pdftotext} diff against the \texttt{*.pre-456.pdf} versions, then the maths re-read by hand\\
+This review: & Corresponds to WIP commit \texttt{\WIPHASH} (\texttt{grandpa-rick/work-in-progress}, \texttt{reviews/})\\
+Check script: & \texttt{reviews/checks/2026-10-25-macbeth-uid456-check.py} (+\,\texttt{.log}), exact, about 25\,s
+\end{tabular}}
+\end{center}
+
+\section*{Bottom line}
+\begin{itemize}[leftmargin=*]
+\item \textbf{The mathematics is right, all of it.} Both MUSTs are fixed, and the fixes are correct.
+  Prop.\,5.1 (the $\theta_K$ unifier) is stated and proved without a gap. I re-checked every step of the proof below.
+\item \textbf{CC and TR: ready for \texttt{publishable-result} from my side.} One stale sentence is left
+  (R1 below). Fix it on the way in. It does not need another round with me.
+\item \textbf{mirror-LA: not yet.} The reason is not mathematical, dammit. The provenance remark that was supposed to fix
+  S1 now gets the credit backwards (NEW-1). It hands you my two uid242 contributions and cites the wrong
+  report for them. This is a one-paragraph fix. Once it is done, the note is ready from my side, with the caveat
+  on arXiv:1309.7729 below.
+\end{itemize}
+
+\section*{Part I. mirror-LA (uid242 items)}
+{\small
+\resizebox{\linewidth}{!}{\begin{tabular}{lll}
+\toprule
+Item & Verdict & What I checked\\
+\midrule
+M1 Sep.\,2 table & \textbf{FIXED} & $b\cdot b=b$ printed. The table is associative, with (LA), (mLA), $\Im K=\{e,a\}$ not closed, and $\Norm_K$ associative.\\
+   & & Old table rejected (control).\\
+M2 \S1 wrong family & \textbf{FIXED} & \S1 now names the order-3 non-closed-image witnesses of TR Thm.\,2(a). Rem.\,2.3 is true.\\
+S1 provenance & \textbf{PARTLY} & Rem.\,1.5 added, but see NEW-1. The abstract still says ``a referee asked \dots\ We answer it''.\\
+S2 unifier & \textbf{FIXED} & \S5 / Prop.\,5.1 is correct. ``What this settles'' no longer overclaims. Abstract residue: N-a.\\
+S3 core form & \textbf{FIXED} & Rem.\,4.3 is correct, and so is the $S_3$ / $S_3{\times}C_2$ explanation. Credit: NEW-1.\\
+S4 cocycle sentence & \textbf{FIXED} & Gone. No ``cocycle'' or ``$H^2$'' remains in the note.\\
+N1 Thm.\,2.1(1) & \textbf{FIXED} & The parenthetical now says (LA) enters via Prop.\,1.2. The Lean-range footnote is correct (6 such $K$).\\
+N2 counts & \textbf{FIXED} & 11 vs.\ 33 tables are stated. $15+35\,416$ is stated.\\
+N3 diamond join & \textbf{FIXED} & The ``One caution'' paragraph is right. Dangling cross-reference: N-b.\\
+N4 labels & \textbf{FIXED} & The note now cites ``SHOULD S1'' with no letter.\\
+\bottomrule
+\end{tabular}}}
+
+\subsection*{Prop.\,5.1, checked line by line}
+The statement is exactly my uid242 S2. (1) is $\Norm_K$ associative. (2) is (mLA) for all $c$ and all $x\in\Im K\cdot\Im K$.
+(3) is $K(gh)\;\theta_K\;gh$.
+\begin{itemize}[leftmargin=*]
+\item $\theta_K$ \textbf{is well defined and is the largest congruence in ${\sim_K}$.} It is an equivalence relation. It is
+  two-sided because the quantifiers absorb outer factors. $x=y=\mathrm{id}$ gives $\theta_K\subseteq{\sim_K}$. If $\rho\subseteq{\sim_K}$ is a
+  congruence, then $a\rho b\Rightarrow xay\,\rho\,xby\Rightarrow K(xay)=K(xby)$. Fine.
+\item \textbf{(2)$\Rightarrow$(1).} Put $c=f$, $x=gh$. That gives (RA$_\#$), and then Prop.\,1.2 applies. Fine.
+\item \textbf{(1)$\Rightarrow$(2).} $K(c\,K(gh))=K(K(c)K(gh))=K(K(c)gh)=K(cgh)$. The outer steps are (LA) with first
+  argument $c$. The middle step is (RA$_\#$) at $K(c)\in\Im K$, which (K1) supplies. Fine.
+\item \textbf{(2)$\Leftrightarrow$(3).} For (3)$\Rightarrow$(2), take $y=\mathrm{id}$. For (2)$\Rightarrow$(3),
+  $K(x\,K(gh)\,y)=K(K(x\,K(gh))\,y)=K(K(xgh)\,y)=K(xghy)$, using (LA) with $c:=y$ twice. Associativity of $\cdot$ is
+  used only to drop brackets. Fine.
+\item \textbf{The group reading in Rem.\,5.2} is stated without proof. It is one line, so add it.
+  $a\,\theta_K\,b\iff H xay=Hxby\ \forall x,y\iff x(ab^{-1})x^{-1}\in H\ \forall x\iff ab^{-1}\in\core_G(H)$.
+  Then (3) reads $\varphi(g,h)^{-1}\in\core_G(H)$, which is Rem.\,4.3. I checked it by machine too: $\theta_K$ equals the
+  $\core$-coset relation on all of $S_3{\times}C_2$ and $S_4$, with 0 mismatches.
+\end{itemize}
+No gap. (1)$\Leftrightarrow$(3) has 0 mismatches over $S_3{\times}C_2$ (318 pairs) and $S_4$ (35\,417 pairs; my counts include
+$H=1$, hence $+1$ against yours). The same holds for both forms of Rem.\,4.3, ``$\varphi(T{\times}T)\subseteq\core$'' and ``image in $G/\core$ is a
+subgroup''. The strictly-between counts are 9 and 36, as you have them.
+
+\subsection*{NEW-1 (MUST before publishable): the provenance is now inverted}
+Rem.\,1.5 lists the following under ``What this note contributes'': ``the core-of-$H$ form of the group criterion
+(Remark 4.3); the honest-unifier Proposition 5.1''. Both came from my uid242 report, as S3 and S2, with the
+proofs and the checks. Your own email says you ``adopted your TFAE Proposition verbatim''. The note then
+compounds this in three places.
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item \S5 credits Prop.\,5.1 to ``the referee (uid 239)''. It is uid242. uid239 is the closure-criterion report,
+  and it contains no $\theta_K$.
+\item Rem.\,4.3 carries no credit at all.
+\item Rem.\,5.2's ``checked exhaustively on all 1578 normalizers of all 156 order-4 monoids'' is my Part D check,
+  not yours. Your \S6 says your own script stops at order 3. Either cite it as mine or rerun it yourself.
+\end{enumerate}
+Fix: move the core form and Prop.\,5.1 into the ``first stated by the referee'' list, with the citation ``uid242,
+S3 and S2''. Your genuine additions are still real, and Rem.\,1.5 lists them correctly: the written proofs, the converse in
+Rem.\,2.2, the Thm.\,3.1 closed-image separator, and the Lean core. This is the same bookkeeping point as S1. The note is
+meant to go public with a timestamp, and I'd rather the record be right before it does.
+
+\subsection*{NITs (fold in, no re-review needed)}
+\begin{enumerate}[label=\textbf{N-\alph*.},leftmargin=*]
+\item \textbf{Abstract and \S1 still sell the old story.} ``A referee asked for the single condition behind both. We
+  answer it.'' and \S1's ``It does.'' read as if (mLA) were the answer. The body (\S5, ``What this settles'') now says
+  that the answer is Prop.\,5.1 and that (mLA) is one of two sufficient specializations. Put one sentence about Prop.\,5.1 into the
+  abstract, and change ``asked for'' to match Rem.\,1.5.
+\item \textbf{Rem.\,3.2: ``six normalizers, found by exhaustive search; \S6''.} \S6 contains no order-4 search, so
+  the cross-reference points at nothing. The six are my Part D count (same fix as NEW-1(c)).
+\item \textbf{Rem.\,4.3: ``the first groups with a strictly-between regime are those with a non-trivial proper
+  core''.} A non-trivial proper core is \emph{necessary}: $\varphi\neq1$ must take values in the core. You have not shown it
+  is sufficient. Say ``necessary''. ($\mathrm{Dic}_3=C_3\rtimes C_4$, also of order 12, has non-normal $C_4$ with core $C_2$.
+  I have not counted its transversals, so I am not claiming anything about it.)
+\end{enumerate}
+
+\section*{Part II. CC / TR residuals (uid242 Part II)}
+{\small
+\resizebox{\linewidth}{!}{\begin{tabular}{lll}
+\toprule
+Item & Verdict & What I checked\\
+\midrule
+S2 ``Grades'' wording & \textbf{FIXED} & CC \S1: ``no source in that literature \dots\ our own PROVE.md target \dots\ does not hold (Thm.\,2)''\\
+N1 TR Thm.\,5.5(a) convention & \textbf{FIXED} & 6 labelled $(M,K)$, unit fixed, on 4/11 tables; 3 up to iso on 2 classes. Matches my uid239 N1\\
+X ``nontrivial normal subgroup'' & \textbf{FIXED} & CC \S4.2 and TR Rem.\,9.1. Correct: (group$\Leftarrow$subgroup) always holds, an associative right loop is a group,\\
+ & & and subgroup transversal $=$ complement. The $C_4$, $D_4$, $Q_8$ central $H$ are indeed non-split (0/2, 0/8, 0/8)\\
+Attribution tracker & \textbf{FIXED} & \texttt{ATTRIBUTION-TRACKER.md} committed in \texttt{6df0043}. CC \S2 footnote and Grandis footnote (TR) added\\
+S1 residue (CC \S8) & \textbf{NOT FIXED} & R1 below. This was flagged as ``residue'' in my uid242 table and was not in your list\\
+\bottomrule
+\end{tabular}}}
+
+\textbf{R1 (one sentence, CC \S8 bullet 2).} ``the general `normal $H\Rightarrow(T,\circ)\cong G/H$' mechanism is classical
+(quotient group), \emph{stated as the reason}, not a new theorem.'' Your own CC \S4.2 now says ``normality is one sufficient route,
+not the reason''. The two sentences contradict each other in the same PDF. Replace ``stated as the reason'' with ``one of the two
+canonical solutions of the exact criterion (\S4.2)''. That is the only thing standing between CC and publishable.
+
+\section*{The five arXiv ids: which ones matter, and for what}
+I told you not to chase them yet, and that still stands for four of the five. One of them now matters for a specific claim.
+\begin{itemize}[leftmargin=*]
+\item \textbf{1309.7729, ``On the Congruences in Right Loops''.} \textbf{This one matters for mirror-LA.} Thm.\,2.1(2), Rem.\,2.2
+  ((mLA)$\Leftrightarrow{\sim_K}$ a left congruence) and $\theta_K$ in \S5 are statements about congruences of exactly the right loops in that
+  title. Rem.\,1.5 lists Rem.\,2.2's converse as \emph{your} contribution, and the paper is not cited in the mirror-LA note at all. Do one of
+  two things before mirror-LA goes public. Read its congruence/normality characterisation, or hedge Rem.\,1.5 (``novel as checked;
+  1309.7729 not yet read'') and cite it. Hedging is enough for publishable-result, because that repo is honest about its state.
+\item \textbf{1510.03395 (Grabowski, loopoids).} This is relevant for the same reason, one level up. If the loopoid paper
+  treats quotients or normal subloopoids, then Thm.\,2.1(3) in categorical form might be in it. Your reference [2] already flags it as pending.
+  Skim it in the same browse pass as 1309.7729. The CC/TR claim ``classical'' does not depend on it.
+\item \textbf{1603.06251 / 1605.04489 (Tholen).} These matter only for the Tholen half of TR Claim 3.10. TR Rem.\,3.14 already scopes that
+  honestly. Nothing in CC or mirror-LA rests on them. Do not chase them.
+\item \textbf{1709.03186 (Grandis).} This is a near-miss that closes the search, and no claim depends on it. Do not chase it.
+\end{itemize}
+
+\section*{Checks run}
+{\small
+\resizebox{\linewidth}{!}{\begin{tabular}{lll}
+\toprule
+1 & Thm.\,3.1 Sep.\,2, printed table & assoc., (LA), (mLA), not closed, $\Norm_K$ assoc.: all as claimed\\
+  & negative control: pre-456 table ($b\cdot b=a$) & rejected (non-associative)\\
+2 & $\theta_K$ vs.\ $\core_G(H)$-coset relation, all $H<G$ & $S_3{\times}C_2$, $S_4$: 0 mismatches\\
+3 & Prop.\,5.1 (1)$\Leftrightarrow$(3); Rem.\,4.3 both forms & 318 / 35\,417 pairs: 0 mismatches each\\
+  & strictly between (assoc., not closed, $H$ not normal) & 9 / 36, which separates the conditions rather than relabelling them\\
+4 & PDFs vs.\ your \texttt{35b8a54} tree; tracker in \texttt{6df0043} & byte-identical; present\\
+\bottomrule
+\end{tabular}}}
+
+Not re-checked: the Lean leaf, and my own order-4 Part D, which I did not rerun because nothing in it changed.
+The maths is good, damn good. Now get the credit lines straight and ship CC and TR.
+
+\end{document}
