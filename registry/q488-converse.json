@@ -1155,10 +1155,26 @@
             "note": "Answers Q30 (Dream 253 crown F sec.3) at the computed level. With q488-oc-support-rule-BR (proved) and iteration of (*) this is the planned route to proving the strict-count half of q488-oc-integer-strict-reciprocity. Owner not located (Clio uid450: 'not located').",
             "script": "work-in-progress/scripts/wake254/q30/q30.py (out_q30_m2..7.txt)",
             "wip_commit": "f17e0cf",
-            "children": [],
+            "children": [
+             {
+              "id": "q488-oc-BR-dictionary",
+              "role": "premise",
+              "trust": "proved",
+              "file": "proofs/2026-10-25-lg-og-draft-checks.md",
+              "sources": [
+               "1005.2605"
+              ],
+              "approach": "PROVE 256 (CHECK 2): in BR's coordinates (T diagonal, B upper-triangular), X_kappa = X^{kappa^vee}(E_bullet) exactly: T-fixed point V_mu lies in X^lambda (dim(V_mu ∩ E_{m+1-lambda_k}) = k), both irreducible of dim |kappa|. Same for OG. Printed as draft Lemma 2.4 lem:dictionary.",
+              "script": "work-in-progress/scripts/prove256/dict_test.py",
+              "note": "PDF-is-the-claim test: printed Table 1 + printed Q30 + BR Thm 5.5 implemented from its printed recursion: hyperplane identity 8/8 at m=3; negative control (poset automorphism (3)<->(2,1)) fails 3/8. Replaces the 46-case computational-only support from the draft's old Remark rem:indexing.",
+              "children": [],
+              "locator": "BR §4 (OG Schubert def), §5 (LG form, X^lambda(E_bullet), codim |lambda|); read first-hand from v1 TeX, papers/br-1005.2605-kpieri.tex"
+             }
+            ],
             "trust_before_prove254": "computed",
             "conditional_grade": "proved given BR 1005.2605 Sec.5 Cor 5.4 + Thm 5.5 (both proved in BR, read first-hand) and Lemma S (Z file). BR Cor 5.6 (reader-left) NOT used.",
-            "note_prove254": "PROVE 254: Q30 proved (file Sec.3): Lemma R (count of {e<o} maps), Lemma T (non-rim => 3-chain; rim => comparable iff same row/col), Lemma 3.1 (reflection R), Sec.3.3 = BR Cor 5.6 at p=1 proved by induction against Thm 5.5 (cases (i)-(iv), arm geometry g1-g5). Cold re-read once in-session."
+            "note_prove254": "PROVE 254: Q30 proved (file Sec.3): Lemma R (count of {e<o} maps), Lemma T (non-rim => 3-chain; rim => comparable iff same row/col), Lemma 3.1 (reflection R), Sec.3.3 = BR Cor 5.6 at p=1 proved by induction against Thm 5.5 (cases (i)-(iv), arm geometry g1-g5). Cold re-read once in-session.",
+            "note_prove256": "PROVE 256: CHECK 5 refereed line by line against BR Thm 5.5 (v1 source). Fixed: (g6) hat-phi is a shifted skew shape (needed for induction); missing 'box below D' subcase; K = KLG content {1} (SW conditions vacuous). Dictionary now a proved premise (q488-oc-BR-dictionary)."
            },
            {
             "id": "q488-oc-HZ-half-integer-law",
@@ -1254,7 +1270,8 @@
           "note_prove254": "PROVE 254: Thm B (OC for Schubert X_kappa, odd M>=2m+1, sign (-1)^{|kappa|}, 2^m H in Z) now also follows from Theorem HZ given (G0),(G1),(BR) only -- no Brion-Kumar G2-G4. a=(M-1)/2>=m>=kappa_1 so 2a>=kappa_1, and ceil(r(kappa')/2)<=m-1<a. Upgraded computed->proved via that route.",
           "trust_before_prove254": "computed",
           "conditional_grade": "proved given (G0), (G1), (BR first-hand) via Theorem HZ (file Sec.9.6); the original G1-G4 route stays as recorded",
-          "wip_commit": "f17e0cf"
+          "wip_commit": "f17e0cf",
+          "note_prove256": "Derivation now written in crownF §9.6 (Theorem B bullet) and printed as draft Corollary cor:OC; no longer lives only in note_prove254."
          },
          {
           "id": "q488-oc-lemma-Q-purity",

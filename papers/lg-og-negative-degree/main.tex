@@ -349,8 +349,8 @@ apply a linear isomorphism $\Gamma\cong\Z^d$.) The order polytope of a finite po
 It is full-dimensional, and its vertices are the indicator vectors of the up-sets of
 $P$~\cite{Sta86}. Its interior is cut out by the strict versions of the facet inequalities,
 namely $0<y_x<1$ and $y_x<y_{x'}$ for $x<x'$. \emph{Stanley's reciprocity}~\cite{Stanley70},
-\cite[\S3.15]{EC1} says that $\Om(P,-n)=(-1)^{|P|}\Omb(P,n)$ for $n\ge0$.
-\CHECK{theorem number in EC1, 2nd ed., not verified; cited by section.}
+\cite[\S3.15]{EC1} says that $\Om(P,-n)=(-1)^{|P|}\Omb(P,n)$ for $n\ge0$.\footnote{We cite
+\cite{EC1} by section; the theorem number in the second edition was not checked first-hand.}
 
 \subsection{Schubert varieties}\label{ssec:schubert}
 \emph{Type $C$.} Let $G=\mathrm{Sp}_{2m}$ with $\varepsilon$-coordinates, simple roots
@@ -377,19 +377,81 @@ Schubert varieties $X^{\OG}_\kappa$ are indexed in the same way.
 For either type, $H_\kappa(j)=\chi(X_\kappa,L^j)$ is a polynomial in $j$ of degree
 $|\kappa|$~\cite{Kleiman66}, and $H_\varnothing\equiv1$ because $X_\varnothing$ is a point.
 
-\begin{remark}[Two indexings]\label{rem:indexing}
-Buch and Ravikumar~\cite{BR12} index Schubert varieties by codimension: $X^\lambda$ has
-codimension $|\lambda|$, and we put $\lambda^\vee=[m]\setminus\lambda$ (as sets of parts).
-In \S\ref{sec:ktheory} we use that $X_\kappa$ is a $G$-translate of $X^{\kappa^\vee}$, so the
-two have the same Hilbert polynomial and the same class in $K(X)$.
-\CHECK{this dictionary is used but not derived from BR's definitions in the source notes. It
-is confirmed computationally: the $K$-class $[\cO_{X_\kappa}]\cdot\cO^1$ computed from
-Demazure characters in the convention above agrees with BR's formula in all $46$ cases
-checked ($m\le5$), and the Demazure Hilbert polynomials agree with the strict counts of
-Theorem~\ref{thm:main}(b) at $m\le5$. Note that the poset of shifted diagrams alone does not
-fix the dictionary: for $m=3$ it has an automorphism exchanging $(3)$ and $(2,1)$, whose
-Hilbert polynomials differ.}
-\end{remark}
+\emph{Buch and Ravikumar's indexing.} Buch and Ravikumar~\cite[\S\S4--5]{BR12} index
+Schubert varieties by codimension. On $\LG(m,2m)$ they fix the basis $e_1,\dots,e_{2m}$ of
+$\C^{2m}$ with $(e_i,e_k)=\pm\delta_{i+k,2m+1}$ (sign $+$ for $i<k$), the flag
+$E_p=\langle e_1,\dots,e_p\rangle$, and for a strict $\lambda$ with $\lambda_1\le m$ put
+\[ X^\lambda(E_\bullet)=\{V\in\LG(m,2m):\dim(V\cap E_{m+1-\lambda_i})\ge i\ \text{for}\
+1\le i\le\ell(\lambda)\}, \]
+a Schubert variety of codimension $|\lambda|$, with
+$\cO^\lambda=[\cO_{X^\lambda(E_\bullet)}]$. On $\OG(m,2m+1)$ the definition is the same, for
+the form $(e_i,e_k)=\delta_{i+k,2m+2}$ on $\C^{2m+1}$. For strict $\lambda$ with parts at most
+$m$ let $\lambda^\vee$ be the strict partition whose parts are $[m]\setminus\lambda$ (BR's
+$m$-dual). Thus $|\lambda|+|\lambda^\vee|=\binom{m+1}2=\dim X$.
+
+\begin{lemma}[Dictionary]\label{lem:dictionary}
+Realise $\mathrm{Sp}_{2m}$ as the isometry group of Buch and Ravikumar's form on $\C^{2m}$.
+Let $T$ be its diagonal torus $t=\mathrm{diag}(t_1,\dots,t_m,t_m^{-1},\dots,t_1^{-1})$, with
+$\varepsilon_i(t)=t_i$, and let $B$ be its subgroup of upper-triangular matrices. Then:
+\begin{enumerate}[label=(\alph*)]
+\item $B$ is a Borel subgroup whose positive roots are $\varepsilon_i\pm\varepsilon_k$ ($i<k$)
+and $2\varepsilon_i$, so the conventions above apply. Moreover $P=\mathrm{Stab}_G(E_m)$, and
+$gP\mapsto gE_m$ identifies $G/P$ with $\LG(m,2m)$.
+\item For every strict $\kappa$ with parts at most $m$,
+\[ X_\kappa=X^{\kappa^\vee}(E_\bullet)\qquad\text{as subvarieties of }\LG(m,2m). \]
+In particular $[\cO_{X_\kappa}]=\cO^{\kappa^\vee}$ in $K(X)$, and BR's divisor class $\cO^1$
+is the class $[\cO_{X^{(1)}}]$ of (G0) below.
+\end{enumerate}
+The same holds on $\OG(m,2m+1)$, with $T=\{\mathrm{diag}(t_1,\dots,t_m,1,t_m^{-1},\dots,t_1^{-1})\}$
+in $\mathrm{SO}_{2m+1}$ (on which $\mathrm{Spin}_{2m+1}$ acts through $\mathrm{SO}_{2m+1}$) and $B$
+the upper-triangular subgroup.
+\end{lemma}
+
+\begin{proof}
+(a) The basis vector $e_i$ has $T$-weight $\varepsilon_i$ for $i\le m$, and $e_{2m+1-i}$ has
+weight $-\varepsilon_i$. The matrix entry in position $(p,q)$ has weight
+$\mathrm{wt}(e_p)-\mathrm{wt}(e_q)$. For $p<q$ these weights are $\varepsilon_i-\varepsilon_k$
+($p=i<q=k\le m$), $\varepsilon_i+\varepsilon_k$ ($p=i$, $q=2m+1-k$, $i\neq k$) and $2\varepsilon_i$
+($p=i$, $q=2m+1-i$). This is the positive system of the type-$C$ paragraph, with simple roots
+$\varepsilon_i-\varepsilon_{i+1}$ and $2\varepsilon_m$. Upper-triangular matrices preserve
+$E_m$, and $E_m$ is a Lagrangian, so $\mathrm{Stab}_G(E_m)$ is a parabolic subgroup containing
+$B$. Its Levi factor $\mathrm{GL}(E_m)$ has Weyl group $S_m=\mathrm{Stab}_W(\omega)$, so it
+is $P$. Since $G$ acts transitively on Lagrangians (Witt), $G/P\cong\LG(m,2m)$.
+
+(b) Let $\mu=\mu(\kappa)$ be the sign vector with $\kappa(\mu)=\kappa$, and $w=w_\mu$. A
+representative $\dot w\in N_G(T)$ maps the weight space of a weight $\chi$ to that of
+$w\chi$. Since $w\omega=\mu$, the weights $w\varepsilon_1,\dots,w\varepsilon_m$ are
+$\mu_1\varepsilon_1,\dots,\mu_m\varepsilon_m$, and so
+\[ wP\ \longleftrightarrow\ V_\mu:=\dot wE_m=\langle f_1,\dots,f_m\rangle,\qquad
+f_i=e_i\ (\mu_i=+1),\quad f_i=e_{2m+1-i}\ (\mu_i=-1). \]
+Hence $X_\kappa=\overline{B\cdot V_\mu}$. Put $\lambda=\kappa^\vee$. By definition
+$\mu_i=-1$ iff $m+1-i\in\kappa$, so $\mu_i=+1$ iff $m+1-i\in\lambda$. For $p\le m$,
+\[ \dim(V_\mu\cap E_p)=\#\{i\le p:\mu_i=+1\}=\#\{\text{parts of }\lambda\text{ that are}\ \ge
+m+1-p\}. \]
+At $p=m+1-\lambda_k$ this is $\#\{\text{parts}\ge\lambda_k\}=k$, so $V_\mu\in
+X^\lambda(E_\bullet)$. The variety $X^\lambda(E_\bullet)$ is closed and stable under $B$, which
+fixes every $E_p$. So $X_\kappa\subseteq X^\lambda(E_\bullet)$. Both are irreducible, and
+$\dim X_\kappa=|\kappa|$ (Lemma~\ref{lem:bonds}(a)), while $\dim X^\lambda(E_\bullet)=
+\binom{m+1}2-|\lambda|=|\kappa|$~\cite[\S\S4--5]{BR12}. Hence they are equal. Finally,
+$X^{(1)}(E_\bullet)=\{V:V\cap E_m\ne0\}$ is the unique Schubert divisor.
+
+In type $B$ the weights of $e_i$, $e_{m+1}$ and $e_{2m+2-i}$ are $\varepsilon_i$, $0$ and
+$-\varepsilon_i$. The same computation gives the positive roots $\varepsilon_i\pm\varepsilon_k$
+and $\varepsilon_i$, and $P=\mathrm{Stab}(E_m)$. A $T$-stable isotropic $m$-space cannot
+contain $e_{m+1}$, because $(e_{m+1},e_{m+1})=1$, so the $T$-fixed points are again the
+$V_\mu$. The dimension count of Lemma~\ref{lem:bonds}(a) is unchanged, because the coroots
+$\varepsilon_i\pm\varepsilon_k$ and $2\varepsilon_i$ pair with $\mu/2$ with the same signs as the
+type-$C$ coroots pair with $\mu$. The rest of the argument is identical.
+\end{proof}
+
+All Borel subgroups and maximal tori of $G$ are conjugate, and translation by $g\in G$
+preserves $\cO(1)$, Hilbert polynomials and $K$-classes. So we may and do use the
+coordinates of Lemma~\ref{lem:dictionary} throughout. The poset of shifted diagrams alone would
+not fix the dictionary: for $m=3$ it has an automorphism exchanging $(3)$ and $(2,1)$, and
+their Hilbert polynomials differ (Table~\ref{tab:lg3}). Lemma~\ref{lem:dictionary} gives a
+geometric check: $X_{(2,1)}=X^{(3)}(E_\bullet)=\{V:e_1\in V\}\cong\LG(2,e_1^\perp/\langle
+e_1\rangle)$, the three-dimensional quadric, as in Example~\ref{ex:intro21}. Example~\ref{ex:dict31}
+below gives a check in $K$-theory.
 
 \subsection{Demazure operators and cited inputs}\label{ssec:inputs}
 For a simple root $\alpha_i$, the Demazure operator on $\Z[\text{weights}]$ is
@@ -414,9 +476,9 @@ $\operatorname{char}H^0(X_w,L_\lambda)^*=D_w(e^\lambda)$.
 \item (Littelmann~\cite[\S5.2]{Lit94}; see~\cite[\S8, p.~305]{LitICM}.) For dominant
 $\lambda$ and $w\in W/W_\lambda$, $D_w(e^\lambda)=\sum_\pi e^{\pi(1)}$, where the sum runs
 over LS paths $\pi$ of shape $\lambda$ with initial direction $\le w$. This holds for every
-symmetrizable Kac--Moody algebra, in particular in type $C_m$.
-\CHECK{the \S5.2 locator in Invent.\ Math.\ 116 is secondary (quoted from Chirivì--Fang--Littelmann,
-arXiv:2207.08904); the statement itself was read in the ICM 1994 survey, p.~305.}
+symmetrizable Kac--Moody algebra, in particular in type $C_m$.\footnote{We read the statement
+first-hand in the ICM survey~\cite[p.~305]{LitICM}. The locator \S5.2 in~\cite{Lit94} is quoted
+from Chirivì, Fang and Littelmann (arXiv:2207.08904) and was not read first-hand.}
 \end{enumerate}
 \begin{enumerate}[label=(BR),leftmargin=*]
 \item (Buch--Ravikumar~\cite{BR12}.) The $K$-theoretic Pieri rule for $\LG(m,2m)$ and
@@ -498,7 +560,12 @@ In particular, the Bruhat order on $W^\lambda$ is inclusion of shifted diagrams.
 \end{lemma}
 
 \begin{proof}
-(a) The positive roots are $\varepsilon_i\pm\varepsilon_k$ ($i<k$) and $2\varepsilon_i$.
+(a) Let $w=w_\mu$. Since $w$ is minimal in $wW_P$, $w$ maps the positive roots of $W_P$ to
+positive roots. So if $\alpha>0$ and $w^{-1}\alpha<0$, then $w^{-1}\alpha$ is not a root of
+$W_P$, and $\langle\mu,\alpha^\vee\rangle=\langle\omega,(w^{-1}\alpha)^\vee\rangle<0$. Conversely
+$\langle\mu,\alpha^\vee\rangle<0$ forces $w^{-1}\alpha<0$, since $\omega$ is dominant. Hence
+$\dim X_\mu=\ell(w)=\#\{\alpha>0:w^{-1}\alpha<0\}=\#\{\alpha>0:\langle\mu,\alpha^\vee\rangle<0\}$.
+The positive roots are $\varepsilon_i\pm\varepsilon_k$ ($i<k$) and $2\varepsilon_i$.
 The pairing $\langle\mu,\varepsilon_i-\varepsilon_k\rangle$ is negative iff $\mu_i=-1$ and
 $\mu_k=+1$; $\langle\mu,\varepsilon_i+\varepsilon_k\rangle<0$ iff $\mu_i=\mu_k=-1$; and
 $\langle\mu,\varepsilon_i\rangle<0$ iff $\mu_i=-1$. So each $i$ with $\mu_i=-1$ contributes
@@ -665,9 +732,10 @@ for integers $j$. Both sides are polynomials in $j$, so it holds for all $j$.
 
 \subsection{The Buch--Ravikumar Pieri rule}\label{ssec:BR}
 We quote the statements we use from~\cite{BR12}. Their numbering below follows the arXiv
-source of~\cite{BR12} (\S4 is $\OG$, \S5 is $\LG$).
-\CHECK{theorem numbering taken from the arXiv v1 \LaTeX\ source of 1005.2605 (theorem counter
-reconstructed by hand); not compared with the published version in J.\ reine angew.\ Math.}
+source of~\cite{BR12} (\S4 is $\OG$, \S5 is $\LG$).\footnote{The numbering is that of
+arXiv:1005.2605v1, in which theorems, corollaries, lemmas and propositions share one counter per
+section. We have not compared it with the published version. Each statement is also identified
+below by its content, so the citations do not depend on the numbering.}
 
 In~\cite{BR12} Schubert varieties are indexed by codimension: $\cO^\lambda=[\cO_{X^\lambda}]$
 and $\cO^\lambda\cdot\cO^p=\sum_\nu c^\nu_{\lambda,p}\cO^\nu$. A shifted skew diagram $\theta$
@@ -724,7 +792,7 @@ $\#(\kappa\cap[d,m])+\#(\kappa^\vee\cap[d,m])=m-d+1=m-b+a$, this says
 $\#(\kappa\cap[d,m])\le a$, that is, $(a,b)\notin D(\kappa)$.
 \end{proof}
 
-So, with $X_\kappa$ a translate of $X^{\kappa^\vee}$ (Remark~\ref{rem:indexing}), the
+So, since $[\cO_{X_\kappa}]=\cO^{\kappa^\vee}$ (Lemma~\ref{lem:dictionary}), the
 coefficient in Lemma~\ref{lem:hyperplane} is
 $c_\rho=c^{\rho^\vee}_{\kappa^\vee,1}=\cC(\theta_{BR},1)$, where
 $\theta_{BR}=D(\rho^\vee)\setminus D(\kappa^\vee)=R(\theta)$ and
@@ -794,7 +862,11 @@ $\theta\to\{e<o\}$ with diagonal boxes sent to $e$.
 For every nonempty shifted skew shape $\varphi$, $\cC(\varphi,1)=(-1)^{|\varphi|-1}K(\varphi)$.
 \end{proposition}
 
-This is the case $p=1$ of~\cite[Cor.~5.6]{BR12}. We prove it from \cite[Thm.~5.5]{BR12} by
+This is the case $p=1$ of~\cite[Cor.~5.6]{BR12}. Indeed, a KLG-tableau with content $\{1\}$
+uses only the labels $1'<1$. For these labels BR's conditions (iii) and (iv), which compare a
+box with the boxes south-west of it, hold automatically, because $1$ is the largest label and
+$1'$ the smallest. So the KLG-tableaux of shape $\varphi$ with content $\{1\}$ are exactly the
+labellings counted by $K(\varphi)$. We prove the proposition from \cite[Thm.~5.5]{BR12} by
 induction on $|\varphi|$. At $p=1$, and using $\cC(\hat\varphi,q)=0$ for $q\le0$ when
 $\hat\varphi\ne\varnothing$, Thm.~5.5 reads as follows:
 \begin{enumerate}[label=(\roman*)]
@@ -818,6 +890,20 @@ $D=(r+1,c)$.
 \item $L$ and $D$ are not both in $\varphi$, because $D$ is strictly south-east of $L$.
 \item In a rim, comparable boxes share a row or a column (Lemma~\ref{lem:T}(b)), so $K$ sees
 only row and column constraints.
+\item $\hat\varphi$ is a shifted skew shape, so the induction hypothesis applies to it. Write
+$\varphi=\nu/\lambda$. If $\psi=\{(r,c-a+1),\dots,(r,c)\}$ is a row, and not ($a=1$ and
+$D\in\varphi$), then $\hat\varphi=\nu'/\lambda$, where $\nu'$ is $\nu$ with $\psi$ removed. The set
+$\nu'$ is an order ideal. The only boxes that could violate this are boxes $(r+1,b)\in\nu$ with
+$c-a+1\le b\le c$. Such a box is not in $\lambda$, since otherwise $(r,b)\in\lambda$, so it lies in
+$\varphi$. For $a\ge2$ it lies in the $a\times a$ square with upper-right box $B$, which would then
+not meet $\varphi$ in a row. For $a=1$ it is $D$, which is excluded. If instead
+$\psi=\{(r,c),\dots,(r+a-1,c)\}$ is a column (including $\psi=\{B\}$ with $D\in\varphi$), then
+$\hat\varphi=\nu/\lambda'$ with $\lambda'=\lambda\cup\psi$. The set $\lambda'$ is an order ideal.
+The box $(r-1,c)$, if it exists, lies in $\nu$ but not in $\varphi$, so it lies in $\lambda$. For
+$(x,c)\in\psi$, the box $(x,c-1)$, if it lies in the shifted plane, lies in $\nu$ but not in
+$\varphi$, so it lies in $\lambda$. For $a\ge2$ this is because it lies in the $a\times a$
+square, and for $a=1$ it is $L$, which is excluded by (g4). In both cases
+Lemma~\ref{lem:ideals} shows that the new partitions are strict.
 \end{enumerate}
 
 \emph{Cases (i), (ii): $\varphi=\psi$ is a row or a column.} With two labels, $K=0$ for length
@@ -843,7 +929,9 @@ label smaller than $1'$; then $K(\hat\varphi)=0=K(\varphi)$.) So $K(\varphi)=K(\
 \item If $D\in\varphi$: $S$ is directly left of $D$, so $D=1$ in every labelling of
 $\hat\varphi$. Then $B$, above $D$, is forced to be $1'$. This is allowed, because $B$ is off
 the diagonal: $D=(r+1,c)$ lies in the shifted plane, so $c\ge r+1$. $B$ is alone in its row
-($L\notin\varphi$). Again $K(\varphi)=K(\hat\varphi)$.
+($L\notin\varphi$; g1). The boxes of $B$'s column other than $B$ lie in $\hat\varphi$. (A box
+below $D$ would need a label larger than $1$; then $K(\hat\varphi)=0=K(\varphi)$.) Again
+$K(\varphi)=K(\hat\varphi)$.
 \end{itemize}
 Hence $T(\varphi)=-T(\hat\varphi)=-\cC(\hat\varphi,1)$ by induction.
 
@@ -877,11 +965,13 @@ Every nonempty rim falls under exactly one of the cases, since $\hat\varphi=\var
 $\varphi$ is a row or a column.
 \end{proof}
 
-\CHECK{The case analysis in the proof of Proposition~\ref{prop:BRp1} has been re-read once by
-the author. An independent referee (Clio Vega) has verified its conclusion on $1243$ shapes,
-with live negative controls, but has not yet read the geometric case analysis line by line. The
-conclusion was also checked by machine against Buch--Ravikumar's eq.~(11) for all shapes
-arising at $m\le7$ (including non-rims).}
+\begin{remark}[Checks]
+The case analysis above was refereed line by line against the statement and proof
+of~\cite[Thm.~5.5]{BR12}. That pass added (g6) and the parenthetical subcase of the $D$-bullet.
+Clio Vega independently verified the conclusion on $1243$ shapes, with live negative controls,
+and the conclusion was also checked by machine against Buch--Ravikumar's
+eq.~(11)~\cite{BR12} for all shapes arising at $m\le7$ (including non-rims).
+\end{remark}
 
 \begin{theorem}[The Pieri coefficients]\label{thm:Q30}
 % Registry: q488-oc-Q30-KLG-strict-fillings (proved given BR Cor 5.4 + Thm 5.5 + Lemma S).
@@ -916,6 +1006,22 @@ $\{(0,2),(1,1),(1,2)\}$ (height $2$, $(1,1)$ minimal, $V=1$). The signs are
 $(-1)^{|\theta|-1}=+,-,-,+$. The remaining candidates $\rho=(1)$ and $\rho=\varnothing$ have
 $c_\rho=0$, because $\theta$ contains the $3$-chain $(0,1)<(0,2)<(1,2)$. This agrees with Buch
 and Ravikumar's formula~\cite[eq.~(11)]{BR12} evaluated directly.
+\end{example}
+
+\begin{example}[Testing the dictionary]\label{ex:dict31}
+Let $m=3$ and $\kappa=(3,1)$, so $\kappa^\vee=(2)$. Theorem~\ref{thm:Q30} gives
+$c_{(3)}=1$ ($\theta=\{(1,1)\}$, a minimal diagonal box), $c_{(2,1)}=2$ ($\theta=\{(0,2)\}$, an
+isolated off-diagonal box) and $c_{(2)}=-2$ ($\theta=\{(0,2),(1,1)\}$). The terms $\rho=(1)$ and
+$\rho=\varnothing$ vanish, because $(1,1)$ is not minimal in $\theta$. On Buch and Ravikumar's
+side, $\rho=(3)$ gives $\rho^\vee=(2,1)$ and $\theta_{BR}=(2,1)/(2)=\{(1,1)\}$, a diagonal box, so
+$\cC=1$ by \cite[Thm.~5.5(i)]{BR12}. And $\rho=(2,1)$ gives $\rho^\vee=(3)$ and
+$\theta_{BR}=\{(0,2)\}$, so $\cC=2$ by (ii). Now test~\eqref{eq:hyperplane} at $j=1$ against
+Table~\ref{tab:lg3}, whose polynomials were computed from Demazure characters:
+\[ H_{(3,1)}(1)-H_{(3,1)}(0)=10-1=9=H_{(3)}(1)+2H_{(2,1)}(1)-2H_{(2)}(1)=7+10-8. \]
+With $(3)$ and $(2,1)$ exchanged, the right-hand side would be $14+5-8=11$. A machine check,
+which implements \cite[Thm.~5.5]{BR12} and Theorem~\ref{thm:Q30} from their printed statements,
+confirms~\eqref{eq:hyperplane} as an identity of polynomials for all eight $\kappa$ at $m=3$. The
+exchanged dictionary fails for three of them.
 \end{example}
 
 \subsection{The recursion and the second proof}
@@ -1012,9 +1118,10 @@ $J(P_\kappa)$, with the same Hilbert function as the Hibi ring~\cite{Hibi87}. He
 $\HOG_\kappa(j)=\Om(P_\kappa,j+1)$; compare also Proctor~\cite{Proctor84}. Stanley's
 reciprocity theorem then gives the negative values. We know of no single reference that states
 $(-1)^{|\kappa|}\HOG_\kappa(-j)=\Omb(P_\kappa,j-1)$ in this form, but it is a one-line composite
-of these results, and we claim no novelty for it.
-\CHECK{the classical references in this remark (Lakshmibai--Seshadri, Gonciulea--Lakshmibai,
-Hibi, Proctor) were not read first-hand for this draft.}
+of these results, and we claim no novelty for it.\footnote{The references in this remark
+(\cite{LS86,Seshadri,GL96,Hibi87,Proctor84}) were not read first-hand for this paper. Nothing
+else in the paper depends on them: \S\ref{ssec:og-k} proves Theorem~\ref{thm:og}
+independently.}
 \end{remark}
 
 %======================================================================
