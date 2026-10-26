@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{hyperref}
+\newcommand{\C}{\mathbb{C}}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+
+\title{Conjecture 8 is proved: Proposition 6.16 (the half-step operator)}
+\author{Author: Rick}
+\date{Date: 2026-10-26}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-1.5em}
+\begin{center}
+\textbf{Recipient:} Clio (cc Robin Langer)\\
+\textbf{Draft:} LG/OG negative-degree paper, 27 pp, WIP commit \texttt{b2fb272}\\
+\small\url{https://github.com/grandpa-rick/work-in-progress/blob/b2fb2724b2d0dcb14300c62986b79683cc958087/papers/lg-og-negative-degree/main.pdf}
+\end{center}
+
+\section*{1. What changed}
+Conjecture~8 of the draft (the half-step operator $T$) is now Proposition~6.16 (label \texttt{prop:T}) in a new
+\S6.5 ``The half-step operator'' (from p.~21; Prop.~6.16 is on p.~22). The conjecture list in \S8 no longer has it. Nothing else in the paper
+depends on it. The statement is the corrected Wake-257 text. Two things were added: the word ``unitriangular'' and a
+uniqueness line.
+
+\section*{2. The statement (as printed)}
+All matrices are indexed by strict partitions with parts at most $m$ and vanish unless $\nu\subseteq\kappa$. By
+Lemma~6.8(a) (\texttt{lem:layers}), $s_{x+1}=A_oA_e\,s_x$. A unitriangular matrix in this algebra has at most one
+unitriangular square root. Let $T$ be the unitriangular square root of $A_oA_e$.
+
+\textbf{Proposition 6.16.}
+\begin{enumerate}[(a)]
+\item $s_{x+1/2}=T\,s_x$ for every $x\in\C$.
+\item Each entry $T(\kappa,\nu)$ is the product of the weights of the connected components of
+$\theta=D(\kappa)\setminus D(\nu)$. A component $D$ has weight $1$ if $D$ is a single off-diagonal box. It has weight $0$
+in three cases: $D$ has no diagonal box and at least two boxes; $D$ contains at least two diagonal boxes; or $D$
+contains exactly one diagonal box and contains a $2\times2$ square. If $D$ is a ribbon (no $2\times 2$ square) with
+exactly one diagonal box, its weight is $\varepsilon\,(-\tfrac12)^{|D|}$. Here $\varepsilon=+1$ if the left
+neighbour of the north-east end box of $D$ lies in $D$, and $\varepsilon=-1$ otherwise. In particular every entry
+is $0$ or $\pm2^{-k}$.
+\end{enumerate}
+
+\section*{3. How the proof works}
+\textbf{Signed M\"obius functions (Lemma 6.17).} Let $\zeta(\kappa,\nu)=[\nu\subseteq\kappa]$ and let $\zeta_o$ be
+$\zeta$ restricted to $\ell(\nu)=\ell(\kappa)$. Let $S=\mathrm{diag}((-1)^{|\kappa|})$. Then
+\[A_e=S\zeta^{-1}S,\qquad A_o=S\zeta_o^{-1}S.\]
+The proof is one line: $SA_eS\zeta$ at $(\kappa,\nu)$ is the alternating sum over subsets of the maximal boxes of
+$\theta$, so it equals $[\theta=\varnothing]$.
+
+\textbf{Row deletion.} For $\nu\ne\kappa$ let $r_0$ be the first row where they differ. Write
+$[\nu\prec\kappa]=[\nu_s\le\kappa_{s+1}\ \forall s\ge r_0]$: $\nu$ keeps the first $r_0-1$ parts of $\kappa$, deletes the
+part $\kappa_{r_0}$, and fits its tail under the shifted tail of $\kappa$. Define
+\[X(\kappa,\nu)=\delta_{\kappa\nu}-[\nu\ne\kappa][\ell(\nu)=\ell(\kappa)-1]\,2^{-\kappa_{r_0}}[\nu\prec\kappa],\qquad
+P(\kappa,\nu)=\delta_{\kappa\nu}+[\nu\ne\kappa]\,2^{-\kappa_{r_0}}[\nu\prec\kappa].\]
+So $X=I-{}$(row deletion at cost $2^{-\text{part}}$, length drop exactly $1$). $P$ is the same with a plus sign and no
+length condition.
+
+\textbf{Identities (Lemma 6.18).} First-row recursions express $X(\kappa,\cdot)$ and $P(\kappa,\cdot)$ through
+$\kappa'=(\kappa_2,\kappa_3,\dots)$. From these, induction on $\ell(\kappa)$ gives
+\[X\zeta=\zeta_oP\quad\text{(c)},\qquad XP=I\quad\text{(d)},\]
+so $P=X^{-1}$.
+
+\textbf{Square root.} Let $\tilde T=\zeta_o^{-1}X=P\zeta^{-1}$. Then $\tilde T^2=\zeta_o^{-1}(XP)\zeta^{-1}=\zeta_o^{-1}\zeta^{-1}$.
+So $(S\tilde TS)^2=A_oA_e$, and $S\tilde TS$ is unitriangular. By uniqueness,
+\[T=S\zeta_o^{-1}XS=A_o\,(SXS).\]
+\emph{(a):} Lemma~2.6 gives $s_0(\kappa)=(-1)^{|\kappa|}$, so
+$Ts_0=S\,P(\cdot,\varnothing)=((-1)^{|\kappa|}2^{-\kappa_1})_\kappa=s_{1/2}$ by Theorem~A. $T$ commutes with
+$A_oA_e$, which gives $s_{j+1/2}=Ts_j$ for all integers $j\ge0$. Both sides are polynomial in $x$, so the identity
+holds for all $x$.
+\emph{(b):} Expand $T=A_o(SXS)$ as an inclusion--exclusion over sets of off-diagonal maximal boxes of $\theta$. On
+length-drop-$1$ entries, $X(\rho,\nu)=-2^{-(1+c(\rho/\nu))}[\rho/\nu\text{ connected}]$, where $c$ is the largest
+content. If the component $D$ containing the diagonal box has a $2\times2$ square, a sign-reversing toggle at the end
+of the lowest overlapping row kills the sum. If $D$ is a ribbon, only $\varnothing$ and the north-east end box
+survive, which gives $\varepsilon(-\tfrac12)^{|D|}$.
+
+\section*{4. Verification}
+The script \texttt{scripts/prove257/verify.py} checks Lemma~6.17, Lemma~6.18(c)(d), $(S\tilde TS)^2=A_oA_e$, the
+printed rule (b) and $Ts_0=s_{1/2}$. All are true for $m=4,\dots,8$; $m=8$ has $256$ strict partitions. For $m\le6$,
+$T$ also agrees exactly with the binomial series for $(A_oA_e)^{1/2}$. The negative control \texttt{ctrl.py}
+multiplies the $X$-weight by $3/2$ for $\ell\ge2$, and every identity fails.
+
+\section*{5. A cross-check against Theorem C (corrected)}
+At $x=1$, Lemma~2.6 (\texttt{lem:anchor}) gives $s_1=\delta_\varnothing$. So by (a) the $\varnothing$-column
+$T(\cdot,\varnothing)$ is $s_{3/2}$, and (b) computes it. Here $\theta=D(\kappa)$, whose $\ell(\kappa)$ diagonal boxes
+all lie in one component. Hence
+\[T(\kappa,\varnothing)=\begin{cases}0,&\ell(\kappa)\ge2,\\ (-\tfrac12)^k,&\kappa=(k),\ k\ge2,\\ \tfrac12,&\kappa=(1).\end{cases}\]
+This is exactly Theorem~C (Thm~6.6). So (b) is tested at a non-degenerate index against a theorem with an independent
+proof. In Theorem~C the factor $2^{-\kappa_1}$ is the cost of deleting the row $\kappa_1$.
+
+\emph{Correction to my 2026-10-25 note.} This is \emph{not} the same fact as Theorem~A (Thm~6.5),
+$H_\kappa(-\tfrac12)=2^{-\kappa_1}$. That one is the column $Ts_0=S\,P(\cdot,\varnothing)$ at $x=0$. Also,
+$T(\kappa,\varnothing)\ne P(\kappa,\varnothing)$ in general: $T((3),\varnothing)=-\tfrac18$ but
+$P((3),\varnothing)=\tfrac18$. Commit \texttt{b2fb272} adds a remark saying this right after Prop~6.16.
+
+\section*{6. Trust grade}
+Registry \texttt{proofs/registry/q488-converse.json}: node \texttt{q488-oc-half-step-T-ribbons} is \textbf{proved}. Its
+premises \texttt{q488-oc-T-mobius} (Lemma~6.17) and \texttt{q488-oc-T-XP-identities} (Lemma~6.18) are both proved and
+self-contained. No outside citation is used beyond the draft's own Lemma~2.6, Lemma~6.8 and Theorem~A.
+The proof record is \texttt{proofs/2026-10-25-conjT-half-step-operator.md}.
+
+\section*{7. What I would like from you}
+\begin{enumerate}[1.]
+\item \textbf{Proposition 4.6} (\texttt{prop:BRp1}, the $p=1$ case of BR Cor.~5.6). This line-read is still pending,
+and it is the outside check I need most.
+\item \textbf{\S6.5}, a read if you have time. It is lower priority, since nothing else in the paper uses it.
+\end{enumerate}
+\end{document}
