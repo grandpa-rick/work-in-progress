@@ -1,0 +1,447 @@
+%% FPSAC 2027 extended-abstract CUT -- SKELETON v0 (2026-10-26). WIP PLAN ONLY, NOT FOR SUBMISSION.
+%% Submission, authorship, presenter and venue are Robin's decision (venue yes/no still pending).
+%% Source: ../lg-og-negative-degree/main.tex (27 pp amsart draft, WIP 5062224 + Prop 6.16 from PROVE 257).
+%% Plan: ../lg-og-negative-degree/FPSAC-CUT-PLAN.md
+%% Statements of kept results are copied VERBATIM from the source (same labels). Proofs are
+%% placeholders: each \budget{n}{...} box reserves n lines, the estimated length of the final
+%% proof/sketch, so the page count of this skeleton approximates the final length.
+%% FPSAC rule (submissions page, curl 2026-10-26): 6--12 pp INCLUDING bibliography,
+%% EXCLUDING the AI declaration; class FPSAC2027.cls, 12pt, no preamble/layout changes.
+%% Build: pdflatex main; bibtex main; pdflatex main; pdflatex main
+
+\documentclass[submission]{FPSAC2027}
+
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+%% visible TODO markers (must stay visible in the PDF)
+\newcommand{\todo}[1]{{\color{red}\textbf{[TODO:} #1\textbf{]}}}
+\newcommand{\budget}[2]{\par\noindent\fbox{\parbox[c][#1\baselineskip][c]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{\centering\small\color{red}TODO (#1 lines): #2}}\par}
+
+%% macros brought over from ../lg-og-negative-degree/main.tex
+\newcommand{\LG}{\mathrm{LG}}
+\newcommand{\OG}{\mathrm{OG}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Om}{\Omega}
+\newcommand{\Omb}{\overline{\Omega}}
+\newcommand{\HOG}{H^{\OG}}
+\newcommand{\ord}{\mathcal{O}}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\addbibresource{refs.bib}
+
+\title[Negative-degree Hilbert functions on LG]{Strict reciprocity for Schubert varieties in the Lagrangian Grassmannian}
+
+\author{Rick (AI agent)\thanks{\todo{Robin: authorship, presenter, affiliation are your decision. The mathematics was produced by an AI agent; see the AI declaration.}}\addressmark{1}}
+\address{\addressmark{1}\todo{affiliation / contact}}
+
+\received{\today}
+
+\abstract{Let $X_\kappa$ be the Schubert variety in the Lagrangian Grassmannian $\LG(m,2m)$
+indexed by a strict partition $\kappa$, and $H_\kappa(j)=\chi(X_\kappa,\cO(j))$ its Hilbert
+polynomial. We show that $(-1)^{|\kappa|}H_\kappa(-j)$ counts strictly order-preserving maps
+from the shifted diagram of $\kappa$ to $\{1,\dots,2j-1\}$ that are even on diagonal boxes.
+Equivalently, $H_\kappa$ is the Ehrhart polynomial of the order polytope of the shifted diagram
+in the lattice that is $\Z$ on diagonal and $\tfrac12\Z$ on off-diagonal coordinates. The factor
+$\tfrac12$ is the bond $2$ of short-root steps in Lakshmibai--Seshadri paths; on the
+$K$-theoretic side, the parity rule is Buch and Ravikumar's ``no primed letter on the diagonal''.
+We give two proofs, via LS paths and via a closed formula for the $K$-theoretic Pieri
+coefficients of the Schubert divisor. Consequences: the negative integer zeros of $H_\kappa$ are
+exactly $-1,\dots,-\lceil r/2\rceil$, with $r$ the longest chain, and the zeros and signs of
+$H_\kappa$ at negative half-integers are determined completely.}
+
+\keywords{Lagrangian Grassmannian, Schubert varieties, shifted diagrams, Ehrhart reciprocity,
+order polytopes, Lakshmibai--Seshadri paths, $K$-theoretic Pieri rule}
+
+\begin{document}
+
+\maketitle
+
+%% ===================================================================
+\section{Introduction}\label{sec:intro}
+%% ===================================================================
+%% budget: 2.0 pp. Source: draft 1 (Intro), 1.1, 1.2 (compressed), 1.4 (compressed). Drop 1.3, 1.5.
+
+\todo{Motivation paragraph (compress draft \S1, paras 1--3, ~12 lines): negative values of Hilbert
+polynomials = duality; minuscule case = Hibi ring, Stanley's order polynomial and reciprocity;
+$\LG$ is cominuscule, not minuscule; the quadric $\LG(2,4)$ vs.\ $\mathbb{P}^3=\OG(2,5)$ on the
+same 3-chain.}
+
+For a strict partition $\kappa=(\kappa_1>\dots>\kappa_\ell>0)$, the shifted diagram
+$D(\kappa)$ is the set of boxes $(a,b)$ with $0\le a<\ell$ and $a\le b\le a+\kappa_{a+1}-1$.
+We write $P_\kappa$ for $D(\kappa)$ with the product order. The boxes $(a,a)$ are the
+\emph{diagonal boxes}. Let $r(\kappa)$ be the number of elements of a longest chain in
+$P_\kappa$; $r(\kappa)=\max_i(\kappa_i+2i-2)$. \todo{define $X_\kappa\subseteq\LG(m,2m)$ and
+$H_\kappa(j)=\chi(X_\kappa,\cO(j))$ in one sentence, pointer to \S\ref{sec:prelim}.}
+
+\begin{theorem}[Strict reciprocity on $\LG$]\label{thm:main}
+Let $\kappa$ be a strict partition with parts at most $m$.
+\begin{enumerate}[label=(\alph*)]
+\item For every integer $j\ge 0$, $H_\kappa(j)$ is the number of order-preserving maps
+\[ g\colon P_\kappa\to\{0,1,\dots,2j\}\quad\text{with } g(x) \text{ even for every diagonal box } x. \]
+\item For every integer $j\ge 1$, $(-1)^{|\kappa|}H_\kappa(-j)$ is the number of strictly
+order-preserving maps
+\[ f\colon P_\kappa\to\{1,\dots,2j-1\}\quad\text{with } f(x) \text{ even for every diagonal box } x. \]
+\item Equivalently, $H_\kappa(j)=\#\bigl(j\,\ord(P_\kappa)\cap\Lambda\bigr)$ for all $j$.
+Here $\ord(P_\kappa)\subseteq\R^{P_\kappa}$ is the order polytope and $\Lambda$ is the
+lattice of vectors whose diagonal coordinates lie in $\Z$ and whose other coordinates lie
+in $\tfrac12\Z$. That is, $H_\kappa$ is the Ehrhart polynomial of $\ord(P_\kappa)$ with
+respect to $\Lambda$.
+\end{enumerate}
+\end{theorem}
+
+\begin{example}\label{ex:intro21}
+Take $\kappa=(2,1)$ and $m=2$, so $X_\kappa=\LG(2,4)$. The poset $P_\kappa$ is the chain
+$(0,0)<(0,1)<(1,1)$, and both ends are diagonal. At $j=3$ the only strictly increasing
+triple $x<y<z$ in $\{1,\dots,5\}$ with $x,z$ even is $(2,3,4)$. At $j=4$ there are $5$
+such triples, and at $j=1,2$ there are none. This matches
+$H(-1)=H(-2)=0$, $H(-3)=-1$ and $H(-4)=-5$ for $H(j)=(j+1)(j+2)(2j+3)/6$.
+\end{example}
+
+For the orthogonal Grassmannian $\OG(m,2m+1)$, with Schubert varieties $X^{\OG}_\kappa$ of
+dimension $|\kappa|$ and the spinor line bundle as $\cO(1)$, the analogue is classical.
+
+\begin{theorem}[Strict reciprocity on $\OG$]\label{thm:og}
+For every strict $\kappa$ with parts at most $m$, $\HOG_\kappa(j)=\Om(P_\kappa,j+1)$ for
+all $j$. For $j\ge1$, $(-1)^{|\kappa|}\HOG_\kappa(-j)=\Omb(P_\kappa,j-1)$, the number of
+strictly order-preserving maps $P_\kappa\to\{1,\dots,j-1\}$.
+\end{theorem}
+
+\todo{One sentence: classical composite (minuscule SMT + Stanley reciprocity), no novelty
+claimed; our $K$-theoretic proof runs in parallel (\S\ref{sec:ktheory}).}
+
+\begin{theorem}[The integer window]\label{thm:window}
+Put $W(\kappa)=\lceil r(\kappa)/2\rceil$ on $\LG$ and $W(\kappa)=r(\kappa)$ on $\OG$, and
+$s_j(\kappa)=(-1)^{|\kappa|}H_\kappa(-j)$ (resp.\ with $\HOG_\kappa$). Then
+\[ 0=s_1(\kappa)=\dots=s_{W}(\kappa)<s_{W+1}(\kappa)\le s_{W+2}(\kappa)\le\cdots. \]
+In particular, the zero set of $H_\kappa$ on the negative integers is exactly
+$\{-1,\dots,-W(\kappa)\}$, and $\sgn H_\kappa(-j)=(-1)^{|\kappa|}$ for $j>W(\kappa)$.
+\end{theorem}
+
+\todo{Two sentences: half-integer values are Euler characteristics,
+$2^mH_\kappa(-a-\tfrac12)=\chi(X_\kappa,\bigwedge^\bullet U\otimes\cO(-a))$; define $\kappa'$ and
+$N_\kappa(j)$ (copy draft lines 166--171).}
+
+\begin{theorem}[Half-integer values]\label{thm:HZ}
+Let $\kappa\neq\varnothing$. Then $H_\kappa(-\tfrac12)=2^{-\kappa_1}$, and for every
+integer $a\ge 1$:
+\begin{enumerate}[label=(\roman*)]
+\item $H_\kappa(-a-\tfrac12)=0$ if and only if $\kappa'\ne\varnothing$ and
+$a\le\lceil r(\kappa')/2\rceil$;
+\item otherwise, $\sgn H_\kappa(-a-\tfrac12)=(-1)^{|\kappa|-\kappa_1}$ if $2a\le\kappa_1$
+and $(-1)^{|\kappa|}$ if $2a\ge\kappa_1$;
+\item $|H_\kappa(-a-\tfrac12)|\ge 2^{-\kappa_1}N_{\kappa'}(a)$, with equality when
+$2a\le\kappa_1$, and $2^{\kappa_1}H_\kappa(-a-\tfrac12)\in\Z$.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}\label{cor:OC}
+For every odd $M\ge 2m+1$, the number $(-1)^{|\kappa|}2^mH_\kappa(-M/2)$ is a positive
+integer. In particular $H_\kappa$ has no zero at half-integers $\le -m-\tfrac12$.
+\end{corollary}
+
+\paragraph{Why the factor two.} \todo{Compress draft \S1.2 to ~10 lines: short-root covers have
+bond $2$, long-root (diagonal) covers bond $1$; Ehrhart--Macdonald reciprocity turns integrality
+of diagonal coordinates into the parity condition; on $\OG$ all bonds are $1$. On the
+$K$-side: primed letters = odd values (Remark~\ref{rem:primes}).}
+
+\paragraph{Relation to the literature.} \todo{Compress draft \S1.4 to ~8 lines: De Concini,
+Littelmann (positive side; (a) may be known); Dehy/Mathieu (Ehrhart viewpoint, not read
+first-hand -- keep the hedge); Chiriv\`i, CCFL (lecture hall, bonds); Stembridge (different
+reciprocity); BR. Novelty claim: (b), Thm~\ref{thm:Q30} closed form, Thm~\ref{thm:HZ}.
+Final sentence: full proofs in the long version \todo{arXiv number once posted}.}
+
+%% ===================================================================
+\section{Preliminaries}\label{sec:prelim}
+%% ===================================================================
+%% budget: 1.2 pp. Source: draft 2.1--2.5. Dictionary Lemma 2.4 and Lemma 2.5 (polynomial extension)
+%% demoted to one sentence each + "see the full version". Lemma 2.1 (ideals) stated in text.
+
+\todo{Shifted diagrams (~6 lines): $\Delta_m$, product order, $D(\kappa)$ = order ideals of
+$\Delta_m$ (draft Lemma 2.1 in one sentence); up-sets $\theta=D(\kappa)\setminus D(\rho)$;
+$\kappa'$ and the identification of rows $\ge1$ with $P_{\kappa'}$.}
+
+\paragraph{Counting functions.} For a finite poset $P$ and $n\ge0$, let $\Om(P,n)$ (resp.\
+$\Omb(P,n)$) be the number of order-preserving (resp.\ strictly order-preserving) maps
+$P\to[n]=\{1,\dots,n\}$. For strict $\nu\subseteq\kappa$ and $j\ge1$ let $N_{\kappa/\nu}(j)$
+be the number of strictly order-preserving $f\colon D(\kappa)\setminus D(\nu)\to[2j-1]$ that are
+even on diagonal boxes, $N_\kappa=N_{\kappa/\varnothing}$, $N_\varnothing\equiv1$.
+
+\begin{lemma}\label{lem:Npos}
+Let $\kappa\ne\varnothing$ and $r=r(\kappa)$.
+\begin{enumerate}[label=(\alph*)]
+\item $N_\kappa(j)>0$ iff $j\ge\lceil r/2\rceil+1$, and $N_\kappa(j)\le N_\kappa(j+1)$ for all $j\ge1$.
+\item $\Omb(P_\kappa,n)>0$ iff $n\ge r$, and $\Omb(P_\kappa,n)\le\Omb(P_\kappa,n+1)$.
+\end{enumerate}
+\end{lemma}
+\budget{3}{proof: $f(a,b)=a+b+2$ and the staircase chain; parity of $2j-1$ (draft p.~6, keep in full, compressed).}
+
+\paragraph{Reciprocity.} \todo{~5 lines: Ehrhart--Macdonald reciprocity for a lattice $\Gamma$
+\cite{Mac71,BeckRobins}; order polytope, vertices = indicator vectors of up-sets \cite{Sta86};
+Stanley reciprocity \cite{Stanley70,EC1}.}
+
+\paragraph{Schubert varieties and cited inputs.} \todo{~14 lines: type $C$ roots, $\omega_m$,
+$W\omega=\{\pm1\}^m$, $\kappa(\mu)$, $X_\kappa$; type $B$ in two sentences. The dictionary
+$X_\kappa=X^{\kappa^\vee}(E_\bullet)$ to BR's codimension indexing, one sentence, ``proved by a
+$T$-fixed point and dimension count; see the full version''; mention the $m=3$ poset automorphism
+as the reason the dictionary needs a proof. List (G0) Chevalley, (G1) Demazure character formula
+\cite{Dem74,BK05}, (LS) Littelmann \cite{Lit94,LitICM}, (BR) Buch--Ravikumar \cite{BR12}.
+Polynomial extension $H_\kappa(j)=P_{w_\kappa}(j\omega)$ for $j\in\C$, one sentence.}
+
+\begin{lemma}[The anchor]\label{lem:anchor}
+If $\kappa\ne\varnothing$, then $H_\kappa(-1)=0$, both on $\LG$ and on $\OG$.
+\end{lemma}
+\budget{2}{proof: $w_\kappa=w's_m$, $D_m e^{-\omega_m}=0$.}
+
+%% ===================================================================
+\section{The LS-path proof}\label{sec:ls}
+%% ===================================================================
+%% budget: 1.8 pp. Source: draft 3.1--3.4. This proof uses (G1)+(LS) only -- NOT Prop 4.6. Lead with it.
+
+\todo{Recall LS paths, $a$-chains, bonds (draft \S3.1 in ~7 lines).}
+
+\begin{lemma}\label{lem:bonds}
+In type $C_m$ with $\lambda=\omega_m$:
+\begin{enumerate}[label=(\alph*)]
+\item $\dim X_\mu=\#\{\alpha>0:\langle\mu,\alpha^\vee\rangle<0\}=\sum_{i:\mu_i=-1}(m-i+1)=|\kappa(\mu)|$;
+\item the Bruhat covers $\mu<s_\beta\mu$ in $W^\lambda$ are exactly the moves for which
+$D(\kappa(s_\beta\mu))$ is $D(\kappa(\mu))$ plus one box;
+\item the bond of such a cover is $1$ if the added box is diagonal and $2$ otherwise.
+\end{enumerate}
+In particular, the Bruhat order on $W^\lambda$ is inclusion of shifted diagrams.
+\end{lemma}
+\budget{6}{proof sketch: the three reflection types $s_{\varepsilon_i-\varepsilon_k}$, $s_{\varepsilon_i+\varepsilon_k}$, $s_{2\varepsilon_i}$ and their bonds $2$, never-a-cover, $1$.}
+
+\begin{lemma}\label{lem:lsparity}
+Let $j\ge1$. A pair $(\tau_1\supsetneq\dots\supsetneq\tau_s\,;\,0<a_1<\dots<a_{s-1}<1)$ of
+shifted diagrams and rationals is an LS path of shape $j\omega_m$ iff, for every
+$i\le s-1$, $2ja_i\in\Z$, and if $2ja_i$ is odd, then $D(\tau_i)\setminus D(\tau_{i+1})$
+contains no diagonal box.
+\end{lemma}
+\budget{4}{proof: bonds scale by $j$; odd $2ja$ admits only bond-$2$ covers (full proof, compressed).}
+
+\begin{proposition}[The LS-parity model]\label{prop:model}
+For strict $\kappa$ with parts at most $m$ and $j\ge0$, the LS paths of shape $j\omega_m$
+with initial direction $\le\kappa$ are in bijection with the order-preserving maps
+$G\colon P_\kappa\to\{0,\dots,2j\}$ that are even on diagonal boxes. Hence, given (G1) and
+(LS), $H_\kappa(j)=h^0(X_\kappa,\cO(j))=F_\kappa(2j)$ for all $j\ge0$.
+\end{proposition}
+\todo{define $F_\kappa(N)$ in the counting paragraph of \S\ref{sec:prelim}.}
+\budget{7}{proof sketch: path $\mapsto$ ``time at which box $x$ leaves'', $g(x)=2j\,t(x)$; inverse by level sets; Lemma~\ref{lem:lsparity} gives parity.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+\todo{full, ~10 lines: rescale off-diagonal coordinates, $L(j)=F_\kappa(2j)$, agree with $H_\kappa$
+at $j\ge0$; interior points $\leftrightarrow$ strict even-diagonal maps; Ehrhart--Macdonald.}
+\end{proof}
+\budget{8}{(space for the proof above)}
+
+\begin{example}\todo{Optional, 4 lines: draft Example 3.4 ($\kappa=(1),(2)$ LS paths). Cut first if over.}\end{example}
+
+%% ===================================================================
+\section{The Pieri coefficients and the $K$-theoretic proof}\label{sec:ktheory}
+%% ===================================================================
+%% budget: 1.8 pp. Source: draft 4.1--4.5. RISK: everything here rests on Prop 4.6 (no outside line-read).
+
+\begin{lemma}\label{lem:hyperplane}
+Let $X=\LG(m,2m)$ or $\OG(m,2m+1)$ and write
+\[ [\cO_{X_\kappa}]\cdot(1-[L^{-1}])=\sum_\rho c_\rho\,[\cO_{X_\rho}]\qquad\text{in }K(X). \]
+Then $c_\rho\ne0$ implies $\rho\subsetneq\kappa$, and for every $j\in\C$,
+\begin{equation}\label{eq:hyperplane}
+H_\kappa(j)-H_\kappa(j-1)=\sum_{\rho\subsetneq\kappa}c_\rho\,H_\rho(j).
+\end{equation}
+By (G0), $c_\rho$ is the coefficient of $[\cO_{X_\rho}]$ in $[\cO_{X_\kappa}]\cdot\cO^1$.
+\end{lemma}
+\budget{3}{proof sketch: section of $L$, localisation sequence; extend to $j\in\C$ by polynomiality.}
+
+\todo{~8 lines: quote BR's $c^\nu_{\lambda,p}=\cC(\nu/\lambda,p)$ \cite[Cor.~5.4]{BR12} and the
+recursion \cite[Thm.~5.5]{BR12} in words (rim, north-east arm $\psi$, $\hat\theta$; cases
+(i)--(iv)); reflection $R(a,b)=(m-1-b,m-1-a)$ turns BR's skew shape into the up-set $\theta$;
+define $K(\varphi)$ (labellings by $1'<1$, no $1'$ on the diagonal) and $V(\theta)$ (strict maps
+$\theta\to\{e<o\}$, diagonal $\mapsto e$).}
+
+\begin{proposition}\label{prop:BRp1}
+For every nonempty shifted skew shape $\varphi$, $\cC(\varphi,1)=(-1)^{|\varphi|-1}K(\varphi)$.
+\end{proposition}
+\budget{9}{proof sketch: the case $p=1$ of BR's (unproved) Cor.~5.6; induction on $|\varphi|$ over BR Thm.~5.5; table of the four cases at $p=1$; one sentence on the arm cases; full case analysis in the full version.}
+
+\begin{theorem}[The Pieri coefficients]\label{thm:Q30}
+On $\LG(m,2m)$, for every $\rho\subsetneq\kappa$ with $\theta=D(\kappa)\setminus D(\rho)$,
+\[ c_\rho=(-1)^{|\theta|-1}V(\theta). \]
+Explicitly, $c_\rho=0$ iff $\theta$ contains a $3$-chain or a diagonal box $(c,c)$ with
+$(c-1,c)\in\theta$. Otherwise $|c_\rho|=2^i$, where $i$ is the number of off-diagonal boxes of
+$\theta$ that are comparable to no other box of $\theta$.
+\end{theorem}
+\budget{2}{proof: dictionary + reflection + Prop~\ref{prop:BRp1} + two-letter count.}
+
+\begin{example}\label{ex:pieri32}
+Let $\kappa=(3,2)$, $m=3$. Theorem~\ref{thm:Q30} gives
+\[ [\cO_{X_{(3,2)}}]\cdot\cO^1=2[\cO_{X_{(3,1)}}]-[\cO_{X_{(2,1)}}]-[\cO_{X_{(3)}}]+[\cO_{X_{(2)}}]. \]
+\todo{keep the $\theta$ list from draft Ex.~4.10 (4 lines); this example is also the window example of \S\ref{sec:window}.}
+\end{example}
+
+\begin{remark}[Primes and odd values]\label{rem:primes}
+\todo{3 lines, from draft Remark 4.9: BR's $1'<1$ become $o>e$; ``no prime on the diagonal'' = ``even on the diagonal''.}
+\end{remark}
+
+\begin{proposition}\label{prop:star}
+On $\LG$, put $s_x(\kappa)=(-1)^{|\kappa|}H_\kappa(-x)$ for $x\in\C$. Then for every $x\in\C$,
+\begin{equation}\label{eq:star}
+s_{x+1}(\kappa)=s_x(\kappa)+\sum_{\rho\subsetneq\kappa}V\bigl(D(\kappa)\setminus D(\rho)\bigr)\,s_x(\rho).
+\end{equation}
+The same holds on $\OG$ with $V(\theta)$ replaced by $|c_\rho|$, where $c_\rho$ are the $\OG$
+coefficients of Lemma~\ref{lem:hyperplane}.
+\end{proposition}
+
+\begin{lemma}[Peeling the top two values]\label{lem:peel}
+For $j\ge1$ and every $\kappa$,
+\[ N_\kappa(j+1)=N_\kappa(j)+\sum_{\rho\subsetneq\kappa}V\bigl(D(\kappa)\setminus D(\rho)\bigr)\,N_\rho(j). \]
+\end{lemma}
+\budget{4}{proof: $\theta=f^{-1}\{2j,2j+1\}$ is an up-set; restriction is a $V(\theta)$-map.}
+
+\begin{proof}[Second proof of Theorem~\ref{thm:main}(b), and proof of Theorem~\ref{thm:og}]
+\todo{~8 lines: anchor $N_\kappa(1)=\delta_{\kappa\varnothing}=s_1$; \eqref{eq:star} = Lemma~\ref{lem:peel}.
+$\OG$: BR Lemma~4.5 $\Rightarrow$ $c_\rho=(-1)^{|\theta|-1}[\theta\subseteq\max P_\kappa]$; peel the top value. No reciprocity theorem used.}
+\end{proof}
+\budget{5}{(space for the proof above)}
+
+%% ===================================================================
+\section{The integer window}\label{sec:window}
+%% ===================================================================
+%% budget: 0.5 pp. Source: draft 5. Proof from the counts (LS route, Prop-4.6-free) in full;
+%% Clio-endorsed inductive proof as a remark.
+
+\begin{proof}[Proof of Theorem~\ref{thm:window}]
+\todo{3 lines: Theorem~\ref{thm:main}(b) (resp.\ \ref{thm:og}) and Lemma~\ref{lem:Npos}.}
+\end{proof}
+
+\begin{remark}\todo{~8 lines: a second proof uses only \eqref{eq:star}, the anchor, the chain
+drop $r(\rho)\ge r(\kappa)-2$ on the Pieri support, and one explicit nonzero term $\rho_{t^*}$
+(parity choice matters). The zero anchor makes \eqref{eq:star} monotone -- this is why integers
+are easier than half-integers. Worked case $\kappa=(3,2)$: $s_3=1$, $s_4=13$ (draft Ex.~5.3).}
+\end{remark}
+
+%% ===================================================================
+\section{Half-integer values}\label{sec:half}
+%% ===================================================================
+%% budget: 1.7 pp. Source: draft 6.1, 6.3, 6.4 (+6.2 and 6.5 as remarks).
+%% RISK: depends on (star) hence on Prop 4.6; Thm HZ and Cor 1.6 (= "Thm B") have no outside line-read.
+
+\begin{proposition}[Bridge]\label{prop:bridge}
+For every integer $a\ge0$,
+$2^mH_\kappa(-a-\tfrac12)=\bigl[D_{w_\kappa}(F_a)\bigr]_{y=1}$, where
+$F_a=\prod_{i=1}^my_i^a(1+y_i)$.
+\end{proposition}
+\budget{4}{sketch: conjugate $D_m$ by $e^{-\omega/2}$ and $\Phi=\prod(1+y_i)^{-1}$; $F_a$ = character of $\bigwedge^\bullet U\otimes\cO(-a)$.}
+
+\begin{theorem}\label{thm:A}
+$H_\kappa(-\tfrac12)=2^{-\kappa_1}$ for every $\kappa$ (with $\kappa_1=0$ for $\kappa=\varnothing$).
+\end{theorem}
+\budget{4}{proof: reduced word $w_\kappa=w_{\kappa'}c(\kappa_1)$; $D_q$ kills $e^{-\varepsilon_q}$ one factor at a time.}
+
+\todo{define $A_o,A_e$ (antichain up-sets without/with diagonal boxes), 3 lines.}
+
+\begin{lemma}[Layers]\label{lem:layers}
+\begin{enumerate}[label=(\alph*)]
+\item $(A_oA_e)(\kappa,\nu)=V(D(\kappa)\setminus D(\nu))$. Hence~\eqref{eq:star} reads
+$s_{x+1}=A_oA_e\,s_x$ for every $x\in\C$.
+\item For $a\ge1$, $[(A_oA_e)^{a-1}A_o](\kappa,\nu)=N_{\kappa/\nu}(a)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{corollary}[Row formula]\label{cor:row}
+For $a\ge1$, $s_{a+1/2}(\kappa)=N_\kappa(a)+\sum_{L=1}^{\kappa_1}(-1)^{L+1}2^{-L}N_{\kappa/(L)}(a)$.
+\end{corollary}
+\budget{4}{proof: $A_e s_{1/2}$ collapses to single rows by a toggling involution (draft Lemma~6.9); then Lemma~\ref{lem:layers}(b). Example $\kappa=(3)$, $a=2$: $\tfrac78$.}
+
+\begin{proof}[Proof sketch of Theorem~\ref{thm:HZ}]
+\todo{~12 lines: fibre over the lower rows, $s_{a+1/2}=\sum_g\Phi(u(g))$; shift lemma
+(value-$1$ deletion) telescopes the alternating $2^{-L}$ sum; one-row lemma: $\Phi\equiv\pm2^{-n}$
+for $2a\le\kappa_1$, $\Phi\ge2^{-n}$ otherwise; zeros iff $N_{\kappa'}(a)=0$, Lemma~\ref{lem:Npos}.
+Corollary~\ref{cor:OC} in 2 lines from (iii) and $r(\kappa')\le2m-3$.}
+\end{proof}
+\budget{10}{(space for the proof sketch above)}
+
+\begin{remark}[Independent checks of the vanishing half]\todo{~4 lines: draft Theorem 6.7 (Theorem Z, Clio-endorsed)
+proves the vanishing half of (i) using only the \emph{support} of the Pieri rule, by
+hyperplane-section induction from $H_\kappa(-\tfrac32)=2^{-\kappa_1}H_{\kappa'}(-1)$. The
+coefficients do not share a sign at the edge of the window, so nonvanishing needs the fibre argument.}
+\end{remark}
+
+\begin{remark}[The half-step operator]\todo{~6 lines, statement only, cite the full version:
+the unitriangular square root $T$ of $A_oA_e$ satisfies $s_{x+1/2}=Ts_x$, and its entries are
+products over connected components of $\theta$ of ribbon weights $\pm(-\tfrac12)^{|D|}$
+(draft Prop.~6.16). Its $\varnothing$-column is the $-\tfrac32$ formula. Not a shifted
+Murnaghan--Nakayama rule.}
+\end{remark}
+
+%% ===================================================================
+\section{Example and open questions}\label{sec:examples}
+%% ===================================================================
+%% budget: 0.8 pp. Keep Table 2 of the draft (values); drop Table 1 (polynomials) or merge one column.
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}l|rrrrr|rrrrr@{}}
+\toprule
+$\kappa$ & $-1$ & $-2$ & $-3$ & $-4$ & $-5$ & $-\frac12$ & $-\frac32$ & $-\frac52$ & $-\frac72$ & $-\frac92$\\
+\midrule
+$(1)$ & $0$ & $-1$ & $-2$ & $-3$ & $-4$ & $\frac12$ & $-\frac12$ & $-\frac32$ & $-\frac52$ & $-\frac72$\\
+$(2)$ & $0$ & $1$ & $4$ & $9$ & $16$ & $\frac14$ & $\frac14$ & $\frac94$ & $\frac{25}4$ & $\frac{49}4$\\
+$(3)$ & $0$ & $0$ & $-3$ & $-13$ & $-34$ & $\frac18$ & $\frac18$ & $-\frac78$ & $-\frac{55}8$ & $-\frac{175}8$\\
+$(2,1)$ & $0$ & $0$ & $-1$ & $-5$ & $-14$ & $\frac14$ & $0$ & $-\frac14$ & $-\frac52$ & $-\frac{35}4$\\
+$(3,1)$ & $0$ & $0$ & $2$ & $15$ & $56$ & $\frac18$ & $0$ & $\frac38$ & $\frac{25}4$ & $\frac{245}8$\\
+$(3,2)$ & $0$ & $0$ & $-1$ & $-13$ & $-70$ & $\frac18$ & $0$ & $-\frac18$ & $-\frac{17}4$ & $-\frac{259}8$\\
+$(3,2,1)$ & $0$ & $0$ & $0$ & $1$ & $14$ & $\frac18$ & $0$ & $0$ & $\frac18$ & $\frac{35}8$\\
+\bottomrule
+\end{tabular}
+\caption{Values of $H_\kappa$ at negative integers and half-integers on $\LG(3,6)$.}\label{tab:lg3vals}
+\end{table}
+
+\todo{~4 lines: read two entries through the theorems ($(3)$ and $(3,2,1)$); computer checks in one
+sentence (Demazure characters, $m\le5$; Clio's independent census $m\le6$ for the window).}
+
+\begin{question}[Other cominuscule spaces]\label{q:cominuscule}
+The cominuscule $G/P$ that are not minuscule are $\LG(m,2m)$ and the odd quadrics
+$Q^{2m-1}=B_m/P_1$. For the odd quadric the Bruhat poset is a chain, and exactly one cover has
+bond $2$. This is the lecture-hall setting of~\cite{CCFL}. Is the Hilbert function of every
+Schubert variety in a cominuscule $G/P$ the Ehrhart polynomial of its order polytope with
+respect to the lattice determined by the bonds, as in Theorem~\ref{thm:main}(c)? Is there a
+uniform reason, independent of the case-by-case bond computation of Lemma~\ref{lem:bonds}?
+\end{question}
+
+\todo{2 more questions, 2 lines each: canonical-module basis indexed by the strict maps;
+$2p$-letter alphabet for higher Pieri coefficients $c^\nu_{\lambda,p}$.}
+
+\acknowledgements{\todo{Robin; Clio Vega (peer agent) refereed Theorems Z and the window (both types), see AI declaration.}}
+
+\printbibliography
+
+\clearpage
+\section*{AI declaration}
+\todo{Mandatory, uncapped, not counted toward the 12 pages. Adapt from
+../../work-in-progress/fpsac2027/fpsac2027-draft.tex (AI declaration section). Must state per
+result which items had an outside (Clio) line-read: Theorem~\ref{thm:window} (both types) and the
+support-only vanishing proof (draft Thm 6.7) endorsed; Theorem~\ref{thm:main}, Proposition~\ref{prop:BRp1},
+Theorem~\ref{thm:HZ}, Corollary~\ref{cor:OC} and the half-step operator NOT line-read by anyone
+else; numerical cross-checks listed separately. Robin: describe your role. Also fill the SoftConf
+AI-use field.}
+
+\end{document}
