@@ -18,9 +18,9 @@ and the AI declaration starts on p. 11 (see "Skeleton" below).
     designated section.
   - No changes to the preamble, font, margins or spacing. Packages like savetrees are banned.
   - pdflatex, then bibtex.
-- Aside: the old Hikita FPSAC draft (`work-in-progress/fpsac2027/fpsac2027-draft.pdf`, 14 pp) has
-  references running onto p. 13. Under the "including bibliography" rule it is about a page over.
-  Earlier notes said "12 pp + uncapped AI declaration" and never addressed references.
+- Aside (CORRECTED by orchestrator, page-by-page pdftotext): the old Hikita FPSAC draft (14 pp) has
+  References on p. 12 and the AI declaration starting at the top of p. 13. Body+bibliography = 12 pp, so it is COMPLIANT.
+  (Subagent first claimed it was a page over; false.)
 
 ## How the page estimates were made
 
