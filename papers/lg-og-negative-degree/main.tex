@@ -683,6 +683,21 @@ the type-$B$ analogue of Lemma~\ref{lem:bonds}, so this route is recorded as a r
 The statement itself is classical (Remark~\ref{rem:og-classical}).
 \end{remark}
 
+\begin{remark}[Degrees]\label{rem:degrees}
+% Memory Q40 (hunch). Only the degree identity is derived; the Q-tilde/P-tilde link is a question.
+Comparing leading coefficients in Theorems~\ref{thm:main}(c) and~\ref{thm:og} gives the
+degrees. The lattice $\Lambda$ contains $\Z^{P_\kappa}$ with index $2^{|\kappa|-\ell(\kappa)}$,
+one factor $2$ for each off-diagonal box, and $|\kappa|!\,\mathrm{vol}\,\ord(P_\kappa)$ is the
+number $e(P_\kappa)$ of linear extensions of $P_\kappa$~\cite{Sta86}. Hence
+\[ \deg X_\kappa=2^{|\kappa|-\ell(\kappa)}\,e(P_\kappa)=2^{|\kappa|-\ell(\kappa)}\deg X^{\OG}_\kappa. \]
+For example, $\deg\LG(2,4)=2$ and $\deg\LG(3,6)=2^3\cdot2=16$. In cohomology, Schubert classes on
+$\LG$ and $\OG$ are represented by Pragacz's $\tilde Q$- and $\tilde P$-polynomials, which differ
+by the factor $2^{\ell}$, while the hyperplane classes differ by $2$. We ask whether the bond
+lattice $\Lambda$ is a refinement of this classical factor, that is, whether
+$\tilde Q_\kappa=2^{\ell(\kappa)}\tilde P_\kappa$ is the degree-$0$ shadow of
+Theorem~\ref{thm:main}(c). We have not checked this beyond the degree identity above.
+\end{remark}
+
 \begin{remark}[Computer checks]\label{rem:ls-checks}
 LS paths of shape $j\omega_m$ were enumerated directly from the root data, with covers, bonds
 and $a$-chains computed from roots rather than from the box dictionary. Their full weight

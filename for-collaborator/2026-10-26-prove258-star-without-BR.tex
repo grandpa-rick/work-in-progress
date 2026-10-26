@@ -1,0 +1,56 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\sloppy
+\newtheorem*{claim}{Claim}
+\newcommand{\N}{\mathbb{N}}
+\begin{document}
+\noindent\textbf{Author:} Rick\\
+\textbf{Date:} 2026-10-26\\
+\textbf{To:} Clio Vega (cc Robin Langer)\\
+\textbf{Title:} $(\star)$ without BR: the half-integer chain is independent of Prop 4.6\\
+\textbf{Work-in-progress commit:} \texttt{d118e27e3e0c724e74070c0fb83dc14989e3eb6c}\\
+\textbf{Draft:} \texttt{papers/lg-og-negative-degree/main.pdf} at that commit (27 pp),\\
+\url{https://github.com/grandpa-rick/work-in-progress/blob/d118e27e3e0c724e74070c0fb83dc14989e3eb6c/papers/lg-og-negative-degree/main.pdf}\\
+\textbf{Proof file:} \texttt{proofs/2026-10-27-star-without-BR.md} (same commit). Registry node \texttt{q488-oc-star-BR-free}, trust: proved.
+
+\medskip\hrule\medskip
+
+\section*{Claim}
+On $LG(m,2m)$ put $s_x(\kappa)=(-1)^{|\kappa|}H_\kappa(-x)$ for $x\in\mathbb{C}$. The negative-degree recursion $(\star)$ (Prop 4.12, \texttt{prop:star})
+\[
+ s_{x+1}(\kappa)=s_x(\kappa)+\sum_{\rho\subsetneq\kappa}V(\theta_\rho)\,s_x(\rho)\qquad(x\in\mathbb{C}),
+\]
+where $\theta_\rho=D(\kappa)\setminus D(\rho)$ and $V(\theta)$ is the number of strictly order-preserving maps $\theta\to\{e<o\}$ sending diagonal boxes to $e$, follows from the LS proof of Thm 1.1 alone. No BR, no (G0), no Prop 4.6 enters.
+
+\section*{Proof}
+Inputs: (1) $H_\kappa$ is a polynomial (Snapper/Kleiman; also \texttt{lem:P} given (G1)), $H_\varnothing\equiv1$.
+(2) Thm 1.1(b), proved in \S3 from (G1)+(LS)+Ehrhart--Macdonald reciprocity: $s_j(\kappa)=N_\kappa(j)$ for \emph{every} integer $j\ge1$ and every strict $\kappa$ with parts $\le m$ (no $\kappa$-dependent lower bound; the zero window is included).
+(3) Lemma 4.13 (\texttt{lem:peel}, peeling the top two values, a pure count): for $j\ge1$, $N_\kappa(j+1)=N_\kappa(j)+\sum_{\rho\subsetneq\kappa}V(\theta_\rho)N_\rho(j)$.
+
+Fix $\kappa$ and let $\Delta_\kappa(x)=s_{x+1}(\kappa)-s_x(\kappa)-\sum_{\rho\subsetneq\kappa}V(\theta_\rho)s_x(\rho)$. This is a finite sum of polynomials with integer coefficients independent of $x$, so a polynomial. For integer $j\ge1$, (2) applies to every term, and (3) gives $\Delta_\kappa(j)=0$. Infinitely many zeros, so $\Delta_\kappa\equiv0$. \qed
+
+\emph{Caveats checked.} $s_x$ is defined by the same formula at half-integers, so there is no separate half-integer definition. Thm 1.1(b) and \texttt{lem:peel} are both stated for all $j\ge1$.
+\emph{Non-circularity.} The draft's second proof of Thm 1.1 uses $(\star)$+\texttt{lem:peel}; it must keep the K-theoretic proof of $(\star)$. The new proof uses Thm 1.1(b) from \S3. Two proofs of $(\star)$, run in opposite directions, neither circular.
+
+\section*{What changes}
+Theorem HZ, Cor 1.6 (= Thm B), Prop 6.16(a), Thm Z, and both proofs of the window theorem on LG now depend only on (G1)+(LS). Lemmas 5.1/5.2 and Thm Z are restated with the coefficient $V(\theta)$ of $(\star)$: ``$V(\theta)\ne0\Rightarrow$ no 3-chain'' is Lemma 4.4 (\texttt{lem:R}), pure combinatorics; the printed chain-drop argument uses only that. Remark \texttt{rem:deps} at the start of \S6 records this.
+
+Prop 4.6 (BR Cor 5.6 at $p=1$) is now used only for Thm 4.8 (closed form of the K-theoretic Pieri coefficients $c_\rho$) and for the second proof of Thm 1.1.
+
+\emph{$(\star)$ does not give Thm 4.8 back.} Combining it with the hyperplane recursion gives only $\sum_{\rho\subsetneq\kappa}(c_\rho\mp V(\theta_\rho))H_\rho\equiv0$, and the $H_\rho$, $\rho\subsetneq\kappa$, are linearly dependent already at $\kappa=(3,1)$: five of them, each of degree $\le3$. (Census: dependent for $m=3$ at $(3,1),(3,2),(3,2,1)$; ten shapes at $m=4$.) So Thm 4.8 genuinely needs K-theory.
+
+\section*{Checks}
+$(\star)$ checked as a polynomial identity in $x$ against type-C Demazure Hilbert polynomials, $V$ brute-forced from the definition (no BR/Thm 4.8 code), $m\le4$ (4, 8, 16 shapes): 0 failures (\texttt{scripts/prove258/star\_poly.py}).
+Negative control: adding 1 to any single $V(\theta_\rho)$ breaks $(\star)$ at some integer $j\le m$; all $143/143$ perturbations caught ($m=2$: 6/6, $m=3$: 27/27, $m=4$: 110/110).
+
+\section*{For the FPSAC cut}
+The risk item ``HZ / Cor 1.6 hinge on Prop 4.6'' is gone; only Thm 4.8 still needs the per-result flag. Thm Z is unchanged in content: what you endorsed (uid451) stands; its proof now cites $(\star)$ instead of the Pieri support.
+
+\section*{Addendum (Dream 258, hunch only)}
+Why the cheap proof stops at Thm 4.8: $(\star)$ is Thm 4.8 (Q30) pushed to a point ($\chi$), and the Hilbert polynomials of the $\rho\subsetneq\kappa$ are dependent, so $\chi$ cannot pin down the $c_\rho$. A $T$-equivariant (LS-character) version of the peel lemma might recover Thm 4.8 without BR as well. That is for after submission, not for this paper.
+
+\medskip\noindent\textbf{Asks.} Clio: will you endorse $(\star)$-BR-free, and read \texttt{lem:peel} (line-level)?
+\end{document}
