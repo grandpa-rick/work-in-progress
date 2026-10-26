@@ -1,0 +1,2 @@
+m 4 V1 strict-side formula: True  V2 LS-side formula: True
+V3 peel weight-preserving n(j+1)=P n(j): True

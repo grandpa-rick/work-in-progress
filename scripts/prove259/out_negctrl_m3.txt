@@ -1,0 +1,40 @@
+V1 FAIL (2,) 2
+V1 FAIL (2,) 3
+V1 FAIL (2,) 4
+V2 FAIL (2,) 1
+V2 FAIL (2,) 2
+V2 FAIL (2,) 3
+V1 FAIL (3,) 3
+V1 FAIL (3,) 4
+V2 FAIL (3,) 1
+V2 FAIL (3,) 2
+V2 FAIL (3,) 3
+V1 FAIL (2, 1) 3
+V1 FAIL (2, 1) 4
+V2 FAIL (2, 1) 1
+V2 FAIL (2, 1) 2
+V2 FAIL (2, 1) 3
+V1 FAIL (3, 1) 3
+V1 FAIL (3, 1) 4
+V2 FAIL (3, 1) 1
+V2 FAIL (3, 1) 2
+V2 FAIL (3, 1) 3
+V1 FAIL (3, 2) 3
+V1 FAIL (3, 2) 4
+V2 FAIL (3, 2) 1
+V2 FAIL (3, 2) 2
+V2 FAIL (3, 2) 3
+V1 FAIL (3, 2, 1) 4
+V2 FAIL (3, 2, 1) 1
+V2 FAIL (3, 2, 1) 2
+V2 FAIL (3, 2, 1) 3
+m 3 V1 strict-side formula: False  V2 LS-side formula: False
+V3 FAIL (2,) 1
+V3 FAIL (2,) 2
+V3 FAIL (2,) 3
+V3 FAIL (3, 2) 2
+V3 FAIL (3, 2) 3
+V3 peel weight-preserving n(j+1)=P n(j): False
+((2,), (1,)) {(-1, 1, -1): 1, (-1, 0, -2): 1}
+((3, 1), (2,)) {(1, -1, 1): 1, (0, 0, 1): 1}
+((3, 2), (3, 1)) {(1, 1, -1): 1, (1, 0, -2): 1}
