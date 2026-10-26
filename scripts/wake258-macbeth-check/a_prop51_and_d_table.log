@@ -1,0 +1,21 @@
+=== (d) M1/M2 table: M={e,a,b}, aa=b, ab=ba=a, bb=b; K: e,a,b -> e,a,a ===
+ monoid (assoc, unit e): True
+ a^3 = a: True | b = a^2: True | b is identity of {a,b} (M = C2 + adjoined unit): True
+ (K1),(U),(LA): True
+ ~K classes {e},{a,b} two-sided congruence: True
+ Prop 5.1 report: {'c1': True, 'c1r': True, 'c2': True, 'c3': True, 'theta_eq': True, 'mLA': True, 'closed': False}
+ negative control: pre-456 table (b.b=a) non-associative triples: 4
+
+=== (a) paper examples ===
+ Thm 3.1 Sep.1 (closed, not mLA): True True {'c1': True, 'c1r': True, 'c2': True, 'c3': True, 'theta_eq': True, 'mLA': False, 'closed': True}
+ TR handed model (ba=z): True True {'c1': False, 'c1r': False, 'c2': False, 'c3': False, 'theta_eq': True, 'mLA': False, 'closed': False}
+ TR control ba=a: monoid? True
+ S3 witness H order 2, T=A3: {'c1': True, 'c1r': True, 'c2': True, 'c3': True, 'theta_eq': True, 'mLA': False, 'closed': True}
+ C4 H={0,2} T={0,1}: {'c1': True, 'c1r': True, 'c2': True, 'c3': True, 'theta_eq': True, 'mLA': True, 'closed': False}
+
+=== (a) exhaustive: all monoids with unit 0, order <= N, all normalizers ===
+ order 1: {'monoids': 1, 'normalizers': 1, 'assoc': 1, 'mism_1_1r': 0, 'mism_1_2': 0, 'mism_1_3': 0, 'theta_alg_mism': 0, 'between': 0, 'ctrl_noLA_K': 0, 'ctrl_noLA_mism_1_3': 0, 'ctrl_simK_mism': 0}  [0.0s]
+ order 2: {'monoids': 2, 'normalizers': 4, 'assoc': 4, 'mism_1_1r': 0, 'mism_1_2': 0, 'mism_1_3': 0, 'theta_alg_mism': 0, 'between': 0, 'ctrl_noLA_K': 0, 'ctrl_noLA_mism_1_3': 0, 'ctrl_simK_mism': 0}  [0.0s]
+ order 3: {'monoids': 11, 'normalizers': 46, 'assoc': 46, 'mism_1_1r': 0, 'mism_1_2': 0, 'mism_1_3': 0, 'theta_alg_mism': 0, 'between': 0, 'ctrl_noLA_K': 20, 'ctrl_noLA_mism_1_3': 6, 'ctrl_simK_mism': 0}  [0.0s]
+ order 4: {'monoids': 156, 'normalizers': 1578, 'assoc': 1572, 'mism_1_1r': 0, 'mism_1_2': 0, 'mism_1_3': 0, 'theta_alg_mism': 0, 'between': 6, 'ctrl_noLA_K': 2010, 'ctrl_noLA_mism_1_3': 318, 'ctrl_simK_mism': 6}  [0.2s]
+ order 5: {'monoids': 4122, 'normalizers': 104626, 'assoc': 102334, 'mism_1_1r': 0, 'mism_1_2': 0, 'mism_1_3': 0, 'theta_alg_mism': 0, 'between': 3612, 'ctrl_noLA_K': 324062, 'ctrl_noLA_mism_1_3': 42588, 'ctrl_simK_mism': 2292}  [41.1s]

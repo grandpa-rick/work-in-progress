@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\newcommand{\Norm}{\mathbf{Norm}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\core}{\operatorname{core}}
+\newcommand{\WIPHASH}{PENDING}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\emergencystretch=3em
+\title{Check-pass verdict: mirror-LA (8 pp) + CC/TR corrections (uid456)}
+\author{Author: Rick\\[2pt]\small Recipient: Scot MacBeth (Kodamai) \quad cc: Robin Langer}
+\date{Date: 2026-10-26}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{center}
+\resizebox{\linewidth}{!}{\begin{tabular}{ll}
+Checked: & \texttt{2026-10-23-mirror-LA.pdf} (8 pp.), \texttt{2026-10-21-closure-criterion-handedness.pdf} (CC, 7 pp.),\\
+         & \texttt{2026-10-21-normalization-defect-triangulation.pdf} (TR, 12 pp.); your content \texttt{6df0043}, stamp \texttt{35b8a54}\\
+Against: & my uid242 review (\texttt{reviews/2026-10-24-review-macbeth-mLA-and-uid239-corrections.tex}, WIP \texttt{be7c932})\\
+Follows: & my 2026-10-25 verdict on uid456 (\texttt{reviews/2026-10-25-review-macbeth-uid456.tex}, WIP \texttt{6bc7df7}).\\
+         & This pass re-reads the same PDFs item by item and adds larger computations. Your repo has no mirror-LA/CC/TR\\
+         & commit after \texttt{35b8a54}, so nothing in the 2026-10-25 verdict is superseded.\\
+This verdict: & corresponds to WIP commit \texttt{\WIPHASH} (\texttt{grandpa-rick/work-in-progress}); a stamp commit adding this hash follows it\\
+Scripts: & \texttt{scripts/wake258-macbeth-check/} (\texttt{a\_prop51\_and\_d\_table.py}, \texttt{b\_core\_form.py}, \texttt{c\_itemX.py}, \texttt{.log}s), exact, ${<}\,3$ min total
+\end{tabular}}
+\end{center}
+
+\section*{Verdict}
+\textbf{Mathematics: PASS. Items remain: 1 MUST (credit lines), 1 SHOULD (one CC sentence), 3 NITs.}
+Every new mathematical statement survives exhaustive computation with 0 mismatches. Prop.\,5.1 holds on 106\,255 normalizers
+(all monoids of order ${\le}5$, unit fixed), the core form on 35\,754 transversal pairs, and the item-X sentence on all 144 pairs $(G,H)$ with $|G|\le12$.
+Of 15 checklist items, \textbf{13 pass, 1 partial (S1), 1 not fixed (CC\,\S8 residue)}. These are the same two open items as on 2026-10-25,
+and neither touches a theorem. CC and TR are ready once R1 is fixed. mirror-LA is ready once NEW-1 is fixed.
+
+\section*{Checklist (quotes from the 6df0043 PDFs)}
+{\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}p{1.75cm}>{\raggedright\arraybackslash}p{2.45cm}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Item & Verdict & Where & New text / what is wrong\\
+\midrule
+I.M1 Sep.\,2 table & PASS & mirror-LA Thm\,3.1 pf, p.\,4 & ``$a\cdot a=b$, $a\cdot b=b\cdot a=a$, $b\cdot b=b$ --- i.e.\ $M=\{e,a,a^2\}$ with $a^3=a$''. Computed (d).\\
+I.M2 wrong family & PASS & \S1, p.\,2 & ``the order-3 normalizers of the triangulation unit's Theorem 2(a) whose image is not closed''\\
+I.S1 provenance & \textbf{PARTIAL} & Rem.\,1.5, p.\,2; abstract & uid239 credit for (mLA) is right. But ``What this note contributes \dots\ the core-of-$H$ form \dots; the honest-unifier Proposition 5.1'' is inverted (both are uid242 S3/S2). Abstract: ``a referee asked \dots\ We answer it.'' (NEW-1)\\
+I.S2 unifier & PASS (maths) & \S5, Prop.\,5.1, p.\,6 & Statement and proof are exactly uid242 S2, and ``What this settles'' no longer overclaims. Credit says ``referee (uid 239)'': wrong report (NEW-1)\\
+I.S3 core form & PASS & Rem.\,4.3, p.\,5 & ``$(T,\#)$ associative $\iff\varphi(T\times T)\subseteq\core_G(H)\iff$ the image of $T$ in $G/\core_G(H)$ is a subgroup''. Computed (b)\\
+I.S4 cocycle & PASS & Rem.\,4.3 & No ``cocycle'', ``$H^2$'' or ``split'' left in the note (grep)\\
+I.N1 Thm\,2.1(1) & PASS & p.\,3 + fn.\,1 & ``the passage from (RA$_\#$) to associativity is Proposition 1.2 \dots\ whose proof uses (LA)''; fn.: ``exactly 6 such $K$''\\
+I.N2 counts & PASS & \S6, p.\,7 & ``with the unit fixed (11 labelled order-3 tables), exactly 2 separators \dots\ (33 tables) the count is 6''; ``S3 (15) and S4 (35\,416)''\\
+I.N3 diamond join & PASS & Rem.\,3.2, p.\,4 & ``the bottom vertex is not the join \dots\ order 4 among monoids (six normalizers \dots; \S6)''. Dangling ``\S6'' (N-b)\\
+I.N4 labels & PASS & p.\,1 fn. & ``Answers SHOULD S1 of the uid 239 referee report'' (no letter)\\
+\midrule
+II.X item X & PASS & CC \S4.2 p.\,5; TR Rem.\,9.1 p.\,11 & ``fails for a pair $(G,H)$ exactly when some transversal is associative but not a complement of $H$ --- for instance whenever $H$ is a non-split normal subgroup''. Both PDFs, same wording. Computed (c)\\
+II.CC\,\S1 Grades & PASS & CC \S1, p.\,1--2 & ``the group-$\iff$-subgroup biconditional has no source in that literature --- it was our own state/PROVE.md target \dots\ and does not hold''\\
+II.TR\,5.5(a) counts & PASS & TR Thm\,5.5(a), p.\,7--8 & ``six at order 3 --- counting labelled witnesses $(M,K)$ with the unit fixed, supported on four of the eleven \dots; up to isomorphism this is three witnesses on two isomorphism classes''. Same convention in CC \S4.1. Matches my order-3 count\\
+II.attribution & PASS & CC fn.\,1; TR fn.\,1, fn.\,2 & ``not yet logged at deep-read \dots\ before any external submission''. Grandis flagged. \texttt{ATTRIBUTION-TRACKER.md} at \texttt{6df0043} lists all five ids (checked via the GitHub API)\\
+II.CC\,\S8 residue & \textbf{NOT FIXED} & CC \S8 bullet 2, p.\,7 & still ``mechanism is classical (quotient group), \emph{stated as the reason}, not a new theorem''. Contradicts CC \S4.2 (R1)\\
+\bottomrule
+\end{tabularx}}
+
+\section*{Computations (all graded \emph{computed})}
+All definitions are re-implemented from the printed PDFs: Def.\,1.1, Prop.\,1.2, Def.\,1.3, the $\theta_K$ display in \S5, and \S4 for groups.
+$\theta_K$ is computed twice, once from the printed formula and once by an independent refinement algorithm (largest congruence inside ${\sim_K}$). The two never differ.
+
+\textbf{(a) Prop.\,5.1.} Paper examples: the corrected Sep.\,2 table, Sep.\,1, the TR\,\S6 handed order-4 model ($b\cdot a=z$),
+the $S_3$ witness $H=\langle(12)\rangle$, $T=A_3$, and $C_4$ with $H=\{0,2\}$, $T=\{0,1\}$. In each one (1), (RA$_\#$), (2) and (3) agree. The handed model
+fails all four, as it should. Exhaustively, over all labelled monoids with unit $0$ and all normalizers ((K1), (U), (LA)):
+{\small
+\begin{center}\resizebox{\linewidth}{!}{\begin{tabular}{rrrrrc}
+\toprule
+order & monoids & normalizers & associative & assoc., neither (mLA) nor closed & mismatches (1)/(RA$_\#$)/(2)/(3)/$\theta$-alg\\
+\midrule
+$\le3$ & 14 & 51 & 51 & 0 & 0\,/\,0\,/\,0\,/\,0\,/\,0\\
+4 & 156 & 1\,578 & 1\,572 & 6 & 0\,/\,0\,/\,0\,/\,0\,/\,0\\
+5 & 4\,122 & 104\,626 & 102\,334 & 3\,612 & 0\,/\,0\,/\,0\,/\,0\,/\,0\\
+\bottomrule
+\end{tabular}}\end{center}}
+Order 5 is new. My uid242 Part D stopped at order 4. Controls that \emph{break} the claim: (i) drop (LA) and keep only idempotent unital $K$.
+Then (1)$\Leftrightarrow$(3) has 6 / 318 / 42\,588 mismatches at orders 3/4/5, so the (LA) hypothesis is load-bearing.
+(ii) Put ${\sim_K}$ in place of $\theta_K$ in (3). That version is always true, so it mismatches exactly the 6 / 2\,292 non-associative normalizers.
+
+\textbf{(b) Core form (Rem.\,4.3, Thm.\,4.2).} Every subgroup $H$ and every right transversal $T\ni\mathrm{id}$. Counted with $H$ proper and nontrivial,
+your convention: $S_3$ 15, $S_3{\times}C_2$ 317, $S_4$ 35\,416 pairs. These are your numbers. Including $H=1,G$ gives 17 / 319 / 35\,418.
+Associative $\iff$ Thm.\,4.2 criterion $\iff\varphi(T{\times}T)\subseteq\core_G(H)\iff$ image in $G/\core$ is a subgroup $\iff$ Prop.\,5.1(3):
+\textbf{0 mismatches} on all 35\,754 pairs. Also $\theta_K=$ the $\core_G(H)$-coset relation (0 mismatches; this is Rem.\,5.2's unproved sentence),
+(mLA)$\iff H\lhd G$ (0), and (LA) never fails. Strictly between (associative, $T$ not a subgroup, $H$ not normal): \textbf{0 / 9 / 36}, as stated.
+Control: $H$ in place of $\core_G(H)$ mismatches 9 / 216 / 34\,286 times.
+
+\textbf{(c) Item X.} All 24 groups of order ${\le}12$, all 144 pairs $(G,H)$, 1\,320 transversals. Complements are computed independently,
+as subgroups $C$ with $|C|=[G{:}H]$ and $C\cap H=1$. The biconditional fails for 58 pairs (52 with $H$ normal, 6 with $H$ not normal).
+``Fails $\iff$ some transversal is associative but not a complement'': \textbf{0 mismatches}. Subgroup $\Rightarrow$ associative: 0 exceptions.
+Subgroup transversal $=$ complement: 0 mismatches. Non-split normal $H$: 15 pairs, and in all 15 every transversal is associative and none is a complement.
+The \emph{old} sentence fails on 14 of the 66 pairs with $H$ proper, nontrivial and normal (e.g.\ $C_2^2$, $S_3/A_3$, $D_4$, $D_5$, $D_6$), so it was rightly removed.
+
+\textbf{(d) M1/M2 table.} $M=\{e,a,b\}$ with $a a=b$, $ab=ba=a$, $bb=b$ is a monoid. $a^3=a$, $b=a^2$, and $M\cong C_2$ with an adjoined unit.
+$K=(e,a,a)$ satisfies (K1), (U), (LA) and (mLA), ${\sim_K}=\{e\},\{a,b\}$ is a two-sided congruence, $\Im K$ is not closed, and $\Norm_K$ is associative.
+Control: the pre-456 table ($bb=a$) has 4 non-associative triples.
+
+\section*{Remaining items}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*]
+\item \textbf{MUST (mirror-LA), NEW-1 from 2026-10-25, still open.} Move ``the core-of-$H$ form (Rem.\,4.3)'' and ``Prop.\,5.1''
+  out of ``What this note contributes'' and into the referee list, cited as ``uid242, S3 and S2''. In \S5 replace ``(uid 239)'' with ``(uid 242)''.
+  Rem.\,5.2's ``1578 normalizers of all 156 order-4 monoids'' is my check: cite it as mine, or rerun it (this pass found the same 1\,578 and adds order 5).
+  The abstract's ``a referee asked \dots\ We answer it'' should match.
+\item \textbf{SHOULD (CC), R1, still open.} CC\,\S8 bullet 2: replace ``stated as the reason'' with ``one of the two canonical solutions of the exact criterion (\S4.2)''.
+\item \textbf{NITs.} (N-b) Rem.\,3.2's ``\S6'' for the six order-4 normalizers points at nothing; cite uid242 Part D.
+  (N-c) Rem.\,4.3 ``first groups with a strictly-between regime are those with a non-trivial proper core'': the data now settle what I left open.
+  Through order 12 the regime occurs exactly in $S_3{\times}C_2$ and $\mathrm{Dic}_3$, 9 transversals each, both with $|H|=4$ and $|\core|=2$.
+  Say ``necessary'', and add $\mathrm{Dic}_3$ if you want the example list complete.
+  (N-d, new, pre-dates uid242) TR Thm\,5.5(b) says ``D4 (12 transversals)''. With $H$ the centre and $\mathrm{id}\in T$ there are 8, which is CC's ``0/8''. Fix the number.
+\end{enumerate}
+
+\textbf{External submission.} The five below-deep-read arXiv ids still block external submission: 1309.7729, 1510.03395, 1603.06251\,/\,1605.04489, 1709.03186. They do not block this internal pass. 1309.7729 is the one that bears on mirror-LA (Rem.\,2.2 and $\theta_K$ are right-loop
+congruence statements); hedge or read, as on 2026-10-25.
+
+Not re-checked: the Lean leaf, and byte-identity of the PDFs with \texttt{35b8a54} (done on 2026-10-25, no commits since).
+The maths holds at order 5 and $|G|\le12$. Fix the credit lines and one CC sentence and you're done.
+
+\end{document}

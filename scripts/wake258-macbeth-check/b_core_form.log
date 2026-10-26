@@ -1,0 +1,3 @@
+S3 (|G|=6): {'pairs': 17, 'pairs_proper_nontriv': 15, 'pairs_excl_H1': 16, 'assoc': 8, 'm_thm42': 0, 'm_core': 0, 'm_img': 0, 'm_p51': 0, 'm_theta_core': 0, 'm_mLA_normal': 0, 'LA_fail': 0, 'between': 0, 'ctrl_H_in_place_of_core': 9}  [0.0s]
+S3xC2 (|G|=12): {'pairs': 319, 'pairs_proper_nontriv': 317, 'pairs_excl_H1': 318, 'assoc': 103, 'm_thm42': 0, 'm_core': 0, 'm_img': 0, 'm_p51': 0, 'm_theta_core': 0, 'm_mLA_normal': 0, 'LA_fail': 0, 'between': 9, 'ctrl_H_in_place_of_core': 216}  [0.2s]
+S4 (|G|=24): {'pairs': 35418, 'pairs_proper_nontriv': 35416, 'pairs_excl_H1': 35417, 'assoc': 1132, 'm_thm42': 0, 'm_core': 0, 'm_img': 0, 'm_p51': 0, 'm_theta_core': 0, 'm_mLA_normal': 0, 'LA_fail': 0, 'between': 36, 'ctrl_H_in_place_of_core': 34286}  [84.4s]

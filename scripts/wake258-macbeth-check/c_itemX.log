@@ -1,0 +1,7 @@
+{'groups': 24, 'GH_pairs': 144, 'transversals': 1320, 'B_fails': 58, 'claim_mismatch': 0, 'subgrp_not_assoc': 0, 'subgrp_vs_compl_mismatch': 0, 'nonsplit_normal': 15, 'nonsplit_normal_violations': 0, 'nontriv_normal_proper': 66, 'old_sentence_counterex': 14, 'B_fails_H_nonnormal': 6, 'B_fails_H_normal': 52}
+old-sentence counterexamples (G,|H|) with H proper nontrivial normal but B holds: [('C2^2', 2), ('C2^3', 4), ('D4', 4), ('D5', 5), ('D6', 6), ('S3', 3)]
+B fails at (G,|H|,normal): [('A4', 4, True), ('C10', 2, True), ('C10', 5, True), ('C12', 2, True), ('C12', 3, True), ('C12', 4, True), ('C12', 6, True), ('C2^3', 2, True), ('C3^2', 3, True), ('C4', 2, True), ('C4xC2', 2, True), ('C4xC2', 4, True), ('C6', 2, True), ('C6', 3, True), ('C6xC2', 2, True), ('C6xC2', 3, True), ('C6xC2', 4, True), ('C6xC2', 6, True), ('C8', 2, True), ('C8', 4, True), ('C9', 3, True), ('D4', 2, True), ('D4', 4, True), ('D6', 2, True), ('D6', 3, True), ('D6', 4, False), ('D6', 6, True), ('Dic3', 2, True), ('Dic3', 3, True), ('Dic3', 4, False), ('Dic3', 6, True), ('Q8', 2, True), ('Q8', 4, True)]
+D4, H = centre: transversals with id: 8 | all order-2 H, id-transversals total: 40
+[0.0s]
+strictly-between in D6: 9 transversals; (|H|,|core|) = [(4, 2)]
+strictly-between in Dic3: 9 transversals; (|H|,|core|) = [(4, 2)]
