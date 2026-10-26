@@ -1213,7 +1213,29 @@
             "script": "work-in-progress/scripts/prove258/star_poly.py, indep.py",
             "verification": "star_poly.py: (*) as a polynomial identity from type-C Demazure Hilbert polynomials, V brute-forced (no BR/Q30 code): m=2,3,4 (4,8,16 shapes) 0 failures. Negative control: +1 on any single V entry is caught at an integer j>=1 in 6/6, 27/27, 110/110 cases (first failure j<=m). indep.py: dependent {H_rho: rho<kappa} at m=3: (3,1),(3,2),(3,2,1); m=4: 10 shapes.",
             "date": "2026-10-26",
-            "children": [],
+            "children": [
+             {
+              "id": "q488-Q45-equivariant-peel-lift",
+              "role": "attempt",
+              "trust": "computed",
+              "file": "work-in-progress/scripts/wake259/q45_lift.py",
+              "sources": [
+               "1203.3237",
+               "math/0309207",
+               "math/0401332"
+              ],
+              "depends_on": [
+               "q488-oc-star-BR-free"
+              ],
+              "approach": "Q45: C(x) with ch_kappa(j+1) = sum_rho C_{kappa rho}(x) ch_rho(j) (Demazure characters, type C_m) exists, is j-independent, C(1) = S(I+V)^{-1}S (= (*)); strict-side P(x) = S C(x)^{-1} S is Laurent with positive coefficients, P(1) = I+V, supp P = supp V, each entry a sum of exactly V(theta) monomials.",
+              "script": "work-in-progress/scripts/wake259/q45_lift.py (out_q45_m2.txt, out_q45_m3.txt)",
+              "verification": "m=2,3; j in [-4,6] (m=2) / [-4,10] (m=3).",
+              "wip_commit": "3395ab8",
+              "date": "2026-10-26",
+              "owner": "Existence of a lift is forced by equivariant K-Chevalley (owned: Lenart-Shimozono arXiv 1203.3237 Thm 3.2/Cor 3.4; Lenart-Postnikov math/0309207; Pittie-Ram math/0401332). New content = positivity / one monomial per V-map of P(x).",
+              "open": "Is lem:peel the omega_m case of Lenart-Shimozono Cor 3.4?"
+             }
+            ],
             "note": "ls-parity-model not listed as a premise: its registry node depends on integer-strict-reciprocity (cycle); the LS route needed is q488-oc-SR_LG-via-LS-paths (child q488-oc-ls-bijection)."
            }
           ],
@@ -1520,6 +1542,24 @@
           "date": "2026-10-25",
           "origin": "Clio uid457 F3",
           "children": []
+         },
+         {
+          "id": "q488-degree-identity",
+          "role": "attempt",
+          "trust": "computed",
+          "file": "writing/lg-og-negative-degree/main.tex (Remark rem:degrees, Rem 3.6)",
+          "sources": [],
+          "depends_on": [
+           "q488-oc-ls-parity-model",
+           "q488-oc-SR_LG-via-LS-paths",
+           "q488-oc-OG-strict-count"
+          ],
+          "approach": "deg X_kappa = 2^{|kappa|-l(kappa)} e(P_kappa) = 2^{|kappa|-l(kappa)} deg X^OG_kappa (Remark rem:degrees): compare leading coefficients of Thm 1.1(c) (thm:main(c), Ehrhart polynomial of O(P_kappa) w.r.t. Lambda) and Thm 1.3 (thm:og, Omega(P_kappa,j+1)); index [Lambda:Z^P] = 2^{|kappa|-l(kappa)} (one factor 2 per off-diagonal box), |kappa|! vol O(P) = e(P) (Stanley). Derivation is a two-line sketch in the draft.",
+          "script": "work-in-progress/scripts/wake259/degrees.py (out_degrees_m4.txt, out_degrees_m5.txt)",
+          "verification": "All 57 strict kappa, m<=5, three routes incl. type-C Chevalley chains independent of the paper: PASS.",
+          "wip_commit": "3395ab8",
+          "date": "2026-10-26",
+          "note": "Thm 1.1 node = q488-oc-ls-parity-model (statement (a)/(c)) with BR-free proof q488-oc-SR_LG-via-LS-paths; Thm 1.3 node = q488-oc-OG-strict-count. Q-tilde = 2^l P-tilde (Pragacz) refinement question left open in the remark."
          }
         ],
         "note_2026_10_22_wake251": "Wake 251: H_kappa modelled by LS parity order-quasi-polynomial (computed m<=5); strip -(r+1)/2<=Re j<-1/2 computed m<=7; even-M reciprocity = Ehrhart-Macdonald for Q_kappa; odd-zero law (computed m<=6) implies (OC) -- live target. Root-multiset route dead. Node stays in-progress.",
