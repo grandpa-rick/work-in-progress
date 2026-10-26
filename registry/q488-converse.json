@@ -1002,7 +1002,7 @@
             "depends_on": [
              "q488-oc-thmC-M3",
              "q488-oc-Ind-chain-drop",
-             "q488-oc-support-rule-BR"
+             "q488-oc-star-BR-free"
             ],
             "approach": "Theorem Z: (Z) for ALL kappa by strong induction on |kappa|: b_kappa = sum c_rho H_rho (hyperplane identity, polynomial in j); BR' + Lemma Ch => r'(rho)>=r'(kappa)-2 => every term vanishes for odd M in [3, 2ceil(r'/2)-1]; telescope from Thm C anchor H(-3/2)=0. Written proof Sec. 4. Does NOT use Sec. 7 gap 4 (integer window). [Wake 253: BR premise now read first-hand; graded proved given G1.] Conclusion checked 127/127 m=7.",
             "script": "work-in-progress/scripts/wake252/caseB/gate6.py, prove252_*.py",
@@ -1010,7 +1010,8 @@
             "children": [],
             "conditional_grade": "proved given (G0) Chevalley + (G1) Demazure + (BR) 1005.2605 first-hand (G0 back-ported 9d306cd per Clio F1)",
             "trust_before_2026_10_23_wake253": "computed",
-            "note_2026_10_23_wake253": "UPGRADED computed->proved given G1 (standard: Demazure character formula/Kempf vanishing) + BR (first-hand Wake 253). Lemma Ch already used BR's strictly-SE rim definition; proof unchanged; file §1/§3 remark/§6/§8 updated with verbatim locators. Covers the ZERO half (Z) only; (NZ) open."
+            "note_2026_10_23_wake253": "UPGRADED computed->proved given G1 (standard: Demazure character formula/Kempf vanishing) + BR (first-hand Wake 253). Lemma Ch already used BR's strictly-SE rim definition; proof unchanged; file §1/§3 remark/§6/§8 updated with verbatim locators. Covers the ZERO half (Z) only; (NZ) open.",
+            "note_prove258": "Printed proof (before PROVE 258) used eq:hyperplane + lem:chaindrop with c_rho!=0 => no 3-chain via thm:Q30 (q488-oc-support-rule-BR / Q30, BR). Draft rewritten: (*) at x=M/2 + chain drop for V(theta)!=0 (lem:R). Also Z = vanishing half of HZ(i). BR-free."
            },
            {
             "id": "crownD-LG-half-vs-OG-order-poly",
@@ -1105,7 +1106,8 @@
             "script": "work-in-progress/scripts/prove253/check.py, mono.py, drop.py, strip.py, negctl.py",
             "children": [],
             "wip_commit": "ecace5e",
-            "note_2026_10_25_uid457": "conditional_grade text superseded: Cor pieriCtab (BR Cor 5.6, reader-left) is no longer used; Lemma A(iii) goes through Theorem Q30 (crownF §3.3, from BR Thm 5.5, proved in BR; Clio refereed conclusion 1243/1243). I file §10 gap 2 updated."
+            "note_2026_10_25_uid457": "conditional_grade text superseded: Cor pieriCtab (BR Cor 5.6, reader-left) is no longer used; Lemma A(iii) goes through Theorem Q30 (crownF §3.3, from BR Thm 5.5, proved in BR; Clio refereed conclusion 1243/1243). I file §10 gap 2 updated.",
+            "note_prove258": "LG half rewritten with coefficients a_rho=V(theta) of (*) and lem:A(ii) as V(T_t*)!=0 (lem:R): BR-free on LG. OG half still uses BR Lemma 4.5 (lem:og-corners) via support-rule-BR. Edge to q488-oc-star-BR-free deliberately not added (either proof of (*) serves; adding it closes a registry cycle through ls-parity-model)."
            },
            {
             "id": "q488-oc-NZ-propR-range",
@@ -1186,16 +1188,33 @@
             ],
             "depends_on": [
              "q488-oc-thmA-half",
-             "q488-oc-Q30-KLG-strict-fillings",
-             "q488-oc-integer-strict-reciprocity",
+             "q488-oc-star-BR-free",
              "q488-oc-anchor-H-minus-1"
             ],
             "approach": "Theorem HZ (file Sec.9): I+C = A_o A_e (layer operators, from Q30); (*) as polynomial identity gives s_{a+1/2}=(A_oA_e)^{a-1}A_o eps with eps=A_e s_{1/2} supported on single rows (Thm A + toggling the bottom-row corner). Row formula s_{a+1/2}(k)=N_k(a)+sum_L (-1)^{L+1}2^{-L}N_{k/(L)}(a). Fibre over rows>=1 (=P_{k'}): s=sum_g Phi(u(g)). One-row Lemma 9.5 via shift Lemma 9.4 (a_L=b_{L+1}, value 1 <-> deletion; v->v-1): Phi = E0+sum 2^{-i-1}G_{1+i}(M-1-i;u-1-i)+2^{-n} >= 2^{-n} if 2a>=k1; Phi=(-1)^{k1}2^{-k1} if 2a<=k1. Hence H(-a-1/2)=0 iff N_{k'}(a)=0 iff a<=ceil(r'/2); sign (-1)^{|k|-k1} (2a<=k1) / (-1)^{|k|} (2a>=k1). = full odd-zero law (Z)+(NZ) with strictness; Prop R re-proved residue-free; Thm B (OC) for Schubert X_kappa re-proved without G2-G4 (a>=m => large-a case, ceil(r'/2)<=m-1), 2^{k1}H in Z.",
-            "conditional_grade": "proved given (G0), (G1), (BR first-hand) + Thm A (proved given G1)",
+            "conditional_grade": "proved given (G1), (LS) + Thm A (proved given G1); BR-free since PROVE 258 (via q488-oc-star-BR-free; previously via Q30/BR)",
             "script": "work-in-progress/scripts/prove254/halfthm.py, rowform.py, rowphi*.py, half.py",
             "verification": "halfthm.py: Demazure (type C, interpolated to -a-1/2) vs sum_g Phi, all kappa m<=4, a<=5: 125/125; Lemma 9.5 pointwise 477/477 (m<=4). rowform.py 155/155. Hypothesis (H) load-bearing: Phi<0 without it.",
             "children": [],
-            "wip_commit": "f17e0cf"
+            "wip_commit": "f17e0cf",
+            "note_prove258": "Q30 edge replaced by q488-oc-star-BR-free: (*) is the only BR input of HZ; draft rem:deps."
+           },
+           {
+            "id": "q488-oc-star-BR-free",
+            "role": "premise",
+            "trust": "proved",
+            "file": "proofs/2026-10-27-star-without-BR.md",
+            "sources": [],
+            "depends_on": [
+             "q488-oc-SR_LG-via-LS-paths"
+            ],
+            "approach": "(*) on LG, s_{x+1}=A_oA_e s_x, WITHOUT BR: thm:main(b) from §3 (LS route) gives s_j=N_kappa(j) for all integers j>=1 and all kappa (no kappa-dependent range; kappa=empty included); lem:peel (pure counting) is (*) at every integer j>=1; both sides polynomial in x (finite sum, H_rho polynomials) => identity for all x. Draft: proof after the second proof of thm:main + rem:deps in sec:half. Consequence: HZ, Cor OC (Thm B), prop:T(a), thm:Z (rerouted via (*) + chain drop for V(theta)!=0 by lem:R), both proofs of thm:window on LG are (G1)+(LS) only; no BR, no G0. Does NOT recover Q30: (*)+eq:hyperplane only gives sum (c_rho - (-1)^{|theta|-1}V) H_rho = 0 and {H_rho: rho<kappa} is dependent already at kappa=(3,1).",
+            "conditional_grade": "proved given (G1), (LS) (via q488-oc-SR_LG-via-LS-paths); lem:peel combinatorial",
+            "script": "work-in-progress/scripts/prove258/star_poly.py, indep.py",
+            "verification": "star_poly.py: (*) as a polynomial identity from type-C Demazure Hilbert polynomials, V brute-forced (no BR/Q30 code): m=2,3,4 (4,8,16 shapes) 0 failures. Negative control: +1 on any single V entry is caught at an integer j>=1 in 6/6, 27/27, 110/110 cases (first failure j<=m). indep.py: dependent {H_rho: rho<kappa} at m=3: (3,1),(3,2),(3,2,1); m=4: 10 shapes.",
+            "date": "2026-10-26",
+            "children": [],
+            "note": "ls-parity-model not listed as a premise: its registry node depends on integer-strict-reciprocity (cycle); the LS route needed is q488-oc-SR_LG-via-LS-paths (child q488-oc-ls-bijection)."
            }
           ],
           "note_2026_10_23": "PROVE 251: M=1 (Thm A) and M=3 (Thm C) proved; (NZ) for M>=2m+1 = Thm B (mod G1-G4); middle range and (Z) for a>=2 computed (see q488-oc-Z-perk, q488-oc-lemma-Q-purity).",
@@ -1204,7 +1223,7 @@
           "note_2026_10_23_wake253b": "Wake 253 compute (WIP 65c33a1): (NZ) holds for LG m<=7 (all r'>=2 kappa, odd M up to 4m+7), see child q488-oc-NZ-computed-m7. Evidence only; node stays computed -- (NZ) middle range unproved.",
           "note_2026_10_23_prove253": "Gap 4 (integer window) discharged by q488-oc-Zint-by-induction.",
           "trust_before_prove254": "computed",
-          "conditional_grade": "proved given (G0), (G1), (BR first-hand)",
+          "conditional_grade": "proved given (G1), (LS) (BR-free since PROVE 258, via HZ)",
           "note_prove254": "PROVE 254: BOTH halves proved by Theorem HZ (child q488-oc-HZ-half-integer-law), incl. strictness and signs. LS-parity / even-reciprocity dependencies dropped (they were evidence, not premises, of the computed grade). Theorem Z remains an independent proof of (Z)."
          },
          {
@@ -1269,7 +1288,7 @@
           "children": [],
           "note_prove254": "PROVE 254: Thm B (OC for Schubert X_kappa, odd M>=2m+1, sign (-1)^{|kappa|}, 2^m H in Z) now also follows from Theorem HZ given (G0),(G1),(BR) only -- no Brion-Kumar G2-G4. a=(M-1)/2>=m>=kappa_1 so 2a>=kappa_1, and ceil(r(kappa')/2)<=m-1<a. Upgraded computed->proved via that route.",
           "trust_before_prove254": "computed",
-          "conditional_grade": "proved given (G0), (G1), (BR first-hand) via Theorem HZ (file Sec.9.6); the original G1-G4 route stays as recorded",
+          "conditional_grade": "proved given (G1), (LS) (via HZ, BR-free since PROVE 258)",
           "wip_commit": "f17e0cf",
           "note_prove256": "Derivation now written in crownF §9.6 (Theorem B bullet) and printed as draft Corollary cor:OC; no longer lives only in note_prove254."
          },
@@ -1462,7 +1481,14 @@
           ],
           "note_wake255": "Q34 REFUTED (computed N<=4, WIP f3918f0 scripts/wake255/compare_T_MN.py): T is NOT shifted Murnaghan–Nakayama. Agree only at r=1; on one-diagonal ribbons |T|=2^{1-r}|MN| but signs agree 4/8; MN nonzero on off-diag and two-diag strips where T=0; T nonzero on disconnected shapes where MN=0; log T not prop. to MN.",
           "note_wake257": "Tex-statement fix (WIP f7ecdee, scripts/wake257-conjT/check_conjT.py): printed conj:T(b) had dropped the (-1)^{|D|} factor (+-2^{-|D|}) and omitted the zero cases; old printed rule 1372/1716 at m<=6 (98/126 at m=4 literal; 106/126 if non-ribbons read as 0). New printed text: component weight 1 (off-diag singleton), 0 (off-diag >=2 boxes; >=2 diagonal boxes; one diagonal box but contains a 2x2), eps(-1/2)^{|D|} for a ribbon with one diagonal box (eps=+1 iff left nbr of NE end in D). Re-implemented literally from the new text, T computed independently from A_o,A_e: 1716/1716 m<=6; negative control (unsigned, no 2x2 zero) 1417/1716; T s_0=s_{1/2} verified m<=6. Trust unchanged (computed).",
-          "note_prove257": "PROVED (PROVE 257). conj:T is now Proposition prop:T in sec:half (ssec:halfstep) of the LG/OG draft. Route: A_e=S zeta^{-1} S, A_o=S zeta_o^{-1} S (Moebius, proved inline); explicit X (delete part kappa_{r0} at cost 2^{-kappa_{r0}}, shrink tail, length drop 1) and P (same, any length drop, positive); first-row recursions give X zeta = zeta_o P and XP=I by induction on length; so T = S zeta_o^{-1} X S squares to A_oA_e (unique unitriangular root); (a) from T~zeta=P column (), (b) by inclusion-exclusion over removable maximal boxes + sign-reversing toggle at the lowest 2x2 overlap row (non-ribbons) and S in {empty,{e}} (ribbons). Inputs: lem:layers(a), lem:anchor, thm:A (only for (a)). Verified m<=8 all identities; control fails all."
+          "note_prove257": "PROVED (PROVE 257). conj:T is now Proposition prop:T in sec:half (ssec:halfstep) of the LG/OG draft. Route: A_e=S zeta^{-1} S, A_o=S zeta_o^{-1} S (Moebius, proved inline); explicit X (delete part kappa_{r0} at cost 2^{-kappa_{r0}}, shrink tail, length drop 1) and P (same, any length drop, positive); first-row recursions give X zeta = zeta_o P and XP=I by induction on length; so T = S zeta_o^{-1} X S squares to A_oA_e (unique unitriangular root); (a) from T~zeta=P column (), (b) by inclusion-exclusion over removable maximal boxes + sign-reversing toggle at the lowest 2x2 overlap row (non-ribbons) and S in {empty,{e}} (ribbons). Inputs: lem:layers(a), lem:anchor, thm:A (only for (a)). Verified m<=8 all identities; control fails all.",
+          "depends_on": [
+           "q488-oc-star-BR-free",
+           "q488-oc-thmA-half",
+           "q488-oc-anchor-H-minus-1",
+           "q488-oc-T-mobius"
+          ],
+          "note_prove258": "depends_on added (was none): prop:T(a) uses (*) (A_oA_e), lem:anchor (s_1=delta), Thm A (s_{1/2}); (b) is matrix combinatorics."
          },
          {
           "id": "q488-oc-OG-vanishB-BR",

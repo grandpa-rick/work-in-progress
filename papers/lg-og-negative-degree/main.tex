@@ -188,9 +188,9 @@ For every odd $M\ge 2m+1$, the number $(-1)^{|\kappa|}2^mH_\kappa(-M/2)$ is a po
 integer. In particular $H_\kappa$ has no zero at half-integers $\le -m-\tfrac12$.
 \end{corollary}
 
-The vanishing half of Theorem~\ref{thm:HZ}(i) also has a separate proof
-(Theorem~\ref{thm:Z}) by induction over hyperplane sections. That proof uses only the
-\emph{support} of the $K$-theoretic Pieri rule, not its coefficients.
+The vanishing half of Theorem~\ref{thm:HZ}(i) also has a separate inductive proof
+(Theorem~\ref{thm:Z}). That proof uses only the \emph{support} of the negative-degree
+recursion, not its coefficients.
 
 \subsection{Why the factor two}\label{ssec:why}
 The lattice $\Lambda$ has a simple origin. In the Lakshmibai--Seshadri path model, a path of
@@ -231,9 +231,11 @@ $\theta=D(\kappa)\setminus D(\rho)$ and $V(\theta)$ counts strictly order-preser
 $\theta\to\{e<o\}$ that send diagonal boxes to $e$. The argument uses a recursion of Buch and
 Ravikumar that they prove in full~\cite[Thm.~5.5]{BR12}. With this, the negative-degree
 recursion becomes the recursion that peels the top two values off a strict count, and no
-reciprocity theorem is needed. The second proof is longer, but it extends further: the same
-recursion, started at the half-integer anchor $H_\kappa(-\tfrac12)=2^{-\kappa_1}$, proves
-Theorem~\ref{thm:HZ}.
+reciprocity theorem is needed. The second proof is longer, but its recursion extends further:
+started at the half-integer anchor $H_\kappa(-\tfrac12)=2^{-\kappa_1}$, it proves
+Theorem~\ref{thm:HZ}. Once Theorem~\ref{thm:main} is known, the recursion also follows from the
+first proof by polynomial extension, so the half-integer results need only the inputs of the
+first proof.
 
 \subsection{Relation to the literature}\label{ssec:lit}
 On the positive side, De Concini's symplectic standard tableaux~\cite{DeC79} and Littelmann's
@@ -1083,6 +1085,25 @@ The second proof uses (G0), (G1) and (BR). It uses neither (LS) nor Ehrhart--Mac
 reciprocity for~(b). The first proof uses (G1) and (LS) and not (BR). Each proof gives the
 equivalence of Theorem~\ref{thm:main}(a) and~(b) by reciprocity, in opposite directions.
 
+The recursion~\eqref{eq:star} itself also follows from the first proof, without (BR).
+
+\begin{proof}[Proof of Proposition~\ref{prop:star} on $\LG$ from (G1) and (LS)]
+% Registry: q488-oc-star-BR-free (proofs/2026-10-27-star-without-BR.md).
+By Theorem~\ref{thm:main}(b), proved in \S\ref{sec:ls}, $s_j(\kappa)=N_\kappa(j)$ for every
+integer $j\ge1$ and every $\kappa$, including $\kappa=\varnothing$. So Lemma~\ref{lem:peel}
+is~\eqref{eq:star} at every integer $x=j\ge1$. For fixed $\kappa$, both sides
+of~\eqref{eq:star} are polynomials in $x$: the sum is finite, the coefficients do not depend on
+$x$, and each $H_\rho$ is a polynomial. Two polynomials that agree on $\Z_{\ge1}$ are equal.
+\end{proof}
+
+Inside the second proof of Theorem~\ref{thm:main}, this argument cannot replace the
+$K$-theoretic proof of Proposition~\ref{prop:star}; that would be circular. It does show that on $\LG$, \eqref{eq:star} and everything in
+\S\S\ref{sec:window}--\ref{sec:half} derived from it need only (G1) and (LS)
+(Remark~\ref{rem:deps}). It does not recover Theorem~\ref{thm:Q30}. Together with~\eqref{eq:hyperplane}
+it only gives $\sum_{\rho\subsetneq\kappa}\bigl(c_\rho-(-1)^{|\theta|-1}V(\theta)\bigr)H_\rho\equiv0$, and
+the $H_\rho$ need not be linearly independent: for $\kappa=(3,1)$ there are five
+$\rho\subsetneq\kappa$, each with $\deg H_\rho\le3$.
+
 \subsection{The orthogonal Grassmannian}\label{ssec:og-k}
 
 \begin{lemma}\label{lem:og-corners}
@@ -1147,19 +1168,21 @@ $s_j\equiv1$ and $W=0$.
 
 The theorem also has a direct proof by induction. That proof does not pass through any
 counting formula for $s_j$. It uses only~\eqref{eq:star}, the anchor, a bound on how much
-$r$ can drop along the support of the Pieri rule, and one explicit nonzero Pieri term. We
+$r$ can drop along the support of~\eqref{eq:star}, and one explicit nonzero term. We
 include it because it shows why integers are easier than half-integers: the anchor value $0$
 makes the recursion~\eqref{eq:star} monotone.
 
 \begin{lemma}[Chain drop]\label{lem:chaindrop}
-If $c_\rho\ne0$, then every chain of $P_\kappa$ meets $\theta=D(\kappa)\setminus D(\rho)$ in
-at most two boxes on $\LG$, and in at most one box on $\OG$. Hence $r(\rho)\ge r(\kappa)-2$ on
+Let $\theta=D(\kappa)\setminus D(\rho)$. If $V(\theta)\ne0$ (on $\LG$), resp.\ $c_\rho\ne0$ (on
+$\OG$), then every chain of $P_\kappa$ meets $\theta$ in at most two boxes on $\LG$, and in at
+most one box on $\OG$. Hence $r(\rho)\ge r(\kappa)-2$ on
 $\LG$, and $r(\rho)\ge r(\kappa)-1$ on $\OG$. The same bounds hold for $r(\rho')$ and
 $r(\kappa')$.
 \end{lemma}
 
 \begin{proof}
-On $\LG$, $\theta$ has no $3$-chain by Theorem~\ref{thm:Q30} and Lemma~\ref{lem:R}. On $\OG$,
+On $\LG$, $\theta$ has no $3$-chain by Lemma~\ref{lem:R}. (By Theorem~\ref{thm:Q30},
+$V(\theta)\ne0$ iff $c_\rho\ne0$, but we do not need this.) On $\OG$,
 $\theta$ is an antichain by Lemma~\ref{lem:og-corners}. If $C$ is a longest chain of
 $P_\kappa$, then $C\setminus\theta\subseteq D(\rho)$ is a chain of the claimed size. For the
 primed version, take $C$ inside the rows $\ge1$, which form copies of $P_{\kappa'}$ and
@@ -1172,7 +1195,8 @@ $T_t=\{(a,b)\in D(\kappa):a+b\ge r-t\}$ and $D(\rho_t)=D(\kappa)\setminus T_t$.
 \begin{enumerate}[label=(\roman*)]
 \item $\rho_t$ is a strict partition with $\rho_t\subsetneq\kappa$. If $t\le r$, then
 $r(\rho_t)\le r-t$.
-\item On $\LG$, let $t^*=1$ if $r$ is odd and $t^*=2$ if $r$ is even. Then $c_{\rho_{t^*}}\ne0$.
+\item On $\LG$, let $t^*=1$ if $r$ is odd and $t^*=2$ if $r$ is even. Then $V(T_{t^*})\ne0$
+(equivalently $c_{\rho_{t^*}}\ne0$, by Theorem~\ref{thm:Q30}).
 \item On $\OG$, $c_{\rho_1}=(-1)^{|T_1|-1}$.
 \item $W(\rho_{t^*})\le W(\kappa)-1$ on $\LG$, and $W(\rho_1)\le W(\kappa)-1$ on $\OG$.
 \end{enumerate}
@@ -1186,7 +1210,7 @@ $r(\rho_t)\le r-t$ by Lemma~\ref{lem:chain}. If $\rho_t=\varnothing$, then $r(\r
 (The hypothesis $t\le r$ is needed: for $\kappa=(1)$ and $t=2$ the bound would read $0\le-1$.
 We only use $t=t^*\le r$.)
 
-(ii) By Theorem~\ref{thm:Q30} and Lemma~\ref{lem:R} it suffices to show that $T_{t^*}$ has no
+(ii) By Lemma~\ref{lem:R} it suffices to show that $T_{t^*}$ has no
 $3$-chain and that each of its diagonal boxes is minimal in it. The coordinate sum strictly
 increases along a chain, and $T_{t^*}$ lies on at most two antidiagonals $a+b=\text{const}$, so
 there is no $3$-chain. A box of $T_{t^*}$ strictly below $(c,c)$ has a smaller coordinate sum.
@@ -1218,15 +1242,16 @@ $s_{j+1}(\kappa)\ge s_j(\kappa)$.
 
 \emph{Anchor.} $s_1(\kappa)=0$ by Lemma~\ref{lem:anchor}. So $s_j(\kappa)\ge0$ for all $j\ge1$.
 
-\emph{Vanishing.} Let $1\le j\le W-1$. For every $\rho$ with $c_\rho\ne0$,
+\emph{Vanishing.} Let $1\le j\le W-1$. For every $\rho$ with a nonzero coefficient
+$a_\rho$ in~\eqref{eq:star} ($a_\rho=V(\theta)$ on $\LG$ and $a_\rho=|c_\rho|$ on $\OG$),
 Lemma~\ref{lem:chaindrop} gives $W(\rho)\ge W-1\ge j$: on $\LG$,
 $\lceil r(\rho)/2\rceil\ge\lceil(r-2)/2\rceil=W-1$, and on $\OG$, $r(\rho)\ge r-1$. So
 $s_j(\rho)=0$ by induction, and~\eqref{eq:star} gives $s_{j+1}(\kappa)=s_j(\kappa)$. Starting
 from $s_1=0$, this reaches $s_W=0$.
 
 \emph{Nonvanishing.} At $j=W$, \eqref{eq:star} gives
-$s_{W+1}(\kappa)\ge|c_{\rho^*}|\,s_W(\rho^*)$ with $\rho^*=\rho_{t^*}$ (on $\LG$) or $\rho_1$
-(on $\OG$); the other terms are $\ge0$. By Lemma~\ref{lem:A}, $c_{\rho^*}\ne0$ and
+$s_{W+1}(\kappa)\ge a_{\rho^*}\,s_W(\rho^*)$ with $\rho^*=\rho_{t^*}$ (on $\LG$) or $\rho_1$
+(on $\OG$); the other terms are $\ge0$. By Lemma~\ref{lem:A}, $a_{\rho^*}\ne0$ and
 $W(\rho^*)<W$, so $s_W(\rho^*)>0$ by induction. Monotonicity gives $s_j>0$ for all $j>W$.
 \end{proof}
 
@@ -1253,6 +1278,15 @@ $c_\rho=1$.
 Throughout this section $X=\LG(m,2m)$, and $s_x(\kappa)=(-1)^{|\kappa|}H_\kappa(-x)$ for
 $x\in\tfrac12\Z$. Since~\eqref{eq:star} is an identity of polynomials, it holds at
 half-integers as well. Write $y_i=e^{-\varepsilon_i}$.
+
+\begin{remark}[Inputs]\label{rem:deps}
+This section uses~\eqref{eq:star} only in its $\LG$ form, and we take it from the proof of
+Proposition~\ref{prop:star} via \S\ref{sec:ls}. The other inputs are Demazure computations
+(Lemmas~\ref{lem:P}, \ref{lem:anchor}, \ref{lem:W}, \ref{lem:C}) and combinatorics. So
+Theorem~\ref{thm:HZ}, Corollary~\ref{cor:OC}, Theorem~\ref{thm:Z} and Proposition~\ref{prop:T}
+depend only on (G1) and (LS). Neither (BR) nor (G0) is used here. The same applies to both
+proofs of Theorem~\ref{thm:window} on $\LG$.
+\end{remark}
 
 \subsection{The anchor at \texorpdfstring{$-\tfrac12$}{-1/2} and the bridge to vector bundles}
 For $1\le k\le m$, put $c(k)=s_{m-k+1}s_{m-k+2}\cdots s_m$, of length $k$. Then
@@ -1358,34 +1392,36 @@ $\kappa'\ne\varnothing$ (Lemma~\ref{lem:anchor}), and $H_\varnothing\equiv1$.
 \subsection{Vanishing by hyperplane sections}
 
 \begin{theorem}\label{thm:Z}
-% Registry: q488-oc-Z-by-induction (proved given G0, G1, BR; endorsed by Clio, review uid451).
+% Registry: q488-oc-Z-by-induction (proved; endorsed by Clio, review uid451; BR-free via q488-oc-star-BR-free).
 For every strict $\kappa$ and every odd $M$ with $3\le M\le2\lceil r(\kappa')/2\rceil+1$,
 $H_\kappa(-M/2)=0$.
 \end{theorem}
 
 \begin{proof}
 Strong induction on $|\kappa|$. If $\ell(\kappa)\le1$, then $r(\kappa')=0$ and the range is
-empty. Let $\ell(\kappa)\ge2$, so $r'=r(\kappa')\ge1$. Put $b_\kappa(x)=H_\kappa(x)-H_\kappa(x-1)$.
+empty. Let $\ell(\kappa)\ge2$, so $r'=r(\kappa')\ge1$. Put $b_\kappa(x)=s_{x+1}(\kappa)-s_x(\kappa)$,
+so that $b_\kappa(x)=\sum_{\rho\subsetneq\kappa}V(\theta)s_x(\rho)$ by~\eqref{eq:star}.
 
 \emph{Every term vanishes on the shrunken window.} Let $M$ be odd with
-$3\le M\le2\lceil r'/2\rceil-1$, and let $c_\rho\ne0$. By Lemma~\ref{lem:chaindrop},
+$3\le M\le2\lceil r'/2\rceil-1$, and let $V(\theta)\ne0$. By Lemma~\ref{lem:chaindrop},
 $r(\rho')\ge r'-2$, so
 $2\lceil r(\rho')/2\rceil+1\ge2\lceil(r'-2)/2\rceil+1=2\lceil r'/2\rceil-1\ge M$. Thus $M$ lies
-in the window of $\rho$, and $H_\rho(-M/2)=0$ by induction. By~\eqref{eq:hyperplane},
-$b_\kappa(-M/2)=0$.
+in the window of $\rho$, and $s_{M/2}(\rho)=0$ by induction. Hence $b_\kappa(M/2)=0$.
 
 \emph{Telescoping from the anchor.} By Theorem~\ref{thm:C}, $H_\kappa(-\tfrac32)=0$. For $M$
-in the range above, $b_\kappa(-M/2)=0$ says $H_\kappa(-M/2)=H_\kappa(-(M+2)/2)$. Going up
+in the range above, $b_\kappa(M/2)=0$ says $H_\kappa(-M/2)=H_\kappa(-(M+2)/2)$. Going up
 $M=3,5,\dots,2\lceil r'/2\rceil-1$ carries the zero from $-\tfrac32$ to
 $-(2\lceil r'/2\rceil+1)/2$.
 \end{proof}
 
-Theorem~\ref{thm:Z} uses only the support of the Pieri rule: it needs to know that
-$c_\rho\ne0$ implies that $\theta$ has no $3$-chain. This also follows from the rim condition
-of~\cite[Thm.~5.5]{BR12} together with the bound of two boxes per row and column (two boxes in
-strictly south-east position, or three in a row or column, would be needed for a
-$3$-chain). The coefficients do not cooperate at the edge of the window: the nonzero terms of
-$b_\kappa$ at $-M^*/2$, $M^*=2\lceil r'/2\rceil+1$, need not have a common sign (for
+Theorem~\ref{thm:Z} is the vanishing half of Theorem~\ref{thm:HZ}(i), and the proof above
+uses only the support of~\eqref{eq:star}: $V(\theta)\ne0$ implies that $\theta$ has no
+$3$-chain. The same argument runs with~\eqref{eq:hyperplane} in place of~\eqref{eq:star}, given
+that $c_\rho\ne0$ implies the same. That follows from the rim condition of~\cite[Thm.~5.5]{BR12}
+together with the bound of two boxes per row and column (two boxes in strictly south-east
+position, or three in a row or column, would be needed for a $3$-chain). The coefficients do not
+cooperate at the edge of the window: the nonzero terms of $H_\kappa(x)-H_\kappa(x-1)$ at
+$x=-M^*/2$, $M^*=2\lceil r'/2\rceil+1$, need not have a common sign (for
 $\kappa=(3,2)$ they are $-\tfrac18$ and $+\tfrac14$). So the nonvanishing half needs the
 finer argument below.
 
@@ -1505,7 +1541,7 @@ all $\ge2$ need $M\ge n+1$. Hence $\Phi=\tfrac12\Psi_1$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:HZ}]
-% Registry: q488-oc-HZ-half-integer-law (proved given G0, G1, BR + Thm A).
+% Registry: q488-oc-HZ-half-integer-law (proved given G1, LS + Thm A; via q488-oc-star-BR-free).
 The value at $-\tfrac12$ is Theorem~\ref{thm:A}. Let $a\ge1$ and $M=2a-1$. If $2a\le\kappa_1$,
 then $M\le n-1$, and Lemma~\ref{lem:onerow}(b) gives
 $\Phi\equiv(-1)^{n-2a}2^{-n}=(-1)^{\kappa_1}2^{-\kappa_1}$ for every $g$. So
@@ -1537,7 +1573,7 @@ gives $-\tfrac14$).
 \subsection{Nonvanishing for large half-integers}
 
 \begin{proof}[Proof of Corollary~\ref{cor:OC}]
-% Registry: q488-oc-thmB-OC (proved via Theorem HZ, given G0, G1, BR).
+% Registry: q488-oc-thmB-OC (proved via Theorem HZ, given G1, LS).
 Let $M=2a+1\ge2m+1$, so $a\ge m\ge\kappa_1$ and $2a\ge\kappa_1$. The parts of $\kappa'$ are at
 most $m-1$, so $\max(a'+b')\le2m-4$ on $D(\kappa')$, and $r(\kappa')\le2m-3$ by
 Lemma~\ref{lem:chain}. Hence $\lceil r(\kappa')/2\rceil\le m-1<a$, and
@@ -1555,7 +1591,7 @@ $P/B$-bundle. Serre duality applied to Remark~\ref{rem:wedgeU}, followed by a $B
 filtration of $\pi^*(\omega_{X_\kappa}\otimes\bigwedge^\bullet U^\vee(a))$, gives, for $a\ge m$,
 \[ (-1)^{|\kappa|}2^mH_\kappa(-a-\tfrac12)=\sum_{S\subseteq[m]}h^0\bigl(Y,\cO_Y(-\partial Y)\otimes L_{\lambda_S}\bigr),\qquad\lambda_S=(a-i+[i\in S])_{i=1}^m. \]
 Every $\lambda_S$ is dominant for $a\ge m$, and the term $S=[m]$ is nonzero. We record this as a
-remark because the proof given above needs only (G0), (G1) and (BR).
+remark because the proof given above needs only (G1) and (LS) (Remark~\ref{rem:deps}).
 \end{remark}
 
 \subsection{The half-step operator}\label{ssec:halfstep}

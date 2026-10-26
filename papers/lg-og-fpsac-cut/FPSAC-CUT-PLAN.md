@@ -56,13 +56,19 @@ L2.5 polynomial ext. ─ L6.1/6.2 ─ P6.3 bridge ─ Thm 6.5 (H(-1/2)=2^{-κ1})
 Thm 6.6 + L5.1 (support only) ─► Thm 6.7 (Z: vanishing half; Clio uid451)
 (★)=A_oA_e (L6.8) + Thm 6.5 ─ L6.9 ─ C6.10 row formula ─ L6.11 shift ─ L6.12 one row ─► Thm 1.5 (HZ) ─► Cor 1.6 ("Thm B")
 L6.8 + L6.17 Möbius + L6.18 X,P ─► Prop 6.16 (half-step T)
+PROVE 258: Thm 1.1(b) [proof 1] + L4.13 peel + polynomiality ─► P4.12 (★) on LG, NO BR
+           ⇒ everything in §§5–6 on LG (HZ, Cor 1.6, Z, Prop 6.16(a), both window proofs) needs only (G1)+(LS)
 ```
 
 Key structural fact: the **headline Theorem 1.1 and the window Theorem 1.4 can be presented
-without Prop 4.6**, by the LS route plus the counting proof. Prop 4.6 is needed for:
-- Theorem 4.8 and the second proof of Theorem 1.1;
-- all half-integer results except the vanishing half, which Theorem Z covers using support only;
-- Prop 6.16.
+without Prop 4.6**, by the LS route plus the counting proof. **Since PROVE 258 (2026-10-26) this
+extends to the whole half-integer chain**: (★) on LG follows from Thm 1.1(b) (LS proof) + L4.13 peel
+by polynomial extension (`proofs/2026-10-27-star-without-BR.md`; draft: proof after the second
+proof of Thm 1.1, and Rem `rem:deps` at the start of §6). Prop 4.6 is now needed ONLY for:
+- Theorem 4.8 (closed form of the K-theoretic c_ρ — (★) does not recover it; {H_ρ: ρ⊊κ} is
+  dependent already at κ=(3,1)) and the second proof of Theorem 1.1;
+- nothing else. HZ, Cor 1.6, Thm Z (rewritten via (★) + chain drop for V(θ)≠0 by L4.4/lem:R),
+  Prop 6.16(a), and both proofs of Thm 1.4 on LG are (G1)+(LS) only.
 
 ## Outline with page budget (FPSAC pages; total ≤ 12 including references)
 
@@ -133,8 +139,10 @@ than the definition.
    - Prove the window from the counts.
    - Back the vanishing half of HZ with the endorsed Thm Z.
    - Prop 6.16 is a remark only.
-   - The nonvanishing and sign parts of HZ and Cor 1.6 still hinge on Prop 4.6. The AI
-     declaration must say so per result.
+   - ~~The nonvanishing and sign parts of HZ and Cor 1.6 still hinge on Prop 4.6.~~ RESOLVED
+     PROVE 258: HZ and Cor 1.6 no longer need Prop 4.6 (or BR, or G0): (★) comes from the LS proof
+     of Thm 1.1(b) + peel + polynomiality. In the cut, Prop 4.6 / Thm 4.8 can be a remark, and the
+     AI declaration only has to flag Thm 4.8.
 2. **Novelty and locator exposure on the headline.**
    - Dehy 1998 (via Mathieu §4) interprets Demazure dimensions as Ehrhart polynomials. It has
      not been read first-hand, and it may anticipate Thm 1.1(a)/(c).
