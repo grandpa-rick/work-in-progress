@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\sloppy
+\newcommand{\WIPHASH}{WIPHASHPLACEHOLDER}
+\begin{document}
+\noindent\textbf{Author:} Rick\\
+\textbf{Date:} 2026-10-27\\
+\textbf{To:} Clio Vega (cc Robin Langer)\\
+\textbf{Title:} Q45: the weighted peel. Q30 without Brion--Rimányi via $T$-equivariant independence\\
+\textbf{Work-in-progress commit:} \texttt{\WIPHASH}\\
+\textbf{Full proof:} \texttt{proofs/2026-10-27-weighted-peel.md} in \texttt{rick-research} at commit \texttt{0d01164615f9},\\
+\url{https://github.com/grandpa-rick/rick-research/blob/0d01164615f91f1a0b6c03801a2602ed51fb512a/proofs/2026-10-27-weighted-peel.md}\\
+\textbf{Scripts:} \texttt{scripts/prove259/} (\texttt{verify.py}, \texttt{cmp\_q45.py}, outputs) in \texttt{work-in-progress} at the commit above.\\
+\textbf{Registry nodes:} \texttt{q488-Q45-equivariant-peel-lift}, \texttt{q488-Q45-strict-character}, \texttt{q488-Q45-Q30-BR-free}.\\
+\textbf{Status:} post-submission material. It is not for the FPSAC cut and the draft is not touched.
+
+\medskip\hrule\medskip
+
+\section*{Summary}
+I give each shifted box a weight $\beta$. Along a row the weights telescope, so the LS endpoint $\pi(1)$ is linear in the order-preserving map. That yields $T$-characters for both the LS-parity model and its strict (reciprocal) side. The peel lemma \texttt{lem:peel} preserves these weights. The $T$-characters $\mathrm{ch}_\rho$ are linearly independent, although the Hilbert polynomials $H_\rho$ are not (already at $\kappa=(3,1)$). So the equivariant hyperplane recursion pins down the Pieri coefficients, and forgetting $T$ gives Theorem Q30 (Thm 4.8) \emph{without (BR)}.
+
+\section*{Setting}
+We work in type $C_m$ with $\varepsilon$-coordinates, $\omega=\omega_m=\varepsilon_1+\dots+\varepsilon_m$ and $x^\mu=x_1^{\mu_1}\cdots x_m^{\mu_m}$. Let $\kappa$ be strict with parts $\le m$. Write $D(\kappa)$ for the shifted diagram and $P_\kappa=D(\kappa)$ with the product order. Let $w_\kappa\in W^P$ satisfy $w_\kappa\omega=v_\kappa$, which has $-1$ exactly at the positions $m+1-p$, $p\in\kappa$. Put $\mathrm{ch}_\kappa(j):=D_{w_\kappa}(e^{j\omega})$ for $j\in\mathbb{Z}$ (Demazure operators) and $n_\kappa(j):=(-1)^{|\kappa|}\mathrm{ch}_\kappa(-j)$. For $\rho\subseteq\kappa$ let $\theta=D(\kappa)\setminus D(\rho)$. A \emph{V-map} on $\theta$ is a strictly order-preserving $g:\theta\to\{e<o\}$ with $g=e$ on diagonal boxes, and $V(\theta)$ is the number of V-maps.
+
+\emph{Box weights.} For a box $x=(a,b)$ with offset $d=b-a$:
+$\beta(x)=\varepsilon_m$ if $d=0$, and $\beta(x)=\varepsilon_{m-d}-\varepsilon_{m+1-d}$ if $1\le d\le m-1$.
+
+\emph{Lemma 0 (telescoping).} $\sum_{x\in D(\tau)}\beta(x)=\sum_{p\in\tau}\varepsilon_{m+1-p}$, hence $w_\tau\omega=\omega-2\sum_{x\in D(\tau)}\beta(x)$. For the pairing $\ell(\mu)=\sum_c(m+1-c)\mu_c$ we have $\ell(\beta(x))=1$ for every box.
+
+\section*{Statements (trust grade in brackets)}
+
+\paragraph{Theorem A (T-character of the LS-parity model) [proved, given (LS)].} For $j\ge0$,
+\[
+\mathrm{ch}_\kappa(j)=\sum_G x^{\,j\,w_\kappa\omega+\sum_x G(x)\beta(x)},
+\]
+where the sum runs over order-preserving $G:P_\kappa\to\{0,\dots,2j\}$ that are even on diagonal boxes.
+
+\paragraph{Theorem B (strict side) [proved, given (LS) and Stanley's cone reciprocity].} For $j\ge1$,
+\[
+n_\kappa(j)=(-1)^{|\kappa|}\mathrm{ch}_\kappa(-j)=\sum_f x^{\,-j\,w_\kappa\omega-\sum_x f(x)\beta(x)},
+\]
+where the sum runs over strictly order-preserving $f:P_\kappa\to\{1,\dots,2j-1\}$ that are even on diagonal boxes. At $x=1$ this is \texttt{thm:main}(b).
+
+\paragraph{Theorem C (the weighted peel) [proved].} For $j\ge1$ and every $\kappa$,
+\[
+n_\kappa(j+1)=\sum_{\rho\subseteq\kappa}P_{\kappa\rho}(x)\,n_\rho(j),\qquad
+P_{\kappa\rho}(x):=\sum_{g\ \text{V-map on }\theta}x^{\,-w_\kappa\omega-\sum_{x\in\theta,\,g(x)=o}\beta(x)}.
+\]
+The bijection of \texttt{lem:peel} preserves the weights of Theorem B. In particular $P(x)$ is coefficient-positive, $P(1)=I+V$, $\operatorname{supp}P=\operatorname{supp}(I+V)$, and each entry is a sum of exactly $V(\theta)$ monomials. Moreover, for every $i\in\mathbb{Z}$,
+\[
+\mathrm{ch}(i-1)=S\,P(x)\,S\cdot\mathrm{ch}(i),\qquad S=\operatorname{diag}((-1)^{|\kappa|}).\tag{$\dagger$}
+\]
+Equivalently, the Wake 259 linear solve $C(x)$ (with $\mathrm{ch}(j+1)=C\,\mathrm{ch}(j)$) equals $SP^{-1}S$.
+
+\paragraph{Lemma D (equivariant independence) [proved].} For any finite set $R$ of strict partitions with parts $\le m$, the functions $j\mapsto\mathrm{ch}_\rho(j)$ ($j\ge1$), $\rho\in R$, are linearly independent over $\mathbb{Q}(x)$.
+\emph{Idea:} grade by $\ell$. The lowest monomial of $\mathrm{ch}_\rho(j)$ is $x^{jw_\rho\omega}$, of degree $j\ell(\omega)-2j|\rho|$. Isolate the maximal $|\rho|$ with minimal $\delta_\rho$, and apply Vandermonde to the distinct $x^{w_\rho\omega}$. This is exactly what fails at $x=1$, where the $H_\rho$ are dependent for $\kappa=(3,1)$.
+
+\paragraph{Theorem E (equivariant K-Chevalley for $L^{-1}$ on LG; Q30 without (BR)) [proved modulo (KT), a standard Thomason input whose locator is not yet written out].}
+The inputs are (G0), (G1) in its $T$-equivariant (character) form, and (KT): the image of $K_0^T(X_\kappa)$ in $K_T(X)$ is spanned over $R(T)$ by $[\mathcal{O}_{X_\rho}]_T$, $\rho\subseteq\kappa$. In $K_T(LG(m,2m))$,
+\[
+[\mathcal{O}_{X_\kappa}\otimes L^{-1}]_T=\sum_{\rho\subseteq\kappa}A_{\kappa\rho}[\mathcal{O}_{X_\rho}]_T,\qquad A_{\kappa\rho}=\psi\big((-1)^{|\theta|}P_{\kappa\rho}(x)\big),
+\]
+where $\psi$ is the duality $x\mapsto x^{-1}$ of $R(T)$. So $A$ is unique, and $A_{\kappa\rho}$ is $(-1)^{|\theta|}$ times a positive sum of $V(\theta)$ monomials. Forgetting $T$ gives
+\[
+[\mathcal{O}_{X_\kappa}]\cdot\mathcal{O}^1=\sum_{\rho\subsetneq\kappa}(-1)^{|\theta|-1}V(\theta)\,[\mathcal{O}_{X_\rho}],
+\]
+which is Theorem \texttt{thm:Q30} ($c_\rho=(-1)^{|\theta|-1}V(\theta)$). It is proved from (G0), (G1), (LS), (KT) and Stanley reciprocity, \textbf{without (BR)}.
+\emph{Proof sketch:} use (KT) to write the expansion, and apply $\Phi(F)(j)=\psi\chi_T(X,F\otimes L^j)$ to get $\mathrm{ch}_\kappa(j-1)=\sum_\rho\psi(A_{\kappa\rho})\mathrm{ch}_\rho(j)$. Compare with $(\dagger)$, and Lemma D forces $\psi(A_{\kappa\rho})=(-1)^{|\kappa|+|\rho|}P_{\kappa\rho}$.
+
+\section*{Checks}
+\texttt{verify.py} builds $\mathrm{ch}_\kappa(j)$ by Demazure operators. Theorems A, B and C hold at the character level for $m=2$ ($j\le4$), $m=3$ ($j\le4$), $m=4$ ($j\le5$) and $m=5$ ($j\le4$). All 22 nonzero entries of the combinatorial $P$ at $m=3$ equal the Wake 259 linear solve $SC^{-1}S$. Negative control: flipping $\beta$ on offset-1 boxes to $\varepsilon_{m-1}+\varepsilon_m$ makes A, B and C all fail.
+Sanity example ($m=3$): $P_{(2),(1)}=(x_2+x_3)/(x_1x_3)$.
+
+\section*{Gaps and ownership}
+Theorems A--C and Lemma D are complete given (LS) and Stanley's cone reciprocity (Beck--Robins Thm 4.3, cited by statement). Theorem E additionally uses (KT). (KT) is the equivariant version of the localization argument in \texttt{lem:hyperplane}, but the Thomason citation with a locator is not yet written out.
+\emph{Owner caveat:} the equivariant Chevalley formula is owned (Lenart--Shimozono 1203.3237 Thm 3.2/Cor 3.4; Lenart--Postnikov math/0309207; Pittie--Ram). By uniqueness its $\omega_m$ case must equal $A$. I have not checked that it reads literally as $P$. What is new is the route (LS $\to$ Stanley reciprocity $\to$ strict characters $\to$ weighted peel $\to$ independence $\Rightarrow$ Pieri) and the closed shifted-diagram form, with one monomial per V-map.
+
+\medskip\noindent\textbf{Ask (not urgent, post-FPSAC).} Clio: if you have bandwidth, please check Lemma D and Theorem E.
+\end{document}
