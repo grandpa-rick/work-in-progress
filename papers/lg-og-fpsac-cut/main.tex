@@ -331,7 +331,7 @@ Hence, given (G1) and (LS), $H_\kappa(j)=h^0(X_\kappa,\cO(j))=F_\kappa(2j)$ for 
 \end{proposition}
 
 \begin{proof}
-For $j=0$ both sides are $1$. Let $j\ge1$. Send a path $\pi$ to $g(x)=2j\,a_{i(x)}$, where
+For $j=0$ both sides are $1$. Let $j\ge1$. Send a path $\pi$ to $g(x)=2j\,a_{i(x)}$, with $a_s=1$, where
 $i(x)=\max\{i:x\in D(\tau_i)\}$ (and $g(x)=0$ if $x\notin D(\tau_1)$). Since the $D(\tau_i)$ are
 order ideals, $g$ is order-reversing; it is integer-valued and even on diagonal boxes by
 Lemma~\ref{lem:lsparity}. Conversely, given such $g$ with distinct values $v_1<\dots<v_r$ in
@@ -487,8 +487,8 @@ $D_w(e^{-\omega/2}g)=e^{-\omega/2}\Phi\,D_w(\Phi^{-1}g)$. Apply this to $g=e^{-a
 Lemma~\ref{lem:P}, with $\Phi^{-1}e^{-a\omega}=F_a$ and $(e^{-\omega/2}\Phi)(0)=2^{-m}$.
 \end{proof}
 
-Since $F_a$ is the character of $\C_{-a\omega}\otimes\bigwedge^\bullet U_0$, where $U_0$ has weights
-$-\varepsilon_i$, (G1) turns this into the identity
+Since $F_a$ is the character of $\C_{-a\omega}\otimes\bigwedge^\bullet U_0$, $U_0$ of weights
+$-\varepsilon_i$, (G1) for $\chi$ at all weights turns this into the identity
 $2^mH_\kappa(-a-\tfrac12)=\chi(X_\kappa,\bigwedge^\bullet U\otimes\cO(-a))$ quoted in
 \S\ref{sec:intro}; we do not use it.
 
@@ -524,8 +524,7 @@ and $\varepsilon(\kappa)=0$ if $\ell(\kappa)\ge2$.
 (a,b) Peel values from the top as in Lemma~\ref{lem:peel}: the preimage of the current top value
 is an antichain up-set of what remains, without diagonal boxes if the value is odd. (c) By
 Theorem~\ref{thm:A}, $s_{1/2}(\nu)=(-1)^{|\nu|}2^{-\nu_1}$. If $\ell(\kappa)\ge2$, toggling the last
-box of the bottom row (maximal, not in row $0$) cancels the sum in pairs; for $\kappa=(L)$ there
-are two terms.
+box of the bottom row (maximal, not in row $0$) cancels terms in pairs; $\kappa=(L)$ has two.
 \end{proof}
 
 \begin{corollary}[Row formula]\label{cor:row}
@@ -556,7 +555,7 @@ from $H_\kappa=(-1)^{|\kappa|}s$, and $\Phi\in2^{-n}\Z$.
 \end{proof}
 
 \begin{proof}[Proof of Corollary~\ref{cor:OC}]
-Let $M=2a+1\ge2m+1$, so $2a\ge\kappa_1$. The parts of $\kappa'$ are $\le m-1$, so
+Let $M=2a+1\ge2m+1$, so $2a\ge\kappa_1$. As $\kappa'_1\le m-1$,
 $r(\kappa')\le2m-3$ and $\lceil r(\kappa')/2\rceil<a$. By Theorem~\ref{thm:HZ},
 $2^{\kappa_1}s_{a+1/2}(\kappa)$ is a positive integer, and so is $2^ms_{a+1/2}(\kappa)$.
 \end{proof}
@@ -606,7 +605,7 @@ Table~\ref{tab:lg3vals} was computed from Demazure characters, independently of 
 For $\kappa=(3)$: $s_3=3$ counts the triples $2\le x<y<z\le5$ with $x$ even, and at $-\tfrac32$ we
 have $2a=2\le3$, so $H=2^{-3}N_\varnothing=\tfrac18$. For $\kappa=(3,2,1)$, $X_\kappa=\LG(3,6)$:
 $r=5$ gives the integer zeros $-1,-2,-3$, and $\kappa'=(2,1)$ with $r'=3$ gives the half-integer
-zeros $-\tfrac32,-\tfrac52$; then $H(-\tfrac72)=2^{-3}N_{(2,1)}(3)=\tfrac18$. Computer checks:
+zeros $-\tfrac32,-\tfrac52$; then $H(-\tfrac72)=\tfrac18$ attains the bound of Theorem~\ref{thm:HZ}(iii). Computer checks:
 Theorems~\ref{thm:main}(b) and~\ref{thm:og} against Demazure characters for all $\kappa$ with
 $m\le5$, $j\le4$; Theorem~\ref{thm:HZ} for $m\le4$, $a\le5$; Theorem~\ref{thm:window} independently by
 Clio Vega for $m\le6$ on both $\LG$ and $\OG$.
