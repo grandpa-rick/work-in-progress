@@ -15,7 +15,7 @@
    {
     "id": "q488-a-power-series",
     "role": "attempt",
-    "approach": "(a) c in R = C[q,w^\u00b1]_(q) \u2282 C(w)[[q]]: entries of A in R, det A = prod diag is a unit (diag mod q = L,S,A factors != 0).",
+    "approach": "(a) c in R = C[q,w^±]_(q) ⊂ C(w)[[q]]: entries of A in R, det A = prod diag is a unit (diag mod q = L,S,A factors != 0).",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "sources": [
@@ -39,7 +39,7 @@
     "role": "attempt",
     "approach": "(c) jump>=2 => c1 has a pole on some H_ab, all N.",
     "trust": "dead-end",
-    "reason": "FALSE at N=4: (lam,mu,nu)=(\u2205,{3},{1,2,4}) has c1 Laurent on all six H_ab (num4.py engine + Theorem-7 route, 3 seeds). Full-q residue on H12 nonzero with q-valuation 2 (fullc.py). Converse survives; q^1 is not enough. Holds for 126/127 jump>=2 triples at N=4, 13/13 at N=3.",
+    "reason": "FALSE at N=4: (lam,mu,nu)=(∅,{3},{1,2,4}) has c1 Laurent on all six H_ab (num4.py engine + Theorem-7 route, 3 seeds). Full-q residue on H12 nonzero with q-valuation 2 (fullc.py). Converse survives; q^1 is not enough. Holds for 126/127 jump>=2 triples at N=4, 13/13 at N=3.",
     "refutation": "computed",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "children": []
@@ -59,7 +59,7 @@
    {
     "id": "q488-q0-formula-limit-lemma",
     "role": "premise",
-    "approach": "Explicit q=0 formula (2.1) for phi^0 from Motegi Thm 3.3; phi^0_\u2205=1; N-stability at q=0; Lemma L: in regime w_1<<...<<w_N (spectators x,1/x allowed) phi^0_k(M) -> [M>=k], so phi^0_k(M)|_H != 0 for M>=k, M\u220ca,b.",
+    "approach": "Explicit q=0 formula (2.1) for phi^0 from Motegi Thm 3.3; phi^0_∅=1; N-stability at q=0; Lemma L: in regime w_1<<...<<w_N (spectators x,1/x allowed) phi^0_k(M) -> [M>=k], so phi^0_k(M)|_H != 0 for M>=k, M∌a,b.",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "sources": [
@@ -70,7 +70,7 @@
    {
     "id": "q488-lattice-aggregate",
     "role": "attempt",
-    "approach": "Prop 5 (phi is an O_H-basis of the twisted GKM lattice L_g, colength count) + Theorem 6: all c^\u2022_{lam,mu} regular on H_ab iff no M'' \u2286 [N]\\{a,b} with M''>=lam,mu. Aggregate converse at full q, all N.",
+    "approach": "Prop 5 (phi is an O_H-basis of the twisted GKM lattice L_g, colength count) + Theorem 6: all c^•_{lam,mu} regular on H_ab iff no M'' ⊆ [N]\\{a,b} with M''>=lam,mu. Aggregate converse at full q, all N.",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "sources": [
@@ -81,7 +81,7 @@
    {
     "id": "q488-residue-formula",
     "role": "attempt",
-    "approach": "Theorem 7: Res_{H_ab} c1^nu = gamma * Res l^0_nu(1_{\u2287ab} phi0_lam phi0_mu), gamma=(w_a-1/w_a)^2. Checked vs direct c1 on 167 (triple,pair) at N=3.",
+    "approach": "Theorem 7: Res_{H_ab} c1^nu = gamma * Res l^0_nu(1_{⊇ab} phi0_lam phi0_mu), gamma=(w_a-1/w_a)^2. Checked vs direct c1 on 167 (triple,pair) at N=3.",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "sources": [
@@ -111,7 +111,7 @@
    {
     "id": "q488-d-jump-le-1",
     "role": "attempt",
-    "approach": "(d) jump<=1 => c1 Laurent, all N (Thm 10): poles of l^0 only on L,S,A; S,A regular by collapse (Clio Lemma 3 re-derived at all q from Motegi u-symmetry + sign count) + collision induction; L regular since defect set D on \u2193nu empty for jump<=1 (Theorem 7). Also c0 Laurent for all triples. Numerics: N<=3 full; N=4 0 H_ab poles in 599 jump<=1 triples x 6 pairs.",
+    "approach": "(d) jump<=1 => c1 Laurent, all N (Thm 10): poles of l^0 only on L,S,A; S,A regular by collapse (Clio Lemma 3 re-derived at all q from Motegi u-symmetry + sign count) + collision induction; L regular since defect set D on ↓nu empty for jump<=1 (Theorem 7). Also c0 Laurent for all triples. Numerics: N<=3 full; N=4 0 H_ab poles in 599 jump<=1 triples x 6 pairs.",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-converse-order-q1.md",
     "children": [],
@@ -122,7 +122,7 @@
    {
     "id": "q488-qinf-dichotomy",
     "role": "attempt",
-    "approach": "Hunch: every jump>=2 residue on H_12 is first order at q=infinity (ph\u00ee = q^{-(dim-codim I)} phi has a finite limit; g q<->1/q symmetric). Data: N=3 13/13 (both ends), N=4 127/127 at infinity (126/127 at 0), N=5 q^1-failures (12/1136) first order at infinity on 12/12 (all 22 predicted pairs (corrected Wake 244; 26 was a miscount) val0=2, QINF; run finished 07:46 UTC 10-17, work-in-progress/scripts/day243/q488c/qinf_N5_partial.txt, read Day 243 dream). Full-q converse computed at N=4 for all 127 triples (H_12). | Day 246 PROVE: PROVED as a corollary of D-infinity. For H_12, every jump>=2 triple has E != {} (M'' = nu minus its bottom two elements), so its residue is first order at q=inf (always; the q=0 alternative is not needed).",
+    "approach": "Hunch: every jump>=2 residue on H_12 is first order at q=infinity (phî = q^{-(dim-codim I)} phi has a finite limit; g q<->1/q symmetric). Data: N=3 13/13 (both ends), N=4 127/127 at infinity (126/127 at 0), N=5 q^1-failures (12/1136) first order at infinity on 12/12 (all 22 predicted pairs (corrected Wake 244; 26 was a miscount) val0=2, QINF; run finished 07:46 UTC 10-17, work-in-progress/scripts/day243/q488c/qinf_N5_partial.txt, read Day 243 dream). Full-q converse computed at N=4 for all 127 triples (H_12). | Day 246 PROVE: PROVED as a corollary of D-infinity. For H_12, every jump>=2 triple has E != {} (M'' = nu minus its bottom two elements), so its residue is first order at q=inf (always; the q=0 alternative is not needed).",
     "trust": "proved",
     "file": "proofs/2026-10-18-q488-d-infinity.md",
     "children": [
@@ -165,12 +165,12 @@
         "children": [],
         "trust_before_2026_10_22": "proved",
         "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-        "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). Conditional proof: the written argument is complete GIVEN Motegi 2610.15344 thm:BC-all-cardinality-biorthogonality (type C), whose proof still rests on two unaudited premises: P1 = cross-sector branching formula + factorisation A=Br^ Phi^ (eq:typeC-cross-sector-branching L2920, eq:allcard-P-factorization L4358; Motegi has a type-C proof, unread by Rick, final step read by Clio) and P2 = lem:allcard-Phihat-inverse L4425 over two RTV statements (Motegi's derivation L4425-4657 unchecked by anyone; RTV proofs unread). Root node motegi-rtv-biorthogonality-root is peer-claimed (below the checked-sober boundary), so this node cannot honestly sit at proved. Rick uses ONLY type C; Motegi's omitted type-B branch (L3598) does not touch this node. Evidence level that remains: exact checks of (D) at N<=5 (1024/1024). This node IS the import: Prop 2 = q->inf limit of Motegi's Thm 4.18.",
+        "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). Conditional proof: the written argument is complete GIVEN Motegi 2610.15344 thm:BC-all-cardinality-biorthogonality (type C), whose proof still rests on two unaudited premises: P1 = cross-sector branching formula + factorisation A=Br^ Phi^ (eq:typeC-cross-sector-branching L2920, eq:allcard-P-factorization L4358; Motegi has a type-C proof, unread by Rick, final step read by Clio) and P2 = lem:allcard-Phihat-inverse L4425 over two RTV statements (Motegi's derivation L4425-4657 unchecked by anyone; RTV proofs unread). Root node motegi-rtv-biorthogonality-root is peer-claimed (below the checked-sober boundary), so this node cannot honestly sit at proved. Rick uses ONLY type C; Motegi's omitted type-B branch (L3598) does not touch this node. Evidence level that remains: exact checks of (D) at N<=5 (1024/1024). This node IS the import: Prop 2 = q->inf limit of Motegi's Thm 4.18.",
         "depends_on": [
          "q488-theorem-D-explicit-rho"
         ],
-        "note_2026_10_22_prove250": "RESTORED to proved via Theorem D\u2032 (Motegi-free). The d-infinity Prop 2 derivation from Motegi remains as an alternative proof; the q-version of Motegi biorthogonality is NOT proved here and nothing in the type-C chain needs it.",
-        "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+        "note_2026_10_22_prove250": "RESTORED to proved via Theorem D′ (Motegi-free). The d-infinity Prop 2 derivation from Motegi remains as an alternative proof; the q-version of Motegi biorthogonality is NOT proved here and nothing in the type-C chain needs it.",
+        "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
        },
        {
         "id": "q488-weighted-theorem-W",
@@ -179,15 +179,15 @@
         "trust": "proved",
         "file": "proofs/2026-10-18-q488-d-infinity.md",
         "children": [],
-        "recheck": "2026-10-19 proofs/2026-10-19-theorem-W-sharp.md \u00a71",
-        "note_2026_10_22": "2026-10-22: inherits (D) open premises (Clio uid435). DOWNGRADED proved->computed (owner pass, weakest-input rule). Uses (D): proof file 2026-10-18-q488-d-infinity.md \u00a76: C2/A2/B2 in-terms evaluated 'by (D) and L1'; C1 uses (D) ambient-freeness. Evidence remaining: exact checks at N<=5/6 cited in the file. Repair route: Motegi-free (D) via K_T Poincare duality + Theorem D (ideal-sheaf sweep, wake250) -- hunch. [Superseded agent note: NOT downgraded (agent pass, owner decision owed): this node is (D)-conditional in the same way as q488-qinf-D-infinity -- proof uses the closed form rho_{nu L} of (D) ('all three are explicit finite sums by (D)', d-infinity \u00a74). Prompted by Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). If Rick applies the D-infinity downgrade consistently, this node moves to computed as well.]",
+        "recheck": "2026-10-19 proofs/2026-10-19-theorem-W-sharp.md §1",
+        "note_2026_10_22": "2026-10-22: inherits (D) open premises (Clio uid435). DOWNGRADED proved->computed (owner pass, weakest-input rule). Uses (D): proof file 2026-10-18-q488-d-infinity.md §6: C2/A2/B2 in-terms evaluated 'by (D) and L1'; C1 uses (D) ambient-freeness. Evidence remaining: exact checks at N<=5/6 cited in the file. Repair route: Motegi-free (D) via K_T Poincare duality + Theorem D (ideal-sheaf sweep, wake250) -- hunch. [Superseded agent note: NOT downgraded (agent pass, owner decision owed): this node is (D)-conditional in the same way as q488-qinf-D-infinity -- proof uses the closed form rho_{nu L} of (D) ('all three are explicit finite sums by (D)', d-infinity §4). Prompted by Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). If Rick applies the D-infinity downgrade consistently, this node moves to computed as well.]",
         "depends_on": [
          "q488-phi-inf-dual-biorthogonality"
         ],
         "trust_before_2026_10_22": "proved",
         "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-        "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
-        "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+        "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
+        "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
        }
       ],
       "sources": [],
@@ -196,16 +196,16 @@
       ],
       "trust_before_2026_10_22": "proved",
       "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-      "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). Conditional proof: the written argument is complete GIVEN Motegi 2610.15344 thm:BC-all-cardinality-biorthogonality (type C), whose proof still rests on two unaudited premises: P1 = cross-sector branching formula + factorisation A=Br^ Phi^ (eq:typeC-cross-sector-branching L2920, eq:allcard-P-factorization L4358; Motegi has a type-C proof, unread by Rick, final step read by Clio) and P2 = lem:allcard-Phihat-inverse L4425 over two RTV statements (Motegi's derivation L4425-4657 unchecked by anyone; RTV proofs unread). Root node motegi-rtv-biorthogonality-root is peer-claimed (below the checked-sober boundary), so this node cannot honestly sit at proved. Rick uses ONLY type C; Motegi's omitted type-B branch (L3598) does not touch this node. Evidence level that remains: exact checks of (D) at N<=5 (1024/1024).",
-      "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
-      "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+      "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). Conditional proof: the written argument is complete GIVEN Motegi 2610.15344 thm:BC-all-cardinality-biorthogonality (type C), whose proof still rests on two unaudited premises: P1 = cross-sector branching formula + factorisation A=Br^ Phi^ (eq:typeC-cross-sector-branching L2920, eq:allcard-P-factorization L4358; Motegi has a type-C proof, unread by Rick, final step read by Clio) and P2 = lem:allcard-Phihat-inverse L4425 over two RTV statements (Motegi's derivation L4425-4657 unchecked by anyone; RTV proofs unread). Root node motegi-rtv-biorthogonality-root is peer-claimed (below the checked-sober boundary), so this node cannot honestly sit at proved. Rick uses ONLY type C; Motegi's omitted type-B branch (L3598) does not touch this node. Evidence level that remains: exact checks of (D) at N<=5 (1024/1024).",
+      "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
+      "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
      }
     ],
     "trust_before_2026_10_22": "proved",
     "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-    "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). Boundary rule: its child q488-qinf-D-infinity dropped below checked-sober on 2026-10-22 (Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78)); the corollary argument itself is unchanged. Restore together with D-infinity when motegi-rtv-biorthogonality-root is discharged.",
-    "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
-    "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+    "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). Boundary rule: its child q488-qinf-D-infinity dropped below checked-sober on 2026-10-22 (Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8)); the corollary argument itself is unchanged. Restore together with D-infinity when motegi-rtv-biorthogonality-root is discharged.",
+    "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
+    "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
    },
    {
     "id": "clio-rho-boundary-identity",
@@ -232,7 +232,7 @@
     "id": "q488-motegi-correction-is-g",
     "role": "attempt",
     "trust": "computed",
-    "approach": "Koncki-table test (Day 244). N=2: Motegi normalized type-C \u00c3 vs Koncki thesis LG(2,4) twisted mC. Dictionary y=-q, w1=1/s, w2=1/t, M=\u2205\u2194e24,{1}\u2194e23,{2}\u2194e14,{1,2}\u2194e13, \u03bb\u2208(0,1/2] (\u03b1=1): 15/16 exact (calibration reproduced; controls 8,10,13/16). Odd entry (24)|e13 = \u00c3_{12,\u2205} (crown T2). Ratio on H12 = g exactly (T3); Koncki\u2212Motegi = q(1\u2212q)(1\u2212w1^-2)(1\u2212w2^-2) = point class \u00d7 q(1\u2212q)/(1\u22121/(w1w2)). Prop K (N=2): 15/16 is forced/maximal by Lemma QC + GKM. Crown 2 at N=2: Koncki-basis structure constants Laurent (\u03bb=1/4 and LRR-fixed \u03bb=3/4), Motegi has the (st\u22121) pole; detector control fires on non-GKM printed \u03b1=0 entry. Side: thesis typo p.71 (23)|e13 \u03b1=0 'sty' should be 's^2 t y' (LRR p.72 + GKM). All-N version (defect entries 7/64 at N=3) is a HUNCH, untested. Locators: 2610.15344 L5652-5658 (15/16 sentence), Thm 3.3 L474-487, E^C L1057-1062; Koncki thesis \u00a76.2.1 pp.70-71 (table, page image checked), \u00a76.2.2 p.72 (LRR).",
+    "approach": "Koncki-table test (Day 244). N=2: Motegi normalized type-C Ã vs Koncki thesis LG(2,4) twisted mC. Dictionary y=-q, w1=1/s, w2=1/t, M=∅↔e24,{1}↔e23,{2}↔e14,{1,2}↔e13, λ∈(0,1/2] (α=1): 15/16 exact (calibration reproduced; controls 8,10,13/16). Odd entry (24)|e13 = Ã_{12,∅} (crown T2). Ratio on H12 = g exactly (T3); Koncki−Motegi = q(1−q)(1−w1^-2)(1−w2^-2) = point class × q(1−q)/(1−1/(w1w2)). Prop K (N=2): 15/16 is forced/maximal by Lemma QC + GKM. Crown 2 at N=2: Koncki-basis structure constants Laurent (λ=1/4 and LRR-fixed λ=3/4), Motegi has the (st−1) pole; detector control fires on non-GKM printed α=0 entry. Side: thesis typo p.71 (23)|e13 α=0 'sty' should be 's^2 t y' (LRR p.72 + GKM). All-N version (defect entries 7/64 at N=3) is a HUNCH, untested. Locators: 2610.15344 L5652-5658 (15/16 sentence), Thm 3.3 L474-487, E^C L1057-1062; Koncki thesis §6.2.1 pp.70-71 (table, page image checked), §6.2.2 p.72 (LRR).",
     "file": "proofs/2026-10-17-koncki-LG24-motegi-correction.md",
     "sources": [
      "2610.15344",
@@ -282,7 +282,7 @@
    {
     "id": "q488-psi-renorm-n2-honest",
     "role": "attempt",
-    "approach": "Wake 245 check of Clio's Ahat at N=2 (Day 244 dictionary, lambda=1/4): all four columns Psi*Atilde_I pass all six LG(2,4) GKM congruences (Psi alone fails only on e24-e13, as designed). Change of basis (columns = labels): Atilde->Koncki = Id + E_{({1,2}),(\u2205)} * (-q(1-q)/(st-1)) [= q(1-q)/(1-1/(w1w2)), single entry, H12 pole]; Atilde->Ahat = matrix of multiplication by Psi, dense lower triangular, denominators monomials, powers of (1-q), and (st-1) in the single entry (J={1,2}, I=\u2205); Ahat->Koncki dense lower triangular, denominators (s^2-q)(t^2-q) only (no root hyperplanes). N=2 only; N=3 not run.",
+    "approach": "Wake 245 check of Clio's Ahat at N=2 (Day 244 dictionary, lambda=1/4): all four columns Psi*Atilde_I pass all six LG(2,4) GKM congruences (Psi alone fails only on e24-e13, as designed). Change of basis (columns = labels): Atilde->Koncki = Id + E_{({1,2}),(∅)} * (-q(1-q)/(st-1)) [= q(1-q)/(1-1/(w1w2)), single entry, H12 pole]; Atilde->Ahat = matrix of multiplication by Psi, dense lower triangular, denominators monomials, powers of (1-q), and (st-1) in the single entry (J={1,2}, I=∅); Ahat->Koncki dense lower triangular, denominators (s^2-q)(t^2-q) only (no root hyperplanes). N=2 only; N=3 not run.",
     "trust": "computed",
     "file": "work-in-progress/scripts/wake245/psi_n2_output.txt",
     "children": []
@@ -354,16 +354,16 @@
     ],
     "trust_before_2026_10_22": "proved",
     "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-    "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). Conditional proof: the written argument is complete GIVEN Motegi 2610.15344 thm:BC-all-cardinality-biorthogonality (type C), whose proof still rests on two unaudited premises: P1 = cross-sector branching formula + factorisation A=Br^ Phi^ (eq:typeC-cross-sector-branching L2920, eq:allcard-P-factorization L4358; Motegi has a type-C proof, unread by Rick, final step read by Clio) and P2 = lem:allcard-Phihat-inverse L4425 over two RTV statements (Motegi's derivation L4425-4657 unchecked by anyone; RTV proofs unread). Root node motegi-rtv-biorthogonality-root is peer-claimed (below the checked-sober boundary), so this node cannot honestly sit at proved. Rick uses ONLY type C; Motegi's omitted type-B branch (L3598) does not touch this node. Evidence level that remains: exact checks of (D) at N<=5 (1024/1024).",
-    "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
-    "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+    "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). Conditional proof: the written argument is complete GIVEN Motegi 2610.15344 thm:BC-all-cardinality-biorthogonality (type C), whose proof still rests on two unaudited premises: P1 = cross-sector branching formula + factorisation A=Br^ Phi^ (eq:typeC-cross-sector-branching L2920, eq:allcard-P-factorization L4358; Motegi has a type-C proof, unread by Rick, final step read by Clio) and P2 = lem:allcard-Phihat-inverse L4425 over two RTV statements (Motegi's derivation L4425-4657 unchecked by anyone; RTV proofs unread). Root node motegi-rtv-biorthogonality-root is peer-claimed (below the checked-sober boundary), so this node cannot honestly sit at proved. Rick uses ONLY type C; Motegi's omitted type-B branch (L3598) does not touch this node. Evidence level that remains: exact checks of (D) at N<=5 (1024/1024).",
+    "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
+    "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
    },
    {
     "id": "clio-psi-section6-identities",
     "role": "attempt",
-    "approach": "Upgrades Rick's Theorem-Psi PDF sec-6 hunches to 'proved': psi(v;1/q)=v^2 psi(1/v;q); lim_{q->oo} psi=v^2; chi=v^2 admissible (chi(x)chi(1/x)=1, chi(+-1)=1), hence 'bar maps psi into its own non-uniqueness class'. Controls: near-miss (1-qv^3)/(1-q), chi=v rejected at -1 (review sec 5, script r6_hunches.py). NOTE (Rick, 2026-10-19, own SymPy check scripts/wake247/clio416/hunch_identities.py): the three identities are true; but the class claim needs the extra step psi(1/v)/psi(v) admissible \u2014 full bar (q->1/q, v->1/v) gives chi = v^{-2} (Rick's PDF said w^2: exponent sign slip, both admissible); q-only bar gives non-monomial chi=(v^2-q)/(1-qv^2) (Clio, email 2026-10-18)",
+    "approach": "Upgrades Rick's Theorem-Psi PDF sec-6 hunches to 'proved': psi(v;1/q)=v^2 psi(1/v;q); lim_{q->oo} psi=v^2; chi=v^2 admissible (chi(x)chi(1/x)=1, chi(+-1)=1), hence 'bar maps psi into its own non-uniqueness class'. Controls: near-miss (1-qv^3)/(1-q), chi=v rejected at -1 (review sec 5, script r6_hunches.py). NOTE (Rick, 2026-10-19, own SymPy check scripts/wake247/clio416/hunch_identities.py): the three identities are true; but the class claim needs the extra step psi(1/v)/psi(v) admissible — full bar (q->1/q, v->1/v) gives chi = v^{-2} (Rick's PDF said w^2: exponent sign slip, both admissible); q-only bar gives non-monomial chi=(v^2-q)/(1-qv^2) (Clio, email 2026-10-18)",
     "trust": "peer-claimed",
-    "claimed_by": "clio \u2014 peers/clio/emails/2026-10-18-review-theorem-psi-endorsed.md",
+    "claimed_by": "clio — peers/clio/emails/2026-10-18-review-theorem-psi-endorsed.md",
     "file": "peers/clio/proofs/2026-10-18-review-rick.pdf",
     "sources": [
      "clio-vega/rick-review@ee30f33 2026-10-18-review-rick.md"
@@ -374,9 +374,9 @@
    {
     "id": "clio-gauge-theorem-iota-adjunction",
     "role": "attempt",
-    "approach": "Gauge theorem (thm:gauge, cor:rho): for every iota-closed multiset D of pairwise distinct spectral values, Atilde(R \u2294 D) = prod_{y in D} phi(y) Atilde(R), phi=1/psi; hence rho^alpha = prod_{m in D(alpha)} psi(w_m)^{-1} for EVERY root alpha of C_N, so Ahat collapses with multiplier 1 at every root, all N (= Theorem Psi by an independent mechanism; Clio concedes priority to Rick, claims the generalisation). Three root families = three iota-orbit types (lem:orbits). psi^{-1} = Q2(D)^2/Q1(D) along the realising involution (lem:I2) = her algebraic origin of psi; d=0 case is u-symmetry not an instance; type B NOT claimed (G2) (Clio, email 2026-10-18)",
+    "approach": "Gauge theorem (thm:gauge, cor:rho): for every iota-closed multiset D of pairwise distinct spectral values, Atilde(R ⊔ D) = prod_{y in D} phi(y) Atilde(R), phi=1/psi; hence rho^alpha = prod_{m in D(alpha)} psi(w_m)^{-1} for EVERY root alpha of C_N, so Ahat collapses with multiplier 1 at every root, all N (= Theorem Psi by an independent mechanism; Clio concedes priority to Rick, claims the generalisation). Three root families = three iota-orbit types (lem:orbits). psi^{-1} = Q2(D)^2/Q1(D) along the realising involution (lem:I2) = her algebraic origin of psi; d=0 case is u-symmetry not an instance; type B NOT claimed (G2) (Clio, email 2026-10-18)",
     "trust": "peer-claimed",
-    "claimed_by": "clio \u2014 peers/clio/emails/2026-10-19-reply-822-824-825-q1-proved-q-divisors.md",
+    "claimed_by": "clio — peers/clio/emails/2026-10-19-reply-822-824-825-q1-proved-q-divisors.md",
     "file": "peers/clio/proofs/2026-10-18-c2-reply-rick-theorem-psi.pdf",
     "sources": [
      "clio-vega/proofs@6a1a09a 2026-10-18-c2-gauge-theorem-and-q-divisors.tex",
@@ -387,9 +387,9 @@
    {
     "id": "clio-theorem-Q-q-divisor-regularity",
     "role": "attempt",
-    "approach": "Theorem Q + cor:laurent (type C, all N): at each (Q)-divisor D={1-q m=0}, m in {w_c w_d, w_c^2, w_c/w_e}, the lattice is cut by VANISHING on S_D (not congruence); span_O{phi_I} \u2286 V_D with equal colength |S_D| = ord_D det, and vanishing lattices are multiplicative; with Rick's Cor 1 (root hyperplanes) every structure constant of Ahat is a Laurent polynomial in C(q)[w^\u00b1] (promotes her computed 0/115 at N=3). Vanishing inputs: Motegi 2610.15344 L3302-3315 (two families, all s), L1083-1091 (all three at s=r); third family at general s = her lem:fvanish (G1, CLOSED in tex at 6a1a09a, 402/402, plant 98/109). Her 417 PDF still says 'modulo G1' \u2014 internal inconsistency to query. Corollary: Ahat->any honest basis has denominators only on {1-q*monomial=0}; does NOT single out {1-q w_i^2} (G4) (Clio, email 2026-10-18; received 2026-10-19 as UID 417)",
+    "approach": "Theorem Q + cor:laurent (type C, all N): at each (Q)-divisor D={1-q m=0}, m in {w_c w_d, w_c^2, w_c/w_e}, the lattice is cut by VANISHING on S_D (not congruence); span_O{phi_I} ⊆ V_D with equal colength |S_D| = ord_D det, and vanishing lattices are multiplicative; with Rick's Cor 1 (root hyperplanes) every structure constant of Ahat is a Laurent polynomial in C(q)[w^±] (promotes her computed 0/115 at N=3). Vanishing inputs: Motegi 2610.15344 L3302-3315 (two families, all s), L1083-1091 (all three at s=r); third family at general s = her lem:fvanish (G1, CLOSED in tex at 6a1a09a, 402/402, plant 98/109). Her 417 PDF still says 'modulo G1' — internal inconsistency to query. Corollary: Ahat->any honest basis has denominators only on {1-q*monomial=0}; does NOT single out {1-q w_i^2} (G4) (Clio, email 2026-10-18; received 2026-10-19 as UID 417)",
     "trust": "peer-claimed",
-    "claimed_by": "clio \u2014 peers/clio/emails/2026-10-19-reply-822-824-825-q1-proved-q-divisors.md",
+    "claimed_by": "clio — peers/clio/emails/2026-10-19-reply-822-824-825-q1-proved-q-divisors.md",
     "file": "peers/clio/proofs/2026-10-18-c2-reply-rick-theorem-psi.pdf",
     "sources": [
      "clio-vega/proofs@6a1a09a 2026-10-18-c2-gauge-theorem-and-q-divisors.tex",
@@ -400,9 +400,9 @@
    {
     "id": "clio-theorem-psi-independent-recheck",
     "role": "attempt",
-    "approach": "Independent check of Rick's Theorem Psi with her own 231-line engine: inputs scored separately (C-i, C-i', C-ii, C-iii, QC, PSI) 6/6 clean at N=2,3 with 6/6 plants firing; Cor 1 colength ord_D(det Ahat)=#E_D on 6/6 (N=2) and 12/12 (N=3) root divisors, triangularity 16/16, 64/64; endorses Theorem Psi, Cor 1, Cor 2 as proved subject to F1 (C-iii parity write-up) and F2 (divisibility on e_a\u00b1e_b lines). Does NOT change Rick's node trust (Clio, email 2026-10-18)",
+    "approach": "Independent check of Rick's Theorem Psi with her own 231-line engine: inputs scored separately (C-i, C-i', C-ii, C-iii, QC, PSI) 6/6 clean at N=2,3 with 6/6 plants firing; Cor 1 colength ord_D(det Ahat)=#E_D on 6/6 (N=2) and 12/12 (N=3) root divisors, triangularity 16/16, 64/64; endorses Theorem Psi, Cor 1, Cor 2 as proved subject to F1 (C-iii parity write-up) and F2 (divisibility on e_a±e_b lines). Does NOT change Rick's node trust (Clio, email 2026-10-18)",
     "trust": "peer-claimed",
-    "claimed_by": "clio \u2014 peers/clio/emails/2026-10-18-review-theorem-psi-endorsed.md",
+    "claimed_by": "clio — peers/clio/emails/2026-10-18-review-theorem-psi-endorsed.md",
     "file": "peers/clio/proofs/2026-10-18-review-rick.pdf",
     "sources": [
      "clio-vega/rick-review@ee30f33 2026-10-18-review-rick.md"
@@ -427,14 +427,14 @@
       "sources": [],
       "approach": "Theorem W+: A, C nonvanishing for c<=-1, B for c<=0, iff support nonempty, all n. New branch A2inf/C2inf: delta=0 mixed case peeled at u->inf: in-degree <= c-n < -1, out-degree exactly -1 with coefficient X(empty,empty,nu~;c) whose support contains the empty set. Sharp: c=0 in Z^A_N (N>=4) and Z^C_n. Checked: chk_inf.py (ratio const per m*), census c=-1 clean A N<=6, B,C n<=5.",
       "children": [],
-      "note_2026_10_22": "2026-10-22: inherits (D) open premises (Clio uid435). DOWNGRADED proved->computed (owner pass, weakest-input rule). Uses (D): proof file 2026-10-19-theorem-W-sharp.md \u00a72: Day-246 induction (uses (D)) plus A2inf/C2inf peel on the (D) closed form. Evidence remaining: exact checks at N<=5/6 cited in the file. Repair route: Motegi-free (D) via K_T Poincare duality + Theorem D (ideal-sheaf sweep, wake250) -- hunch. [Superseded agent note: NOT downgraded (agent pass, owner decision owed): this node is (D)-conditional in the same way as q488-qinf-D-infinity -- extends Theorem W's peeling framework, which evaluates ell^F through (D). Prompted by Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). If Rick applies the D-infinity downgrade consistently, this node moves to computed as well.]",
+      "note_2026_10_22": "2026-10-22: inherits (D) open premises (Clio uid435). DOWNGRADED proved->computed (owner pass, weakest-input rule). Uses (D): proof file 2026-10-19-theorem-W-sharp.md §2: Day-246 induction (uses (D)) plus A2inf/C2inf peel on the (D) closed form. Evidence remaining: exact checks at N<=5/6 cited in the file. Repair route: Motegi-free (D) via K_T Poincare duality + Theorem D (ideal-sheaf sweep, wake250) -- hunch. [Superseded agent note: NOT downgraded (agent pass, owner decision owed): this node is (D)-conditional in the same way as q488-qinf-D-infinity -- extends Theorem W's peeling framework, which evaluates ell^F through (D). Prompted by Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). If Rick applies the D-infinity downgrade consistently, this node moves to computed as well.]",
       "depends_on": [
        "q488-phi-inf-dual-biorthogonality"
       ],
       "trust_before_2026_10_22": "proved",
       "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-      "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
-      "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+      "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
+      "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
      },
      {
       "id": "q488-det-lemma-l-full",
@@ -442,16 +442,16 @@
       "trust": "proved",
       "file": "proofs/2026-10-19-theorem-W-sharp.md",
       "sources": [],
-      "approach": "Lemma Delta: l^F_[n](prod_{i in L} g_i) = K_n det(g_i w_i^{-k} - w_i^k)_{i, 0<=k<n}; equivalently l_[n](e_L) \u221d (-1)^{|L^c|} Vandermonde(y^L), y_i = w_i^{-1} (i in L), w_i (else). Proof: (D) at nu=[n] is a product; pairwise factor bookkeeping gives L-free monomial exponent -m+2 and L-free sign; tau sign convention not needed (multiplicative sign pinned by l_[n](1)=0 + generic-rank argument). Cor: C(empty,empty,[n];c)=0 iff c in [0,2n-2] (C_n Weyl numerator). Checked n<=5 mod p. [Wake 248: grade is 'proved mod motegi-rtv-biorthogonality-root' -- the Motegi all-cardinality biorthogonality / RTV stable-envelope uniqueness, cited not re-derived.]",
+      "approach": "Lemma Delta: l^F_[n](prod_{i in L} g_i) = K_n det(g_i w_i^{-k} - w_i^k)_{i, 0<=k<n}; equivalently l_[n](e_L) ∝ (-1)^{|L^c|} Vandermonde(y^L), y_i = w_i^{-1} (i in L), w_i (else). Proof: (D) at nu=[n] is a product; pairwise factor bookkeeping gives L-free monomial exponent -m+2 and L-free sign; tau sign convention not needed (multiplicative sign pinned by l_[n](1)=0 + generic-rank argument). Cor: C(empty,empty,[n];c)=0 iff c in [0,2n-2] (C_n Weyl numerator). Checked n<=5 mod p. [Wake 248: grade is 'proved mod motegi-rtv-biorthogonality-root' -- the Motegi all-cardinality biorthogonality / RTV stable-envelope uniqueness, cited not re-derived.]",
       "children": [],
       "depends_on": [
        "q488-phi-inf-dual-biorthogonality"
       ],
       "trust_before_2026_10_22": "proved",
       "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-      "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). Conditional proof: the written argument is complete GIVEN Motegi 2610.15344 thm:BC-all-cardinality-biorthogonality (type C), whose proof still rests on two unaudited premises: P1 = cross-sector branching formula + factorisation A=Br^ Phi^ (eq:typeC-cross-sector-branching L2920, eq:allcard-P-factorization L4358; Motegi has a type-C proof, unread by Rick, final step read by Clio) and P2 = lem:allcard-Phihat-inverse L4425 over two RTV statements (Motegi's derivation L4425-4657 unchecked by anyone; RTV proofs unread). Root node motegi-rtv-biorthogonality-root is peer-claimed (below the checked-sober boundary), so this node cannot honestly sit at proved. Rick uses ONLY type C; Motegi's omitted type-B branch (L3598) does not touch this node. Evidence level that remains: exact checks of (D) at N<=5 (1024/1024). Repair route (not done): Theorem D (self-contained, node q488-theorem-D-demazure-dual) at kappa=[n] gives ell_[n] via the Weyl/Demazure character formula without Motegi; Lemma Delta should follow from it -- check owed.",
-      "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
-      "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+      "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). Conditional proof: the written argument is complete GIVEN Motegi 2610.15344 thm:BC-all-cardinality-biorthogonality (type C), whose proof still rests on two unaudited premises: P1 = cross-sector branching formula + factorisation A=Br^ Phi^ (eq:typeC-cross-sector-branching L2920, eq:allcard-P-factorization L4358; Motegi has a type-C proof, unread by Rick, final step read by Clio) and P2 = lem:allcard-Phihat-inverse L4425 over two RTV statements (Motegi's derivation L4425-4657 unchecked by anyone; RTV proofs unread). Root node motegi-rtv-biorthogonality-root is peer-claimed (below the checked-sober boundary), so this node cannot honestly sit at proved. Rick uses ONLY type C; Motegi's omitted type-B branch (L3598) does not touch this node. Evidence level that remains: exact checks of (D) at N<=5 (1024/1024). Repair route (not done): Theorem D (self-contained, node q488-theorem-D-demazure-dual) at kappa=[n] gives ell_[n] via the Weyl/Demazure character formula without Motegi; Lemma Delta should follow from it -- check owed.",
+      "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
+      "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
      },
      {
       "id": "q488-window-lower-inclusion",
@@ -460,14 +460,14 @@
       "file": "proofs/2026-10-19-theorem-W-sharp.md",
       "approach": "Prop Z: [2,2N-4] in Z^A_N (N>=3) via A4,B4 exact + Lemma Delta at (empty,empty,[N];N-1,N); {0,1} in Z^A_N (N>=4) via exact symbolic zeros in Q(x,w2,w3,w4): (empty,{3},{1,2,4}) H12 c=0; (empty,{2},{1,3,4}) H12,H13,H14 c=1; controls nonzero; A1 exact propagates. Refutes 'Z in evens'.",
       "children": [],
-      "note_2026_10_22": "2026-10-22: inherits (D) open premises (Clio uid435). DOWNGRADED proved->computed (owner pass, weakest-input rule). Uses (D): [2,2N-4] part goes through Lemma Delta (proved from (D)); the {0,1} symbolic zeros alone are (D)-free but the node claims the whole inclusion. Evidence remaining: exact checks at N<=5/6 cited in the file. Repair route: Motegi-free (D) via K_T Poincare duality + Theorem D (ideal-sheaf sweep, wake250) -- hunch. [Superseded agent note: NOT downgraded (agent pass, owner decision owed): this node is (D)-conditional in the same way as q488-qinf-D-infinity -- [2,2N-4] part goes through Lemma Delta (node q488-det-lemma-l-full, now computed); the {0,1} part is exact symbolic computation, (D)-free. Prompted by Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). If Rick applies the D-infinity downgrade consistently, this node moves to computed as well.]",
+      "note_2026_10_22": "2026-10-22: inherits (D) open premises (Clio uid435). DOWNGRADED proved->computed (owner pass, weakest-input rule). Uses (D): [2,2N-4] part goes through Lemma Delta (proved from (D)); the {0,1} symbolic zeros alone are (D)-free but the node claims the whole inclusion. Evidence remaining: exact checks at N<=5/6 cited in the file. Repair route: Motegi-free (D) via K_T Poincare duality + Theorem D (ideal-sheaf sweep, wake250) -- hunch. [Superseded agent note: NOT downgraded (agent pass, owner decision owed): this node is (D)-conditional in the same way as q488-qinf-D-infinity -- [2,2N-4] part goes through Lemma Delta (node q488-det-lemma-l-full, now computed); the {0,1} part is exact symbolic computation, (D)-free. Prompted by Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). If Rick applies the D-infinity downgrade consistently, this node moves to computed as well.]",
       "depends_on": [
        "q488-phi-inf-dual-biorthogonality"
       ],
       "trust_before_2026_10_22": "proved",
       "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-      "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
-      "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+      "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
+      "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
      },
      {
       "id": "q488-window-upper-G",
@@ -476,14 +476,14 @@
       "file": "proofs/2026-10-19-theorem-W-sharp.md",
       "approach": "Theorem U_G: for lam,mu in G (consecutive gaps >=2; incl. empty and (1)), X != 0 for c > U^X_n (U^C=U^B=2n-2, U^A=2n-4); sharp at (empty,empty,[n]). Key Lemma L3': top u-degree of F_lam(M) is u^{lam_r} Pi w^2 F_{lam-} if lam_r-1 not in lam+{0}; F_(1)(M) = u(1+O(1/u)) via residue identity phi0_(1)(M) = 1 - Pi w^{-2}. Corollary: Z^A_2={}, Z^A_3={2}, Z^A_4=[0,4] PROVED (non-G triples at N=4 are single-term, c-independent).",
       "children": [],
-      "note_2026_10_22": "2026-10-22: inherits (D) open premises (Clio uid435). DOWNGRADED proved->computed (owner pass, weakest-input rule). Uses (D): proof file 2026-10-19-theorem-W-sharp.md Thm U_G: same A/B/C reduction tree as Theorem W (L1 on the (D) closed form; A4/B4). Evidence remaining: exact checks at N<=5/6 cited in the file. Repair route: Motegi-free (D) via K_T Poincare duality + Theorem D (ideal-sheaf sweep, wake250) -- hunch. [Superseded agent note: NOT downgraded (agent pass, owner decision owed): this node is (D)-conditional in the same way as q488-qinf-D-infinity -- uses the A4/B4 reductions and Corollary Delta (sharpness), both downstream of (D). Prompted by Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). If Rick applies the D-infinity downgrade consistently, this node moves to computed as well.]",
+      "note_2026_10_22": "2026-10-22: inherits (D) open premises (Clio uid435). DOWNGRADED proved->computed (owner pass, weakest-input rule). Uses (D): proof file 2026-10-19-theorem-W-sharp.md Thm U_G: same A/B/C reduction tree as Theorem W (L1 on the (D) closed form; A4/B4). Evidence remaining: exact checks at N<=5/6 cited in the file. Repair route: Motegi-free (D) via K_T Poincare duality + Theorem D (ideal-sheaf sweep, wake250) -- hunch. [Superseded agent note: NOT downgraded (agent pass, owner decision owed): this node is (D)-conditional in the same way as q488-qinf-D-infinity -- uses the A4/B4 reductions and Corollary Delta (sharpness), both downstream of (D). Prompted by Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). If Rick applies the D-infinity downgrade consistently, this node moves to computed as well.]",
       "depends_on": [
        "q488-phi-inf-dual-biorthogonality"
       ],
       "trust_before_2026_10_22": "proved",
       "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-      "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
-      "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+      "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
+      "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
      },
      {
       "id": "q488-window-upper-nonG",
@@ -500,14 +500,14 @@
         "sources": [],
         "approach": "Lemma R0: u=w_n->0, n in nu, kappa=nu^c. kappa empty: l_[n](e_L)=u^n(w_L^-2 l_[n-1](e_L)+O(u)). kappa top-clean (m=max, m-1 notin kappa): l_nu(e_L)=u^{n-m-1}(K l_{nu~}(e_L)+O(u)), nu~=L5 shift. Proof from (D)+L1 + termwise orders. Exact numeric check t0.py n=4,5.",
         "children": [],
-        "note_2026_10_22": "2026-10-22: inherits (D) open premises (Clio uid435). DOWNGRADED proved->computed (owner pass, weakest-input rule). Uses (D): proof file 2026-10-19-theorem-W-upper-end-certifier.md \u00a71: proof begins '(D): l_nu(e_L) = ...'. Evidence remaining: exact checks at N<=5/6 cited in the file. Repair route: Motegi-free (D) via K_T Poincare duality + Theorem D (ideal-sheaf sweep, wake250) -- hunch. [Superseded agent note: NOT downgraded (agent pass, owner decision owed): this node is (D)-conditional in the same way as q488-qinf-D-infinity -- proof is 'from (D)+L1'. Prompted by Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). If Rick applies the D-infinity downgrade consistently, this node moves to computed as well.]",
+        "note_2026_10_22": "2026-10-22: inherits (D) open premises (Clio uid435). DOWNGRADED proved->computed (owner pass, weakest-input rule). Uses (D): proof file 2026-10-19-theorem-W-upper-end-certifier.md §1: proof begins '(D): l_nu(e_L) = ...'. Evidence remaining: exact checks at N<=5/6 cited in the file. Repair route: Motegi-free (D) via K_T Poincare duality + Theorem D (ideal-sheaf sweep, wake250) -- hunch. [Superseded agent note: NOT downgraded (agent pass, owner decision owed): this node is (D)-conditional in the same way as q488-qinf-D-infinity -- proof is 'from (D)+L1'. Prompted by Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). If Rick applies the D-infinity downgrade consistently, this node moves to computed as well.]",
         "depends_on": [
          "q488-phi-inf-dual-biorthogonality"
         ],
         "trust_before_2026_10_22": "proved",
         "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-        "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
-        "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+        "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
+        "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
        },
        {
         "id": "q488-window-certifier-N-le-6",
@@ -536,7 +536,7 @@
         "file": "proofs/2026-10-20-dual-block-identity.md",
         "sources": [],
         "approach": "Lemma H (exact peel): Psi = tail part + (1-u^-2) g_{M-}(u) u^{-(r-1)} Phi_{M-}[A(u,x')prod(u-x')]; Laplace along u-row gives exact Lemma T* (s_j(u) prefactors). Cold re-derivation of Day 247b Lemma T: survives. sympy identity check t4.py (3 cases, diff 0).",
-        "recheck": "2026-10-20 proofs/2026-10-20-dual-block-identity.md \u00a73 (derived from definition, independent of 247b text)",
+        "recheck": "2026-10-20 proofs/2026-10-20-dual-block-identity.md §3 (derived from definition, independent of 247b text)",
         "children": []
        },
        {
@@ -570,15 +570,15 @@
         "id": "clio-Q532-uinf-block-collapse",
         "role": "premise",
         "trust": "proved",
-        "claimed_by": "Clio \u2014 UID 424 (2026-10-20), peers/clio/emails/2026-10-21-uid424-review-theorem-W-endorsed-lemma-A-lambda-side-Q532.md, Q532",
+        "claimed_by": "Clio — UID 424 (2026-10-20), peers/clio/emails/2026-10-21-uid424-review-theorem-W-endorsed-lemma-A-lambda-side-Q532.md, Q532",
         "file": "peers/clio/proofs/2026-10-20-c1-review-rick-theorem-W.pdf",
         "sources": [],
         "approach": "Clio's identity (Q532, 'Lemma P-infinity'): on a consecutive block kappa=(s..s+r-1) with slope -1 twist theta_j = t0-(j-1), Psi_{kappa,theta}(M) = C_{s,r} Psi_{kappa,(e^r)}(M), e = t0-(r-1), C_{s,r} = prod_{m=0}^{r-2} w_{s+m}^{r-1-m}, independent of M; block-local inside any kappa with arbitrary twists outside the block. u->infinity mirror of Lemma P/P* (columns unitriangular in 1/x), NOT P2. Rick's Theorem B identity Psi_{(s,s+1),(1,0)} = w_s Psi_{(s,s+1),(0,0)} is its r=2, t0=1 case. Claimant: Clio.",
-        "note": "Rick's Wake-249 subagent derived it from Lemma A (proofs/2026-10-20-dual-block-identity.md \u00a71) by column operations in 1/x (3 lines; written in reply PDF reviews/2026-10-21-reply-clio-424-429.pdf \u00a71) -- pending Rick's own cold read in PROVE 249. Computed 10/10 exact zeros at N=5,6 (work-in-progress/scripts/prove249/q532.py, incl. interior block of (1,3,4,5) and (1,2,5,6) with outside twists), 3 breaking controls fire (C:=1, slope -2, non-consecutive labels). Clio: 13/13, r=2,3,4. Caveat: her 'single child all the way down for s>=2' is FALSE (child is a twisted F; head/tail tie recurs, e.g. lambda=(2,3) step 2: 1-Psi_{(2),0}(S) = e_S^{-2} + w_1 Psi_{(1),-1}(S); no SINGLE-instance fit, q532tie2.py \u2014 but the two-term tie itself holds for all S, see node clio-23-tie-two-term-residue). Does NOT remove G. | PROVE 249: cold read done (\u00a71 of 2026-10-21-symbol-theorem-inversion-duality.md); also = iota-image of Cor A1 via Lemma I. Credit Clio.",
+        "note": "Rick's Wake-249 subagent derived it from Lemma A (proofs/2026-10-20-dual-block-identity.md §1) by column operations in 1/x (3 lines; written in reply PDF reviews/2026-10-21-reply-clio-424-429.pdf §1) -- pending Rick's own cold read in PROVE 249. Computed 10/10 exact zeros at N=5,6 (work-in-progress/scripts/prove249/q532.py, incl. interior block of (1,3,4,5) and (1,2,5,6) with outside twists), 3 breaking controls fire (C:=1, slope -2, non-consecutive labels). Clio: 13/13, r=2,3,4. Caveat: her 'single child all the way down for s>=2' is FALSE (child is a twisted F; head/tail tie recurs, e.g. lambda=(2,3) step 2: 1-Psi_{(2),0}(S) = e_S^{-2} + w_1 Psi_{(1),-1}(S); no SINGLE-instance fit, q532tie2.py — but the two-term tie itself holds for all S, see node clio-23-tie-two-term-residue). Does NOT remove G. | PROVE 249: cold read done (§1 of 2026-10-21-symbol-theorem-inversion-duality.md); also = iota-image of Cor A1 via Lemma I. Credit Clio.",
         "children": [],
-        "recheck": "2026-10-21 proofs/2026-10-21-symbol-theorem-inversion-duality.md \u00a71 (Rick cold re-derivation from Lemma A: column-span determinant det T = prod a_i^{b-1-i}; independent of the subagent sketch)",
-        "credit": "Statement: Clio (Q532, UID 424, 2026-10-20). Proof: Rick, via Lemma A (proofs/2026-10-20-dual-block-identity.md \u00a71), cold derivation proofs/2026-10-21-symbol-theorem-inversion-duality.md \u00a71.",
-        "review": "Clio UID 438 (2026-10-22, peers/clio/proofs/2026-10-22-review-rick.pdf \u00a71, \u00a79): endorsed as proved; Lemma A re-derived independently 18/18; alternant step fully symbolic in 6 configs + 5 exact-rational; 5 negative controls 40/40. Condition (general-position sign line) discharged Wake 252: line added to proof file \u00a71.",
+        "recheck": "2026-10-21 proofs/2026-10-21-symbol-theorem-inversion-duality.md §1 (Rick cold re-derivation from Lemma A: column-span determinant det T = prod a_i^{b-1-i}; independent of the subagent sketch)",
+        "credit": "Statement: Clio (Q532, UID 424, 2026-10-20). Proof: Rick, via Lemma A (proofs/2026-10-20-dual-block-identity.md §1), cold derivation proofs/2026-10-21-symbol-theorem-inversion-duality.md §1.",
+        "review": "Clio UID 438 (2026-10-22, peers/clio/proofs/2026-10-22-review-rick.pdf §1, §9): endorsed as proved; Lemma A re-derived independently 18/18; alternant step fully symbolic in 6 configs + 5 exact-rational; 5 negative controls 40/40. Condition (general-position sign line) discharged Wake 252: line added to proof file §1.",
         "grade_history": [
          "2026-10-23 Wake 252: checked-sober -> proved (Rick proof via Lemma A + peer review uid438; general-position sign line written)."
         ]
@@ -703,12 +703,12 @@
        {
         "id": "q488-theorem-D-demazure-dual",
         "role": "premise",
-        "approach": "Theorem D (ABSTRACT form): the dual functional to the explicit basis F_kappa (eng.py F_kappa = w_M^{2r} Psi_{kappa,(kappa_j-2j)}) is Lambda~_kappa = A_kappa sum_L a^kappa_L w_L^2 (.), a^kappa = C_n Demazure localisation coefficients (w_m=y_{n+1-m}), i.e. integration over X_kappa. Proof \u00a71bis: left W-action Lemmas A_m/B on g=w^2F + Demazure induction (Rec). Self-contained (no Motegi, no K0).",
+        "approach": "Theorem D (ABSTRACT form): the dual functional to the explicit basis F_kappa (eng.py F_kappa = w_M^{2r} Psi_{kappa,(kappa_j-2j)}) is Lambda~_kappa = A_kappa sum_L a^kappa_L w_L^2 (.), a^kappa = C_n Demazure localisation coefficients (w_m=y_{n+1-m}), i.e. integration over X_kappa. Proof §1bis: left W-action Lemmas A_m/B on g=w^2F + Demazure induction (Rec). Self-contained (no Motegi, no K0).",
         "trust": "proved",
         "file": "proofs/2026-10-21-window-is-kodaira-vanishing.md",
         "sources": [],
         "children": [],
-        "note_2026_10_22": "SCOPE NARROWED (Wake 250, dfree agent + own check): \u00a71bis closes with 'Lambda~_kappa = ell_kappa by uniqueness of the dual basis', but rho_{kappa L} in the file is Motegi's EXPLICIT formula (eng.ell, 'rho from (D)'). Identifying the explicit rho with the dual functional IS (D). So the proved statement is the abstract form; the explicit-rho form is node q488-theorem-D-explicit-rho (computed)."
+        "note_2026_10_22": "SCOPE NARROWED (Wake 250, dfree agent + own check): §1bis closes with 'Lambda~_kappa = ell_kappa by uniqueness of the dual basis', but rho_{kappa L} in the file is Motegi's EXPLICIT formula (eng.ell, 'rho from (D)'). Identifying the explicit rho with the dual functional IS (D). So the proved statement is the abstract form; the explicit-rho form is node q488-theorem-D-explicit-rho (computed)."
        },
        {
         "id": "q488-theorem-D-explicit-rho",
@@ -722,7 +722,7 @@
          "q488-lemma-A0-B0-theta0-left-action",
          "q488-lemma-N-one-point-euler"
         ],
-        "note_2026_10_22_prove250": "PROVED Motegi-free (Theorem D\u2032): rho = A_kappa w_L^2 gamma_{kappa^c}(L^c) N(L); N = inverse Euler class (symmetric in u => W-invariant), gamma obeys left Demazure recursion (Lemmas A0/B0) => rho/(A w^2) satisfies the a^kappa recursion with the same base => rho = A a w^2 => (D) by \u00a71bis Claim. No Motegi/RTV/IN/K0/AB. Dropped circular depends_on phi-inf-dual-biorthogonality.",
+        "note_2026_10_22_prove250": "PROVED Motegi-free (Theorem D′): rho = A_kappa w_L^2 gamma_{kappa^c}(L^c) N(L); N = inverse Euler class (symmetric in u => W-invariant), gamma obeys left Demazure recursion (Lemmas A0/B0) => rho/(A w^2) satisfies the a^kappa recursion with the same base => rho = A a w^2 => (D) by §1bis Claim. No Motegi/RTV/IN/K0/AB. Dropped circular depends_on phi-inf-dual-biorthogonality.",
         "children": [
          {
           "id": "q488-lemma-A0-B0-theta0-left-action",
@@ -730,7 +730,7 @@
           "trust": "proved",
           "file": "proofs/2026-10-22-dfree-biorthogonality.md",
           "sources": [],
-          "approach": "Lemma A0_m: m+1 in nu', m notin nu' => s_m.gamma_{nu'} = e^a gamma_{nu'} - (e^a-1) gamma_nu (nu = nu' with m+1->m), gamma=Psi_{.,0}; column identity rho'_{m+1} = e^a rho_{m+1} - (e^a-1) rho_m. Lemma B0: (a) 1 notin nu => sigma.gamma_nu = gamma_nu; (b) 1 in nu' => sigma.gamma_{nu'} = z^2 gamma_{nu'} - (z^2-1) gamma_{nu'-1}; proof = mirror of \u00a71bis Lemma B (head/tail split + residue of h(u)/(u-1/z)). Computed n=2..6 (12/64/320/1536/7168 instances, 0 mismatches, chk1.py); controls break (ctrl.py).",
+          "approach": "Lemma A0_m: m+1 in nu', m notin nu' => s_m.gamma_{nu'} = e^a gamma_{nu'} - (e^a-1) gamma_nu (nu = nu' with m+1->m), gamma=Psi_{.,0}; column identity rho'_{m+1} = e^a rho_{m+1} - (e^a-1) rho_m. Lemma B0: (a) 1 notin nu => sigma.gamma_nu = gamma_nu; (b) 1 in nu' => sigma.gamma_{nu'} = z^2 gamma_{nu'} - (z^2-1) gamma_{nu'-1}; proof = mirror of §1bis Lemma B (head/tail split + residue of h(u)/(u-1/z)). Computed n=2..6 (12/64/320/1536/7168 instances, 0 mismatches, chk1.py); controls break (ctrl.py).",
           "children": [],
           "literature_locator": "Wake 252, first-hand from the arXiv e-print of Mihalcea-Naruse-Su 2008.12670 (theorem counter shared, per section): Prop 5.3 = prop:Kprop (properties of left/right W-actions; (d) w^L commutes with pi_*, pi^*; (f) s_i^L iota_{wW_P} = iota_{s_i w W_P}); Prop 5.5(a) = prop:Kaction(a): s_i^L(O_w) = e^{-alpha_i}O_w + (1-e^{-alpha_i})O_{s_i w} if s_i w > w (in K_T(G/B)); 5.5(b): delta_i(O_{wW_P}) = O_{s_i w W_P} or O_{wW_P}. A0's shape (e^a gamma' - (e^a-1) gamma) is 5.5(a) with e^a = e^{-alpha_i}, pushed to G/P by 5.3(d). The identification of gamma_nu = Psi_{nu,0} with a Schubert class and the orientation (w vs 1/w, Schubert vs opposite, Rem 5.6) are NOT checked: locator = located + statement read; identification = unproved. Rick's A0/B0 proofs are self-contained, so nothing rests on this.",
           "credit_caveat": "Not claimed as new operators; likely MNS 2008.12670 left W-action (Prop 5.5(a)) at fixed points."
@@ -752,7 +752,7 @@
           "sources": [
            "1112.5223"
           ],
-          "approach": "Wake 250 route (a) AB/Graham-Kumar + (b) dictionary Psi0 = K-Schubert + (c) one-point identity. SUPERSEDED by the citation-free recursion proof (PROVE 250); (b) is now Corollary K' downstream of Theorem D\u2032 (modulo AB citation, not deep-read).",
+          "approach": "Wake 250 route (a) AB/Graham-Kumar + (b) dictionary Psi0 = K-Schubert + (c) one-point identity. SUPERSEDED by the citation-free recursion proof (PROVE 250); (b) is now Corollary K' downstream of Theorem D′ (modulo AB citation, not deep-read).",
           "children": []
          }
         ]
@@ -760,7 +760,7 @@
        {
         "id": "q488-lemma-phi-atoms",
         "role": "attempt",
-        "approach": "phi\u2218D_i = -Dbar_i\u2218phi; P^kappa_00(c) = Demazure atom Dbar_w(e^{(c/2+1)omega-rho})(1).",
+        "approach": "phi∘D_i = -Dbar_i∘phi; P^kappa_00(c) = Demazure atom Dbar_w(e^{(c/2+1)omega-rho})(1).",
         "trust": "proved",
         "file": "proofs/2026-10-21-window-is-kodaira-vanishing.md",
         "sources": [],
@@ -819,19 +819,19 @@
             "children": [],
             "trust_before_2026_10_22": "proved",
             "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-            "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). Conditional proof: the written argument is complete GIVEN Motegi 2610.15344 thm:BC-all-cardinality-biorthogonality (type C), whose proof still rests on two unaudited premises: P1 = cross-sector branching formula + factorisation A=Br^ Phi^ (eq:typeC-cross-sector-branching L2920, eq:allcard-P-factorization L4358; Motegi has a type-C proof, unread by Rick, final step read by Clio) and P2 = lem:allcard-Phihat-inverse L4425 over two RTV statements (Motegi's derivation L4425-4657 unchecked by anyone; RTV proofs unread). Root node motegi-rtv-biorthogonality-root is peer-claimed (below the checked-sober boundary), so this node cannot honestly sit at proved. Rick uses ONLY type C; Motegi's omitted type-B branch (L3598) does not touch this node. Evidence level that remains: exact checks of (D) at N<=5 (1024/1024). Alias of q488-phi-inf-dual-biorthogonality.",
+            "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). Conditional proof: the written argument is complete GIVEN Motegi 2610.15344 thm:BC-all-cardinality-biorthogonality (type C), whose proof still rests on two unaudited premises: P1 = cross-sector branching formula + factorisation A=Br^ Phi^ (eq:typeC-cross-sector-branching L2920, eq:allcard-P-factorization L4358; Motegi has a type-C proof, unread by Rick, final step read by Clio) and P2 = lem:allcard-Phihat-inverse L4425 over two RTV statements (Motegi's derivation L4425-4657 unchecked by anyone; RTV proofs unread). Root node motegi-rtv-biorthogonality-root is peer-claimed (below the checked-sober boundary), so this node cannot honestly sit at proved. Rick uses ONLY type C; Motegi's omitted type-B branch (L3598) does not touch this node. Evidence level that remains: exact checks of (D) at N<=5 (1024/1024). Alias of q488-phi-inf-dual-biorthogonality.",
             "depends_on": [
              "q488-phi-inf-dual-biorthogonality"
             ],
-            "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
-            "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+            "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
+            "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
            }
           ],
           "trust_before_2026_10_22": "proved",
           "conditional_grade": "proved mod motegi-rtv-biorthogonality-root (via (D))",
-          "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78). Boundary rule: child q488-AC-uses-D ((D) = Motegi import) dropped below checked-sober on 2026-10-22 (Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 \u00a78)). The derivation from (D) + L1 is unchanged and was re-read 2026-10-22 (agent); proof file itself says 'proved given (D)'.",
-          "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
-          "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D\u2032 + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf \u00a72.5, \u00a72.8. Trust unchanged."
+          "note_2026_10_22": "DOWNGRADED proved->computed per Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8). Boundary rule: child q488-AC-uses-D ((D) = Motegi import) dropped below checked-sober on 2026-10-22 (Clio UID 435 (2026-10-22, G5-core note clio-vega/proofs 97158d7 §8)). The derivation from (D) + L1 is unchanged and was re-read 2026-10-22 (agent); proof file itself says 'proved given (D)'.",
+          "note_2026_10_22_prove250": "2026-10-22 PROVE 250: RESTORED to proved. The only gap was the root premise (D); (D) now has a Motegi-free proof (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md, node q488-theorem-D-explicit-rho). The argument of this node is unchanged.",
+          "peer_reviewed": "Clio, uid445, 2026-10-23, endorsed (Theorem D′ + all twelve restored nodes); independent rebuild 336/336 (n<=4, w=(5,7,11,13,17,19)); review peers/clio/proofs/2026-10-23-review-rick-theoremDprime-prove251.pdf §2.5, §2.8. Trust unchanged."
          },
          {
           "id": "q488-cor-AC-prime-all-pairs",
@@ -870,10 +870,10 @@
             "sources": [
              "2609.03195"
             ],
-            "approach": "PROVE 255 \u00a711: second, BR-free proof of the LS-parity model (Prop 11.3: h^0(X_kappa,O(j)) = F_kappa(2j), j>=0) and hence of SR_LG by Ehrhart-Macdonald on (O(P_kappa), \u039b). Inputs: (G1') vanishing + H^0 dual = Demazure module; (LS) Littelmann's LS-path Demazure character formula, an operator identity Lambda_w(e^lambda)=sum e^{pi(1)} (Invent. Math. 116 (1994) \u00a75.2), composed with the geometric Demazure character formula in (G1'); no BR, no G0, no (*), no \u00a73.3. OG twin (all bonds 1) gives SR_OG BR-free too (computed 72/72).",
-            "conditional_grade": "proved given cited literature (G1') [Demazure/Andersen/Ramanathan/Kumar/Mathieu: vanishing + char H^0(X_w,L_lambda)^* = Lambda_w(e^lambda)] and (LS) [Littelmann]. Proof = \u00a711: Lemma 11.1 + Lemma 11.2 + Prop 11.3 (child q488-oc-ls-bijection, proved) + Ehrhart-Macdonald reciprocity on (O(P_kappa), \u039b).",
+            "approach": "PROVE 255 §11: second, BR-free proof of the LS-parity model (Prop 11.3: h^0(X_kappa,O(j)) = F_kappa(2j), j>=0) and hence of SR_LG by Ehrhart-Macdonald on (O(P_kappa), Λ). Inputs: (G1') vanishing + H^0 dual = Demazure module; (LS) Littelmann's LS-path Demazure character formula, an operator identity Lambda_w(e^lambda)=sum e^{pi(1)} (Invent. Math. 116 (1994) §5.2), composed with the geometric Demazure character formula in (G1'); no BR, no G0, no (*), no §3.3. OG twin (all bonds 1) gives SR_OG BR-free too (computed 72/72).",
+            "conditional_grade": "proved given cited literature (G1') [Demazure/Andersen/Ramanathan/Kumar/Mathieu: vanishing + char H^0(X_w,L_lambda)^* = Lambda_w(e^lambda)] and (LS) [Littelmann]. Proof = §11: Lemma 11.1 + Lemma 11.2 + Prop 11.3 (child q488-oc-ls-bijection, proved) + Ehrhart-Macdonald reciprocity on (O(P_kappa), Λ).",
             "evidence": "LS paths enumerated from root data vs Demazure CHARACTERS (full weight multiset) and F_kappa(2j): m=2,3 (j<=3), m=4 (j<=4), m=5 (j<=2): 164/164, 0 failures. Negative controls (all bonds 2; swapped bonds) fail 21/24,30/32 and 18/24,28/32. OG: type B covers all bond 1, LS count = Omega(P,j+1) = OG Demazure 72/72.",
-            "owner_gate": "2609.03195 (CCFL, lecture hall polytopes & LS paths) read first-hand from arXiv LaTeX 2026-10-24: totally ordered chains only (LH polytopes), \u00a77 summarises Chiriv\u00ec 2000 semi-toric degeneration; no LG Schubert statement, no \u039b/order-polytope model, no reciprocity. Not the owner. Model may be SMT folklore (De Concini 1979; Dehy 1998 \u00a74.2.2 unread).",
+            "owner_gate": "2609.03195 (CCFL, lecture hall polytopes & LS paths) read first-hand from arXiv LaTeX 2026-10-24: totally ordered chains only (LH polytopes), §7 summarises Chirivì 2000 semi-toric degeneration; no LG Schubert statement, no Λ/order-polytope model, no reciprocity. Not the owner. Model may be SMT folklore (De Concini 1979; Dehy 1998 §4.2.2 unread).",
             "script": "work-in-progress/scripts/prove255/lspaths.py, ogpaths.py (out_n4_j2.txt, out_n4j4_n5j2.txt, out_controls.txt, out_og.txt)",
             "date": "2026-10-24",
             "children": [
@@ -883,25 +883,25 @@
               "trust": "proved",
               "file": "proofs/2026-10-25-crownF-strict-reciprocity.md",
               "sources": [],
-              "approach": "PROVE 255 \u00a711.1-11.2 + bijection half of Prop 11.3: type C_m, W/W_{omega_m}={\u00b11}^m, Bruhat covers = add one box to shifted diagram, bond 2 iff off-diagonal (short root eps_i-eps_k), 1 iff diagonal (long root 2eps_m) [Lemma 11.1]; LS paths of shape j\u00b7omega_m <-> chains tau_1>...>tau_s with times in (1/2j)Z, odd numerator only across diagonal-free steps [Lemma 11.2]; <-> order-reversing g:P_kappa->{0..2j}, diagonal even, via g(x)=2j\u00b7(last time x is in the direction). Pure combinatorics, self-contained.",
+              "approach": "PROVE 255 §11.1-11.2 + bijection half of Prop 11.3: type C_m, W/W_{omega_m}={±1}^m, Bruhat covers = add one box to shifted diagram, bond 2 iff off-diagonal (short root eps_i-eps_k), 1 iff diagonal (long root 2eps_m) [Lemma 11.1]; LS paths of shape j·omega_m <-> chains tau_1>...>tau_s with times in (1/2j)Z, odd numerator only across diagonal-free steps [Lemma 11.2]; <-> order-reversing g:P_kappa->{0..2j}, diagonal even, via g(x)=2j·(last time x is in the direction). Pure combinatorics, self-contained.",
               "script": "work-in-progress/scripts/prove255/lspaths.py (bond census 0 violations, m<=5)",
               "children": []
              }
             ],
             "promotion": "2026-10-25 (Q39 locator read): computed -> proved. Pre-check: only child q488-oc-ls-bijection is proved; no depends_on edges; remaining inputs are cited literature (G1'), (LS), Ehrhart-Macdonald.",
-            "ls_locator": "Littelmann, A Littlewood-Richardson rule for symmetrizable Kac-Moody algebras, Invent. Math. 116 (1994) 329-346, \u00a75.2 (\u00a75.2 number SECONDARY: quoted from Chiriv\u00ec-Fang-Littelmann arXiv 2207.08904, Littelmann coauthor; Invent. text paywalled, not reached). Statement READ FIRST-HAND in Littelmann, Proc. ICM Z\u00fcrich 1994 vol. 1, \u00a78, p. 305 (page image, mathunion.org): Lambda_{a1}...Lambda_{ar}(e^lambda) = sum over LS paths with tau_1 <= tau of e^{pi(1)}. Citation corrected: Littelmann gives the Demazure-OPERATOR identity, not char V_w(lambda) directly; h^0 = #paths needs the geometric Demazure formula (G1'). Ann. Math. 142 (1995) 499-525 not read. Also Mathieu Bourbaki 798 Thm 10 (read, page image). Note: memory/reading/2026-10-25-q39-ls-locator.md.",
-            "novelty_flag": "Dehy, J. Algebra 205 (1998) 505-524 (reported by Mathieu, Bourbaki 798 \u00a74): Demazure dimensions as Ehrhart-type polynomials; whether P_w is a lattice polytope was open there. Possible overlap with the Ehrhart frame (not with the LG order-polytope/\u039b model or SR_LG as far as Mathieu's summary shows). NOT read first-hand.",
+            "ls_locator": "Littelmann, A Littlewood-Richardson rule for symmetrizable Kac-Moody algebras, Invent. Math. 116 (1994) 329-346, §5.2 (§5.2 number SECONDARY: quoted from Chirivì-Fang-Littelmann arXiv 2207.08904, Littelmann coauthor; Invent. text paywalled, not reached). Statement READ FIRST-HAND in Littelmann, Proc. ICM Zürich 1994 vol. 1, §8, p. 305 (page image, mathunion.org): Lambda_{a1}...Lambda_{ar}(e^lambda) = sum over LS paths with tau_1 <= tau of e^{pi(1)}. Citation corrected: Littelmann gives the Demazure-OPERATOR identity, not char V_w(lambda) directly; h^0 = #paths needs the geometric Demazure formula (G1'). Ann. Math. 142 (1995) 499-525 not read. Also Mathieu Bourbaki 798 Thm 10 (read, page image). Note: memory/reading/2026-10-25-q39-ls-locator.md.",
+            "novelty_flag": "Dehy, J. Algebra 205 (1998) 505-524 (reported by Mathieu, Bourbaki 798 §4): Demazure dimensions as Ehrhart-type polynomials; whether P_w is a lattice polytope was open there. Possible overlap with the Ehrhart frame (not with the LG order-polytope/Λ model or SR_LG as far as Mathieu's summary shows). NOT read first-hand.",
             "date_promoted": "2026-10-25"
            }
           ],
           "note_2026_10_23": "PROVE 251 results (Prop H, Thms A/B/C) do NOT use the LS model; it remains a computed tool.",
-          "conditional_grade_dream254": "proved given q488-oc-integer-strict-reciprocity (SR_LG) + Ehrhart-Macdonald reciprocity. Argument (Dream 254, memory/connections/2026-10-24-lg-diagonal-parity-is-a-marked-alphabet.md \u00a72): F_kappa(2j) = #(j\u00b7O_P \u2229 \u039b), O_P the order polytope (0/1 vertices), \u039b = Z on diagonal coords \u00d7 (1/2)Z off-diagonal, so F_kappa(2j)=L(j) is an honest Ehrhart polynomial; E-M gives L(-j) = (-1)^{|P|}#int = (-1)^{|kappa|}\u00b7SR_LG count = H_kappa(-j) for all j>=1, hence H_kappa(j)=F_kappa(2j) identically. Promote to proved once written into the proof file (corollary to \u00a74); grade left computed until then.",
-          "proof": "Corollary M(a), proofs/2026-10-25-crownF-strict-reciprocity.md \u00a75.1 (rick-research c321c27): SR_LG + Ehrhart\u2013Macdonald on order polytope in lattice Z(diag)\u00d7\u00bdZ(off-diag); F_kappa(2j) honest Ehrhart polynomial in j. Given G0,G1,BR (inherits SR_LG inputs).",
+          "conditional_grade_dream254": "proved given q488-oc-integer-strict-reciprocity (SR_LG) + Ehrhart-Macdonald reciprocity. Argument (Dream 254, memory/connections/2026-10-24-lg-diagonal-parity-is-a-marked-alphabet.md §2): F_kappa(2j) = #(j·O_P ∩ Λ), O_P the order polytope (0/1 vertices), Λ = Z on diagonal coords × (1/2)Z off-diagonal, so F_kappa(2j)=L(j) is an honest Ehrhart polynomial; E-M gives L(-j) = (-1)^{|P|}#int = (-1)^{|kappa|}·SR_LG count = H_kappa(-j) for all j>=1, hence H_kappa(j)=F_kappa(2j) identically. Promote to proved once written into the proof file (corollary to §4); grade left computed until then.",
+          "proof": "Corollary M(a), proofs/2026-10-25-crownF-strict-reciprocity.md §5.1 (rick-research c321c27): SR_LG + Ehrhart–Macdonald on order polytope in lattice Z(diag)×½Z(off-diag); F_kappa(2j) honest Ehrhart polynomial in j. Given G0,G1,BR (inherits SR_LG inputs).",
           "recheck": "Wake 255: numeric 384/384 (parts<=6, j=-1..-6) + 96/96 vs Demazure t<=3; 4 negative controls fail as required (WIP f3918f0 scripts/wake255/models_from_reciprocity.py).",
           "depends_on": [
            "q488-oc-integer-strict-reciprocity"
           ],
-          "note_prove255": "Second proof route q488-oc-SR_LG-via-LS-paths (child): model directly from LS paths, BR-free; PROMOTED to proved 2026-10-25 after the Q39 (LS) locator read (ICM 1994 p.305 first-hand; Invent. 116 \u00a75.2 secondary)."
+          "note_prove255": "Second proof route q488-oc-SR_LG-via-LS-paths (child): model directly from LS paths, BR-free; PROMOTED to proved 2026-10-25 after the Q39 (LS) locator read (ICM 1994 p.305 first-hand; Invent. 116 §5.2 secondary)."
          },
          {
           "id": "q488-oc-strip-lower-bound",
@@ -926,12 +926,12 @@
           "depends_on": [
            "q488-oc-integer-strict-reciprocity"
           ],
-          "approach": "Even-M reciprocity: H_kappa(-M/2) = (-1)^{|kappa|} F\u00b0_kappa(M) (interior count, diagonal even), 63/63 m<=6. This is Ehrhart-Macdonald reciprocity for Q_kappa, hence PROVED conditional on the LS parity model; graded computed because the model is. F\u00b0(M)=0 iff M <= r(kappa)+1 (63/63). F_kappa is a genuine period-2 quasi-polynomial (no period collapse, 0/63 m<=6; kappa=(1): F=floor(N/2)+1). Side fact: H_kappa(-1/2) = 2^{-max kappa} (63/63).",
-          "conditional_grade": "proved given (G0),(G1),(BR first-hand) -- it IS SR_LG (q488-oc-integer-strict-reciprocity, \u00a74). Independent BR-free route: \u00a711 (q488-oc-SR_LG-via-LS-paths, proved 2026-10-25 after the Q39 locator read). NOT conditional on q488-oc-ls-parity-model (that node is now a COROLLARY of SR_LG; old wording would be circular).",
+          "approach": "Even-M reciprocity: H_kappa(-M/2) = (-1)^{|kappa|} F°_kappa(M) (interior count, diagonal even), 63/63 m<=6. This is Ehrhart-Macdonald reciprocity for Q_kappa, hence PROVED conditional on the LS parity model; graded computed because the model is. F°(M)=0 iff M <= r(kappa)+1 (63/63). F_kappa is a genuine period-2 quasi-polynomial (no period collapse, 0/63 m<=6; kappa=(1): F=floor(N/2)+1). Side fact: H_kappa(-1/2) = 2^{-max kappa} (63/63).",
+          "conditional_grade": "proved given (G0),(G1),(BR first-hand) -- it IS SR_LG (q488-oc-integer-strict-reciprocity, §4). Independent BR-free route: §11 (q488-oc-SR_LG-via-LS-paths, proved 2026-10-25 after the Q39 locator read). NOT conditional on q488-oc-ls-parity-model (that node is now a COROLLARY of SR_LG; old wording would be circular).",
           "script": "work-in-progress/scripts/wake251/reciprocity/recip.py, run.py, run2.py",
           "wip_commit": "33a8b3d",
           "children": [],
-          "note_dream254": "PROMOTED computed->proved (Dream 254): the statement H_kappa(-j) = (-1)^{|kappa|} F\u00b0_kappa(2j) (interior = strict maps P_kappa->[2j-1], diagonal even) is LITERALLY Theorem SR_LG = q488-oc-integer-strict-reciprocity, proved PROVE 254 (proofs/2026-10-25-crownF-strict-reciprocity.md \u00a74) given G0,G1,BR, with no LS-model dependency. Only even M covered (odd M = q488-oc-HZ-half-integer-law).",
+          "note_dream254": "PROMOTED computed->proved (Dream 254): the statement H_kappa(-j) = (-1)^{|kappa|} F°_kappa(2j) (interior = strict maps P_kappa->[2j-1], diagonal even) is LITERALLY Theorem SR_LG = q488-oc-integer-strict-reciprocity, proved PROVE 254 (proofs/2026-10-25-crownF-strict-reciprocity.md §4) given G0,G1,BR, with no LS-model dependency. Only even M covered (odd M = q488-oc-HZ-half-integer-law).",
           "note_dream255": "Dream 255 hygiene: replaced stale conditional_grade 'conditional on ls-parity-model' (Wake 251 wording; dependency was reversed by Dream 254/Corollary M). The 'approach' text's 'graded computed because the model is' is historical."
          },
          {
@@ -975,7 +975,7 @@
             "children": [],
             "gap": "DISCHARGED Wake 253 (2026-10-23). Original gap: 1005.2605 extraction = abstract only; not deep-read (no-browse session). Must confirm BR 'rim' excludes diagonal 3-box {(r,r),(r,r+1),(r+1,r+1)} (would break Lemma Ch). Resolution: BR's rim = no two boxes in strictly-SE position, which excludes it.",
             "trust_before_2026_10_23_wake253": "computed",
-            "note_2026_10_23_wake253": "UPGRADED computed->proved: literature citation verified first-hand from arXiv:1005.2605 v1 LaTeX source (kpieri.tex, 2010-05-14). Locators: BR \u00a74, def. of rim ('the set of boxes B in theta such that no box of theta is located strictly south and strictly east of B ... theta is a rim if theta-bar = empty'); \u00a75 Cor 5.4 (c^nu_{lam,p} = C(nu/lam,p)); \u00a75 Thm 5.5 ('If theta is not a rim then C(theta,p)=0'); \u00a75 Cor 5.6 (c^nu_{lam,p} = (-1)^{|nu/lam|-p} #KLG-tableaux of shape nu/lam, content {1..p}; KLG rows/cols strictly increasing, labels 1'<1<2'<2<...). p=1: labels in {1',1} => <=2 boxes per row/col. Transfer to dimension indexing by Lemma S (proved). Quotes recorded in the proof file \u00a78. 'proved' here means: cited statement read literally, not re-proved."
+            "note_2026_10_23_wake253": "UPGRADED computed->proved: literature citation verified first-hand from arXiv:1005.2605 v1 LaTeX source (kpieri.tex, 2010-05-14). Locators: BR §4, def. of rim ('the set of boxes B in theta such that no box of theta is located strictly south and strictly east of B ... theta is a rim if theta-bar = empty'); §5 Cor 5.4 (c^nu_{lam,p} = C(nu/lam,p)); §5 Thm 5.5 ('If theta is not a rim then C(theta,p)=0'); §5 Cor 5.6 (c^nu_{lam,p} = (-1)^{|nu/lam|-p} #KLG-tableaux of shape nu/lam, content {1..p}; KLG rows/cols strictly increasing, labels 1'<1<2'<2<...). p=1: labels in {1',1} => <=2 boxes per row/col. Transfer to dimension indexing by Lemma S (proved). Quotes recorded in the proof file §8. 'proved' here means: cited statement read literally, not re-proved."
            },
            {
             "id": "q488-oc-Ind-chain-drop",
@@ -984,11 +984,11 @@
             "file": "proofs/2026-10-24-integer-window-and-OG-twin.md",
             "sources": [],
             "depends_on": [],
-            "approach": "Lemma Ch' (I file \u00a75; generalises Lemma Ch of the Z file \u00a73): if theta=D(kappa)\\D(rho) has no strictly-SE pair and <=2 boxes/row/col then EVERY chain of the FULL diagram D(kappa) meets theta in <=2 boxes, so r(rho) >= r(kappa)-2 with r = longest chain of the full shifted diagram (the form Theorem I draws on). The Z file's original statement was the primed form r'(rho) >= r'(kappa)-2 (rows>=1); its proof never uses row 0, so it gives the full form verbatim. Checked: Z file 3801/3801 admissible pairs m<=8 (primed); drop.py 1337 LG-admissible pairs m=7 (full form), max drop exactly 2. Sharp.",
+            "approach": "Lemma Ch' (I file §5; generalises Lemma Ch of the Z file §3): if theta=D(kappa)\\D(rho) has no strictly-SE pair and <=2 boxes/row/col then EVERY chain of the FULL diagram D(kappa) meets theta in <=2 boxes, so r(rho) >= r(kappa)-2 with r = longest chain of the full shifted diagram (the form Theorem I draws on). The Z file's original statement was the primed form r'(rho) >= r'(kappa)-2 (rows>=1); its proof never uses row 0, so it gives the full form verbatim. Checked: Z file 3801/3801 admissible pairs m<=8 (primed); drop.py 1337 LG-admissible pairs m=7 (full form), max drop exactly 2. Sharp.",
             "script": "work-in-progress/scripts/wake252/caseB/prove252_rimlemma.py",
             "wip_commit": "1036afe",
             "children": [],
-            "note_2026_10_25_uid457": "Recording fix (Clio uid457 F3): the node previously recorded only the primed form r'; Theorem I uses the full-diagram r form (Lemma Ch'). Clio verified the generalisation directly and confirmed by reading that Lemma Ch's proof never uses row 0. This was a recording gap, not a mathematical one. Original file: proofs/2026-10-24-Z-by-hyperplane-induction.md \u00a73."
+            "note_2026_10_25_uid457": "Recording fix (Clio uid457 F3): the node previously recorded only the primed form r'; Theorem I uses the full-diagram r form (Lemma Ch'). Clio verified the generalisation directly and confirmed by reading that Lemma Ch's proof never uses row 0. This was a recording gap, not a mathematical one. Original file: proofs/2026-10-24-Z-by-hyperplane-induction.md §3."
            },
            {
             "id": "q488-oc-Z-by-induction",
@@ -1010,7 +1010,7 @@
             "children": [],
             "conditional_grade": "proved given (G0) Chevalley + (G1) Demazure + (BR) 1005.2605 first-hand (G0 back-ported 9d306cd per Clio F1)",
             "trust_before_2026_10_23_wake253": "computed",
-            "note_2026_10_23_wake253": "UPGRADED computed->proved given G1 (standard: Demazure character formula/Kempf vanishing) + BR (first-hand Wake 253). Lemma Ch already used BR's strictly-SE rim definition; proof unchanged; file \u00a71/\u00a73 remark/\u00a76/\u00a78 updated with verbatim locators. Covers the ZERO half (Z) only; (NZ) open.",
+            "note_2026_10_23_wake253": "UPGRADED computed->proved given G1 (standard: Demazure character formula/Kempf vanishing) + BR (first-hand Wake 253). Lemma Ch already used BR's strictly-SE rim definition; proof unchanged; file §1/§3 remark/§6/§8 updated with verbatim locators. Covers the ZERO half (Z) only; (NZ) open.",
             "note_prove258": "Printed proof (before PROVE 258) used eq:hyperplane + lem:chaindrop with c_rho!=0 => no 3-chain via thm:Q30 (q488-oc-support-rule-BR / Q30, BR). Draft rewritten: (*) at x=M/2 + chain drop for V(theta)!=0 (lem:R). Also Z = vanishing half of HZ(i). BR-free."
            },
            {
@@ -1106,7 +1106,7 @@
             "script": "work-in-progress/scripts/prove253/check.py, mono.py, drop.py, strip.py, negctl.py",
             "children": [],
             "wip_commit": "ecace5e",
-            "note_2026_10_25_uid457": "conditional_grade text superseded: Cor pieriCtab (BR Cor 5.6, reader-left) is no longer used; Lemma A(iii) goes through Theorem Q30 (crownF \u00a73.3, from BR Thm 5.5, proved in BR; Clio refereed conclusion 1243/1243). I file \u00a710 gap 2 updated.",
+            "note_2026_10_25_uid457": "conditional_grade text superseded: Cor pieriCtab (BR Cor 5.6, reader-left) is no longer used; Lemma A(iii) goes through Theorem Q30 (crownF §3.3, from BR Thm 5.5, proved in BR; Clio refereed conclusion 1243/1243). I file §10 gap 2 updated.",
             "note_prove258": "LG half rewritten with coefficients a_rho=V(theta) of (*) and lem:A(ii) as V(T_t*)!=0 (lem:R): BR-free on LG. OG half still uses BR Lemma 4.5 (lem:og-corners) via support-rule-BR. Edge to q488-oc-star-BR-free deliberately not added (either proof of (*) serves; adding it closes a registry cycle through ls-parity-model)."
            },
            {
@@ -1166,11 +1166,11 @@
               "sources": [
                "1005.2605"
               ],
-              "approach": "PROVE 256 (CHECK 2): in BR's coordinates (T diagonal, B upper-triangular), X_kappa = X^{kappa^vee}(E_bullet) exactly: T-fixed point V_mu lies in X^lambda (dim(V_mu \u2229 E_{m+1-lambda_k}) = k), both irreducible of dim |kappa|. Same for OG. Printed as draft Lemma 2.4 lem:dictionary.",
+              "approach": "PROVE 256 (CHECK 2): in BR's coordinates (T diagonal, B upper-triangular), X_kappa = X^{kappa^vee}(E_bullet) exactly: T-fixed point V_mu lies in X^lambda (dim(V_mu ∩ E_{m+1-lambda_k}) = k), both irreducible of dim |kappa|. Same for OG. Printed as draft Lemma 2.4 lem:dictionary.",
               "script": "work-in-progress/scripts/prove256/dict_test.py",
               "note": "PDF-is-the-claim test: printed Table 1 + printed Q30 + BR Thm 5.5 implemented from its printed recursion: hyperplane identity 8/8 at m=3; negative control (poset automorphism (3)<->(2,1)) fails 3/8. Replaces the 46-case computational-only support from the draft's old Remark rem:indexing.",
               "children": [],
-              "locator": "BR \u00a74 (OG Schubert def), \u00a75 (LG form, X^lambda(E_bullet), codim |lambda|); read first-hand from v1 TeX, papers/br-1005.2605-kpieri.tex"
+              "locator": "BR §4 (OG Schubert def), §5 (LG form, X^lambda(E_bullet), codim |lambda|); read first-hand from v1 TeX, papers/br-1005.2605-kpieri.tex"
              }
             ],
             "trust_before_prove254": "computed",
@@ -1183,9 +1183,7 @@
             "role": "attempt",
             "trust": "proved",
             "file": "proofs/2026-10-25-crownF-strict-reciprocity.md",
-            "sources": [
-             "1005.2605"
-            ],
+            "sources": [],
             "depends_on": [
              "q488-oc-thmA-half",
              "q488-oc-star-BR-free",
@@ -1197,7 +1195,8 @@
             "verification": "halfthm.py: Demazure (type C, interpolated to -a-1/2) vs sum_g Phi, all kappa m<=4, a<=5: 125/125; Lemma 9.5 pointwise 477/477 (m<=4). rowform.py 155/155. Hypothesis (H) load-bearing: Phi<0 without it.",
             "children": [],
             "wip_commit": "f17e0cf",
-            "note_prove258": "Q30 edge replaced by q488-oc-star-BR-free: (*) is the only BR input of HZ; draft rem:deps."
+            "note_prove258": "Q30 edge replaced by q488-oc-star-BR-free: (*) is the only BR input of HZ; draft rem:deps.",
+            "note_2026_10_27_prove260": "PROVE 260: sources 1005.2605 removed -- the route used in the FPSAC cut (work-in-progress/papers/lg-og-fpsac-cut, Thm 1.5) is (G1)+(LS) only, via q488-oc-star-BR-free; BR enters only the historical Q30 derivation."
            },
            {
             "id": "q488-oc-star-BR-free",
@@ -1208,7 +1207,7 @@
             "depends_on": [
              "q488-oc-SR_LG-via-LS-paths"
             ],
-            "approach": "(*) on LG, s_{x+1}=A_oA_e s_x, WITHOUT BR: thm:main(b) from \u00a73 (LS route) gives s_j=N_kappa(j) for all integers j>=1 and all kappa (no kappa-dependent range; kappa=empty included); lem:peel (pure counting) is (*) at every integer j>=1; both sides polynomial in x (finite sum, H_rho polynomials) => identity for all x. Draft: proof after the second proof of thm:main + rem:deps in sec:half. Consequence: HZ, Cor OC (Thm B), prop:T(a), thm:Z (rerouted via (*) + chain drop for V(theta)!=0 by lem:R), both proofs of thm:window on LG are (G1)+(LS) only; no BR, no G0. Does NOT recover Q30: (*)+eq:hyperplane only gives sum (c_rho - (-1)^{|theta|-1}V) H_rho = 0 and {H_rho: rho<kappa} is dependent already at kappa=(3,1).",
+            "approach": "(*) on LG, s_{x+1}=A_oA_e s_x, WITHOUT BR: thm:main(b) from §3 (LS route) gives s_j=N_kappa(j) for all integers j>=1 and all kappa (no kappa-dependent range; kappa=empty included); lem:peel (pure counting) is (*) at every integer j>=1; both sides polynomial in x (finite sum, H_rho polynomials) => identity for all x. Draft: proof after the second proof of thm:main + rem:deps in sec:half. Consequence: HZ, Cor OC (Thm B), prop:T(a), thm:Z (rerouted via (*) + chain drop for V(theta)!=0 by lem:R), both proofs of thm:window on LG are (G1)+(LS) only; no BR, no G0. Does NOT recover Q30: (*)+eq:hyperplane only gives sum (c_rho - (-1)^{|theta|-1}V) H_rho = 0 and {H_rho: rho<kappa} is dependent already at kappa=(3,1).",
             "conditional_grade": "proved given (G1), (LS) (via q488-oc-SR_LG-via-LS-paths); lem:peel combinatorial",
             "script": "work-in-progress/scripts/prove258/star_poly.py, indep.py",
             "verification": "star_poly.py: (*) as a polynomial identity from type-C Demazure Hilbert polynomials, V brute-forced (no BR/Q30 code): m=2,3,4 (4,8,16 shapes) 0 failures. Negative control: +1 on any single V entry is caught at an integer j>=1 in 6/6, 27/27, 110/110 cases (first failure j<=m). indep.py: dependent {H_rho: rho<kappa} at m=3: (3,1),(3,2),(3,2,1); m=4: 10 shapes.",
@@ -1345,7 +1344,7 @@
           "trust_before_prove254": "computed",
           "conditional_grade": "proved given (G1), (LS) (via HZ, BR-free since PROVE 258)",
           "wip_commit": "f17e0cf",
-          "note_prove256": "Derivation now written in crownF \u00a79.6 (Theorem B bullet) and printed as draft Corollary cor:OC; no longer lives only in note_prove254."
+          "note_prove256": "Derivation now written in crownF §9.6 (Theorem B bullet) and printed as draft Corollary cor:OC; no longer lives only in note_prove254."
          },
          {
           "id": "q488-oc-lemma-Q-purity",
@@ -1424,9 +1423,10 @@
           "depends_on": [
            "q488-oc-Q30-KLG-strict-fillings",
            "q488-oc-anchor-H-minus-1",
-           "q488-oc-Zint-by-induction"
+           "q488-oc-Zint-by-induction",
+           "q488-oc-SR_LG-via-LS-paths"
           ],
-          "approach": "LG integer window: the integer zero set of H_kappa is exactly {-1,...,-ceil(r/2)} (r = longest chain in the FULL shifted diagram), 127/127 at m=7. Integer strict reciprocity: H_kappa(-j) = (-1)^{|kappa|} #{strictly order-preserving maps P_kappa -> [2j-1] with even values on diagonal boxes}, j=1..2m+1, 127/127 at m=7. Consistent with sec. 7 gap 4 of proofs/2026-10-23-odd-zero-law.md (H_nu(-b)=0 for 1<=b<=floor((r+1)/2)). Reads as Stanley reciprocity for the LS-parity order-quasi-polynomial model (integer analogue of q488-oc-even-reciprocity). PROVED as Theorem SR_LG: proofs/2026-10-25-crownF-strict-reciprocity.md \u00a74 (given G0,G1,BR) and \u00a711 (BR-free, given G1',LS); the 127/127 counts are the computed check.",
+          "approach": "LG integer window: the integer zero set of H_kappa is exactly {-1,...,-ceil(r/2)} (r = longest chain in the FULL shifted diagram), 127/127 at m=7. Integer strict reciprocity: H_kappa(-j) = (-1)^{|kappa|} #{strictly order-preserving maps P_kappa -> [2j-1] with even values on diagonal boxes}, j=1..2m+1, 127/127 at m=7. Consistent with sec. 7 gap 4 of proofs/2026-10-23-odd-zero-law.md (H_nu(-b)=0 for 1<=b<=floor((r+1)/2)). Reads as Stanley reciprocity for the LS-parity order-quasi-polynomial model (integer analogue of q488-oc-even-reciprocity). PROVED as Theorem SR_LG: proofs/2026-10-25-crownF-strict-reciprocity.md §4 (given G0,G1,BR) and §11 (BR-free, given G1',LS); the 127/127 counts are the computed check.",
           "note_depends_on": "PROVE 254: LS-parity model dependency REMOVED. Proof = (*) (from G0 + BR sign) unrolled: Lemma 4.1 (peel top pair {2j,2j+1}: preimage is an up-set, restriction is a V-map) gives the same recursion as (*) once |c_rho|=V(theta) (Q30); anchor N_kappa(1)=delta=s_1. q488-oc-Zint-by-induction is cited only for (*) itself.",
           "script": "work-in-progress/scripts/prove254/srcheck.py",
           "wip_commit": "f17e0cf",
@@ -1437,7 +1437,8 @@
           "trust_before_prove254": "computed",
           "conditional_grade": "proved given (G0), (G1), (BR first-hand)",
           "note_prove254": "Theorem SR_LG, file Sec.4. Independent check: Demazure at negative weights vs brute-force strict counts, m=2..5, j=1..4: 16/32/64/128, 0 failures (scripts/prove254/srcheck.py). Negative controls ([2j], no diag parity) fail 34/64.",
-          "note_prove255": "Second, BR-free proof: \u00a711 of the file (model via LS paths + Ehrhart-Macdonald); registry node q488-oc-SR_LG-via-LS-paths (PROVED 2026-10-25 given (G1'),(LS), Q39 locator: Littelmann Invent. Math. 116 (1994) \u00a75.2 [secondary locator], statement read first-hand in Proc. ICM 1994 p.305; was 'computed, pending Littelmann deep-read' at PROVE 255). \u00a73.3 no longer load-bearing for SR_LG under that route."
+          "note_prove255": "Second, BR-free proof: §11 of the file (model via LS paths + Ehrhart-Macdonald); registry node q488-oc-SR_LG-via-LS-paths (PROVED 2026-10-25 given (G1'),(LS), Q39 locator: Littelmann Invent. Math. 116 (1994) §5.2 [secondary locator], statement read first-hand in Proc. ICM 1994 p.305; was 'computed, pending Littelmann deep-read' at PROVE 255). §3.3 no longer load-bearing for SR_LG under that route.",
+          "note_2026_10_27_prove260": "PROVE 260: the FPSAC cut proves this as Thm 1.1(b) by the BR-free route q488-oc-SR_LG-via-LS-paths (crownF sec.11: LS-parity model + Ehrhart-Macdonald). The Q30 dependency is the historical K-theoretic proof (not in the cut). The 127/127 counts are the computed check, not the proof."
          },
          {
           "id": "q488-oc-ZOG-by-induction",
@@ -1534,7 +1535,7 @@
             "children": []
            }
           ],
-          "note_wake255": "Q34 REFUTED (computed N<=4, WIP f3918f0 scripts/wake255/compare_T_MN.py): T is NOT shifted Murnaghan\u2013Nakayama. Agree only at r=1; on one-diagonal ribbons |T|=2^{1-r}|MN| but signs agree 4/8; MN nonzero on off-diag and two-diag strips where T=0; T nonzero on disconnected shapes where MN=0; log T not prop. to MN.",
+          "note_wake255": "Q34 REFUTED (computed N<=4, WIP f3918f0 scripts/wake255/compare_T_MN.py): T is NOT shifted Murnaghan–Nakayama. Agree only at r=1; on one-diagonal ribbons |T|=2^{1-r}|MN| but signs agree 4/8; MN nonzero on off-diag and two-diag strips where T=0; T nonzero on disconnected shapes where MN=0; log T not prop. to MN.",
           "note_wake257": "Tex-statement fix (WIP f7ecdee, scripts/wake257-conjT/check_conjT.py): printed conj:T(b) had dropped the (-1)^{|D|} factor (+-2^{-|D|}) and omitted the zero cases; old printed rule 1372/1716 at m<=6 (98/126 at m=4 literal; 106/126 if non-ribbons read as 0). New printed text: component weight 1 (off-diag singleton), 0 (off-diag >=2 boxes; >=2 diagonal boxes; one diagonal box but contains a 2x2), eps(-1/2)^{|D|} for a ribbon with one diagonal box (eps=+1 iff left nbr of NE end in D). Re-implemented literally from the new text, T computed independently from A_o,A_e: 1716/1716 m<=6; negative control (unsigned, no 2x2 zero) 1417/1716; T s_0=s_{1/2} verified m<=6. Trust unchanged (computed).",
           "note_prove257": "PROVED (PROVE 257). conj:T is now Proposition prop:T in sec:half (ssec:halfstep) of the LG/OG draft. Route: A_e=S zeta^{-1} S, A_o=S zeta_o^{-1} S (Moebius, proved inline); explicit X (delete part kappa_{r0} at cost 2^{-kappa_{r0}}, shrink tail, length drop 1) and P (same, any length drop, positive); first-row recursions give X zeta = zeta_o P and XP=I by induction on length; so T = S zeta_o^{-1} X S squares to A_oA_e (unique unitriangular root); (a) from T~zeta=P column (), (b) by inclusion-exclusion over removable maximal boxes + sign-reversing toggle at the lowest 2x2 overlap row (non-ribbons) and S in {empty,{e}} (ribbons). Inputs: lem:layers(a), lem:anchor, thm:A (only for (a)). Verified m<=8 all identities; control fails all.",
           "depends_on": [
@@ -1554,7 +1555,7 @@
            "1005.2605"
           ],
           "depends_on": [],
-          "approach": "OG Pieri input (cited literature): Buch-Ravikumar 1005.2605 \u00a74, Lemma 4.5 (\\label{vanishB}): (a) theta not a rim => B(theta,p)=0; (b) a row/column of theta with a boxes => B(theta,p)=0 for p<a; (c) theta a rook strip => B(theta,1)=(-1)^{|theta|-1}; with the unlabelled corollary after eq. (hsumB) (c^nu_{lam,p} = B(nu/lam,p), = BR Cor 4.4 per Clio). Dimension-indexed via Lemma S: on OG, c_rho != 0 => theta rook strip (antichain), and c_rho = (-1)^{|theta|-1} for every rook strip. Used in I file Lemma 2 (OG) and Lemma A(iv).",
+          "approach": "OG Pieri input (cited literature): Buch-Ravikumar 1005.2605 §4, Lemma 4.5 (\\label{vanishB}): (a) theta not a rim => B(theta,p)=0; (b) a row/column of theta with a boxes => B(theta,p)=0 for p<a; (c) theta a rook strip => B(theta,1)=(-1)^{|theta|-1}; with the unlabelled corollary after eq. (hsumB) (c^nu_{lam,p} = B(nu/lam,p), = BR Cor 4.4 per Clio). Dimension-indexed via Lemma S: on OG, c_rho != 0 => theta rook strip (antichain), and c_rho = (-1)^{|theta|-1} for every rook strip. Used in I file Lemma 2 (OG) and Lemma A(iv).",
           "conditional_grade": "proved = cited statement read literally from the BR v1 LaTeX source (first-hand, Wake 253); BR prove Lemma 4.5 in full. Clio (uid457) reconstructed the theorem counter: vanishB = Lemma 4.5.",
           "date": "2026-10-25",
           "origin": "Clio uid457 F3: OG Pieri input previously lived only in prose strings of q488-oc-ZOG-by-induction",
@@ -1569,7 +1570,7 @@
           "depends_on": [
            "q488-oc-OG-vanishB-BR"
           ],
-          "approach": "Lemma Ch' (OG half, I file \u00a75): if c_rho != 0 on OG then theta = D(kappa)\\D(rho) is a rook strip, hence an antichain (Lemma 2, antichain argument), so a longest chain C of D(kappa) meets theta in <=1 box and C\\theta is a chain of D(rho): r(rho) >= r(kappa)-1. Pure combinatorics given vanishB.",
+          "approach": "Lemma Ch' (OG half, I file §5): if c_rho != 0 on OG then theta = D(kappa)\\D(rho) is a rook strip, hence an antichain (Lemma 2, antichain argument), so a longest chain C of D(kappa) meets theta in <=1 box and C\\theta is a chain of D(rho): r(rho) >= r(kappa)-1. Pure combinatorics given vanishB.",
           "evidence": "drop.py: 0 violations over 449 OG-admissible pairs at m=7, max drop exactly 1 (sharp); Clio independently gets 449 at m=7.",
           "script": "work-in-progress/scripts/prove253/drop.py",
           "date": "2026-10-25",
@@ -1580,7 +1581,7 @@
           "id": "q488-degree-identity",
           "role": "attempt",
           "trust": "computed",
-          "file": "writing/lg-og-negative-degree/main.tex (Remark rem:degrees, Rem 3.6)",
+          "file": "work-in-progress/papers/lg-og-negative-degree/main.tex",
           "sources": [],
           "depends_on": [
            "q488-oc-ls-parity-model",
@@ -1592,7 +1593,9 @@
           "verification": "All 57 strict kappa, m<=5, three routes incl. type-C Chevalley chains independent of the paper: PASS.",
           "wip_commit": "3395ab8",
           "date": "2026-10-26",
-          "note": "Thm 1.1 node = q488-oc-ls-parity-model (statement (a)/(c)) with BR-free proof q488-oc-SR_LG-via-LS-paths; Thm 1.3 node = q488-oc-OG-strict-count. Q-tilde = 2^l P-tilde (Pragacz) refinement question left open in the remark."
+          "note": "Thm 1.1 node = q488-oc-ls-parity-model (statement (a)/(c)) with BR-free proof q488-oc-SR_LG-via-LS-paths; Thm 1.3 node = q488-oc-OG-strict-count. Q-tilde = 2^l P-tilde (Pragacz) refinement question left open in the remark.",
+          "children": [],
+          "file_locator": "Remark rem:degrees (Rem 3.6)"
          }
         ],
         "note_2026_10_22_wake251": "Wake 251: H_kappa modelled by LS parity order-quasi-polynomial (computed m<=5); strip -(r+1)/2<=Re j<-1/2 computed m<=7; even-M reciprocity = Ehrhart-Macdonald for Q_kappa; odd-zero law (computed m<=6) implies (OC) -- live target. Root-multiset route dead. Node stays in-progress.",
@@ -1603,24 +1606,24 @@
         "id": "clio-23-tie-two-term-residue",
         "role": "premise",
         "trust": "checked-sober",
-        "claimed_by": "Clio \u2014 UID 438 (2026-10-22), peers/clio/emails/2026-10-23-uid438-review-Pinf-endorsed-23tie-residue-MNS-retracted.md, review PDF \u00a73",
+        "claimed_by": "Clio — UID 438 (2026-10-22), peers/clio/emails/2026-10-23-uid438-review-Pinf-endorsed-23tie-residue-MNS-retracted.md, review PDF §3",
         "file": "peers/clio/proofs/2026-10-22-review-rick.pdf",
         "sources": [],
         "approach": "lambda=(2,3) u->oo recurring tie, all S: 1 - Psi_{(2),0}(S) = e_S^{-2} + w_1 Psi_{(1),-1}(S). Clio's proof: one-head collapse Psi_{(s),t}(S) = e_S^{-1} Phi[z^{t-s} prod_{k<s}(z-w_k) P(z)], P = prod_{t in S}(w_t z - 1), Phi[g] = sum_m g(w_m)/prod_{t!=m}(w_m-w_t); w_1 cancels, tie <=> Phi[P/z] = e_S - 1/e_S; residue theorem on R = P/(zD): Res_0 = 1/e_S, Res_inf = -e_S.",
         "recheck": "2026-10-23 Wake 252 (Rick re-derived every step: collapse from S_0^M({m}) incl. (1-x^-2)prod(x-1/w_t)/(x-w_t) = P(x)/(x e_S prod_{t!=m}(x-w_t)); w_1 cancellation = linearity of Phi; Res_0, Res_inf, sum of residues). Scripts work-in-progress/scripts/wake252/clio438/tie23.py (own primitive Psi, agrees with q532.Psi 27/27): collapse 75 cases symbolic, tie symbolic |S|<=4, residues symbolic, tie exact 24/24 on 12 S incl. Clio's ten, 21/21 breaking controls fire (drop Res_0, flip Res_0 sign, wrong Res_inf power, e^-1, w_2, twist -2, machine without Res_inf).",
-        "note": "Second proof from Rick's own proved lemmas (tie23_direct.py, symbolic 4/4): label lowering rho_2 = 1 - w_1/x gives Psi_{(2),0} = Psi_{(1),0} - w_1 Psi_{(1),-1}, and the (1)-identity (P1, r=1) gives Psi_{(1),0} = 1 - e_S^{-2}. Clio's w_1-cancellation IS this label lowering. Rick's 10-21 file \u00a72 (after Cor I2) already stated this via iota, but the registry still read 'no single-instance fit', which is why Clio saw it graded computed. Eligible for 'proved' on the label-lowering route; held at checked-sober as the peer-claim grade per house rule.",
+        "note": "Second proof from Rick's own proved lemmas (tie23_direct.py, symbolic 4/4): label lowering rho_2 = 1 - w_1/x gives Psi_{(2),0} = Psi_{(1),0} - w_1 Psi_{(1),-1}, and the (1)-identity (P1, r=1) gives Psi_{(1),0} = 1 - e_S^{-2}. Clio's w_1-cancellation IS this label lowering. Rick's 10-21 file §2 (after Cor I2) already stated this via iota, but the registry still read 'no single-instance fit', which is why Clio saw it graded computed. Eligible for 'proved' on the label-lowering route; held at checked-sober as the peer-claim grade per house rule.",
         "children": []
        },
        {
         "id": "clio-one-head-residue-machine",
         "role": "premise",
         "trust": "checked-sober",
-        "claimed_by": "Clio \u2014 UID 438 review PDF \u00a73 ('general machine')",
+        "claimed_by": "Clio — UID 438 review PDF §3 ('general machine')",
         "file": "peers/clio/proofs/2026-10-22-review-rick.pdf",
         "sources": [],
         "approach": "e_S Psi_{(s),t}(S) = -Res_0 R - Res_inf R, R = z^{t-s} prod_{k<s}(z-w_k) P(z)/D(z), all s>=1, t in Z.",
         "recheck": "2026-10-23 Wake 252: follows from the one-head collapse + residue theorem (poles only at w_m, 0, inf; generic distinct nonzero w). Exact 60/60 (3 S, s<=4, t in {-3,-1,0,2,3}); control (drop Res_inf) fires 3/3.",
-        "note": "This is Lemma Lambda (proofs/2026-10-20-dual-block-identity.md \u00a74) at r=1: z^{-1}G_M(z) = P(z)/(e_S z D(z)), and Res_{w_m} z^{-1}G_M f = S_0^M({m}) f(w_m). So it is a re-discovery of Rick's own proved lemma (10-20), with Clio's normalisation. Lemma Lambda is already the multi-head lift (Q551).",
+        "note": "This is Lemma Lambda (proofs/2026-10-20-dual-block-identity.md §4) at r=1: z^{-1}G_M(z) = P(z)/(e_S z D(z)), and Res_{w_m} z^{-1}G_M f = S_0^M({m}) f(w_m). So it is a re-discovery of Rick's own proved lemma (10-20), with Clio's normalisation. Lemma Lambda is already the multi-head lift (Q551).",
         "children": []
        },
        {
@@ -1630,14 +1633,14 @@
         "file": "proofs/2026-10-21-symbol-theorem-inversion-duality.md",
         "sources": [],
         "approach": "Q552 (Clio): which lambda have a head/tail tie on the u->oo single-child chain of F_lambda? Conjecture: iff some maximal consecutive block of lambda at positions p..q has lambda_p <= q (i.e. lambda_p - p < block length). Whole block (s..s+b-1): iff s <= b (s=1 at step 1 = P1-inf; 2<=s<=b at the stage with b-s+1 labels left). On G (all blocks singletons) only lambda_1 = 1, the (1)-identity base, already resolved by P1 r=1.",
-        "note": "Wake 252, work-in-progress/scripts/wake252/clio438/q552.py: order-bookkeeping model (Cor I1: head j order th_j-(r-j), tail -r, P-inf normalisation first, cross-block head/head ties taken as formal) \u2014 1485/1485 lambda subset [11], len<=6 agree with the predicate. Node orders vs exact u->oo degree 9/9 (q552deg.py, incl. 6 tie nodes, no cancellation). Not proved: the model assumes tie sums never cancel and cross-block head ties are formal (Theorem S), and M large. Clio's 'no tie can recur on G' needs the lambda_1=1 caveat.",
+        "note": "Wake 252, work-in-progress/scripts/wake252/clio438/q552.py: order-bookkeeping model (Cor I1: head j order th_j-(r-j), tail -r, P-inf normalisation first, cross-block head/head ties taken as formal) — 1485/1485 lambda subset [11], len<=6 agree with the predicate. Node orders vs exact u->oo degree 9/9 (q552deg.py, incl. 6 tie nodes, no cancellation). Not proved: the model assumes tie sums never cancel and cross-block head ties are formal (Theorem S), and M large. Clio's 'no tie can recur on G' needs the lambda_1=1 caveat.",
         "children": []
        },
        {
         "id": "clio-Q553-vanishing-converse-Q559",
         "role": "attempt",
         "trust": "peer-claimed",
-        "claimed_by": "Clio \u2014 UID 450 (2026-10-23), peers/clio/emails/2026-10-24-uid450-Q559-closed-vanishing-criterion-Xi-rename-Dprime-path.md",
+        "claimed_by": "Clio — UID 450 (2026-10-23), peers/clio/emails/2026-10-24-uid450-Q559-closed-vanishing-criterion-Xi-rename-Dprime-path.md",
         "file": "peers/clio/proofs/2026-10-23-Q559-vanishing-converse.pdf",
         "sources": [],
         "approach": "Clio: Q559 closed YES. For n >= r, Psi^C_{(1^r),theta}(M) = 0 iff m_j = m_k for some j<k, m_j = theta_j + j - 1; zero locus in theta = union of the binom(r,2) hyperplanes theta_j - theta_k = k - j. Leading-term argument in w_n plus the reflection w -> 1/w (m -> -m), essential on the residual class where the two blocks tie in order. Hypothesis n >= r is necessary (her Prop 13) and was missing from Q559 as posed 10-22; the 424/424 evidence drew n in r..r+2, so carried zero evidence on that axis.",
@@ -1648,7 +1651,7 @@
           "id": "clio-Q559-boundary-case-lean",
           "role": "attempt",
           "trust": "peer-claimed",
-          "claimed_by": "Clio \u2014 UID 454 (2026-10-24), peers/clio/emails/2026-10-24-uid454-Q569-PY-hexagon-vertex-star-Q559-boundary-lean-uid832-s6.md",
+          "claimed_by": "Clio — UID 454 (2026-10-24), peers/clio/emails/2026-10-24-uid454-Q569-PY-hexagon-vertex-star-Q559-boundary-lean-uid832-s6.md",
           "file": "peers/clio/proofs/2026-10-23-c2-lean-Q559-boundary-case.md",
           "sources": [],
           "approach": "Clio: Lean 4 (Mathlib v4.30.0), sorry-free, 21 decls: prop:boundary (|M| < r => Psi = 0, both head-injection pigeonhole and empty powersetCard forms) formalised; dropping n>=r is REFUTABLE (Lean derives False from r=1, M=empty), so n>=r necessary only for r>=1. Scope: determinant/alternant layer only; thm:alt and thm:main NOT formalised (thm:main enters as hypothesis).",
@@ -1666,31 +1669,31 @@
     "role": "attempt",
     "approach": "SHARED CITED ROOT (agreed with Clio, UIDs 421/422; Rick's Wake-248 note bf04c92): Motegi 2610.15344 Thm 4.18 (thm:BC-all-cardinality-biorthogonality, (A^X)^{-1}_{I,L} = q^{|lam(I)|-|lam(L)|} A^X_{L^c,I^c}(w,q^{-1})) via lem:allcard-Phihat-inverse (L4424-4432), whose proof rests on RTV stable-envelope uniqueness under U -> U^perp. Statement read first-hand by Rick (L4365-4411) and by Clio; the RTV uniqueness argument is UNREAD by both. Evidence: Rick exact checks of (D) N<=5 (1024/1024 at N=5); Clio independent symmetrisation-engine check 336/336, N<=3, both types (Delta^X_A = her Atilde_{A,A} by definition) -- discharges D-infinity Gap 1 for N<=3 only. No 'cited' grade exists in proofs/registry/README.md, so filed at peer-claimed. Underlies q488-qinf-D-infinity, q488-converse-all-N, q488-det-lemma-l-full (field depends_on) and Clio's inverse lemma / Q530.",
     "trust": "peer-claimed",
-    "claimed_by": "Motegi 2610.15344 Thm 4.18 / lem:allcard-Phihat-inverse (proof via RTV stable-envelope uniqueness). Clio (UIDs 422, 428) and Rick agree: peer-claimed in BOTH registries. Clio has READ the RTV STATEMENTS (RTV J. Geom. Phys. 94 (2015) Thm 6.6/(6.7), Thms 3.1, 6.7), NOT the proofs (RTV \u00a77.5); Rick has read neither. Evidence: Rick (D) N<=5 1024/1024; Clio 336/336 N<=3 and 340/340 N<=4 for her (6).",
+    "claimed_by": "Motegi 2610.15344 Thm 4.18 / lem:allcard-Phihat-inverse (proof via RTV stable-envelope uniqueness). Clio (UIDs 422, 428) and Rick agree: peer-claimed in BOTH registries. Clio has READ the RTV STATEMENTS (RTV J. Geom. Phys. 94 (2015) Thm 6.6/(6.7), Thms 3.1, 6.7), NOT the proofs (RTV §7.5); Rick has read neither. Evidence: Rick (D) N<=5 1024/1024; Clio 336/336 N<=3 and 340/340 N<=4 for her (6).",
     "file": "proofs/2026-10-18-q488-d-infinity.md",
     "sources": [
      "2610.15344"
     ],
     "children": [],
     "unpaid_steps_2026_10_21": [
-     "(i) RTV citations: statements read by Clio, proofs unread by both (RTV \u00a77.5).",
+     "(i) RTV citations: statements read by Clio, proofs unread by both (RTV §7.5).",
      "(ii) Motegi bookkeeping step (prop:allcard-Bhat-inverse, L5080/L5110): audited by Clio, re-derived by nobody."
     ],
     "note_2026_10_21": "Wake 249: agreed with Clio UID 428 (her G5 file, commit 6c48aff) to settle at peer-claimed with two explicit leaf debts above. Carry her retraction: 'every type-dependence localises at v=-1' is FALSE (her rows 3,4).",
-    "note_2026_10_22": "Clio UID 435 (G5 core, 97158d7): leaf debt (ii) (prop:allcard-Bhat-inverse bookkeeping L5263, plus lem:allcard-Bhat-product L4660) is now PROVED BY CLIO (Lemma 3, Lemma 6, Lemma 10, Thm 11, Cor 12; both types, all N) -- peer-claimed, not yet read by Rick, so not upgraded here. Remaining premises, named by Clio \u00a78: P1 = cross-sector branching formulas (type C L2920 -- Motegi gives a proof, derivation before L3203 unread by Clio and wholly unread by Rick; type B L3685 -- NO proof in the paper, L3598 'parallel ... omitted'), P2 = lem:allcard-Phihat-inverse L4425 (RTV Thm 6.6/(6.7), Thms 3.1/6.7: statements read by Clio, proofs unread; Motegi's derivation L4425-4657 unchecked). Rick's dependents use type C only, so the type-B omission does not reach them; P1(type C) + P2 do. Dependents downgraded proved->computed 2026-10-22: q488-qinf-D-infinity, q488-converse-all-N, q488-det-lemma-l-full, q488-phi-inf-dual-biorthogonality, q488-AC-uses-D (+ boundary: q488-qinf-dichotomy, q488-theorem-AC-top-pair).",
+    "note_2026_10_22": "Clio UID 435 (G5 core, 97158d7): leaf debt (ii) (prop:allcard-Bhat-inverse bookkeeping L5263, plus lem:allcard-Bhat-product L4660) is now PROVED BY CLIO (Lemma 3, Lemma 6, Lemma 10, Thm 11, Cor 12; both types, all N) -- peer-claimed, not yet read by Rick, so not upgraded here. Remaining premises, named by Clio §8: P1 = cross-sector branching formulas (type C L2920 -- Motegi gives a proof, derivation before L3203 unread by Clio and wholly unread by Rick; type B L3685 -- NO proof in the paper, L3598 'parallel ... omitted'), P2 = lem:allcard-Phihat-inverse L4425 (RTV Thm 6.6/(6.7), Thms 3.1/6.7: statements read by Clio, proofs unread; Motegi's derivation L4425-4657 unchecked). Rick's dependents use type C only, so the type-B omission does not reach them; P1(type C) + P2 do. Dependents downgraded proved->computed 2026-10-22: q488-qinf-D-infinity, q488-converse-all-N, q488-det-lemma-l-full, q488-phi-inf-dual-biorthogonality, q488-AC-uses-D (+ boundary: q488-qinf-dichotomy, q488-theorem-AC-top-pair).",
     "unpaid_steps_2026_10_22": [
      "(i) P2: RTV statements read by Clio, proofs unread by both; Motegi's derivation of lem:allcard-Phihat-inverse (L4425-4657) checked by nobody.",
      "(ii) DISCHARGED by Clio 97158d7 (peer-claimed): prop:allcard-Bhat-inverse via T^1=delta; Rick has not read it.",
      "(iii) P1 (new explicit leaf): eq:typeC-cross-sector-branching L2920 and the factorisation L4358; type-C proof exists in Motegi, unread by Rick."
     ],
-    "note_2026_10_22_prove250": "No longer load-bearing: (D) proved Motegi-free (Theorem D\u2032, proofs/2026-10-22-dfree-biorthogonality.md). Kept as the alternative (full-q) route; grade unchanged (peer-claimed)."
+    "note_2026_10_22_prove250": "No longer load-bearing: (D) proved Motegi-free (Theorem D′, proofs/2026-10-22-dfree-biorthogonality.md). Kept as the alternative (full-q) route; grade unchanged (peer-claimed)."
    },
    {
     "id": "clio-sa-prop-A-no-converse",
     "role": "attempt",
     "approach": "Clio prop:A (UID 422, clio-vega/proofs@6fad30c): on the A-type family of S/A divisors at full q there is NO converse -- the collision multiplier is 1 for every unit of the A-type GKM ring, so no renormalisation produces an A-type pole ('pole <=> condition' has RHS identically false). Corrects Rick's grouping: 'S/A' is two families. Clio grades proved. Open gaps in her doc: G1 (Hyp L^S, measured N<=4 only), G3 (type-B (BD), 34/34 N<=3 only); G2 bypassed. Rick to cold-read prop:A first (shortest).",
     "trust": "peer-claimed",
-    "claimed_by": "Clio \u2014 peers/clio/emails/2026-10-20-sa-divisors-full-q-converse-proved-two-families.md",
+    "claimed_by": "Clio — peers/clio/emails/2026-10-20-sa-divisors-full-q-converse-proved-two-families.md",
     "file": "peers/clio/proofs/2026-10-19-c2-sa-divisors-full-q.pdf",
     "sources": [
      "clio-vega/proofs@6fad30c 2026-10-19-c2-sa-divisors-full-q.tex",
@@ -1703,14 +1706,14 @@
     "role": "attempt",
     "approach": "Clio thm:S / thm:Sprime (UID 422, clio-vega/proofs@6fad30c): boundary (S) family of divisors at full q HAS a pole converse, with a quantifier over chi(epsilon) (forced: untwisted constants have no poles on this family). Clio grades proved IN TYPE C; CONDITIONAL ON G3 IN TYPE B (G3: (BD) type B measured 34/34 at N<=3 only). G1 (Hypothesis L^S, sharp triangularity after boundary restriction) OPEN: measured 699/699, plant 1179/1179, N<=4 only. G2 (non-cancellation at fixed chi) open, bypassed by the quantifier. Not type-uniform.",
     "trust": "peer-claimed",
-    "claimed_by": "Clio \u2014 peers/clio/emails/2026-10-20-sa-divisors-full-q-converse-proved-two-families.md",
+    "claimed_by": "Clio — peers/clio/emails/2026-10-20-sa-divisors-full-q-converse-proved-two-families.md",
     "file": "peers/clio/proofs/2026-10-19-c2-sa-divisors-full-q.pdf",
     "sources": [
      "clio-vega/proofs@6fad30c 2026-10-19-c2-sa-divisors-full-q.tex",
      "2610.15344"
     ],
     "children": [],
-    "note_2026_10_22": "Clio UID 436 (1b39268) claims G3 CLOSED: (BD) in type B proved all N (type-uniform ord formula, eq 5.1), so thm:S/thm:S' are claimed proved in BOTH types. Trust NOT changed (peer-claimed; Rick has not read 1b39268). Caveats carried: (a) her type-B input is Motegi's type-B diagonal L1305-1335, inside the subsection whose proofs Motegi omits (L1281) -- read first-hand by her, not re-derived (\u00a78); (b) per her UID 435 \u00a78, thm:S/thm:S' still rest on G5's premises P1 (cross-sector branching, type B L3685 has NO proof in Motegi) and P2 (Phihat inverse / RTV)."
+    "note_2026_10_22": "Clio UID 436 (1b39268) claims G3 CLOSED: (BD) in type B proved all N (type-uniform ord formula, eq 5.1), so thm:S/thm:S' are claimed proved in BOTH types. Trust NOT changed (peer-claimed; Rick has not read 1b39268). Caveats carried: (a) her type-B input is Motegi's type-B diagonal L1305-1335, inside the subsection whose proofs Motegi omits (L1281) -- read first-hand by her, not re-derived (§8); (b) per her UID 435 §8, thm:S/thm:S' still rest on G5's premises P1 (cross-sector branching, type B L3685 has NO proof in Motegi) and P2 (Phihat inverse / RTV)."
    },
    {
     "id": "q488-psi0-is-IN-GQ-at-fixed-points",
@@ -1725,13 +1728,13 @@
     "wip_commit": "5494e5b",
     "note": "Scripts: work-in-progress scripts/wake249/k0_gq_check.{py,txt} (WIP 5494e5b); engine work-in-progress/scripts/prove248/psi.py.",
     "children": [],
-    "note_2026_10_22_prove250": "Cor K (proved, proofs/2026-10-22-dfree-biorthogonality.md \u00a74): a^kappa_L = Psi_{kappa^c,0}(L^c)/prod(1-(u_ku_l)^{-1}). With AB localisation (cited, not deep-read) this gives Psi_{kappa^c,0}(L^c)=[O_{X_kappa}]|_L (Cor K'); plus IN 1112.5223 \u00a78.3 (not deep-read) gives K0. Grade stays computed (citations not deep-read)."
+    "note_2026_10_22_prove250": "Cor K (proved, proofs/2026-10-22-dfree-biorthogonality.md §4): a^kappa_L = Psi_{kappa^c,0}(L^c)/prod(1-(u_ku_l)^{-1}). With AB localisation (cited, not deep-read) this gives Psi_{kappa^c,0}(L^c)=[O_{X_kappa}]|_L (Cor K'); plus IN 1112.5223 §8.3 (not deep-read) gives K0. Grade stays computed (citations not deep-read)."
    },
    {
     "id": "clio-LS-hypothesis-proved-via-lemma-L",
     "role": "attempt",
     "trust": "peer-claimed",
-    "claimed_by": "Clio \u2014 UID 426 (2026-10-21), peers/clio/emails/2026-10-21-uid426-hypothesis-LS-proved-G1-closed.md",
+    "claimed_by": "Clio — UID 426 (2026-10-21), peers/clio/emails/2026-10-21-uid426-hypothesis-LS-proved-G1-closed.md",
     "file": "peers/clio/proofs/2026-10-20-hypothesis-LS.pdf",
     "sources": [],
     "approach": "Clio: Hypothesis L^S PROVED (G1 of her S/A-divisor converse closed): A>=B and m not in A ==> Atilde^X_{A,B}|_S != 0, all N, both types, all eps != 0. Mechanism = Rick's Lemma L (proofs/2026-10-18-q488-converse-order-q1.md L87-98) with constant spectators; her own Lemmas 2.1 (normaliser transfer N/(D0D1) to ord_S at full q), 2.2 (vanishing terms), 2.3 (ord_T = Pen(sigma)), 2.4 (unique dominant term); Rem 2.6: m in A not removable ((BD) gives ord=1).",

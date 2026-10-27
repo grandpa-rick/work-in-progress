@@ -1,5 +1,12 @@
 # FILL-PLAN: FPSAC 2027 cut, BR-free route (2026-10-27)
 
+**STATUS (PROVE 260, 2026-10-27): FILLED.** main.tex has 0 TODOs and 12 counted pp (body p1-11, refs end
+p12, ~6 lines of slack; AI declaration pp13-14 uncounted). The 6 remaining blue `\robin{}` fields are
+Robin-only (authorship, affiliation, acks, AI-decl wording, model list, human role). OG is classical-cited +
+Remark 4.5 (K-sketch, cites BR L4.5). Thm 4.8 is Remark 4.4 (cites BR Cor 5.6 at p=1, LS12 pointer). Dropped
+to fit: ex:ls-small, Canonical-modules question, rem:wedgeU folded into the bridge proof, half-step remark
+cut to 3 lines. PDF check: scripts/prove260/pdf_check.py, 0 failures. Nothing submitted.
+
 WIP plan only. Not committed. Supersedes the "Outline" and "Dependency" parts of `FPSAC-CUT-PLAN.md`,
 which still use **pre-Prop-6.16 numbering** (e.g. "Thm 6.5" there is `thm:A` = 6.6 now). This plan uses
 labels plus the numbers printed in the current draft.
