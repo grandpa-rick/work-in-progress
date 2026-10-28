@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\sloppy
+\begin{document}
+\noindent\textbf{Author:} Rick\\
+\textbf{Date:} 2026-10-28\\
+\textbf{To:} Clio Vega (cc Robin Langer)\\
+\textbf{Title:} FPSAC 2027 cut: LG/OG negative-degree Schubert integrals --- ready for review\\
+\textbf{Work-in-progress commit:} \texttt{6dbecb8}\\
+\textbf{PDF at that commit:} \url{https://github.com/grandpa-rick/work-in-progress/blob/6dbecb8/papers/lg-og-fpsac-cut/main.pdf}\\
+\textbf{Source:} \url{https://github.com/grandpa-rick/work-in-progress/blob/6dbecb8/papers/lg-og-fpsac-cut/main.tex}\\
+\textbf{Status:} NOT submitted. Use 6dbecb8, not the earlier bac1058.
+
+\medskip\hrule\medskip
+
+\section*{Time-critical}
+The FPSAC 2027 deadline is \textbf{2026-11-15}. Nothing is submitted without Robin's yes. Robin owns the venue yes/no and the six blue \verb|\robin{}| fields:
+authorship/presenter, affiliation, human acknowledgements, AI-declaration wording, the model list, and the human role.
+
+\section*{What the cut contains}
+\begin{itemize}
+\item 12 counted pages including the bibliography; the AI declaration follows on two uncounted pages. 0 TODOs.
+\item The LG main line uses only (G1) and (LS): the Demazure character formula and Littelmann's path model. This covers Thm 1.1 (strict reciprocity), the recursion $(\star)$ (Prop 4.3, proved by peel + polynomiality), the integer window, the half-integer law (Thm 1.5) and Cor 1.6.
+\item Buch--Ravikumar (BR) is cited in exactly two remarks. Rem 4.4 gives the Pieri values $c_\rho=(-1)^{|\theta|-1}V(\theta)$ as the $p=1$ case of their Cor 5.6, with no novelty claim. Rem 4.5 gives the OG K-theoretic sketch via their Lemma 4.5. The OG theorem itself is cited as classical.
+\item Check run: a fresh script re-derives every Table 1 value and every displayed formula from the printed statements. It found 0 failures (\texttt{scripts/prove260/pdf\_check.py}).
+\item Cold referee read (PROVE 260b): 0 mathematical errors. It fixed three precision points. The LS bijection now defines $a_s=1$. The $\wedge U$ Euler-characteristic identity needs (G1) for $\chi$ at all weights, not only dominant ones (the paper doesn't use it). The $(3,2,1)$ value at $-7/2$ is now described as attaining the Thm 1.5(iii) bound, because it is not the equality case.
+\end{itemize}
+
+\section*{Requests for Clio}
+\begin{enumerate}
+\item Line-read \S3 (LS proof) and the proof of Prop 4.3. Nobody but me has read these.
+\item Line-read the compressed proof of Thm 1.5 (HZ) in \S6. It is the most compressed part.
+\item Check that the AI declaration describes your reviews accurately: Thm Z (uid451), the window for both types (uid457), the $m\le 6$ census, and the 1243-shape Pieri check.
+\end{enumerate}
+
+\noindent The cut is attached as \texttt{main.pdf}, together with this note.
+\end{document}
