@@ -57,7 +57,9 @@ shifted diagram with respect to the lattice that is $\Z$ on diagonal coordinates
 $\tfrac12\Z$ off the diagonal. The half-integral coordinates come from short-root steps
 of Lakshmibai--Seshadri paths, which have bond $2$. Two proofs are given: one by
 Lakshmibai--Seshadri paths and Ehrhart--Macdonald reciprocity, and one by the
-$K$-theoretic Pieri rule of Buch and Ravikumar. As consequences, the integer zeros of
+$K$-theoretic Pieri rule of Buch and Ravikumar. The Pieri coefficients needed in the second
+proof are also derived without that rule, from a torus-equivariant form of the same
+recursion. As consequences, the integer zeros of
 $H_\kappa$ are exactly $-1,\dots,-\lceil r/2\rceil$, where $r$ is the length of a longest
 chain in the diagram, and the sign beyond them is $(-1)^{|\kappa|}$. The half-integer
 zeros and signs are determined completely, and $H_\kappa(-M/2)\neq 0$ for every odd
@@ -228,8 +230,10 @@ $H_\kappa(j)-H_\kappa(j-1)=\sum_\rho c_\rho H_\rho(j)$, where the $c_\rho$ are t
 $K$-theoretic Pieri coefficients for multiplication by the Schubert divisor. We show
 (Theorem~\ref{thm:Q30}) that $c_\rho=(-1)^{|\theta|-1}V(\theta)$, where
 $\theta=D(\kappa)\setminus D(\rho)$ and $V(\theta)$ counts strictly order-preserving maps
-$\theta\to\{e<o\}$ that send diagonal boxes to $e$. The argument uses a recursion of Buch and
-Ravikumar that they prove in full~\cite[Thm.~5.5]{BR12}. With this, the negative-degree
+$\theta\to\{e<o\}$ that send diagonal boxes to $e$. The first argument uses a recursion of Buch and
+Ravikumar that they prove in full~\cite[Thm.~5.5]{BR12}. A second argument
+(\S\ref{ssec:equivariant}) avoids~\cite{BR12}: it works $T$-equivariantly, where a weighted version
+of the peeling recursion holds and the torus characters of the $X_\rho$ are linearly independent. With this, the negative-degree
 recursion becomes the recursion that peels the top two values off a strict count, and no
 reciprocity theorem is needed. The second proof is longer, but its recursion extends further:
 started at the half-integer anchor $H_\kappa(-\tfrac12)=2^{-\kappa_1}$, it proves
@@ -254,7 +258,9 @@ not find in these works a statement about Schubert varieties in $\LG$ specifical
 $\chi(X_\kappa,\cO(-j))$. Stembridge's enriched $P$-partitions~\cite{Stem97} satisfy a
 \emph{self}-reciprocity, which is a different statement. For $\OG$, Theorem~\ref{thm:og} is
 classical (Remark~\ref{rem:og-classical}). The $K$-theoretic Pieri rule we use is that of
-Buch and Ravikumar~\cite{BR12}. To the best of our knowledge, Theorem~\ref{thm:main}(b),
+Buch and Ravikumar~\cite{BR12}. The coefficients $c_\rho$ are also the case $\lambda=\omega_m$ of the
+equivariant $K$-Chevalley rule of Lenart and Shimozono~\cite{LS12}, once their down-lifted LS paths are
+matched with our $V$-maps (Remark~\ref{rem:LS12}). To the best of our knowledge, Theorem~\ref{thm:main}(b),
 Theorem~\ref{thm:Q30} as a closed formula, and the half-integer results
 (Theorem~\ref{thm:HZ}) have not appeared before.
 
@@ -262,7 +268,7 @@ Theorem~\ref{thm:Q30} as a closed formula, and the half-integer results
 Section~\ref{sec:prelim} fixes notation and lists the cited inputs.
 Section~\ref{sec:ls} gives the LS-path proof of Theorem~\ref{thm:main}.
 Section~\ref{sec:ktheory} gives the $K$-theoretic proof, including the closed form of the
-Pieri coefficients and the $\OG$ case. Section~\ref{sec:window} proves
+Pieri coefficients, their $T$-equivariant proof without~\cite{BR12}, and the $\OG$ case. Section~\ref{sec:window} proves
 Theorem~\ref{thm:window} in two ways. Section~\ref{sec:half} treats half-integers:
 Theorem~\ref{thm:HZ}, Corollary~\ref{cor:OC}, the hyperplane-section proof of the
 vanishing half, and an explicit half-step operator $T$ with $s_{x+1/2}=T\,s_x$
@@ -721,7 +727,9 @@ $28/32$ failures at $m=4$).
 This section gives a second proof of Theorem~\ref{thm:main}(b), using (G0), (G1) and (BR)
 but not (LS). Its main ingredient, Theorem~\ref{thm:Q30}, is a closed formula for the
 $K$-theoretic Pieri coefficients of the Schubert divisor. That formula is reused in
-\S\S\ref{sec:window}--\ref{sec:half}.
+\S\S\ref{sec:window}--\ref{sec:half}. In \S\ref{ssec:equivariant} we prove
+Theorem~\ref{thm:Q30} a second time, $T$-equivariantly, from (G0), (G1) and (LS) and without (BR)
+(Theorem~\ref{thm:Tchev}).
 
 \subsection{The hyperplane recursion}
 
@@ -1004,6 +1012,7 @@ $\theta$ that are comparable to no other box of $\theta$.
 \end{theorem}
 
 \begin{proof}
+We give the proof from~\cite{BR12}. A proof without~\cite{BR12} is Theorem~\ref{thm:Tchev} below.
 Lemma~\ref{lem:S} and \cite[Cor.~5.4]{BR12} give $c_\rho=\cC(R(\theta),1)$.
 Proposition~\ref{prop:BRp1} turns this into $(-1)^{|\theta|-1}K(R(\theta))$, and
 Lemma~\ref{lem:VK} gives $K(R(\theta))=V(\theta)$. The explicit form is Lemma~\ref{lem:R}
@@ -1097,7 +1106,9 @@ reciprocity they agree at every $j\le-1$.
 \end{proof}
 
 The second proof uses (G0), (G1) and (BR). It uses neither (LS) nor Ehrhart--Macdonald
-reciprocity for~(b). The first proof uses (G1) and (LS) and not (BR). Each proof gives the
+reciprocity for~(b). The first proof uses (G1) and (LS) and not (BR). (If Theorem~\ref{thm:Q30}
+is taken from Theorem~\ref{thm:Tchev} instead of~\cite{BR12}, the second proof no longer
+avoids (LS).) Each proof gives the
 equivalence of Theorem~\ref{thm:main}(a) and~(b) by reciprocity, in opposite directions.
 
 The recursion~\eqref{eq:star} itself also follows from the first proof, without (BR).
@@ -1114,10 +1125,248 @@ $x$, and each $H_\rho$ is a polynomial. Two polynomials that agree on $\Z_{\ge1}
 Inside the second proof of Theorem~\ref{thm:main}, this argument cannot replace the
 $K$-theoretic proof of Proposition~\ref{prop:star}; that would be circular. It does show that on $\LG$, \eqref{eq:star} and everything in
 \S\S\ref{sec:window}--\ref{sec:half} derived from it need only (G1) and (LS)
-(Remark~\ref{rem:deps}). It does not recover Theorem~\ref{thm:Q30}. Together with~\eqref{eq:hyperplane}
+(Remark~\ref{rem:deps}). By itself it does not recover Theorem~\ref{thm:Q30}. Together with~\eqref{eq:hyperplane}
 it only gives $\sum_{\rho\subsetneq\kappa}\bigl(c_\rho-(-1)^{|\theta|-1}V(\theta)\bigr)H_\rho\equiv0$, and
 the $H_\rho$ need not be linearly independent: for $\kappa=(3,1)$ there are five
-$\rho\subsetneq\kappa$, each with $\deg H_\rho\le3$.
+$\rho\subsetneq\kappa$, each with $\deg H_\rho\le3$. The torus repairs this. Its characters
+are linearly independent, and \S\ref{ssec:equivariant} proves Theorem~\ref{thm:Q30} from (G0), (G1) and (LS)
+in this way, without (BR).
+
+\subsection{The Pieri coefficients without (BR): a torus-equivariant peel}\label{ssec:equivariant}
+% Source: proofs/2026-10-27-weighted-peel.md (PROVE 259), Theorems A-E, Lemma 0, Lemma D.
+% Registry: q488-Q45-equivariant-peel-lift, q488-Q45-strict-character (proved),
+%           q488-Q45-Q30-BR-free (proved, conditional on (KT)); q488-Q47-LS12-cor34-dictionary (computed).
+In this subsection $X=\LG(m,2m)$, with the torus $T$ and the Borel subgroup $B$ of
+Lemma~\ref{lem:dictionary}. Write $R(T)=\Z[e^{\pm\varepsilon_1},\dots,e^{\pm\varepsilon_m}]$, let
+$f\mapsto\overline f$ be the involution $e^\mu\mapsto e^{-\mu}$, and recall that
+$v_\kappa=w_\kappa\omega$. For every $j\in\Z$ put
+\[ \mathrm{ch}_\kappa(j)=D_{w_\kappa}(e^{j\omega})\in R(T). \]
+For $j\ge0$ this is the character of $H^0(X_\kappa,L^j)^*$ by (G1). For a box $x=(a,b)\in\Delta_m$
+with offset $d=b-a$ define its \emph{weight}
+\[ \beta(x)=\varepsilon_m\quad(d=0),\qquad \beta(x)=\varepsilon_{m-d}-\varepsilon_{m+1-d}\quad(1\le d\le m-1). \]
+Let $\check h=(m,m-1,\dots,1)$, and call $\langle\mu,\check h\rangle$ the \emph{height} of $e^\mu$.
+Every box weight has height $1$: $\langle\varepsilon_m,\check h\rangle=1$ and
+$\langle\varepsilon_{m-d}-\varepsilon_{m+1-d},\check h\rangle=(d+1)-d=1$.
+
+\begin{lemma}[Telescoping]\label{lem:telescope}
+For every strict $\tau$ with parts at most $m$,
+\[ \sum_{x\in D(\tau)}\beta(x)=\sum_{p\in\tau}\varepsilon_{m+1-p},\qquad\text{hence}\qquad
+v_\tau=\omega-2\sum_{x\in D(\tau)}\beta(x), \]
+and $v_\tau$ has height $\langle\omega,\check h\rangle-2|\tau|$.
+\end{lemma}
+
+\begin{proof}
+A row of length $p$ has offsets $0,\dots,p-1$, and
+$\varepsilon_m+\sum_{d=1}^{p-1}(\varepsilon_{m-d}-\varepsilon_{m+1-d})=\varepsilon_{m+1-p}$. The sign
+vector $v_\tau$ has $-1$ exactly in the positions $m+1-p$, $p\in\tau$, so
+$v_\tau=\omega-2\sum_{p\in\tau}\varepsilon_{m+1-p}$. The height follows because each box weight
+has height $1$.
+\end{proof}
+
+\begin{lemma}[Weighted LS-parity model]\label{lem:Tchar}
+For $j\ge0$,
+\[ \mathrm{ch}_\kappa(j)=\sum_G e^{\,j v_\kappa+\sum_{x}G(x)\beta(x)}, \]
+where $G$ runs over the order-preserving maps $P_\kappa\to\{0,\dots,2j\}$ that are even on
+diagonal boxes.
+\end{lemma}
+
+\begin{proof}
+For $j=0$ both sides equal $1$. Let $j\ge1$. By (LS), $\mathrm{ch}_\kappa(j)=\sum_\pi e^{\pi(1)}$
+over the LS paths of shape $j\omega$ with initial direction $\le\kappa$. Take the bijection
+$\pi\leftrightarrow G=2j-g$ of Proposition~\ref{prop:model}, with $g(x)=2j\,t(x)$ and
+$t(x)=a_{i(x)}$. By Lemma~\ref{lem:telescope}, $\tau_i(j\omega)=jv_{\tau_i}=j\omega-2j\sum_{x\in
+D(\tau_i)}\beta(x)$. Since $D(\tau_1)\supsetneq D(\tau_2)\supsetneq\cdots$, a box $x$ lies in $D(\tau_i)$
+iff $i\le i(x)$. So
+\[ \pi(1)=\sum_i(a_i-a_{i-1})\,jv_{\tau_i}=j\omega-2j\sum_x\beta(x)\sum_{i\le i(x)}(a_i-a_{i-1})
+=j\omega-\sum_xg(x)\beta(x), \]
+where $x$ runs over $D(\kappa)$ and boxes outside $D(\tau_1)$ contribute $0=g(x)$. Substituting
+$g=2j-G$ and applying Lemma~\ref{lem:telescope} to $\kappa$ gives
+$j\omega-2j\sum_{D(\kappa)}\beta+\sum G\beta=jv_\kappa+\sum G\beta$.
+\end{proof}
+
+At $e^\mu\mapsto1$ this is Proposition~\ref{prop:model}. For negative $j$ we need two facts about
+$j\mapsto\mathrm{ch}_\kappa(j)$. First, it is an \emph{exponential polynomial}: there are finitely many
+$r_u$ in the fraction field $Q$ of $R(T)$ and distinct monomials $y_u$ such that
+$\mathrm{ch}_\kappa(j)=\sum_ur_uy_u^j$ for all $j\in\Z$. Indeed,
+$D_i(r\,e^{j\nu})=\bigl(r\,e^{j\nu}-e^{-\alpha_i}s_i(r)\,e^{js_i\nu}\bigr)/(1-e^{-\alpha_i})$ is the same
+expression for every $j$ (the piecewise formula of \S\ref{ssec:inputs} is this quotient), so
+induction on a reduced word applies. Second, an exponential polynomial that vanishes at infinitely
+many consecutive integers vanishes identically. After the $y_u$ are made distinct, this is the
+invertibility of a Vandermonde matrix over $Q$.
+
+\begin{proposition}[Strict characters]\label{prop:strictchar}
+For $j\ge1$,
+\[ (-1)^{|\kappa|}\,\mathrm{ch}_\kappa(-j)=\sum_f e^{-jv_\kappa-\sum_xf(x)\beta(x)}, \]
+where $f$ runs over the strictly order-preserving maps $P_\kappa\to[2j-1]$ that are even on
+diagonal boxes. At $e^\mu\mapsto1$ this is Theorem~\ref{thm:main}(b).
+\end{proposition}
+
+\begin{proof}
+Let $d=|\kappa|$ and $F(t)=\sum_{j\ge0}\mathrm{ch}_\kappa(j)t^j$. If
+$\mathrm{ch}_\kappa(j)=\sum_ur_uy_u^j$, then $F(t)=\sum_ur_u/(1-y_ut)$, and
+\begin{equation}\label{eq:popoviciu}
+\sum_{j\ge1}\mathrm{ch}_\kappa(-j)\,t^j=\sum_ur_u\frac{t/y_u}{1-t/y_u}=-F(1/t)\qquad\text{in }Q(t).
+\end{equation}
+Let $M=\Lambda'\times\Z$, where $\Lambda'\subseteq\Z^{P_\kappa}$ consists of the vectors that are even
+on diagonal coordinates. Let
+$C=\{(G,s)\in\R^{P_\kappa}\times\R:0\le G(x)\le2s\text{ for all }x,\ G\text{ order-preserving}\}$.
+This is the cone over $2\ord(P_\kappa)$. It is pointed and $(d+1)$-dimensional, its rays are
+spanned by the vectors $(2\cdot\mathbf 1_U,1)\in M$ for the up-sets $U$, and its interior consists of
+the $(G,s)$ with $0<G(x)<2s$ and $G(x)<G(x')$ for $x<x'$. For $K\in\{C,\interior C\}$ let
+$\sigma_K(z,s)=\sum_{(G,j)\in K\cap M}z^Gs^j$. Stanley's reciprocity theorem for rational
+cones~\cite{Stanley74}, \cite[Ch.~4]{BeckRobins}, applied after the isomorphism $M\cong\Z^{d+1}$ that halves
+the diagonal coordinates, gives the identity of rational functions
+\[ \sigma_{\interior C}(z,s)=(-1)^{d+1}\sigma_C(z^{-1},s^{-1}). \]
+Both $\sigma_C$ and $\sigma_{\interior C}$ are quotients by products of factors
+$1-z^{2\cdot\mathbf 1_U}s$. Apply the ring map $z^G\mapsto e^{\sum_xG(x)\beta(x)}$,
+$s\mapsto e^{v_\kappa}t$. It sends each such factor to $1-(\text{monomial})\,t$, which is nonzero in
+$Q(t)$, and the same holds after $z\mapsto z^{-1}$, $s\mapsto s^{-1}$. Each $t$-degree slice of
+$C\cap M$ is finite, so on the series side the map is the evident substitution, and by
+Lemma~\ref{lem:Tchar} it sends $\sigma_C$ to $F(t)$. Under the substitution
+$z^G\mapsto e^{-\sum G\beta}$, $s\mapsto e^{-v_\kappa}t$, the reciprocity identity becomes
+\[ \sum_{j\ge1}t^j\sum_fe^{-jv_\kappa-\sum f\beta}=(-1)^{d+1}F(1/t). \]
+By~\eqref{eq:popoviciu} the right-hand side is $(-1)^d\sum_{j\ge1}\mathrm{ch}_\kappa(-j)t^j$. Compare
+coefficients of $t^j$.
+\end{proof}
+
+For $\rho\subseteq\kappa$ with $\theta=D(\kappa)\setminus D(\rho)$, call a strictly order-preserving
+$g\colon\theta\to\{e<o\}$ with $g=e$ on diagonal boxes a \emph{$V$-map}; there are $V(\theta)$ of
+them. Put
+\[ P_{\kappa\rho}=\sum_{g}e^{-v_\kappa-\sum_{x\in\theta,\ g(x)=o}\beta(x)}\in R(T), \]
+the sum over $V$-maps on $\theta$, and $P_{\kappa\rho}=0$ unless $\rho\subseteq\kappa$. So
+$P_{\kappa\rho}$ is a sum of exactly $V(\theta)$ monomials, and $P_{\kappa\kappa}=e^{-v_\kappa}$.
+
+\begin{proposition}[Weighted peel]\label{prop:wpeel}
+For every $\kappa$ and every $i\in\Z$,
+\begin{equation}\label{eq:wpeel}
+\mathrm{ch}_\kappa(i-1)=\sum_{\rho\subseteq\kappa}(-1)^{|\kappa|-|\rho|}P_{\kappa\rho}\,\mathrm{ch}_\rho(i).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Let $j\ge1$. In the bijection of Lemma~\ref{lem:peel}, a level-$(j+1)$ map $f$ (values in
+$[2j+1]$) corresponds to the triple $(\rho,g,h)$ with $\theta=f^{-1}\{2j,2j+1\}$, $g=f|_\theta$ read
+with $e=2j$, $o=2j+1$, and $h=f|_{D(\rho)}$ a level-$j$ map. Give $f$ and $h$ the weights of
+Proposition~\ref{prop:strictchar}. By Lemma~\ref{lem:telescope}, $v_\rho=v_\kappa+2\sum_\theta\beta$, so
+\[ \Bigl(-(j+1)v_\kappa-\sum_{D(\kappa)}f\beta\Bigr)-\Bigl(-jv_\rho-\sum_{D(\rho)}h\beta\Bigr)
+=-v_\kappa+\sum_{x\in\theta}\bigl(2j-f(x)\bigr)\beta(x)=-v_\kappa-\sum_{g(x)=o}\beta(x). \]
+This depends only on $g$. Summing over the bijection and applying
+Proposition~\ref{prop:strictchar} to $\kappa$ (at $j+1$) and to each $\rho$ (at $j$) gives
+$(-1)^{|\kappa|}\mathrm{ch}_\kappa(-j-1)=\sum_\rho P_{\kappa\rho}(-1)^{|\rho|}\mathrm{ch}_\rho(-j)$.
+This is~\eqref{eq:wpeel} at $i=-j$, for all $i\le-1$. Both sides of~\eqref{eq:wpeel} are
+exponential polynomials in $i$, so~\eqref{eq:wpeel} holds for all $i\in\Z$.
+\end{proof}
+
+At $e^\mu\mapsto1$, \eqref{eq:wpeel} at $i=-j$ is Lemma~\ref{lem:peel}. For example, let $m=3$,
+$\kappa=(2)$ and $\rho=(1)$. Then $\theta=\{(0,1)\}$, $\beta(0,1)=\varepsilon_2-\varepsilon_3$ and
+$-v_{(2)}=(-1,1,-1)$, so $P_{(2),(1)}=e^{-\varepsilon_1+\varepsilon_2-\varepsilon_3}+e^{-\varepsilon_1}$, two
+monomials for $V(\theta)=2$.
+
+\begin{lemma}[Independence]\label{lem:indep}
+The functions $j\mapsto\mathrm{ch}_\rho(j)$ on $\Z_{\ge1}$, for $\rho$ strict with parts at most $m$, are
+linearly independent over $R(T)$.
+\end{lemma}
+
+\begin{proof}
+Suppose $\sum_\rho a_\rho\,\mathrm{ch}_\rho(j)=0$ for all $j\ge1$, with $a_\rho\in R(T)$ not all zero. Grade
+$R(T)$ by height. By Lemma~\ref{lem:Tchar}, and since box weights have height $1$,
+$\mathrm{ch}_\rho(j)$ is $e^{jv_\rho}$ plus terms of larger height. The term comes from $G\equiv0$, and
+$e^{jv_\rho}$ has height $j\langle\omega,\check h\rangle-2j|\rho|$ by Lemma~\ref{lem:telescope}. Let
+$a_\rho^\circ$ be the lowest-height component of $a_\rho\ne0$, and let $\delta_\rho$ be its height. Then the
+lowest component of $a_\rho\mathrm{ch}_\rho(j)$ is $a_\rho^\circ e^{jv_\rho}$, of height
+$\delta_\rho+j\langle\omega,\check h\rangle-2j|\rho|$. Let $n=\max\{|\rho|:a_\rho\ne0\}$, and let
+$T^*$ be the set of $\rho$ with $a_\rho\ne0$, $|\rho|=n$ and $\delta_\rho$ minimal among these. For
+$2j>\max_\rho\delta_\rho-\min_\rho\delta_\rho$ the minimal height is attained exactly on $T^*$. So
+$\sum_{\rho\in T^*}a^\circ_\rho\,(e^{v_\rho})^j=0$ for all large $j$. The monomials $e^{v_\rho}$ are
+distinct, so $a^\circ_\rho=0$ for $\rho\in T^*$ by the Vandermonde argument, a contradiction.
+\end{proof}
+
+At $e^\mu\mapsto1$ the lowest-height terms are all $1$, and the argument collapses. This is the
+dependence of the $H_\rho$ noted above. To pass from characters to classes we use one more standard input.
+
+\begin{enumerate}[label=(KT),leftmargin=*]
+\item The classes $[\cO_{X_\rho}]_T$ span the $T$-equivariant $K$-group $K_T(X)$ of coherent
+sheaves as an $R(T)$-module, and the classes $[\cO_{X_\rho}]$ form a $\Z$-basis of $K(X)$.
+\end{enumerate}
+The second half is the standard fact that makes the coefficients $c_\rho$ of
+Lemma~\ref{lem:hyperplane} well defined.
+This is the equivariant form of the localization argument in the proof of
+Lemma~\ref{lem:hyperplane}. The Schubert cells are $T$-stable affine spaces on which $T$ acts
+linearly. So it follows from Thomason's localization sequence and homotopy invariance for
+equivariant $G$-theory~\cite{Thomason87}, by induction over the cells.\footnote{We have not checked the theorem
+numbers in~\cite{Thomason87} first-hand, so (KT) is a cited input without a locator. (KT) is used only in
+Theorem~\ref{thm:Tchev}.} The forgetful map $K_T(X)\to K(X)$ sends $[\cO_{X_\rho}]_T\mapsto[\cO_{X_\rho}]$ and
+restricts to $e^\mu\mapsto1$ on $R(T)$. Write $\chi_T(X,-)\colon K_T(X)\to R(T)$ for the equivariant Euler
+characteristic. It is $R(T)$-linear.
+
+\begin{theorem}[Equivariant Chevalley rule for $L^{-1}$]\label{thm:Tchev}
+% Registry: q488-Q45-Q30-BR-free (proved, conditional_on (KT)).
+Assume (G0), (G1), (LS) and (KT). In $K_T(\LG(m,2m))$, for every $\kappa$,
+\[ [\cO_{X_\kappa}\otimes L^{-1}]_T=\sum_{\rho\subseteq\kappa}A_{\kappa\rho}\,[\cO_{X_\rho}]_T,\qquad
+A_{\kappa\rho}=(-1)^{|\theta|}\,\overline{P_{\kappa\rho}}=(-1)^{|\theta|}\sum_ge^{\,v_\kappa+\sum_{g(x)=o}\beta(x)}, \]
+where $\theta=D(\kappa)\setminus D(\rho)$ and $g$ runs over the $V$-maps on $\theta$. The coefficients
+$A_{\kappa\rho}\in R(T)$ are unique. Forgetting $T$ recovers Theorem~\ref{thm:Q30}:
+$c_\rho=(-1)^{|\theta|-1}V(\theta)$ for $\rho\subsetneq\kappa$.
+\end{theorem}
+
+\begin{proof}
+By (KT), $[\cO_{X_\kappa}\otimes L^{-1}]_T=\sum_\rho A_{\kappa\rho}[\cO_{X_\rho}]_T$ for some
+$A_{\kappa\rho}\in R(T)$, where $\rho$ runs over all strict partitions with parts at most $m$. For a class
+$\mathcal F$ put $\Phi(\mathcal F)(j)=\overline{\chi_T(X,\mathcal F\otimes L^j)}$. Then
+$\Phi(a\mathcal F)=\overline a\,\Phi(\mathcal F)$ for $a\in R(T)$. For $j\ge1$, (G1) gives
+$\Phi(\cO_{X_\rho})(j)=\mathrm{ch}_\rho(j)$, because higher cohomology vanishes and the character of a dual
+module is the conjugate character. Also $\Phi(\cO_{X_\kappa}\otimes L^{-1})(j)=\mathrm{ch}_\kappa(j-1)$,
+since $j-1\ge0$. Hence
+\[ \mathrm{ch}_\kappa(j-1)=\sum_\rho\overline{A_{\kappa\rho}}\,\mathrm{ch}_\rho(j)\qquad(j\ge1). \]
+Subtract~\eqref{eq:wpeel}. Lemma~\ref{lem:indep} gives
+$\overline{A_{\kappa\rho}}=(-1)^{|\kappa|-|\rho|}P_{\kappa\rho}$ for all $\rho$, and in particular
+$A_{\kappa\rho}=0$ unless $\rho\subseteq\kappa$. Since $|\kappa|-|\rho|=|\theta|$, this is the formula.
+The same argument applied to two expansions shows that they agree, so the $A_{\kappa\rho}$ are unique.
+Now forget $T$. Then $[\cO_{X_\kappa}]\cdot[L^{-1}]=\sum_\rho(-1)^{|\theta|}V(\theta)[\cO_{X_\rho}]$, so
+\[ [\cO_{X_\kappa}]\cdot(1-[L^{-1}])=\sum_{\rho\subsetneq\kappa}(-1)^{|\theta|-1}V(\theta)\,[\cO_{X_\rho}], \]
+because the term $\rho=\kappa$ is $1-V(\varnothing)=0$. By (G0) the left-hand side is
+$[\cO_{X_\kappa}]\cdot\cO^1$. Comparing with Lemma~\ref{lem:hyperplane} gives $c_\rho$, because the
+$[\cO_{X_\rho}]$ form a basis of $K(X)$ by (KT).
+\end{proof}
+
+So Theorem~\ref{thm:Q30} needs only (G0), (G1), (LS), (KT) and Stanley's cone reciprocity.
+Proposition~\ref{prop:strictchar} at $e^\mu\mapsto1$ already gives Theorem~\ref{thm:main}(b). The new
+output of Theorem~\ref{thm:Tchev} is the Pieri coefficients, which the Hilbert polynomials alone do not
+determine. Theorem~\ref{thm:Tchev} also explains the
+shape of the formula: each $V$-map on $\theta$ contributes one torus weight, and the coefficient
+$c_\rho$ is the number of these weights, with sign $(-1)^{|\theta|-1}$. The first proof of
+Theorem~\ref{thm:Q30}, from~\cite{BR12}, came earlier and is independent of this one.
+
+\begin{remark}[Relation to the equivariant $K$-Chevalley rule]\label{rem:LS12}
+Lenart and Shimozono~\cite[Cor.~3.4, eq.~(3.6)]{LS12} give a cancellation-free formula for
+$[L^{-\lambda}]\cdot[\cO_z]$ in the $T$-equivariant $K$-theory of a Kac--Moody flag manifold, for dominant
+$\lambda$, as a signed sum of $e^{-p(1)}[\cO_w]$ over LS paths $p$ of shape $\lambda$ whose Deodhar down-lift
+from $w$ is $z$. Their statement is for $G/B$, with Schubert varieties indexed by codimension (a thick flag
+manifold, which is $G/B^-$ in finite type). Pull back along $G/B\to G/P$, an injective ring map on $K_T$ that
+preserves $L$, and identify $G/B^-$ with $G/B$ by $gB^-\mapsto gw_0B$. In type $C$, $w_0=-1$, so our $L^{-1}$
+becomes their $L^{-\omega_m}$, and the relevant formula is the antidominant one, (3.6), with $\lambda=\omega_m$.
+By the uniqueness in Theorem~\ref{thm:Tchev}, its coefficients are the $A_{\kappa\rho}$. Term by term,
+this means that the down-lift paths are matched with the $V$-maps on $\theta$. That matching is not
+in~\cite{LS12}, and we do not use it. We checked by machine, reimplementing (3.6) from its printed
+statement (Bruhat order on $W(C_m)$, LS paths of shape $\omega_m$, Deodhar down-lifts), that it agrees with
+$A_{\kappa\rho}$ monomial by monomial for $m\le4$. The same check without the twist by $w_0$ fails ($36$
+mismatches at $m=3$). Thus the values $c_\rho$ are also the $\lambda=\omega_m$ case of a known equivariant
+Chevalley rule, read through this dictionary. What the present route adds is the closed form in terms of
+$V(\theta)$, one monomial per $V$-map, and a proof that runs through LS paths and reciprocity only.
+\end{remark}
+
+\begin{remark}[Computer checks]\label{rem:Tchecks}
+Lemma~\ref{lem:Tchar}, Proposition~\ref{prop:strictchar} and~\eqref{eq:wpeel} were checked as identities in
+$R(T)$ against Demazure characters computed directly: $m=2,3,4$ with $j\le4$ (for $m=4$, $j\le5$) and $m=5$
+with $j\le4$. At $m=3$ all $22$ nonzero entries of the matrix $(P_{\kappa\rho})$ agree with an
+independent linear solve of~\eqref{eq:wpeel}. A negative control, replacing $\beta$ on boxes of offset $1$ by
+$\varepsilon_{m-1}+\varepsilon_m$, breaks all three identities. A second implementation, written from
+the printed statements of this subsection, rechecked Lemma~\ref{lem:Tchar},
+Proposition~\ref{prop:strictchar} and~\eqref{eq:wpeel} for $m\le3$ (with $-2\le i\le3$
+in~\eqref{eq:wpeel}). It also found the $8\times8$ matrix $(\mathrm{ch}_\rho(j))_{1\le j\le8}$ at $m=3$ to
+have rank $8$ at a random point of the torus but rank $7$ at $e^\mu\mapsto1$, and it
+confirmed~\eqref{eq:hyperplane} with $c_\rho$ from Theorem~\ref{thm:Tchev} for $-3\le j\le3$.
+\end{remark}
 
 \subsection{The orthogonal Grassmannian}\label{ssec:og-k}
 
@@ -1933,6 +2182,13 @@ over Theorem~5.5 of~\cite{BR12}, would be useful. Do the coefficients
 $c^\nu_{\lambda,p}$ admit an interpretation by strict maps into a $2p$-letter alphabet
 $\{e_1<o_1<\dots<e_p<o_p\}$ with even letters on the diagonal, extending
 Theorem~\ref{thm:Q30}?
+\end{question}
+
+\begin{question}[Down-lifts and $V$-maps]
+By Remark~\ref{rem:LS12}, for $\rho\subseteq\kappa$ the LS paths of shape $\omega_m$ that occur in the
+Lenart--Shimozono coefficient~\cite[(3.6)]{LS12} of $[\cO_{X_\rho}]_T$ are equinumerous with the
+$V$-maps on $\theta=D(\kappa)\setminus D(\rho)$, with the same weights. Is there a direct bijection,
+compatible with the bijection of Proposition~\ref{prop:model}?
 \end{question}
 
 \section*{Acknowledgements}
