@@ -1282,7 +1282,29 @@ distinct, so $a^\circ_\rho=0$ for $\rho\in T^*$ by the Vandermonde argument, a c
 \end{proof}
 
 At $e^\mu\mapsto1$ the lowest-height terms are all $1$, and the argument collapses. This is the
-dependence of the $H_\rho$ noted above. To pass from characters to classes we use one more standard input.
+dependence of the $H_\rho$ noted above.
+
+\begin{remark}[One grading is not enough]\label{rem:onegrading}
+The height grading in Lemma~\ref{lem:indep} only isolates the lowest terms. Independence comes from the distinct
+monomials $e^{v_\rho}$, and it does not survive passing to the height grading. Let $a\in\Z^m$ with
+$\langle\beta,a\rangle\ne0$ for every root $\beta$, and specialise $e^\mu\mapsto q^{\langle\mu,a\rangle}$. Expand
+$D_{w_\kappa}$ in the twisted group algebra $Q\rtimes W$. This gives
+$\mathrm{ch}_\kappa(j)=\sum_{\rho\subseteq\kappa}A_{\kappa\rho}\,e^{jv_\rho}$ with $A_{\kappa\rho}\in Q$, where
+$A_{\kappa\kappa}=\prod_k(-e^{-\beta_k})/(1-e^{-\beta_k})$ over the inversions $\beta_k$ of $w_\kappa$. A Vandermonde
+bound and a triangularity argument then show the following. Over $\mathbb Q(q)$, the specialised functions
+$j\mapsto\mathrm{ch}_\rho(j)$, $\rho\subseteq\kappa$, span a space of dimension
+$\#\{\langle v_\rho,a\rangle:\rho\subseteq\kappa\}$. For the triangularity, pick a representative of minimal size for
+each value. For $a=\check h$ we have $\langle v_\rho,\check h\rangle=\langle\omega,\check h\rangle-2|\rho|$, so the
+dimension is $|\kappa|+1$, the same as at $e^\mu\mapsto1$. The family is independent only for $\kappa=(k)$ and
+$\kappa=(2,1)$. At $\kappa=(3,1)$, the characters of $(3)$ and $(2,1)$ share an exponential. The kernel tends to the
+relation among the $H_\rho$ as $q\to1$. Kac's principal specialisation $e^{-\alpha_i}\mapsto q$ (take $a=(2m-1,2m-3,\dots,1)$)
+replaces $2|\rho|$ by $2|\rho|-\ell(\rho)$. That separates $(3)$ from $(2,1)$, but it fails first at $\kappa=(4,2)$,
+through $(4,1)$ and $(3,2)$. So the uniqueness in Theorem~\ref{thm:Tchev} needs a grading off every hyperplane
+$\langle v_\rho-v_\sigma,a\rangle=0$, and in particular it needs more than one $q$. We checked the dimension count by
+machine for $m\le4$.
+\end{remark}
+
+To pass from characters to classes we use one more standard input.
 
 \begin{enumerate}[label=(KT),leftmargin=*]
 \item The classes $[\cO_{X_\rho}]_T$ span the $T$-equivariant $K$-group $K_T(X)$ of coherent

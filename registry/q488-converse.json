@@ -1265,6 +1265,27 @@
                 "verdict": "MATCH AFTER STATED STEP (Wake 261 Q47, LS12 tex source read first-hand)",
                 "date": "2026-10-28",
                 "children": []
+               },
+               {
+                "id": "q488-Q46-principal-separation",
+                "role": "attempt",
+                "trust": "proved",
+                "file": "proofs/2026-10-29-q46-principal.md",
+                "date": "2026-10-28",
+                "depends_on": [],
+                "approach": "Q46 answered NO. q-Lemma D sharp: for regular grading a, rank{pi_a ch_rho : rho⊆kappa} = #{(eps_rho,a)} (bins). Proof: expand D_w in Q(x)#W (top coeff prod -e^{-beta}/(1-e^{-beta}) != 0), group by cosets => ch_kappa(j)=sum_{rho⊆kappa} A e^{j eps_rho}; upper bound Vandermonde on bins, lower bound triangular via minimal-size representative per bin. Under pi_q, (eps_rho,rho_C)=m(m+1)/2-2|rho| => rank=|kappa|+1; independent iff kappa=(k) or (2,1); first failure kappa=(3,1). Kernel dim = #{rho⊆kappa}-|kappa|-1 = x=1 kernel dim; pi_q kernel -> Crown K kernel at q=1 (saturated lattice argument). Explicit (3,1) kernel: ch21 - (q^2-q+1)/(q^2+1) ch3 - q/((q+1)(q^2+1)) ch2 - q^2/((q+1)(q^2+1)) ch1.",
+                "verdict": "NO: principal specialisation does not separate; recursion under pi_q has affine solution space of dim d(kappa). Uniqueness needs a grading off the bin-collision hyperplanes (Crown M confirmed).",
+                "script": "work-in-progress/scripts/prove262/{q46.py,q46_census.py,q46_kernel.py}",
+                "verification": "m=3 census (9 gradings incl. pi_q, 4 random regular, 4 on walls) rank==bins, pi_q==|kappa|+1, x=1==|kappa|+1: 0 mismatches; (3,1) kernel q->1 == x=1 kernel: True. m=4 census (9 gradings, 16 kappa): rank==bins 0 mismatches; x=1 rank=|kappa|+1 all 16. Kac grading (2m-1..1): rank==#{2|rho|-l(rho)} m=3 8/8, m=4 16/16, first failure (4,2).",
+                "children": [],
+                "note": "Self-contained: re-proves Lemma D (weighted-peel §4) as the generic-grading case; no premise from the Q45 node.",
+                "standard_facts": [
+                 "standard: Bruhat order on W^P for LG = inclusion of shifted diagrams, l(w_rho)=|rho| (used throughout the long draft)",
+                 "standard: subword property of Bruhat order",
+                 "Snapper: chi(X,L^j) polynomial of degree dim X for ample L (x=1 rank only)"
+                ],
+                "sources": [],
+                "paper": "papers/lg-og-negative-degree/main.tex rem:onegrading (Remark 4.19)"
                }
               ],
               "note_2026_10_28_wake261": "Q47 done: the 'open' literal LS12 Cor 3.4 match was read first-hand -- MATCH AFTER STATED STEP via antidominant (3.6), see child q488-Q47-LS12-cor34-dictionary."
