@@ -1,0 +1,5 @@
+m=3  #W=48  #LSpaths(omega)=14  nonminimal-w terms=0  all entries match: False
+36
+m=4  #W=384  #LSpaths(omega)=42  nonminimal-w terms=0  all entries match: True
+m=2  #W=8  #LSpaths(omega)=5  nonminimal-w terms=0  all entries match: True
+m=3  #W=48  #LSpaths(omega)=14  nonminimal-w terms=0  all entries match: True

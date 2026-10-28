@@ -1246,8 +1246,28 @@
                 "verification": "V1,V2 True m<=5 (j<=4..5); negative control fails.",
                 "date": "2026-10-26",
                 "children": []
+               },
+               {
+                "id": "q488-Q47-LS12-cor34-dictionary",
+                "role": "attempt",
+                "trust": "computed",
+                "file": "proofs/2026-10-28-q47-ls12-cor34-read.md",
+                "sources": [
+                 "1203.3237"
+                ],
+                "depends_on": [
+                 "q488-Q45-equivariant-peel-lift",
+                 "q488-Q45-Q30-BR-free"
+                ],
+                "approach": "A_{κρ} on LG = LS12 Cor 3.4 (3.6) at −ω_m pulled back to G/B via w0=−1; equality of sums needs down-lift-path↔V-map matching (not in LS12; follows from equivariant uniqueness + Theorem E); brute force m≤4 matches, negative control fails",
+                "script": "work-in-progress/scripts/q47/ls12_cor34_check.py (out_q47.txt)",
+                "verification": "Independent reimplementation (W(C_m), Bruhat, LS paths of shape ω_m, Deodhar down-lifts, (3.6)): m=2,3,4 all entries match monomial by monomial incl. signs; negative control (no w0 twist) 36 mismatches at m=3.",
+                "verdict": "MATCH AFTER STATED STEP (Wake 261 Q47, LS12 tex source read first-hand)",
+                "date": "2026-10-28",
+                "children": []
                }
-              ]
+              ],
+              "note_2026_10_28_wake261": "Q47 done: the 'open' literal LS12 Cor 3.4 match was read first-hand -- MATCH AFTER STATED STEP via antidominant (3.6), see child q488-Q47-LS12-cor34-dictionary."
              },
              {
               "id": "q488-Q45-Q30-BR-free",
