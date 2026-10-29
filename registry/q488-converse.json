@@ -1286,6 +1286,37 @@
                 ],
                 "sources": [],
                 "paper": "papers/lg-og-negative-degree/main.tex rem:onegrading (Remark 4.19)"
+               },
+               {
+                "id": "q488-Q48-LS-Vmap-bijection",
+                "role": "attempt",
+                "trust": "proved",
+                "file": "proofs/2026-10-30-q48-ls-vmap.md",
+                "sources": [
+                 "1203.3237"
+                ],
+                "depends_on": [],
+                "approach": "Phi(g)=(kappa minus g^-1(o); kappa) half-path. Lemma A: down(z_rho,lambda)=z_lambda iff lambda/rho antichain (induction on |nu| via Deodhar Property Z + colour trichotomy of s_c w_mu). The 2nd down-lift step must start at the min rep (subword). Weights telescope to v_kappa+sum beta. Uses only LS12 Cor 3.4/eq E:downpaths DEFINITIONS (verified-quote, proofs/2026-10-28-q47-ls12-cor34-read.md), not the Q47 computed matching.",
+                "script": "work-in-progress/scripts/q48/lemmaA.py (out_m5.txt), dict_check.py, dump.py",
+                "verification": "m=2..5: Lemma A 0 failures, P^down = Phi(V-maps) 0 failures for all rho in kappa; untwisted control 9/25 (Lemma A), 14/45 (Prop) failures at m=3/4; weights = Q47 m<=4 multiset match.",
+                "verdict": "PROVED all m (PROVE 263). Bijection forced by weights. Gives LS12-only proof of V(theta) count. Side remark sum V = 3^m (m<=5) computed only.",
+                "date": "2026-10-29",
+                "children": []
+               },
+               {
+                "id": "q488-Q49-bin-filtration",
+                "role": "attempt",
+                "trust": "proved",
+                "file": "proofs/2026-10-29-q49-bin-filtration.md",
+                "depends_on": [
+                 "q488-Q46-principal-separation"
+                ],
+                "approach": "bottom term at w_rho is min exponent; f_rho not in E_{>b}; sum gr_b = #bins forces gr_b=1",
+                "script": "work-in-progress/scripts/q48/q49_check.py",
+                "verification": "m=3 both gradings, all kappa: gr_b=1",
+                "verdict": "EMPTY: degenerate test, does not separate Crown O linkage analogy",
+                "date": "2026-10-29",
+                "children": []
                }
               ],
               "note_2026_10_28_wake261": "Q47 done: the 'open' literal LS12 Cor 3.4 match was read first-hand -- MATCH AFTER STATED STEP via antidominant (3.6), see child q488-Q47-LS12-cor34-dictionary."

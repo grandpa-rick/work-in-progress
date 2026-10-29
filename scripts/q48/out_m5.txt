@@ -1,0 +1,2 @@
+m 5 CTRL False Lemma A failures: 0
+  Prop P failures: 0 of pairs; total V-maps 243

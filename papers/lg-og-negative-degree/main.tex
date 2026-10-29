@@ -1372,12 +1372,31 @@ preserves $L$, and identify $G/B^-$ with $G/B$ by $gB^-\mapsto gw_0B$. In type $
 becomes their $L^{-\omega_m}$, and the relevant formula is the antidominant one, (3.6), with $\lambda=\omega_m$.
 By the uniqueness in Theorem~\ref{thm:Tchev}, its coefficients are the $A_{\kappa\rho}$. Term by term,
 this means that the down-lift paths are matched with the $V$-maps on $\theta$. That matching is not
-in~\cite{LS12}, and we do not use it. We checked by machine, reimplementing (3.6) from its printed
+in~\cite{LS12}. We do not use it above; Remark~\ref{rem:LSbij} makes it explicit. We checked by machine, reimplementing (3.6) from its printed
 statement (Bruhat order on $W(C_m)$, LS paths of shape $\omega_m$, Deodhar down-lifts), that it agrees with
 $A_{\kappa\rho}$ monomial by monomial for $m\le4$. The same check without the twist by $w_0$ fails ($36$
 mismatches at $m=3$). Thus the values $c_\rho$ are also the $\lambda=\omega_m$ case of a known equivariant
 Chevalley rule, read through this dictionary. What the present route adds is the closed form in terms of
 $V(\theta)$, one monomial per $V$-map, and a proof that runs through LS paths and reciprocity only.
+\end{remark}
+
+\begin{remark}[The matching is explicit]\label{rem:LSbij}
+Let $z_\kappa$ be the minimal representative with $z_\kappa\omega_m=-v_\kappa$. Then the LS paths $p$ of shape
+$\omega_m$ with $\iota(p)\le z_\rho W_P$ and down-lift $z_\kappa$ are exactly the paths
+$\bigl(D(\kappa)\setminus g^{-1}(o);\,\kappa\bigr)$ with $a=\tfrac12$ (straight in direction $\kappa$ if
+$g^{-1}(o)=\varnothing$), one for each $V$-map $g$ on $\theta$. Since $-p(1)=v_\kappa+\sum_{g(x)=o}\beta(x)$ and
+$(-1)^{\ell(z_\rho)-\ell(z_\kappa)}=(-1)^{|\theta|}$, \cite[Cor.~3.4, (3.6)]{LS12} reproduces
+Theorem~\ref{thm:Tchev} term by term. This gives a second proof of the formula, from~\cite{LS12} and (KT)
+alone. By Lemma~\ref{lem:bonds}, an LS path of shape $\omega_m$ is straight or has two directions
+$\lambda\subsetneq\kappa'$ with $a=\tfrac12$, where $\kappa'/\lambda$ has no diagonal box. The key step is that,
+for $\rho\subseteq\lambda$, the Deodhar down-lift of $z_\rho$ to the coset of $\lambda$ is $z_\lambda$ if and only if
+$D(\lambda)\setminus D(\rho)$ is an antichain. One proves this by induction on the number of boxes, peeling a
+corner, using Deodhar's property~Z~\cite[Prop.~2.2.7]{BB05} and the fact that a simple reflection adds a box to,
+removes a box from, or right-multiplies by $W_P$ the minimal representative of a shifted shape. A subword argument shows that
+the second down-lift starts at $z_\lambda$. The two antichains $D(\lambda)\setminus D(\rho)$ and
+$D(\kappa)\setminus D(\lambda)$ are then $g^{-1}(e)$ and $g^{-1}(o)$. The bijection is forced: the weights
+$\beta$ of the free boxes of a $V$-map lie on distinct diagonals, so distinct $V$-maps have distinct monomials.
+We checked the description by machine for $m\le5$, together with a control without the $w_0$ twist, which fails.
 \end{remark}
 
 \begin{remark}[Computer checks]\label{rem:Tchecks}
