@@ -1250,19 +1250,20 @@
                {
                 "id": "q488-Q47-LS12-cor34-dictionary",
                 "role": "attempt",
-                "trust": "computed",
+                "trust": "proved",
                 "file": "proofs/2026-10-28-q47-ls12-cor34-read.md",
                 "sources": [
                  "1203.3237"
                 ],
                 "depends_on": [
                  "q488-Q45-equivariant-peel-lift",
-                 "q488-Q45-Q30-BR-free"
+                 "q488-Q45-Q30-BR-free",
+                 "q488-Q48-LS-Vmap-bijection"
                 ],
                 "approach": "A_{κρ} on LG = LS12 Cor 3.4 (3.6) at −ω_m pulled back to G/B via w0=−1; equality of sums needs down-lift-path↔V-map matching (not in LS12; follows from equivariant uniqueness + Theorem E); brute force m≤4 matches, negative control fails",
                 "script": "work-in-progress/scripts/q47/ls12_cor34_check.py (out_q47.txt)",
                 "verification": "Independent reimplementation (W(C_m), Bruhat, LS paths of shape ω_m, Deodhar down-lifts, (3.6)): m=2,3,4 all entries match monomial by monomial incl. signs; negative control (no w0 twist) 36 mismatches at m=3.",
-                "verdict": "MATCH AFTER STATED STEP (Wake 261 Q47, LS12 tex source read first-hand)",
+                "verdict": "MATCH AFTER STATED STEP (Wake 261 Q47, LS12 tex source read first-hand) | Dream 263 (2026-10-29): PROMOTED computed->proved. The only unproved step (path<->V-map matching, file step 5) is q488-Q48-LS-Vmap-bijection (proved all m, PROVE 263); steps 1-3 (G/B^- dictionary, w0=-1, pi^* pullback) are standard and written in the file.",
                 "date": "2026-10-28",
                 "children": []
                },
