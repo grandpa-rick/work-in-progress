@@ -1322,15 +1322,15 @@
                {
                 "id": "q488-Q50-3m-transfer-matrix",
                 "role": "attempt",
-                "trust": "computed",
-                "file": null,
+                "trust": "proved",
+                "file": "proofs/2026-10-30-q50-transfer-matrix.md",
                 "depends_on": [
                  "q488-Q48-LS-Vmap-bijection"
                 ],
                 "approach": "Σ_{κ,ρ} V(κ/ρ) = 3^m, refined: Σ ∏_d q_d^{#boxes of κ/ρ on diagonal d} = ∏_{d=0}^{m-1}(2+q_d); total size-gf (2+q)^m. Particle model: V-map = two-step parallel-hop history on sites 1..m (addable box on diagonal p = hop p→p+1; diagonal box = injection at site 1, step 1 only). 3-state bond transfer matrix M=[[2,1,1],[1,0,1],[1,1,0]] on flow patterns {00,10,01} ((1,1) impossible), boundary u=(1,1,0), right end e00; M e00 = x=(2,1,1), Mx=3x, u·x=3 ⇒ 3^m. Graded M(q)x=(2+q)x.",
-                "script": "proofs/wake264/q50_count.py, q50_refine.py (q50_refine_out.txt), q50_diag.py (q50_diag_out.txt)",
-                "verification": "brute-force V-maps vs particle model per (κ,ρ) 0 mismatches m≤5; totals 3^m m≤10 via particle model; per-diagonal product m≤6; controls: injection both steps → 4·3^{m-1}, no injection → 2·3^{m-1} (break); step-2-only injection gives 3^m but is the R-rotation mirror (not a control). Scripts proofs/wake264/q50_count.py, q50_refine.py, q50_diag.py (Wake 264, 2026-10-29).",
-                "verdict": "COMPUTED (Wake 264). Open step: rigorous proof that the particle dictionary is a bijection (antichain λ/ρ ↔ parallel hop set; diagonal-free κ/λ ↔ no injection in step 2) and that per-site occupancy histories determine bond flows uniquely; the transfer-matrix algebra itself is trivial.",
+                "script": "proofs/wake264/q50_count.py, q50_refine.py (q50_refine_out.txt), q50_diag.py (q50_diag_out.txt), q50_bij.py (PROVE 264)",
+                "verification": "brute-force V-maps vs particle model per (κ,ρ) 0 mismatches m≤5; totals 3^m m≤10 via particle model; per-diagonal product m≤6; controls: injection both steps → 4·3^{m-1}, no injection → 2·3^{m-1} (break); step-2-only injection gives 3^m but is the R-rotation mirror (not a control). Scripts proofs/wake264/q50_count.py, q50_refine.py, q50_diag.py (Wake 264, 2026-10-29). PROVE 264: q50_bij.py m<=8 checks dictionary Lemmas 0.1/0.2, (a) <=1 box per diagonal, explicit bijection histories<->{0,1,2}^m (injective, all 3^m words), V-map recount m<=5; 0 failures.",
+                "verdict": "PROVED (PROVE 264, 2026-10-29). Lemma 0.1 (antichain skew of ideals = subset of addable boxes) + Lemma 0.2 (addable box on diagonal p = hop p->p+1, diagonal box = injection) make V(k/r) = #two-step parallel-hop histories; f1(d)f2(d)=0 in one line; legality is site-local so Z = u M W_1...M e00 with local count table M; M W_d x = (2+q_d)x, x=(2,1,1). Second proof: block/free-site count 2^{m-|D|} and explicit bijection to {0,1,2}^m (letter 2 = box on diagonal d). Gaps: none. Owner hunch (crystal/vertex model) noted, not chased.",
                 "date": "2026-10-29",
                 "children": []
                }
