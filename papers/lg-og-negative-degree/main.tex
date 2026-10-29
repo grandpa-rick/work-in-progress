@@ -260,7 +260,7 @@ $\chi(X_\kappa,\cO(-j))$. Stembridge's enriched $P$-partitions~\cite{Stem97} sat
 classical (Remark~\ref{rem:og-classical}). The $K$-theoretic Pieri rule we use is that of
 Buch and Ravikumar~\cite{BR12}. The coefficients $c_\rho$ are also the case $\lambda=\omega_m$ of the
 equivariant $K$-Chevalley rule of Lenart and Shimozono~\cite{LS12}, once their down-lifted LS paths are
-matched with our $V$-maps (Remark~\ref{rem:LS12}). To the best of our knowledge, Theorem~\ref{thm:main}(b),
+matched with our $V$-maps (Remarks~\ref{rem:LS12} and~\ref{rem:LSbij}). To the best of our knowledge, Theorem~\ref{thm:main}(b),
 Theorem~\ref{thm:Q30} as a closed formula, and the half-integer results
 (Theorem~\ref{thm:HZ}) have not appeared before.
 
@@ -1365,11 +1365,16 @@ Theorem~\ref{thm:Q30}, from~\cite{BR12}, came earlier and is independent of this
 \begin{remark}[Relation to the equivariant $K$-Chevalley rule]\label{rem:LS12}
 Lenart and Shimozono~\cite[Cor.~3.4, eq.~(3.6)]{LS12} give a cancellation-free formula for
 $[L^{-\lambda}]\cdot[\cO_z]$ in the $T$-equivariant $K$-theory of a Kac--Moody flag manifold, for dominant
-$\lambda$, as a signed sum of $e^{-p(1)}[\cO_w]$ over LS paths $p$ of shape $\lambda$ whose Deodhar down-lift
-from $w$ is $z$. Their statement is for $G/B$, with Schubert varieties indexed by codimension (a thick flag
+$\lambda$, as a signed sum of $e^{-p(1)}[\cO_w]$ over LS paths $p$ of shape $\lambda$ with initial direction
+$\iota(p)\le wW_\lambda$ whose Deodhar down-lift from $w$ is $z$. Here the down-lift of $w$ to a coset $\tau$ is the
+Bruhat-largest $v\le w$ with $v\in\tau$, and the down-lift along $p$ applies this to the directions of $p$ in turn,
+starting with $\iota(p)$. Their statement is for $G/B$, with Schubert varieties indexed by codimension (a thick flag
 manifold, which is $G/B^-$ in finite type). Pull back along $G/B\to G/P$, an injective ring map on $K_T$ that
-preserves $L$, and identify $G/B^-$ with $G/B$ by $gB^-\mapsto gw_0B$. In type $C$, $w_0=-1$, so our $L^{-1}$
-becomes their $L^{-\omega_m}$, and the relevant formula is the antidominant one, (3.6), with $\lambda=\omega_m$.
+preserves $L$, and identify $G/B^-$ with $G/B$ by $gB^-\mapsto gw_0B$. Their $L^\lambda$ has weight $e^{w\lambda}$ at the fixed point
+$wB^-$, that is, $e^{uw_0\lambda}$ at $uB$. Our $L$ is normalised by (G1) at $w=e$: $X_e$ is the base point, so the
+fibre of $L$ at $eP$ has weight $-\omega_m$, and the fibre at $uP$ has weight $-u\omega_m$. In type $C$, $w_0=-1$, so
+our $L$ is their $L^{\omega_m}$, our $L^{-1}$ is their $L^{-\omega_m}$, and the relevant formula is the antidominant
+one, (3.6), with $\lambda=\omega_m$.
 By the uniqueness in Theorem~\ref{thm:Tchev}, its coefficients are the $A_{\kappa\rho}$. Term by term,
 this means that the down-lift paths are matched with the $V$-maps on $\theta$. That matching is not
 in~\cite{LS12}. We do not use it above; Remark~\ref{rem:LSbij} makes it explicit. We checked by machine, reimplementing (3.6) from its printed
@@ -1381,21 +1386,30 @@ $V(\theta)$, one monomial per $V$-map, and a proof that runs through LS paths an
 \end{remark}
 
 \begin{remark}[The matching is explicit]\label{rem:LSbij}
-Let $z_\kappa$ be the minimal representative with $z_\kappa\omega_m=-v_\kappa$. Then the LS paths $p$ of shape
-$\omega_m$ with $\iota(p)\le z_\rho W_P$ and down-lift $z_\kappa$ are exactly the paths
-$\bigl(D(\kappa)\setminus g^{-1}(o);\,\kappa\bigr)$ with $a=\tfrac12$ (straight in direction $\kappa$ if
+Let $z_\kappa$ be the minimal representative with $z_\kappa\omega_m=-v_\kappa$. Comparing sign vectors gives
+$z_\kappa=w_{\kappa^\vee}$, and $D(\kappa^\vee)$ is the image of the complement of $D(\kappa)$ in the staircase under
+the $180^\circ$ rotation $(a,b)\mapsto(m-1-b,m-1-a)$. This rotation reverses inclusion and preserves diagonals. In this
+remark, direction $\lambda$ means the coset $z_\lambda W_P=w_{\lambda^\vee}W_P$, so $(\lambda;\kappa)$ with $\lambda\subsetneq\kappa$
+is the path $(\lambda^\vee\supsetneq\kappa^\vee;a)$ in the notation of \S\ref{sec:ls}, and $\iota(p)\le z_\rho W_P$
+means $\rho\subseteq\lambda$. By Lemma~\ref{lem:lsparity} with $j=1$, an LS path of shape $\omega_m$ is straight or
+has two directions $(\lambda;\kappa)$ with $\lambda\subsetneq\kappa$ and $a=\tfrac12$, where $D(\kappa)\setminus D(\lambda)$, the
+rotation of $D(\lambda^\vee)\setminus D(\kappa^\vee)$, has no diagonal box.
+
+Then the LS paths $p$ of shape $\omega_m$ with $\iota(p)\le z_\rho W_P$ and down-lift $z_\kappa$ from $z_\rho$ are
+exactly the paths $\bigl(D(\kappa)\setminus g^{-1}(o);\,\kappa\bigr)$ with $a=\tfrac12$ (straight in direction $\kappa$ if
 $g^{-1}(o)=\varnothing$), one for each $V$-map $g$ on $\theta$. Since $-p(1)=v_\kappa+\sum_{g(x)=o}\beta(x)$ and
 $(-1)^{\ell(z_\rho)-\ell(z_\kappa)}=(-1)^{|\theta|}$, \cite[Cor.~3.4, (3.6)]{LS12} reproduces
-Theorem~\ref{thm:Tchev} term by term. This gives a second proof of the formula, from~\cite{LS12} and (KT)
-alone. By Lemma~\ref{lem:bonds}, an LS path of shape $\omega_m$ is straight or has two directions
-$\lambda\subsetneq\kappa'$ with $a=\tfrac12$, where $\kappa'/\lambda$ has no diagonal box. The key step is that,
-for $\rho\subseteq\lambda$, the Deodhar down-lift of $z_\rho$ to the coset of $\lambda$ is $z_\lambda$ if and only if
-$D(\lambda)\setminus D(\rho)$ is an antichain. One proves this by induction on the number of boxes, peeling a
+Theorem~\ref{thm:Tchev} term by term. This gives a second proof of the formula of Theorem~\ref{thm:Tchev}, from~\cite{LS12},
+(KT), Lemma~\ref{lem:lsparity} and the dictionary of Remark~\ref{rem:LS12}, which uses (G1) only at the base point.
+The non-equivariant values $c_\rho$ then follow with (G0), as at the end of the proof of Theorem~\ref{thm:Tchev}.
+The key step is that, for $\rho\subseteq\lambda$, the Deodhar down-lift of $z_\rho$ to the coset of $\lambda$ is $z_\lambda$
+if and only if $D(\lambda)\setminus D(\rho)$ is an antichain. One proves this by induction on the number of boxes, peeling a
 corner, using Deodhar's property~Z~\cite[Prop.~2.2.7]{BB05} and the fact that a simple reflection adds a box to,
 removes a box from, or right-multiplies by $W_P$ the minimal representative of a shifted shape. A subword argument shows that
 the second down-lift starts at $z_\lambda$. The two antichains $D(\lambda)\setminus D(\rho)$ and
-$D(\kappa)\setminus D(\lambda)$ are then $g^{-1}(e)$ and $g^{-1}(o)$. The bijection is forced: the weights
-$\beta$ of the free boxes of a $V$-map lie on distinct diagonals, so distinct $V$-maps have distinct monomials.
+$D(\kappa)\setminus D(\lambda)$ are then $g^{-1}(e)$ and $g^{-1}(o)$. The bijection is forced. Two $V$-maps on $\theta$
+differ only on isolated boxes of $\theta$ (boxes comparable to no other box of $\theta$; Lemma~\ref{lem:R}). These lie on
+distinct diagonals, so their weights $\beta$ are distinct, and distinct $V$-maps have distinct monomials.
 We checked the description by machine for $m\le5$, together with a control without the $w_0$ twist, which fails.
 \end{remark}
 
@@ -2229,10 +2243,8 @@ Theorem~\ref{thm:Q30}?
 \end{question}
 
 \begin{question}[Down-lifts and $V$-maps]
-By Remark~\ref{rem:LS12}, for $\rho\subseteq\kappa$ the LS paths of shape $\omega_m$ that occur in the
-Lenart--Shimozono coefficient~\cite[(3.6)]{LS12} of $[\cO_{X_\rho}]_T$ are equinumerous with the
-$V$-maps on $\theta=D(\kappa)\setminus D(\rho)$, with the same weights. Is there a direct bijection,
-compatible with the bijection of Proposition~\ref{prop:model}?
+Remark~\ref{rem:LSbij} matches the Lenart--Shimozono down-lift paths~\cite[(3.6)]{LS12} with the $V$-maps on
+$\theta=D(\kappa)\setminus D(\rho)$. Is this matching compatible with the bijection of Proposition~\ref{prop:model}?
 \end{question}
 
 \section*{Acknowledgements}
