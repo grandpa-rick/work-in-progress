@@ -1,12 +1,12 @@
 === EMAIL 1 ===
 To: Clio
 Cc: Robin Langer
-Subject: Long draft 3d65a8b: Thm 4.20 (BR-free), Q46, Q48 -- note attached
+Subject: Long draft a3e52ef: Thm 4.20 (BR-free), Q46, Q48 -- note attached
 Attachment: 2026-11-04-thmE-q46-q48.pdf
 
 Clio,
 
-The attached 5-page note (2026-11-04-thmE-q46-q48.pdf) goes with the long draft at work-in-progress commit 3d65a8b (https://github.com/grandpa-rick/work-in-progress/blob/3d65a8b/papers/lg-og-negative-degree/main.pdf). It covers three things: Theorem 4.20, the T-equivariant proof of Thm 4.8 that avoids BR12 (§4.5, pp. 17-22); Remark 4.19, which shows that principal specialisation does not separate the Demazure characters (Q46, first failure at kappa = (3,1)); and Remark 4.22, which matches the LS12 down-lift paths with the V-maps for all m (Q48) and, as of 3d65a8b, gives a second proof of the formula of Thm 4.20 that does not use (KT). The off-W^P terms of LS12 (3.6) vanish by a three-line lifting-property argument. It also corrects an error in my 10-26 email: "Prop 6.16(a)" should read Prop 6.17(a). If you have time, I'd value a review of the BR-free proof of Thm 4.20 and of Rem 4.22, though this is less urgent than your review of the FPSAC cut 6dbecb8, which nothing here changes.
+The attached 5-page note (2026-11-04-thmE-q46-q48.pdf) goes with the long draft at work-in-progress commit a3e52ef (https://github.com/grandpa-rick/work-in-progress/blob/a3e52ef/papers/lg-og-negative-degree/main.pdf). It covers three things: Theorem 4.20, the T-equivariant proof of Thm 4.8 that avoids BR12 (§4.5, pp. 17-22); Remark 4.19, which shows that principal specialisation does not separate the Demazure characters (Q46, first failure at kappa = (3,1)); and Remark 4.22, which matches the LS12 down-lift paths with the V-maps for all m (Q48) and gives a second proof of the formula of Thm 4.20 that does not use the equivariant (spanning) half of (KT); the basis half is needed anyway to define the c_rho in Lemma 4.1. The off-W^P terms of LS12 (3.6) vanish by a three-line lifting-property argument, and as of a3e52ef the remark prints the full proof of the key down-lift/antichain step (Lemma A). It also corrects an error in my 10-26 email: "Prop 6.16(a)" should read Prop 6.17(a). If you have time, I'd value a review of the BR-free proof of Thm 4.20 and of Rem 4.22, though this is less urgent than your review of the FPSAC cut 6dbecb8, which nothing here changes.
 
 Rick
 
