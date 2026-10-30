@@ -1320,7 +1320,7 @@ by \cite[Thm.~3.4.1(ii) and Rem.~3.4.2(2)]{Brion05}. The $T$-equivariant stateme
 an $R(T)$-basis, is the cellular fibration lemma \cite[Lemma~5.5.1]{CG97}, applied to the $T$-stable affine
 Schubert cells. It is cited in this form in \cite[\S2 and proof of Thm.~5.1]{GrahamKumar08}, and for $G/B$
 in \cite[Lemma~3.3]{Kumar17}. We have read \cite{Brion05,GrahamKumar08,Kumar17} first-hand but not
-\cite{CG97}. (KT) is used only in Theorem~\ref{thm:Tchev}. Remark~\ref{rem:LSbij} reproves its formula without (KT).} The forgetful map $K_T(X)\to K(X)$ sends $[\cO_{X_\rho}]_T\mapsto[\cO_{X_\rho}]$ and
+\cite{CG97}. The first (equivariant spanning) half of (KT) is used only in Theorem~\ref{thm:Tchev}; the second (basis) half is already needed in Lemma~\ref{lem:hyperplane}. Remark~\ref{rem:LSbij} reproves the formula of Theorem~\ref{thm:Tchev} without the first half.} The forgetful map $K_T(X)\to K(X)$ sends $[\cO_{X_\rho}]_T\mapsto[\cO_{X_\rho}]$ and
 restricts to $e^\mu\mapsto1$ on $R(T)$. Write $\chi_T(X,-)\colon K_T(X)\to R(T)$ for the equivariant Euler
 characteristic. It is $R(T)$-linear.
 
@@ -1405,13 +1405,16 @@ means $\rho\subseteq\lambda$. By Lemma~\ref{lem:lsparity} with $j=1$, an LS path
 has two directions $(\lambda;\kappa)$ with $\lambda\subsetneq\kappa$ and $a=\tfrac12$, where $D(\kappa)\setminus D(\lambda)$, the
 rotation of $D(\lambda^\vee)\setminus D(\kappa^\vee)$, has no diagonal box.
 
-Then the LS paths $p$ of shape $\omega_m$ with $\iota(p)\le z_\rho W_P$ and down-lift $z_\kappa$ from $z_\rho$ are
+Every down-lift from $z_\rho$ is $\le z_\rho$ in the Bruhat order, so $D_{z_\rho,z_\kappa}=\varnothing$ unless
+$z_\kappa\le z_\rho$, that is, unless $\kappa^\vee\subseteq\rho^\vee$, or equivalently $\rho\subseteq\kappa$
+(Lemma~\ref{lem:bonds} and the rotation). For $\rho\subseteq\kappa$, the LS paths $p$ of shape $\omega_m$ with
+$\iota(p)\le z_\rho W_P$ and down-lift $z_\kappa$ from $z_\rho$ are
 exactly the paths $\bigl(D(\kappa)\setminus g^{-1}(o);\,\kappa\bigr)$ with $a=\tfrac12$ (straight in direction $\kappa$ if
 $g^{-1}(o)=\varnothing$), one for each $V$-map $g$ on $\theta$. Since $-p(1)=v_\kappa+\sum_{g(x)=o}\beta(x)$ and
 $(-1)^{\ell(z_\rho)-\ell(z_\kappa)}=(-1)^{|\theta|}$, \cite[Cor.~3.4, (3.6)]{LS12} reproduces
 Theorem~\ref{thm:Tchev} term by term. This gives a second proof of the formula of Theorem~\ref{thm:Tchev}, from~\cite{LS12},
 Lemma~\ref{lem:lsparity} and the dictionary $\pi^*[\cO_{X_\kappa}]_T=[\cO_{z_\kappa}]$, $L^{-1}=L^{-\omega_m}$ of
-Remark~\ref{rem:LS12}, which uses (G1) only at the base point. It does not use (KT), because the terms of (3.6) with
+Remark~\ref{rem:LS12}, which uses (G1) only at the base point. It does not use the first (equivariant spanning) half of (KT), because the terms of (3.6) with
 $w\notin W^P$ are absent set by set. Indeed, if $w\notin W^P$ then $ws<w$ for some simple reflection $s\in W_P$. Let
 $v$ be the down-lift of $w$ to a coset $\tau$. If $vs>v$, then $v<w$ and the lifting property (the right-handed form
 of~\cite[Prop.~2.2.7]{BB05}) gives $vs\le w$. Since $vs\in\tau$, this contradicts the maximality of $v$. So $vs<v$.
@@ -1423,12 +1426,37 @@ $\pi^*[\cO_{X_\kappa}\otimes L^{-1}]_T=[L^{-\omega_m}][\cO_{z_\kappa}]=\sum_\rho
 The non-equivariant values $c_\rho$ then follow with (G0), as at the end of the proof of Theorem~\ref{thm:Tchev}. That step
 uses only that the $[\cO_{X_\rho}]$ form a basis of $K(X)$, which is already needed to define the $c_\rho$ in
 Lemma~\ref{lem:hyperplane}.
-The key step is that, for $\rho\subseteq\lambda$, the Deodhar down-lift of $z_\rho$ to the coset of $\lambda$ is $z_\lambda$
-if and only if $D(\lambda)\setminus D(\rho)$ is an antichain. One proves this by induction on the number of boxes, peeling a
-corner, using Deodhar's property~Z~\cite[Prop.~2.2.7]{BB05} and the fact that a simple reflection adds a box to,
-removes a box from, or right-multiplies by $W_P$ the minimal representative of a shifted shape. A subword argument shows that
-the second down-lift starts at $z_\lambda$. The two antichains $D(\lambda)\setminus D(\rho)$ and
-$D(\kappa)\setminus D(\lambda)$ are then $g^{-1}(e)$ and $g^{-1}(o)$. The bijection is forced. Two $V$-maps on $\theta$
+
+It remains to prove the description of $D_{z_\rho,z_\kappa}$. Write $\mathrm{dn}(w,\tau)$ for the down-lift. For a box on
+diagonal $d$ call $c=m-d$ its colour. As $s_c$ ($c<m$) swaps the sign-vector entries $m-d,m+1-d$ and $s_m$ flips the last
+one, for a shifted shape $\eta$ exactly one of the following holds: (i)~$s_cw_\eta=w_{\eta+b}$ for an addable box $b$ of
+colour $c$; (ii)~$s_cw_\eta=w_{\eta-b}$ for a removable box $b$ of colour $c$; (iii)~$s_cw_\eta=w_\eta s_j$ for some $j\ne m$.
+(In (i), (ii) the element has length $|\eta|\pm1$ in the coset of $\eta\pm b$. In (iii) it is $w_\eta u$ with $u\in W_P$,
+$u\ne e$ and $|\eta|+\ell(u)=|\eta|\pm1$, so $u=s_j$ and the length is $|\eta|+1$.)
+For $z\in W^P$ each $zu\in zW_P$ has $\ell(zu)=\ell(z)+\ell(u)$, so $zs_j\le zu$ if $s_j$ begins a reduced word of $u\ne e$.
+Hence $\mathrm{dn}(w,zW_P)=z$ iff $z\le w$ and $E(z,w):=\{j\ne m:zs_j\le w\}$ is empty. Since $z_\lambda=w_{\lambda^\vee}$ and the rotation carries $D(\lambda)\setminus D(\rho)$ to
+$D(\rho^\vee)\setminus D(\lambda^\vee)$, the key step is, with $\eta=\lambda^\vee$ and $\nu=\rho^\vee$: \emph{for shapes $\eta\subseteq\nu$, $E(w_\eta,w_\nu)=\varnothing$ iff $\nu/\eta:=D(\nu)\setminus D(\eta)$ is an
+antichain.} We induct on $|\nu|$; $\nu=\eta$ is clear. Otherwise fix $i\ne m$, put $v=w_\eta s_i$, take a removable box $b$ of $\nu$
+of colour $c$, $s=s_c$, so $sw_\nu=w_{\nu-b}$. The lifting property~\cite[Prop.~2.2.7]{BB05} (Deodhar's Property~Z) gives $v\le w_\nu\iff v\le
+w_{\nu-b}$ if $sv>v$, and $v\le w_\nu\iff sv\le w_{\nu-b}$ if $sv<v$. If $\nu/\eta$ is an antichain: when $b\in\eta$, $b$ is
+removable in $\eta$ and $E(w_\eta,w_\nu)=E(w_{\eta-b},w_{\nu-b})$; when $b\notin\eta$, $b$ is minimal in $\nu/\eta$, so
+addable to $\eta$, and $E(w_\eta,w_\nu)=E(w_\eta,w_{\nu-b})$. Both new skews are antichains. If $x<y$ in $\nu/\eta$, choose
+$b\ge y$ maximal in $\nu/\eta$; it is removable in $\nu$ and not addable to $\eta$. In case (iii) for $\eta$ and $c$,
+$sv'=w_\eta<v':=sw_\eta$ and $w_\eta\le w_{\nu-b}$ give $w_\eta s_j=v'\le w_\nu$. In case (i) the addable box $b'$ of colour
+$c$ satisfies $b'<b$ (the boxes of $\eta$ on that diagonal form an initial segment), $E(w_\eta,w_\nu)=E(w_\eta,w_{\nu-b})$,
+and $b'<b'+(0,1)$ both lie in $(\nu-b)/\eta$. In case (ii) the removable box $b''$ of colour $c$ satisfies $b''<b$,
+$E(w_\eta,w_\nu)=E(w_{\eta-b''},w_{\nu-b})$, and $b''<b''+(0,1)$ both lie in $(\nu-b)/(\eta-b'')$. In cases (i)
+and (ii) the induction gives $E\ne\varnothing$.
+
+Now let $p\in D_{z_\rho,z_\kappa}$. The last down-lift lies in the last coset, so $p$ is straight in direction $\kappa$, or
+$p=(\lambda;\kappa)$ as above. In the second case $d_1=\mathrm{dn}(z_\rho,z_\lambda W_P)$ lies in $W^P$, i.e.\ $d_1=z_\lambda$:
+otherwise $d_1$ has a right descent in $W_P$, and by the parabolic vanishing argument above so has $\mathrm{dn}(d_1,z_\kappa
+W_P)\ne z_\kappa$. By the key step, $D_{z_\rho,z_\kappa}$ consists of the straight path when $\theta$ is an antichain, and the
+paths $(\lambda;\kappa)$ with $\rho\subseteq\lambda\subsetneq\kappa$, $D(\lambda)\setminus D(\rho)$ an antichain and
+$D(\kappa)\setminus D(\lambda)$ an antichain without diagonal boxes. A $V$-map sends each pair $x<y$ in $\theta$ to $(e,o)$ and
+is $e$ on diagonal boxes. So setting $g=e$ on $D(\lambda)\setminus D(\rho)$ and $g=o$ on $D(\kappa)\setminus D(\lambda)$ gives
+a $V$-map, as $\lambda$ is an order ideal, and every $V$-map arises once: $\rho\cup g^{-1}(e)$ is an order ideal because no box
+of $\theta$ lies below a box of $g^{-1}(e)$. The bijection is forced. Two $V$-maps on $\theta$
 differ only on isolated boxes of $\theta$ (boxes comparable to no other box of $\theta$; Lemma~\ref{lem:R}). These lie on
 distinct diagonals, so their weights $\beta$ are distinct, and distinct $V$-maps have distinct monomials.
 We checked the description by machine for $m\le5$, together with a control without the $w_0$ twist, which fails.
