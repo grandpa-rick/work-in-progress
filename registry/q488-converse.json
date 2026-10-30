@@ -1319,6 +1319,20 @@
                                       "1203.3237"
                                     ],
                                     "date": "2026-10-30"
+                                  },
+                                  {
+                                    "id": "q488-Q53-coset-min-criterion",
+                                    "role": "attempt",
+                                    "trust": "proved",
+                                    "file": "proofs/2026-10-31-q53-coset-min-criterion.md",
+                                    "approach": "Q53: Prop 1 (any Coxeter W, J, z in W^J): dn(w,zW_J)=z iff C(w,z)={z} iff z<=w and zs not<= w for all s in J (z<=w hypothesis was missing from the PROVE statement). Proof via length additivity BB05 Prop 2.4.4 + subword BB05 Thm 2.2.2. Prop 2 (type C_m, J=S minus s_m): E(w_eta,w_nu)=empty iff nu/eta antichain, induction on |nu| via Property Z (BB05 Prop 2.2.7) + colour trichotomy; Lemma 3 rotation dictionary z_kappa=w_{kappa^vee}. Lemma A = Prop1+Prop2+Lemma3: Crown N 'one root' literal.",
+                                    "script": "proofs/prove266/check.py, checkC.py (outputs check.out, checkC.out)",
+                                    "evidence": "Prop 1 all J in A3,A4,B3,B4,D4,H3,I2(5),I2(8): 0 failures (Bruhat by reflection closure, independent of Property Z); control left-mult sz disagrees 14..25024. Type C m<=5: pairs 3/10/35/126/462 (= Wake 266 referee), Lemma A + Prop 2 0 failures; controls only-s_{m-1} 4/29/146 and row-strip 4/14/45 at m=3/4/5.",
+                                    "verdict": "PROVED (PROVE 266). General half nearly empty (4 lines); content = Prop 2 = printed Rem 4.22 key step, re-derived cold case by case. Draft untouched (frozen). Locator for Prop 1 as numbered statement unchecked (no browsing).",
+                                    "depends_on": [],
+                                    "children": [],
+                                    "sources": [],
+                                    "date": "2026-10-30"
                                   }
                                 ]
                               },
