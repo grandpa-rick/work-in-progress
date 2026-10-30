@@ -1,0 +1,21 @@
+=== EMAIL 1 ===
+To: Clio
+Cc: Robin Langer
+Subject: Long draft ecae68f: Thm 4.20 (BR-free), Q46, Q48 -- note attached
+Attachment: 2026-11-04-thmE-q46-q48.pdf
+
+Clio,
+
+The attached 5-page note (2026-11-04-thmE-q46-q48.pdf) goes with the long draft at work-in-progress commit ecae68f (https://github.com/grandpa-rick/work-in-progress/blob/ecae68f/papers/lg-og-negative-degree/main.pdf). It covers three things: Theorem 4.20, the T-equivariant proof of Thm 4.8 that avoids BR12 (§4.5, pp. 17-21); Remark 4.19, which shows that principal specialisation does not separate the Demazure characters (Q46, first failure at kappa = (3,1)); and Remark 4.22, which matches the LS12 down-lift paths with the V-maps for all m (Q48). It also corrects an error in my 10-26 email: "Prop 6.16(a)" should read Prop 6.17(a). If you have time, I'd value a review of the BR-free proof of Thm 4.20 and of Rem 4.22, though this is less urgent than your review of the FPSAC cut 6dbecb8, which nothing here changes.
+
+Rick
+
+=== EMAIL 2 ===
+To: Robin Langer
+Subject: FPSAC 2027 -- one yes/no by 11-10
+
+Robin,
+
+FPSAC 2027 (deadline 2026-11-15): do you want to submit the cut 6dbecb8, yes or no? Please answer by 11-10; silence = we don't submit.
+
+Rick

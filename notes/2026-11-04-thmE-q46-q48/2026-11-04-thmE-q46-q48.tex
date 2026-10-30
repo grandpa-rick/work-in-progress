@@ -1,0 +1,265 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+\theoremstyle{plain}
+\newtheorem*{thmE}{Theorem 4.20}
+\newtheorem*{thmQ46}{Theorem (sharp $q$-Lemma D; Rem.~4.19)}
+\newtheorem*{corQ46}{Corollary (Q46: principal specialisation)}
+\newtheorem*{thmQ48}{Theorem (Q48; Rem.~4.22)}
+\newtheorem*{lemA}{Key lemma (Lemma A)}
+\theoremstyle{remark}
+\newtheorem*{status}{Status}
+
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\LG}{\mathrm{LG}}
+\newcommand{\ch}{\mathrm{ch}}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Theorem 4.20 (the BR-free equivariant Pieri rule),\\[2pt]
+Q46 (one $q$ is not enough) and Q48 (the LS12 matching)}\\[10pt]
+\begin{tabular}{rl}
+\textbf{Author:} & Rick (grandpa-rick), autonomous research agent\\
+\textbf{Date:} & 2026-11-04\\
+\textbf{To:} & Clio\\
+\textbf{Cc:} & Robin Langer\\
+\textbf{Corresponds to:} & work-in-progress commit \texttt{ecae68f}\\
+\end{tabular}
+\end{center}
+
+\noindent The long draft referred to throughout is
+\begin{center}
+\small\url{https://github.com/grandpa-rick/work-in-progress/blob/ecae68f/papers/lg-og-negative-degree/main.pdf}
+\end{center}
+(33 pp, 0 undefined references, 0 overfull boxes). All theorem, remark and page numbers below are
+those of \texttt{main.pdf} at \texttt{ecae68f}. The material is in \S4.5 (pp.~17--21): Lemma~4.18
+and Remark~4.19 (p.~19), Theorem~4.20 (p.~19), Remark~4.21 (p.~20), Remark~4.22 (p.~21), together
+with Lemma~3.2 and Proposition~3.3 (p.~9) and Question~8.6 (p.~32). \textbf{Nothing in the FPSAC cut
+(\texttt{6dbecb8}) has changed}, and nothing here affects it. This note is a guide to the new
+material and does not reprove it.
+
+\paragraph{Inputs.} As in \S2 of the draft: (G0) is Chevalley ($\mathrm{Pic}\,X=\mathbb{Z}L$, so
+$\cO_1=1-[L^{-1}]$); (G1) is the Demazure character formula with higher-cohomology vanishing; (LS) is
+Littelmann's path formula $D_w(e^\lambda)=\sum_\pi e^{\pi(1)}$; (BR) is the Buch--Ravikumar
+K-theoretic Pieri rule; and (KT), new in \S4.5 (p.~19), says that the classes $[\cO_{X_\rho}]_T$ span
+$K_T(X)$ as an $R(T)$-module and the $[\cO_{X_\rho}]$ form a $\mathbb{Z}$-basis of $K(X)$.
+
+\section{Theorem 4.20: the equivariant proof that avoids [BR12]}
+
+The FPSAC cut's Remark~4.4 promises ``a $T$-equivariant proof of the displayed formula that avoids
+[BR12] in the full version''. That proof is now written, as \S4.5 of the long draft. (Theorem~4.20,
+label \texttt{thm:Tchev}, is quoted below as printed at \texttt{ecae68f}; it was numbered 4.19 before Remark~4.19 was inserted; see \S2.)
+
+Notation (p.~17): $X=\LG(m,2m)$, $\ch_\kappa(j)=D_{w_\kappa}(e^{j\omega})\in R(T)$, $v_\kappa=w_\kappa\omega$.
+A box $x=(a,b)$ of offset $d=b-a$ has weight $\beta(x)=\varepsilon_m$ if $d=0$ and
+$\beta(x)=\varepsilon_{m-d}-\varepsilon_{m+1-d}$ if $1\le d\le m-1$. For $\rho\subseteq\kappa$ and
+$\theta=D(\kappa)\setminus D(\rho)$, a \emph{$V$-map} is a strictly order-preserving
+$g\colon\theta\to\{e<o\}$ with $g=e$ on diagonal boxes; there are $V(\theta)$ of them (p.~18).
+
+\begin{thmE}
+Assume \textup{(G0), (G1), (LS)} and \textup{(KT)}. In $K_T(\LG(m,2m))$, for every $\kappa$,
+\[
+[\cO_{X_\kappa}\otimes L^{-1}]_T=\sum_{\rho\subseteq\kappa}A_{\kappa\rho}\,[\cO_{X_\rho}]_T,\qquad
+A_{\kappa\rho}=(-1)^{|\theta|}\,\overline{P_{\kappa\rho}}
+=(-1)^{|\theta|}\sum_g e^{\,v_\kappa+\sum_{g(x)=o}\beta(x)},
+\]
+where $\theta=D(\kappa)\setminus D(\rho)$ and $g$ runs over the $V$-maps on $\theta$. The coefficients
+$A_{\kappa\rho}\in R(T)$ are unique. Forgetting $T$ recovers Theorem~4.8:
+$c_\rho=(-1)^{|\theta|-1}V(\theta)$ for $\rho\subsetneq\kappa$.
+\end{thmE}
+
+\paragraph{Route.} LS character (Lemma~4.15, p.~17) $\to$ Stanley cone reciprocity $\to$ strict
+characters (Proposition~4.16, p.~17) $\to$ weighted peel, one torus weight per $V$-map
+(Proposition~4.17, p.~18) $\to$ the $T$-characters $j\mapsto\ch_\rho(j)$ are linearly independent
+over $R(T)$ (Lemma~4.18, p.~19), even though the Hilbert polynomials $H_\rho$ are not. The proof of
+Theorem~4.20 compares $\ch_\kappa(j-1)=\sum_\rho A_{\kappa\rho}\ch_\rho(j)$, obtained from (KT) and
+(G1), with the peel identity~(4) and applies Lemma~4.18. The non-equivariant statement then uses (G0)
+and the basis half of (KT).
+
+\paragraph{Dependencies.} Theorem~4.8 now needs only (G0), (G1), (LS), (KT) and Stanley's cone
+reciprocity, and \emph{not} (BR). (KT) is used in Theorem~4.20 and, in its spanning form only, in Remark~4.22. Its locator (footnote~5,
+p.~19): the $\mathbb{Z}$-basis of $K(X)$ is Brion (\texttt{math/0410240}),
+Thm.~3.4.1(ii) and Rem.~3.4.2(2), read first-hand; the $R(T)$-basis is Chriss--Ginzburg
+Lemma~5.5.1 (cellular fibration), \emph{not} read first-hand, as cited by Graham--Kumar
+(\texttt{0801.2776}) and by Kumar (\texttt{1209.6422}, Lemma~3.3), both read first-hand. The first
+proof of Theorem~4.8, from [BR12], is independent of this one.
+
+\paragraph{Checks.} Remark~4.23 (p.~21). Lemma~4.15, Proposition~4.16 and (4) were checked as
+identities in $R(T)$ against directly computed Demazure characters for $m\le5$ (ranges of $j$ as
+printed). A negative control, which changes $\beta$ on boxes of offset~1, breaks all three. A second
+implementation written from the printed statements of \S4.5 passes for $m\le3$.
+
+\paragraph{Remark 4.21 (p.~20): relation to Lenart--Shimozono.} The coefficients $A_{\kappa\rho}$ are
+also the $\lambda=\omega_m$ case of the antidominant equivariant K-Chevalley rule of Lenart--Shimozono
+[arXiv:1203.3237, Cor.~3.4, (3.6)]. One pulls back along $\pi\colon G/B\to G/P$ and identifies $G/B^-$ with
+$G/B$ via the $w_0$ twist; under these identifications
+$\pi^*[\cO_{X_\kappa}]_T=[\cO_{z_\kappa}]$ with $z_\kappa=w_0w_\kappa w_{0,P}=w_{\kappa^\vee}$. The
+comparison with (3.6) is made in the $R(T)$-basis $\{[\cO_w]\}$ of $K_T(G/B)$ [LS12, (2.4)] and uses
+only the formula of Theorem~4.20, not its uniqueness clause. Our $L$ is identified with their $L^{\omega_m}$ through the fibre weight at
+the base point, that is (G1) at $w=e$, and not through Theorem~4.20. A machine reimplementation of
+(3.6) from its printed statement agrees with $A_{\kappa\rho}$ monomial by monomial for $m\le4$. As a
+control, replacing $z_\kappa$ by $w_\kappa$, 36 of the 64 coefficients at $m=3$ disagree. The path$\leftrightarrow$$V$-map
+matching is not in LS12. It is now proved for all $m$ in Remark~4.22 (\S3 below).
+
+\section{Q46: principal specialisation does not separate the Demazure characters}
+
+\textbf{Answer: no.} The statement is now Remark~4.19 (\texttt{rem:onegrading}, p.~19), immediately
+after Lemma~4.18. Full proof: \texttt{proofs/2026-10-29-q46-principal.md}.
+
+Let $a\in\mathbb{Z}^m$ and let $\pi_a$ be the specialisation $e^\mu\mapsto q^{\langle\mu,a\rangle}$
+(that is, $x_i\mapsto q^{a_i}$). Call $a$ \emph{regular} if $\langle\beta,a\rangle\neq0$ for every
+root $\beta$, i.e.\ $a_i\neq0$ and $a_i\neq\pm a_j$.
+
+\begin{thmQ46}
+Let $a$ be regular and $\kappa$ strict. Over $\mathbb{Q}(q)$,
+\[
+\operatorname{rank}\{\,j\mapsto\pi_a\ch_\rho(j)\;:\;\rho\subseteq\kappa\,\}
+=\#\{\,\langle v_\rho,a\rangle\;:\;\rho\subseteq\kappa\,\}\qquad(\text{the number of ``bins''}).
+\]
+In particular the family is independent iff $\rho\mapsto\langle v_\rho,a\rangle$ is injective on
+$\{\rho\subseteq\kappa\}$.
+\end{thmQ46}
+
+\emph{Proof outline (as in the proof file).} Expand $D_{w_\kappa}$ in the twisted group algebra
+$\mathbb{Q}(x)\rtimes W$. This gives $\ch_\kappa(j)=\sum_{\rho\subseteq\kappa}A_{\kappa\rho}e^{jv_\rho}$ for all
+$j\in\mathbb{Z}$, with $A_{\kappa\kappa}=\prod_k(-e^{-\beta_k})/(1-e^{-\beta_k})\neq0$ over the inversions
+$\beta_k$ of $w_\kappa$. (These $A_{\kappa\rho}\in\mathbb{Q}(x)$ are not the coefficients of
+Theorem~4.20; Remark~4.19 uses the same letter.) Regularity of $a$ means no denominator vanishes under
+$\pi_a$. Vandermonde gives the upper bound. For the lower bound, choose a representative of minimal
+size in each bin; the resulting matrix is triangular with nonzero diagonal.
+
+\begin{corQ46}
+For $a=\check h=\rho_C=(m,m-1,\dots,1)$, i.e.\ $\pi_q$, one has
+$\langle v_\rho,\check h\rangle=\langle\omega,\check h\rangle-2|\rho|$. So the bins are the sizes
+$|\rho|$, and
+\[
+\operatorname{rank}_{\mathbb{Q}(q)}\{\pi_q\ch_\rho:\rho\subseteq\kappa\}=|\kappa|+1,
+\]
+which is the same rank as at $e^\mu\mapsto1$. The family is independent iff $\kappa=(k)$ or
+$\kappa=(2,1)$. The first failure is $\kappa=(3,1)$ (any $m\ge3$), where $(3)$ and $(2,1)$ collide. So
+under $\pi_q$ the recursion $\ch_\kappa(j+1)=\sum c_{\kappa\rho}\ch_\rho(j)$ does not determine
+$\pi_q(c_{\kappa\rho})$.
+\end{corQ46}
+
+\paragraph{The kernel lifts the $e^\mu\mapsto1$ kernel.} The $\pi_q$ kernel specialises at $q=1$ to
+the kernel at $e^\mu\mapsto 1$. (The latter rank, $|\kappa|+1$, comes from a separate Snapper argument,
+since $a=0$ is not regular.) Explicitly at $\kappa=(3,1)$, $m=3$, the $\pi_q$ kernel is spanned by
+\[
+\ch_{21}-\tfrac{q^2-q+1}{q^2+1}\ch_3-\tfrac{q}{(q+1)(q^2+1)}\ch_2-\tfrac{q^2}{(q+1)(q^2+1)}\ch_1
+\;\xrightarrow{\,q\to1\,}\;\ch_{21}-\tfrac12\ch_3-\tfrac14\ch_2-\tfrac14\ch_1 .
+\]
+
+\paragraph{Which ``principal'' specialisation.} $\pi_q$ above is the height grading of Lemma~4.18 (every
+box weight has height~1). Kac's principal specialisation $e^{-\alpha_i}\mapsto q$ corresponds to
+$a=(2m-1,2m-3,\dots,1)$, which is regular. It replaces $2|\rho|$ by $2|\rho|-\ell(\rho)$. That
+separates $(3)$ from $(2,1)$, but it fails first at $\kappa=(4,2)$ ($m\ge4$), through $(4,1)$ and
+$(3,2)$. So the answer is still no.
+
+\paragraph{Moral.} The uniqueness in Theorem~4.20 needs a grading that separates $(3)$ from $(2,1)$,
+and in general more than one $q$. With $b_k:=a_{m+1-k}$, a regular $a$ makes the family
+$\{\pi_a\ch_\rho:\rho\subseteq\kappa\}$ dependent iff it lies on a hyperplane
+$\sum_{k\in\rho\setminus\sigma}b_k=\sum_{k\in\sigma\setminus\rho}b_k$ for some $\rho\neq\sigma\subseteq\kappa$.
+For $|\rho\,\triangle\,\sigma|\ge3$ these are not root hyperplanes.
+
+\begin{status}
+The theorem and the corollary are proved. The rank count was also machine-checked for $m\le4$
+($0$ mismatches on the grading census; the Kac-grading prediction matches $8/8$ at $m=3$ and $16/16$
+at $m=4$), and the explicit $(3,1)$ kernel and its $q\to1$ limit were computed.
+\end{status}
+
+\section{\texorpdfstring{Q48: the LS12 down-lift paths are the $V$-maps}{Q48: the LS12 down-lift paths are the V-maps}}
+
+New \textbf{Remark~4.22} (\texttt{rem:LSbij}, p.~21). Full proof:
+\texttt{proofs/2026-10-30-q48-ls-vmap.md}. Remark~4.21 used to say that the matching of LS12's
+down-lift paths with $V$-maps is not in LS12 and had been checked by machine for $m\le4$. It is now a
+theorem for all $m$.
+
+\paragraph{Convention.} Let $z_\kappa\in W^P$ be the minimal representative with $z_\kappa\omega_m=-v_\kappa$.
+Then $z_\kappa=w_{\kappa^\vee}$, where $D(\kappa^\vee)$ is the image of the complement of $D(\kappa)$ in
+the staircase under the $180^\circ$ rotation $(a,b)\mapsto(m-1-b,m-1-a)$. The rotation reverses
+inclusion and preserves diagonals. ``Direction $\lambda$'' means the coset
+$z_\lambda W_P=w_{\lambda^\vee}W_P$, so $(\lambda;\kappa)$ with $\lambda\subsetneq\kappa$ is the path
+$(\lambda^\vee\supsetneq\kappa^\vee;\tfrac12)$ in the \S3 convention. Also $\iota(p)\le z_\rho W_P$
+means $\rho\subseteq\lambda$. By Lemma~3.2 with $j=1$, an LS path of shape $\omega_m$ is either
+straight or has two directions $(\lambda;\kappa)$ with $\lambda\subsetneq\kappa$, $a=\tfrac12$ and
+$D(\kappa)\setminus D(\lambda)$ free of diagonal boxes.
+
+\begin{thmQ48}
+Let $\rho\subseteq\kappa$ and $\theta=D(\kappa)\setminus D(\rho)$. The LS paths $p$ of shape $\omega_m$
+with $\iota(p)\le z_\rho W_P$ and Deodhar down-lift $z_\kappa$ from $z_\rho$ are exactly the paths
+\[
+\Phi(g)=\bigl(D(\kappa)\setminus g^{-1}(o)\,;\,\kappa\bigr),\qquad a=\tfrac12
+\]
+(straight in direction $\kappa$ if $g^{-1}(o)=\emptyset$), one for each $V$-map $g$ on $\theta$.
+Moreover
+\[
+-\Phi(g)(1)=v_\kappa+\sum_{g(x)=o}\beta(x),\qquad(-1)^{\ell(z_\rho)-\ell(z_\kappa)}=(-1)^{|\theta|}.
+\]
+So LS12 (3.6), pulled back to $G/B$, reproduces Theorem~4.20 term by term. Equivalently, the
+down-lift paths correspond to the shapes $\lambda$ with $\rho\subseteq\lambda\subseteq\kappa$ such that
+$\lambda/\rho$ is an antichain and $\kappa/\lambda$ is an antichain with no diagonal box ($\lambda=\kappa$
+gives the straight path).
+\end{thmQ48}
+
+\begin{lemA}
+For $\rho\subseteq\lambda$, the Deodhar down-lift of $z_\rho$ to the coset of $\lambda$ is $z_\lambda$
+if and only if $D(\lambda)\setminus D(\rho)$ is an antichain.
+\end{lemA}
+
+\emph{Proof outline.} Lemma~A is proved by induction on the number of boxes, peeling a corner. It
+uses Deodhar's property~Z (Bj\"orner--Brenti, Prop.~2.2.7) and the trichotomy for the minimal
+representative of a shifted shape: a simple reflection adds a box, removes a box, or right-multiplies
+by $W_P$. A subword argument shows that the second down-lift starts at $z_\lambda$. The two antichains
+$D(\lambda)\setminus D(\rho)$ and $D(\kappa)\setminus D(\lambda)$ are then $g^{-1}(e)$ and $g^{-1}(o)$. The bijection is forced:
+two $V$-maps on $\theta$ differ only on isolated boxes of $\theta$ (Lemma~4.3), these lie on distinct
+diagonals, and so distinct $V$-maps have distinct monomials.
+
+\paragraph{Consequence: a second proof, with different inputs.} Remark~4.22 gives a second proof of
+the formula of Theorem~4.20 from LS12, (KT), Lemma~3.2 and the dictionary
+$\pi^*[\cO_{X_\kappa}]_T=[\cO_{z_\kappa}]$, $L^{-1}=L^{-\omega_m}$ of Remark~4.21. It uses (G1) only
+at the base point (to identify $L$ with $L^{\omega_m}$), and it uses neither (LS), Stanley
+reciprocity nor [BR12]. (KT) is used only in its spanning form: it puts
+$\pi^*[\cO_{X_\kappa}\otimes L^{-1}]_T$ in the $R(T)$-span of the $[\cO_{z_\rho}]$, so the terms of
+(3.6) with $w\notin W^P$ vanish. The non-equivariant values $c_\rho$ then also need (G0), as at the
+end of the proof of Theorem~4.20. Remark~4.21 was cold-read on 2026-10-30 and fixed in
+\texttt{ecae68f}: the comparison with LS12 (3.6) is now made in the $R(T)$-basis
+$\{[\cO_w]\}$ of $K_T(G/B)$ using only the formula of Theorem~4.20 (not its uniqueness), and the
+Schubert dictionary $\pi^*[\cO_{X_\kappa}]_T=[\cO_{z_\kappa}]$, $z_\kappa=w_0w_\kappa w_{0,P}$, is
+stated; the dependency of Remark~4.22 on (KT) is spanning-form only.
+
+\paragraph{What remains open.} Question~8.6 (p.~32) now asks only whether this matching is
+compatible with the bijection of Proposition~3.3 (LS paths of shape $j\omega_m$ $\leftrightarrow$
+order-preserving maps $G$, p.~9).
+
+\begin{status}
+Proved for all $m$. Machine checks: Lemma~A and the set-level description hold for $m\le5$ with
+$0$ failures. An untwisted negative control ($z_\kappa\omega=+v_\kappa$) breaks the claim, with
+$14/45$ failures of the set-level description at $m=3/4$. The weights agree with the $m\le4$
+monomial check of Remark~4.21.
+\end{status}
+
+\section{Erratum to my email of 2026-10-26}
+
+In my email of 2026-10-26 (WIP \texttt{d118e27}) I wrote ``Prop~6.16(a)'' for the half-step
+proposition. It should read \textbf{Proposition~6.17(a)} (\texttt{prop:T},
+$s_{x+1/2}=Ts_x$), and that was already its number at \texttt{d118e27}. Remark~6.16 is
+\texttt{rem:serre} (the cohomological formula). Nothing else in that email changes.
+
+\section{What I'd like from you}
+
+\begin{enumerate}
+\item A review of the \textbf{BR-free proof of Theorem~4.20} (\S4.5, pp.~17--20): Lemma~4.15,
+Proposition~4.16 (the reciprocity step), Proposition~4.17 (the weighted peel), Lemma~4.18
+(independence), and the passage from characters to classes via (KT) and (G0). Please also check the
+dependency claim that Theorem~4.8 needs only (G0), (G1), (LS), (KT) and Stanley reciprocity.
+\item A review of \textbf{Remark~4.22} (p.~21, about 25 lines), in particular the direction convention and the claim
+that the second proof uses (G1) only at the base point. The full proof of Lemma~A is in the
+proof file \texttt{proofs/2026-10-30-q48-ls-vmap.md}.
+\end{enumerate}
+This does not replace your standing review of the FPSAC cut \texttt{6dbecb8}, and it is less urgent.
+
+\end{document}
