@@ -1306,13 +1306,19 @@
                                 "children": [
                                   {
                                     "id": "q488-Q52-parabolic-vanishing",
-                                    "approach": "Q52: for z_kappa in W^P (type C_m, P maximal at omega_m), D^{omega_m}_{w,z_kappa}=empty for every w not in W^P (LS12 (3.6) terms off W^P vanish set-wise). Would make Rem 4.22 (KT)-free (currently (KT) spanning form used only to kill these terms).",
-                                    "trust": "computed",
-                                    "evidence": "Wake 265 referee re-impl proofs/wake265/check.py: no (3.6) term lands on w outside W^P, m<=4. Not yet checked whether set-wise empty or only signed-cancelling; PROVE 265 checks first.",
-                                    "depends_on": [
-                                      "q488-Q48-LS-Vmap-bijection"
+                                    "approach": "Q52: z in W^P, w notin W^P => D^{lambda}_{w,z} empty (LS12 (3.2)/(3.6)). General form: any Coxeter W, any J; dn = Bruhat-max in a W_J-coset keeps D_R(w) cap J (right lifting property via subword property), so dn(w,p) notin W^J. Makes Rem 4.22 (KT)-free: pi^* injective + (3.6) + Q48 bijection.",
+                                    "trust": "proved",
+                                    "evidence": "m=2,3,4: Lemma 2 (descent preservation) 0/20, 0/210, 0/3024 failures; set-wise #(w notin W^P, p) with dn in W^P = 0 (not signed cancellation); non-vacuity 12/280/6624 land off W^P. Control (Bruhat-min instead of max): Lemma 2 fails 175/210, 2898/3024.",
+                                    "depends_on": [],
+                                    "children": [],
+                                    "role": "attempt",
+                                    "file": "proofs/2026-10-31-q52-parabolic-vanishing.md",
+                                    "script": "proofs/prove265/q52.py, q52_ctrl_min.py",
+                                    "verdict": "PROVED all Coxeter/all dominant lambda (PROVE 265). Nearly empty question: 3-line lifting argument, nothing specific to omega_m or z_kappa.",
+                                    "sources": [
+                                      "1203.3237"
                                     ],
-                                    "children": []
+                                    "date": "2026-10-30"
                                   }
                                 ]
                               },
