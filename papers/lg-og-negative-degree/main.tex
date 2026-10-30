@@ -1427,24 +1427,27 @@ The non-equivariant values $c_\rho$ then follow with (G0), as at the end of the 
 uses only that the $[\cO_{X_\rho}]$ form a basis of $K(X)$, which is already needed to define the $c_\rho$ in
 Lemma~\ref{lem:hyperplane}.
 
-It remains to prove the description of $D_{z_\rho,z_\kappa}$. Write $\mathrm{dn}(w,\tau)$ for the down-lift. For a box on
-diagonal $d$ call $c=m-d$ its colour. As $s_c$ ($c<m$) swaps the sign-vector entries $m-d,m+1-d$ and $s_m$ flips the last
+It remains to prove the description of $D_{z_\rho,z_\kappa}$. Write $\mathrm{dn}(w,\tau)$ for the down-lift. A box $(a,a+d)$ lies on
+\emph{diagonal} $d$ (its offset), and $c=m-d$ is its \emph{colour}. A box $b\notin D(\eta)$ is \emph{addable} to a shape
+$\eta$ if $D(\eta)\cup\{b\}$ is a shifted diagram, and $b\in D(\eta)$ is \emph{removable} if $D(\eta)\setminus\{b\}$ is one. As $s_c$ ($c<m$) swaps the sign-vector entries $m-d,m+1-d$ and $s_m$ flips the last
 one, for a shifted shape $\eta$ exactly one of the following holds: (i)~$s_cw_\eta=w_{\eta+b}$ for an addable box $b$ of
 colour $c$; (ii)~$s_cw_\eta=w_{\eta-b}$ for a removable box $b$ of colour $c$; (iii)~$s_cw_\eta=w_\eta s_j$ for some $j\ne m$.
-(In (i), (ii) the element has length $|\eta|\pm1$ in the coset of $\eta\pm b$. In (iii) it is $w_\eta u$ with $u\in W_P$,
+(In (i) the element has length $|\eta|\pm1$ in the coset of $\eta+b$, whose minimal length is $|\eta|+1$. Case (ii) is (i)
+applied to $\eta-b$: $s_cw_{\eta-b}$ lies in the coset of $\eta$ and has length $\le|\eta|$, so it equals $w_\eta$. In (iii) it is $w_\eta u$ with $u\in W_P$,
 $u\ne e$ and $|\eta|+\ell(u)=|\eta|\pm1$, so $u=s_j$ and the length is $|\eta|+1$.)
 For $z\in W^P$ each $zu\in zW_P$ has $\ell(zu)=\ell(z)+\ell(u)$, so $zs_j\le zu$ if $s_j$ begins a reduced word of $u\ne e$.
 Hence $\mathrm{dn}(w,zW_P)=z$ iff $z\le w$ and $E(z,w):=\{j\ne m:zs_j\le w\}$ is empty. Since $z_\lambda=w_{\lambda^\vee}$ and the rotation carries $D(\lambda)\setminus D(\rho)$ to
 $D(\rho^\vee)\setminus D(\lambda^\vee)$, the key step is, with $\eta=\lambda^\vee$ and $\nu=\rho^\vee$: \emph{for shapes $\eta\subseteq\nu$, $E(w_\eta,w_\nu)=\varnothing$ iff $\nu/\eta:=D(\nu)\setminus D(\eta)$ is an
 antichain.} We induct on $|\nu|$; $\nu=\eta$ is clear. Otherwise fix $i\ne m$, put $v=w_\eta s_i$, take a removable box $b$ of $\nu$
-of colour $c$, $s=s_c$, so $sw_\nu=w_{\nu-b}$. The lifting property~\cite[Prop.~2.2.7]{BB05} (Deodhar's Property~Z) gives $v\le w_\nu\iff v\le
+of colour $c$, $s=s_c$, so $sw_\nu=w_{\nu-b}$. The lifting property~\cite[Prop.~2.2.7]{BB05} and its standard corollary (Deodhar's Property~Z) give $v\le w_\nu\iff v\le
 w_{\nu-b}$ if $sv>v$, and $v\le w_\nu\iff sv\le w_{\nu-b}$ if $sv<v$. If $\nu/\eta$ is an antichain: when $b\in\eta$, $b$ is
 removable in $\eta$ and $E(w_\eta,w_\nu)=E(w_{\eta-b},w_{\nu-b})$; when $b\notin\eta$, $b$ is minimal in $\nu/\eta$, so
 addable to $\eta$, and $E(w_\eta,w_\nu)=E(w_\eta,w_{\nu-b})$. Both new skews are antichains. If $x<y$ in $\nu/\eta$, choose
-$b\ge y$ maximal in $\nu/\eta$; it is removable in $\nu$ and not addable to $\eta$. In case (iii) for $\eta$ and $c$,
-$sv'=w_\eta<v':=sw_\eta$ and $w_\eta\le w_{\nu-b}$ give $w_\eta s_j=v'\le w_\nu$. In case (i) the addable box $b'$ of colour
+$b\ge y$ maximal in $\nu/\eta$. It is removable in $\nu$, since a box of $\nu$ above $b$ would lie in $\nu/\eta$, and not
+addable to $\eta$, since $x<b$ and $x\notin\eta$. In case (iii) for $\eta$ and $c$, take $i=j$: then $v=w_\eta s_j=sw_\eta$,
+so $sv=w_\eta<v$, and $w_\eta\le w_{\nu-b}$ gives $v\le w_\nu$, so $j\in E(w_\eta,w_\nu)$. In case (i) the addable box $b'$ of colour
 $c$ satisfies $b'<b$ (the boxes of $\eta$ on that diagonal form an initial segment), $E(w_\eta,w_\nu)=E(w_\eta,w_{\nu-b})$,
-and $b'<b'+(0,1)$ both lie in $(\nu-b)/\eta$. In case (ii) the removable box $b''$ of colour $c$ satisfies $b''<b$,
+and $b'<b'+(0,1)$ (the box to the right of $b'$) both lie in $(\nu-b)/\eta$. In case (ii) the removable box $b''$ of colour $c$ satisfies $b''<b$,
 $E(w_\eta,w_\nu)=E(w_{\eta-b''},w_{\nu-b})$, and $b''<b''+(0,1)$ both lie in $(\nu-b)/(\eta-b'')$. In cases (i)
 and (ii) the induction gives $E\ne\varnothing$.
 
