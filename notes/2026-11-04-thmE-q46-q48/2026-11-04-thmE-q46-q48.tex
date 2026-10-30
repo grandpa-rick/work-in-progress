@@ -27,17 +27,17 @@ Q46 (one $q$ is not enough) and Q48 (the LS12 matching)}\\[10pt]
 \textbf{Date:} & 2026-11-04\\
 \textbf{To:} & Clio\\
 \textbf{Cc:} & Robin Langer\\
-\textbf{Corresponds to:} & work-in-progress commit \texttt{ecae68f}\\
+\textbf{Corresponds to:} & work-in-progress commit \texttt{3d65a8b}\\
 \end{tabular}
 \end{center}
 
 \noindent The long draft referred to throughout is
 \begin{center}
-\small\url{https://github.com/grandpa-rick/work-in-progress/blob/ecae68f/papers/lg-og-negative-degree/main.pdf}
+\small\url{https://github.com/grandpa-rick/work-in-progress/blob/3d65a8b/papers/lg-og-negative-degree/main.pdf}
 \end{center}
-(33 pp, 0 undefined references, 0 overfull boxes). All theorem, remark and page numbers below are
-those of \texttt{main.pdf} at \texttt{ecae68f}. The material is in \S4.5 (pp.~17--21): Lemma~4.18
-and Remark~4.19 (p.~19), Theorem~4.20 (p.~19), Remark~4.21 (p.~20), Remark~4.22 (p.~21), together
+(34 pp, 0 undefined references, 0 overfull boxes). All theorem, remark and page numbers below are
+those of \texttt{main.pdf} at \texttt{3d65a8b}. The material is in \S4.5 (pp.~17--22): Lemma~4.18
+and Remark~4.19 (p.~19), Theorem~4.20 (p.~19), Remark~4.21 (p.~20), Remark~4.22 (pp.~21--22), together
 with Lemma~3.2 and Proposition~3.3 (p.~9) and Question~8.6 (p.~32). \textbf{Nothing in the FPSAC cut
 (\texttt{6dbecb8}) has changed}, and nothing here affects it. This note is a guide to the new
 material and does not reprove it.
@@ -52,7 +52,7 @@ $K_T(X)$ as an $R(T)$-module and the $[\cO_{X_\rho}]$ form a $\mathbb{Z}$-basis 
 
 The FPSAC cut's Remark~4.4 promises ``a $T$-equivariant proof of the displayed formula that avoids
 [BR12] in the full version''. That proof is now written, as \S4.5 of the long draft. (Theorem~4.20,
-label \texttt{thm:Tchev}, is quoted below as printed at \texttt{ecae68f}; it was numbered 4.19 before Remark~4.19 was inserted; see \S2.)
+label \texttt{thm:Tchev}, is quoted below as printed at \texttt{3d65a8b}; it was numbered 4.19 before Remark~4.19 was inserted; see \S2.)
 
 Notation (p.~17): $X=\LG(m,2m)$, $\ch_\kappa(j)=D_{w_\kappa}(e^{j\omega})\in R(T)$, $v_\kappa=w_\kappa\omega$.
 A box $x=(a,b)$ of offset $d=b-a$ has weight $\beta(x)=\varepsilon_m$ if $d=0$ and
@@ -81,7 +81,7 @@ Theorem~4.20 compares $\ch_\kappa(j-1)=\sum_\rho A_{\kappa\rho}\ch_\rho(j)$, obt
 and the basis half of (KT).
 
 \paragraph{Dependencies.} Theorem~4.8 now needs only (G0), (G1), (LS), (KT) and Stanley's cone
-reciprocity, and \emph{not} (BR). (KT) is used in Theorem~4.20 and, in its spanning form only, in Remark~4.22. Its locator (footnote~5,
+reciprocity, and \emph{not} (BR). (KT) is used only in Theorem~4.20; Remark~4.22 reproves its formula without (KT) (new at \texttt{3d65a8b}, see \S3). Its locator (footnote~5,
 p.~19): the $\mathbb{Z}$-basis of $K(X)$ is Brion (\texttt{math/0410240}),
 Thm.~3.4.1(ii) and Rem.~3.4.2(2), read first-hand; the $R(T)$-basis is Chriss--Ginzburg
 Lemma~5.5.1 (cellular fibration), \emph{not} read first-hand, as cited by Graham--Kumar
@@ -219,17 +219,22 @@ two $V$-maps on $\theta$ differ only on isolated boxes of $\theta$ (Lemma~4.3), 
 diagonals, and so distinct $V$-maps have distinct monomials.
 
 \paragraph{Consequence: a second proof, with different inputs.} Remark~4.22 gives a second proof of
-the formula of Theorem~4.20 from LS12, (KT), Lemma~3.2 and the dictionary
+the formula of Theorem~4.20 from LS12, Lemma~3.2 and the dictionary
 $\pi^*[\cO_{X_\kappa}]_T=[\cO_{z_\kappa}]$, $L^{-1}=L^{-\omega_m}$ of Remark~4.21. It uses (G1) only
 at the base point (to identify $L$ with $L^{\omega_m}$), and it uses neither (LS), Stanley
-reciprocity nor [BR12]. (KT) is used only in its spanning form: it puts
-$\pi^*[\cO_{X_\kappa}\otimes L^{-1}]_T$ in the $R(T)$-span of the $[\cO_{z_\rho}]$, so the terms of
-(3.6) with $w\notin W^P$ vanish. The non-equivariant values $c_\rho$ then also need (G0), as at the
-end of the proof of Theorem~4.20. Remark~4.21 was cold-read on 2026-10-30 and fixed in
+reciprocity, [BR12] nor (KT). \emph{New since \texttt{ecae68f}:} the terms of (3.6) with $w\notin W^P$
+vanish set by set, with no appeal to (KT). If $ws<w$ for a simple $s\in W_P$, then every Deodhar
+down-lift $v$ of $w$ also has $vs<v$. Otherwise the lifting property gives $vs\le w$ with $vs$ in the
+same coset, contradicting the maximality of $v$. So down-lifts from $w\notin W^P$ never reach $W^P$.
+This holds for any Coxeter group and parabolic subgroup, and is checked set-wise for $m\le4$; with
+Bruhat-min in place of Bruhat-max it fails. Then
+$\pi^*[\cO_{X_\kappa}\otimes L^{-1}]_T=\sum_\rho A_{\kappa\rho}[\cO_{z_\rho}]=\pi^*(\sum_\rho A_{\kappa\rho}[\cO_{X_\rho}]_T)$
+and $\pi^*$ is injective. The non-equivariant values $c_\rho$ then also need (G0), as at the
+end of the proof of Theorem~4.20, together with the basis of $K(X)$ that defines them (Lemma~4.1). Remark~4.21 was cold-read on 2026-10-30 and fixed in
 \texttt{ecae68f}: the comparison with LS12 (3.6) is now made in the $R(T)$-basis
 $\{[\cO_w]\}$ of $K_T(G/B)$ using only the formula of Theorem~4.20 (not its uniqueness), and the
 Schubert dictionary $\pi^*[\cO_{X_\kappa}]_T=[\cO_{z_\kappa}]$, $z_\kappa=w_0w_\kappa w_{0,P}$, is
-stated; the dependency of Remark~4.22 on (KT) is spanning-form only.
+stated.
 
 \paragraph{What remains open.} Question~8.6 (p.~32) now asks only whether this matching is
 compatible with the bijection of Proposition~3.3 (LS paths of shape $j\omega_m$ $\leftrightarrow$
@@ -256,7 +261,7 @@ $s_{x+1/2}=Ts_x$), and that was already its number at \texttt{d118e27}. Remark~6
 Proposition~4.16 (the reciprocity step), Proposition~4.17 (the weighted peel), Lemma~4.18
 (independence), and the passage from characters to classes via (KT) and (G0). Please also check the
 dependency claim that Theorem~4.8 needs only (G0), (G1), (LS), (KT) and Stanley reciprocity.
-\item A review of \textbf{Remark~4.22} (p.~21, about 25 lines), in particular the direction convention and the claim
+\item A review of \textbf{Remark~4.22} (pp.~21--22, about 35 lines), in particular the direction convention and the claim
 that the second proof uses (G1) only at the base point. The full proof of Lemma~A is in the
 proof file \texttt{proofs/2026-10-30-q48-ls-vmap.md}.
 \end{enumerate}
