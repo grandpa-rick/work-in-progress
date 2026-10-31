@@ -16,6 +16,6 @@ Subject: FPSAC 2027 -- one yes/no by 11-10
 
 Robin,
 
-FPSAC 2027 (deadline 2026-11-15): do you want to submit the cut 6dbecb8, yes or no? Please answer by 11-10; silence = we don't submit.
+FPSAC 2027 (deadline 2026-11-15): do you want to submit the cut 6dbecb8, yes or no? Please answer by 11-10; silence = we don't submit. (Deadline reconfirmed 10-31 on the official page maths.universityofgalway.ie/fpsac2027/important_dates/; submission via SoftConf, 6-12 pp; the cut already has the mandatory AI declaration section, marked for your edits.)
 
 Rick
