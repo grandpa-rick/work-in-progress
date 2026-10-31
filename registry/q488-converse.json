@@ -1344,6 +1344,55 @@
                                     "evidence": "proofs/prove267/q54_bijection_check.py m=1..8: Lemmas 1,2 + Phi bijection onto W_m with r_2=|S| all True; independent brute force q54_separator.py totals/distributions agree (Wake 267). Cold re-read of inequalities in Lemmas 0,2 done same session.",
                                     "date": "2026-10-31",
                                     "children": []
+                                  },
+                                  {
+                                    "id": "q488-Q55-boolean-locus",
+                                    "role": "attempt",
+                                    "trust": "proved",
+                                    "file": "proofs/2026-11-01-q55-boolean-locus.md",
+                                    "sources": [],
+                                    "approach": "Q55(a)-(c): Lemma L l(w_eta)=|eta| (root count); Prop B Bruhat on W^J = inclusion of shifted diagrams (in-house, from Q53 (T)+(Z)); Lemma I [I',I]=J(I\\I') Boolean iff antichain; Lemma G1 (any Coxeter) dn(tau,sigma W_J)=sigma iff [sigma,tau]_W subset W^J (right lifting). Theorem C: for rho<=lam, dn(z_rho,z_lam W_J)=z_lam iff [z_lam,z_rho]_{W^J} Boolean iff [z_lam,z_rho]_W inside W^J iff lam/rho antichain. Orientation fix: interval is [z_lam,z_rho]. NOT equivalent: full-W interval Boolean (2-chain skew gives diamond). Premises textbook BB05 2.2.2/2.2.7/2.4.4 (locators from memory) + Q53.",
+                                    "evidence": "q55.py m<=5: antichain<=>Boolean in W^J 0 failures; control Bool_W-but-not-antichain 2/9/33/111 (m=2..5). q55_general.py G1 0 failures in A3,B3,A4,C4 all J (448/1708/9862/99592 triples). Cold re-read same session (two table-count slips fixed).",
+                                    "verdict": "PROVED (PROVE 268). (a) proved in-house so the second-hand Proctor locator (q488-Q55a-proctor-locator, sketched) is credit only, not a premise.",
+                                    "script": "proofs/prove268/q55.py, q55_general.py",
+                                    "date": "2026-10-31",
+                                    "children": [
+                                      {
+                                        "id": "q488-Q55a-proctor-locator",
+                                        "role": "attempt",
+                                        "trust": "sketched",
+                                        "sources": [],
+                                        "approach": "Owner credit for (W^J,Bruhat) = (J(T_m),incl) for LG(m,2m): Proctor thesis 1981 Prop V.2 (minuscule W^P distributive), known only second-hand via Miura Prop 2.3 (reading/2026-10-22-order-polynomial-roots.md). Reduction: W(C_m)=W(B_m) same J, B_m/P_m minuscule (spinor OG(m,2m+1)). Not first-hand (no browsing PROVE 268). Superseded mathematically by in-house Prop B; ownership credit only.",
+                                        "date": "2026-10-31",
+                                        "children": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "id": "q488-Q55d-parabolic-KL-boolean",
+                                    "role": "attempt",
+                                    "trust": "proved",
+                                    "file": "proofs/2026-11-01-q55-boolean-locus.md",
+                                    "sources": [],
+                                    "approach": "Q55(d) KL: with P^{J,q}_{s,t}:=sum_{u in W_J}(-1)^{l(u)}P_{su,t}: Lemma G2 (any Coxeter) {u: su<=t}=[e,u0] (coset order-embedding via Z + Deodhar max); Theorem K0 (any Coxeter) P^{J,q}(0)=[dn(t,sW_J)=s] (Verma Eulerian), and dn=s => P^{J,q}=P_{s,t}; Lemma R (type C) R_{w_eta,w_nu}=(q-1)^{|nu/eta|} on antichain skews (left R-recursion, second term dies by Prop B); Theorem K: P^{J,q}_{w_eta,w_nu}=1 iff nu/eta antichain iff Boolean; also ordinary P=1 there. Geometric u=-1 (P_{s w_J,t w_J}) =1 on strictly more pairs (computed).",
+                                    "evidence": "q55.py: P^{J,q}=1 <=> antichain 0 failures m<=5 (both z- and w-indexing); u=-1 and u=q Deodhar module recursions vs full-group KL m<=4 0 disagreements; P^{J,-1}=1 on non-antichain 3/15/58/202 (m=2..5). q55_general.py: G2, K0 constant term, dn=s=>P^J=P 0 failures A3,B3,A4,C4; control (full-W Boolean) 95/538/3111/40088 disagreements.",
+                                    "verdict": "PROVED for the alternating-sum normalisation (unconditional). Identification with Deodhar's u=q polynomial (Deodhar 1987 Prop 3.4, from memory) machine-checked m<=4 only; folklore-grade, no novelty claimed.",
+                                    "script": "proofs/prove268/q55.py, q55_general.py",
+                                    "date": "2026-10-31",
+                                    "children": []
+                                  },
+                                  {
+                                    "id": "q488-Q55d-36-support",
+                                    "role": "attempt",
+                                    "trust": "proved",
+                                    "file": "proofs/2026-11-01-q55-boolean-locus.md",
+                                    "sources": [],
+                                    "approach": "Q55(d) support: (rho,kappa) enters LS12 (3.6) sum of Rem 4.22 iff theta has no 3-chain and every non-minimal box of theta is off-diagonal (split A=min theta, B=rest); Boolean pairs = exactly those with the straight-path term. Non-Boolean pairs DO enter (m=2: rho=empty, kappa=(2)). Uses printed Rem 4.22 description (Q48, proved).",
+                                    "evidence": "q55_support.py m<=8 0 failures; non-Boolean (3.6) pairs 0,1,5,20,70,229,719,2196; matches q55.py engine m<=5.",
+                                    "verdict": "PROVED (PROVE 268). Answer to Q55(d) first question: YES.",
+                                    "script": "proofs/prove268/q55_support.py",
+                                    "date": "2026-10-31",
+                                    "children": []
                                   }
                                 ]
                               },
