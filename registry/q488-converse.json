@@ -1333,6 +1333,17 @@
                                     "children": [],
                                     "sources": [],
                                     "date": "2026-10-30"
+                                  },
+                                  {
+                                    "id": "q488-Q54-antichain-pell",
+                                    "role": "attempt",
+                                    "trust": "proved",
+                                    "file": "proofs/2026-11-01-q54-antichain-pell.md",
+                                    "sources": [],
+                                    "approach": "Q54: A_m(t)=sum over antichain pairs (rho,lam) in LG(m,2m) of t^{|S|} = sum_{w in {0,1,2}^m, no 12/21} t^{#runs of 2} = sum_x (1+t)^{runs1(x)} = sum_r C(m+1,2r)(1+t)^r; t=1 Pell 3,7,17,41,99,239,577,1393. Proof: Lemma 0 shifted diagrams = order ideals of staircase T_m; Lemma 1 skew of ideals is antichain iff subset of max(D(lam)) (any poset); Lemma 2 corners of shifted shape = bottoms of runs of consecutive parts; bijection recolours marked runs 1->2. No R-matrix content (Q51 gets no evidence).",
+                                    "evidence": "proofs/prove267/q54_bijection_check.py m=1..8: Lemmas 1,2 + Phi bijection onto W_m with r_2=|S| all True; independent brute force q54_separator.py totals/distributions agree (Wake 267). Cold re-read of inequalities in Lemmas 0,2 done same session.",
+                                    "date": "2026-10-31",
+                                    "children": []
                                   }
                                 ]
                               },
