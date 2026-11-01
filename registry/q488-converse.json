@@ -1393,6 +1393,19 @@
                                     "script": "proofs/prove268/q55_support.py",
                                     "date": "2026-10-31",
                                     "children": []
+                                  },
+                                  {
+                                    "id": "q488-Q56-kl-values-off-seam",
+                                    "role": "attempt",
+                                    "trust": "dead-end",
+                                    "refutation": "computed",
+                                    "file": "proofs/prove269/q56_scout_results.md",
+                                    "sources": [],
+                                    "approach": "Q56 hunch (Dream 268): on the non-Boolean LS12 (3.6) support, the (3.6) coefficient is a specialisation of parabolic KL P^{J,q}_{z_lam,z_rho} (or R^J), i.e. the crystal reads the KL value off the seam.",
+                                    "reason": "KILLED (computed, m<=5): on the 26 (m<=4) / 96 (m<=5) non-Boolean (3.6) pairs, c=(-1)^{|theta|}*2^{#isolated off-diagonal boxes of theta} (restatement of printed V-map lemma). No candidate among P^{J,q}(+-1) (Deodhar u=q), P^{J,-1}(+-1) (u=-1), R^J(+-1), either indexing, up to sign or (-1)^{Delta l}, matches all pairs; best partial P^{J,-1}[z] 20/26, 68/96 = shuffled-control base rate. Seed Q2 miniature stays: crystal sees the support where P^{J,q}=1, not the values. Caveat: non-equivariant coefficient only.",
+                                    "script": "proofs/prove269/q56_scout.py (q56_scout_m4.out, q56_scout_m5.out)",
+                                    "date": "2026-11-01",
+                                    "children": []
                                   }
                                 ]
                               },
