@@ -1360,11 +1360,14 @@
                                       {
                                         "id": "q488-Q55a-proctor-locator",
                                         "role": "attempt",
-                                        "trust": "sketched",
-                                        "sources": [],
-                                        "approach": "Owner credit for (W^J,Bruhat) = (J(T_m),incl) for LG(m,2m): Proctor thesis 1981 Prop V.2 (minuscule W^P distributive), known only second-hand via Miura Prop 2.3 (reading/2026-10-22-order-polynomial-roots.md). Reduction: W(C_m)=W(B_m) same J, B_m/P_m minuscule (spinor OG(m,2m+1)). Not first-hand (no browsing PROVE 268). Superseded mathematically by in-house Prop B; ownership credit only.",
-                                        "date": "2026-10-31",
-                                        "children": []
+                                        "trust": "proved",
+                                        "sources": [
+                                          "stembridge-1996-fully-commutative"
+                                        ],
+                                        "approach": "Owner credit for (W^J,Bruhat) = (J(T_m),incl) for LG(m,2m): Proctor thesis 1981 Prop V.2 (minuscule W^P distributive), known only second-hand via Miura Prop 2.3 (reading/2026-10-22-order-polynomial-roots.md). Reduction: W(C_m)=W(B_m) same J, B_m/P_m minuscule (spinor OG(m,2m+1)). Not first-hand (no browsing PROVE 268). Superseded mathematically by in-house Prop B; ownership credit only. | PROVE 270: locator now FIRST-HAND: Stembridge FC Thm 6.1(d) (Bruhat=<=_L on minuscule W^J, proof read) + Lemma 2.1/Thm 2.2 + Thm 5.1(b), assembled in §1 of the proof file: (W^J,Bruhat) = Filt(heap(w_0^J)). Proctor 1984 (Europ. J. Combin. 5, DOI 10.1016/s0195-6698(84)80037-2) still unopened: credit only, nothing rests on it.",
+                                        "date": "2026-11-01",
+                                        "children": [],
+                                        "file": "proofs/2026-11-03-q57d-heap-antichain.md"
                                       }
                                     ]
                                   },
@@ -1463,14 +1466,17 @@
                                   {
                                     "id": "q488-Q57d-boolean-implies-d-minuscule",
                                     "role": "attempt",
-                                    "trust": "sketched",
-                                    "file": "proofs/2026-11-02-thmK-general.md",
-                                    "sources": [],
-                                    "approach": "(a)=>(d) under Min for general minuscule lambda. Proved type C (PROVE 268 Thm C) and chains. General: via Proctor ideal model (second-hand locator only) + Lemma I; in-house induction: 0-pairing case closes (3-chain [x,srx]_{W^J}), all-(-1) case open.",
-                                    "evidence": "scout PROVE 269: a<=>d 0 failures on every cominuscule case.",
-                                    "verdict": "GAP: not proved in-house beyond type C/chains.",
+                                    "trust": "proved",
+                                    "file": "proofs/2026-11-03-q57d-heap-antichain.md",
+                                    "sources": [
+                                      "stembridge-1996-fully-commutative"
+                                    ],
+                                    "approach": "(a)=>(c) for every minuscule lambda (then Thm M closes (a)<=>(b)<=>(c)<=>(d)). PROVE 270: W^J = {x <=_L w_0^J} (St Prop 1.5+1.6); w_0^J FC (St Thm 5.1b); Lemma 2.1 via inversion => (W^J,<=_L) = Filt(heap of w_0^J), inverse = read filter along linear extension (right factor); Bruhat = <=_L (St Thm 6.1d) => [x,y] = Filt(Q), Q = Phi(y)-Phi(x); Boolean <=> Q antichain (Lemma B) => distinct commuting labels (heap axiom), linear extension Q-then-Phi(x) gives y = u x reduced.",
+                                    "evidence": "heap_check.py: E6 w1,w6; D5 w1,w5; D6 w6; B4 w4; B3 w3; A5 w3; A4 w2; C4 w1 — Psi bijective, Bruhat (subword engine) == filter inclusion, 0 failures over 467 Boolean pairs. Negative controls A3 J={s2}, C3 w2, A4 w2+w3: filters < |W^J|, Bruhat != weak, Boolean-not-cube pairs exist (12/6/64).",
+                                    "verdict": "PROVED (first-hand deep-read Stembridge FC; journal data unverified). Supersedes the type-C/chain-only GAP.",
                                     "date": "2026-11-01",
-                                    "children": []
+                                    "children": [],
+                                    "script": "proofs/prove270/heap_check.py"
                                   }
                                 ]
                               },
