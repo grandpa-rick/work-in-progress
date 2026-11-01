@@ -1406,6 +1406,71 @@
                                     "script": "proofs/prove269/q56_scout.py (q56_scout_m4.out, q56_scout_m5.out)",
                                     "date": "2026-11-01",
                                     "children": []
+                                  },
+                                  {
+                                    "id": "q488-Q57-thmK-any-coxeter",
+                                    "role": "attempt",
+                                    "trust": "dead-end",
+                                    "refutation": "proved",
+                                    "file": "proofs/2026-11-02-thmK-general.md",
+                                    "sources": [],
+                                    "approach": "PROVE 269 Part 1: for any Coxeter (W,J), P^{J,q}_{x,y}=1 <=> [x,y]_W subset W^J. (b)=>(d) already proved any Coxeter (PROVE 268 K0+G1).",
+                                    "reason": "(d)=>(b) FALSE as stated: J=empty trivially; A4 J={s1}, x=e, y=s3s2s4s3 (in W_K, P=P_{e,3412}=1+q) PROVED by hand; C4 |J|=2 fails (k1.py); and even MAXIMAL parabolic fails: E6 J=S-{a4}, x=s6s2s4s5s1s3s2s4, y=s4s5s6s3s2s4s5s1s3s2s4, [x,y]_W 10 elts ranks 1,4,4,1 inside W^J, P=1+q (computed, two independent engines). True replacement = Theorem M (minuscule).",
+                                    "script": "proofs/prove269/thmK/k1.py, k8.py, k9.py, k10.py",
+                                    "date": "2026-11-01",
+                                    "children": [
+                                      {
+                                        "id": "q488-Q57a-E6-node4-counterexample",
+                                        "role": "attempt",
+                                        "trust": "computed",
+                                        "file": "proofs/2026-11-02-thmK-general.md",
+                                        "sources": [],
+                                        "approach": "E6 maximal parabolic node 4: 24 'doubly stuck' (d)-pairs of gap 3; stuck recursion P=1+q(1-N), N=0 for all s in D_L(y).",
+                                        "evidence": "k8.py (W^J engine, N=0 on all 24), k10.py (subword-enumerated full interval, full-W R-polys + inversion: P=1+q; controls A3 P_{s2,s2s1s3s2}=1+q and hexagon P=1 reproduced).",
+                                        "verdict": "COMPUTED counterexample to (d)=>(b) for maximal parabolics. Not hand-proved.",
+                                        "script": "proofs/prove269/thmK/k8.py, k10.py",
+                                        "date": "2026-11-01",
+                                        "children": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "id": "q488-Q57b-minuscule-thmM",
+                                    "role": "attempt",
+                                    "trust": "proved",
+                                    "file": "proofs/2026-11-02-thmK-general.md",
+                                    "sources": [],
+                                    "approach": "Theorem M: Weyl group, lambda minuscule dominant, Stab=W_J. (b)<=>(c)<=>(d), implying (a). Lemma D (Min => D_L(y) commuting), Lemma NS (Min + (d) => some s in D_L(y) with sx>x; minimal-counterexample via descent transfer L3 and c_r(sx)=c_r(x)+a_rs), then (L1) collapse. Not simply-laced-dependent; covers all cominuscule (W,J) via W(B_n)=W(C_n).",
+                                    "evidence": "k7.out: 0 stuck (d)-pairs on all minuscule nodes of A5,D5,D6,B5,C5(B/C coincident),E6; scout PROVE 269 a<=>b<=>c<=>d 0 failures incl. E7 n7 (1463 pairs).",
+                                    "verdict": "PROVED (in-house, textbook facts KL79 2.3.g / BB05 2.2.7, 2.4.4 / Humphreys 10.3 cited from memory, + PROVE 266/268 Prop1/G1/G2/K0). No novelty claimed (Proctor/Stembridge/Brenti/Boe neighbourhood).",
+                                    "script": "proofs/prove269/thmK/k7.py",
+                                    "date": "2026-11-01",
+                                    "children": []
+                                  },
+                                  {
+                                    "id": "q488-Q57c-propE-w0L-collapse",
+                                    "role": "attempt",
+                                    "trust": "proved",
+                                    "file": "proofs/2026-11-02-thmK-general.md",
+                                    "sources": [],
+                                    "approach": "Prop E (any Coxeter, any J): y=w_0(L)x, x in ^LW, lengths add, x,y in W^J => [x,y]_W=W_L x ~ (W_L,Bruhat) inside W^J and P=P^{J,q}=1. Cor E': (c)=>(a),(b),(d) any Coxeter. Hexagon = L of type A2 (Part 3 answered: Boolean needs L commuting).",
+                                    "evidence": "k11.py: 1628 (e)-pairs over all J of A3,B3,D4,A4, 0 failures.",
+                                    "verdict": "PROVED.",
+                                    "script": "proofs/prove269/thmK/k11.py",
+                                    "date": "2026-11-01",
+                                    "children": []
+                                  },
+                                  {
+                                    "id": "q488-Q57d-boolean-implies-d-minuscule",
+                                    "role": "attempt",
+                                    "trust": "sketched",
+                                    "file": "proofs/2026-11-02-thmK-general.md",
+                                    "sources": [],
+                                    "approach": "(a)=>(d) under Min for general minuscule lambda. Proved type C (PROVE 268 Thm C) and chains. General: via Proctor ideal model (second-hand locator only) + Lemma I; in-house induction: 0-pairing case closes (3-chain [x,srx]_{W^J}), all-(-1) case open.",
+                                    "evidence": "scout PROVE 269: a<=>d 0 failures on every cominuscule case.",
+                                    "verdict": "GAP: not proved in-house beyond type C/chains.",
+                                    "date": "2026-11-01",
+                                    "children": []
                                   }
                                 ]
                               },
