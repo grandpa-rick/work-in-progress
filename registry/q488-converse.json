@@ -1448,7 +1448,8 @@
                                     "verdict": "PROVED (in-house, textbook facts KL79 2.3.g / BB05 2.2.7, 2.4.4 / Humphreys 10.3 cited from memory, + PROVE 266/268 Prop1/G1/G2/K0). No novelty claimed (Proctor/Stembridge/Brenti/Boe neighbourhood).",
                                     "script": "proofs/prove269/thmK/k7.py",
                                     "date": "2026-11-01",
-                                    "children": []
+                                    "children": [],
+                                    "prior_art": "Wake 271 Q59 owner check: (a)<=>(c) owned (Stembridge FC 6.1 + Tenner 2001.05011 Cor 4.4). (a)<=>(b) type A = one-line corollary of Brenti PJM 207 (2002) Thm 5.1 (first-hand; P^{J,q}=q^{(|λ∖µ|−dp)/2} on Dyck λ∖µ, so P=1 iff λ∖µ antichain of cells), not stated by Brenti (derivation ours). General minuscule (a)<=>(b) owner UNRESOLVED: Brenti Trans. AMS 361 (2009) Cor 4.8 (second-hand via Barkley–Gaetz 2404.04246; Hermitian-symmetric parabolic KL depend only on [u,v]^J) and Boe Trans. AMS 309 (1988) unopened; Baine 2409.16131 Lemma 3.1 possible non-cominuscule bridge (second-hand-ish). No grade change."
                                   },
                                   {
                                     "id": "q488-Q57c-propE-w0L-collapse",
@@ -1473,10 +1474,30 @@
                                     ],
                                     "approach": "(a)=>(c) for every minuscule lambda (then Thm M closes (a)<=>(b)<=>(c)<=>(d)). PROVE 270: W^J = {x <=_L w_0^J} (St Prop 1.5+1.6); w_0^J FC (St Thm 5.1b); Lemma 2.1 via inversion => (W^J,<=_L) = Filt(heap of w_0^J), inverse = read filter along linear extension (right factor); Bruhat = <=_L (St Thm 6.1d) => [x,y] = Filt(Q), Q = Phi(y)-Phi(x); Boolean <=> Q antichain (Lemma B) => distinct commuting labels (heap axiom), linear extension Q-then-Phi(x) gives y = u x reduced.",
                                     "evidence": "heap_check.py: E6 w1,w6; D5 w1,w5; D6 w6; B4 w4; B3 w3; A5 w3; A4 w2; C4 w1 — Psi bijective, Bruhat (subword engine) == filter inclusion, 0 failures over 467 Boolean pairs. Negative controls A3 J={s2}, C3 w2, A4 w2+w3: filters < |W^J|, Bruhat != weak, Boolean-not-cube pairs exist (12/6/64).",
-                                    "verdict": "PROVED (first-hand deep-read Stembridge FC; journal data unverified). Supersedes the type-C/chain-only GAP.",
+                                    "verdict": "PROVED (first-hand deep-read Stembridge FC; journal data JAC 5(4) 1996 353–385 DOI 10.1007/BF00193185 verified Crossref Wake 271). Supersedes the type-C/chain-only GAP.",
                                     "date": "2026-11-01",
                                     "children": [],
-                                    "script": "proofs/prove270/heap_check.py"
+                                    "script": "proofs/prove270/heap_check.py",
+                                    "prior_art": "Wake 271 Q59 owner check: (a)<=>(c) is OWNED — Tenner arXiv 2001.05011 (J. Comb. 13(1) 2022 135–165) Cor. 4.4 (first-hand: weak-order interval Boolean iff v^{-1}w = product of commuting generators, any Coxeter group) + Stembridge FC Thm 6.1 (Bruhat = left weak on minuscule W^J) + Prop 1.5 (W^J lower set), left-handed by inversion. The heap-antichain proof is a re-derivation. No grade change. See proof file 'Remark (prior art, Wake 271)'."
+                                  },
+                                  {
+                                    "id": "q488-Q59-owner-check",
+                                    "role": "attempt",
+                                    "trust": "sketched",
+                                    "file": "proofs/2026-11-03-q57d-heap-antichain.md",
+                                    "sources": [
+                                      "2001.05011",
+                                      "brenti-2002-pjm-dyck-partitions",
+                                      "stembridge-1996-fully-commutative",
+                                      "2404.04246",
+                                      "2409.16131",
+                                      "2403.07989",
+                                      "2007.08490"
+                                    ],
+                                    "approach": "Literature owner check for Theorem M (a)<=>(b)<=>(c) on minuscule W^J. Verdict PARTIALLY OWNED: (a)<=>(c) owned (Stembridge FC 6.1 + Prop 1.5 + Tenner Cor 4.4, first-hand); (a)<=>(b) type A = immediate corollary of Brenti PJM 2002 Thm 5.1 (first-hand, unstated by Brenti); general minuscule (a)<=>(b) owner unresolved (Brenti TAMS 2009 Cor 4.8 second-hand via 2404.04246; Boe TAMS 1988 unopened, library-only). Not prior art: 2403.07989, 2007.08490, 2208.02584, 1001.1080, 0911.5694.",
+                                    "verdict": "PARTIALLY OWNED (literature locator check, not mathematics; trust = sketched because residue is open). Residue: general-minuscule (a)<=>(b) owner.",
+                                    "date": "2026-11-02",
+                                    "children": []
                                   }
                                 ]
                               },
