@@ -1498,6 +1498,21 @@
                                     "verdict": "PARTIALLY OWNED (literature locator check, not mathematics; trust = sketched because residue is open). Residue: general-minuscule (a)<=>(b) owner.",
                                     "date": "2026-11-02",
                                     "children": []
+                                  },
+                                  {
+                                    "id": "q488-Q58-achain-separator",
+                                    "role": "attempt",
+                                    "trust": "dead-end",
+                                    "refutation": "computed",
+                                    "reason": "KILLED both sides. E6 w4: all 24 doubly-stuck (d)-pairs (P^{J,q}=1+q) have gcd(bonds)=1 on every saturated chain => no a-chain with 0<a<1 (A=false 24/24); all 168 P!=1 (d)-pairs A=false; 5 gap-3 commuting cubes (P=1) have A=true. A4 J={s1} (lam=w2+w3+w4): all 20 P!=1 pairs A=false (x=e: first bond <lam,a_i^v>=1). Reverse 'A=>P=1' vacuous (gap<=2 forces P=1; only 5 non-vacuous A-true pairs).",
+                                    "file": "proofs/2026-11-04-q58-achain-separator.md",
+                                    "script": "proofs/prove271/q58_achain.py",
+                                    "sources": [],
+                                    "approach": "Q58 hunch: on (d)-pairs at E6 node 4, A(sig,tau) [exists a in (0,1) and Littelmann a-chain, i.e. a saturated cover chain with gcd(bonds)>=2] <=> P^{J,q}!=1. Machine separator over all 12051 (d)-pairs + hand certificate (8 chains, Thm K pair).",
+                                    "evidence": "Engine validated: E6 w1 A==false; C_m w_m m=2..5 reproduces F5 (bond-1 steps = diagonal boxes, A <=> diagonal-free), 0 failures/573 pairs; (d)-counts match k7.out (12771) and k1 (A4 20).",
+                                    "verdict": "KILLED (computed). a-chains do not see the 1+q seam; no Q(n+1) opened.",
+                                    "date": "2026-11-02",
+                                    "children": []
                                   }
                                 ]
                               },
