@@ -1,0 +1,61 @@
+{
+  "conjecture": "Q60 (Seed Q1/Q4, polite-factorization locality): G simply laced finite type, B the polite basis of O(N) (= dual canonical basis at q=1, Baumann 2401.10340 Ex 3.2), theta generic, S = {alpha>0 : theta(alpha)>0}, T = Delta_+ \\ S, Phi_theta(b) = (b_+, b_-) the HN/polite factorization (Baumann Def 3.1(iii), Prop 2.9). Strong form: Phi_theta is e_j-local (for every b with e_j b != 0 exactly one factor changes, and it changes by e_j) <=> alpha_j in T or T u {alpha_j} biconvex; equivalently there is no positive alpha with theta(alpha) <= 0 < theta(alpha+alpha_j).",
+  "status": "computed",
+  "date_opened": "2026-11-02",
+  "date_closed": null,
+  "tree": {
+    "id": "Q60",
+    "approach": "Full criterion (both directions) tested in A_2 only: 6 Weyl chambers, 2 trivial (dominant/antidominant, locality automatic), 4 nontrivial x 2 colours = 8 (theta,j) tests; criterion predicts non-local exactly at C3/j=1 and C5/j=2 and the script finds exactly those (negative controls genuine, e.g. C3, b=xy-z: both coordinates change). Combinatorial equivalence of the two forms of the criterion (alpha_j in T or T u alpha_j biconvex <=> no alpha>0 with theta(alpha)<=0<theta(alpha+alpha_j)) checked 72/72 in A_3 -- that is a check of the root-system reformulation only, not of locality in A_3. No proof; A_3 locality untested.",
+    "trust": "computed",
+    "file": "proofs/2026-11-02-seedQ1-polite-bases-expository.md",
+    "scripts": ["proofs/seedQ1/a2_polite_factorisation.py", "proofs/seedQ1/q60_criterion_combinatorics.py"],
+    "sources": ["2401.10340"],
+    "children": [
+      {
+        "id": "Q60-baumann-polite-crystal-from-coproduct",
+        "role": "premise",
+        "approach": "Baumann 2401.10340 (sole author P. Baumann): polite basis = Def 3.1 (section 3.3), classical O(N) with ordinary coproduct; Prop 3.12 polite => biperfect, so the single-crystal operators e_i, epsilon_i (i-strings) are DERIVED from Delta (left/right U(n)-actions are components of Delta); crystal is output. Only the identification of the resulting crystal with Kashiwara's B(infinity) is imported (BKK 1905.08460 Thm 2.4 + Berenstein-Kazhdan Thm 5.37). No crystal tensor rule appears in the paper. Read first-hand (pdftotext v1) 2026-11-02.",
+        "trust": "unclassified",
+        "file": "proofs/2026-11-02-seedQ1-polite-bases-expository.md",
+        "sources": ["2401.10340", "1905.08460"],
+        "note": "Cited result, not Rick's proof. Read first-hand in the PDF (locators [P] in the expository file); left unclassified because the proof of Prop 3.12 was not re-derived cold.",
+        "children": []
+      },
+      {
+        "id": "Q60a",
+        "role": "attempt",
+        "approach": "(a) alpha_j in T => Phi_theta(e_j b) = (b_+, e_j b_-) for all b. Easy corollary of cited results: Kamnitzer math/0505398 Prop 3.4/Thm 3.5 (= BZ Prop 3.6) + Tingley-Webster 1210.6921 Props 3.4, 3.9 (Phi_theta = S-part/T-part split of the Lusztig datum / semicuspidal decomposition) + Baumann Ex 3.2; alternatively TW Prop 3.13 / BKT 1110.3661 Rem 1.4(iii). Owned in substance. Orientation convention not yet fixed in a write-up; the TW 3.4/3.9 identification step is sketched, not written line by line.",
+        "trust": "sketched",
+        "file": "proofs/2026-11-02-seedQ1-polite-bases-expository.md",
+        "sources": ["math/0505398", "1210.6921", "1110.3661", "2401.10340"],
+        "children": []
+      },
+      {
+        "id": "Q60b",
+        "role": "attempt",
+        "approach": "(b) alpha_j in S and T u {alpha_j} biconvex => Phi_theta(e_j b) in {(e_j b_+, b_-), (b_+, e_j b_-)} for all b (choice by a signature rule, to be formulated). Not stated in any paper checked (Kamnitzer, TW, BKT, BKK, Baumann). Computed in A_2 only (the nontrivial chambers/colours where it applies are all local). Suggested proof route: three-factor decomposition T | alpha_j | S' (Baumann Prop 2.11 / BKT Prop 4.5) + Kashiwara embedding conjugated by Saito reflections (TW Cor 2.26 / BKT Prop 5.24).",
+        "trust": "computed",
+        "file": "proofs/2026-11-02-seedQ1-polite-bases-expository.md",
+        "scripts": ["proofs/seedQ1/a2_polite_factorisation.py"],
+        "children": []
+      },
+      {
+        "id": "Q60c",
+        "role": "attempt",
+        "approach": "(c) converse: alpha_j in S and T u {alpha_j} not biconvex => some b has both coordinates changed. Not stated anywhere checked. Computed in A_2 only: the two 'far' tests C3/j=1 and C5/j=2 are non-local (8/22 failures), witness C3, b = xy - z, Phi(b) = (b,1), e_1 b = y, Phi(y) = (1,y).",
+        "trust": "computed",
+        "file": "proofs/2026-11-02-seedQ1-polite-bases-expository.md",
+        "scripts": ["proofs/seedQ1/a2_polite_factorisation.py"],
+        "children": []
+      },
+      {
+        "id": "Q60-A3",
+        "role": "attempt",
+        "approach": "A_3 test of (b)/(c): 18 'adj' and 18 'far' (theta,j) pairs never tested. Plan: Lusztig-data coordinates with piecewise-linear braid-move transition maps, e_j conjugated to a cut-adapted reduced word, compare S/T parts, heights <= 6. NOT DONE (relies on the sketched Q60a identification of Phi_theta with the Lusztig-datum split).",
+        "trust": "in-progress",
+        "file": null,
+        "children": []
+      }
+    ]
+  }
+}
