@@ -5,7 +5,7 @@
  "date_closed": null,
  "tree": {
   "id": "Q60",
-  "approach": "Full criterion (both directions) tested in A_2 only: 6 Weyl chambers, 2 trivial (dominant/antidominant, locality automatic), 4 nontrivial x 2 colours = 8 (theta,j) tests; criterion predicts non-local exactly at C3/j=1 and C5/j=2 and the script finds exactly those (negative controls genuine, e.g. C3, b=xy-z: both coordinates change). Combinatorial equivalence of the two forms of the criterion (alpha_j in T or T u alpha_j biconvex <=> no alpha>0 with theta(alpha)<=0<theta(alpha+alpha_j)) checked 72/72 in A_3 -- that is a check of the root-system reformulation only, not of locality in A_3. No proof; A_3 locality untested. || PROVE 272 (2026-11-02): criterion computed A_2 12/12, A_3 72/72 (h<=6), A_4 480/480 (h<=5) in a Lusztig-data model calibrated exactly against the A_2 polynomial counts; '=>' (c) PROVED in type A (flag-minor witness); '<=' (a)+(b) sketched with exact tensor rule (b): act on b_+ iff eps_j(b_+) > phi_j(b_-), 12672/12672 A_4. Strong = weak locality. See 2026-11-03-q60-local-factorisation.md",
+  "approach": "Full criterion (both directions) tested in A_2 only: 6 Weyl chambers, 2 trivial (dominant/antidominant, locality automatic), 4 nontrivial x 2 colours = 8 (theta,j) tests; criterion predicts non-local exactly at C3/j=1 and C5/j=2 and the script finds exactly those (negative controls genuine, e.g. C3, b=xy-z: both coordinates change). Combinatorial equivalence of the two forms of the criterion (alpha_j in T or T u alpha_j biconvex <=> no alpha>0 with theta(alpha)<=0<theta(alpha+alpha_j)) checked 72/72 in A_3 -- that is a check of the root-system reformulation only, not of locality in A_3. No proof; A_3 locality untested. || PROVE 272 (2026-11-02): criterion computed A_2 12/12, A_3 72/72 (h<=6), A_4 480/480 (h<=5) in a Lusztig-data model calibrated exactly against the A_2 polynomial counts; '=>' (c) PROVED in type A (flag-minor witness); '<=' (a)+(b) sketched with exact tensor rule (b): act on b_+ iff eps_j(b_+) > phi_j(b_-), 12672/12672 A_4. Strong = weak locality. See 2026-11-03-q60-local-factorisation.md || PROVE 273 (2026-11-03): (a),(b) PROVED for every polite basis, any G, P0-free (Lemma A + Lemma C + KS97 Thm 3.2.2 + BKK Thm 2.4). With (c) [type A] the full criterion locality <=> not far, with exact tensor rule, is PROVED IN TYPE A. Root stays 'computed' because the stated simply-laced generality needs (c) outside type A (open).",
   "trust": "computed",
   "file": "proofs/2026-11-03-q60-local-factorisation.md",
   "scripts": [
@@ -32,16 +32,33 @@
    {
     "id": "Q60a",
     "role": "attempt",
-    "approach": "(a) alpha_j in T => Phi_theta(e_j b) = (b_+, e_j b_-) for all b. Easy corollary of cited results: Kamnitzer math/0505398 Prop 3.4/Thm 3.5 (= BZ Prop 3.6) + Tingley-Webster 1210.6921 Props 3.4, 3.9 (Phi_theta = S-part/T-part split of the Lusztig datum / semicuspidal decomposition) + Baumann Ex 3.2; alternatively TW Prop 3.13 / BKT 1110.3661 Rem 1.4(iii). Owned in substance. Orientation convention not yet fixed in a write-up; the TW 3.4/3.9 identification step is sketched, not written line by line. || PROVE 272: written proof (given P0 = Lusztig-split identification) via Kamnitzer 0505398 Prop 3.4 (first-hand); neg pairs computed 6/6 A_2, 36/36 A_3, 240/240 A_4, all acting on b_-. Remains sketched-in-proof because P0 orientation is calibrated computationally, not traced.",
-    "trust": "computed",
+    "approach": "(a) alpha_j in T => Phi_theta(e_j b) = (b_+, e_j b_-) for all b. Easy corollary of cited results: Kamnitzer math/0505398 Prop 3.4/Thm 3.5 (= BZ Prop 3.6) + Tingley-Webster 1210.6921 Props 3.4, 3.9 (Phi_theta = S-part/T-part split of the Lusztig datum / semicuspidal decomposition) + Baumann Ex 3.2; alternatively TW Prop 3.13 / BKT 1110.3661 Rem 1.4(iii). Owned in substance. Orientation convention not yet fixed in a write-up; the TW 3.4/3.9 identification step is sketched, not written line by line. || PROVE 272: written proof (given P0 = Lusztig-split identification) via Kamnitzer 0505398 Prop 3.4 (first-hand); neg pairs computed 6/6 A_2, 36/36 A_3, 240/240 A_4, all acting on b_-. Remains sketched-in-proof because P0 orientation is calibrated computationally, not traced. || PROVE 273 (2026-11-03): PROVED P0-free from Lemma A (Baumann axioms only), any polite basis, any G. File section 'PROVE 273'.",
+    "trust": "proved",
     "file": "proofs/2026-11-03-q60-local-factorisation.md",
     "sources": [
-     "math/0505398",
-     "1210.6921",
      "1110.3661",
-     "2401.10340"
+     "1210.6921",
+     "1905.08460",
+     "2401.10340",
+     "math/0505398"
     ],
-    "children": [],
+    "children": [
+     {
+      "id": "Q60-lemmaA",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-11-03-q60-local-factorisation.md",
+      "approach": "PROVE 273 Lemma A (string lemma): alpha_j in T => eps_j(b)=eps_j(b_-) and Phi(e_j^(l) b)=(b_+, e_j^(l) b_-). Proof: e_j = id (x) e_j under O = O_>0 (x) O_<=0 (Zappa-Szep), pointwise eps_j(b)>=eps_j(b_-), equal cardinalities of {eps<=n} via perfect-basis kernel lemma. Uses only Baumann Def 3.1, Thm 2.6, Prop 3.12. Computed honest A_2 204/204 (control eps_j(b)=eps_j(b_+) 72/204).",
+      "sources": [
+       "2401.10340",
+       "1905.08460"
+      ],
+      "scripts": [
+       "proofs/prove273/a2_coherence.py"
+      ],
+      "children": []
+     }
+    ],
     "scripts": [
      "proofs/prove272/lusztig.py",
      "proofs/prove272/q60_test.py",
@@ -51,8 +68,8 @@
    {
     "id": "Q60b",
     "role": "attempt",
-    "approach": "(b) adj => Phi(e_j b) = (e_j b_+, b_-) iff eps_j(b_+) > phi_j(b_-) [phi_j = eps_j + <h_j,wt>, wt in -Q_+], else (b_+, e_j b_-): Kashiwara tensor rule on b_- (x) (alpha_j-string). Proof written (sketched): B1 prefix lemma (Matsumoto + Kamnitzer 3.4: e_j fixes n_{S'}), B2 star-string lemma b(n_T,m,0) = (f*_j)^m b(n_T,0,0) [Lusztig PBW + U^+(x) in ker e'*_j + Kashiwara; mem locators], B3 Kashiwara embedding Psi*_j [first-hand Wake 273: Kashiwara-Saito Duke 89 (1997) q-alg/9606009 Thm 3.2.2 p.7 (= Kashiwara Duke 71 (1993) Thm 2.2.1), tensor rule KS97 Sec 3.1 pp.6-7 (Kashiwara convention), restated Nakashima-Zelevinsky q-alg/9703045 eqs (2.16)-(2.21) + Thm 2.6; TW Prop 1.4 proof first-hand]. Computed: adj pairs 4/4 A_2, 18/18 A_3, 96/96 A_4; exact rule 136+2160+12672 elements; B2 eps* = m 6216/6216 A_3. Owner check NOT run (no browsing in PROVE) -- owed. || Wake 273 (2026-11-03): owner check RUN, see owner_check; B2 locator TW 1210.6921 Def 1.18/Prop 1.19 (via Saito Prop 3.4.7, not read first-hand).",
-    "trust": "computed",
+    "approach": "(b) adj => Phi(e_j b) = (e_j b_+, b_-) iff eps_j(b_+) > phi_j(b_-) [phi_j = eps_j + <h_j,wt>, wt in -Q_+], else (b_+, e_j b_-): Kashiwara tensor rule on b_- (x) (alpha_j-string). Proof written (sketched): B1 prefix lemma (Matsumoto + Kamnitzer 3.4: e_j fixes n_{S'}), B2 star-string lemma b(n_T,m,0) = (f*_j)^m b(n_T,0,0) [Lusztig PBW + U^+(x) in ker e'*_j + Kashiwara; mem locators], B3 Kashiwara embedding Psi*_j [first-hand Wake 273: Kashiwara-Saito Duke 89 (1997) q-alg/9606009 Thm 3.2.2 p.7 (= Kashiwara Duke 71 (1993) Thm 2.2.1), tensor rule KS97 Sec 3.1 pp.6-7 (Kashiwara convention), restated Nakashima-Zelevinsky q-alg/9703045 eqs (2.16)-(2.21) + Thm 2.6; TW Prop 1.4 proof first-hand]. Computed: adj pairs 4/4 A_2, 18/18 A_3, 96/96 A_4; exact rule 136+2160+12672 elements; B2 eps* = m 6216/6216 A_3. Owner check NOT run (no browsing in PROVE) -- owed. || Wake 273 (2026-11-03): owner check RUN, see owner_check; B2 locator TW 1210.6921 Def 1.18/Prop 1.19 (via Saito Prop 3.4.7, not read first-hand). || PROVE 273 (2026-11-03): PROVED P0-free: (a) for theta' + Lemma C + Kashiwara-Saito q-alg/9606009 Thm 3.2.2 (strict embedding Psi_j, tensor rule Sec 3.1, first-hand) applied to the bicrystal of B via BKK 1905.08460 Thm 2.4 (first-hand). Remaining non-first-hand textbook link: dual canonical basis at q=1 biperfect with Kashiwara's bicrystal (BKK cite Lu3 Thms 1.6/7.5, Kas2 5.3). Sober recheck owed.",
+    "trust": "proved",
     "file": "proofs/2026-11-03-q60-local-factorisation.md",
     "scripts": [
      "proofs/prove272/lusztig.py",
@@ -60,14 +77,81 @@
      "proofs/prove272/q60_checks.py",
      "proofs/prove272/b_lemma.py"
     ],
-    "children": [],
+    "children": [
+     {
+      "id": "Q60-lemmaA-ref",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-11-03-q60-local-factorisation.md",
+      "approach": "Same as Q60-lemmaA (needed for (a) at theta' and eps_j(b_+)=m).",
+      "sources": [
+       "2401.10340",
+       "1905.08460"
+      ],
+      "scripts": [
+       "proofs/prove273/a2_coherence.py"
+      ],
+      "children": []
+     },
+     {
+      "id": "Q60-lemmaC",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-11-03-q60-local-factorisation.md",
+      "approach": "PROVE 273 Lemma C (coherence across wall alpha_j^perp): Phi_th'(b)=(p,q), Phi_th(b)=(b_+,b_-) => Phi_th'(b_+)=(p,zeta_j^m), Phi_th(q)=(zeta_j^m,b_-), m=eps_j(b_+)=eps*_j(q)=length of theta*-top edge of Pol(b). Proof: wall parameter theta*, GGMS face (Cor 3.5), bilevel basis compatibility (Prop 3.3), Delta_2-injectivity re-proved from Thm 2.6 + Lemma 2.4 + Prop 2.9 proof (Baumann omits Prop 2.11's proof), coassociativity read two ways. Computed honest A_2 all adjacent chamber pairs 204/204 (control 90/204), m-identity 136/136.",
+      "sources": [
+       "2401.10340"
+      ],
+      "scripts": [
+       "proofs/prove273/a2_coherence.py"
+      ],
+      "children": []
+     },
+     {
+      "id": "Q60a-ref",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-11-03-q60-local-factorisation.md",
+      "approach": "Q60(a) applied to theta' (alpha_j in T').",
+      "children": []
+     },
+     {
+      "id": "Q60b-route-B1B2",
+      "role": "attempt",
+      "trust": "sketched",
+      "file": "proofs/2026-11-03-q60-local-factorisation.md",
+      "approach": "PROVE 272 route for (b) via Lusztig data: B1 prefix lemma + B2 star-string lemma (mem locators, T vs T^-1 unchecked) + P0. SUPERSEDED by Lemma C route (PROVE 273); kept as record. B2 computed A_3 6216/6216, A_4 not run.",
+      "sources": [
+       "math/0505398",
+       "1210.6921"
+      ],
+      "children": []
+     },
+     {
+      "id": "Q60-P0",
+      "role": "attempt",
+      "trust": "computed",
+      "file": "proofs/2026-11-03-q60-local-factorisation.md",
+      "approach": "P0 (Phi_theta = S/T split of Lusztig datum in a T-first word) -- DEMOTED PROVE 273: no longer a premise of (a)/(b). Orientation anchored first-hand at |T|=1 (Baumann Prop 3.12 proof: Phi(b)=(e_j^(eps) b, zeta_j^eps)); breaking negative control: reversed split fails exact (b) rule 845/2160 A_3 vs 2160/2160 (proofs/prove273/q60_checks_rev.py). HN-datum form follows by iterating Lemma C (non-simple walls not written); identification HN datum = Kamnitzer Lusztig datum not traced.",
+      "sources": [
+       "2401.10340",
+       "math/0505398"
+      ],
+      "scripts": [
+       "proofs/prove273/q60_checks_rev.py",
+       "proofs/prove272/lusztig.py"
+      ],
+      "children": []
+     }
+    ],
     "sources": [
-     "math/0505398",
+     "1110.3661",
      "1210.6921",
+     "1905.08460",
      "2401.10340",
+     "math/0505398",
      "q-alg/9606009",
-     "q-alg/9703045",
-     "1110.3661"
+     "q-alg/9703045"
     ],
     "owner_check": "Wake 273 (2026-11-03): OWNED MODULO P0. (b) = Kashiwara's Psi_j embedding (Kashiwara-Saito q-alg/9606009 Thm 3.2.2 = Kas93 Duke 71 Thm 2.2.1; tensor rule KS97 Sec 3.1; NZ q-alg/9703045 (2.16)-(2.21), Thm 2.6) read through a convex order with alpha_j at the seam; extremal Lusztig coordinate = phi*_i/eps*_i by TW 1210.6921 Def 1.18/Prop 1.19 (B(-infinity) convention; via Saito Prop 3.4.7, unread). Non-trivial end is the *-end; trivial end = BKT 1110.3661 Thm 1.5(iii)/TW Prop 3.13. No source states Q60(b) verbatim. P0 (Baumann HN Phi_theta = Lusztig-datum split, orientation) NOT traced first-hand; candidates TW Props 3.4/3.9, BKT Thm 4.4/Prop 5.24. Beyond the literature: far/non-local classification (c) and the chamber criterion. Log: memory/reading/2026-11-03-wake273-owner-check.md. No trust change."
    },
