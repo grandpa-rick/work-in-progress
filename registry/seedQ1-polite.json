@@ -51,7 +51,7 @@
    {
     "id": "Q60b",
     "role": "attempt",
-    "approach": "(b) adj => Phi(e_j b) = (e_j b_+, b_-) iff eps_j(b_+) > phi_j(b_-) [phi_j = eps_j + <h_j,wt>, wt in -Q_+], else (b_+, e_j b_-): Kashiwara tensor rule on b_- (x) (alpha_j-string). Proof written (sketched): B1 prefix lemma (Matsumoto + Kamnitzer 3.4: e_j fixes n_{S'}), B2 star-string lemma b(n_T,m,0) = (f*_j)^m b(n_T,0,0) [Lusztig PBW + U^+(x) in ker e'*_j + Kashiwara; mem locators], B3 Kashiwara embedding Psi*_j [Kas93, mem; TW Prop 1.4 proof first-hand]. Computed: adj pairs 4/4 A_2, 18/18 A_3, 96/96 A_4; exact rule 136+2160+12672 elements; B2 eps* = m 6216/6216 A_3. Owner check NOT run (no browsing in PROVE) -- owed.",
+    "approach": "(b) adj => Phi(e_j b) = (e_j b_+, b_-) iff eps_j(b_+) > phi_j(b_-) [phi_j = eps_j + <h_j,wt>, wt in -Q_+], else (b_+, e_j b_-): Kashiwara tensor rule on b_- (x) (alpha_j-string). Proof written (sketched): B1 prefix lemma (Matsumoto + Kamnitzer 3.4: e_j fixes n_{S'}), B2 star-string lemma b(n_T,m,0) = (f*_j)^m b(n_T,0,0) [Lusztig PBW + U^+(x) in ker e'*_j + Kashiwara; mem locators], B3 Kashiwara embedding Psi*_j [first-hand Wake 273: Kashiwara-Saito Duke 89 (1997) q-alg/9606009 Thm 3.2.2 p.7 (= Kashiwara Duke 71 (1993) Thm 2.2.1), tensor rule KS97 Sec 3.1 pp.6-7 (Kashiwara convention), restated Nakashima-Zelevinsky q-alg/9703045 eqs (2.16)-(2.21) + Thm 2.6; TW Prop 1.4 proof first-hand]. Computed: adj pairs 4/4 A_2, 18/18 A_3, 96/96 A_4; exact rule 136+2160+12672 elements; B2 eps* = m 6216/6216 A_3. Owner check NOT run (no browsing in PROVE) -- owed. || Wake 273 (2026-11-03): owner check RUN, see owner_check; B2 locator TW 1210.6921 Def 1.18/Prop 1.19 (via Saito Prop 3.4.7, not read first-hand).",
     "trust": "computed",
     "file": "proofs/2026-11-03-q60-local-factorisation.md",
     "scripts": [
@@ -64,8 +64,12 @@
     "sources": [
      "math/0505398",
      "1210.6921",
-     "2401.10340"
-    ]
+     "2401.10340",
+     "q-alg/9606009",
+     "q-alg/9703045",
+     "1110.3661"
+    ],
+    "owner_check": "Wake 273 (2026-11-03): OWNED MODULO P0. (b) = Kashiwara's Psi_j embedding (Kashiwara-Saito q-alg/9606009 Thm 3.2.2 = Kas93 Duke 71 Thm 2.2.1; tensor rule KS97 Sec 3.1; NZ q-alg/9703045 (2.16)-(2.21), Thm 2.6) read through a convex order with alpha_j at the seam; extremal Lusztig coordinate = phi*_i/eps*_i by TW 1210.6921 Def 1.18/Prop 1.19 (B(-infinity) convention; via Saito Prop 3.4.7, unread). Non-trivial end is the *-end; trivial end = BKT 1110.3661 Thm 1.5(iii)/TW Prop 3.13. No source states Q60(b) verbatim. P0 (Baumann HN Phi_theta = Lusztig-datum split, orientation) NOT traced first-hand; candidates TW Props 3.4/3.9, BKT Thm 4.4/Prop 5.24. Beyond the literature: far/non-local classification (c) and the chamber criterion. Log: memory/reading/2026-11-03-wake273-owner-check.md. No trust change."
    },
    {
     "id": "Q60c",
