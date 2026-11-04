@@ -12,15 +12,16 @@
    {
     "id": "Q62-defn-owner",
     "role": "attempt",
-    "approach": "Owner of Theorem A = Cain-Guilherme-Malheiro 2301.00271 sec 5.2 (Z_0-valued signature rule, Prop 5.9; kill = phi(x)>0 & eps(x')>0), per Browse 228 sub-agent full-text read + Guilherme 2023-02-16 seminar slides (reading/2026-11-04-browse228.md). NOT BK math/0601391, NOT 1702.02998. Dream 275 caveat: CGM kill clause reads (left phi, right eps) vs ours (left eps, right phi) -> match holds only under the tensor-order <-> word-order convention flip; our swapped-order control fails 50694, so the convention IS the content. Orchestrator first-hand check of CGM's word<->tensor convention and of the sec-0 operator definition (hypoplactic ops, Cain-Malheiro 1601.06390?) owed before any citation is printed. Q62(b)/(c) owner candidates 2309.14887, 2309.14898 unread.",
-    "trust": "hunch",
+    "approach": "Owner of Theorem A = Cain-Guilherme-Malheiro 2301.00271 Thm 5.1 (p.17-18: x (x)'' x' killed iff phi''_i(x)>0 & eps''_i(x')>0) + Prop 5.9 (p.24: sgn_i multiplicative in Z_0), MODULO WORD REVERSAL. CGM Def 6.9 (p.30-31) identifies x1 (x)'' ... (x)'' xk with the word x1...xk (kill iff phi''(u)>0 & eps''(v)>0 for uv) = mirror of our convention (kill iff eps(left)>0 & phi(right)>0). Convention bridge: Cain-Malheiro-Rodrigues-Rodrigues 2309.14898 Def 3.10 + remark p.10 ('with this convention, x (x)'' y is identified with the word yx'), under which CGM Thm 5.1 = our Theorem A exactly; CMRR 2309.14887 Def 2.13 p.7 gives the operators in our convention (kill on subsequence (i+1)i; e'' replaces left-most i+1, f'' replaces right-most i). Wake 275 first-hand read resolves the Dream 275 convention caveat (our swapped-order control fails 50694, so the flip is the content). CAVEAT: anything cited from CGM sec 6-9 must be word-reversed. NOT BK math/0601391, NOT 1702.02998.",
+    "trust": "checked-sober",
     "file": null,
     "children": [],
     "sources": [
      "2301.00271",
      "2309.14887",
      "2309.14898"
-    ]
+    ],
+    "recheck": "Wake 275 2026-11-04: Rick read CGM Def 6.9 p.30-31 + CMRR 2309.14898 p.10 remark first-hand; match modulo word reversal (log: memory/reading/2026-11-04-wake275-cgm-convention-q65.md)"
    },
    {
     "id": "Q62a",
@@ -71,6 +72,36 @@
     "trust": "hunch",
     "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
     "children": []
+   },
+   {
+    "id": "Q65",
+    "role": "attempt",
+    "approach": "K_0 of type-A quasi-crystals of words = QSym, with (x)'' -> product, Levi branching -> coproduct, quasification (2309.14898 Def 4.5 p.16) -> Sym in QSym. Assembles Q62-B (characters F_alpha), Q62b-product (Prop P), Q62b-levi (Theorem C). Owner search negative in CGM 2301.00271 and CMRR 2309.14887/2309.14898 (agent-summary text search for Grothendieck/coproduct/shuffle/character ring); they state only char of component = F_alpha (2309.14887 Intro p.2, sec 2.6 p.11) and #components of Q_{B(lambda)} = f^lambda (2309.14898 Cor 4.10). Wake 275.",
+    "trust": "sketched",
+    "file": null,
+    "depends_on": [
+     "Q62-B",
+     "Q62b-product",
+     "Q62b-levi"
+    ],
+    "children": [
+     {
+      "id": "Q66-monoidal",
+      "role": "attempt",
+      "approach": "Type A (gl_n polynomial): quasification functor is strict monoidal, Q_{B(x)B'} = Q_B (x)'' Q_{B'}, since the condition eps~_i = wt_{i+1} is intrinsic and B(lambda)(x)B(mu) embeds in the word crystal via reading words, where quasification = word quasi-crystal (no (i+1)...i subsequence <=> all i+1 unbracketed). Wake 275 sketch, unchecked.",
+      "trust": "sketched",
+      "file": null,
+      "children": [],
+      "sources": [
+       "2309.14898"
+      ]
+     }
+    ],
+    "sources": [
+     "2301.00271",
+     "2309.14887",
+     "2309.14898"
+    ]
    }
   ]
  }
