@@ -76,25 +76,42 @@
    {
     "id": "Q65",
     "role": "attempt",
-    "approach": "K_0 of type-A quasi-crystals of words = QSym, with (x)'' -> product, Levi branching -> coproduct, quasification (2309.14898 Def 4.5 p.16) -> Sym in QSym. Assembles Q62-B (characters F_alpha), Q62b-product (Prop P), Q62b-levi (Theorem C). Owner search negative in CGM 2301.00271 and CMRR 2309.14887/2309.14898 (agent-summary text search for Grothendieck/coproduct/shuffle/character ring); they state only char of component = F_alpha (2309.14887 Intro p.2, sec 2.6 p.11) and #components of Q_{B(lambda)} = f^lambda (2309.14898 Cor 4.10). Wake 275.",
-    "trust": "sketched",
-    "file": null,
+    "approach": "PROVE 276: Q65 TRUE all parts. (i) connected isoclasses <-> compositions l<=n, injective via unique e-source weight = alpha (and F-basis unitriangularity); (ii) K_0 = QSym_n as rings, stable n->n+1, corollary Q(x)''Q' iso Q'(x)''Q (no commutor); (iii) Res_a slice psi(w)=(w|<=a, w|>a - a) iso onto C_s1 x C_s2 => f(x_<=a; x_>a) = Delta; Res_a is a ring map. Computed 752 comps 0 collisions, 100 tensor pairs 0 fail, 434 slices 0 fail. Owner check MG 2302.07694 / BCDS 2503.14782 NOT done (no-browse session); content Gessel/MR-classical.",
+    "trust": "proved",
+    "file": "proofs/2026-11-05-q65-quasicrystal-K0-QSym.md",
     "depends_on": [
      "Q62-B",
      "Q62b-product",
-     "Q62b-levi"
+     "Q62b-levi",
+     "Q66-monoidal"
     ],
     "children": [
      {
       "id": "Q66-monoidal",
-      "role": "attempt",
-      "approach": "Type A (gl_n polynomial): quasification functor is strict monoidal, Q_{B(x)B'} = Q_B (x)'' Q_{B'}, since the condition eps~_i = wt_{i+1} is intrinsic and B(lambda)(x)B(mu) embeds in the word crystal via reading words, where quasification = word quasi-crystal (no (i+1)...i subsequence <=> all i+1 unbracketed). Wake 275 sketch, unchecked.",
-      "trust": "sketched",
-      "file": null,
-      "children": [],
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-11-05-q65-quasicrystal-K0-QSym.md",
+      "approach": "PROVE 276: defect identity delta(x(x)y)=delta(x)+delta(y)+min(eps~x,phi~y), delta=wt_{i+1}-eps~ >=0 for polynomial weights => Q_{B(x)B'} = Q_B (x)'' Q_B' for ALL seminormal polynomial gl_n crystals (no Stembridge axioms). Computed 134 pairs/5418 elts 0 fail abstractly; swapped-kill control 4500 fail. Sharp: det^-1 (x) det (gl2) and B(0,-1)(x)B(2,1) contains B(2,0) alive vs all-dead. Cor: Sym_n -> QSym_n ring map, Res commutes with Q.",
       "sources": [
        "2309.14898"
-      ]
+      ],
+      "children": []
+     },
+     {
+      "id": "Q65-owner-MG",
+      "role": "attempt",
+      "trust": "in-progress",
+      "file": null,
+      "approach": "Owner check, negative so far, NOT closed. (1) Browse 229: Maas-Gariepy 2302.07694 (Thm 1 per-shape vertex correspondence, Thm 5 single-shape skeleton stabilisation) and BCDS 2503.14782 (Thm 4.11 single-top-letter branching, graph iso) contain no K_0/ring/monoidal statement -- agent-summary (sub-agent full-text grep), not Rick-first-hand. (2) Dream 276: Rick literal grep of 2309.14898.txt (tensor/monoidal/Grothendieck): tensor appears only for closure of local axioms under CGM quasi-tensor (abstract l.8, §3.1 l.522-548); §4 quasification (Def 4.5, Thm 4.9, Cor 4.10) has no tensor statement => Q66 not stated there. 2309.14887.txt: no 'tensor'/'Grothendieck' hits. (3) Remaining: crystal-skeleton papers 2607.12232, 2512.06273 (agent-summary in sources.json). Decision (gate rule): one literal grep each, then close; residual folklore risk (Gessel / Malvenuto-Reutenauer / Krob-Thibon) goes in a footnote.",
+      "sources": [
+       "2302.07694",
+       "2503.14782",
+       "2309.14898",
+       "2309.14887",
+       "2607.12232",
+       "2512.06273"
+      ],
+      "children": []
      }
     ],
     "sources": [
