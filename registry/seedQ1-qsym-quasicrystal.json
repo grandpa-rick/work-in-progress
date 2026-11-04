@@ -1,0 +1,77 @@
+{
+ "conjecture": "Q62 (Seed Q1/Q4): (a) quasi-Kashiwara operators on words are factor-local with a quasi-tensor rule; (b) the quasi-tensor rule's shadow is deconcatenation Delta(F_alpha); (c) Crown Q link (locality <=> primitive).",
+ "status": "proved",
+ "date_opened": "2026-11-04",
+ "date_closed": "2026-11-04",
+ "tree": {
+  "id": "Q62",
+  "approach": "PROVE 275. (a) YES: Theorem A, explicit rule = Kashiwara signature rule + kill clause (eps_u>0 & phi_v>0 => infinity). (b) premise FALSE: the tensor-rule shadow is the PRODUCT F_beta F_gamma (Prop P); counterexample C_(21) in C_(1) (x) C_(2), but F_1(x)F_2 is not a term of Delta F_21; deconcatenation = Levi branching shadow (Theorem C). (c) ë_i is local but not primitive: locality comes from deletion; factor order lives only in the asymmetric kill clause. All for the explicit operators of section 0; their identification with Cain-Malheiro's is a separate unverified node.",
+  "trust": "proved",
+  "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+  "children": [
+   {
+    "id": "Q62-defn-owner",
+    "role": "attempt",
+    "approach": "Owner of Theorem A = Cain-Guilherme-Malheiro 2301.00271 sec 5.2 (Z_0-valued signature rule, Prop 5.9; kill = phi(x)>0 & eps(x')>0), per Browse 228 sub-agent full-text read + Guilherme 2023-02-16 seminar slides (reading/2026-11-04-browse228.md). NOT BK math/0601391, NOT 1702.02998. Dream 275 caveat: CGM kill clause reads (left phi, right eps) vs ours (left eps, right phi) -> match holds only under the tensor-order <-> word-order convention flip; our swapped-order control fails 50694, so the convention IS the content. Orchestrator first-hand check of CGM's word<->tensor convention and of the sec-0 operator definition (hypoplactic ops, Cain-Malheiro 1601.06390?) owed before any citation is printed. Q62(b)/(c) owner candidates 2309.14887, 2309.14898 unread.",
+    "trust": "hunch",
+    "file": null,
+    "children": [],
+    "sources": [
+     "2301.00271",
+     "2309.14887",
+     "2309.14898"
+    ]
+   },
+   {
+    "id": "Q62a",
+    "role": "premise",
+    "approach": "Theorem A: factor-local quasi-tensor rule; computed 152928/152928, controls swapped-order fail 50694, Kashiwara rule without kill fails 9120, side is a function of (eps,phi) pairs (454 keys, 0 ambiguous)",
+    "trust": "proved",
+    "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+    "children": []
+   },
+   {
+    "id": "Q62-B",
+    "role": "premise",
+    "approach": "Theorem B: components = standardisation classes C_sigma ~ P_iDes(n), character F_iDes (Gessel bijection + connectivity via minimal-deviation lowering); computed N<=5, n<=4",
+    "trust": "proved",
+    "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+    "children": []
+   },
+   {
+    "id": "Q62b-product",
+    "role": "premise",
+    "approach": "Prop P: C_s1 (x) C_s2 = disjoint union of C_tau over position-shuffles => tensor shadow = QSym product; computed m,k<=3",
+    "trust": "proved",
+    "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+    "children": []
+   },
+   {
+    "id": "Q62b-literal",
+    "role": "attempt",
+    "approach": "Literal Q62(b): tensor/position-split shadow = deconcatenation",
+    "trust": "dead-end",
+    "refutation": "computed",
+    "reason": "F_1F_2 = F_3+F_12+F_21 yet Delta F_21 has no F_1 (x) F_2 term; at N=2, the position split of C_21 gives x_2 y_1 while Delta_{1,1}F_11 has 4 monomials (test_b.py sections 3 and 5)",
+    "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+    "children": []
+   },
+   {
+    "id": "Q62b-levi",
+    "role": "premise",
+    "approach": "Theorem C: Levi branching (ops i != a) slices C_sigma by k = number of letters <= a, each slice connected ~ P_D1(a) x P_D2(n-a); sum = Delta F_alpha; computed 183/183 characters, 753/753 connectivity",
+    "trust": "proved",
+    "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+    "children": []
+   },
+   {
+    "id": "Q62-swap",
+    "role": "attempt",
+    "approach": "Interpretive: product <-> coproduct = positions <-> values = sigma <-> sigma^-1; for crystals both give c^lambda_{mu nu} (Sym self-duality / RSK P<->Q); Dream 275: owner candidate = Malvenuto-Reutenauer FQSym self-duality F_sigma <-> G_{sigma^-1} (QSym/NSym duality is its projection); quasi components C_sigma are FQSym-level objects, so the swap is MR's, not ours. Unchecked.",
+    "trust": "hunch",
+    "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+    "children": []
+   }
+  ]
+ }
+}
