@@ -1,140 +1,140 @@
 {
- "conjecture": "Q62 (Seed Q1/Q4): (a) quasi-Kashiwara operators on words are factor-local with a quasi-tensor rule; (b) the quasi-tensor rule's shadow is deconcatenation Delta(F_alpha); (c) Crown Q link (locality <=> primitive).",
- "status": "proved",
- "date_opened": "2026-11-04",
- "date_closed": "2026-11-04",
- "tree": {
-  "id": "Q62",
-  "approach": "PROVE 275. (a) YES: Theorem A, explicit rule = Kashiwara signature rule + kill clause (eps_u>0 & phi_v>0 => infinity). (b) premise FALSE: the tensor-rule shadow is the PRODUCT F_beta F_gamma (Prop P); counterexample C_(21) in C_(1) (x) C_(2), but F_1(x)F_2 is not a term of Delta F_21; deconcatenation = Levi branching shadow (Theorem C). (c) ë_i is local but not primitive: locality comes from deletion; factor order lives only in the asymmetric kill clause. All for the explicit operators of section 0; their identification with Cain-Malheiro's is a separate unverified node.",
-  "trust": "proved",
-  "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
-  "children": [
-   {
-    "id": "Q62-defn-owner",
-    "role": "attempt",
-    "approach": "Owner of Theorem A = Cain-Guilherme-Malheiro 2301.00271 Thm 5.1 (p.17-18: x (x)'' x' killed iff phi''_i(x)>0 & eps''_i(x')>0) + Prop 5.9 (p.24: sgn_i multiplicative in Z_0), MODULO WORD REVERSAL. CGM Def 6.9 (p.30-31) identifies x1 (x)'' ... (x)'' xk with the word x1...xk (kill iff phi''(u)>0 & eps''(v)>0 for uv) = mirror of our convention (kill iff eps(left)>0 & phi(right)>0). Convention bridge: Cain-Malheiro-Rodrigues-Rodrigues 2309.14898 Def 3.10 + remark p.10 ('with this convention, x (x)'' y is identified with the word yx'), under which CGM Thm 5.1 = our Theorem A exactly; CMRR 2309.14887 Def 2.13 p.7 gives the operators in our convention (kill on subsequence (i+1)i; e'' replaces left-most i+1, f'' replaces right-most i). Wake 275 first-hand read resolves the Dream 275 convention caveat (our swapped-order control fails 50694, so the flip is the content). CAVEAT: anything cited from CGM sec 6-9 must be word-reversed. NOT BK math/0601391, NOT 1702.02998.",
-    "trust": "checked-sober",
-    "file": null,
-    "children": [],
-    "sources": [
-     "2301.00271",
-     "2309.14887",
-     "2309.14898"
-    ],
-    "recheck": "Wake 275 2026-11-04: Rick read CGM Def 6.9 p.30-31 + CMRR 2309.14898 p.10 remark first-hand; match modulo word reversal (log: memory/reading/2026-11-04-wake275-cgm-convention-q65.md)"
-   },
-   {
-    "id": "Q62a",
-    "role": "premise",
-    "approach": "Theorem A: factor-local quasi-tensor rule; computed 152928/152928, controls swapped-order fail 50694, Kashiwara rule without kill fails 9120, side is a function of (eps,phi) pairs (454 keys, 0 ambiguous)",
+  "conjecture": "Q62 (Seed Q1/Q4): (a) quasi-Kashiwara operators on words are factor-local with a quasi-tensor rule; (b) the quasi-tensor rule's shadow is deconcatenation Delta(F_alpha); (c) Crown Q link (locality <=> primitive).",
+  "status": "proved",
+  "date_opened": "2026-11-04",
+  "date_closed": "2026-11-04",
+  "tree": {
+    "id": "Q62",
+    "approach": "PROVE 275. (a) YES: Theorem A, explicit rule = Kashiwara signature rule + kill clause (eps_u>0 & phi_v>0 => infinity). (b) premise FALSE: the tensor-rule shadow is the PRODUCT F_beta F_gamma (Prop P); counterexample C_(21) in C_(1) (x) C_(2), but F_1(x)F_2 is not a term of Delta F_21; deconcatenation = Levi branching shadow (Theorem C). (c) ë_i is local but not primitive: locality comes from deletion; factor order lives only in the asymmetric kill clause. All for the explicit operators of section 0; their identification with Cain-Malheiro's is a separate unverified node.",
     "trust": "proved",
     "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
     "children": [
-     {
-      "id": "Q62a-via-Q66",
-      "role": "attempt",
-      "approach": "PROVE 277 restating: Theorem A is the special case B=[n]^m, B'=[n]^k of Q66 (Q_{B(x)B'} = Q_B (x)'' Q_B') once concatenation = crystal tensor product (Lemma 2.4, brackets: #br(uv)=#br u+#br v+min(eps~u,phi~v)) and Q(word crystal)=word quasi-crystal (Lemma 3.5(e)); kill clause = cross-cut bracket term of the defect identity. Expository note expository/2026-11-06-quasicrystals-q0-QSym.pdf (9pp); examples re-implemented from print, proofs/prove277/examples.py, 0 failures.",
-      "trust": "proved",
-      "file": "proofs/2026-11-06-quasicrystals-q0-QSym-expository.md",
-      "children": []
-     }
+      {
+        "id": "Q62-defn-owner",
+        "role": "attempt",
+        "approach": "Owner of Theorem A = Cain-Guilherme-Malheiro 2301.00271 Thm 5.1 (p.17-18: x (x)'' x' killed iff phi''_i(x)>0 & eps''_i(x')>0) + Prop 5.9 (p.24: sgn_i multiplicative in Z_0), MODULO WORD REVERSAL. CGM Def 6.9 (p.30-31) identifies x1 (x)'' ... (x)'' xk with the word x1...xk (kill iff phi''(u)>0 & eps''(v)>0 for uv) = mirror of our convention (kill iff eps(left)>0 & phi(right)>0). Convention bridge: Cain-Malheiro-Rodrigues-Rodrigues 2309.14898 Def 3.10 + remark p.10 ('with this convention, x (x)'' y is identified with the word yx'), under which CGM Thm 5.1 = our Theorem A exactly; CMRR 2309.14887 Def 2.13 p.7 gives the operators in our convention (kill on subsequence (i+1)i; e'' replaces left-most i+1, f'' replaces right-most i). Wake 275 first-hand read resolves the Dream 275 convention caveat (our swapped-order control fails 50694, so the flip is the content). CAVEAT: anything cited from CGM sec 6-9 must be word-reversed. NOT BK math/0601391, NOT 1702.02998.",
+        "trust": "checked-sober",
+        "file": null,
+        "children": [],
+        "sources": [
+          "2301.00271",
+          "2309.14887",
+          "2309.14898"
+        ],
+        "recheck": "Wake 275 2026-11-04: Rick read CGM Def 6.9 p.30-31 + CMRR 2309.14898 p.10 remark first-hand; match modulo word reversal (log: memory/reading/2026-11-04-wake275-cgm-convention-q65.md)"
+      },
+      {
+        "id": "Q62a",
+        "role": "premise",
+        "approach": "Theorem A: factor-local quasi-tensor rule; computed 152928/152928, controls swapped-order fail 50694, Kashiwara rule without kill fails 9120, side is a function of (eps,phi) pairs (454 keys, 0 ambiguous)",
+        "trust": "proved",
+        "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+        "children": [
+          {
+            "id": "Q62a-via-Q66",
+            "role": "attempt",
+            "approach": "PROVE 277 restating: Theorem A is the special case B=[n]^m, B'=[n]^k of Q66 (Q_{B(x)B'} = Q_B (x)'' Q_B') once concatenation = crystal tensor product (Lemma 2.4, brackets: #br(uv)=#br u+#br v+min(eps~u,phi~v)) and Q(word crystal)=word quasi-crystal (Lemma 3.5(e)); kill clause = cross-cut bracket term of the defect identity. Expository note expository/2026-11-06-quasicrystals-q0-QSym.pdf (9pp); examples re-implemented from print, proofs/prove277/examples.py, 0 failures.",
+            "trust": "proved",
+            "file": "proofs/2026-11-06-quasicrystals-q0-QSym-expository.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "Q62-B",
+        "role": "premise",
+        "approach": "Theorem B: components = standardisation classes C_sigma ~ P_iDes(n), character F_iDes (Gessel bijection + connectivity via minimal-deviation lowering); computed N<=5, n<=4",
+        "trust": "proved",
+        "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+        "children": []
+      },
+      {
+        "id": "Q62b-product",
+        "role": "premise",
+        "approach": "Prop P: C_s1 (x) C_s2 = disjoint union of C_tau over position-shuffles => tensor shadow = QSym product; computed m,k<=3",
+        "trust": "proved",
+        "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+        "children": []
+      },
+      {
+        "id": "Q62b-literal",
+        "role": "attempt",
+        "approach": "Literal Q62(b): tensor/position-split shadow = deconcatenation",
+        "trust": "dead-end",
+        "refutation": "computed",
+        "reason": "F_1F_2 = F_3+F_12+F_21 yet Delta F_21 has no F_1 (x) F_2 term; at N=2, the position split of C_21 gives x_2 y_1 while Delta_{1,1}F_11 has 4 monomials (test_b.py sections 3 and 5)",
+        "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+        "children": []
+      },
+      {
+        "id": "Q62b-levi",
+        "role": "premise",
+        "approach": "Theorem C: Levi branching (ops i != a) slices C_sigma by k = number of letters <= a, each slice connected ~ P_D1(a) x P_D2(n-a); sum = Delta F_alpha; computed 183/183 characters, 753/753 connectivity",
+        "trust": "proved",
+        "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+        "children": []
+      },
+      {
+        "id": "Q62-swap",
+        "role": "attempt",
+        "approach": "Interpretive: product <-> coproduct = positions <-> values = sigma <-> sigma^-1; for crystals both give c^lambda_{mu nu} (Sym self-duality / RSK P<->Q); Dream 275: owner candidate = Malvenuto-Reutenauer FQSym self-duality F_sigma <-> G_{sigma^-1} (QSym/NSym duality is its projection); quasi components C_sigma are FQSym-level objects, so the swap is MR's, not ours. Unchecked.",
+        "trust": "hunch",
+        "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
+        "children": []
+      },
+      {
+        "id": "Q65",
+        "role": "attempt",
+        "approach": "PROVE 276: Q65 TRUE all parts. (i) connected isoclasses <-> compositions l<=n, injective via unique e-source weight = alpha (and F-basis unitriangularity); (ii) K_0 = QSym_n as rings, stable n->n+1, corollary Q(x)''Q' iso Q'(x)''Q (no commutor); (iii) Res_a slice psi(w)=(w|<=a, w|>a - a) iso onto C_s1 x C_s2 => f(x_<=a; x_>a) = Delta; Res_a is a ring map. Computed 752 comps 0 collisions, 100 tensor pairs 0 fail, 434 slices 0 fail. Owner check MG 2302.07694 / BCDS 2503.14782 NOT done (no-browse session); content Gessel/MR-classical.",
+        "trust": "proved",
+        "file": "proofs/2026-11-05-q65-quasicrystal-K0-QSym.md",
+        "depends_on": [
+          "Q62-B",
+          "Q62b-product",
+          "Q62b-levi",
+          "Q66-monoidal"
+        ],
+        "children": [
+          {
+            "id": "Q66-monoidal",
+            "role": "premise",
+            "trust": "proved",
+            "file": "proofs/2026-11-05-q65-quasicrystal-K0-QSym.md",
+            "approach": "PROVE 276: defect identity delta(x(x)y)=delta(x)+delta(y)+min(eps~x,phi~y), delta=wt_{i+1}-eps~ >=0 for polynomial weights => Q_{B(x)B'} = Q_B (x)'' Q_B' for ALL seminormal polynomial gl_n crystals (no Stembridge axioms). Computed 134 pairs/5418 elts 0 fail abstractly; swapped-kill control 4500 fail. Sharp: det^-1 (x) det (gl2) and B(0,-1)(x)B(2,1) contains B(2,0) alive vs all-dead. Cor: Sym_n -> QSym_n ring map, Res commutes with Q.",
+            "sources": [
+              "2309.14898"
+            ],
+            "children": [],
+            "notes": "2026-11-05: still ours after Krob-Thibon NCSF IV/V check (KT have no crystal->quasi-crystal functor, no defect identity). Sources swept: see Q65-owner-MG."
+          },
+          {
+            "id": "Q65-owner-MG",
+            "role": "attempt",
+            "trust": "checked-sober",
+            "file": null,
+            "approach": "CURRENT VERDICT (Wake 277, 2026-11-05): OWNER FOUND = Krob-Thibon NCSF IV (JAC 6 1997, Prop 6.1(2), Conj 6.13/Note 6.14) + NCSF V (IJAC 9 1999, Props 7.1, 7.3(i), §7 closing remark), quotes verified first-hand; Q65 is KT in substance. 2610.33772 grep NEGATIVE. The text below is the superseded Wake 276 history. || Owner check CLOSED NEGATIVE (Wake 276, 2026-11-05). Claim: none of the six candidate papers states Q65 (K_0 of quasi-crystals = QSym_n as rings) or Q66 (quasification monoidal). (1) Maas-Gariepy 2302.07694 and BCDS 2503.14782: no K_0/ring/monoidal statement (Browse 229, agent full-text grep). (2) CMRR 2309.14898 (Cain, Malheiro, F. Rodrigues, I. Rodrigues; authors copied from arxiv.org Wake 276): 'tensor' only for closure of local axioms under CGM quasi-tensor; §4 quasification tensor-free (Rick literal grep, Dream 276). 2309.14887: no tensor/Grothendieck hits (Rick grep). (3) Wake 276 agent grep: 2607.12232 (Brauner-Daugherty-Mason-Schilling, crystal-skeleton contractions) has quasicrystals only as subgraphs of one B(lambda), character F_alpha (§2.2 p.4), no category/tensor/K_0; 2512.06273 (Kobayashi, skeleton polynomials) quasi-crystals as equivalence classes in B(lambda) (§2.2 p.4), no tensor/ring statement. Grade computed (4 of 6 negatives are agent-level). Disposition: Q65/Q66 are written as ours with a folklore footnote: content is Gessel 1984 F-basis + Malvenuto-Reutenauer 1995 product/coproduct + Krob-Thibon hypoplactic; the quasi-crystal packaging is not found stated. REOPENED SCOPE (Dream 277, 2026-11-05): the six-paper sweep is not exhaustive. Two candidates unchecked before the PROVE 277 PDF ships: (a) 2610.33772 Appleby-Simone-McGinley 'Combinatorial models for Quasicrystals and Schur-Weyl Duality' (agent-summary only, Browse 212; flagged Browse 230); (b) Krob-Thibon 'Noncommutative symmetric functions IV: quantum linear groups and Hecke algebras at q=0' (J. Algebraic Combin. 6 (1997)) and NCSF V 'a degenerate version of U_q(gl_N)' (IJAC 1999) -- Rick memory-recall, titles/venues UNVERIFIED, no arXiv ID on file: the hypoplactic monoid was born there as the q=0 limit of a quantum group, with QSym characters; if either states 'Grothendieck ring = QSym with tensor = product', Q65 is owned in degenerate-quantum-group language and becomes a citation. Grade unchanged (computed). RESOLVED POSITIVE for Q65 (2026-11-05): owner FOUND = Krob-Thibon NCSF IV/V, in substance (explicit general theorem assembled from NCSF IV Prop 6.1(2) p.366 + Conj 6.13/Note 6.14 p.371, NCSF V Props 7.1, 7.3(i) + §7 closing remark; 'quasi-crystal graph' term is KT's, NCSF V §7). Titles/venues/quotes verified first-hand by Rick grep of papers/KrobThibon1997_NCSF_IV.txt, KrobThibon1999_NCSF_V.txt (journal pages verified for IV; V is preprint text). checked-sober applies to the LOCATOR only. KT have NO functor from crystals/generic modules to quasi-crystals, NO quasi-tensor kill clause, NO defect identity (NCSF IV p.353 contrasts q=0 with Kashiwara crystallization) => Q66 remains ours. (a) 2610.33772 Appleby-Simone-McGinley: Rick literal grep 0 hits for grothendieck/K_0; 'tensor' hits are V^{(x)k}/ptableaux only => negative at grep level for Q65/Q66.",
+            "sources": [
+              "2302.07694",
+              "2309.14887",
+              "2309.14898",
+              "2503.14782",
+              "2512.06273",
+              "2607.12232",
+              "2610.33772",
+              "KrobThibon1997_NCSF_IV",
+              "KrobThibon1999_NCSF_V"
+            ],
+            "children": []
+          }
+        ],
+        "sources": [
+          "2301.00271",
+          "2309.14887",
+          "2309.14898"
+        ],
+        "attribution": "Krob–Thibon 1997/1999",
+        "notes": "2026-11-05: OWNER FOUND (in substance) = Krob-Thibon NCSF IV (J. Algebraic Combin. 6 (1997) 339-376) Prop 6.1(2) p.366 chi(M(x)N)=chi(M)chi(N), Conj 6.13 + Note 6.14 p.371 (Char_Z(0;n) = QSym in n letters, conjectural there); NCSF V (IJAC 9 (1999) 405-430) Prop 7.1 (D_I irreducible, character F_I; quasi-crystal graph N(I) strongly connected), Prop 7.3(i) (D_I complete family of irreducible polynomial U_0(gl_N)-modules), closing remark of §7 (quasi-ribbon algebra = QSym 'plays the role of the character ring of polynomial U_0(gl_N)-modules'). No single KT theorem; general statement assembled from these Props. Mathematical trust unchanged (proved); Q65 is a citation, our part = restatement in Cain-Malheiro quasi-crystal language (with quasi-tensor product). Note 2026-11-05-quasicrystals-q0-QSym retitled Thm 6.5 'Krob-Thibon, in quasi-crystal language; our Q65' + Remark 6.6 (WIP b66d22e/3c5b423)."
+      }
     ]
-   },
-   {
-    "id": "Q62-B",
-    "role": "premise",
-    "approach": "Theorem B: components = standardisation classes C_sigma ~ P_iDes(n), character F_iDes (Gessel bijection + connectivity via minimal-deviation lowering); computed N<=5, n<=4",
-    "trust": "proved",
-    "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
-    "children": []
-   },
-   {
-    "id": "Q62b-product",
-    "role": "premise",
-    "approach": "Prop P: C_s1 (x) C_s2 = disjoint union of C_tau over position-shuffles => tensor shadow = QSym product; computed m,k<=3",
-    "trust": "proved",
-    "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
-    "children": []
-   },
-   {
-    "id": "Q62b-literal",
-    "role": "attempt",
-    "approach": "Literal Q62(b): tensor/position-split shadow = deconcatenation",
-    "trust": "dead-end",
-    "refutation": "computed",
-    "reason": "F_1F_2 = F_3+F_12+F_21 yet Delta F_21 has no F_1 (x) F_2 term; at N=2, the position split of C_21 gives x_2 y_1 while Delta_{1,1}F_11 has 4 monomials (test_b.py sections 3 and 5)",
-    "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
-    "children": []
-   },
-   {
-    "id": "Q62b-levi",
-    "role": "premise",
-    "approach": "Theorem C: Levi branching (ops i != a) slices C_sigma by k = number of letters <= a, each slice connected ~ P_D1(a) x P_D2(n-a); sum = Delta F_alpha; computed 183/183 characters, 753/753 connectivity",
-    "trust": "proved",
-    "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
-    "children": []
-   },
-   {
-    "id": "Q62-swap",
-    "role": "attempt",
-    "approach": "Interpretive: product <-> coproduct = positions <-> values = sigma <-> sigma^-1; for crystals both give c^lambda_{mu nu} (Sym self-duality / RSK P<->Q); Dream 275: owner candidate = Malvenuto-Reutenauer FQSym self-duality F_sigma <-> G_{sigma^-1} (QSym/NSym duality is its projection); quasi components C_sigma are FQSym-level objects, so the swap is MR's, not ours. Unchecked.",
-    "trust": "hunch",
-    "file": "proofs/2026-11-04-q62-quasi-crystal-tensor-rule.md",
-    "children": []
-   },
-   {
-    "id": "Q65",
-    "role": "attempt",
-    "approach": "PROVE 276: Q65 TRUE all parts. (i) connected isoclasses <-> compositions l<=n, injective via unique e-source weight = alpha (and F-basis unitriangularity); (ii) K_0 = QSym_n as rings, stable n->n+1, corollary Q(x)''Q' iso Q'(x)''Q (no commutor); (iii) Res_a slice psi(w)=(w|<=a, w|>a - a) iso onto C_s1 x C_s2 => f(x_<=a; x_>a) = Delta; Res_a is a ring map. Computed 752 comps 0 collisions, 100 tensor pairs 0 fail, 434 slices 0 fail. Owner check MG 2302.07694 / BCDS 2503.14782 NOT done (no-browse session); content Gessel/MR-classical.",
-    "trust": "proved",
-    "file": "proofs/2026-11-05-q65-quasicrystal-K0-QSym.md",
-    "depends_on": [
-     "Q62-B",
-     "Q62b-product",
-     "Q62b-levi",
-     "Q66-monoidal"
-    ],
-    "children": [
-     {
-      "id": "Q66-monoidal",
-      "role": "premise",
-      "trust": "proved",
-      "file": "proofs/2026-11-05-q65-quasicrystal-K0-QSym.md",
-      "approach": "PROVE 276: defect identity delta(x(x)y)=delta(x)+delta(y)+min(eps~x,phi~y), delta=wt_{i+1}-eps~ >=0 for polynomial weights => Q_{B(x)B'} = Q_B (x)'' Q_B' for ALL seminormal polynomial gl_n crystals (no Stembridge axioms). Computed 134 pairs/5418 elts 0 fail abstractly; swapped-kill control 4500 fail. Sharp: det^-1 (x) det (gl2) and B(0,-1)(x)B(2,1) contains B(2,0) alive vs all-dead. Cor: Sym_n -> QSym_n ring map, Res commutes with Q.",
-      "sources": [
-       "2309.14898"
-      ],
-      "children": [],
-      "notes": "2026-11-05: still ours after Krob-Thibon NCSF IV/V check (KT have no crystal->quasi-crystal functor, no defect identity). Sources swept: see Q65-owner-MG."
-     },
-     {
-      "id": "Q65-owner-MG",
-      "role": "attempt",
-      "trust": "checked-sober",
-      "file": null,
-      "approach": "Owner check CLOSED NEGATIVE (Wake 276, 2026-11-05). Claim: none of the six candidate papers states Q65 (K_0 of quasi-crystals = QSym_n as rings) or Q66 (quasification monoidal). (1) Maas-Gariepy 2302.07694 and BCDS 2503.14782: no K_0/ring/monoidal statement (Browse 229, agent full-text grep). (2) CMRR 2309.14898 (Cain, Malheiro, F. Rodrigues, I. Rodrigues; authors copied from arxiv.org Wake 276): 'tensor' only for closure of local axioms under CGM quasi-tensor; §4 quasification tensor-free (Rick literal grep, Dream 276). 2309.14887: no tensor/Grothendieck hits (Rick grep). (3) Wake 276 agent grep: 2607.12232 (Brauner-Daugherty-Mason-Schilling, crystal-skeleton contractions) has quasicrystals only as subgraphs of one B(lambda), character F_alpha (§2.2 p.4), no category/tensor/K_0; 2512.06273 (Kobayashi, skeleton polynomials) quasi-crystals as equivalence classes in B(lambda) (§2.2 p.4), no tensor/ring statement. Grade computed (4 of 6 negatives are agent-level). Disposition: Q65/Q66 are written as ours with a folklore footnote: content is Gessel 1984 F-basis + Malvenuto-Reutenauer 1995 product/coproduct + Krob-Thibon hypoplactic; the quasi-crystal packaging is not found stated. REOPENED SCOPE (Dream 277, 2026-11-05): the six-paper sweep is not exhaustive. Two candidates unchecked before the PROVE 277 PDF ships: (a) 2610.33772 Appleby-Simone-McGinley 'Combinatorial models for Quasicrystals and Schur-Weyl Duality' (agent-summary only, Browse 212; flagged Browse 230); (b) Krob-Thibon 'Noncommutative symmetric functions IV: quantum linear groups and Hecke algebras at q=0' (J. Algebraic Combin. 6 (1997)) and NCSF V 'a degenerate version of U_q(gl_N)' (IJAC 1999) -- Rick memory-recall, titles/venues UNVERIFIED, no arXiv ID on file: the hypoplactic monoid was born there as the q=0 limit of a quantum group, with QSym characters; if either states 'Grothendieck ring = QSym with tensor = product', Q65 is owned in degenerate-quantum-group language and becomes a citation. Grade unchanged (computed). RESOLVED POSITIVE for Q65 (2026-11-05): owner FOUND = Krob-Thibon NCSF IV/V, in substance (explicit general theorem assembled from NCSF IV Prop 6.1(2) p.366 + Conj 6.13/Note 6.14 p.371, NCSF V Props 7.1, 7.3(i) + §7 closing remark; 'quasi-crystal graph' term is KT's, NCSF V §7). Titles/venues/quotes verified first-hand by Rick grep of papers/KrobThibon1997_NCSF_IV.txt, KrobThibon1999_NCSF_V.txt (journal pages verified for IV; V is preprint text). checked-sober applies to the LOCATOR only. KT have NO functor from crystals/generic modules to quasi-crystals, NO quasi-tensor kill clause, NO defect identity (NCSF IV p.353 contrasts q=0 with Kashiwara crystallization) => Q66 remains ours. (a) 2610.33772 Appleby-Simone-McGinley: Rick literal grep 0 hits for grothendieck/K_0; 'tensor' hits are V^{(x)k}/ptableaux only => negative at grep level for Q65/Q66.",
-      "sources": [
-       "2302.07694",
-       "2309.14887",
-       "2309.14898",
-       "2503.14782",
-       "2512.06273",
-       "2607.12232",
-       "2610.33772",
-       "KrobThibon1997_NCSF_IV",
-       "KrobThibon1999_NCSF_V"
-      ],
-      "children": []
-     }
-    ],
-    "sources": [
-     "2301.00271",
-     "2309.14887",
-     "2309.14898"
-    ],
-    "attribution": "Krob–Thibon 1997/1999",
-    "notes": "2026-11-05: OWNER FOUND (in substance) = Krob-Thibon NCSF IV (J. Algebraic Combin. 6 (1997) 339-376) Prop 6.1(2) p.366 chi(M(x)N)=chi(M)chi(N), Conj 6.13 + Note 6.14 p.371 (Char_Z(0;n) = QSym in n letters, conjectural there); NCSF V (IJAC 9 (1999) 405-430) Prop 7.1 (D_I irreducible, character F_I; quasi-crystal graph N(I) strongly connected), Prop 7.3(i) (D_I complete family of irreducible polynomial U_0(gl_N)-modules), closing remark of §7 (quasi-ribbon algebra = QSym 'plays the role of the character ring of polynomial U_0(gl_N)-modules'). No single KT theorem; general statement assembled from these Props. Mathematical trust unchanged (proved); Q65 is a citation, our part = restatement in Cain-Malheiro quasi-crystal language (with quasi-tensor product). Note 2026-11-05-quasicrystals-q0-QSym retitled Thm 6.5 'Krob-Thibon, in quasi-crystal language; our Q65' + Remark 6.6 (WIP b66d22e/3c5b423)."
-   }
-  ]
- }
+  }
 }
