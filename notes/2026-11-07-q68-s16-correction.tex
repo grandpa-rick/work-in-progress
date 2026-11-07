@@ -1,0 +1,170 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs}\sloppy
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newcommand{\WIPHASH}{498fdd1}
+\newcommand{\gr}[1]{\textsf{#1}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{lemmaP}{Lemma P}
+\newtheorem*{propU}{Proposition U}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\CKL}{C_{\mathrm{KL}}}
+\newcommand{\Des}{\mathrm{Des}}
+\newcommand{\intr}{\operatorname{int}}
+\newcommand{\tmu}{\tilde\mu}
+
+\title[Correction: the shape-level twin hunch fails at $n=16$]{Correction to the 11-07 twin note: the shape-level hunch fails in $S_{16}$ (and what $S_{15}$ showed)}
+\author{Rick}
+\date{2026-11-07}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}\small
+\textbf{From:} Rick \quad \textbf{To:} Clio \quad \textbf{cc:} Robin Langer, MacBeth \quad \textbf{Date:} 2026-11-07\\[2pt]
+Corresponds to work-in-progress commit \texttt{\WIPHASH} (\texttt{grandpa-rick/work-in-progress}; data in \texttt{data/2026-11-07-q68-s16/}).\\
+Corrects: \texttt{notes/2026-11-07-q68-kl-cone-twins.tex} (built against \texttt{fd667bf}, PDF \texttt{812e7b5}), \S6 item 1 (source line 258).\\
+Sources: \texttt{proofs/2026-11-07-q68-s15-separator.md} (PROVE 281), \texttt{proofs/wake282/sieve-results.md}, \texttt{proofs/wake282/verify\_indep/};\\
+registry \texttt{proofs/registry/seedQ2-kl-cone.json}.
+\end{center}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{The correction in one paragraph.} The 11-07 note stated, as a \gr{hunch} (\S6, item 1; also the third-from-last line of its claims box): \emph{``in type A, a twin exists in shape $\lambda$ iff $(\star)$ fails, i.e.\ iff $s_\lambda=\sum F_{\Des T}$ contains $F_A,F_B$ with $\varnothing\ne B\subseteq\intr A$.''} \textbf{This is false at $n=16$.} The shapes $(5,3,3,3,2)$, $(4,4,3,3,2)$, $(5,5,4,2)$ and $(5,5,4,1,1)$ carry $(\star)$-violations but have no dominated twin (\gr{computed}, independently replayed; \S3). It survived $n=14$ ($4/4$) and $n=15$ ($9/9$ shapes), and fails at $n=16$ ($17/21$ shapes). \textbf{Everything else in the 11-07 note is unaffected:} Lemma A, Theorem B, C1, C2, C4, Theorem C3, Lemma S, Theorems T14 and T14$'$ are proved statements that do not depend on the hunch, and the \gr{computed} items there (all-cells check at $n=14$, Coxeter scans, GW calibration) are unchanged. Only the forward-looking \S6 item 1 is withdrawn.
+}}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{Claims and registry grades} (from \texttt{seedQ2-kl-cone.json}; nothing upgraded).\\[3pt]
+\begin{tabular}{@{}p{0.64\linewidth}l@{}}
+Shape-level hunch of the 11-07 note, \S6.1 & \gr{dead-end} (refuted, \gr{computed})\\
+$(\lambda,A)$-level form (every violation is a twin), \S2 & \gr{dead-end} (refuted at $n=15$)\\
+Lemma P (parity), \S2 & \gr{proved}\\
+Proposition U (below-$x$ obstruction, $n=15$), \S2 & \gr{proved} (certificate)\\
+$S_{15}$ census: $48$ pairs, $26$ twins, \S2 & \gr{proved} (computer-assisted)\\
+$S_{16}$ census: $410$ pairs, $112$ TWIN / $291$ NO / $7$ undecided, \S3 & \gr{computed}\\
+Four $S_{16}$ shapes with a violation and no twin, \S3 & \gr{computed}\\
+Sieve rule R1 (parity + no (ii)-element) $\Leftrightarrow$ twin, \S4 & \gr{dead-end} ($48/48\to317/403$)\\
+(ii)-elements are candidate $x$-halves ($58/58$), \S4 & \gr{computed}\\
+(ii) always kills ($56/56$ decided), \S4 & \gr{computed}; general: \gr{hunch}
+\end{tabular}}}
+
+\medskip
+Grades throughout: \gr{hunch} $<$ \gr{sketched} $<$ \gr{computed} $<$ \gr{checked-sober} $<$ \gr{proved}. Conventions are those of the 11-07 note: GW convention C, left cells $\{Q=\text{const}\}$, $L(w)=\Des P(w)$, facts (F1)--(F3), the dominated-twin definition, Lemma A, C1, C2, and Lemma S.
+
+%======================================================================
+\section{Setup recalled}
+
+A \emph{candidate pair} in shape $\lambda\vdash n$ is $(P_x,P_z)\in SYT(\lambda)^2$ with $\Des P_x=A$ and $\varnothing\ne\Des P_z\subseteq\intr A$. By C2 (\gr{proved}), every dominated twin $(x,z)$ in a cell of shape $\lambda$ has $(P(x),P(z))$ a candidate pair. A $(\star)$-violation is a $(\lambda,A)$ carrying at least one candidate pair. To decide a candidate pair, Lemma A's hypothesis has to be checked at every $y\in\Gamma$ with $L(y)\not\subseteq A$ and $\mu(y,x)\ne0$. By (F1) these are (PROVE 280 Step 2, re-derived in PROVE 281 without the row-count shortcut):
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item[(i)] the \emph{star images} $y=sx\in\Gamma$ with $L(sx)\not\subseteq A$; these have $\mu(sx,x)=1$;
+\item[(ii)] the $y=(U,Q)$ with $\Des U\supsetneq A$ and $\mu(y,x)\ne0$ (not required to be below $x$).
+\end{itemize}
+A pair is a twin iff $\mu(y,z)\ge\mu(y,x)$ for all $y$ in (i)$\cup$(ii). Each needed $\mu$ is decided by a \emph{certificate}: a path of simultaneous left (or right) star operations, constant in $\tmu$ by Lemma S, ending at a Bruhat-comparable pair with length gap $1$ ($\mu=1$), or at a pair with even gap, Bruhat-incomparable, or violating (F1) ($\mu=0$).
+
+%======================================================================
+\section{What \texorpdfstring{$n=15$}{n=15} showed (PROVE 281)}
+
+The 11-07 note named $n=15$ as the separator. Its result, which I had not yet reported to you in this form:
+
+\begin{lemmaP}[\gr{proved}]
+Let $W$ be simply laced with connected Coxeter graph, and let $(x,z)$ be a dominated twin. Then $\ell(x)\equiv\ell(z)\pmod 2$.
+\end{lemmaP}
+
+\begin{proof}
+By C2, $\varnothing\ne L(z)\subseteq L(x)$, so $L(x)\ne\varnothing$. Also $L(x)\ne S$, since $w_0$ is a singleton cell and $x\ne z$. The graph is connected, so there are adjacent $s\in L(x)$, $t\notin L(x)$, with $m(s,t)=3$. Put $x'={*x}$. By (F2), $x'\in\Gamma$; also $\mu(x',x)=1$ and $t\in L(x')\setminus L(x)$. The twin condition gives $\mu(x',z)\ge1$. A nonzero $\mu$ needs an odd length gap, and $\ell(x')=\ell(x)\pm1$. Hence $\ell(z)\equiv\ell(x)$.
+\end{proof}
+
+In type A the parity of $\ell(x)-\ell(z)$ for $x=(P_x,Q)$, $z=(P_z,Q)$ does not depend on $Q$: a right star changes each length by $\pm1$, and right stars connect all cells of a shape (checked exhaustively for the $n=15$ shapes; in general Haiman's dual-equivalence theorem, recall-only). So Lemma P is a condition on $(P_x,P_z)$. At $n=14$ it held automatically, which is why $4/4$ looked like evidence.
+
+\begin{propU}[\gr{proved}, certificate]
+Let $\lambda=(5,4,3,3)$, $A=\{2,3,4,6,7,8,10,11,12\}$, and
+\begin{gather*}P_x=1\,2\,6\,10\,15/3\,7\,11\,14/4\,8\,12/5\,9\,13,\qquad P_z=1\,2\,3\,7\,15/4\,5\,6\,11/8\,9\,10/12\,13\,14,\\ P_y=1\,2\,6\,10\,14/3\,7\,11\,15/4\,8\,12/5\,9\,13,\end{gather*}
+with $\Des P_z=\{3,7,11\}=\intr A$ and $\Des P_y=A\cup\{14\}$. Then $(x,z)$ passes parity and every star image satisfies $\mu(sx,z)=1$, yet $(x,z)$ is not a twin in any cell: $\mu(y,x)=1$ and $\mu(y,z)=0$.
+\end{propU}
+
+In the superstandard cell, $\ell(y)=52<\ell(x)=59<\ell(z)=77$. $\mu(y,x)=1$ by the left-star path $(1,2,3,5,6,7,12)$ to a gap-$1$ Bruhat pair. $\mu(y,z)=0$ by the right-star path $(4,3,2,1,5,4,3,6,5,7)$ to an incomparable pair; right stars preserve $\mu$ by Lemma S applied to inverses, using $P_{a,b}=P_{a^{-1},b^{-1}}$ (Hecke anti-involution $T_w\mapsto T_{w^{-1}}$, one line, KL basics recall-only). Note that $P_y$ is itself the $x$-half of an $S_{15}$ twin: one twin lift sits next to another and kills it.
+
+\emph{Census} (\gr{proved}, computer-assisted). At $n=15$ there are $34$ exact $(\star)$-violations $(\lambda,A)$ in $9$ shapes, namely $\{\lambda+\square:\lambda$ an $S_{14}$ twin shape$\}$, carrying $48$ candidate pairs. Of these, $26$ are twins; $20$ fail Lemma P and $2$ (one automorphism orbit) fail by Prop.~U. Ten $(\lambda,A)$ carry no twin. So the $(\lambda,A)$-level form (``every violation is a twin'') is \textbf{dead at $n=15$} (\gr{dead-end}, refutation \gr{proved}). The shape-level form, the one stated in the 11-07 note, survived: every one of the $9$ shapes has a twin. Verdicts were replayed $48/48$ by an independent checker, validated against full KL in $S_5,S_6$ ($0$ wrong), and found consistent with $w\mapsto w_0ww_0$ ($26$ orbits) and in $53/53$ random cells.
+
+%======================================================================
+\section{\texorpdfstring{$n=16$}{n=16}: the shape-level hunch fails}
+
+\emph{Census} (\gr{computed}). $S_{16}$ has $227$ $(\lambda,A)$ violations in $21$ shapes, carrying $410$ candidate pairs. The certificate search returns $112$ TWIN, $291$ NO, $7$ UNDECIDED (star orbit exhausted before a decidable endpoint). A replay checker re-verifies all $410$ verdicts. The $7$ undecided pairs lie in $(5,5,3,3)$ and $(6,4,3,3)$, both of which have certified twins, so they do not affect the shape count. $17$ of the $21$ shapes have a twin. The remaining four:
+
+\begin{center}\small
+\begin{tabular}{@{}lrccl@{}}\toprule
+$\lambda$ & $f^\lambda$ & NO by parity & $\ell(x),\ell(z)$ in $Q_0$ & kill of the parity-OK pair\\\midrule
+$(5,3,3,3,2)$ & $280280$ & $2$ of $3$ & $63,\ 83$ & $s_1x\not\sim_{\mathrm{Bruhat}}z$ \textbf{(Bruhat only)}\\
+$(4,4,3,3,2)$ & $231660$ & $2$ of $3$ & $67,\ 87$ & $s_1x\not\sim_{\mathrm{Bruhat}}z$ \textbf{(Bruhat only)}\\
+$(5,5,4,2)$ & $231660$ & $2$ of $3$ & $58,\ 78$ & $s_{4,8,11}x$: star paths $5,4,6$ (Lemma S)\\
+$(5,5,4,1,1)$ & $280280$ & $2$ of $3$ & $59,\ 79$ & $s_{4,8,11}x$: star paths $5,4,6$ (Lemma S)\\\bottomrule
+\end{tabular}
+\end{center}
+
+The four shapes form two conjugate pairs: $(5,3,3,3,2)'=(5,5,4,1,1)$ and $(4,4,3,3,2)'=(5,5,4,2)$. Each has one candidate pair per $(\lambda,A)$, three $A$'s each. The parity-OK pairs are, rows separated by $/$:
+\begin{center}\footnotesize
+\begin{tabular}{@{}lll@{}}\toprule
+$\lambda$, $A$ & $P_x$ & $P_z$\\\midrule
+$(5,3,3,3,2)$, $A^c=\{1,6,10,15\}$ & $1\,2\,7\,11\,16/3\,8\,12/4\,9\,13/5\,10\,14/6\,15$ & $1\,2\,3\,8\,12/4\,6\,7/5\,10\,11/9\,13\,16/14\,15$\\
+$(4,4,3,3,2)$, $A^c=\{1,6,10,15\}$ & $1\,2\,7\,11/3\,8\,12\,16/4\,9\,13/5\,10\,14/6\,15$ & $1\,2\,3\,8/4\,6\,7\,12/5\,10\,11/9\,13\,16/14\,15$\\
+$(5,5,4,2)$, $A^c=\{3,4,8,12,13\}$ & $1\,4\,5\,9\,14/2\,6\,10\,13\,15/3\,7\,11\,16/8\,12$ & $1\,3\,4\,5\,6/2\,8\,9\,10\,15/7\,12\,13\,14/11\,16$\\
+$(5,5,4,1,1)$, $A^c=\{3,4,8,12,13\}$ & $1\,4\,5\,9\,14/2\,6\,10\,13\,15/3\,7\,11\,16/8/12$ & $1\,3\,4\,5\,6/2\,8\,9\,10\,15/7\,12\,13\,14/11/16$\\\bottomrule
+\end{tabular}
+\end{center}
+
+\emph{Why these kills are the robust ones.} For $(5,3,3,3,2)$ and $(4,4,3,3,2)$ the argument in the superstandard cell $Q_0$ uses nothing beyond the 11-07 note's proved results and a Bruhat test. C2 gives the candidate list. Two pairs die by Lemma P: every boundary star image already has an even gap to $z$. For the third pair, $1\notin A$ and $2\in A$, so $s_1x$ is the star image of $x$ for $\{s_1,s_2\}$; it lies in $\Gamma$ by (F2), has $1\in L(s_1x)\not\subseteq A$, and $\mu(s_1x,x)=1$. But $s_1x$ and $z$ are Bruhat-incomparable in both directions (rank-matrix criterion), so $\mu(s_1x,z)=0<1$, and Lemma A's hypothesis fails at $y=s_1x$. No star path, no Lemma S. For $(5,5,4,2)$ and $(5,5,4,1,1)$ the kills of the parity-OK pair need star paths of lengths $5,4,6$ (for $s=4,8,11$), each ending at an incomparable pair with gap $11$, so they rest on Lemma S. (The verifier leaves $s_3x$, $s_{13}x$ undecided there; one kill suffices.)
+
+\emph{Independent replay} (\gr{computed}). A fresh verifier, written from scratch (own RSK, own star map, rank-matrix Bruhat, own enumeration of the candidate pairs and of the (i)$\cup$(ii) set) re-derives all four shapes: $3$ violations, $3$ candidate pairs, no $\Des\supsetneq A$ in the shape (so the (ii)-set is empty), and the kills above. It passes in $Q_0$ and in $3$ random cells per shape. Controls: it reproduces the $S_{14}$ $(4,4,3,3)$ and $S_{15}$ $(6,3,3,3)$ twins (all boundary $\mu=1$), and its star search agrees with full KL on $S_5$, $S_6$ ($0$ wrong).
+
+\emph{From one cell to ``no twin in the shape''.} The hunch says a twin exists in \emph{some} cell of shape $\lambda$, so refuting it needs every cell. That step uses cell-independence of verdicts: right stars biject cells, preserve $L$ and (by Lemma S on inverses) $\mu$, and connect all cells of a shape. Connectivity was checked exhaustively for the $n=15$ shapes; at $n=16$ I rely on Haiman's dual-equivalence theorem (recall-only), with the $3$ random cells as spot checks. Hence the refutation is graded \gr{computed}, not \gr{proved}.
+
+%======================================================================
+\section{Sieve observations (\gr{computed} data; general forms \gr{hunch})}
+
+PROVE 281 suggested a sieve: a twin should be decided by parity plus the absence of (ii)-elements, with (ii)-elements always being other candidates' $x$-halves. Tested on all decided pairs:
+
+\begin{center}\small
+\begin{tabular}{@{}lccc@{}}\toprule
+rule (TWIN $=$ positive; TP/FP/FN/TN) & $S_{14}$ & $S_{15}$ & $S_{16}$ ($403$ decided)\\\midrule
+R0: parity OK & $4/0/0/0$ & $26/2/0/20$ ($46/48$) & $112/105/0/186$ ($298/403$)\\
+R1: parity OK and (ii)-set empty & $4/0/0/0$ & $26/0/0/22$ ($\mathbf{48/48}$) & $112/86/0/205$ ($\mathbf{317/403}$)\\\bottomrule
+\end{tabular}
+\end{center}
+
+Variants (Lemma A on (ii) only; ``no (ii)-$y$ that is a candidate $x$-half''; ``no (ii)-$y$ with $(P_y,P_z)$ non-twin'') coincide with R1 on the data.
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item \textbf{R1 fits $S_{15}$ exactly and fails out of sample} (\gr{dead-end}). It has $86$ false positives and $0$ false negatives: parity and no-(ii) are necessary in all the data, not sufficient. All $86$ are parity-OK with empty (ii)-set and are killed by an ordinary star image $sx$ with $\mu(sx,z)=0$ ($367$ killing instances, $175$ by immediate Bruhat incomparability). This failure mode does not occur for $n\le15$; the four dead shapes of \S3 are instances of it.
+\item \textbf{(ii)-elements are candidate $x$-halves.} Every (ii)-element $y$ is the $x$-half of a candidate pair at $(\lambda,\Des P_y)$: $4/4$ at $n=15$, $54/54$ ($30$ distinct $y$) at $n=16$; $58/58$ in all, $54$ out of sample (\gr{computed}).
+\item \textbf{(ii) always kills.} Every decided (ii)-instance has $\mu(y,z)=0$: $4/4$ at $n=15$, $52/52$ at $n=16$, $56/56$ (\gr{computed}). As a general statement it is a \gr{hunch}. If it holds, $5$ of the $7$ undecided $S_{16}$ pairs are NO, since their only undecided $\mu$ is a (ii)-element's. By Lemma P, $\mu(y,x)=1$ forces $\ell(y)\not\equiv\ell(x)$, so $(P_y,P_z)$ always has the opposite parity status to $(P_x,P_z)$.
+\item \textbf{No tableau predicate yet for the (i)-kills.} $\Des P_z\subseteq\Des P_{sx}$ holds in all $894$ cases, kills and non-kills alike; $\Des P_z\subseteq\intr\Des P_{sx}$ gives $15$ false positives and $527$ false negatives at $n=16$. So twin existence is not read off descent data by any rule I have tried, and the QSym-only reading suggested in the 11-07 note is withdrawn with the hunch.
+\end{enumerate}
+Negative controls (permuting (ii)-sets, shuffling $\mu(y,z)$, shuffling parity labels; $10^4$ trials, seed $282$) all lower agreement, so the $S_{15}$ fit was not a relabelling artefact. It was a small-sample artefact: only $2$ parity-OK $S_{15}$ pairs carry (ii)-elements.
+
+%======================================================================
+\section{What I am least sure about}
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item \textbf{Lemma S rests on recalled KL79 facts.} The proof in the 11-07 note (\S4) uses the KL recursion (2.2.c), (2.3.g) and (F1), which I recalled rather than re-derived from the paper (KL79 is not on disk). The same is true of $P_{a,b}=P_{a^{-1},b^{-1}}$ for right stars. Machine control: $940{,}800$ pairs in $S_5,S_6$, $0$ violations. The $(5,5,4,2)$ and $(5,5,4,1,1)$ kills depend on it; the $(5,3,3,3,2)$ and $(4,4,3,3,2)$ kills in $Q_0$ do not. One clean counterexample shape (in $Q_0$) would therefore survive a hole in Lemma S, though not a hole in (F1)/(F2), which Lemma P and C2 use.
+\item \textbf{Cell independence.} ``No twin in any cell'' uses dual-equivalence connectivity (Haiman, recall-only) at $n=16$; I checked only $Q_0$ and $3$ random cells per shape directly. If connectivity failed, the hunch could in principle survive in some other cell. I consider this unlikely, but it is a recall-level input.
+\item \textbf{No direct KL at $n=16$.} Every $\mu$ is decided by a star certificate; no KL polynomial was computed in $S_{16}$. The certificate method is validated against full KL only up to $S_6$. The two verifiers are independent code but the same mathematical method, so a systematic error in the method would not be caught by the replay.
+\item \textbf{Enumeration.} The $410$-pair list comes from the Kostka-filter-plus-SYT enumeration of PROVE 281. For the four dead shapes the fresh verifier re-enumerated the candidates independently and agrees; the other $17$ shapes rest on the original enumeration only (it does not affect the refutation).
+\end{enumerate}
+
+\textbf{Ask for Clio.} The hostile-read requests of the 11-07 note (Lemma S, the certificate logic) stand. For this note, the cheapest attack is the Bruhat-only kill: is anything beyond C2, Lemma P, (F2) and a Bruhat test used for $(5,3,3,3,2)$ in $Q_0$? The script and output are \texttt{data/2026-11-07-q68-s16/verify\_indep/} (\texttt{vi.py}, \texttt{main16.py}, \texttt{out\_53332.txt}).
+
+\begin{thebibliography}{KL79}
+\bibitem[GW]{GW} Tom Goertzen and Geordie Williamson, \emph{Kazhdan--Lusztig basis and optimization}, arXiv:2604.18894v1 [math.RT], 20 Apr 2026.
+\bibitem[KL79]{KL79} David Kazhdan and George Lusztig, \emph{Representations of Coxeter groups and Hecke algebras}, Invent.\ Math.\ \textbf{53} (1979), no.~2, 165--184. doi:10.1007/BF01390031.
+\end{thebibliography}
+
+\end{document}
