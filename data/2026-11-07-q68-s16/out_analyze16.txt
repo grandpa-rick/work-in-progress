@@ -1,0 +1,192 @@
+pairs 410 decided 403 twins 112 undecided 7
+== per-pair (ii)-elements and (i)-elements with Des>A ==
+91 [4, 4, 4, 3, 1] [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14] Pz 1345/2789/6bcd/af10/e par_ok False NO
+    ii U Des [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 52 l(x) 59 l(z) 90
+92 [4, 4, 4, 3, 1] [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14] Pz 1345/2789/6bcd/af10/e par_ok True NO
+    Des>A,mu(y,x)=0 U Des [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 52 l(x) 70 l(z) 90
+93 [4, 4, 4, 3, 1] [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14] Pz 1345/2789/6bcd/af10/e par_ok True TWIN
+    Des>A,mu(y,x)=0 U Des [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 52 l(x) 66 l(z) 90
+94 [4, 4, 4, 3, 1] [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14] Pz 1345/2789/6bcd/af10/e par_ok False NO
+    Des>A,mu(y,x)=0 U Des [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 52 l(x) 71 l(z) 90
+95 [4, 4, 4, 3, 1] [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14] Pz 1345/2789/6bcd/af10/e par_ok True TWIN
+    Des>A,mu(y,x)=0 U Des [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 52 l(x) 72 l(z) 90
+102 [4, 4, 4, 3, 1] [2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] Pz 1237/456b/89af/cde/10 par_ok True TWIN
+    Des>A,mu(y,x)=0 U Des [1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 72 l(x) 64 l(z) 88
+103 [4, 4, 4, 3, 1] [2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] Pz 1237/456b/89af/cde/10 par_ok False NO
+    Des>A,mu(y,x)=0 U Des [1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 72 l(x) 67 l(z) 88
+104 [4, 4, 4, 3, 1] [2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] Pz 1237/456b/89af/cde/10 par_ok True TWIN
+    Des>A,mu(y,x)=0 U Des [1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 72 l(x) 70 l(z) 88
+105 [4, 4, 4, 3, 1] [2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] Pz 1237/456b/89af/cde/10 par_ok True NO
+    Des>A,mu(y,x)=0 U Des [1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 72 l(x) 70 l(z) 88
+106 [4, 4, 4, 3, 1] [2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] Pz 1237/456b/89af/cde/10 par_ok False NO
+    ii U Des [1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 72 l(x) 71 l(z) 88
+    i 1 Des [1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 72 l(x) 71 l(z) 88
+147 [5, 4, 3, 3, 1] [2, 3, 4, 5, 7, 8, 9, 11, 12, 13] Pz 1238c/46710/5ab/9ef/d par_ok True NO
+    ii U Des [2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 66 l(x) 73 l(z) 89
+148 [5, 4, 3, 3, 1] [2, 3, 4, 5, 7, 8, 9, 11, 12, 13] Pz 123810/467c/5ab/9ef/d par_ok False NO
+    ii U Des [2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 66 l(x) 73 l(z) 90
+149 [5, 4, 3, 3, 1] [2, 3, 4, 6, 7, 8, 9, 11, 12, 13] Pz 1237c/45610/8ab/9ef/d par_ok False NO
+    ii U Des [2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 62 l(x) 69 l(z) 86
+150 [5, 4, 3, 3, 1] [2, 3, 4, 6, 7, 8, 9, 11, 12, 13] Pz 123710/456c/8ab/9ef/d par_ok True NO
+    ii U Des [2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 62 l(x) 69 l(z) 87
+151 [5, 4, 3, 3, 1] [2, 3, 4, 6, 7, 8, 10, 11, 12, 13] Pz 1237b/45610/89a/cef/d par_ok True NO
+    ii U Des [2, 3, 4, 6, 7, 8, 10, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 58 l(x) 65 l(z) 83
+152 [5, 4, 3, 3, 1] [2, 3, 4, 6, 7, 8, 10, 11, 12, 13] Pz 123710/456b/89a/cef/d par_ok False NO
+    ii U Des [2, 3, 4, 6, 7, 8, 10, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 58 l(x) 65 l(z) 84
+165 [5, 4, 3, 3, 1] [3, 4, 5, 6, 8, 9, 10, 12, 13, 14] Pz 12349/578d/6bc/af10/e par_ok False NO
+    ii U Des [1, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 63 l(x) 62 l(z) 79
+    i 1 Des [1, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 63 l(x) 62 l(z) 79
+166 [5, 4, 3, 3, 1] [3, 4, 5, 6, 8, 9, 10, 12, 13, 14] Pz 1234d/5789/6bc/af10/e par_ok True NO
+    ii U Des [1, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 63 l(x) 62 l(z) 80
+    i 1 Des [1, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 63 l(x) 62 l(z) 80
+171 [5, 4, 3, 3, 1] [3, 4, 5, 7, 8, 9, 10, 12, 13, 14] Pz 12348/567d/9bc/af10/e par_ok True NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 59 l(x) 58 l(z) 76
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 59 l(x) 58 l(z) 76
+172 [5, 4, 3, 3, 1] [3, 4, 5, 7, 8, 9, 10, 12, 13, 14] Pz 1234d/5678/9bc/af10/e par_ok False NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 59 l(x) 58 l(z) 77
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 59 l(x) 58 l(z) 77
+179 [5, 4, 3, 3, 1] [3, 4, 5, 7, 8, 9, 11, 12, 13, 14] Pz 12348/567c/9ab/df10/e par_ok False NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 55 l(x) 54 l(z) 73
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 55 l(x) 54 l(z) 73
+180 [5, 4, 3, 3, 1] [3, 4, 5, 7, 8, 9, 11, 12, 13, 14] Pz 1234c/5678/9ab/df10/e par_ok True NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 55 l(x) 54 l(z) 74
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 55 l(x) 54 l(z) 74
+255 [5, 4, 4, 3] [2, 3, 4, 6, 7, 8, 11, 12, 13] Pz 1237c/456b/89a10/def par_ok False NO
+    ii U Des [2, 3, 4, 6, 7, 8, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 67 l(x) 70 l(z) 91
+    Des>A,mu(y,x)=0 U Des [2, 3, 4, 6, 7, 8, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 0 mu(y,z) None l(y) 58 l(x) 70 l(z) 91
+256 [5, 4, 4, 3] [2, 3, 4, 7, 8, 9, 11, 12, 13] Pz 12378/456c/9ab10/def par_ok True NO
+    ii U Des [2, 3, 4, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 64 l(x) 69 l(z) 87
+    Des>A,mu(y,x)=0 U Des [2, 3, 4, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 59 l(x) 69 l(z) 87
+257 [5, 4, 4, 3] [1, 3, 4, 5, 7, 8, 9, 11, 12, 13] Pz 12348/567c/9ab10/def par_ok True NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 61 l(x) 68 l(z) 84
+258 [5, 4, 4, 3] [1, 3, 4, 5, 7, 8, 9, 11, 12, 13] Pz 1234c/5678/9ab10/def par_ok False NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 61 l(x) 68 l(z) 85
+259 [5, 4, 4, 3] [1, 3, 4, 5, 7, 8, 9, 11, 12, 13] Pz 123410/5678/9abc/def par_ok True NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 61 l(x) 68 l(z) 86
+260 [5, 4, 4, 3] [2, 3, 4, 6, 7, 8, 10, 11, 12, 14] Pz 123710/456b/89af/cde par_ok True NO
+    Des>A,mu(y,x)=0 U Des [2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 57 l(x) 71 l(z) 95
+261 [5, 4, 4, 3] [3, 4, 5, 7, 8, 9, 12, 13, 14] Pz 1234d/5678/9abc/ef10 par_ok True NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 60 l(x) 59 l(z) 83
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 60 l(x) 59 l(z) 83
+    Des>A,mu(y,x)=0 U Des [1, 3, 4, 5, 7, 8, 9, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 65 l(x) 59 l(z) 83
+264 [5, 4, 4, 3] [3, 4, 5, 8, 9, 10, 12, 13, 14] Pz 12349/5678/abcd/ef10 par_ok False NO
+    ii U Des [1, 3, 4, 5, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 59 l(x) 58 l(z) 79
+    i 1 Des [1, 3, 4, 5, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 59 l(x) 58 l(z) 79
+    Des>A,mu(y,x)=0 U Des [1, 3, 4, 5, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 0 mu(y,z) None l(y) 62 l(x) 58 l(z) 79
+267 [5, 4, 4, 3] [1, 4, 5, 6, 8, 9, 10, 12, 13, 14] Pz 12345/6789/abcd/ef10 par_ok False NO
+    ii U Des [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 59 l(x) 58 l(z) 75
+    i 2 Des [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 59 l(x) 58 l(z) 75
+268 [5, 4, 4, 3] [2, 4, 5, 6, 8, 9, 10, 12, 13, 14] Pz 12345/6789/abcd/ef10 par_ok True NO
+    Des>A,mu(y,x)=0 U Des [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 59 l(x) 57 l(z) 75
+275 [5, 4, 4, 3] [2, 3, 4, 6, 7, 8, 10, 11, 12, 15] Pz 123710/456b/89af/cde par_ok False NO
+    ii U Des [2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 57 l(x) 70 l(z) 95
+280 [5, 4, 4, 3] [3, 4, 5, 7, 8, 9, 11, 12, 13, 15] Pz 12348/567c/9ab10/def par_ok True NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 61 l(x) 60 l(z) 84
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 61 l(x) 60 l(z) 84
+281 [5, 4, 4, 3] [3, 4, 5, 7, 8, 9, 11, 12, 13, 15] Pz 1234c/5678/9ab10/def par_ok False NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 61 l(x) 60 l(z) 85
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 61 l(x) 60 l(z) 85
+282 [5, 4, 4, 3] [3, 4, 5, 7, 8, 9, 11, 12, 13, 15] Pz 123410/5678/9abc/def par_ok True NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 61 l(x) 60 l(z) 86
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 61 l(x) 60 l(z) 86
+298 [5, 5, 3, 3] [2, 3, 4, 6, 7, 8, 11, 12, 13] Pz 1237c/456b10/89a/def par_ok False NO
+    ii U Des [2, 3, 4, 6, 7, 8, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 63 l(x) 66 l(z) 87
+299 [5, 5, 3, 3] [2, 3, 4, 7, 8, 9, 11, 12, 13] Pz 12378/456c10/9ab/def par_ok True UNDECIDED
+    ii U Des [2, 3, 4, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) None l(y) 60 l(x) 65 l(z) 85
+300 [5, 5, 3, 3] [3, 4, 5, 7, 8, 9, 11, 12, 13] Pz 12348/567c10/9ab/def par_ok True UNDECIDED
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) None l(y) 57 l(x) 64 l(z) 82
+301 [5, 5, 3, 3] [3, 4, 5, 7, 8, 9, 11, 12, 13] Pz 1234c/567810/9ab/def par_ok False NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 57 l(x) 64 l(z) 81
+305 [5, 5, 3, 3] [3, 4, 5, 7, 8, 9, 12, 13, 14] Pz 12348/567cd/9ab/ef10 par_ok True UNDECIDED
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) None l(y) 56 l(x) 61 l(z) 79
+307 [5, 5, 3, 3] [3, 4, 5, 8, 9, 10, 12, 13, 14] Pz 12349/5678d/abc/ef10 par_ok False NO
+    ii U Des [1, 3, 4, 5, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 55 l(x) 58 l(z) 75
+334 [6, 4, 3, 3] [2, 3, 4, 6, 7, 8, 10, 11, 12] Pz 1237b10/456f/89a/cde par_ok False NO
+    ii U Des [2, 3, 4, 6, 7, 8, 10, 11, 12, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 62 l(x) 69 l(z) 86
+    Des>A,mu(y,x)=0 U Des [2, 3, 4, 6, 7, 8, 10, 11, 12, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 0 mu(y,z) None l(y) 61 l(x) 69 l(z) 86
+335 [6, 4, 3, 3] [2, 3, 4, 6, 7, 8, 10, 11, 12] Pz 1237f10/456b/89a/cde par_ok True NO
+    ii U Des [2, 3, 4, 6, 7, 8, 10, 11, 12, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 62 l(x) 69 l(z) 87
+    Des>A,mu(y,x)=0 U Des [2, 3, 4, 6, 7, 8, 10, 11, 12, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 0 mu(y,z) None l(y) 61 l(x) 69 l(z) 87
+336 [6, 4, 3, 3] [2, 3, 4, 6, 7, 8, 11, 12, 13] Pz 1237bc/45610/89a/def par_ok False NO
+    ii U Des [2, 3, 4, 6, 7, 8, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 58 l(x) 61 l(z) 82
+337 [6, 4, 3, 3] [2, 3, 4, 6, 7, 8, 11, 12, 13] Pz 1237c10/456b/89a/def par_ok False NO
+    ii U Des [2, 3, 4, 6, 7, 8, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 58 l(x) 61 l(z) 84
+338 [6, 4, 3, 3] [2, 3, 4, 6, 7, 8, 11, 12, 13] Pz 1237bc/45610/89a/def par_ok True NO
+    Des>A,mu(y,x)=0 U Des [2, 3, 4, 6, 7, 8, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 58 l(x) 66 l(z) 82
+339 [6, 4, 3, 3] [2, 3, 4, 6, 7, 8, 11, 12, 13] Pz 1237c10/456b/89a/def par_ok True TWIN
+    Des>A,mu(y,x)=0 U Des [2, 3, 4, 6, 7, 8, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 58 l(x) 66 l(z) 84
+340 [6, 4, 3, 3] [2, 3, 4, 7, 8, 9, 11, 12, 13] Pz 12378c/45610/9ab/def par_ok False NO
+    ii U Des [2, 3, 4, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 55 l(x) 60 l(z) 79
+341 [6, 4, 3, 3] [2, 3, 4, 7, 8, 9, 11, 12, 13] Pz 1237810/456c/9ab/def par_ok True NO
+    ii U Des [2, 3, 4, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 55 l(x) 60 l(z) 80
+342 [6, 4, 3, 3] [2, 3, 4, 7, 8, 9, 11, 12, 13] Pz 12378c/45610/9ab/def par_ok True NO
+    Des>A,mu(y,x)=0 U Des [2, 3, 4, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 55 l(x) 63 l(z) 79
+343 [6, 4, 3, 3] [2, 3, 4, 7, 8, 9, 11, 12, 13] Pz 1237810/456c/9ab/def par_ok False NO
+    Des>A,mu(y,x)=0 U Des [2, 3, 4, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 55 l(x) 63 l(z) 80
+344 [6, 4, 3, 3] [3, 4, 5, 7, 8, 9, 11, 12, 13] Pz 12348c/56710/9ab/def par_ok False NO
+    ii U Des [3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 52 l(x) 59 l(z) 76
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 60 l(x) 59 l(z) 76
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 60 l(x) 59 l(z) 76
+345 [6, 4, 3, 3] [3, 4, 5, 7, 8, 9, 11, 12, 13] Pz 1234810/567c/9ab/def par_ok True NO
+    ii U Des [3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 52 l(x) 59 l(z) 77
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 60 l(x) 59 l(z) 77
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 60 l(x) 59 l(z) 77
+346 [6, 4, 3, 3] [3, 4, 5, 7, 8, 9, 11, 12, 13] Pz 1234c10/5678/9ab/def par_ok False NO
+    ii U Des [3, 4, 5, 7, 8, 9, 11, 12, 13, 15] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 52 l(x) 59 l(z) 78
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 60 l(x) 59 l(z) 78
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 11, 12, 13] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 60 l(x) 59 l(z) 78
+352 [6, 4, 3, 3] [2, 3, 4, 6, 7, 8, 12, 13, 14] Pz 1237cd/456b/89a/ef10 par_ok True NO
+    ii U Des [2, 3, 4, 6, 7, 8, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) None l(y) 58 l(x) 57 l(z) 81
+    i 10 Des [2, 3, 4, 6, 7, 8, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) None l(y) 58 l(x) 57 l(z) 81
+353 [6, 4, 3, 3] [2, 3, 4, 6, 7, 8, 12, 13, 14] Pz 1237cd/456b/89a/ef10 par_ok True UNDECIDED
+    ii U Des [2, 3, 4, 6, 7, 8, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) None l(y) 58 l(x) 63 l(z) 81
+357 [6, 4, 3, 3] [3, 4, 5, 7, 8, 9, 12, 13, 14] Pz 12348d/567c/9ab/ef10 par_ok False NO
+    Des>A,mu(y,x)=0 U Des [1, 3, 4, 5, 7, 8, 9, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 57 l(x) 51 l(z) 74
+358 [6, 4, 3, 3] [3, 4, 5, 7, 8, 9, 12, 13, 14] Pz 1234cd/5678/9ab/ef10 par_ok True NO
+    Des>A,mu(y,x)=0 U Des [1, 3, 4, 5, 7, 8, 9, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 57 l(x) 51 l(z) 75
+359 [6, 4, 3, 3] [3, 4, 5, 7, 8, 9, 12, 13, 14] Pz 12348d/567c/9ab/ef10 par_ok True NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 57 l(x) 56 l(z) 74
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 57 l(x) 56 l(z) 74
+360 [6, 4, 3, 3] [3, 4, 5, 7, 8, 9, 12, 13, 14] Pz 1234cd/5678/9ab/ef10 par_ok False NO
+    ii U Des [1, 3, 4, 5, 7, 8, 9, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 57 l(x) 56 l(z) 75
+    i 1 Des [1, 3, 4, 5, 7, 8, 9, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 57 l(x) 56 l(z) 75
+364 [6, 4, 3, 3] [2, 3, 4, 8, 9, 10, 12, 13, 14] Pz 123789/456d/abc/ef10 par_ok True UNDECIDED
+    ii U Des [2, 3, 4, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) None l(y) 54 l(x) 53 l(z) 73
+    i 6 Des [2, 3, 4, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) None l(y) 54 l(x) 53 l(z) 73
+365 [6, 4, 3, 3] [2, 3, 4, 8, 9, 10, 12, 13, 14] Pz 123789/456d/abc/ef10 par_ok True NO
+    ii U Des [2, 3, 4, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) None l(y) 54 l(x) 57 l(z) 73
+366 [6, 4, 3, 3] [3, 4, 5, 8, 9, 10, 12, 13, 14] Pz 123489/567d/abc/ef10 par_ok True TWIN
+    Des>A,mu(y,x)=0 U Des [1, 3, 4, 5, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 54 l(x) 50 l(z) 70
+367 [6, 4, 3, 3] [3, 4, 5, 8, 9, 10, 12, 13, 14] Pz 12349d/5678/abc/ef10 par_ok True NO
+    Des>A,mu(y,x)=0 U Des [1, 3, 4, 5, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 0 mu(y,z) None l(y) 54 l(x) 50 l(z) 72
+368 [6, 4, 3, 3] [3, 4, 5, 8, 9, 10, 12, 13, 14] Pz 123489/567d/abc/ef10 par_ok False NO
+    ii U Des [1, 3, 4, 5, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 54 l(x) 53 l(z) 70
+    i 1 Des [1, 3, 4, 5, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 54 l(x) 53 l(z) 70
+369 [6, 4, 3, 3] [3, 4, 5, 8, 9, 10, 12, 13, 14] Pz 12349d/5678/abc/ef10 par_ok False NO
+    ii U Des [1, 3, 4, 5, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 54 l(x) 53 l(z) 72
+    i 1 Des [1, 3, 4, 5, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) TWIN anyTwin@Des True mu(y,x) 1 mu(y,z) 0 l(y) 54 l(x) 53 l(z) 72
+373 [6, 4, 3, 3] [4, 5, 6, 8, 9, 10, 12, 13, 14] Pz 123459/678d/abc/ef10 par_ok True NO
+    ii U Des [2, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 50 l(x) 49 l(z) 67
+    i 2 Des [2, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 50 l(x) 49 l(z) 67
+    Des>A,mu(y,x)=0 U Des [1, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 0 mu(y,z) None l(y) 51 l(x) 49 l(z) 67
+374 [6, 4, 3, 3] [4, 5, 6, 8, 9, 10, 12, 13, 14] Pz 12345d/6789/abc/ef10 par_ok False NO
+    ii U Des [2, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 50 l(x) 49 l(z) 68
+    i 2 Des [2, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 1 mu(y,z) 0 l(y) 50 l(x) 49 l(z) 68
+    Des>A,mu(y,x)=0 U Des [1, 4, 5, 6, 8, 9, 10, 12, 13, 14] sup True candX True pair(Py,Pz) NO anyTwin@Des False mu(y,x) 0 mu(y,z) None l(y) 51 l(x) 49 l(z) 68
+(above: all pairs incl. undecided)
+test2: (ii)-element instances 54 distinct y 30 cand x-half 54 violating 0
+(i) instances 1633 with Des>A 23 that are cand x 37
+(i)-elements killing a parity-OK pair: 367 of which Des>A: 9
+R0 parity only                                                 TP 112 FP 105 FN 0 TN 186  agree 298/403
+R1 parity & no (ii)-element                                    TP 112 FP 86 FN 0 TN 205  agree 317/403
+R2 parity & every (ii) y has mu(y,z)=1 (Lemma A on (ii) only)  TP 112 FP 86 FN 0 TN 205  agree 317/403
+R3 sieve: parity & no (ii) y that is a cand x-half at Des P_y  TP 112 FP 86 FN 0 TN 205  agree 317/403
+R4 sieve: parity & no (ii) y with (P_y,P_z) non-twin           TP 112 FP 86 FN 0 TN 205  agree 317/403
+  undecided pairs predicted TWIN by R0 : 7 / 7
+  undecided pairs predicted TWIN by R1 : 2 / 7
+  undecided pairs predicted TWIN by R2 : 2 / 7
+  undecided pairs predicted TWIN by R3 : 2 / 7
+  undecided pairs predicted TWIN by R4 : 2 / 7
+NC1 permute (ii)-sets, rule R1: mean 297.22 min 279 max 317  P(=all) 0.0000
+NC2 shuffle mu(y,z), rule "parity & all (i)+(ii) mu(y,z)=1" (unshuffled 403/all): mean 291.65 min 286 max 298  P(=all) 0.0000
+NC3 shuffle parity labels, rule R1: mean 219.57 min 182 max 258  P(=all) 0.0000

@@ -1,0 +1,26 @@
+shape (5, 3, 3, 3, 2) f= 280280 distinct Des: 17095
+(lam,A) violations: 3  candidate pairs: 3
+
+A= [2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14] intA= [3, 7, 8, 12, 13] #Des>A in shape: 0
+ Px= [[1, 2, 6, 11, 16], [3, 7, 12], [4, 8, 13], [5, 9, 14], [10, 15]]
+ Pz= [[1, 2, 3, 7, 12], [4, 5, 6], [8, 10, 11], [9, 13, 16], [14, 15]] Des Pz= [3, 7, 8, 12, 13]
+  Q#0: l(x)=59 l(z)=82 parity FAIL x=[1, 5, 10, 15, 16, 4, 9, 14, 3, 8, 13, 2, 7, 12, 6, 11] | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 60, True, False, 'star', 0, 0), (5, 60, True, False, 'star', 0, 0), (10, 60, True, False, 'star', 0, 0), (14, 58, True, False, 'star', 0, 0)] | kills by s: [1, 5, 10, 14]
+  Q#1: l(x)=53 l(z)=76 parity FAIL | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 54, True, False, 'star', 0, 0), (5, 54, True, False, 'star', 0, 0), (10, 54, True, False, 'star', 0, 0), (14, 52, True, False, 'star', 0, 0)] | kills by s: [1, 5, 10, 14]
+  Q#2: l(x)=39 l(z)=70 parity FAIL | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 40, True, False, 'star', 0, 0), (5, 40, True, False, 'star', 0, 0), (10, 40, True, False, 'star', 0, 0), (15, 40, True, False, 'star', 0, 0)] | kills by s: [1, 5, 10, 15]
+  Q#3: l(x)=56 l(z)=81 parity FAIL | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 57, True, False, 'star', 0, 0), (5, 57, True, False, 'star', 0, 0), (10, 57, True, False, 'star', 0, 0), (15, 57, False, False, 'incomparable', 0, 0)] | kills by s: [1, 5, 10, 15]
+
+A= [2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 14] intA= [3, 4, 8, 12, 13] #Des>A in shape: 0
+ Px= [[1, 2, 7, 11, 16], [3, 8, 12], [4, 9, 13], [5, 10, 14], [6, 15]]
+ Pz= [[1, 2, 3, 8, 12], [4, 6, 7], [5, 10, 11], [9, 13, 16], [14, 15]] Des Pz= [3, 4, 8, 12, 13]
+  Q#0: l(x)=63 l(z)=83 parity OK x=[1, 6, 10, 15, 16, 5, 9, 14, 4, 8, 13, 3, 7, 12, 2, 11] | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 64, False, False, 'incomparable', 0, 0), (6, 64, True, False, 'star', 0, 3), (10, 64, True, False, 'star', 0, 5), (14, 62, True, False, 'star', 0, 8)] | kills by s: [1, 6, 10, 14]
+  Q#1: l(x)=55 l(z)=77 parity OK | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 56, True, False, 'star', 0, 11), (6, 56, True, False, 'star', 0, 6), (10, 56, True, False, 'star', 0, 8), (14, 54, True, False, 'star', 0, 11)] | kills by s: [1, 6, 10, 14]
+  Q#2: l(x)=43 l(z)=71 parity OK | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 44, False, False, 'incomparable', 0, 0), (6, 44, True, False, 'star', 0, 3), (10, 44, True, False, 'star', 0, 5), (15, 44, True, False, 'star', 0, 8)] | kills by s: [1, 6, 10, 15]
+  Q#3: l(x)=52 l(z)=78 parity OK | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 53, True, False, 'star', 0, 8), (6, 53, True, False, 'star', 0, 5), (10, 53, True, False, 'star', 0, 3), (15, 53, False, False, 'incomparable', 0, 0)] | kills by s: [1, 6, 10, 15]
+
+A= [2, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14] intA= [3, 4, 8, 9, 13] #Des>A in shape: 0
+ Px= [[1, 2, 7, 12, 16], [3, 8, 13], [4, 9, 14], [5, 10, 15], [6, 11]]
+ Pz= [[1, 2, 3, 8, 13], [4, 6, 7], [5, 9, 12], [10, 11, 16], [14, 15]] Des Pz= [3, 4, 8, 9, 13]
+  Q#0: l(x)=67 l(z)=86 parity FAIL x=[1, 6, 11, 15, 16, 5, 10, 14, 4, 9, 13, 3, 8, 12, 2, 7] | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 68, False, False, 'incomparable', 0, 0), (6, 68, True, False, 'star', 0, 0), (11, 68, True, False, 'star', 0, 0), (14, 66, True, False, 'star', 0, 0)] | kills by s: [1, 6, 11, 14]
+  Q#1: l(x)=57 l(z)=80 parity FAIL | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 58, True, False, 'star', 0, 0), (6, 58, True, False, 'star', 0, 0), (11, 58, True, False, 'star', 0, 0), (14, 56, True, False, 'star', 0, 0)] | kills by s: [1, 6, 11, 14]
+  Q#2: l(x)=47 l(z)=72 parity FAIL | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 48, False, False, 'incomparable', 0, 0), (6, 48, True, False, 'star', 0, 0), (11, 48, True, False, 'star', 0, 0), (15, 48, True, False, 'star', 0, 0)] | kills by s: [1, 6, 11, 15]
+  Q#3: l(x)=48 l(z)=77 parity FAIL | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 49, True, False, 'star', 0, 0), (6, 49, True, False, 'star', 0, 0), (11, 49, True, False, 'star', 0, 0), (15, 49, True, False, 'star', 0, 0)] | kills by s: [1, 6, 11, 15]

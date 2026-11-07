@@ -1,0 +1,16 @@
+15 (ii) instances by (verdict, parity, mu(y,z), status of (P_y,P_z), y<x?):
+   ('NO', 'parFAIL', 0, 'TWIN', 'y<x') 1
+   ('NO', 'parFAIL', 0, 'TWIN', 'y>x') 1
+   ('NO', 'parOK', 0, 'NO', 'y<x') 1
+   ('NO', 'parOK', 0, 'NO', 'y>x') 1
+16 (ii) instances by (verdict, parity, mu(y,z), status of (P_y,P_z), y<x?):
+   ('NO', 'parFAIL', 0, 'NO', 'y<x') 7
+   ('NO', 'parFAIL', 0, 'NO', 'y>x') 7
+   ('NO', 'parFAIL', 0, 'TWIN', 'y<x') 9
+   ('NO', 'parFAIL', 0, 'TWIN', 'y>x') 6
+   ('NO', 'parOK', 0, 'NO', 'y<x') 9
+   ('NO', 'parOK', 0, 'NO', 'y>x') 9
+   ('NO', 'parOK', None, 'NO', 'y<x') 1
+   ('NO', 'parOK', None, 'NO', 'y>x') 1
+   ('UNDECIDED', 'parOK', None, 'NO', 'y<x') 4
+   ('UNDECIDED', 'parOK', None, 'NO', 'y>x') 1

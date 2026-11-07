@@ -1,0 +1,16 @@
+pairs 4 decided 4 twins 4 undecided 0
+== per-pair (ii)-elements and (i)-elements with Des>A ==
+(above: all pairs incl. undecided)
+test2: (ii)-element instances 0 distinct y 0 cand x-half 0 violating 0
+(i) instances 14 with Des>A 0 that are cand x 0
+(i)-elements killing a parity-OK pair: 0 of which Des>A: 0
+R0 parity only                                                 TP 4 FP 0 FN 0 TN 0  agree 4/4
+R1 parity & no (ii)-element                                    TP 4 FP 0 FN 0 TN 0  agree 4/4
+R2 parity & every (ii) y has mu(y,z)=1 (Lemma A on (ii) only)  TP 4 FP 0 FN 0 TN 0  agree 4/4
+R3 sieve: parity & no (ii) y that is a cand x-half at Des P_y  TP 4 FP 0 FN 0 TN 0  agree 4/4
+R4 sieve: parity & no (ii) y with (P_y,P_z) non-twin           TP 4 FP 0 FN 0 TN 0  agree 4/4
+  undecided pairs predicted TWIN by R0 : 0 / 0
+  undecided pairs predicted TWIN by R1 : 0 / 0
+  undecided pairs predicted TWIN by R2 : 0 / 0
+  undecided pairs predicted TWIN by R3 : 0 / 0
+  undecided pairs predicted TWIN by R4 : 0 / 0

@@ -1,0 +1,29 @@
+shape (4, 4, 3, 3) f= 12012 distinct Des: 2722
+(lam,A) violations: 1  candidate pairs: 1
+
+A= [2, 3, 4, 6, 7, 8, 10, 11, 12] intA= [3, 7, 11] #Des>A in shape: 0
+ Px= [[1, 2, 6, 10], [3, 7, 11, 14], [4, 8, 12], [5, 9, 13]]
+ Pz= [[1, 2, 3, 7], [4, 5, 6, 11], [8, 9, 10], [12, 13, 14]] Des Pz= [3, 7, 11]
+  Q#0: l(x)=49 l(z)=67 parity OK x=[5, 9, 13, 14, 1, 4, 8, 12, 3, 7, 11, 2, 6, 10] | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 50, True, False, 'star', 1, 12), (5, 50, True, False, 'star', 1, 12), (9, 50, True, False, 'star', 1, 11), (12, 48, True, False, 'star', 1, 14)] | kills by s: []
+shape (6, 3, 3, 3) f= 50050 distinct Des: 7683
+(lam,A) violations: 4  candidate pairs: 4
+
+A= [3, 4, 5, 7, 8, 9, 11, 12, 13] intA= [4, 8, 12] #Des>A in shape: 0
+ Px= [[1, 2, 3, 7, 11, 15], [4, 8, 12], [5, 9, 13], [6, 10, 14]]
+ Pz= [[1, 2, 3, 4, 8, 12], [5, 6, 7], [9, 10, 11], [13, 14, 15]] Des Pz= [4, 8, 12]
+  Q#0: l(x)=45 l(z)=63 parity OK x=[1, 2, 6, 10, 14, 15, 5, 9, 13, 4, 8, 12, 3, 7, 11] | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(2, 46, True, False, 'star', 1, 12), (6, 46, True, False, 'star', 1, 12), (10, 46, True, False, 'star', 1, 11), (13, 44, True, False, 'star', 1, 14)] | kills by s: []
+
+A= [2, 3, 4, 7, 8, 9, 11, 12, 13] intA= [3, 8, 12] #Des>A in shape: 0
+ Px= [[1, 2, 6, 7, 11, 15], [3, 8, 12], [4, 9, 13], [5, 10, 14]]
+ Pz= [[1, 2, 3, 7, 8, 12], [4, 5, 6], [9, 10, 11], [13, 14, 15]] Des Pz= [3, 8, 12]
+  Q#0: l(x)=48 l(z)=66 parity OK x=[1, 5, 6, 10, 14, 15, 4, 9, 13, 3, 8, 12, 2, 7, 11] | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 49, True, False, 'star', 1, 14), (4, 47, True, False, 'star', 1, 14), (6, 49, True, False, 'star', 1, 17), (10, 49, True, False, 'star', 1, 15), (13, 47, True, False, 'star', 1, 18)] | kills by s: []
+
+A= [2, 3, 4, 6, 7, 8, 11, 12, 13] intA= [3, 7, 12] #Des>A in shape: 0
+ Px= [[1, 2, 6, 10, 11, 15], [3, 7, 12], [4, 8, 13], [5, 9, 14]]
+ Pz= [[1, 2, 3, 7, 11, 12], [4, 5, 6], [8, 9, 10], [13, 14, 15]] Des Pz= [3, 7, 12]
+  Q#0: l(x)=51 l(z)=69 parity OK x=[1, 5, 9, 10, 14, 15, 4, 8, 13, 3, 7, 12, 2, 6, 11] | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 52, True, False, 'star', 1, 15), (5, 52, True, False, 'star', 1, 15), (8, 50, True, False, 'star', 1, 16), (10, 52, True, False, 'star', 1, 16), (13, 50, True, False, 'star', 1, 16)] | kills by s: []
+
+A= [2, 3, 4, 6, 7, 8, 10, 11, 12] intA= [3, 7, 11] #Des>A in shape: 0
+ Px= [[1, 2, 6, 10, 14, 15], [3, 7, 11], [4, 8, 12], [5, 9, 13]]
+ Pz= [[1, 2, 3, 7, 11, 15], [4, 5, 6], [8, 9, 10], [12, 13, 14]] Des Pz= [3, 7, 11]
+  Q#0: l(x)=54 l(z)=72 parity OK x=[1, 5, 9, 13, 14, 15, 4, 8, 12, 3, 7, 11, 2, 6, 10] | (i)-elements s,l(sx),sx<=z,z<=sx,how,mu,pathlen: [(1, 55, True, False, 'star', 1, 12), (5, 55, True, False, 'star', 1, 12), (9, 55, True, False, 'star', 1, 11), (12, 53, True, False, 'star', 1, 14)] | kills by s: []
