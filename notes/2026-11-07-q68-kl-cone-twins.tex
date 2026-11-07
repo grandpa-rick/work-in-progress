@@ -1,9 +1,9 @@
 \documentclass[11pt]{amsart}
 \usepackage[margin=1.1in]{geometry}
-\usepackage{amsmath,amssymb,amsthm,mathtools,hyperref,enumitem,booktabs}\sloppy
+\usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs}\sloppy
 \hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
 
-\newcommand{\WIPHASH}{PLACEHOLDER}
+\newcommand{\WIPHASH}{fd667bf}
 \newcommand{\gr}[1]{\textsf{#1}}
 
 \newtheorem{theorem}{Theorem}[section]
@@ -26,7 +26,7 @@
 \newcommand{\tmu}{\tilde\mu}
 \newcommand{\QSym}{\mathrm{QSym}}
 
-\title[Dominated twins and the KL cone]{Dominated twins and the Kazhdan--Lusztig cone beyond hooks:\\ first twins in $S_{14}$}
+\title[Dominated twins and the KL cone]{Dominated twins and the Kazhdan--Lusztig cone beyond hooks: first twins in $S_{14}$}
 \author{Rick}
 \date{2026-11-07}
 
@@ -167,10 +167,10 @@ Theorem C3 rests on the computer check plus textbook RSK and Kostka facts. In QS
 \section{The \texorpdfstring{$S_{14}$}{S14} twins}
 
 At $n=14$, $(\star)$ fails for $\lambda=(4,4,3,3)$:
-\[
-P=\begin{smallmatrix}1&2&6&10\\3&7&11&14\\4&8&12\\5&9&13\end{smallmatrix},\quad \Des P=\{2,3,4,6,7,8,10,11,12\};\qquad
-P'=\begin{smallmatrix}1&2&3&7\\4&5&6&11\\8&9&10\\12&13&14\end{smallmatrix},\quad \Des P'=\{3,7,11\}=\intr\Des P.
-\]
+\begin{gather*}
+P=\begin{smallmatrix}1&2&6&10\\3&7&11&14\\4&8&12\\5&9&13\end{smallmatrix},\qquad \Des P=\{2,3,4,6,7,8,10,11,12\};\\
+P'=\begin{smallmatrix}1&2&3&7\\4&5&6&11\\8&9&10\\12&13&14\end{smallmatrix},\qquad \Des P'=\{3,7,11\}=\intr\Des P.
+\end{gather*}
 So C1/C2 alone cannot rule out twins here, and $\mu$ inside a $12012$-dimensional cell has to be decided.
 
 \begin{theorem}[T14]
@@ -179,13 +179,14 @@ Let $\Gamma\subset S_{14}$ be the left cell with $Q=\begin{smallmatrix}1&2&3&4\\
 
 \begin{theorem}[T14$'$]
 The $(\star)$-violating pairs $(\lambda,A=L(x))$ in $S_{14}$ are exactly the following four. Each has a unique candidate pair $(P_x,P_z)$, and each is a dominated twin:
+For $(4,4,3,3)$ and $(5,3,3,3)$, $A=\{2,3,4,6,7,8,10,11,12\}$ and $\intr A=\{3,7,11\}$. For $(4,4,4,2)$ and $(4,4,4,1,1)$, $A=\{1,2,4,5,6,8,9,10,12,13\}$ and $\intr A=\{1,5,9,13\}$. Rows are separated by $/$:
 \begin{center}\small
-\begin{tabular}{@{}llll@{}}\toprule
-$\lambda$ & $A$ & $\intr A$ & $(P_x\,;\,P_z)$ row-wise\\\midrule
-$(4,4,3,3)$ & $\{2,3,4,6,7,8,10,11,12\}$ & $\{3,7,11\}$ & as above\\
-$(5,3,3,3)$ & same & $\{3,7,11\}$ & $1\,2\,6\,10\,14/3\,7\,11/4\,8\,12/5\,9\,13\ ;\ 1\,2\,3\,7\,11/4\,5\,6/8\,9\,10/12\,13\,14$\\
-$(4,4,4,2)$ & $\{1,2,4,5,6,8,9,10,12,13\}$ & $\{1,5,9,13\}$ & $1\,4\,8\,12/2\,5\,9\,13/3\,6\,10\,14/7\,11\ ;\ 1\,3\,4\,5/2\,7\,8\,9/6\,11\,12\,13/10\,14$\\
-$(4,4,4,1,1)$ & same & $\{1,5,9,13\}$ & $1\,4\,8\,12/2\,5\,9\,13/3\,6\,10\,14/7/11\ ;\ 1\,3\,4\,5/2\,7\,8\,9/6\,11\,12\,13/10/14$\\\bottomrule
+\begin{tabular}{@{}lll@{}}\toprule
+$\lambda$ & $P_x$ & $P_z$\\\midrule
+$(4,4,3,3)$ & $1\,2\,6\,10/3\,7\,11\,14/4\,8\,12/5\,9\,13$ & $1\,2\,3\,7/4\,5\,6\,11/8\,9\,10/12\,13\,14$\\
+$(5,3,3,3)$ & $1\,2\,6\,10\,14/3\,7\,11/4\,8\,12/5\,9\,13$ & $1\,2\,3\,7\,11/4\,5\,6/8\,9\,10/12\,13\,14$\\
+$(4,4,4,2)$ & $1\,4\,8\,12/2\,5\,9\,13/3\,6\,10\,14/7\,11$ & $1\,3\,4\,5/2\,7\,8\,9/6\,11\,12\,13/10\,14$\\
+$(4,4,4,1,1)$ & $1\,4\,8\,12/2\,5\,9\,13/3\,6\,10\,14/7/11$ & $1\,3\,4\,5/2\,7\,8\,9/6\,11\,12\,13/10/14$\\\bottomrule
 \end{tabular}
 \end{center}
 By C2 these are all the twins of $S_{14}$ (by $P$-tableaux), and by Theorem~\ref{thm:C3}, $14$ is the least $n$ for which $S_n$ has a twin. The shapes form two conjugate pairs. Since $L$-inclusion is reversed by $w\mapsto ww_0$, the conjugate twins are new pairs, not formal images.
