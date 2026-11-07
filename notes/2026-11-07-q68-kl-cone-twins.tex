@@ -1,0 +1,272 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,hyperref,enumitem,booktabs}\sloppy
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newcommand{\WIPHASH}{PLACEHOLDER}
+\newcommand{\gr}[1]{\textsf{#1}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{lemmaA}{Lemma A}
+\newtheorem*{theoremB}{Theorem B}
+\newtheorem*{lemmaS}{Lemma S}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\CKL}{C_{\mathrm{KL}}}
+\newcommand{\Des}{\mathrm{Des}}
+\newcommand{\intr}{\operatorname{int}}
+\newcommand{\tmu}{\tilde\mu}
+\newcommand{\QSym}{\mathrm{QSym}}
+
+\title[Dominated twins and the KL cone]{Dominated twins and the Kazhdan--Lusztig cone beyond hooks:\\ first twins in $S_{14}$}
+\author{Rick}
+\date{2026-11-07}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}\small
+\textbf{To:} Clio \quad \textbf{cc:} Robin Langer, MacBeth\\[2pt]
+Corresponds to work-in-progress commit \texttt{\WIPHASH} (\texttt{grandpa-rick/work-in-progress}, \texttt{notes/}).\\
+Sources: \texttt{proofs/2026-11-06-q68-kl-cone-twins.md} (PROVE 279), \texttt{proofs/2026-11-06-q68c-s14-twin.md} (PROVE 280);\\
+scripts \texttt{proofs/wake279/}, \texttt{proofs/prove280/}; registry \texttt{proofs/registry/seedQ2-kl-cone.json}.
+\end{center}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{Claims and registry grades} (copied from \texttt{seedQ2-kl-cone.json}; nothing upgraded).\\[3pt]
+\begin{tabular}{@{}p{0.70\linewidth}l@{}}
+Lemma A (dominated twin $\Rightarrow$ $\CKL$ not maximal), \S1 & \gr{proved}\\
+Theorem B ($m(s,t)\ge4$ $\Rightarrow$ twin in the cell of $w_{S\setminus\{t\}}$), \S2 & \gr{proved}\\
+\quad irreducibility of those cells ($B_3$--$B_5$, $H_3$, $F_4$ census) & \gr{computed}\\
+Prop.~C1 (star kill) / Cor.~C2 ($\varnothing\ne L(z)\subseteq\intr L(x)$), \S3 & \gr{proved}\\
+\quad (pairing half owned by Stembridge 2008, Props.~4.4, 4.2)&\\
+Lemma C4 (Case-B constraints), \S3 & \gr{proved}\\
+Theorem C3 (no twins in $S_n$, $n\le13$; computer-assisted, exact), \S3 & \gr{proved}\\
+$(\star)$ fails at $S_{14}$, $(4,4,3,3)$ & \gr{computed}\\
+Lemma S (KL79 Thm.~4.2, $m=3$; re-proved), \S4 & \gr{proved}\\
+Theorem T14 (twin in one left cell of shape $(4,4,3,3)$), \S4 & \gr{proved}\\
+Theorem T14$'$ (exactly four twin shapes in $S_{14}$; $14$ is least), \S4 & \gr{proved}\\
+\quad twin in \emph{every} left cell of the four shapes & \gr{computed}\\
+$B_3$ witness; Coxeter scan; reducible non-uniqueness; GW convention check & \gr{computed}\\
+``No twins in simply-laced $W$'' & \gr{dead-end} (refuted)\\
+Type A: twin $\Leftrightarrow$ $(\star)$-violation, \S6 & \gr{hunch}\\
+$H_3$ type $5_2$ non-twin failure, \S6 & \gr{hunch}\\
+Q68 root (beyond type A) & \gr{in-progress}
+\end{tabular}}}
+
+\medskip
+\noindent\textbf{Summary.} Goertzen--Williamson [GW] ask which invariant cone is the maximal one in a Specht module. They prove it is the Kazhdan--Lusztig cone $\CKL$ for hooks, two-column shapes and $(n-2,2)$. They also show this fails at $(4,4,1)\vdash 9$, by an explicit non-simplicial witness. This note isolates one mechanism, a \emph{dominated twin}, that forces $\CKL$ to be non-maximal. Theorem B shows that every bond with $m\ge4$ produces a twin, so a twin occurs in every non-simply-laced finite Coxeter group. In type A there are no twins for $n\le 13$. The first twins are in $S_{14}$, in exactly four shapes. Non-maximality of $\CKL$ in type A is GW's result, not ours; see \S\ref{sec:gw}.
+
+%======================================================================
+\section{Setup, conventions, and the twin lemma}
+
+Let $W$ be a finite Coxeter group with simple reflections $S$, and let $L(w)=\{s\in S: sw<w\}$ be the left descent set. We write $\mu(x,y)=\mu(y,x)$ for the symmetrised Kazhdan--Lusztig $\mu$-function. It is non-negative (Kazhdan--Lusztig for Weyl groups; Elias--Williamson in general). Let $\Gamma$ be a left cell, and let $M_\Gamma$ be the cell module at $v=1$ with basis $\{e_x:x\in\Gamma\}$. We use the W-graph convention of [GW] (their convention for the KL left-cell representation; our calibration against their Ex.~4.7 and $A_3$ is \gr{computed}):
+\[
+(1+s)e_x=\begin{cases}0,& s\in L(x),\\[2pt] 2e_x+\sum_{y\in\Gamma,\ s\in L(y)}\mu(x,y)\,e_y,& s\notin L(x).\end{cases}
+\]
+Put $\CKL=\operatorname{cone}\{e_x:x\in\Gamma\}$. A cone is \emph{maximal} if it is maximal among pointed $\{1+s\}$-invariant cones. In type A, $W=S_n$ and $w\leftrightarrow(P(w),Q(w))$ by RSK. Left cells are $\{Q=\text{const}\}$, $L(w)=\Des P(w)$, and $M_\Gamma\cong S^{\lambda}$.
+
+\emph{Convention trap.} In the $C'$ convention, $(1+s)c_w=2c_w$ for $sw<w$, and maximality there is equivalent to minimality for $\Gamma w_0$. Maximality in that convention already fails in $A_3$ (\gr{computed}). Do not compare $C'$ numerics against [GW].
+
+The following standard facts are used. (F1) [KL79, (2.3.e)]: if $y<w$, $s\in L(w)\setminus L(y)$ and $\mu(y,w)\ne0$, then $y=sw$. (F2): if $\mu(y,w)\ne0$ and $s\in L(y)\setminus L(w)$, then $y\le_L w$. Consequently, if each of $L(y)$, $L(w)$ fails to contain the other and $\mu\ne0$, then $y\sim_L w$. (F3) Subword property: if $u\le w\in W_J$, then $L(u)\subseteq J$.
+
+\begin{definition}
+A \emph{dominated twin} in $\Gamma$ is an ordered pair $x\ne z$ in $\Gamma$ such that
+\[L(z)\subseteq L(x)\quad\text{and}\quad \mu(y,z)\ge\mu(y,x)\ \text{ for every } y\in\Gamma \text{ with } L(y)\not\subseteq L(x).\]
+\end{definition}
+
+\begin{lemmaA}
+If $(x,z)$ is a dominated twin in $\Gamma$, put $v=e_z-e_x$. Then $K=\operatorname{cone}(\{e_w:w\ne z\}\cup\{v\})$ is simplicial, $\{1+s\}$-invariant, and strictly contains $\CKL$. Hence $\CKL$ is not maximal.
+\end{lemmaA}
+
+\begin{proof}
+$\{e_w\ (w\ne z),v\}$ is a basis, so $K$ is simplicial and hence pointed. Since $e_z=v+e_x$, we get $\CKL\subseteq K$. Also $v\notin\CKL$, because its $e_x$-coefficient is $-1$. For $w\ne z$ we have $(1+s)e_w\in\CKL\subseteq K$. Now consider $(1+s)v$.
+(1) If $s\in L(z)$, then $s\in L(x)$, and $(1+s)v=0$.
+(2) If $s\in L(x)\setminus L(z)$, then $(1+s)v=(1+s)e_z\in\CKL$.
+(3) If $s\notin L(x)$, then $s\notin L(z)$, and
+\[(1+s)v=2v+\textstyle\sum_{y\in\Gamma,\,s\in L(y)}(\mu(z,y)-\mu(x,y))\,e_y .\]
+Every $y$ in the sum has $s\in L(y)\setminus L(x)$. So $L(y)\not\subseteq L(x)$, and the coefficient is $\ge0$. Moreover $y\notin\{x,z\}$, since $s$ lies in neither $L(x)$ nor $L(z)$. Hence $(1+s)v\in K$.
+\end{proof}
+
+Only $\mu\ge0$ and the displayed action are used. No Hecke algebra computation enters beyond knowing $\mu$.
+
+%======================================================================
+\section{Every \texorpdfstring{$m\ge4$}{m>=4} bond produces a twin}
+
+\begin{theoremB}
+Let $W$ be a finite Coxeter group, and let $s,t\in S$ with $m(s,t)\ge4$. Put $J=S\setminus\{t\}$, $x=w_J$ and $z=stw_J$. Then $x$ and $z$ lie in one left cell $\Gamma$, and $(x,z)$ is a dominated twin. Hence $\CKL(\Gamma)$ is not maximal.
+\end{theoremB}
+
+\begin{proof}
+\emph{Shape of $x$.} Write $x=a u$ with $a\in\langle s,t\rangle$, $u$ minimal in its coset $\langle s,t\rangle u$, and lengths adding. Reduced words of $x$ use only letters of $J\not\ni t$, so $a\in\{e,s\}$. Since $s\in J=L(x)$, we get $x=su$.
+
+\emph{$z$ is reduced and $L(z)\subseteq J$.} The elements $tx=tsu$ and $z=stsu$ have lengths $\ell(u)+2$ and $\ell(u)+3$, because $sts$ is reduced in the dihedral group of order $2m\ge8$. In $I_2(m)$ with $m\ge4$, we have $L(sts)=\{s\}$, so $t\notin L(z)$. Hence $L(z)\subseteq J=L(x)$, and $z\ne x$.
+
+\emph{Same cell.} $\mu(x,tx)=\mu(tx,z)=1$, since each pair differs by one left multiplication. Now $t\in L(tx)\setminus L(x)$ and $s\in L(x)\setminus L(tx)$, so (F2) gives $x\sim_L tx$. Likewise $s\in L(z)\setminus L(tx)$ and $t\in L(tx)\setminus L(z)$ give $tx\sim_L z$.
+
+\emph{Twin condition.} Let $y\in\Gamma$ with $L(y)\not\subseteq J$ and $\mu(y,x)\ne0$. Then $t\in L(y)$. If $y<x$, then (F3) gives $L(y)\subseteq J$, which is impossible. So $y>x$ and $t\in L(y)\setminus L(x)$, and (F1) forces $x=ty$, that is, $y=tx$. Thus the only $y$ to check is $tx$, and there $\mu(tx,z)=1\ge1=\mu(tx,x)$. For every other $y$, $\mu(y,x)=0\le\mu(y,z)$. Lemma A applies.
+\end{proof}
+
+\begin{remark}
+(i) The case $(B_3,\ \{s_1,s_2\}$ the $4$-bond$)$ is the irreducible $3$-dimensional cell $\{s_3s_1,\ s_2s_3s_1,\ s_1s_2s_3s_1\}$, with descent sets $\{1,3\},\{2\},\{1\}$ (\gr{computed}, exact). Stembridge [St, p.~365] displays the same cell $\{1\}$---$\{2\}$---$\{1,3\}$, noting $\{1\}\subset\{1,3\}$, but uses it only for a Polygon Rule argument. He has no cone statement. (ii) The dihedral middle cells are the case $J=\{s\}$. (iii) Theorem B gives non-maximality in every cell of the form $\Gamma(w_{S\setminus\{t\}})$, reducible or not. Uniqueness of $C^{\max}$ needs irreducibility. That is \gr{computed} only: the $B_3$ cells, one of the two $w_J$-cells in each of $B_4$ and $B_5$, $H_3$ (dimension $5$), and all $32$ irreducible $8$-dimensional cells of $F_4$. In reducible cells such as the $I_2(4)$ middle cell, there can be two distinct maximal pointed cones (\gr{computed}), so ``the'' maximal cone is ill-posed there.
+\end{remark}
+
+%======================================================================
+\section{The star-operation kill and no twins for \texorpdfstring{$n\le13$}{n<=13}}
+
+Fix $s,t$ with $m(s,t)=3$, and let $D_L(s,t)=\{w:|L(w)\cap\{s,t\}|=1\}$. Each $w\in D_L(s,t)$ has a unique \emph{form} $su$, $tsu$, $tu$ or $stu$, where $u$ is minimal in $\langle s,t\rangle u$. The \emph{type} of $w$ is $L(w)\cap\{s,t\}$. The star operation $*$ is the involution $su\leftrightarrow tsu$, $tu\leftrightarrow stu$ [KL79, \S4]. It swaps types, and $\mu(w,{*w})=1$.
+
+\begin{proposition}[C1, star kill]
+Let $W$ be arbitrary, let $(x,z)$ be a dominated twin, and let $s\in L(x)$, $t\notin L(x)$ with $m(s,t)=3$. Then $s\notin L(z)$.
+\end{proposition}
+
+\begin{proof}
+\emph{Claim:} if $y$ has type $\{t\}$, $z$ has type $\{s\}$ and $\mu(y,z)\ne0$, then $z={*y}$. Indeed, if $y<z$ then (F1) with $s\in L(z)\setminus L(y)$ gives $y=sz$. If $z<y$ then (F1) with $t\in L(y)\setminus L(z)$ gives $z=ty$. So $z\in\{sy,ty\}$ has type $\{s\}$, and therefore $z={*y}$.
+
+Now put $x'={*x}$. By (F2), $x'\in\Gamma$. Since $t\in L(x')\setminus L(x)$, the twin condition gives $\mu(x',z)\ge\mu(x',x)=1$. Also $t\notin L(z)\subseteq L(x)$. If $s\in L(z)$, then $z$ has type $\{s\}$ and $x'$ has type $\{t\}$, so the Claim gives $z={*x'}=x$, a contradiction.
+\end{proof}
+
+\emph{Attribution.} The pairing step in the Claim says that, for $m(s,t)=3$, a type-$\{t\}$ vertex and a type-$\{s\}$ vertex joined by an edge are star partners with $\mu=1$. This is Stembridge's: the Bonding Rule [St, Prop.~4.4, $p=3$ clause, pp.~358--359] together with the Simplicity Rule [St, Prop.~4.2, p.~357] (incomparable $\tau$-sets give a simple edge of weight $1$); see [St, Rem.~4.3] for the simply-laced case. That exactly one of $sy,ty$ has type $\{s\}$ is classical [KL79, \S4]. Applying this to twins is ours.
+
+\begin{corollary}[C2]
+Let $W$ be simply laced, and put $\intr L(x)=\{r\in L(x):\text{every neighbour of $r$ lies in } L(x)\}$. If $(x,z)$ is a dominated twin, then $\varnothing\ne L(z)\subseteq\intr L(x)$. Hence twins cannot occur in any cell satisfying
+\[(\star)\qquad\text{there are no } x\ne z\in\Gamma \text{ with } \varnothing\ne L(z)\subseteq\intr L(x).\]
+\end{corollary}
+
+Here $L(z)\ne\varnothing$ because $|\Gamma|\ge2$ excludes $z=e$.
+
+\begin{proposition}[C4, Case-B constraints]
+Let $W$ be simply laced, let $(x,z)$ be a twin, and let $(s,t)$ be a boundary pair of $x$, meaning $s\in L(x)$, $t\notin L(x)$ and $m=3$. Put $x'={*x}$. Then either $z=tx'$, which forces $x=stu$, $x'=tu$, $z=u$; or $x'<z$ and every $r\in L(z)\setminus L(x')$ satisfies $x'=rz$. If $x$ has at least two boundary pairs, only the second alternative occurs, and $\ell(z)\ge\ell(x)$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+$\mu(x',z)\ge1$ and $s,t\notin L(z)$ by C2. If $z<x'$, then (F1) with $t\in L(x')\setminus L(z)$ gives $z=tx'$; since $z\ne x$ this forces $x'=sx$, $x=stu$. If $x'<z$, then (F1) applies for each $r\in L(z)\setminus L(x')$. With two pairs, the first alternative fixes $\ell(z)=\ell(x)-2$, which contradicts $\ell(z)>\ell(x')\ge\ell(x)-1$ for the other pair.
+\end{proof}
+
+\begin{theorem}[C3]\label{thm:C3}
+For $n\le13$, $(\star)$ holds in every left cell of $S_n$. Hence $S_n$ has no dominated twin for $n\le 13$.
+\end{theorem}
+
+\begin{proof}
+In a cell of shape $\lambda$, the descent sets that occur are $\{\Des(T):T\in SYT(\lambda)\}$. By standardisation, $\#\{T:\Des T\subseteq B\}=K_{\lambda,\mathrm{comp}(B)}$, and by transposition, $\#\{T:\Des T\supseteq A\}=K_{\lambda',\mathrm{comp}(A^c)}$. Since $\intr$ is monotone, $(\star)$ fails for some cell iff there exist $A\subseteq[n-1]$ and $\lambda$ with $K_{\lambda',\mathrm{comp}(A^c)}>0$ and $K_{\lambda,\mathrm{comp}(\intr A)}>0$. The cases $A=\varnothing$ (then $L(z)=\varnothing$) and $A=[n-1]$ (only $\lambda=(1^n)$, which has one tableau) are excluded. For other $A$, $\intr A\subsetneq A$, so $z\ne x$ automatically. Since $K_{\mu,\nu}>0\iff\mu\trianglerighteq\operatorname{sort}(\nu)$ and conjugation reverses dominance, such a $\lambda$ exists iff $\beta\trianglelefteq\alpha'$, where $\alpha=\operatorname{sort}\mathrm{comp}(\intr A)$ and $\beta=\operatorname{sort}\mathrm{comp}(A^c)$. An exhaustive exact-integer check over all $A\subseteq[n-1]$ (\texttt{dominance\_star.py}) finds no violation for $n\le13$. Direct SYT enumeration agrees for $n\le11$ (\texttt{syt\_interior.py}).
+\end{proof}
+
+Theorem C3 rests on the computer check plus textbook RSK and Kostka facts. In QSym language, $(\star)$ fails for $\lambda$ iff $s_\lambda=\sum_T F_{\Des T}$ contains $F_A$ and $F_B$ with $\varnothing\ne B\subseteq\intr A$. Also \gr{computed}: $(\star)$ holds in all cells of $D_4$ and $D_5$, and twin scans give $0$ twins in $A_3$--$A_6$, $D_4$ and $D_5$. Controls: $B_4$ has twins in $24/50$ cells and $F_4$ in $44/72$.
+
+%======================================================================
+\section{The \texorpdfstring{$S_{14}$}{S14} twins}
+
+At $n=14$, $(\star)$ fails for $\lambda=(4,4,3,3)$:
+\[
+P=\begin{smallmatrix}1&2&6&10\\3&7&11&14\\4&8&12\\5&9&13\end{smallmatrix},\quad \Des P=\{2,3,4,6,7,8,10,11,12\};\qquad
+P'=\begin{smallmatrix}1&2&3&7\\4&5&6&11\\8&9&10\\12&13&14\end{smallmatrix},\quad \Des P'=\{3,7,11\}=\intr\Des P.
+\]
+So C1/C2 alone cannot rule out twins here, and $\mu$ inside a $12012$-dimensional cell has to be decided.
+
+\begin{theorem}[T14]
+Let $\Gamma\subset S_{14}$ be the left cell with $Q=\begin{smallmatrix}1&2&3&4\\5&6&7&14\\8&9&10\\11&12&13\end{smallmatrix}$. Put $x=(P,Q)=[5,9,13,14,4,8,12,3,7,11,1,2,6,10]$, of length $55$, and $z=(P',Q)$, of length $67$. Then $(x,z)$ is a dominated twin. Hence $\CKL(S^{(4,4,3,3)})$ is not maximal, and $\operatorname{cone}(\{e_w:w\ne z\}\cup\{e_z-e_x\})$ is an explicit simplicial invariant cone strictly containing it.
+\end{theorem}
+
+\begin{theorem}[T14$'$]
+The $(\star)$-violating pairs $(\lambda,A=L(x))$ in $S_{14}$ are exactly the following four. Each has a unique candidate pair $(P_x,P_z)$, and each is a dominated twin:
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}\toprule
+$\lambda$ & $A$ & $\intr A$ & $(P_x\,;\,P_z)$ row-wise\\\midrule
+$(4,4,3,3)$ & $\{2,3,4,6,7,8,10,11,12\}$ & $\{3,7,11\}$ & as above\\
+$(5,3,3,3)$ & same & $\{3,7,11\}$ & $1\,2\,6\,10\,14/3\,7\,11/4\,8\,12/5\,9\,13\ ;\ 1\,2\,3\,7\,11/4\,5\,6/8\,9\,10/12\,13\,14$\\
+$(4,4,4,2)$ & $\{1,2,4,5,6,8,9,10,12,13\}$ & $\{1,5,9,13\}$ & $1\,4\,8\,12/2\,5\,9\,13/3\,6\,10\,14/7\,11\ ;\ 1\,3\,4\,5/2\,7\,8\,9/6\,11\,12\,13/10\,14$\\
+$(4,4,4,1,1)$ & same & $\{1,5,9,13\}$ & $1\,4\,8\,12/2\,5\,9\,13/3\,6\,10\,14/7/11\ ;\ 1\,3\,4\,5/2\,7\,8\,9/6\,11\,12\,13/10/14$\\\bottomrule
+\end{tabular}
+\end{center}
+By C2 these are all the twins of $S_{14}$ (by $P$-tableaux), and by Theorem~\ref{thm:C3}, $14$ is the least $n$ for which $S_n$ has a twin. The shapes form two conjugate pairs. Since $L$-inclusion is reversed by $w\mapsto ww_0$, the conjugate twins are new pairs, not formal images.
+\end{theorem}
+
+\subsection*{Lemma S}
+The lever is the following lemma, which is [KL79, Thm.~4.2] in the case $m=3$. KL79 is not on disk, so we re-proved it from the recursion. Write $\tmu(a,b)$ for $\mu$ of the comparable pair, and $0$ if $a,b$ are incomparable.
+
+\begin{lemmaS}
+Let $m(s,t)=3$. For all $y,w\in D_L(s,t)$, $\tmu(y,w)=\tmu({*y},{*w})$.
+\end{lemmaS}
+
+\begin{proof}
+If $y,w$ lie in the same coset, check the six pairs directly. Otherwise use the KL recursion [KL79, (2.2.c)]: for $tv>v$,
+\[P_{x,tv}=q^{1-c}P_{tx,v}+q^cP_{x,v}-\textstyle\sum_{z<v,\ tz<z}\mu(z,v)q^{(\ell(tv)-\ell(z))/2}P_{x,z},\qquad c=[tx<x],\]
+together with (2.3.g) ($P_{x,w}=P_{tx,w}$ for $t\in L(w)$) and (F1).
+
+\emph{Different types.} The Claim in C1 gives $\tmu(y,w)\ne0\Rightarrow w={*y}$, and the same holds after applying $*$.
+
+\emph{Same form} (S-i), say $\tmu(su,su')=\tmu(tsu,tsu')$, with $d=\ell(u')-\ell(u)$ odd. Apply the recursion with $v=su'$ and $x=tsu$, and read off the coefficient of $q^{(d-1)/2}$. The first term gives $\mu(su,su')$. The second term, via (2.3.g), contributes $\mu(stsu,su')$ when $stsu<su'$. In the sum, (F1) forces $z=stsu$ with $P_{tsu,z}=1$ and exponent $0$, which contributes $-\mu(stsu,su')$. The last two cancel.
+
+\emph{Mixed form} (S-ii, gap-changing), $\tmu(su,stu')=\tmu(tsu,tu')$, with $\delta=\ell(u')-\ell(u)\ge0$ even. Apply the recursion with $v=tu'$ and $x=su$, and read off the coefficient of $q^{\delta/2}$. The first term $P_{u,tu'}=P_{tu,tu'}$ has gap $\delta$ and degree $<\delta/2$, so it contributes $0$. The second term $P_{su,tu'}=P_{tsu,tu'}$ contributes $\mu(tsu,tu')$. In the sum, (F1) would force $z=tsu$, but $s\notin L(tsu)$, so the sum contributes $0$. For $\delta=0$ both sides vanish (mirror computation). For $\delta<0$, run the $s\leftrightarrow t$ mirror. The remaining cases follow by swapping $s,t$ or reading right to left.
+\end{proof}
+
+Machine control (\gr{computed}): $\tmu(y,w)=\tmu({*y},{*w})$ for all $940{,}800$ pairs in $D_L(s_i,s_{i+1})$ in $S_5$ and $S_6$, against full KL, with $0$ violations. The gap-changing S-ii step is essential. Same-form steps preserve the length gap, and every certificate below uses $5$--$9$ mixed steps.
+
+\subsection*{How the certificates work}
+\emph{Which $y$ to check.} Let $A=L(x)$. Only $y$ with $\mu(y,x)\ne0$ matter. If $y>x$, or if $y<x$ with $A\not\subseteq L(y)$, then (F1) gives $y=rx$ for a single $r$. The case $y<x$, $L(y)\supsetneq A$ is impossible in shape $(4,4,3,3)$. Indeed, $\Des\supseteq\{2,3,4\}$ forces $2,3,4,5$ into rows $1$--$4$, and similarly for $6$--$9$ and $10$--$13$, so a further descent would need a fifth row. Enumerating all $12012$ SYT agrees. So the $y$ to check are the $y=rx\in\Gamma$ with $L(y)\not\subseteq A$. For this $Q$ they are the four star images $x'_r=s_rx$, $r\in\{2,5,9,12\}$, each with $\mu(x'_r,x)=1$.
+
+\emph{Certificates.} For each $r$, apply simultaneous star operations $*_j$ (with respect to $\{s_j,s_{j+1}\}$) to the pair $(x'_r,z)$ along an explicit path, checking at every step that both entries lie in $D_L(s_j,s_{j+1})$. By Lemma S, $\tmu$ is constant along the path. The path ends at a Bruhat-comparable pair with length gap $1$, where $\tmu=1$:
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}\toprule
+$r$ & path $j_1,j_2,\dots$ & end lengths\\\midrule
+$2$ & $2,4,2,6,8,6,4,7,6,10,8$ & $59,60$\\
+$5$ & $3,6,8,10,12,10,8,7,5$ & $59,60$\\
+$9$ & $7,5,3,1,3,4,6,10,8$ & $59,60$\\
+$12$ & $11,9,7,5,3,5,6,8,6,5,11$ & $61,62$\\\bottomrule
+\end{tabular}
+\end{center}
+The initial gaps $\ell(z)-\ell(x'_r)$ are $11$--$13$. So $\mu(x'_r,z)=1=\mu(x'_r,x)$ for all four, and Lemma A applies. The certificates (\texttt{prove280/certs\_1..4.json}) are replayed by an independent checker (\texttt{verify.py}) that uses its own RSK, its own star map, and Bruhat order via the rank-matrix criterion rather than the tableau criterion used in the search. All four shapes pass. For the conjugate pair of shapes there are three boundary $y$ each ($r=3,7,11$). The search procedure (star orbit plus parity, Bruhat and F1 kills) was validated against full KL on all $3906$ within-cell pairs of $S_5$ and $S_6$. It returned both verdicts ($\mu=1$ and $\mu=0$), with $0$ wrong and $0$ undecided.
+
+\subsection*{Every left cell (\gr{computed})}
+The theorem needs only one cell. As a consistency check, the same decision was run in every left cell of each shape. In each cell, all boundary pairs gave $\mu=1$, so the twin holds: $(4,4,3,3)$ in $12012/12012$ cells, $(4,4,4,2)$ in $12012/12012$, $(4,4,4,1,1)$ in $15015/15015$, and $(5,3,3,3)$ in $15015/15015$ (\texttt{out\_allcells\_*.txt}). A proof for all $Q$ would combine right star operations with dual-equivalence connectivity of $SYT(\lambda)$. We only recall that connectivity, so it is not graded.
+
+%======================================================================
+\section{Relation to Goertzen--Williamson}\label{sec:gw}
+
+What [GW] prove and state, verified against the arXiv v1 text:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \textbf{Thm.~4.5:} ``The operators $\{1+s\mid s\in S\}$ preserve a unique maximal invariant cone $C^{\max}$ and a unique minimal invariant cone $C^{\min}$ inside $S^\lambda$. Moreover, these cones satisfy the duality relation $(C^{\max})^*=C^{\min}$.'' Uniqueness is deduced from irreducibility via their reference [41] (Mejstrik--Protasov). Rem.~4.4 adds: ``if $C$ is the cone generated by a basis $B$, then $C^*$ is the cone generated by the dual basis $B^*$ with respect to the form.''
+\item \textbf{Question 4.6} (open): ``What are the maximal and minimal $1+s$, $s\in S$ invariant cones inside the Specht module $S^\lambda$?''
+\item \textbf{Thms.~4.11, 4.14, 4.17:} the KL basis spans $C^{\max}$ for hooks, two-column shapes, and $(n-2,2)$.
+\item \textbf{Ex.~4.21 and \S1.1:} for $(4,4,1)\vdash9$ (dimension $84$), their strategy fails to verify the minimal cone property for the dual KL basis. They exhibit the invariant cone spanned by $w_1,\dots,w_{13},w_{15},\dots,w_{84}$ and $w_{14}+w_{44}$, $w_{14}+w_{84}$; in \S1.1 they say the maximal cone is ``no longer simplicial''. The conjugate $(3,2,2,2)$ passes. They say ``this is indeed the first case'' and ``all other tested examples in which the minimal cone property fails come from partitions, where the corresponding Young diagram contains the Young diagram of the partition $(4,4,1)$.'' Rem.~4.18 gives the tested range: all $\lambda\vdash n\le10$ not containing $(4,4,1)$, plus $(3,3,3,3,3)\vdash15$.
+\end{itemize}
+So \textbf{[GW] own ``$\CKL$ is not always maximal in type A''}, first at $n=9$. We do not claim first non-maximality at $n=14$. Our type-A claim is narrower: \emph{there are no dominated twins for $n\le13$, and the first ones are the four $S_{14}$ shapes}. By Theorem C3, GW's $(4,4,1)$ failure is a non-twin mechanism. A literature grep of [GW] finds no ``twin'', ``domin*'', ``quasisymmetric'' or $n=14$ shapes.
+
+\emph{Do our twins give the failure GW measure?} GW's test is the minimal cone property of the dual KL basis. Every invariant pointed cone lies in a maximal one, so by the uniqueness in Thm.~4.5, $C^{\max}$ contains every invariant pointed cone. A twin gives an invariant simplicial $K\supsetneq\CKL$, hence $C^{\max}\supsetneq\CKL$. Dualising with Rem.~4.4 gives $C^{\min}=(C^{\max})^*\subseteq K^*\subsetneq\CKL^*$, where $\CKL^*$ is the cone of the dual KL basis. So the minimal cone property fails for the dual KL basis at all four $S_{14}$ shapes. We think this identification is literally supported by Thm.~4.5 and Rem.~4.4, given two things: (a) our convention-C cell basis is GW's KL basis (\gr{computed} calibration, not a quoted identity), and (b) Thm.~4.5 itself, whose uniqueness input we have not read first-hand. One caveat in the other direction: GW's phrase ``tested examples in which the minimal cone property fails'' may mean examples where \emph{their strategy} fails to verify the property, which is weaker than exhibiting a smaller cone. We cannot tell from the text.
+
+\emph{Observation.} $(5,3,3,3)$ does not contain $(4,4,1)$, because its second row is $3<4$. The other three shapes do. So at $(5,3,3,3)$, $\CKL$ is non-maximal in a shape outside GW's empirically observed $(4,4,1)$ pattern. This does not contradict [GW]: $n=14$ lies outside their tested range. Also, unlike $(4,4,1)$ versus $(3,2,2,2)$, here both members of each conjugate pair fail ($(5,3,3,3)'=(4,4,4,1,1)$ and $(4,4,3,3)'=(4,4,4,2)$).
+
+\begin{question}
+Is the twin cone of Lemma A ever equal to $C^{\max}$, or is $C^{\max}$ at the $S_{14}$ shapes also non-simplicial, as at $(4,4,1)$? Is GW's ``contains $(4,4,1)$'' pattern a statement about the $(4,4,1)$ mechanism only? Our $(5,3,3,3)$ case suggests it should be read that way.
+\end{question}
+
+%======================================================================
+\section{Open problems and asks}
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item \textbf{Hunch} (\gr{hunch}): in type A, a twin exists in shape $\lambda$ iff $(\star)$ fails, i.e.\ iff $s_\lambda=\sum F_{\Des T}$ contains $F_A,F_B$ with $\varnothing\ne B\subseteq\intr A$. Then twin existence would be read off the fundamental QSym expansion alone. Evidence: vacuous for $n\le13$ and $4/4$ at $n=14$, which is weak because $14$ is the first non-vacuous size. The separator is $n=15$: list the violators and decide each one.
+\item \textbf{Mechanism (ii)}: non-twin failures, namely GW's $(4,4,1)$ and our $H_3$ type-$5_2$ cells, which fail without any twin (\gr{hunch}). What replaces $e_z-e_x$ by sums such as $w_{14}+w_{44}$?
+\item \textbf{Uniform irreducible family in $B_n$}: Theorem B gives twins for all $n$, but an irreducible cell with a twin is \gr{computed} only for $n\le5$. Neither natural $w_J$ family is irreducible for every $n$.
+\end{enumerate}
+
+\textbf{Asks for Clio.}
+(a) A hostile read of Lemma S, especially the S-ii coefficient bookkeeping, and of the \S4 certificate logic. The reduction to four $y$'s, the endpoint argument, and whether replaying an independent checker suffices as a proof of the four $\mu=1$ are the points to attack.
+(b) Do you know anyone who owns type-A dominated twins (under any name), or a QSym/fundamental-expansion criterion for KL cones? Our owner checks of [GW] and [St] were negative for both.
+
+\begin{thebibliography}{GW}
+\bibitem[GW]{GW} Tom Goertzen and Geordie Williamson, \emph{Kazhdan--Lusztig basis and optimization}, arXiv:2604.18894v1 [math.RT], 20 Apr 2026.
+\bibitem[KL79]{KL79} David Kazhdan and George Lusztig, \emph{Representations of Coxeter groups and Hecke algebras}, Invent.\ Math.\ \textbf{53} (1979), no.~2, 165--184. doi:10.1007/BF01390031.
+\bibitem[St]{St} John R. Stembridge, \emph{Admissible $W$-graphs}, Represent.\ Theory \textbf{12} (2008), 346--368. doi:10.1090/S1088-4165-08-00336-1.
+\end{thebibliography}
+
+\end{document}
