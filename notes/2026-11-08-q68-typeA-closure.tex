@@ -1,0 +1,292 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs}\sloppy
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newcommand{\PROJHASH}{8dbeb45}
+\newcommand{\gr}[1]{\textsf{#1}}
+\newcommand{\Des}{\mathrm{Des}}
+\newcommand{\intr}{\operatorname{int}}
+\newcommand{\tmu}{\tilde\mu}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title[Q68 in type A: closure]{Dominated twins in type A: a complete decision procedure, and the census for $n\le 16$}
+\author{Rick}
+\date{2026-11-08}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}\small
+Research-repo commit \texttt{\PROJHASH} (\texttt{proofs/2026-11-08-q68-typeA-closure.md}, scripts \texttt{proofs/prove284/}).
+Registry \texttt{proofs/registry/seedQ2-kl-cone.json}. Supersedes, as a reference, the notes of 11-07 and 11-08.
+\end{center}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{Summary.} Let $\Gamma$ be a left cell of a finite Coxeter group, and let $M_\Gamma$ be its cell module at $v=1$. A \emph{dominated twin} is a pair $x\ne z$ in $\Gamma$ with $L(z)\subseteq L(x)$ and $\tmu(y,z)\ge\tmu(y,x)$ for every $y\in\Gamma$ with $L(y)\not\subseteq L(x)$. A twin forces the Kazhdan--Lusztig cone of $M_\Gamma$ to be non-maximal among invariant pointed cones.
+
+This note collects the type-A story into one stable reference.
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item Theorem~\ref{thm:W}, proved for all finite $W$: the twin condition only has to be checked on an explicit witness set. Parity is a consequence of it, not an extra hypothesis.
+\item Proposition~\ref{prop:Q}: twin-ness depends only on the pair of $P$-tableaux. This is now proved from Knuth's theorem and the star-invariance of $\mu$.
+\item The census for $n\le16$, Theorem~\ref{thm:census}: $0,\ 4,\ 26,\ 114$ twin pairs for $n\le 13$ and $n=14,15,16$. Every verdict is a replayed certificate, except for \emph{one} KL value in $S_{16}$. That value was computed by two independent implementations, and only two of the $462$ verdicts use it.
+\end{itemize}
+\textbf{Grades:} Theorem~\ref{thm:W} \gr{proved}; Proposition~\ref{prop:Q} \gr{proved} (modulo textbook RSK/KL facts); Proposition~\ref{prop:M} \gr{proved}; census \gr{computed} (certificate-complete).}}
+
+\section{Setting}
+
+$W$ is a finite Coxeter group with simple reflections $S$; $L(w)=\{s:sw<w\}$ and $R(w)=\{s:ws<w\}$. $P_{y,w}$ are the KL polynomials. For $y<w$, $\mu(y,w)$ is the coefficient of $q^{(\ell(w)-\ell(y)-1)/2}$ in $P_{y,w}$. The symmetric version is $\tmu(a,b)=\mu(a,b)$ if $a<b$, $\mu(b,a)$ if $b<a$, and $0$ otherwise.
+
+The preorder $\le_L$ is the transitive closure of ``$\tmu(y,w)\ne0$ and $L(y)\not\subseteq L(w)$''; left cells are its classes. The cell module, in the convention of Goertzen--Williamson [GW, Ex.~4.7], has basis $(e_x)_{x\in\Gamma}$ and
+\[
+(1+s)e_x=0 \ \ (s\in L(x)),\qquad (1+s)e_x=2e_x+\textstyle\sum_{y\in\Gamma,\,s\in L(y)}\tmu(x,y)e_y\ \ (s\notin L(x)).
+\]
+
+\begin{definition}
+A \emph{dominated twin} is a pair $x\ne z\in\Gamma$ with $L(z)\subseteq L(x)$ and
+\[\textup{(TW)}\qquad \tmu(y,z)\ge\tmu(y,x)\quad\text{for all }y\in\Gamma\text{ with }L(y)\not\subseteq L(x).\]
+For simply-laced $W$, put $\intr A=\{s\in A:\text{all neighbours of }s\text{ lie in }A\}$. The \emph{witness sets} of $x$ are
+\[
+W_{\rm i}(x)=\{sx: s\in S,\ sx\in\Gamma,\ L(sx)\not\subseteq L(x)\},\qquad
+W_{\rm ii}(x)=\{y\in\Gamma: L(y)\supsetneq L(x),\ y<x\}.
+\]
+\end{definition}
+
+\noindent\emph{Type A.} We write $w\in S_n$ in one-line notation, so that $s_iw$ swaps the \emph{values} $i,i+1$. Let $(P,Q)=\mathrm{RSK}(w)$. Then $L(w)=\Des P(w)$ and $R(w)=\Des Q(w)$, and the left cells are $\Gamma_Q=\{w:Q(w)=Q\}$. A \emph{candidate pair} is a pair $(x,z)$ in one cell with $L(x)=A$ and $\varnothing\ne L(z)\subseteq\intr A$.
+
+\smallskip
+\noindent\emph{Inputs used without proof} (textbook; all were validated in $S_5$/$S_6$ in earlier sessions):
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item (K1) The KL recursion [KL, (2.2.c)], and $P_{y,w}=P_{sy,w}$ for $s\in L(w)$ [KL, (2.3.g)].
+\item (K2) $\mu\ge0$ [KL80; Elias--Williamson].
+\item (K3) $P_{y,w}=P_{y^{-1},w^{-1}}$.
+\item (K4) Diagram automorphisms preserve every $P_{y,w}$.
+\item (K5) $P_{y,w}=1$ if $y<w$ with gap $1$. Also $\tmu=0$ for an even gap, and for incomparable elements.
+\item (R) RSK and Schützenberger symmetry; left cells $=\{Q$ fixed$\}$; Knuth's theorem: $P(w)=P(w')$ iff $w$ and $w'$ are connected by elementary Knuth moves $yxz\leftrightarrow yzx$, $xzy\leftrightarrow zxy$ ($x<y<z$).
+\end{itemize}
+
+\section{The lemmas}
+
+\begin{lemma}[F1, {[KL, 2.3.e]}]\label{F1}
+Let $y<w$ and $s\in L(w)\setminus L(y)$. If $\mu(y,w)\ne0$, then $y=sw$.
+\end{lemma}
+\begin{proof}
+By (K1), $P_{y,w}=P_{sy,w}$. If $sy\neq w$, then $sy<w$, so $\deg P_{sy,w}\le(\ell(w)-\ell(y)-2)/2$ and $\mu(y,w)=0$.
+\end{proof}
+
+\begin{lemma}[A]\label{A}
+If $(x,z)$ is a dominated twin, then $K=\mathrm{cone}(\{e_w\}_{w\ne z}\cup\{e_z-e_x\})$ is simplicial and $\{1+s\}$-invariant, and it strictly contains $C_{KL}=\mathrm{cone}\{e_w\}$.
+\end{lemma}
+\begin{proof}
+Put $v=e_z-e_x$. Then $e_z=v+e_x$, so $K\supseteq C_{KL}$; the containment is strict because $v\notin C_{KL}$. It remains to compute $(1+s)v$:
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item if $s\in L(z)\subseteq L(x)$, it is $0$;
+\item if $s\in L(x)\setminus L(z)$, it is $(1+s)e_z\in C_{KL}$;
+\item if $s\notin L(x)$, it is $2v+\sum_{s\in L(y)}(\tmu(z,y)-\tmu(x,y))e_y$. Every such $y$ has $L(y)\not\subseteq L(x)$ and $y\notin\{x,z\}$, so each coefficient is $\ge0$ by (TW).\qedhere
+\end{itemize}
+\end{proof}
+
+\begin{lemma}[C1, C2]\label{C}
+Let $(x,z)$ be a twin, $s\in L(x)$, $t\notin L(x)$, and $m(s,t)=3$. Then $s\notin L(z)$. Hence, if $W$ is simply laced, $\varnothing\neq L(z)\subseteq\intr L(x)$.
+\end{lemma}
+\begin{proof}
+Let ${}^*x\in\{sx,tx\}$ be the element of type $\{t\}$, that is, with $L({}^*x)\cap\{s,t\}=\{t\}$. Its left descent set is incomparable with $L(x)$ and $\tmu({}^*x,x)=1$, so ${}^*x\in\Gamma$, and (TW) gives $\tmu({}^*x,z)\ge1$.
+
+Suppose $s\in L(z)$. Then $z$ has type $\{s\}$. Apply Lemma~\ref{F1} in whichever Bruhat direction holds: it gives $z\in\{s\,{}^*x,\,t\,{}^*x\}$. The element of type $\{s\}$ in this set is $x$, so $z=x$, a contradiction.
+
+Finally, $L(z)\ne\varnothing$, since otherwise $z=e$, and $\{e\}$ is a cell of size one.
+(The pairing step is Stembridge's [St, Props.~4.2, 4.4].)
+\end{proof}
+
+\begin{lemma}[S, star invariance; {[KL, Thm.~4.2]}, proved in-file in PROVE~280]\label{S}
+Let $m(s,t)=3$ and $y,w\in D_L(s,t)$. Then $\tmu(y,w)=\tmu({}^*y,{}^*w)$. By (K3), the same holds for right stars on $D_R(s,t)$.
+\end{lemma}
+\begin{proof}[Outline]
+Write elements of $D_L(s,t)$ as $su$, $tsu$, $tu$, $stu$, with $u$ minimal in its coset.
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item \emph{Same coset:} check the six pairs directly.
+\item \emph{Different types:} Lemma~\ref{F1} forces $w={}^*y$ on both sides.
+\item \emph{Same form,} $(su,su')\mapsto(tsu,tsu')$: apply (K1) at $tw$ with $w=su'$. The $qP_{tsu,su'}$ term and the single surviving sum term $z=stsu$ cancel.
+\item \emph{Mixed form,} $(su,stu')\mapsto(tsu,tu')$, the gap-changing case: apply (K1) at $s\cdot tu'$. The first term has too low a degree, the second contributes $\mu(tsu,tu')$, and the sum is killed by Lemma~\ref{F1}.
+\end{itemize}
+The remaining cases follow by $s\leftrightarrow t$ symmetry and by reading identities right to left.
+\end{proof}
+
+\begin{lemma}[Layer Lemma; folklore {[BB, Thm.~6]}, {[Po, L.~2.6]}]
+Let $u$ be minimal in $W_Ku$ and $v,v'\in W_K$. Then $P_{v'u,vu}=P_{v',v}$.
+\end{lemma}
+\begin{proof}[Outline]
+Induct on $\ell(v)$ using (K1). Since $w\mapsto w^K$ is order-preserving [BB2, Prop.~2.5.1], every term of the recursion stays in the layer $W_Ku$.
+\end{proof}
+
+\section{Completeness of the witness set}
+
+\begin{theorem}\label{thm:W}
+Let $W$ be finite, and let $x\ne z\in\Gamma$ with $L(z)\subseteq L(x)=:A$.
+\begin{enumerate}[label=(\alph*),itemsep=0pt]
+\item If $y\in\Gamma$, $L(y)\not\subseteq A$ and $\tmu(y,x)\neq0$, then $y\in W_{\rm i}(x)\cup W_{\rm ii}(x)$.
+\item $\tmu(y,x)=1$ for every $y\in W_{\rm i}(x)$.
+\item $(x,z)$ is a dominated twin $\iff$ $\tmu(y,z)\ge\tmu(y,x)$ for all $y\in W_{\rm i}(x)\cup W_{\rm ii}(x)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) The elements $y$ and $x$ are comparable, and $y\ne x$.
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item If $y>x$, take $r\in L(y)\setminus A$. Lemma~\ref{F1} gives $y=rx$.
+\item If $y<x$ and $A\not\subseteq L(y)$, take $r\in A\setminus L(y)$. Lemma~\ref{F1} gives $y=rx$.
+\item Otherwise $y<x$ and $L(y)\supsetneq A$, so $y\in W_{\rm ii}(x)$.
+\end{itemize}
+(b) holds by (K5).
+
+(c) For $\Leftarrow$: every $y$ with $L(y)\not\subseteq A$ that lies outside the witness sets has $\tmu(y,x)=0\le\tmu(y,z)$, by (a) and (K2). The direction $\Rightarrow$ is trivial.
+\end{proof}
+
+\begin{corollary}[parity is implied]\label{cor:P}
+Let $W$ be connected and simply laced, and let $(x,z)$ be a twin. Then $W_{\rm i}(x)\neq\varnothing$ and $\ell(x)\equiv\ell(z)\pmod 2$.
+\end{corollary}
+\begin{proof}
+By Lemma~\ref{C}, $L(x)\neq\varnothing$. Also $L(x)\ne S$, because $\{w_0\}$ is a cell. Choose adjacent $s\in L(x)$ and $t\notin L(x)$. Then ${}^*x\in W_{\rm i}(x)$, and Theorem~\ref{thm:W} gives $\tmu({}^*x,z)\ge1$. So $\ell({}^*x)-\ell(z)$ is odd, and $\ell({}^*x)=\ell(x)\pm1$.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:W} is close to a tautology: its content is Lemma~\ref{F1}. The real content of a twin verdict lies in the $\mu$-values on the witness set. In particular, the decision procedure (the $C2$ filter, then the witness inequality) is complete. Parity is just its cheapest special case, namely an even gap at ${}^*x$.
+
+Nothing excludes $\tmu(y,x)\ge2$ for $y\in W_{\rm ii}(x)$ a priori. In the census every such value that was needed was certified to be exactly $0$ or $1$.
+\end{remark}
+
+\section{Cell independence}
+
+\begin{lemma}\label{lem:K}
+In $S_n$, the right star $\rho_j$ for $\{s_j,s_{j+1}\}$ is defined on $w$ iff exactly one of $w(j)>w(j+1)$ and $w(j+1)>w(j+2)$ holds. When it is defined, it is the elementary Knuth move on positions $j,j+1,j+2$, and every Knuth move arises this way.
+\end{lemma}
+\begin{proof}
+Let $x<y<z$.
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item For the pattern $yxz$: right multiplication by $s_j$ gives $xyz$, which has type $\varnothing$, and by $s_{j+1}$ gives $yzx$, which has type $\{s_{j+1}\}$. So $\rho_j(yxz)=yzx$.
+\item For the pattern $zxy$: $s_j$ gives $xzy$, of type $\{s_{j+1}\}$, and $s_{j+1}$ gives $zyx$, of type $\{s_j,s_{j+1}\}$. So $\rho_j(zxy)=xzy$.
+\end{itemize}
+The two type-$\{s_{j+1}\}$ patterns are the inverses of these moves.
+\end{proof}
+
+\begin{proposition}\label{prop:Q}
+Let $Q,Q'\in\mathrm{SYT}(\lambda)$. There is a bijection $\varphi:\Gamma_Q\to\Gamma_{Q'}$ with $P(\varphi w)=P(w)$ and $\tmu(\varphi w,\varphi w')=\tmu(w,w')$. Hence $((T,Q),(T',Q))$ is a twin iff $((T,Q'),(T',Q'))$ is.
+\end{proposition}
+\begin{proof}
+By Knuth's theorem and Lemma~\ref{lem:K}, some sequence of right stars carries $(P_0,Q)$ to $(P_0,Q')$. Since $R=\Des Q$ is constant on a cell, each $\rho=\rho_j$ in the sequence is defined on the whole current cell $\Gamma$. Fix one such step.
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item $\rho$ is injective on $\Gamma$.
+\item $\rho$ preserves $P$, hence $L$.
+\item $\rho$ preserves $\tmu$, by Lemma~\ref{S}.
+\end{itemize}
+For $w,w'\in\Gamma$, any chain realising $w\le_L w'$ stays inside $\Gamma$. Applying $\rho$ link by link gives $\rho w\le_L\rho w'$, and symmetrically. So $\rho(\Gamma)$ lies in a single cell $\Gamma_{Q''}$. Its $P$-values exhaust $\mathrm{SYT}(\lambda)$, so $\rho(\Gamma)=\Gamma_{Q''}$. Composing the steps gives $\varphi$. The condition (TW) is expressed through $L$ and $\tmu$ alone, so it transports along $\varphi$.
+\end{proof}
+
+As a by-product, $Q(\rho_jw)$ depends only on $Q(w)$; this is Haiman's dual equivalence. The earlier connectivity computations (\texttt{dualconn.py}, random-$Q$ re-decisions) become controls.
+
+\section{Certificates and the one computed value}
+
+Each census verdict has a certificate, replayed by code that shares nothing with the search code. A certificate is one of the following.
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item \emph{Star path plus endpoint.} A sequence of simultaneous left or right stars, with membership in $D_L$ or $D_R$ asserted at every step, so $\tmu$ is constant along it by Lemma~\ref{S}. At the endpoint, a comparable pair with gap $1$ gives $\tmu=1$; an even gap, Bruhat-incomparability, or a violation of Lemma~\ref{F1} gives $\tmu=0$.
+\item \emph{Layer certificate} ($5$ pairs of shape $(5,5,3,3)$). Apply the Layer Lemma to delete $16$ (or $1$), then finish with a star path in $S_{15}$.
+\item \emph{Ext certificate} ($2$ pairs of shape $(6,4,3,3)$). A right-star path to a pair whose $\mu$ was computed.
+\end{itemize}
+The verdict is TWIN when every witness has certified $\tmu(y,z)=1=\tmu(y,x)$ and no $\tmu(y,x)$ with $y\in W_{\rm ii}$ is undecided. It is NO when some witness has $\tmu(y,z)=0<\tmu(y,x)$. By Theorem~\ref{thm:W}, both rules are exactly (TW).
+
+\begin{proposition}\label{prop:M}
+Let
+\begin{align*}x_0&=[5,4,3,1,9,8,7,2,15,14,11,6,13,10,12,16],\\ z_0&=[14,8,4,1,15,9,5,2,16,10,6,3,11,7,12,13],\end{align*}
+with $\ell=33,52$, and let $c(w)=w_0ww_0$. The two computed pairs used by the ext certificates are $\rho_3(x_0,z_0)$ (with $\ell=34,53$) and $\rho_{13}\rho_{11}(cx_0,cz_0)$ (with $\ell=35,54$). Hence both have $\mu=\mu(x_0,z_0)$.
+\end{proposition}
+\begin{proof}
+The first move is the Knuth move $3,1,9\mapsto3,9,1$ in $x_0$ and $4,1,15\mapsto4,15,1$ in $z_0$. The second path was found by search and compared literally (\texttt{prove284/link.py}). Then apply Lemma~\ref{S} and (K4).
+\end{proof}
+
+The value $\mu(x_0,z_0)=1$ is \gr{computed}. Two independent implementations give the same result: Dyer's path formula (\texttt{dyer2.c}) and a from-scratch Deodhar parabolic KL on a $22{,}208$-element $W^J$ interval. Both give
+\[P_{x_0,z_0}=1+12q+62q^2+181q^3+328q^4+381q^5+279q^6+119q^7+26q^8+q^9.\]
+The full Bruhat interval has $894{,}344$ elements.
+
+\section{The census}
+
+\begin{theorem}[computed, certificate-complete]\label{thm:census}
+Up to the choice of cell (Proposition~\ref{prop:Q}), the dominated twins in $S_n$ are as follows.
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item $n\le13$: none, since there are no candidate pairs [P279, Thm.~C3; exhaustive Kostka-dominance check].
+\item $n=14$: $4$ of the $4$ candidate pairs.
+\item $n=15$: $26$ of $48$. Of the $22$ NO verdicts, $20$ are parity kills and $2$ are $W_{\rm ii}$-kills.
+\item $n=16$: $114$ of $410$. The $296$ NO verdicts are $186$ parity kills, $19$ with a $W_{\rm ii}$-kill, $86$ with a $W_{\rm i}$-kill only, and $5$ layer certificates.
+\end{itemize}
+The theorem holds modulo (K1)--(K5) and (R), the exhaustive enumeration code, the certificate replays, and the single value $\mu(x_0,z_0)=1$. That value is used only by the TWIN verdicts of the two $(6,4,3,3)$ pairs $353$ and $364$. If it were $0$, the count would be $112/298$.
+\end{theorem}
+
+{\footnotesize
+\begin{center}
+\begin{tabular}{@{}lccc@{\qquad}lccc@{}}\toprule
+$\lambda\vdash15$ & pairs & TW & NO & $\lambda\vdash16$ & pairs & TW & NO\\\midrule
+$6333$ & 4 & 4 & 0 & $7333$ & 10 & 10 & 0\\
+$5442$ & 3 & 1 & 2 & $6442$, $64411$ & 6, 6 & 1, 1 & 5, 5\\
+$54411$ & 3 & 1 & 2 & $6433$ & 54 & 11$^\dagger$ & 43\\
+$5433$ & 12 & 4 & 8 & $63331$ & 12 & 4 & 8\\
+$53331$ & 3 & 1 & 2 & $5542$, $55411$ & 3, 3 & 0, 0 & 3, 3\\
+$4443$ & 4 & 4 & 0 & $5533$ & 18 & 4 & 14$^\ddagger$\\
+$44421$ & 12 & 6 & 6 & $5443$ & 43 & 9 & 34\\
+$444111$ & 4 & 4 & 0 & $54421$, $544111$ & 48, 12 & 6, 4 & 42, 8\\
+$44331$ & 3 & 1 & 2 & $54331$ & 48 & 6 & 42\\
+ & & & & $53332$, $533311$ & 3, 6 & 0, 1 & 3, 5\\
+ & & & & $4444$ & 4 & 4 & 0\\
+ & & & & $44431$ & 43 & 15 & 28\\
+ & & & & $44422$, $444211$ & 18, 54 & 9, 18 & 9, 36\\
+ & & & & $4441111$ & 10 & 10 & 0\\
+ & & & & $44332$, $443311$ & 3, 6 & 0, 1 & 3, 5\\\midrule
+total & 48 & 26 & 22 & total & 410 & 114 & 296\\\bottomrule
+\end{tabular}
+\end{center}
+$^\dagger$Two of these rest on $\mu(x_0,z_0)$. \quad $^\ddagger$Five of these are by layer certificates. At $n=14$ the four twin shapes are $4433$, $5333$, $4442$ and $44411$, each with a single candidate pair.}
+
+\medskip
+\noindent\emph{Replay (2026-11-08).} Every certificate file for $n=14,15,16$ was re-run today, and the counts above were reproduced (\texttt{prove284/out\_rerun.txt}).
+
+\section{What died}
+
+{\small
+\begin{tabular}{@{}p{0.42\linewidth}p{0.36\linewidth}l@{}}\toprule
+claim & killed by & grade\\\midrule
+simply laced $\Rightarrow$ no twins & $(4,4,3,3)$ twin in $S_{14}$ & certificate\\
+$(\star)$-violation $\iff$ twin, at the $(\lambda,A)$ level & $22$ NO pairs in $S_{15}$ & certificate\\
+violation $\iff$ twin, at the shape level & $53332,44332,5542,55411$ in $S_{16}$ & certificate\\
+twin $\iff$ parity and $W_{\rm ii}=\varnothing$ & $86$ false positives in $S_{16}$ & certificate\\
+(ii)-elements always kill & pairs $352,353,364,365$ & uses $\mu(x_0,z_0)$\\
+Lemma I: $\mu(x,z)=0$ for candidate pairs & $\mu=1$ at five $S_{16}$ instances & computed\\\bottomrule
+\end{tabular}}
+
+\smallskip
+\noindent One Lemma~I counterexample does not depend on $x_0$:
+\begin{align*}x&=[7,3,2,11,10,6,5,1,15,9,8,4,16,14,13,12],\\ z&=[10,6,2,14,11,7,3,1,15,12,8,4,16,13,9,5],\end{align*}
+with $P_{x,z}=1+8q+24q^2+35q^3+26q^4+9q^5+q^6$. This was computed by two implementations, over an interval of $20{,}160$ elements.
+
+\section{Gaps}
+\begin{enumerate}[leftmargin=*,itemsep=0pt]
+\item $\mu(x_0,z_0)=1$ is computed, not proved.
+\item (K1)--(K5) and (R) are used as textbook facts.
+\item The enumeration codes are trusted to be exhaustive. They are cross-checked at small $n$.
+\item By decision, this note goes no further than $n=16$ and proves no structural twin criterion beyond Theorem~\ref{thm:W}.
+\end{enumerate}
+
+\begin{thebibliography}{GW}\small
+\bibitem[BB]{BB} S.~Billey, T.~Braden, \emph{Lower bounds for Kazhdan--Lusztig polynomials from patterns}, Transform.\ Groups 8 (2003); arXiv math/0202252.
+\bibitem[BB2]{BB2} A.~Björner, F.~Brenti, \emph{Combinatorics of Coxeter Groups}, GTM 231, Springer 2005.
+\bibitem[GW]{GW} T.~Goertzen, G.~Williamson, \emph{Kazhdan--Lusztig basis and optimization}, arXiv:2604.18894.
+\bibitem[KL]{KL} D.~Kazhdan, G.~Lusztig, \emph{Representations of Coxeter groups and Hecke algebras}, Invent.\ Math.\ 53 (1979).
+\bibitem[Po]{Po} P.~Polo, Represent.\ Theory 3 (1999), Lemma 2.6 (locator second-hand).
+\bibitem[St]{St} J.~Stembridge, \emph{Admissible $W$-graphs}, Represent.\ Theory 12 (2008) 346--368.
+\end{thebibliography}
+\end{document}
