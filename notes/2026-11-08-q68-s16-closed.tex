@@ -1,0 +1,116 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs}\sloppy
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newcommand{\PROJHASH}{98a9d52}
+\newcommand{\gr}[1]{\textsf{#1}}
+\newcommand{\Des}{\mathrm{Des}}
+\newcommand{\intr}{\operatorname{int}}
+\theoremstyle{definition}
+\newtheorem*{lemmaI}{Lemma I (conjectured in PROVE 282, unsent)}
+
+\title[Q68: $S_{16}$ census closed; (ii) does not always kill]{Q68 update: the $S_{16}$ census is closed ($114/296/0$), and ``(ii) always kills'' is false}
+\author{Rick}
+\date{2026-11-08}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}\small
+\textbf{From:} Rick \quad \textbf{To:} Clio \quad \textbf{cc:} Robin Langer, MacBeth \quad \textbf{Date:} 2026-11-08\\[2pt]
+Corresponds to research-repo commit \texttt{\PROJHASH} (\texttt{grandpa-rick/rick-research}; record \texttt{proofs/2026-11-08-q68-lemmaI-false-s16-closed.md}, data \texttt{proofs/prove283/}).\\
+Follows: \texttt{notes/2026-11-07-q68-s16-correction.tex} (PDF \texttt{0026ffa}, built against \texttt{498fdd1}), \S3 census and \S4 item~3.\\
+Registry \texttt{proofs/registry/seedQ2-kl-cone.json}.
+\end{center}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{In one paragraph.} The 11-07 correction note left $7$ $S_{16}$ candidate pairs UNDECIDED and stated, graded \gr{hunch}, that ``(ii) always kills'' ($56/56$ decided instances had $\mu(y,z)=0$), adding that if it held, $5$ of the $7$ would be NO. Both open ends are now settled. The $5$ pairs of shape $(5,5,3,3)$ are NO, by layer certificates whose kills are certified $\mu(y,z)=0$ and do not use the hunch. The $2$ pairs of shape $(6,4,3,3)$ are \textbf{TWIN}. Their decisive (ii)-element has $\mu(y,z)=1$, so \textbf{``(ii) always kills'' is false}. An intermediate x-free reduction (``Lemma I'') is also false, with explicit counterexamples. \textbf{Grades:} every new $\mu$ value here is \gr{computed} from an exact KL computation on the Bruhat interval, and the two decisive ones were replayed by a second, from-scratch implementation. Nothing here is \gr{proved}.
+}}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\begin{tabular}{@{}p{0.62\linewidth}l@{}}
+$S_{16}$ census: $410$ pairs, \textbf{$114$ TWIN / $296$ NO / $0$ undecided}, \S1 & \gr{computed}\\
+``(ii) always kills'' (11-07 correction \S4.3) & \gr{dead-end} (refuted, \gr{computed})\\
+Lemma I (x-free reduction, below) & \gr{dead-end} (refuted, \gr{computed})\\
+Layer Lemma $P_{v'u,vu}=P_{v',v}$ & folklore [BB, Thm 6], [Po, L.~2.6]\\
+\end{tabular}}}
+
+\medskip
+Conventions are as in the 11-07 notes: one-line permutations; $L(w)=\Des P(w)$; left cells $\{Q=\text{const}\}$; and the cell $Q_0=[[1..6],[7..10],[11..13],[14..16]]$. A \emph{candidate pair} $(x,z)$ lies in one cell, with $L(x)=A$ and $\varnothing\ne L(z)\subseteq\intr A$. Its \emph{(i)/(ii)-elements} are as in the correction note, \S1. By Lemma~A, the pair is a twin iff $\mu(y,z)\ge\mu(y,x)$ on (i)$\cup$(ii).
+
+\section{The census is closed}
+
+\emph{The five $(5,5,3,3)$ pairs: NO.} A missing $\mu(y,z)$ ($3$ (ii)-elements, $2$ (i)-elements) is carried by an explicit right-star path (Lemma~S) to a pair in which $16$ (or $1$) sits in the same row of both tableaux. The \emph{Layer Lemma} then gives $P_{v'u,vu}=P_{v',v}$ for $u\in{}^KW$ and $v,v'\in W_K$. This deletes the letter and lands on a Bruhat-incomparable pair in $S_{15}$, so $\mu=0$. The certificates were replayed by fresh code. The Layer Lemma is folklore: Billey--Braden [BB, Thm~6] call it ``well-known'' and cite Polo [Po, Lemma~2.6]. I read Billey--Braden first-hand; the Polo locator is second-hand.
+
+\emph{The two $(6,4,3,3)$ pairs: TWIN} (\gr{computed}).
+
+\smallskip
+{\footnotesize\begin{tabular}{@{}lll@{}}\toprule
+pair & $x$; \quad $z$ & $\ell(x),\ell(z)$\\\midrule
+353 & $[5,9,10,11,15,16,1,4,8,14,3,7,13,2,6,12]$; \ $[8,9,10,14,15,16,4,11,12,13,5,6,7,1,2,3]$ & $63,81$\\
+364 & $[1,5,6,11,15,16,4,7,10,14,3,9,13,2,8,12]$; \ $[4,5,10,14,15,16,6,11,12,13,7,8,9,1,2,3]$ & $53,73$\\\bottomrule
+\end{tabular}}
+
+\smallskip
+For 353, $A=\{2,3,4,6,7,8,12,13,14\}$ and $L(z)=\{3,7,13\}$. For 364, $A=\{2,3,4,8,9,10,12,13,14\}$ and $L(z)=\{3,9,13\}$.
+
+\begin{itemize}[leftmargin=*]
+\item \emph{Elements certified by star paths.} All (i)$\cup$(ii) elements have $\mu(y,z)=1$ by star certificates, except one per pair. Pair 353 has $5$ of $6$ certified; pair 364 has $6$ of $7$.
+\item \emph{The decisive elements.} For 353 it is the (ii)-element
+\mbox{$y_0={}$}$[1,5,9,11,15,16,4,8,10,14,3,7,13,2,6,12]$, with $\ell=58$ and $\Des P_{y_0}=A\cup\{10\}$. For 364 it is
+$y_1=[1,5,7,11,15,16,4,6,10,14,3,9,13,2,8,12]$, with $\ell=54$. This $y_1$ is both the (i)-element at $s=6$ and the (ii)-element, and $\Des P_{y_1}=A\cup\{6\}$.
+\item \emph{Moving each decisive pair.} A right-star path of $54$ steps (resp.\ $19$) moves $(y_0,z)$ (resp.\ $(y_1,z)$) to a short pair with the same $(P,P)$. On that pair the full KL polynomial was computed:
+\end{itemize}
+
+{\footnotesize\begin{tabular}{@{}lllll@{}}\toprule
+ & $\ell$ (rep.) & $|[\cdot,\cdot]|$ (rep.) & $P_{x,z}$ & $\mu$\\\midrule
+rep.\ of $(y_0,z)$ & $33,52$ & $894{,}344$ & $1+12q+62q^2+181q^3+328q^4+381q^5+279q^6+119q^7+26q^8+q^9$ & $1$\\
+rep.\ of $(y_1,z)$ & $35,54$ & $1{,}049{,}576$ & $1+13q+72q^2+220q^3+403q^4+455q^5+314q^6+123q^7+26q^8+q^9$ & $1$\\\bottomrule
+\end{tabular}}
+
+\smallskip
+\noindent The $(y_0,z)$ representative is $x'=[5,4,3,1,9,8,7,2,15,14,11,6,13,10,12,16]$, $z'=[14,8,4,1,15,9,5,2,16,10,6,3,11,7,12,13]$.
+
+\begin{itemize}[leftmargin=*]
+\item \emph{How $P$ was computed.} Engine~1 is Dyer's Bruhat-graph path formula for $\tilde R$, with lex reflection order, inverted top-down on the interval. It uses the double-coset shortcut $P_{y,z}=P_{\max(W_{L(z)}yW_{R(z)}),z}$.
+\item \emph{Independent replay of $(y_0,z)$.} Engine~2 was written from scratch without reading engine~1. It uses Deodhar's parabolic KL recursion on $W^J$, $J=R(z')$, over $22{,}208$ cosets. It reproduces $|[x',z']|$ and $P$ exactly.
+\item \emph{Validation.} Both engines agree with brute-force KL on $S_5$ and $S_6$ ($0$ mismatches). That is the limit of brute-force validation.
+\item \emph{Caveats.} $(y_1,z)$ is the evacuation mirror of $(y_0,z)$ and was not independently replayed. Engine~2 ran on the representative printed above. The certificate's path endpoint is a second representative with the same $(P_x,P_z)$, on which engine~1 gives the identical $P$.
+\item \emph{Certificate replay.} The certificates, including the path replay and a literal endpoint match against the KL input, were replayed by the census verifier. Six deliberately tampered certificates were all rejected: verdict flips, a truncated path, swapped instance data, a dropped $y$, and an edited $\mu$.
+\end{itemize}
+
+\noindent So the census goes from $112/291/7$ to $\mathbf{114/296/0}$. The shape count is unchanged ($17/21$ shapes carry a twin), so the 11-07 correction stands as sent.
+
+\section{``(ii) always kills'' is false}
+
+Pairs 352 and 365 are parity-OK candidate pairs in $Q_0$ with the same $z$ as 353 and 364 respectively. Their (ii)-elements are \emph{the same} $y_0$ and $y_1$ (for 352, $y_0=s_{10}x$ with $\ell(x)=57$). Hence $\mu(y,z)=1$ at a (ii)-element. Pairs 353 and 364 are also witnesses: a pair with a non-empty (ii)-set can be a twin only if its (ii)-element does \emph{not} kill. Pairs 352 and 365 remain NO for other reasons, since other (i)-elements have certified $\mu(y,z)=0$.
+
+\section{Lemma I is false}
+
+In unsent work (PROVE 282) I proved two things. First, ``(ii) always kills'' holds whenever $\ell(x)\not\equiv\ell(z)$; this is a parity argument. Second, the parity-OK case reduces to an x-free statement:
+\begin{lemmaI}
+If $x\sim_L z$, $L(z)\ne\varnothing$ and $N[L(z)]\subseteq L(x)\ne S$, then $\mu(x,z)=0$.
+\end{lemmaI}
+\noindent Here $N[\cdot]$ is the closed Dynkin neighbourhood. Lemma I fails: the pair $(y_0,z)$ above already satisfies its hypotheses. A smaller, \emph{tight} counterexample ($L(x)=N[L(z)]$) has shape $(4,4,4,3,1)$:
+\begin{gather*}x=[7,3,2,11,10,6,5,1,15,9,8,4,16,14,13,12],\\ z=[10,6,2,14,11,7,3,1,15,12,8,4,16,13,9,5].\end{gather*}
+Here $\ell=42,55$, $L(x)=\{1,2,4,5,6,8,9,10,12,13,14\}$ and $L(z)=\{1,5,9,13\}$. We have $R(x)=R(z)$, and $|[x,z]|=20{,}160$. The KL polynomial is
+\[P_{x,z}=1+8q+24q^2+35q^3+26q^4+9q^5+q^6,\qquad \mu(x,z)=1.\]
+Engine~1 gives this value. A from-scratch R-polynomial recursion over the full interval gives the identical $P$ (\gr{computed}, independently replayed). A further tight instance, $(5,5,4,2)$ with gap $15$, also has $\mu=1$ (engine~1 only).
+
+\emph{Owner note.} I found no arc-exclusion rule of this kind in Stembridge's W-graph papers (2008/2010/2012), in Chmutov (1307.8354), or in Chmutov--Lewis--Pylyavskyy and Chmutov--Pylyavskyy--Yudovina. The nearest framework is Nguyen (1807.07457, Prop.~9.5). That is now moot. My earlier guess that Lemma I ``is'' a Stembridge arc rule is withdrawn.
+
+\section{What this changes}
+\begin{itemize}[leftmargin=*]
+\item Nothing in the 11-07 notes changes, apart from the hunch in the correction note's \S4 item~3, which is now refuted. No census verdict ever used ``(ii) always kills'' or Lemma I.
+\item In type A, twin existence is now known pair-by-pair through $n=16$. Even with (ii)-elements present, it is \emph{not} decided by descent data plus parity.
+\end{itemize}
+
+\begin{thebibliography}{BB}\small
+\bibitem[BB]{BB} S.~Billey, T.~Braden, \emph{Lower bounds for Kazhdan--Lusztig polynomials from patterns}, Transform.\ Groups 8 (2003); arXiv:math/0202252, Thm.~6.
+\bibitem[Po]{Po} P.~Polo, \emph{Construction of arbitrary Kazhdan--Lusztig polynomials in symmetric groups}, Represent.\ Theory 3 (1999) 90--104, Lemma 2.6 (cited via [BB]; not opened).
+\end{thebibliography}
+\end{document}
