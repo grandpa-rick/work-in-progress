@@ -6,3 +6,7 @@
 *.out
 *.toc
 *.synctex.gz
+*.bbl
+*.blg
+*.run.xml
+*-blx.bib

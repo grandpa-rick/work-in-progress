@@ -1,0 +1,190 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs}\sloppy
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newcommand{\gr}[1]{\textsf{#1}}
+\newcommand{\pib}{\bar\pi}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\C}{\mathbb{C}}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theoremprime}{Theorem$'$}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title[Q71: no 0-Schur--Weyl filtration]{The $0$-Schur--Weyl tensor space has no $L_I\boxtimes M_I$ filtration}
+\author{Rick}
+\date{2026-11-10}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}\small
+For Clio (cc Robin).\\
+Record hashes: rick-research commit \texttt{c0cc6d9} (proof record, \texttt{proofs/2026-11-10-q71-zero-sw-filtration.md}),
+\texttt{3371376} (U\textsubscript{0} computation, \texttt{proofs/wake287/u0filt/}).
+\end{center}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{Summary.} Let $V=\C^n$ with $n\ge2$, and let $H=H_N(0)$ act on $V^{\otimes N}$ by Jung--Oh (arXiv:2509.26194, (4.5)). Put $S_0=\End_H(V^{\otimes N})$. Then $V^{\otimes N}$ has an $(S_0,H)$-bimodule filtration with layers $L_I\boxtimes M_I$ \emph{if and only if} $N\le2$. So the Krob--Thibon $K_0$ identity $\sum_I F_I R_I$ does not lift to a filtration.
+
+\textbf{Grades:} Theorem~\ref{thm:main} and Theorem$'$ \gr{proved (internal grade), not externally checked}. The direction ($\Leftarrow$) cites the labelling of Jung--Oh Thm~4.13. Addendum (the $U_0$ variant): \gr{computed, not proved}.}}
+
+\section{Setting and statement}
+
+$V=\C^n$, $n\ge2$. $H=H_N(0)$ acts on the right of $V^{\otimes N}$ by Jung--Oh (4.5), with $\pib_i^2=-\pib_i$. On a word $w=w_1\cdots w_N$ with $a=w_i$, $b=w_{i+1}$:
+\[
+w\cdot\pib_i=\begin{cases} s_iw\ (\text{swap}) & a<b,\\ -w & a>b,\\ 0 & a=b.\end{cases}
+\]
+$S_0=\End_H(V^{\otimes N})$. $M_I$ denotes the indecomposable projective $H$-modules ($I$ a composition with $\ell(I)\le n$), and $L_I$ the simple $S_0$-modules.
+
+\begin{theorem}\label{thm:main}
+Let $n\ge2$. $V^{\otimes N}$ has a filtration by $(S_0,H)$-sub-bimodules with subquotients $L_I\boxtimes M_I$ (each admissible $I$ once) if and only if $N\le2$.
+\end{theorem}
+
+The ($\Rightarrow$) direction proves something much stronger.
+
+\begin{theoremprime}[strong form]
+Let $n\ge2$ and $N\ge3$. There is no chain of $S_0$-stable $H$-submodules $0=X_0\subset X_1\subset\cdots\subset X_m=V^{\otimes N}$ in which every subquotient $X_k/X_{k-1}$ is, as an $H$-module, isomorphic to $P_k^{\oplus d_k}$ for a single indecomposable projective $P_k$.
+\end{theoremprime}
+
+The $S_0$-structure of the layers plays no role: neither simplicity of $L_I$ nor its character $F_I$ is used. As an $H$-module, $L\boxtimes M_I\cong M_I^{\oplus\dim L}$, so Theorem$'$ implies ($\Rightarrow$).
+
+\section{Proof}
+
+\begin{lemma}[stable summands are Hom-orthogonal]\label{lem:1}
+Let $H$ be any finite-dimensional algebra, $V$ a finite-dimensional right $H$-module and $S=\End_H(V)$. Let $X\subset V$ be an $S$-stable $H$-submodule with $V/X$ projective. Then $V=X\oplus Y$ for some $H$-submodule $Y$, and $\Hom_H(X,Y)=0$.
+\end{lemma}
+
+\begin{proof}
+$V/X$ is projective, so $V\to V/X$ splits: $V=X\oplus Y$. Let $p:V\to X$ be the projection along $Y$; it is $H$-linear. Given $f\in\Hom_H(X,Y)$, set $F=f\circ p\in S$. Then $F(X)=f(X)\subset Y$, and $F(X)\subset X$ by $S$-stability. Hence $f(X)\subset X\cap Y=0$.
+\end{proof}
+
+Lemma~\ref{lem:1} needs $S$ to be the \emph{full} commutant, since $p$ must lie in $S$. This is the only place $S_0=\End_H(V)$ is used.
+
+\begin{lemma}[two hook summands]\label{lem:2}
+Let $N\ge3$ and fix two letters $0<1$ of $V$. Let $u_p$ be the word with a single $1$ in position $p$ (other letters $0$), and $v_p$ the word with a single $0$ in position $p$ (other letters $1$). Put $W=\operatorname{span}\{u_1,\dots,u_{N-1}\}$ and $W'=\operatorname{span}\{v_2,\dots,v_N\}$.
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item $W$ and $W'$ are $H$-direct summands of $V^{\otimes N}$.
+\item $f:W\to W'$, $u_{N-1}\mapsto v_N$, $u_k\mapsto0$ ($k<N-1$), is a nonzero $H$-map.
+\item $g:W'\to W$, $v_2\mapsto u_1$, $v_p\mapsto0$ ($p\ge3$), is a nonzero $H$-map.
+\item $W\not\cong W'$.
+\item $W$ and $W'$ are local (hence indecomposable), with simple tops $\C_{\{N-1\}}$ and $\C_{\{1\}}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+From the action: $u_p\pib_{p-1}=u_{p-1}$, $u_p\pib_p=-u_p$, $u_p\pib_i=0$ otherwise; $v_p\pib_{p-1}=-v_p$, $v_p\pib_p=v_{p+1}$, $v_p\pib_i=0$ otherwise.
+
+(a) Let $U=\operatorname{span}\{u_p\}$, an $H$-stable weight space. $W$ is stable (the $\pib_i$ only move the $1$ leftward or scale), $\sum_pu_p$ is killed by every $\pib_i$ (as $(\sum u)\pib_i=u_i-u_i=0$), $\sum u\notin W$, and dimensions add, so $U=\C\cdot\sum_pu_p\oplus W$. Likewise $U'=\C\cdot\sum_pv_p\oplus W'$. Every weight space is an $H$-direct summand of $V^{\otimes N}$, since the action preserves letter content.
+
+(b) $\operatorname{span}\{u_1,\dots,u_{N-2}\}$ is a submodule, so the kernel is stable. $u_{N-1}\pib_{N-1}=-u_{N-1}$ and $v_N\pib_{N-1}=-v_N$; $u_{N-1}\pib_{N-2}=u_{N-2}\mapsto0$ and $v_N\pib_{N-2}=0$ (letters $1,1$); all other $\pib_i$ kill both.
+
+(c) $\operatorname{span}\{v_3,\dots,v_N\}$ is a submodule. $v_2\pib_1=-v_2$ and $u_1\pib_1=-u_1$; $v_2\pib_2=v_3\mapsto0$ and $u_1\pib_2=0$ (letters $0,0$, using $N\ge3$); other $\pib_i$ kill both.
+
+(d) $u_1$ spans a submodule of $W$ with $\pib_1=-1$, $\pib_i=0$ for $i\ge2$. If $y=\sum_{p\ge2}c_pv_p\in W'$ satisfies these relations, then $y\pib_1=-c_2v_2=-y$ forces $c_p=0$ for $p\ge3$, and then $y\pib_2=c_2v_3=0$ forces $c_2=0$. So $W'$ has no such submodule.
+
+(e) $W$ is generated by $u_{N-1}$. Let $R=\operatorname{span}\{u_1,\dots,u_{N-2}\}$, of codimension $1$. If a submodule $Z$ contains $z=c\,u_{N-1}+r$ with $r\in R$, $c\ne0$, then since $u_k\pib_{N-1}=0$ for $k\le N-2$, $z\cdot(-\pib_{N-1})=c\,u_{N-1}$, so $Z=W$. Thus $R$ is the unique maximal submodule and $W$ has simple top $\C_{\{N-1\}}$; in particular $W$ is indecomposable. For $W'$: it is generated by $v_2$, $v_p\pib_1=0$ for $p\ge3$, so $z\cdot(-\pib_1)=c\,v_2$; the unique maximal submodule is $\operatorname{span}\{v_3,\dots,v_N\}$ and the top is $\C_{\{1\}}$. (This reproves (d), since the tops differ.)
+\end{proof}
+
+\begin{proof}[Proof of Theorem$'$]
+Suppose such a chain exists.
+\begin{enumerate}[itemsep=1pt]
+\item Each subquotient is projective, so each $V/X_k$ is projective and the chain splits as $H$-modules: $V\cong\bigoplus_kP_k^{\oplus d_k}$.
+\item By Krull--Schmidt and Lemma~\ref{lem:2}(a),(e), $W\cong P_a$ and $W'\cong P_b$ for some $a,b$; by (d), $a\ne b$.
+\item Let $k$ be minimal with $X_k$ containing a summand of type $W$ or $W'$; say type $W$ (the other case is symmetric, using $g$ in place of $f$). Then $X_k\cong\bigoplus_{j\le k}P_j^{d_j}$ has no summand of type $W'$.
+\item By Lemma~\ref{lem:1}, $V=X_k\oplus Y$, and by Krull--Schmidt the summand $W'$ of $V$ lies (up to isomorphism) in $Y$.
+\item Then $\Hom_H(X_k,Y)\supseteq\Hom_H(W,W')\ni f\ne0$, contradicting Lemma~\ref{lem:1}. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{proof}[Proof of ($\Leftarrow$)]
+$H_1(0)=\C$ and $H_2(0)=\C[\pib]/(\pib^2+\pib)\cong\C\times\C$ are semisimple. Then $V=\bigoplus_D\Hom_H(\C_D,V)\boxtimes\C_D$ and $S_0=\prod_D\End(\Hom_H(\C_D,V))$, a direct sum of simple bimodules $L\boxtimes\C_D=L\boxtimes M_D$. For $n\ge2$ both compositions of $2$ occur. The labelling (character $F_I$) is cited from Jung--Oh Thm~4.13, not re-proved; for semisimple $H$ any labelling works anyway.
+\end{proof}
+
+\noindent\textbf{Verification.} A script (\texttt{proofs/prove287/chk.py}, sympy, exact) checks for $N=3,4,5,6$, $n=2$ letters: $W,W'$ are submodules; $\dim\Hom(W,W')=\dim\Hom(W',W)=1$; $\dim\End W=\dim\End W'=1$. The Hom bases printed for $N=3,4,5$ are exactly $f$ and $g$.
+
+\section{Remarks and caveats}
+
+\begin{remark}[the obstruction]
+The obstruction is a $2$-cycle $W\rightleftarrows W'$ in the Hom-quiver of the summands present: two \emph{non-isomorphic} indecomposable projectives (hooks, tops at descent sets $\{N-1\}$ and $\{1\}$) with nonzero maps both ways. Iterating Lemma~\ref{lem:1}, an $S$-stable filtration by isotypic projective layers needs an ordering of the summand types in which Hom only goes ``backwards''; a $2$-cycle kills every ordering. (A general criterion along these lines is sketched in the proof record but is not needed here.)
+\end{remark}
+
+\begin{remark}[negative control: generic $q$]
+At generic $q$ the same weight spaces give $W\cong W'$ (both the Specht module $(N-1,1)$, simple). Step (d) fails and the argument correctly says nothing.
+\end{remark}
+
+\begin{remark}[generality]
+Theorem$'$ holds verbatim for any right $H_N(0)$-module $V$ containing summands of both types $W$ and $W'$, with $S=\End_H(V)$.
+\end{remark}
+
+\begin{remark}[$U_0$ versus $S_0$]
+The $U_0(\mathfrak{gl}_n)\times H$ version is a \emph{different} question wherever $\rho(U_0)\subsetneq S_0$, as at $(n,N)=(2,3)$ (Krob--Thibon, NCSF~V, Note~5.7). Lemma~\ref{lem:1} needs the full commutant, so the theorem above does not touch that version. See the Addendum for what has been computed.
+\end{remark}
+
+\begin{remark}[honest caveats]
+\leavevmode
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item The proof is elementary (Krull--Schmidt plus splitting of projective filtrations). The statement is plausibly folklore, e.g.\ in standardly-stratified language; no literature search for it has been done.
+\item Deng--Yang, JPAA 216 (2012) 1253 (Morita equivalence and self-injectivity of $S_0$) is \emph{unread} and may bear on this.
+\item Grade: proved (internal grade), not externally checked.
+\end{itemize}
+\end{remark}
+
+\section{Addendum: the $U_0$ variant (computed, not proved)}
+
+\noindent\textbf{Grade: computed.} Nothing in this section is proved for general $(n,N)$.
+
+\smallskip
+\noindent\textbf{Conventions.} $H$-action as above. $U_0(\mathfrak{gl}_n)$ as in Jung--Oh Def.~4.2 with its coproduct $\Delta e_i=1\otimes e_i+e_i\otimes k_i$, $\Delta f_i=k_{i+1}\otimes f_i+f_i\otimes1$, $\Delta k_i=k_i\otimes k_i$, and $\rho_V(e_i)=E_{i,i+1}$, $\rho_V(f_i)=E_{i+1,i}$, $\rho_V(k_i)=\sum_{j\ne i}E_{jj}$. The $U_0$ operators were checked to commute with $\rho(H)$.
+
+\smallskip
+\noindent\textbf{Dimensions} (exact over $\mathbb{Q}$):
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+$(n,N)$ & $\dim\rho(U_0)$ & $\dim S_0$\\
+\midrule
+$(2,3)$ & 19 & 20\\
+$(2,4)$ & 31 & 35\\
+$(3,3)$ & 165 & 165\\
+$(2,5)$ & 46 & not computed\\
+\bottomrule
+\end{tabular}
+\end{center}
+The $(2,3)$ and $(2,4)$ values agree with Krob--Thibon NCSF~V Note~5.7.
+
+\smallskip
+\noindent\textbf{Method} ($n=2$, exact sympy). Let $\varepsilon=\pi_{w_0}$ (with $\pi_i=1+\pib_i$), a central idempotent of $H$ cutting out the block of the simple projective $M_{(N)}$. Then $V^{\otimes N}=T\oplus Y$ with $T=V^{\otimes N}\varepsilon$, $Y=V^{\otimes N}(1-\varepsilon)$, both stable under $A=\langle\rho(U_0),\rho(H)\rangle$. $\rho(U_0)|_T$ is the full matrix algebra, so $T=L_{(N)}\boxtimes M_{(N)}$ is simple and can be placed anywhere. $Y=\bigoplus_{a=1}^{N-1}P_{(a,N-a)}$, each type once with local endomorphism ring, so a bottom piece of type $P_i$ is a graph $\{x+\varphi x\}$. The search solves the $A$-stability equations exactly, passes to quotients and recurses. On this decomposition the weak (isotypic projective layers) and strong ($L\boxtimes M_I$) forms coincide. \emph{Control:} dropping $f_0$ and/or $e_0$ from the generators, the search does find chains, so the solver is not vacuous.
+
+\smallskip
+\noindent\textbf{Results.}
+\begin{center}
+\begin{tabular}{lccl}
+\toprule
+$(n,N)$ & $\dim\rho(U_0)|_Y$ vs $\dim\End_H(Y)$ & filtration? & reason\\
+\midrule
+$(2,3)$ & 3 vs 4 & \textbf{NO} & no $A$-stable bottom piece of either type\\
+$(2,4)$ & 6 vs 10 & \textbf{NO} & no $A$-stable bottom piece of any of 3 types\\
+$(2,5)$ & 10 vs 20 & \textbf{NO} & no $A$-stable bottom piece of any of 4 types\\
+$(3,3)$ & $\rho(U_0)=S_0$ & \textbf{NO} & Theorem$'$ applies verbatim (no search run)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\smallskip
+\noindent\textbf{Mechanism at $(2,3)$.} With $W=P_{(2,1)}$ and $W'=P_{(1,2)}$: $\rho(U_0)|_Y=\operatorname{span}\{1_Y,e_0|_Y,f_0|_Y\}$. Here $f_0|_Y:W\to W'$ is nonzero and spans $\Hom_H(W,W')$ (the map $f$), and $e_0|_Y:W'\to W$ is nonzero and spans $\Hom_H(W',W)$ (the map $g$). The element of $S_0$ missing from $\rho(U_0)$ is the weight idempotent separating $W$ from $W'$, which Lemma~\ref{lem:1} never needs. Directly: a bottom piece $X\cong W$ is a graph over $W$, so $f_0X=f_0W\subset W'$ is nonzero while $X\cap W'=0$; symmetrically for $W'$ using $e_0$. So the Hom $2$-cycle $W\rightleftarrows W'$ is realised inside $\rho(U_0)$ itself.
+
+\smallskip
+\noindent\textbf{Scope and doubts.}
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item The answer for general $(n,N)$ is \emph{open}. A plausible route (unverified): show $f_i,e_i$ restricted to the hook summands are nonzero, so Lemma~\ref{lem:1}'s argument runs with $\rho(U_0)$ in place of $S_0$.
+\item A different $U_0$ convention (e.g.\ Krob--Thibon's own coproduct) could give a different $\rho(U_0)$. The dimension match $19/20$ with KT Note~5.7 suggests the images agree, but this was not checked.
+\end{itemize}
+
+\end{document}
