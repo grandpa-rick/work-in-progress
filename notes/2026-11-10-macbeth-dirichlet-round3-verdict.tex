@@ -1,0 +1,173 @@
+\documentclass[10pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=1pt,topsep=2pt,parsep=0pt}
+\usepackage{amsmath,amssymb,array,longtable,booktabs}
+\usepackage[hidelinks,pdftitle={Round-3 verdict: Dirichlet tensor note (uid461)},pdfauthor={Rick}]{hyperref}
+\newcommand{\file}[1]{{\footnotesize\texttt{\detokenize{#1}}}}
+\newcommand{\WIPHASH}{\texttt{(pending)}}
+\newcommand{\tri}{\mathbin{\triangleleft}}
+\newcommand{\Poly}{\mathbf{Poly}}
+\newcommand{\Cat}{\mathbf{Cat}}
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\Vect}{\mathbf{Vec}}
+\newcommand{\Comon}{\mathbf{Comon}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\ok}{\textsf{applied}}
+
+\title[Round-3 verdict: Dirichlet tensor note]{Round-3 verdict on \emph{The Dirichlet tensor of two polynomial
+comonoids is the product internal category --- in every finitely complete category}}
+\author{Rick}
+\date{2026-11-10}
+
+\begin{document}
+\sloppy
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\maketitle
+\vspace{-1em}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.78\textwidth}@{}}
+\textbf{Author} & Rick\\
+\textbf{Date} & 2026-11-10\\
+\textbf{Recipient} & MacBeth (Scot MacBeth)\\
+\textbf{Title} & Round-3 verdict on the Dirichlet-tensor note (Lemma 1.1)\\
+\textbf{WIP commit} & \WIPHASH\ (\texttt{grandpa-rick/work-in-progress}, \file{notes/}). That commit holds this
+verdict's source; the hash was stamped in a follow-up commit, which adds this PDF.\\
+\textbf{Reviewed} & \file{2026-10-22-day-convolution-topos-uniform.pdf}, content \texttt{3cc552c}, stamp
+\texttt{f2da6ad}, 9 pp.\ (email UID 461). Compared against my round-2 report on uid452 (WIP \texttt{848fc16},
+PDF \texttt{f0e4543}).\\
+\textbf{Sources} & Shapiro--Spivak 2305.00167 (SS), re-read today for Ex.\,2.9, Prop.\,3.35, Thm.\,3.26, Def.\,4.1,
+Lem.\,4.3, 4.4, Thm.\,4.5, Lem.\,5.5, Thm.\,5.6, Cor.\,5.12. Spivak, \emph{A reference for categorical structures on
+$\Poly$}, 2202.00534v14, \S8. Niu--Spivak locators not re-checked (they were checked in round 2). Lean file not
+run.\\
+\end{tabular}
+
+\medskip
+\textbf{Bottom line.} All seven round-2 items (S-A--S-D, N-a--N-c) are applied, and so is the residual M1 display.
+Two small residues of S-A remain, both NIT. I checked Lemma 1.1 and its proof again, step by step, over an arbitrary
+finitely complete $\E$. I found \textbf{no mathematical error}. There are \textbf{3 new SHOULD}, all about where the
+proof's weight sits and what is claimed about it, and \textbf{6 NIT}. None is a MUST. As a lemma, the note is
+ready once the SHOULDs are addressed. On your question I recommend \textbf{the Day-convolution identification}
+(\S4).
+
+\section{The round-2 items}
+
+\begin{center}\small
+\begin{longtable}{@{}l l p{0.62\textwidth}@{}}
+\toprule
+item & status & evidence in uid461\\ \midrule
+M1 (residual) & \ok & No ``$\simeq\Cat$'' survives. p.\,1 has ``directed containers $\simeq$ polynomial
+comonoids $\cong$ small categories and cofunctors ($\Cat^\sharp$)'' and $\Comon(\Poly,\tri,y)\cong\Cat^\sharp$ with
+``bijection on objects''. The containers/directed-containers $\simeq$ is replaced by an explicit parenthetical. p.\,9
+reads $\cdots\cong\Cat^\sharp$.\\
+S-A & \ok\ (2 NIT residues) & (i) pp.\,2--3: objects are literally equal given chosen products, and structure maps
+are equal as iso-classes. (ii) Step 3, Composition: $\mathrm{comp}_{C\times D}=(\mathrm{comp}_C\times
+\mathrm{comp}_D)\circ\kappa$, with $\kappa$ ``a constituent of both sides''. (iii) \S3 opens with the chosen-limits
+convention and defines $\varepsilon_{c\otimes d}:=\lambda\circ(\varepsilon_c\otimes\varepsilon_d)$. Residues: see
+N2 below.\\
+S-B & \ok & Rem.\,3.1 is rewritten. It now says the reduction to $\widehat\E$ is genuine but not a
+trivialisation, that $\tri$ is not objectwise, and that it does not collapse to the Set case stagewise. That is
+correct as far as it goes, but see the new item R3-C.\\
+S-C & \ok & p.\,3: $\Vect$ is finitely complete, the exponentiable maps are exactly the isomorphisms (fold-map
+argument), only discrete internal categories qualify, and the lemma holds ``but degenerately''.\\
+S-D & \ok & p.\,6--7: the projections are cofunctors, and $\pi_C$ lifts $f$ at $(i,j)$ to $(f,\mathrm{id}_j)$.
+I re-ran the witness by hand. $H(e)=(0,0)$ and $H(x)=H(z)=(1,1)$ are forced, so the lift of $(a,\mathrm{id})$ at
+$e$ has a codomain mapping to $(1,1)\ne(1,0)$. Contradiction, as stated.\\
+N-a & \ok & Both URLs (p.\,1 footnote, p.\,8) now wrap inside the margin.\\
+N-b & \ok & The test category is $T$.\\
+N-c & \ok & Step 2 (p.\,5): ``the content of the reassociation is the comparison map $\kappa$ of $(\star)$''.\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\section{Is Lemma 1.1 correct over an arbitrary finitely complete $\E$? Checked: yes}
+
+What I checked, against the SS text:
+\begin{itemize}[leftmargin=*]
+\item \emph{Ambient framework needs only finite limits.} SS Thm.\,3.26 ($\tri$ monoidal) and Thm.\,4.5 ($\otimes$
+  monoidal, normal duoidal) are stated for ``$\E$ a category with finite limits''. $\mathrm{dom}_C\times
+  \mathrm{dom}_D$ is exponentiable by SS Lem.\,4.3. SS Cor.\,5.12 gives $\Comon(\Poly_\E)\cong$ internal categories
+  with exponentiable source and internal cofunctors. So no LCCC, coproducts, extensivity or pullback-stability of
+  colimits is hidden in the inputs. $\Sigma$ is postcomposition, as p.\,8 says.
+\item \emph{Step 1} is a literal equality of chosen products. \emph{Step 3, codomain}: the position leg of $\iota$
+  is the comparison $\Pi_{s}A\times\Pi_{t}B\to\Pi_{s\times t}(A\times B)$, built from counits. By the universal
+  property it sends the pair of transposes of $\mathrm{cod}_C,\mathrm{cod}_D$ to the transpose of
+  $\mathrm{cod}_C\times\mathrm{cod}_D$. \emph{Composition}: by the round-2 argument, which the text now states.
+  \emph{Identities}: the backward leg of $\lambda\circ(\varepsilon_c\otimes\varepsilon_d)$ is
+  $\mathrm{id}_C\times\mathrm{id}_D$.
+\item \emph{Comonoid laws.} The triple equals $(C\times D)^\sharp$, which is a comonoid by the forward direction of
+  SS Thm.\,5.6. So the laws need neither duoidal coherence nor the one-by-one matching. The text says the first
+  (p.\,4) and still also invokes the second (p.\,6), which is harmless.
+\item \emph{\S4.} $\Cat(\E)=\mathrm{Mod}(T_{\Cat},\E)$ has finite limits computed objectwise, and $C\times D$
+  stays in the exponentiable-source subcategory by Lem.\,4.3. The Graph description and the no-global-element
+  claim ($1\to C_0$ needs a looped vertex) are right.
+\end{itemize}
+
+\section{New issues}
+
+\begin{enumerate}[label=\textbf{R3-\Alph*.},leftmargin=*]
+\item \textbf{(SHOULD) The explicit form of $\iota$ over $\E$ is asserted, not sourced.} Step 2 and \S2.3 cite
+  ``[3, Thm.\,4.5, eq.\,(16)]'' for $\iota$ and read off its legs: the comparison of $\Pi$'s on positions and
+  $\kappa$ on directions. But SS Thm.\,4.5 constructs $\iota$ abstractly. $\Poly_{(-)}$ is a symmetric monoidal
+  2-functor (SS Lem.\,4.4), so $\Poly_\E$ is a monoid in monoidal categories and colax functors. Eq.\,(16) records only
+  the \emph{shape} of the map (and has a typo, $\tri$ for $\otimes$, in the second factor). The only explicit formula
+  in SS is the Set one, Ex.\,4.6. The legs you use come from unwinding $\iota$ as the \emph{productor of}
+  $\Poly_\times\colon\Poly_{\E\times\E}\to\Poly_\E$ (SS Prop.\,3.35, proof). That productor is the cartesian
+  morphism obtained by applying $\times$ to the distributivity pullback and factoring through the canonical
+  comparison. I checked this unwinding, and it gives exactly the legs you state. So nothing is wrong. But this is
+  the step the identification actually rests on, and the note points the reader to the wrong place for it. Cite
+  Prop.\,3.35 + Lem.\,4.4 and add two sentences of unwinding.
+\item \textbf{(SHOULD) ``The single load-bearing coherence is $(\star)$'' overstates what is used.} The abstract
+  (p.\,1), p.\,3 (``Its one coherence is $(\star)$''), Step 2 (``the only fact we verify by hand is that $(\star)$ is a
+  genuine isomorphism'') and Table 1 row 3 all present the \emph{invertibility} of $\kappa$ as the proof's
+  load-bearing input. But Step 3 uses $\kappa$ only as a \emph{map}, because it occurs definitionally on both
+  sides. That is exactly what S-A made explicit. The invertibility of $\kappa$ is the cartesianness of the
+  productor $\iota$, which SS prove (Prop.\,3.35: ``productor morphisms are cartesian''). Your proof neither
+  re-proves it nor uses it. Honest framing: beyond the SS framework, the identification uses \emph{only chosen finite
+  limits and universal properties}. $(\star)$ is where products meet pullbacks, but nothing about it is load-bearing.
+  This also removes the slight tension with S-A(ii).
+\item \textbf{(SHOULD) Size, and Rem.\,3.1.} The abstract says the result is ``not an artefact of \dots any size
+  \dots hypothesis''. Rem.\,3.1 reduces along ``the fully faithful singular functor $\E\hookrightarrow\widehat\E$''.
+  For large $\E$ (every Grothendieck topos), this is the Yoneda embedding into presheaves in a larger universe, as SS
+  Ex.\,2.9 says explicitly. SS Lem.\,5.5 allows any small dense $F\colon\mathcal A\to\E$, and such an $F$ need not
+  exist for a general $\E$. The SS inputs you cite (Thm.\,3.26, 5.6, Cor.\,5.12) are themselves proved through this
+  reduction. So the honest statement is ``no size hypothesis beyond the universe enlargement SS's proofs already
+  use''. Your own Steps 1--3 need no enlargement. Second point: a reduction along $F^*$ does not preserve ``on the
+  nose''. $F^*$ of a chosen limit in $\E$ is \emph{a} limit in $\widehat{\mathcal A}$, not the chosen one. So Rem.\,3.1
+  would give the identification only up to canonical isomorphism. Since the direct proof makes Rem.\,3.1
+  unnecessary, I suggest cutting it to one sentence that carries both caveats, or deleting it.
+\end{enumerate}
+
+\textbf{NITs.}
+(N1) Abstract, last line of the scope sentence: ``with $\Set$ as the degenerate case''. $\Set$ is the motivating
+case. $\Vect$ is the degenerate one (your p.\,3).
+(N2) S-A residues. Lemma 1.1 (p.\,2) still states the counit as $\varepsilon_c\otimes\varepsilon_d$, where \S3 has
+$\lambda\circ(\varepsilon_c\otimes\varepsilon_d)$. And p.\,3 says ``the only isomorphism in sight being \dots
+$\kappa$'', which omits $\lambda$.
+(N3) \S4 (p.\,6): ``the category of $\tri$-comonoids is isomorphic to the category of internal categories and internal
+cofunctors''. SS Cor.\,5.12 restricts to internal categories \emph{with exponentiable source maps}. Say so.
+(N4) p.\,1: ``$\Cat^\sharp\ne\Cat$, as \S4 will show''. \S4 shows that $C\times D$ is not the product in
+$\Cat^\sharp$. That does not by itself show that the categories are inequivalent. Rephrase as ``and the difference
+matters, as \S4 shows''.
+(N5) Table 1 (p.\,7) runs past the right margin in row 1, column 3.
+(N6) Prior art. Spivak 2202.00534 \S8 already states in one sentence that $\Comon(\Poly)$ ``has finite sums and
+products \dots\ it also has another monoidal product $\otimes$ with unit $y$, which agrees with the usual cartesian
+product of categories''. Cite it next to NS Prop.\,8.79. It also bears on your question.
+
+\section{Your question: which second result?}
+
+I recommend the \textbf{Day-convolution identification}, stated as an $\E$-indexed (self-indexed) Day convolution
+of the polynomial functors $P_p,P_q$ with respect to $\times$. It completes the note's own thesis and justifies its
+history, since ``Day convolution'' is what the $\Set$ case was. It also looks short. $P_p=\Sigma_{A_p}y^{s_p}$ is an
+indexed sum of representables. Co-Yoneda gives $y^{B}\circledast y^{B'}\cong y^{B\times B'}$. In each variable, Day
+convolution should commute with indexed sums by Frobenius ($\Sigma_f\dashv f^*$ and stability of $\times$). So I expect
+it to hold over any LCCC, with Grothendieck-ness needed at most to make the large coend exist. That expectation is
+unchecked, and it is the main thing to test. The categorical product in $\Cat^\sharp(\E)$ is a different project.
+Over $\Set$, existence is already in Spivak 2202.00534 \S8, via the cofree comonoid $\mathfrak c$. Internally it would
+need cofree comonoids in $\Poly_\E$, so countable limits and exponentiability of infinite-depth tree bundles. That is
+a paper of its own, not a second result for a 9-page note. Both directions are \emph{unchecked for novelty}. The
+indexed-Day statement in particular may be folklore (Weber, Kock, or the indexed parts of 2202.00534), so run that
+search before writing.
+
+\end{document}
