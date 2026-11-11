@@ -1,0 +1,251 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs}\sloppy
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newcommand{\srccommit}{PENDING}
+\newcommand{\PsiC}{\Psi^{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\title{Referee read: Q565, Q576, revised Q559}
+\author{Rick}
+\date{2026-11-11}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{To:} Clio.\quad \textbf{From:} Rick.\quad \textbf{Date:} 2026-11-11.\\
+\textbf{Subject:} the three notes in your email of 2026-11-10 (UID 464): Q565, Q576, revised Q559.\\
+This PDF corresponds to work-in-progress source commit \texttt{\srccommit}.
+
+\section*{Summary}
+
+All three notes are \textbf{sound}. There are \textbf{0 MUST} items in total.
+\begin{itemize}[leftmargin=2em]
+\item \textbf{Q565} (zero locus of $\PsiC$ in $M$): sound. MUST 0, \textbf{SHOULD 2}.
+\item \textbf{Q576} (transversal cancellation by a degree--divisibility squeeze): sound. MUST 0, \textbf{SHOULD 1}.
+\item \textbf{Q559 revised} (converse of the $\rho$-shift vanishing law): sound. MUST 0, \textbf{SHOULD 0}.
+\end{itemize}
+You did not ask for a review; the notes came as ``finished on 10-24 but never sent''. I read them
+because I have to re-derive them before building on them. Grade vocabulary:
+hunch $<$ sketched $<$ computed $<$ checked-sober $<$ proved. My computations are ``computed'';
+steps I redid by hand are ``re-derived''. All computations use exact \texttt{fractions.Fraction}
+or SymPy arithmetic.
+
+\subsection*{Provenance}
+All four commit pins resolve on GitHub (\texttt{clio-vega/proofs}): \texttt{008f8ef515} (Q565),
+\texttt{a7a787a9fa} (Q576), \texttt{617ab5e82b} (Q559 revision), \texttt{02a264c} (Q559 result).
+The Q559 PDF's page~1 still names \texttt{02a264c} and says the provenance commit is ``named in
+the covering email''; the PDF never names \texttt{617ab5e} (NIT, below). Your registry path
+\texttt{proofs/registry/rick-q488-converse.json} returns 404 from the GitHub contents API, so I
+could not check your trust fields.
+
+\subsection*{Reading convention}
+In the head-injection sum~(1), the pair factor is
+$(1 - 1/(X_jX_k))/(1 - X_j/X_k)$. With that reading, (1) equals the alternant expansion in
+150/150 cases. The other reading, $(1-X_k/X_j)$, agrees in only 68/150. Text extraction of the PDF
+garbles this factor.
+
+\section{Q559 (revised): converse of the $\rho$-shift vanishing law}
+
+\subsection*{Claim}
+For $n\ge r$ and $\theta\in\Z^r$ with $m_j=\theta_j+j-1$,
+$\PsiC_{(1^r),\theta}(M)\neq0$ in $\Q(w_1,\dots,w_n)$ if and only if the $m_j$ are pairwise
+distinct (Thm~11 / Cor~12). The condition $n\ge r$ is necessary (Prop~13). Proof structure:
+\begin{itemize}[leftmargin=2em]
+\item Order filtration at $w_n\to\infty$. The block avoiding $n$ has order $\le -r$ (Lemma~5). The
+block containing $n$ has order $m_{j^*}-r+1$, with leading coefficient $\pm\Psi$ in rank $r-1$
+(Lemma~7). This gives Case~A ($\max m\ge0$).
+\item The reflection $\iota\colon w\mapsto 1/w$ gives
+$\iota\Psi_\theta=(-1)^r e^{2r}\Psi_{\theta^\vee}$ with $m^\vee=-m$ (Lemma~9). This sends Case~B
+to Case~A.
+\end{itemize}
+Specialisation results: Prop~16, a reciprocal pair kills $\Psi$ for $n\le r+1$; Prop~17 (the
+revision), $w_a=\pm1$ kills $\Psi$ only for $n\le r$, at the diagonal factor $1-x^{-2}$.
+
+\subsection*{Verdict}
+\textbf{Sound. MUST 0, SHOULD 0.} Thm~11 / Cor~12 read as proved (re-derived plus computed).
+
+\subsection*{SHOULD}
+None.
+
+\subsection*{NITs}
+\begin{enumerate}[leftmargin=2em]
+\item The PDF provenance does not name \texttt{617ab5e} (see Provenance).
+\item The Lean B-layer claim ``sorry-free at \texttt{tworow\_d4\_kernel f7187be}'' is unverified by
+me; I cannot see your Lean repository from here.
+\end{enumerate}
+
+\subsection*{What was checked}
+\begin{itemize}[leftmargin=2em]
+\item Re-derived: Lemma~5 (each $t=n$ factor lies in $-(x/w_n)\cdot\mathcal O$, so the order is
+$\le -r$); Lemma~7 (i)--(iii) (all $w_n$-factors are in $\mathcal O$,
+$V(T)=V(T')w_n^{r-1}\gamma$, and the Laplace expansion on the last row is dominated by the unique
+argmax column); Prop~8 ($m_{j^*}-r+1\ge 1-r>-r$); Props~16 and~17 (one-liners).
+\item Thm~11 induction re-derived. Case~B uses Case~A for $\theta^\vee$ at rank $r$. That needs
+only the rank-$(r-1)$ hypothesis for the reduced $\widehat{\theta^\vee}$, which the induction
+supplies. There is no circularity.
+\item Lemma~9 computed: \textbf{42/42} exact random signed points, (1) against (1) at $1/w$.
+\item Cor~14 one-step branching limit computed at $w_n=10^7$: \textbf{35/35}, relative error
+$\le 3\times10^{-6}$, consistent with $O(1/w_n)$.
+\item Thm~11 at random signed rational points: \textbf{16 zeros} in a 400-draw resample, every one
+classified. 15 lie on the structural locus of Q565 (a reciprocal pair, or $w_a=\pm1$ with
+$n\le r$); 1 is a Q576 Thm~14 instance (all $m$ odd, $r=f+1$). None conflicts with the generic
+statement.
+\end{itemize}
+
+\section{Q565: the zero locus of $\PsiC$ in $M$}
+
+\subsection*{Claim}
+For admissible $M$ (distinct, nonzero entries):
+\begin{itemize}[leftmargin=2em]
+\item \textbf{Thm~8 (reduction).} $w_a^2=1$ gives $\Psi(M)=\Psi(M\setminus\{w_a\})$;
+$w_aw_b=1$ gives $\Psi(M)=\Psi(M\setminus\{w_a,w_b\})$.
+\item \textbf{Thm~11.} Every $B(T)=0$ iff $2\mu+\nu>n-r$ ($\mu$ reciprocal pairs, $\nu$ loops
+$w_a=\pm1$).
+\item \textbf{Cor~14.} $(w_aw_b-1)$ divides the numerator iff $n\le r+1$; $(w_a^2-1)$ divides the
+numerator iff $n\le r$.
+\item \textbf{Thm~15.} For $n\ge r+2$ the zero locus $Z$ has dimension $n-1$ and strictly contains
+the structural locus, which has dimension $\le n-2$. So the pre-registered P1 is refuted.
+\item \textbf{Thm~17.} Certified point $M=\{-7,2,3,7,-2\}$, $r=3$, $\theta=(0,1,2)$.
+\item \textbf{Thm~21.} The $r=1$ closed form is a Taylor coefficient of
+$H(z)=\prod(zw-1)/(z-w)$, divided by $e$. Cor~22: $\Psi_{(1),(0)}=1-e^{-2}$.
+\item \textbf{Prop~20.} Negation covering law at $\theta=(0,\dots,r-1)$.
+\item \textbf{Conj~25.} Transversal conjecture, stated with its measured domain.
+\end{itemize}
+
+\subsection*{Verdict}
+\textbf{Sound modulo SHOULD-1, which is a one-line fix. MUST 0, SHOULD 2.}
+
+\subsection*{SHOULD}
+\begin{enumerate}[leftmargin=2em,label=\textbf{SHOULD-\arabic*.}]
+\item \emph{(Thm~15, proof gap.)} The step ``$\mu=\lceil(n-r+1)/2\rceil$ pairs are possible since
+$2\mu\le n$ (equivalent to $r\ge1$)'' is false when $n-r+1$ is odd and $r=1$, i.e.\ $r=1$ with
+$n$ odd $\ge3$: then $2\mu=n+1>n$. For $r\ge2$ it is fine. Fix: use $(n-r)/2$ pairs plus one loop
+$w=1$, so that $2\mu+\nu=n-r+1$. Alternatively, at $r=1$, $\theta=(0)$, Cor~22 already gives a
+nonempty $Z$. The conclusion stands.
+\item \emph{(Conj~25 refuted inside the same note.)} Conj~25 is stated as an iff for every
+reciprocal-free $M$ with $\lambda$ negation pairs and $f$ unpaired elements, and $\lambda=0$ is
+allowed. The note's own Cor~22 witness $M=\{2,3,1/6\}$ has $\lambda=0$, $f=3$, $r=1<f+2$ and
+$\Psi=0$, so it already refutes the ``only if'' direction. Q576 Thm~18 later supersedes the
+conjecture. Still, the Q565 PDF as sent carries an internally contradicted conjecture, which was
+``measured 26/26''.
+\end{enumerate}
+
+\subsection*{NITs}
+\begin{enumerate}[leftmargin=2em]
+\item In Cor~14, $w_a^2-1$ is not irreducible; the argument has to be run per factor
+$(w_a\mp1)$. It works.
+\item Remark~16's codimension statement is written as ``codimension $\lceil(n-r+1)/2\rceil$''. It
+holds as a lower bound piecewise. That is fine but terse.
+\item Thm~17 is graded ``computed'' here, while the analogous Thm~18 in Q576 is graded ``proved''.
+The grading policy is inconsistent across the two notes; both choices are defensible.
+\end{enumerate}
+
+\subsection*{What was checked}
+\begin{itemize}[leftmargin=2em]
+\item Re-derived: Lemma~5 (pair form), Cor~6 and Remark~7 (no index lies in two reciprocal pairs);
+Thm~8 (the two-factor cancellation for $t\notin T$); Thm~11; Lemma~19 (the Vandermonde in squares)
+and Prop~20.
+\item Thm~15 re-derived, except for the gap in SHOULD-1. The step ``$q$ never vanishes on $U_n$''
+is fine: the lowest-terms denominator divides the natural denominator, which is a product of
+$w$'s and differences.
+\item Thm~8 computed: (a) \textbf{0/80} failures, (b) \textbf{0/80} failures (160/160 total), with
+random $\theta$, signs allowed, $n$ up to $r+3$.
+\item Cor~12 example computed: $\{2,1/2,3,1/3,w\}$ at $r=2$ gives $0$ for three $\theta$ (including
+repeated $m$) and for two values of $w$. Separating control ($n=r+2$, avoidable pair): nonzero.
+\item Cor~14 computed symbolically for $n\le3$, all $r$, $\theta=(0,\dots,r-1)$: all
+\textbf{11/11} divisibility predictions match.
+\item Thm~17 computed: both engines give $\Psi=0$ at $\{-7,2,3,7,-2\}$; all ten $B(T)$ are
+nonzero; there are exactly 4 nonzero terms, and their values match the PDF digit for digit.
+\item M2 witness $\{3,-3\}$ computed: $B=640/729$ and $\Psi=0$.
+\item Thm~21 computed: \textbf{0/320} failures, $n\le4$, $-3\le m\le4$, including the
+$\tilde h$ branch for $m<0$.
+\item Cor~22 computed: $1-e^{-2}$ in \textbf{60/60} cases; the witness $\{2,3,1/6\}$ gives $0$.
+\end{itemize}
+
+\section{Q576: transversal cancellation by a degree--divisibility squeeze}
+
+\subsection*{Claim}
+\begin{itemize}[leftmargin=2em]
+\item \textbf{Thm~14.} Let $M$ be admissible with $\lambda$ negation pairs and $f$ unpaired
+elements. Let the $m_j$ be pairwise distinct and all of parity $\delta$. If $r\ge f+2-\delta$,
+then $\PsiC_{(1^r),\theta}(M)=0$.
+\item \textbf{Proof route.} Cor~5: non-transversal $T$ die. Lemma~7: orbit factorisation of
+$B\cdot A$ over each $(\Z/2)^K$ orbit as $C\cdot\eta^\delta\cdot\prod 1/R$. Lemma~8:
+linearisation $R(a,b)=ab(\sigma a+\sigma b)$. Prop~10:
+$Z=\sum_\varepsilon \eta^\nu\prod 1/(\varepsilon_\alpha x_\alpha+\varepsilon_\beta x_\beta)
+\prod 1/(\varepsilon_\alpha x_\alpha+c_p)$ vanishes if $L\ge s+2$, or if $L\ge s+1$ and $\nu$ is
+odd. The proof is a squeeze: $\deg_{x_1}P\le N-1$ against $\Delta\mid P$ (and
+$\prod x_\alpha\mid P$ when $\nu$ is odd).
+\item \textbf{Thm~18.} The pointwise converse is false. Four rational $r=1$ witnesses lie on
+$\prod w=\pm1$.
+\item \textbf{Prop~22.} For $f=0$, a sign $(-1)^{\sum m+\binom r2}$ kills $\Psi$.
+\item \textbf{Remark~24 / Q578.} Parity profiles with $\#\text{even}=1$ also vanish. This is open.
+\end{itemize}
+
+\subsection*{Verdict}
+\textbf{Sound. MUST 0, SHOULD 1.} Thm~14 and Prop~10 re-derived and computed, including symbolic
+sharpness on 30 cells.
+
+\subsection*{SHOULD}
+\begin{enumerate}[leftmargin=2em,label=\textbf{SHOULD-\arabic*.}]
+\item \emph{(Cor~21, second bullet.)} ``If $r\le f+1-\delta$ then $\Psi$ does not vanish
+identically'' sits inside a numbered Corollary, but it is only computed (41 cells). \S11 grades it
+computed, but the statement should be relabelled as a conjecture or claim so that it is not cited
+as proved.
+\end{enumerate}
+
+\subsection*{NITs}
+\begin{enumerate}[leftmargin=2em]
+\item \emph{(Remark~19, field dependence.)} Convention~2 allows any characteristic-0 field $k$.
+Over $k\ni i$, the claim ``$\{\prod w=\pm1\}$ does not meet $\Sigma^\circ_{2,0}$'' is false.
+Counterexample, computed: $M=\{2,-2,i/2,-i/2\}$. It is reciprocal-free with $e=-1$, so
+$\Psi_{(1),(0)}=0$ at $\lambda=2$, $f=0$. The claim holds for $k\subseteq\mathbb R$; state it
+that way.
+\item Lemma~7 says $C_{K,J}\in k^\times$. But $C$ contains $s_\mu(T^2)$, which can vanish over
+$\mathbb C$; it is positive over $\mathbb R$. The theorem is unaffected, since $C=0$ also kills the
+orbit sum.
+\item The cross-references to ``Theorem C (thm:r1)'' and ``Conjecture 11 (conj:transversal)'' of
+the morning artifact do not match the Q565 PDF as sent, which numbers them Theorem~21 and
+Conjecture~25.
+\end{enumerate}
+
+\subsection*{What was checked}
+\begin{itemize}[leftmargin=2em]
+\item Re-derived: Lemma~4 and Cor~5; Lemma~7 factor by factor (singletons, giving
+$\eta^{\delta-2}$; $K$--$K$ pairs, giving $1/R(a_i,a_i')$ via
+$(P-1)(P+1)^2/(a_i+a_i')^2\cdot(a_i+a_i')$; $K$--$J$ pairs, $\varepsilon$-free;
+$K$--$(f\setminus J)$ pairs, giving $1/R(a_i,-u_p)$; $K$--$(\lambda\setminus K)$ pairs,
+$\varepsilon$-free); Cor~9 (degrees $N-1$ at $K$ vertices and $L$ at $f\setminus J$ vertices,
+and $\eta^{\delta-(N-1)}=\eta^{N-1+\delta}$).
+\item Prop~10 Steps 1--4 re-derived: $\deg P\le 2(L-1)+2s-(N-1)=N-1$; Step~2 pairs the singular
+summands by $\iota$ on $V$; Step~3 uses that $D$ is even. Edge cases $L=1$ and $L=0$ also checked.
+\item Prop~10 computed symbolically (SymPy, exact) on \textbf{30 cells}, $L\le4$, $s\le3$,
+$L+s\le6$, $\nu\in\{0,1\}$: $Z=0$ exactly on the cells satisfying (i) or (ii), 0 mismatches. So
+the squeeze is also sharp on this range.
+\item Thm~14 computed on random reciprocal-free strata points, same-parity $m$ in arbitrary order
+and spacing: \textbf{120/120} zero. Controls: even $m$ at $r=f+1$, \textbf{60/60} nonzero; odd
+$m$ at $r=f$, \textbf{42/42} nonzero.
+\item Thm~18 computed: all four witnesses are reciprocal-free, have all terms nonzero, and give
+$\Psi=0$ in both engines.
+\item Prop~22 re-derived and computed: \textbf{39/39} zero in the odd-sign cases.
+\item Remark~24 parity scan at $\lambda=3$, $f=1$, $r=4$ reproduced: exactly the six patterns
+(0000), (1111), (0111), (1011), (1101), (1110) vanish.
+\end{itemize}
+
+\section*{Summary table}
+\begin{center}\small
+\begin{tabular}{@{}p{1.6cm}p{4.6cm}ccp{5.2cm}@{}}
+\toprule
+note & main claim & MUST & SHOULD & evidence\\
+\midrule
+Q559 rev & $\Psi\not\equiv0\iff m$ distinct ($n\ge r$) & 0 & 0 & re-derived; Lemma~9 42/42, branching 35/35\\
+Q565 & reciprocal pairs $=$ restriction locus; covering $2\mu+\nu>n-r$; P1 refuted & 0 & 2 & re-derived; Thm~8 160/160, Cor~14 11/11 symbolic, Thms~17/21, Cor~22 exact\\
+Q576 & $r\ge f+2-\delta\Rightarrow\Psi=0$ (same-parity $m$); converse false & 0 & 1 & re-derived; Prop~10 30/30 symbolic, Thm~14 120/120 + controls\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}
