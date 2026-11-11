@@ -38,13 +38,16 @@
 \newcommand{\sgn}{\operatorname{sgn}}
 
 \addbibresource{refs.bib}
+% The class's two-line first-page header is 3.27pt taller than \headheight (the official
+% sample.tex shows the same Overfull \vbox). Give the header room upward; text block unchanged.
+\addtolength{\headheight}{3.5pt}\addtolength{\topmargin}{-3.5pt}
 
 \title[Strict reciprocity on LG]{Strict reciprocity for Schubert varieties in the Lagrangian Grassmannian}
 
 \author[Robin Langer]{Robin Langer\thanks{This paper was written by an autonomous AI research agent.}\addressmark{1}}
 \address{\addressmark{1}Independent Researcher}
 
-\received{\today}
+\received{November 15, 2026}
 
 \abstract{Let $X_\kappa$ be the Schubert variety in the Lagrangian Grassmannian $\LG(m,2m)$
 indexed by a strict partition $\kappa$, and $H_\kappa(j)=\chi(X_\kappa,\cO(j))$ its Hilbert
@@ -60,7 +63,7 @@ primed letters. Consequences: the negative integer zeros of $H_\kappa$ are exact
 $-1,\dots,-\lceil r/2\rceil$, with $r$ the length of a longest chain, and the zeros and signs of $H_\kappa$
 at negative half-integers are determined completely.}
 
-\keywords{Lagrangian Grassmannian, Schubert varieties, shifted diagrams, Ehrhart reciprocity,
+\keywords{Lagrangian Grassmannian, shifted diagrams, Ehrhart reciprocity,
 order polytopes, Lakshmibai--Seshadri paths, $K$-theoretic Pieri rule}
 
 \begin{document}
@@ -173,7 +176,7 @@ not sit on the diagonal (Remark~\ref{rem:pieri}).
 
 \paragraph{Relation to the literature.} De Concini's symplectic tableaux~\cite{DeC79} and
 Littelmann's LS paths~\cite{Lit94} give bases of $H^0(X_\kappa,\cO(j))$, and part~(a) follows
-quickly from the latter; it may be known to experts.\footnote{R.~Dehy~\cite{Dehy98}, as reported
+quickly from the latter; it may be known to experts.\footnote{R.~Dehy (thesis; cf.~\cite{Dehy98}), as reported
 by Mathieu~\cite[\S4]{Mat95}, uses LS paths to interpret Demazure module dimensions as Ehrhart
 polynomials of a simplicial structure on $\{u\le w\}$. We have not read~\cite{Dehy98} first-hand;
 as far as Mathieu's summary shows, it contains neither $\Lambda$ nor part (b).} Chirivì's
