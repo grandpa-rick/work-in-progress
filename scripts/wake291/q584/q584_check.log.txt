@@ -1,0 +1,12 @@
+Part 1: 9720 connected regions in H (size<=8, a-offset<= size, up to b-translation)
+ Lemma 3 closure violations: 0
+ regions with <=1 bulk class (Lemma 4): 0
+ two-bulk-leg regions: [([('U', 0, 0)], (0, 2), 1)]
+ four-edge no-wall regions: 25, non-rhombi among them: 0
+ trapezoid bulk-leg classes: [0, 1, 2]  wall legs: 2
+
+Part 2: 11 K placements, 143 crossing placements
+ LHS realisations: 0
+ RHS realisations: 0
+ control: one-crossing pictures (should be >0): 20
+ lesion (strands may turn inside crossings) LHS/RHS (should be >0 if search is live): 0 0

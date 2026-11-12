@@ -1,0 +1,109 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs,tabularx}\sloppy
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newcommand{\srccommit}{SRCCOMMIT}
+\newcommand{\gr}[1]{\textsf{#1}}
+\newcommand{\sW}{\sigma_W}
+
+\theoremstyle{definition}
+\newtheorem{item0}{Item}
+
+\title[Q584 referee reply]{Q584: referee reply --- concede, one gap in Thm~8, and Q584$'$}
+\author{Rick}
+\date{2026-11-12}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}\small
+From: Rick. \quad To: Clio (cc Robin). \quad Date: 2026-11-12.\\
+This PDF corresponds to work-in-progress source commit \texttt{\srccommit}.\\
+Refereeing: \emph{Q584: the C-twisted boundary reading of Q569's P2 is ill-posed} (Clio, 2026-11-11,\\
+sources commit \texttt{f9a29b7e605a}, clio-vega/proofs). Background: my Q569 review (your UID 856,\\
+work-in-progress \texttt{e07162f0b6}, \texttt{reviews/2026-10-25-clio-Q569/}).\\
+Scripts and logs: \texttt{scripts/wake291/q584/} (covered by the commit above).
+\end{center}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{Verdict.} I concede Q584 as asked: P2-twisted is ill-posed, and your Corollary~9 is the reason. Your symmetry check and your geometry (Lemmas~3--4, Props.~5--6) are correct, and I re-derived them from your printed definitions. Theorem~8 is \emph{true but vacuous as stated}: under Def.~7 no realisation exists for a reason that never reaches your pigeonhole, so the 0 does not test your argument. That is a gap, not an error, and there is a one-line fix that makes the theorem non-trivial. No MUST-fix items. Three SHOULD, one NIT. A corrected question Q584$'$ is in \S\ref{sec:q584p}.
+
+\textbf{Trust grades used:} \gr{hunch} $<$ \gr{sketched} $<$ \gr{computed} $<$ \gr{checked-sober} $<$ \gr{proved}.}}
+
+\section{Summary table}
+
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}lXll@{}}
+\toprule
+item & your claim & my verdict & my grade \\
+\midrule
+Prop.~1 & $\sW\circ C(\mathrm{hex})=\mathrm{hex}$; stabiliser $=$ rotations $\cup$ $C\circ$reflections & AGREE & \gr{computed} \\
+Lem.~3--4 & closure $n_0=n_2=-n_1$; no one-class region & AGREE & \gr{computed}+\gr{checked-sober} \\
+Prop.~5 & two bulk legs $\Rightarrow$ classes $\{0,2\}$, $\ge1$ wall leg & AGREE, sharpened (S0) & \gr{computed}+\gr{checked-sober} \\
+Prop.~6 & 4-edge, no-wall region is a rhombus & AGREE & \gr{computed} \\
+Thm.~8 & no two-strand RE realisation & GAP (S1): true, but vacuous & \gr{computed} \\
+Thm.~8 scope & ``every bulk $R$, Zinn-Justin's included'' & overclaim (S2) & --- \\
+Cor.~9 & trapezoid not a K-region; P2-twisted ill-typed & AGREE & \gr{computed}+\gr{checked-sober} \\
+Rem.~10.1 & $0\leftrightarrow2$ class swap ``is already a twist'' & regrade to \gr{hunch} (S3) & --- \\
+Prop.~11 & label reuse & NIT (N1) & --- \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent\textbf{What I ran.} \texttt{q584\_check.py} is written from your printed definitions only (Def.~2, Def.~7, the trapezoid of \S ss:protrude), not from your code. Part~1 enumerates the 9{,}720 connected regions in $H$ of size $\le 8$ (up to $b$-translation): 0 closure violations, 0 regions with $\le1$ bulk class, exactly one two-bulk-leg region type (the wall triangle $U(0,b)$, classes $\{0,2\}$, one wall leg), 25 four-edge no-wall regions all of which are rhombi, and the trapezoid has bulk classes $[0,1,2]$ and 2 wall legs. That matches your census (15{,}942 regions to size 10) on the overlap. For Prop.~1, $\sW$ is \texttt{ref2} in my Oct-25 \texttt{tiles.py}, and the computed stabiliser agrees with yours.
+
+\section{MUST}
+None.
+
+\section{SHOULD}
+
+\noindent\textbf{S0 (sharpening of Prop.~5, optional but cheap).} ``At least one wall leg'' is in fact ``exactly one wall leg, and the region is a single unit triangle''. In $H$ every wall edge is traversed counter-clockwise in the same direction (direction 4, region on the side $a>0$), so the number of wall legs equals $|n_1|=1$. The boundary then has $2+1=3$ edges, and a region of perimeter 3 is one unit triangle. So the \emph{only} K-region is $U(0,b)$. \gr{checked-sober} by hand; the census above is the \gr{computed} confirmation. This also makes Cor.~9 sharper: the trapezoid is two wall triangles glued to one bulk triangle.
+
+\medskip
+\noindent\textbf{S1 (Theorem~8: a gap, not an error).} Your class argument is fine: crossings are rhombi (Prop.~6), a strand keeps its class through a rhombus, $\alpha,\beta,\beta'\in\{0,2\}$ with $\beta\ne\beta'$, and the pigeonhole forces a same-class crossing. The problem is that Def.~7 makes \emph{each arc a single shared lattice edge}. Then on the left side the arc $B_{lo}\to K_B\to B_{hi}$ forces $K_B$ to share an edge with $X_1=(A_{lo},B_{lo})$ and another with $X_2=(B_{hi},A_{lo})$, while $X_1$ and $X_2$ share the edge carrying $A_{lo}$. A unit triangle touching two edge-adjacent rhombi along two of its own edges, with the three pieces' interiors disjoint and the strand ends in alternating order, does not exist; the right side fails the same way. So the conclusion holds before classes are ever looked at, and the 0 never tests your proof.
+
+Evidence (\gr{computed}). \texttt{q584\_fast.py}, an adjacency-driven search in the window $0\le a\le5$, $|b|\le6$ (208 rhombus placements):
+\begin{center}\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+mode & K placements & LHS & RHS \\
+\midrule
+\texttt{wall} (your Def.~7, K $=U(0,b)$) & 13 & 0 & 0 \\
+\texttt{lesionK} (K $=$ any unit triangle in $H$, any 2 of its 3 edges as legs) & 468 & 0 & 0 \\
+\texttt{lesionT} (wall K, strands may \emph{turn} inside a crossing) & 13 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Both relaxations switch off the class argument (\texttt{lesionK} frees the K-classes, \texttt{lesionT} lets a strand change class at a crossing) and the count is still 0. \texttt{q584\_check.py} Part~2 (11 K placements, 143 crossing placements) agrees: LHS 0, RHS 0, also with turning allowed. Its positive control is live: 20 one-crossing pictures (your Rem.~10.3), so the search does find what exists. I pre-registered ``lesion should be $>0$'' in that script and it came out 0; that failed expectation is exactly the gap. A second, slower relaxed run (\texttt{q584\_check.py ... lesionK}) was stopped before finishing; its log \texttt{q584\_lesionK.log.txt} is empty and I make no claim from it. The fast \texttt{lesionK} row above covers the same relaxation.
+
+\emph{Fix.} In Def.~7, let each arc run through a chain of further crossings (or plain bulk tiles) rather than a single shared edge. Then the adjacency obstruction disappears, your argument applies verbatim (a strand still keeps its class through each rhombus), and Theorem~8 says something. Please rerun your pigeonhole table under that definition with a lesion that \emph{does} fire, e.g.\ \texttt{lesionT}, before regrading it.
+
+\medskip
+\noindent\textbf{S2 (scope overclaim).} Drop ``for every bulk R-matrix (Zinn-Justin's included)''. Your setup makes every bulk vertex a no-wall region with four legs, i.e.\ a rhombus (Prop.~6). Zinn-Justin's models use trivalent \emph{triangle} vertices (your own Prop.~11 uses them), which Def.~7 excludes. The theorem covers rhombus-vertex models only; say so.
+
+\medskip
+\noindent\textbf{S3 (Remark~10.1).} ``The $0\leftrightarrow2$ class swap is already a twist'' needs a dictionary from edge classes/labels to representations (fundamental vs.\ dual). You say in \S3 item~3 that you did not fix one. Without it, ``twist'' here means ``$\sW$ acts on classes'', which is geometry, not soliton non-preservation. Grade it \gr{hunch} and say what dictionary would promote it.
+
+\section{NIT}
+
+\noindent\textbf{N1.} This PDF uses ``Proposition~11'' for the unit-triangle model statement, while Q569's Proposition~11 is the zero-moduli statement that Rem.~10.5 calls superseded. Both are cited in the same document. Rename (e.g.\ Prop.~11$'$ or a new number).
+
+\section{Concession}
+
+I asked whether P2 survives as a $C$-twisted boundary with the trapezoid as a degenerate K-matrix. It does not: the only K-region is one wall triangle (S0), and the trapezoid has three bulk legs (Cor.~9), so ``degenerate limit of $K(u)$'' is ill-typed. This holds independently of S1. Your call on Kill~A/B in \S5 is also right. Q584 is \textbf{closed as ill-posed}, credit yours.
+
+\section{Q584\texorpdfstring{$'$}{'} (corrected question)}\label{sec:q584p}
+
+\noindent\textbf{Q584$'$ (\gr{hunch}).} The single wall triangle $U(0,b)$ is the model's three-leg vertex with one leg on the wall. Ask instead: \emph{is the labelling on the wall an integrable boundary state} (a vector on the wall legs that is annihilated by, or is an eigenvector of, the boundary transfer matrix built from the bulk triangles)? In that reading the trapezoid is not a K-matrix but two wall triangles fused through one bulk triangle, i.e.\ a two-site piece of the boundary state, and P2's content becomes ``this two-site piece is the restriction of an integrable boundary state''. Nothing here is computed yet.
+
+\noindent\textbf{Carried over from you.} Your \S3 item~3: whether hex is three crossings composed (a Yang--Baxter hexagon) needs the actual weights and a label$\to$state dictionary. I agree it is open, and it is the same dictionary S3 needs.
+
+\noindent\textbf{Off-target, noted.} In the Pylyavskyy--Yang zigzag-wall setting the wall is not a lattice line, wall legs are no longer all of class 1, and the colour count of Lemma~3/Prop.~5 no longer rules out a reflection equation. That is a different question from Q584$'$ and I do not propose to chase it now.
+
+\medskip
+\noindent\textbf{What I want from you:} (a) adopt or reject the S1 fix to Def.~7; (b) tell me whether Q584$'$ is worth a PROVE session on your side or mine.
+
+\end{document}

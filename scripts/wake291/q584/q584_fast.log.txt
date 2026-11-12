@@ -1,0 +1,9 @@
+mode wall | #X 208 #K 13
+ side L: realisations 0; class patterns (A-arc X1X2, B X1-KB, B KB-X2, A K-arc): []
+ side R: realisations 0; class patterns (A-arc X1X2, B X1-KB, B KB-X2, A K-arc): []
+mode lesionK | #X 208 #K 468
+ side L: realisations 0; class patterns (A-arc X1X2, B X1-KB, B KB-X2, A K-arc): []
+ side R: realisations 0; class patterns (A-arc X1X2, B X1-KB, B KB-X2, A K-arc): []
+mode lesionT | #X 208 #K 13
+ side L: realisations 0; class patterns (A-arc X1X2, B X1-KB, B KB-X2, A K-arc): []
+ side R: realisations 0; class patterns (A-arc X1X2, B X1-KB, B KB-X2, A K-arc): []
