@@ -539,18 +539,18 @@ Indeed $s_{a+1/2}=(A_oA_e)^as_{1/2}=(A_oA_e)^{a-1}A_o\,\varepsilon$. For example
 $s_{5/2}(3)=0+\tfrac32-\tfrac34+\tfrac18=\tfrac78$, and $H_{(3)}(-\tfrac52)=-\tfrac78$.
 
 \begin{proof}[Proof of Theorem~\ref{thm:HZ}]
-The value at $-\tfrac12$ is Theorem~\ref{thm:A}. Let $a\ge1$, $M=2a-1$, $n=\kappa_1$. Fix a map $g$
+The value at $-\tfrac12$ is Theorem~\ref{thm:A}. Let $a\ge1$, $d=2a-1$, $n=\kappa_1$. Fix a map $g$
 on rows $\ge1$ counted by $N_{\kappa'}(a)$. Row $0$ is a chain of $n$ boxes, and box $(0,\beta)$ lies
-below $(1,\beta)$; put $u_\beta=g(1,\beta)$ when that box exists and $u_\beta=M+1$ otherwise. Since
-$g(1,1)$ is even, $u_\beta\ge\beta+1$. Let $G_L(M;u)$ count strictly increasing
-$v_L<\dots<v_{n-1}$ in $[M]$ with $v_\beta<u_\beta$ ($G_n=1$), let $E_0$ be the same count for
+below $(1,\beta)$; put $u_\beta=g(1,\beta)$ when that box exists and $u_\beta=d+1$ otherwise. Since
+$g(1,1)$ is even, $u_\beta\ge\min(\beta,d)+1$. Let $G_L(d;u)$ count strictly increasing
+$v_L<\dots<v_{n-1}$ in $[d]$ with $v_\beta<u_\beta$ ($G_n=1$), let $E_0$ be the same count for
 $L=0$ with $v_0$ even, and $\Phi(u)=E_0-\sum_{L=1}^n(-\tfrac12)^LG_L$. Summing
 Corollary~\ref{cor:row} over $g$ gives $s_{a+1/2}(\kappa)=\sum_g\Phi(u(g))$. Put
 $\Psi_L=\sum_{L'\ge L}(-\tfrac12)^{L'-L}G_{L'}$, so $\Phi=E_0+\tfrac12\Psi_1$. Splitting by
 whether $v_L=1$ and deleting that box gives the \emph{shift}
-$\Psi_L(M;u)=G_L(M-1;u-1)+\tfrac12\Psi_{L+1}(M-1;u-1)$, valid while $M\ge1$ and $u\ge2$, which
-$u_\beta\ge\beta+1$ guarantees along the iteration. If $2a\le n$, then $M\le n-1$, every $G$-term
-and $E_0$ vanish for lack of values, and $\Phi\equiv(-1)^{n-1-M}2^{-n}=(-1)^{\kappa_1}2^{-\kappa_1}$.
+$\Psi_L(d;u)=G_L(d-1;u-1)+\tfrac12\Psi_{L+1}(d-1;u-1)$, valid while $d\ge1$ and $u\ge2$, which
+$u_\beta\ge\min(\beta,d)+1$ guarantees along the iteration (at step $t\le d-1$ only $\beta\ge t+1$ matter, and $u_\beta-t\ge2$ there). If $2a\le n$, then $d\le n-1$, every $G$-term
+and $E_0$ vanish for lack of values, and $\Phi\equiv(-1)^{n-1-d}2^{-n}=(-1)^{\kappa_1}2^{-\kappa_1}$.
 If $2a\ge n$, the iteration reaches $\Psi_n=1$ through nonnegative terms, so $\Phi\ge2^{-n}$. Hence
 $s_{a+1/2}(\kappa)=(-1)^{\kappa_1}2^{-\kappa_1}N_{\kappa'}(a)$, resp.\
 $s_{a+1/2}(\kappa)\ge2^{-\kappa_1}N_{\kappa'}(a)$, and it vanishes iff $N_{\kappa'}(a)=0$, i.e.\ by
@@ -559,7 +559,8 @@ from $H_\kappa=(-1)^{|\kappa|}s$, and $\Phi\in2^{-n}\Z$.
 \end{proof}
 
 \begin{proof}[Proof of Corollary~\ref{cor:OC}]
-Let $M=2a+1\ge2m+1$, so $2a\ge\kappa_1$. As $\kappa'_1\le m-1$,
+Write $M=2a+1$ with $a\ge m$, so $2a\ge\kappa_1$. If $\kappa=\varnothing$, then
+$H_\varnothing\equiv1$ and the number is $2^m>0$. Otherwise, as $\kappa'_1\le m-1$,
 $r(\kappa')\le2m-3$ and $\lceil r(\kappa')/2\rceil<a$. By Theorem~\ref{thm:HZ},
 $2^{\kappa_1}s_{a+1/2}(\kappa)$ is a positive integer, and so is $2^ms_{a+1/2}(\kappa)$.
 \end{proof}
@@ -577,7 +578,9 @@ $\kappa=(3,2)$ they are $-\tfrac18$ and $+\tfrac14$), so nonvanishing needs the 
 \begin{remark}[The half-step operator]\label{rem:T}
 The unitriangular square root $T$ of $A_oA_e$ satisfies $s_{x+1/2}=T\,s_x$, and $T(\kappa,\nu)$ is
 a product over the components $D$ of $\theta$ of weights $1$ (single off-diagonal box),
-$\pm(-\tfrac12)^{|D|}$ (ribbon with one diagonal box) or $0$ (full version).
+$\pm(-\tfrac12)^{|D|}$ (ribbon with one diagonal box) or $0$ (full version). This remark is
+observational: it was checked by computer for $m\le4$, other component types occur, and no proof is
+given here.
 \end{remark}
 
 %% ===================================================================
@@ -648,8 +651,11 @@ Theorem~\ref{thm:main}, Lemmas~\ref{lem:R} and~\ref{lem:peel}, the recursion~\eq
 (Proposition~\ref{prop:star}), Theorem~\ref{thm:window} on $\LG$ and the inductive argument of Remark~\ref{rem:window-ind},
 Proposition~\ref{prop:bridge}, Theorem~\ref{thm:A}, Lemma~\ref{lem:layers},
 Corollary~\ref{cor:row}, Theorem~\ref{thm:HZ} and Corollary~\ref{cor:OC}, and the
-arguments of Remarks~\ref{rem:Z} and~\ref{rem:T}. Each has a full written proof in the agent's notes and in a longer draft; the
+argument of Remark~\ref{rem:Z}. Each has a full written proof in the agent's notes and in a longer draft; the
 abstract condenses them.
+\item \textbf{Computed, not proved:} Remark~\ref{rem:T} is stated without proof. The identity
+$s_{x+1/2}=T\,s_x$ has been checked by computer for $m\le4$; the list of weights in the remark is
+not complete.
 \item \textbf{Cited from Buch--Ravikumar~\cite{BR12}:} the values $c_\rho=(-1)^{|\theta|-1}V(\theta)$
 in Remark~\ref{rem:pieri} (the case $p=1$ of~\cite[Cor.~5.6]{BR12}, which the agent derived from
 \cite[Cor.~5.4, Thm.~5.5]{BR12} and checked line by line against their statements, and which was
@@ -664,12 +670,18 @@ character formula (G1), Littelmann's path model (LS), Ehrhart--Macdonald recipro
 polynomiality of Euler characteristics~\cite{Kleiman66}. The first-hand reading of~\cite{Lit94} is
 limited as stated in the footnote to (LS).
 \item \textbf{Review by a second AI agent.} Clio Vega, a separate AI research agent (also
-Claude-based, run independently), line-read and endorsed the inductive proof of
-Theorem~\ref{thm:window} on $\LG$ and $\OG$ and the support-only vanishing argument of
-Remark~\ref{rem:Z}, and independently checked Theorem~\ref{thm:window} for $m\le6$ and the
-$p=1$ Pieri values on $1243$ shapes. Theorem~\ref{thm:main}, the recursion~\eqref{eq:star},
-Theorem~\ref{thm:HZ}, Corollary~\ref{cor:OC} and the half-step operator have \emph{not} been
-line-read by anyone other than the agent.
+Claude-based, run independently), endorsed, given (G0), (G1) and~\cite{BR12}, the earlier
+\cite{BR12}-based versions of the inductive proof of Theorem~\ref{thm:window} (both types) and of
+Remark~\ref{rem:Z} (reviews of 2026-10-24). She checked by computer Theorem~\ref{thm:window} for
+$m\le6$, and checked that the recursion~\cite[Thm.~5.5]{BR12} agrees with brute-force tableau counts
+(\cite[Cor.~5.6]{BR12} at $p=1$) on $1243$ shifted skew shapes; this was a check of the identity,
+not of the agent's derivation of it. On 2026-11-11 she line-read, against the cut 6dbecb8 of this
+text, \S\ref{sec:ls} including Theorem~\ref{thm:main}, Lemmas~\ref{lem:R} and~\ref{lem:peel},
+Proposition~\ref{prop:star}, \S\ref{sec:half} including Theorem~\ref{thm:HZ}, and
+Corollary~\ref{cor:OC}, as well as the \eqref{eq:star}-based versions of Remarks~\ref{rem:window-ind}
+and~\ref{rem:Z} printed here, and endorsed them as proved given (G1) and (LS), with wording
+corrections that have been applied. The half-step operator (Remark~\ref{rem:T}) has not been proved
+or line-read.
 \item \textbf{Computer verification} is listed in \S\ref{sec:examples}. Sub-agents (further
 instances of the same model) ran some computations; their outputs were checked by the agent.
 \item \textbf{Human role.} \robin{describe your role (supervision, submission, any human verification). As of this draft no proof has been checked by a human.}
