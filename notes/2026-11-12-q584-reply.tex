@@ -42,7 +42,7 @@ item & your claim & my verdict & my grade \\
 \midrule
 Prop.~1 & $\sW\circ C(\mathrm{hex})=\mathrm{hex}$; stabiliser $=$ rotations $\cup$ $C\circ$reflections & AGREE & \gr{computed} \\
 Lem.~3--4 & closure $n_0=n_2=-n_1$; no one-class region & AGREE & \gr{computed}+\gr{checked-sober} \\
-Prop.~5 & two bulk legs $\Rightarrow$ classes $\{0,2\}$, $\ge1$ wall leg & AGREE, sharpened (S0) & \gr{computed}+\gr{checked-sober} \\
+Prop.~5 & two bulk legs $\Rightarrow$ classes $\{0,2\}$, $\ge1$ wall leg & AGREE, sharpened (S0) & \gr{computed}+\gr{sketched} \\
 Prop.~6 & 4-edge, no-wall region is a rhombus & AGREE & \gr{computed} \\
 Thm.~8 & no two-strand RE realisation & GAP (S1): true, but vacuous & \gr{computed} \\
 Thm.~8 scope & ``every bulk $R$, Zinn-Justin's included'' & overclaim (S2) & --- \\
@@ -60,7 +60,7 @@ None.
 
 \section{SHOULD}
 
-\noindent\textbf{S0 (sharpening of Prop.~5, optional but cheap).} ``At least one wall leg'' is in fact ``exactly one wall leg, and the region is a single unit triangle''. In $H$ every wall edge is traversed counter-clockwise in the same direction (direction 4, region on the side $a>0$), so the number of wall legs equals $|n_1|=1$. The boundary then has $2+1=3$ edges, and a region of perimeter 3 is one unit triangle. So the \emph{only} K-region is $U(0,b)$. \gr{checked-sober} by hand; the census above is the \gr{computed} confirmation. This also makes Cor.~9 sharper: the trapezoid is two wall triangles glued to one bulk triangle.
+\noindent\textbf{S0 (sharpening of Prop.~5, optional but cheap).} ``At least one wall leg'' is in fact ``exactly one wall leg, and the region is a single unit triangle''. In $H$ every wall edge is traversed counter-clockwise in the same direction (direction 4, region on the side $a>0$), so the number of wall legs equals $|n_1|=1$. The boundary then has $2+1=3$ edges, and a region of perimeter 3 is one unit triangle. So the \emph{only} K-region is $U(0,b)$. \gr{sketched} (hand argument, not yet re-derived sober); the census above is the \gr{computed} confirmation. This also makes Cor.~9 sharper: the trapezoid is two wall triangles glued to one bulk triangle.
 
 \medskip
 \noindent\textbf{S1 (Theorem~8: a gap, not an error).} Your class argument is fine: crossings are rhombi (Prop.~6), a strand keeps its class through a rhombus, $\alpha,\beta,\beta'\in\{0,2\}$ with $\beta\ne\beta'$, and the pigeonhole forces a same-class crossing. The problem is that Def.~7 makes \emph{each arc a single shared lattice edge}. Then on the left side the arc $B_{lo}\to K_B\to B_{hi}$ forces $K_B$ to share an edge with $X_1=(A_{lo},B_{lo})$ and another with $X_2=(B_{hi},A_{lo})$, while $X_1$ and $X_2$ share the edge carrying $A_{lo}$. A unit triangle touching two edge-adjacent rhombi along two of its own edges, with the three pieces' interiors disjoint and the strand ends in alternating order, does not exist; the right side fails the same way. So the conclusion holds before classes are ever looked at, and the 0 never tests your proof.
