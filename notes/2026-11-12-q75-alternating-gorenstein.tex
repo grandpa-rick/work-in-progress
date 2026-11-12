@@ -1,0 +1,147 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs}\sloppy
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newcommand{\srccommit}{PENDING}
+\newcommand{\gr}[1]{\textsf{#1}}
+\newcommand{\QSym}{\mathrm{QSym}}
+\newcommand{\NSym}{\mathrm{NSym}}
+\newcommand{\Sym}{\mathrm{Sym}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Hilb}{\operatorname{Hilb}}
+\newcommand{\Gr}{\mathrm{Gr}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\qbin}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}_q}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title[Gorenstein quotients of QSym by ribbons (Q75)]{The Gorenstein quotient $\QSym/\Ann(R_s)$ for alternating ribbons:\\ Hilbert function (both parities) and ring structure (Q75)}
+\author{Rick}
+\date{2026-11-12}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}\small
+From: Rick. \quad To: Clio Vega. \quad Date: 2026-11-12.\\
+This PDF corresponds to work-in-progress source commit \texttt{\srccommit}.\\
+Proof record (local): \texttt{proofs/2026-11-12-q75-alternating-ribbon-gorenstein.md} (PROVE 292, cold read in Dream 291);\\
+research-repo commit \texttt{9f154d9}; registry \texttt{proofs/registry/q75-gorenstein-ribbon.json};\\
+ring computations \texttt{proofs/scripts/q75\_ring.py}.
+\end{center}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{Summary.} For a ribbon $R_s\in\NSym$ let $G_s=\QSym_\QQ/\Ann(R_s)$ be the graded Artinian Gorenstein algebra with Macaulay dual generator $R_s$. Its Hilbert function is the rank function of the cap product $\cap[X_s]$ on the toric Richardson variety $X_s$ of Gonzales--Le--Lowen (arXiv:2609.30257). For alternating $s$ we give closed forms for both parities of the length (Theorem~\ref{thm:main}), and show that $\Sym\to G_s$ is onto (Corollary~\ref{cor:sym}). In the odd case $s=(2^k)$ we have $\Hilb(G_s)=\qbin{k+2}{2}$, which is the Poincar\'e polynomial of $\Gr(2,k+2)$. Nevertheless $G_{(2^k)}$ is \emph{not} isomorphic to $H^*(\Gr(2,k+2))$ for $k=3,4,5$ (\S\ref{sec:ring}).
+
+\textbf{Grades.}
+\begin{itemize}[leftmargin=1.2em,itemsep=0pt,topsep=1pt]
+\item \gr{proved}: Theorem~\ref{thm:main} and Corollary~\ref{cor:sym}. This is an internal grade, after one internal cold read (PASS, 0 must-fix).
+\item \gr{computed} ($k\le5$): the ring-structure statements in \S\ref{sec:ring}.
+\item \gr{sketched}: the complete-intersection claim for general $k$.
+\item Owner check (2026-11-12): \gr{not found} on either the QSym side or the Sym side (\S\ref{sec:owner}).
+\end{itemize}
+
+\textbf{What I want from you:}
+\begin{itemize}[leftmargin=1.2em,itemsep=0pt,topsep=1pt]
+\item a check of the Key Identity (\S\ref{sec:idea});
+\item a pointer if you know of a source on inverse systems of ribbon or skew Schur functions.
+\end{itemize}}}
+
+\section{Setting}
+$\langle\,,\rangle$ is the $\QSym$--$\NSym$ pairing: $F_\alpha$ is dual to $R_\alpha$, and $M_\alpha$ is dual to $S^\alpha$. For $f\in\QSym$ define $f^\perp$ on $\NSym$ by $\langle g,f^\perp a\rangle=\langle fg,a\rangle$. A binary string $s$ of length $L$ encodes a composition of $d=L+1$; we call $s$ \emph{alternating} if it is $0101\cdots$ or $1010\cdots$. Put
+\[
+r_i(s)=\operatorname{rank}\bigl(\QSym_i\times\QSym_{d-i}\to\QQ,\ (f,g)\mapsto\langle fg,R_s\rangle\bigr)=\dim (G_s)_i .
+\]
+Complementation of descent sets is an algebra automorphism of $\QSym$, so $r(s)=r(s^c)$. We may therefore take $s=(2^k)$ (odd $L=2k-1$) or $s=(2^k,1)$ (even $L=2k$).
+
+\section{Results}
+\begin{theorem}\label{thm:main}
+Let $s$ be alternating of length $L$.
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item If $L=2k-1$ (so $d=2k$), then $r_i=\min(\lfloor i/2\rfloor,\lfloor (d-i)/2\rfloor)+1$, i.e.\ $\Hilb(G_s;q)=[\lfloor k/2\rfloor+1]_{q^2}\,[2\lceil k/2\rceil+1]_q=\qbin{k+2}{2}$.
+\item If $L=2k$ (so $d=2k+1$), then $r_0=r_d=1$ and $r_i=\min(\lceil i/2\rceil,\lceil (d-i)/2\rceil)$ for $0<i<d$.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}\label{cor:sym}
+For alternating $s$ the composite $\Sym\hookrightarrow\QSym\twoheadrightarrow G_s$ is onto. Hence the apolar algebra $\Sym/\Ann_{\Sym}(\chi R_s)$ under the Hall pairing has the same Hilbert function. For odd $L$, $\chi R_s=r_{(2^k)}$ is the ribbon Schur function with all rows of length~$2$.
+\end{corollary}
+
+The formula in (b) is new. It replaces a fitted numerator from the scoping session and agrees with the brute-force table for all $L\le22$. Formula (a) was first predicted blind at $L=13$ and then matched for $L\le20$.
+
+\section{The one idea}\label{sec:idea}
+Let $\sigma(z)=\sum_n S_nz^n$, and let $\Psi$ and $\Theta$ be its even and odd parts. Set $W=\Psi^{-1}=\sum_k(-1)^kz^{2k}R_{(2^k)}$. The coproduct of $M_\alpha$ is deconcatenation, so $M_\alpha^\perp$ acts on a product by lowering factors at strictly increasing positions. Even parts collapse because $W\Psi=1$. This gives the \textbf{Key Identity}
+\[
+M_\alpha^\perp W=(-1)^{\ell(\alpha)}\,z^{|\alpha|}\,(W\Theta)^{o(\alpha)}\,W,\qquad o(\alpha)=\#\{\text{odd parts of }\alpha\}.
+\]
+Consequently $M_\alpha^\perp R_{(2^k)}$ depends only on $(\ell(\alpha),o(\alpha))$, which gives the upper bound $\lfloor i/2\rfloor+1$.
+
+For the lower bound, pass to the commutative image with $p_{\mathrm{even}}\mapsto0$ except $p_2\mapsto y$. The images become $e^{-yz^2/2}\operatorname{sech}(A)\tanh^{o}(A)$, and these are independent by an order and bidegree argument.
+
+The even case runs the same way, using $W\Theta=\sum_k(-1)^kz^{2k+1}R_{(2^k,1)}$. Here $M_\alpha^\perp R_{(2^k,1)}=0$ whenever $\alpha$ ends in an even part. The Key Identity was checked by machine on 1364 of 1364 (odd, $k\le5$) and 10915 of 10915 (even) coefficient instances; the proof itself does not rely on these checks.
+
+\section{Ring structure: complete intersection, but not Grassmannian (computed)}\label{sec:ring}
+All statements in this section are \gr{computed} with exact rational arithmetic for $k\le5$ (\texttt{q75\_ring.py}, about 6\,s), except where marked \gr{sketched}.
+
+\subsection*{Presentation}
+Take $s=(2^k)$. Using $p_n^\perp=n\,\partial/\partial p_n$, one sees that $G_s$ is generated by $x=p_1$ (degree~1) and $y=p_2$ (degree~2). In general $k$ this is \gr{sketched}: on the derivative module, $p_{2n}^\perp=-(-p_2^\perp)^n$ and $p_{2n+1}^\perp=(-p_2^\perp)^np_1^\perp$. A Gorenstein quotient of codimension two is a complete intersection (Serre). So $G_s=\QQ[x,y]/(f_{k+1},g_{k+2})$, which has the same presentation type as $H^*(\Gr(2,k+2))=\QQ[e_1,e_2]/(h_{k+1},h_{k+2})$. The computed generators are:
+\begin{center}\small
+\begin{tabular}{@{}cl@{}}
+\toprule
+$k$ & generators of $I=\ker(\QQ[x,y]\to G_{(2^k)})$\\
+\midrule
+2 & $x^3-5xy,\quad x^4-5y^2$\\
+3 & $x^4-14x^2y+9y^2,\quad x^5-\tfrac{61}{5}x^3y$\\
+4 & $x^5-30x^3y+89xy^2,\quad x^6-\tfrac{331}{14}x^4y+\tfrac{801}{14}y^3$\\
+5 & $x^6-55x^4y+439x^2y^2-225y^3,\quad x^7-\tfrac{4670}{89}x^5y+\tfrac{32321}{89}x^3y^2$\\
+\bottomrule
+\end{tabular}
+\end{center}
+In these coordinates the Macaulay dual generator is $F=[z^{2k}]\,e^{Yz^2/2}\sec(Xz)$, where $x$ acts as $\partial_X$ and $y$ acts as $2\partial_Y$.
+
+\subsection*{Comparison with $H^*(\Gr(2,k+2))$}
+We look for a graded automorphism $x\mapsto ax$, $y\mapsto by+cx^2$ carrying $I$ onto $(h_{k+1},h_{k+2})$; the torus lets us normalise $a=1$.
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item $k=2$: $G\cong H^*(\Gr(2,4);\QQ)$ via $y\mapsto(4e_2-e_1^2)/5$. \emph{This carries no information.} With Hilbert function $1,1,2,1,1$, every such complete intersection is isomorphic to $H^*(\Gr(2,4))$ over~$\CC$, because the moduli is trivial. Several non-alternating ribbons give algebras that are isomorphic to it over $\CC$ but not over $\QQ$.
+\item $k=3$: two choices of $(b,c)$ match in degree~4, namely $b=\pm4\sqrt2/9$, $c=7/9\mp2\sqrt2/3$. Both fail in degree~5: the relevant determinant is $-382/9\mp1342\sqrt2/45\ne0$. So $G_{(2,2,2)}\not\cong H^*(\Gr(2,5))$ over $\CC$.
+\item $k=4$: no solution over $\CC$.
+\item $k=5$: the root sets of the degree-$6$ generators, written in $t=y/x^2$, are not affinely equivalent. So no isomorphism exists over $\CC$.
+\item \emph{Control.} For the rectangle $s_{(k,k)}$, the same code returns $H^*(\Gr(2,k+2))$ over $\QQ$ for $k=2,\dots,5$, via $y\mapsto p_2=e_1^2-2e_2$. This reproduces the folklore fact $\Sym/\Ann(s_{(k^n)})\cong H^*(\Gr)$.
+\end{itemize}
+
+\subsection*{Conclusion}
+$G_{(2^k)}$ is a complete intersection with the Hilbert series and generator degrees of $H^*(\Gr(2,k+2))$. It is a different point of the same moduli space. The ``fake rectangle'' coincidence holds for Hilbert series only, not for rings.
+
+Unlike $H^*$ of a smooth projective toric variety, $G_s$ needs a degree-2 generator. This is consistent with $X_s$ not being rationally smooth.
+
+The even case $(2^k,1)$ behaves differently. All $p_{\mathrm{even}}$ lie in $\Ann$, and once $k\ge5$ the element $p_5$ is a new generator. The embedding dimension is then at least~3, so a complete intersection is not automatic. This is \gr{sketched}.
+
+\section{Owner check}\label{sec:owner}
+\gr{Not found} (2026-11-12). We searched both the QSym side and the Sym side, using the arXiv API, MathOverflow and web search; Semantic Scholar was rate-limited and is unsearched. The nearest results:
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item Bergeron--Gagnon--Spink--Tewari 2604.24903: quotients of QSym, with no Poincar\'e duality. I would cite it.
+\item Nadeau--Spink--Tewari 2410.12643, Thm.~10.2 and Cor.~10.3: the Hall pairing with a ribbon skew Schur function equals a degree on a Grassmannian Richardson variety. There is no annihilator or Hilbert-series content.
+\item Almousa--Lu 2601.13324: single skewing operators lifted to modules. They do not consider spans or annihilators.
+\item Macias Marques--McDaniel--Seceleanu--Watanabe 2208.05653: codimension-two Artinian Gorenstein algebras have the SLP, in the standard grading only.
+\end{itemize}
+The rectangle statement $\Sym/\Ann(s_{(k^n)})\cong H^*(\Gr)$ is folklore; I did not locate an explicit citation for it.
+
+\section{What I am least sure of}
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item \textbf{Single internal check.} Theorem~\ref{thm:main} has had one internal cold read and no external check. The Key Identity is the load-bearing step.
+\item \textbf{Only finitely many $k$ are excluded.} The non-isomorphism is \gr{computed} for $k=3,4,5$ only. I have no conceptual reason why it should persist for all $k\ge3$, although nothing suggests otherwise.
+\item \textbf{General $k$.} The complete-intersection presentation for general $k$ is \gr{sketched}: two-generation from the derivative-module rules, plus Serre.
+\item \textbf{Non-alternating $s$.} Whether $r_2=1$ exactly for $s$ constant or even alternating is \gr{computed} for $L\le14$ and otherwise open, as is the general-$s$ formula.
+\end{itemize}
+
+\end{document}
