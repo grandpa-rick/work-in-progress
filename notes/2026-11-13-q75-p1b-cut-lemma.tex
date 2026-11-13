@@ -1,0 +1,152 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs}\sloppy
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newcommand{\srccommit}{PLACEHOLDER}
+\newcommand{\gr}[1]{\textsf{#1}}
+\newcommand{\QSym}{\mathrm{QSym}}
+\newcommand{\NSym}{\mathrm{NSym}}
+\newcommand{\Sym}{\mathrm{Sym}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Ev}{\operatorname{Ev}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\tr}{\mathtt{r}}
+\newcommand{\tu}{\mathtt{u}}
+\newcommand{\te}{\varepsilon}
+\newcommand{\supp}{\operatorname{supp}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title[Q75 add-on: $r_2(G_s)$ via an NSym Cut Lemma]{Q75 add-on: $r_2(G_s)=1$ iff $s$ is constant or even alternating, via an NSym Cut Lemma}
+\author{Rick}
+\date{2026-11-13}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}\small
+From: Rick. \quad To: Clio Vega. \quad Date: 2026-11-13.\\
+This PDF corresponds to work-in-progress source commit \texttt{\srccommit}.\\
+Add-on to the Q75 note (\texttt{notes/2026-11-12-q75-alternating-gorenstein.pdf}, source commit \texttt{4bd8dd7}).\\
+Proof record (local): \texttt{proofs/2026-11-12-q75-p1b-r2-classification.md} (PROVE 293, cold read Dream 292);\\
+research-repo commit \texttt{00ddcec}; scripts in \texttt{proofs/prove293/} (\texttt{eng}, \texttt{scan}, \texttt{cover}, \texttt{fam}, \texttt{check2}).
+\end{center}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{Summary.} The Q75 note left open which ribbons $R_s$ have $\dim(G_s)_2=1$, where $G_s=\QSym_\QQ/\Ann(R_s)$. Answer: for $d\ge4$, exactly the constant $s$ ($R_s=S_d$ or $\Lambda_d$) and the even-length alternating $s$; otherwise $\dim(G_s)_2=2$ (Theorem~\ref{thm:main}). Moreover $M_2\in\Ann(R_s)$ only for even alternating $s$ (Corollary~\ref{cor:m2}). The tool is a \emph{Cut Lemma}: $M_{(m)}^\perp$ acts on a ribbon by cutting out a window of $m+1$ letters, with sign $(-1)^{\#\tu}$ (Lemma~\ref{lem:cut}).
+
+\textbf{Grades.}
+\begin{itemize}[leftmargin=1.2em,itemsep=0pt,topsep=1pt]
+\item \gr{proved}: Cut Lemma (Lemma~\ref{lem:cut}), Lemma~\ref{lem:B}, Theorem~\ref{thm:main}, Corollary~\ref{cor:m2}. Internal grade: one internal cold read (PASS, 0 must-fix, 3 nits, two of which are applied here); not peer-reviewed.
+\item \gr{computed}: the machine checks listed in \S\ref{sec:checks} (all $s$ with $L\le14$, and the Cut Lemma for $m\le4$, $L\le9$). The proofs do not rely on them.
+\item Owner check (2026-11-13): \gr{not found} for the Cut Lemma in this signed-window form; the search was not exhaustive (\S\ref{sec:prior}).
+\end{itemize}
+
+\textbf{What I want from you:} a check of the Cut Lemma's dual-basis argument, and a pointer if you have seen it (an NSym Murnaghan--Nakayama rule for skewing ribbons by $M_{(m)}$) written down.}}
+
+\section{Setting and statement}
+Conventions are those of the Q75 note: $F_\alpha$ is dual to $R_\alpha$, $M_\alpha$ dual to $S^\alpha$, and $\langle g,f^\perp a\rangle=\langle fg,a\rangle$. Write $s\in\{\tr,\tu\}^L$, where $\tu$ marks a part boundary (a descent, bit~1) and $\tr$ does not (bit~0). So $s$ encodes a composition of $d=L+1$ and $R_s$ is the corresponding ribbon. Put
+\[
+r_2(s)=\dim(G_s)_2=\dim\operatorname{span}\{f^\perp R_s: f\in\QSym_2\}.
+\]
+
+\begin{theorem}[P1b]\label{thm:main}
+Let $d\ge4$ ($L\ge3$). Then $r_2(s)=1$ if $s$ is constant or $s$ is even alternating ($s=(\tr\tu)^k$ or $(\tu\tr)^k$, $L=2k$). In every other case $r_2(s)=2$.
+\end{theorem}
+
+\begin{corollary}\label{cor:m2}
+For $L\ge3$: $M_2^\perp R_s=0$ if and only if $s$ is even alternating.
+\end{corollary}
+
+\noindent\emph{Reduction.} $\QSym_2=\operatorname{span}(M_2,M_{11})$ and $M_1^2=2M_{11}+M_2$. Since $\QSym$ is commutative, $(fg)^\perp=g^\perp f^\perp$. With $D_m:=M_{(m)}^\perp$ we get $M_{11}^\perp=(D_1^2-D_2)/2$. Set
+\[
+A:=D_2R_s,\qquad B:=M_{11}^\perp R_s=\tfrac12(D_1^2R_s-A),
+\]
+so $r_2(s)=\dim\operatorname{span}\{A,B\}$. Recall from the Q75 proof record (Lemmas L1--L2) that $D_m$ is a derivation of $\NSym$ with $D_mS_n=S_{n-m}$.
+
+\section{The Cut Lemma}
+Let $P=\tr\,s\,\tu$ be the \emph{padded word}, with letters $P_0,\dots,P_{L+1}$. Put $V=\operatorname{span}\{\tr,\tu\}=\operatorname{span}\{\tr,\te\}$ with $\te:=\tr+\tu$. For a word $x\,w\,y$ over $\{\tr,\tu\}$ with first letter $x$ and last letter $y$ set
+\[
+\Ev(x\,w\,y):=f(x)\,g(y)\,R_w,\qquad f=\tr^*,\ g=\tu^*\ \text{(dual basis of }\{\tr,\tu\}),
+\]
+extended multilinearly in each letter. Here $R_w$ is the ribbon of the interior word $w$, of size $|w|+1$; in particular the empty interior word gives $R_\emptyset=S_1$, and only a fully collapsed padded word (the single letter $\te$) evaluates to~$1$. Thus $\Ev(\tr s\tu)=R_s$. An interior $\te$ evaluates to a product of two ribbons, since $R_xR_y=R_{x\tr y}+R_{x\tu y}$. A first-position $\te$ is forced to $\tr$ and a last-position $\te$ to $\tu$.
+
+In the basis $\{\tr,\te\}$ the same map reads $\Ev(x\,w\,y)=(\tr^*_{\tr\te}+\te^*_{\tr\te})(x)\,\te^*_{\tr\te}(y)\,S^{\beta(w)}$, where $\beta(w)$ lists the block sizes (in cells) of the $\{\tr,\te\}$-word; substituting $\tu=\te-\tr$ reproduces $R_\alpha=\sum_{\beta\ge\alpha}(-1)^{\ell(\alpha)-\ell(\beta)}S^\beta$. The dual bases are related by $\tr^*_{\tr\tu}=\tr^*_{\tr\te}+\te^*_{\tr\te}$ and $\tu^*_{\tr\tu}=\te^*_{\tr\te}$.
+
+\begin{lemma}[Cut Lemma]\label{lem:cut}
+For $m\ge1$,
+\[
+D_mR_s=\sum_{i:\ P_i=\tr,\ P_{i+m}=\tu}(-1)^{\#\tu(P_{i+1}\cdots P_{i+m-1})}\,\Ev\bigl(P\text{ with the window }[i,i+m]\text{ replaced by }\te\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Let $\Omega_m:V^{\otimes(m+1)}\to V$ send $\tr\,w\,\tu\mapsto(-1)^{\#\tu(w)}\te$ and every other $\{\tr,\tu\}$-word to $0$. In tensor form $\Omega_m=\bigl(\tr^*\otimes(\tr^*-\tu^*)^{\otimes(m-1)}\otimes\tu^*\bigr)(\cdot)\,\te$ in the $\{\tr,\tu\}$-dual basis. By the change of dual bases this is $\bigl((\tr^*+\te^*)\otimes(\tr^*)^{\otimes(m-1)}\otimes\te^*\bigr)(\cdot)\,\te$ in the $\{\tr,\te\}$-dual basis. So on $\{\tr,\te\}$-words $\Omega_m$ sends $x\,\tr^{m-1}\te\mapsto\te$ for $x\in\{\tr,\te\}$, and all other words to~$0$.
+
+Take a padded $\{\tr,\te\}$-word, which $\Ev$ sends to $S^\beta$. A window $x\,\tr^{m-1}\te$ ending at the right boundary $\te$ of a block occurs exactly once for each block with at least $m$ cells. If $x=\tr$, the block has $\ge m+1$ cells and the window removes $m$ of them. If $x=\te$ (or $x$ is the front padding letter, which $\Ev$ treats identically), the block has exactly $m$ cells; it disappears and the neighbouring $\te$'s merge. Blocks with $<m$ cells contribute nothing. This is exactly the derivation $D_m$ on $S^\beta$, with $S_n\mapsto S_{n-m}$ and $S_0=1$. Hence $D_m\circ\Ev=\Ev\circ\sum_i\Omega_m^{(i)}$ on padded words.
+\end{proof}
+
+A \emph{corner} is a factor $P_iP_{i+1}=\tr\tu$. The Cut Lemma gives
+\[
+D_1=\sum_{\text{corners}}(\tr\tu\to\te),\qquad D_2=\sum_{\tr\tr\tu\text{ windows}}(\tr\tr\tu\to\te)-\sum_{\tr\tu\tu\text{ windows}}(\tr\tu\tu\to\te).
+\]
+
+\begin{lemma}\label{lem:B}
+$B=\sum_{\{c,c'\}}\bigl(\text{both corners }\tr\tu\to\te\bigr)+\sum_{\tr\tu\tu\text{ windows}}(\tr\tu\tu\to\te)$, the first sum over unordered pairs of distinct corners.
+\end{lemma}
+
+\begin{proof}
+Apply $D_1$ twice. Replacing a corner by $y\in\{\tr,\tu\}$ keeps all other corners (corners are disjoint factors) and creates at most one new corner: $(P_{i-1},y)$ with $P_{i-1}=\tr$, $y=\tu$, coming from an $\tr\tr\tu$ window; or $(y,P_{i+2})$ with $y=\tr$, $P_{i+2}=\tu$, coming from an $\tr\tu\tu$ window. Each such window arises exactly once. Validity (first letter $\tr$, last letter $\tu$) depends only on the end letters, so it can be checked at the end. Hence $D_1^2=2\sum_{\text{pairs}}+\sum_{\tr\tr\tu}(\to\te)+\sum_{\tr\tu\tu}(\to\te)$. Subtract $D_2$ and halve.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+\emph{Block coordinates.} Write $P=\tr^{a_1}\tu^{b_1}\cdots\tr^{a_m}\tu^{b_m}$ with all $a_i,b_i\ge1$; the $i$-th corner ends $\tr^{a_i}$. Let $X_i$, $Y_i$ be $\Ev$ of the $\tr\tr\tu$ window in block $i$ (exists iff $a_i\ge2$) and of the $\tr\tu\tu$ window (iff $b_i\ge2$), each replaced by $\te$, and let $C=\sum_{i<j}\Ev(\text{corners }i,j\to\te)$. Then
+\[
+A=\sum_{a_i\ge2}X_i-\sum_{b_i\ge2}Y_i,\qquad B=C+\sum_{b_i\ge2}Y_i .
+\]
+Every $\Ev(\cdots\te\cdots)$ above is a sum of distinct ribbons with coefficient $1$ (a $0/1$-vector in the ribbon basis), and is nonzero since $L\ge3$.
+
+\emph{Top graded pieces.} Let $U=\#\tu(P)$. Every term of $A$ and $B$ has $\#\tu\le U$, and the $\#\tu=U$ components are
+\[
+A_U=\sum_{i\in I_A}w(a-2e_i),\qquad B_U=C_U=\sum_{i<j\in I_B}w(a-e_i-e_j),
+\]
+where $w(a')=\tr^{a'_1}\tu^{b_1}\cdots\tr^{a'_m}\tu^{b_m}$, $I_A=\{i:a_i\ge2,\ \neg(i=1\wedge a_1=2)\}$ and $I_B=\{i:\neg(i=1\wedge a_1=1)\}$ (the exclusions are windows at position~$0$, where $y=\tu$ is invalid). For fixed $b$, $a'\mapsto w(a')$ is injective, so $\supp A_U\cap\supp C_U=\emptyset$. Mirror-symmetrically (counting $\#\tr$, top value $V=\sum a_i$), $A^V$ and $C^V$ have disjoint supports and $B^V=-A^V+C^V$, with exclusion sets $I'_A=\{i:b_i\ge2,\ \neg(i=m\wedge b_m=2)\}$ and $I'_B=\{i:\neg(i=m\wedge b_m=1)\}$.
+
+\emph{Separation.} If $A\ne0$ and $C_U\ne0$ or $C^V\ne0$, then $A,B$ are independent: from $\lambda A+\mu B=0$, project to the top piece and use disjoint supports to get $\mu=0$, then $\lambda=0$. Now $C_U\ne0$ unless $m=1$ or $(m=2,a_1=1)$, and $C^V\ne0$ unless $m=1$ or $(m=2,b_2=1)$. Both fail only for hooks $P=\tr^a\tu^b$ and for the family (T) $P=\tr\tu^b\tr^a\tu$.
+
+\emph{When $A=0$ (Corollary~\ref{cor:m2}).} If $I_A\ne\emptyset$ then $A_U\ne0$; if $I'_A\ne\emptyset$ then $A^V\ne0$. Both are empty iff $a=(a_1,1,\dots,1)$, $b=(1,\dots,1,b_m)$ with $a_1,b_m\le2$: the four alternating words. For $(a_1,b_m)=(1,1)$ there are no windows, so $A=0$. For $(2,2)$, $A=X_1-Y_m$ and both are forced to the same word, so $A=0$. For $(2,1)$ and $(1,2)$, $A=X_1$ resp.\ $-Y_m$ is nonzero (odd alternating). These two cases with $A=0$ are exactly the even alternating $s$. In hooks and (T), $A\ne0$ (below).
+
+\emph{Generic case} ($m\ge2$, not (T)). If $s$ is not even alternating, $A\ne0$ and separation gives $r_2=2$. If $s$ is even alternating, $A=0$, and $B\ne0$: $B=C+\sum Y_i$ is a sum of $0/1$-vectors in the ribbon basis, so it has nonnegative coefficients and no cancellation occurs; and $C$ is a nonempty sum (at least two corners, each pair with a valid choice). So $r_2=1$.
+
+\emph{Hooks} $P=\tr^a\tu^b$, $a+b=L+2\ge5$. Here $C=0$, $A=[a\ge2]X-[b\ge2]Y$, $B=[b\ge2]Y$. If $a=1$ ($R_s=\Lambda_d$): $A=-Y$, $B=Y\ne0$, $r_2=1$. If $b=1$ ($R_s=S_d$): $B=0$, $A=X\ne0$, $r_2=1$. If $a,b\ge2$: $X\ni\tr^{a-1}\tu^{b-1}$ and $\tr^{a-2}\tu^b$ (if $a\ge3$), $Y\ni\tr^{a-1}\tu^{b-1}$ and $\tr^a\tu^{b-2}$ (if $b\ge3$), so $X\ne Y$ because $a=b=2$ is excluded, and $r_2=2$.
+
+\emph{Family (T)} $P=\tr\tu^b\tr^a\tu$, $s=\tu^b\tr^a$. With $W_1=\tr\tu^b\tr^{a-2}\tu$, $W_2=\tr\tu^{b-2}\tr^a\tu$, $W_3=\tr\tu^{b-1}\tr^{a-1}\tu$ (pairwise distinct), $A=[a\ge2]W_1-[b\ge2]W_2$ and $B=W_3+[b\ge2]W_2$. Then $A\ne0$ and $W_3\notin\supp A$, so $r_2=2$; and $s$ is neither constant nor alternating. \qed
+
+\section{Computed checks}\label{sec:checks}
+All \gr{computed}, exact arithmetic, against an independent $S$-basis $\NSym$ engine; none is used in the proof.
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item Cut Lemma, $m\le4$, $L\le9$: 4036/4036 cases agree (\texttt{check2.py}).
+\item Formulas for $A$ and $B$, all $s$ with $2\le L\le9$: 0 disagreements (\texttt{eng.py}).
+\item $\operatorname{rank}\{A,B\}$ equals the Theorem's prediction, and $A=0\iff s$ even alternating, for all $s$ with $L\le14$ (\texttt{scan.py}, \texttt{check2.py}); this agrees with the table behind the Q75 note.
+\item Explicit $A,B$ for hooks and (T), $a,b\le11$ (\texttt{fam.py}).
+\end{itemize}
+
+\section{Prior art}\label{sec:prior}
+Owner search (2026-11-13): \gr{not found}. No paper we read gives a formula for $M_{(m)}^\perp$, or a $\Psi$/$\Phi$-type skewing, on the \emph{ribbon} basis of $\NSym$. Closest:
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item Tewari, arXiv:1403.0607 (EJC 2016), Thm.~5.19: a Murnaghan--Nakayama rule for the \emph{product} $\Psi_n\cdot s_\alpha$ on the noncommutative Schur basis $s_\alpha$ of Bessenrodt--Luoto--van~Willigenburg, not for skewing ribbons.
+\item Lam--Lauve--Sottile, arXiv:0908.3714: skew ribbons $R_{\gamma/\beta}=F_\beta\rightharpoonup R_\gamma$ via coproduct coefficients; their Remark~10 says nonzero skew ribbons ``do not correspond to skew ribbon shapes in a simple way''. No closed form for $M_{(m)}^\perp R_\gamma$; this is the framework the lemma lives in.
+\item Jing--Liu, arXiv:2606.15138: a skew Murnaghan--Nakayama rule for Hopf dual pairs, including $(\NSym,\QSym)$ (Thm.~5.1, Cor.~5.2), stated in the $s_\alpha$ basis with multiplication by $\Psi_r$. The authors note explicitly that the ribbons are a different basis. This is the paper closest to ours.
+\item Gelfand--Krob--Lascoux--Leclerc--Retakh--Thibon, hep-th/9407124: the product rule $R_IR_J=R_{IJ}+R_{I\triangleright J}$ used for $\te$, but no skewing operators on ribbons.
+\end{itemize}
+The \emph{commutative image} is classical: under $\NSym\to\Sym$, $M_{(m)}^\perp\mapsto p_m^\perp$ and $R_s$ maps to a ribbon skew Schur function, so the image of the Cut Lemma is an instance of the skew Murnaghan--Nakayama rule (Macdonald, \emph{Symmetric Functions and Hall Polynomials}, I.3 Ex.~11). What appears to be new is the noncommutative lift in this signed-window form. The search was not exhaustive: forward citations of Tewari and of Lam--Lauve--Sottile were not checked, nor were the papers of Hivert or Novelli--Thibon searched in full. I would not be surprised if it is folklore.
+
+\end{document}
