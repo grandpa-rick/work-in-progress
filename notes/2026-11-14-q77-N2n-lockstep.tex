@@ -1,0 +1,153 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs}\sloppy
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newcommand{\srccommit}{(pending)}
+\newcommand{\gr}[1]{\textsf{#1}}
+\newcommand{\pb}{\bar\pi}
+\newcommand{\wo}{w_0}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Asc}{\operatorname{Asc}}
+\newcommand{\inv}{\operatorname{inv}}
+\newcommand{\wt}{\operatorname{wt}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title[Q77 at $N=2n$: the lockstep lemma]{Q77 at $N=2n$: the $q=0$ reverse Schur--Weyl centraliser also fails (the lockstep lemma)}
+\author{Rick}
+\date{2026-11-14}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}\small
+From: Rick. \quad To: Clio Vega (cc Robin Langer). \quad Date: 2026-11-14.\\
+This note corresponds to WIP commit \texttt{\srccommit}
+(\texttt{github.com/grandpa-rick/work-in-progress}).\\
+Follow-up to this morning's note \texttt{notes/2026-11-14-q77-reverse-schur-weyl-q0.pdf}.\\
+Proof record (local): \texttt{proofs/2026-11-14-q77-N2n-lockstep.md} (PROVE 296); scripts \texttt{proofs/prove296/*.py};\\
+registry \texttt{registry/q77-zero-schur-weyl-dc.json} (this repository).
+\end{center}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{Grades.}
+\begin{itemize}[leftmargin=1.2em,itemsep=0pt,topsep=1pt]
+\item \gr{proved, cold-read PASS (Dream 295)}: Theorem~\ref{thm:main} ($n\ge3$, $N=2n$: $A\subsetneq B$, $\dim B/A\ge 2n-4$). One internal cold read: 0 must-fix, 1 nit (the $k=n$ line in Step~2(ii), included below). Not peer-reviewed.
+\item \gr{computed} (exact): defect $\dim B-\dim A=515-513=2$ at $(3,6)$, so the bound is sharp there; the Step~2 claim for all $y\ne y'$, $n=3,4,5$.
+\item \gr{computed} (exact $\ZZ$ certificates): $A\subsetneq B$ at $(4,7)$ and $(5,8)$. At $(5,9)$, $(6,9)$: the ``$\notin A$'' half exact, the ``$\in B$'' half randomised mod $p$.
+\item \gr{hunch}: H1, $A=B\iff N\le n+2$. \gr{open}: the B-half support lemma for the conjectured family $a_{n,m}$.
+\end{itemize}}}
+
+\section{Setup}
+$H=H_N(0)$ acts on the right on $V^{\otimes N}$, $\dim V=n$, by $v_w\cdot\pi_i=v_{ws_i}$ if $w_i<w_{i+1}$ (an \emph{ascent}, $i\in\Asc(w)$; we call this a \emph{move}) and $v_w\cdot\pi_i=v_w$ otherwise. $A$ is the image of $H$, $S=\End_H(V^{\otimes N})$, $B=\End_S(V^{\otimes N})$; $A\subseteq B$. We write $\pb_i=1-\pi_i$, and $\pb_{\wo[a,b]}$ for the product of $\pb_i$ along a reduced word of the longest element of $\langle s_a,\dots,s_b\rangle$ (acting on positions $a,\dots,b+1$). $M_\mu$ is the weight space of weight $\mu$, and $1_\mu\in S$ the weight idempotent.
+
+Let $N=2n$ and $a_n:=\pb_{\wo[1,n-1]}\cdot\pi_n\cdot\pb_{\wo[n+1,2n-1]}$. For $y\in[n]$ put
+\[
+w_y:=12\cdots n\cdot y\cdot 23\cdots n,\qquad \mu_y:=\wt(w_y)=(2,\dots,2)+e_y-e_1,\qquad u_y:=23\cdots n\cdot y\cdot1\cdot23\cdots n.
+\]
+
+\section{Theorem}
+\begin{theorem}[\gr{proved, cold-read PASS Dream 295}]\label{thm:main}
+Let $n\ge3$ and $N=2n$.
+\begin{enumerate}[label=(\arabic*),itemsep=0pt]
+\item $a_n\cdot1_{\mu_y}\in B\setminus A$ for every $y\in\{2,\dots,n\}$.
+\item $\dim B-\dim A\ge 2n-4$.
+\end{enumerate}
+\end{theorem}
+Combined with the theorem of this morning's note ($N\ge2n+1$, all $n\ge2$): \textbf{$A\subsetneq B$ for all $n\ge3$, $N\ge2n$, and for $n=2$, $N\ge5$.} At $(3,6)$ the bound $2n-4=2$ equals the computed defect $515-513=2$.
+
+\section{Proof}
+\paragraph{B-half.} $a_n\cdot1_C\in B$ for every set $C$ of weights. This is the $N=2n$ Proposition of the PROVE~295 record (proved; cold-read PASS, Dream~294), already stated in this morning's note.
+
+\paragraph{Step 0 (cyclic-module reduction).} Let $s,g$ be words of weights $\mu\neq\mu'$, and suppose $x\in H$ acts on $V^{\otimes N}$ as $\beta$ with $v_g\cdot\beta=0$. Then $(v_s\cdot\beta,0)=(v_s,v_g)\cdot x$ lies in
+\[X:=(v_s,v_g)\cdot H\subseteq M_\mu\oplus M_{\mu'}.\]
+$H$ is spanned by the $\pi_x$ ($x\in S_N$), each a product of $\pi_i$'s, and each $\pi_i$ sends a word to a word. So $X$ is spanned by the vectors $e_{(0,a)}+e_{(1,b)}$, $(a,b)$ ranging over the orbit $O$ of $(s,g)$ under \emph{simultaneous} moves (the same $\pi_i$ applied to both). A functional $\lambda$ kills $X$ iff $\lambda(0,a)+\lambda(1,b)=0$ for all $(a,b)\in O$. (Conversely $X^\perp$ is spanned by signed indicators of connected components of the bipartite graph $O$; only the easy direction is used.)
+
+\paragraph{Step 1 (the coefficient).} In $H_m(0)$, $\pb_{\wo}=\sum_{x\in S_m}(-1)^{\ell(x)}\pi_x$.
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item Write $\pb_{\wo}=\sum c_x\pi_x$. Expanding the product of $\pb_i=1-\pi_i$ along a reduced word gives $c_1=1$.
+\item Every $s_i$ is a right descent of $\wo$, so $\pb_{\wo}=\pb_{\wo s_i}\pb_i$, and $\pb_i\pi_i=0$; hence $\pb_{\wo}\pi_i=0$.
+\item Expanding, $(\sum c_x\pi_x)\pi_i=\sum_{x<xs_i}(c_x+c_{xs_i})\pi_{xs_i}$, so $c_{xs_i}=-c_x$ for all $x,i$, giving $c_x=(-1)^{\ell(x)}$.
+\item On a block of $m$ distinct increasing letters, $v_{12\cdots m}\cdot\pi_x=v_x$ (one-line notation), by induction on a reduced word: $\ell(xs_i)>\ell(x)\iff x(i)<x(i+1)\iff$ ascent at $i$. So $v_{12\cdots m}\cdot\pb_{\wo}=\sum_x(-1)^{\ell(x)}v_x$, distinct words, each arrangement $x$ with coefficient exactly $(-1)^{\ell(x)}$.
+\end{itemize}
+Now take $y\ge2$ and $z_y:=v_{w_y}\cdot a_n$.
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item $\pb_{\wo[1,n-1]}$ acts on positions $1..n$, which hold $12\cdots n$: it gives $\sum_\sigma(-1)^{\ell(\sigma)}v_{\sigma\cdot y\cdot2\cdots n}$.
+\item $\pi_n$ swaps positions $n,n+1$ iff $\sigma_n<y$.
+\item Every later factor acts on positions $\ge n+1$. So a term can contribute to $u_y$ (whose positions $1..n$ read $2\cdots n\,y$) only if position $n$ holds $y$ after $\pi_n$. This forces the swap with $\sigma=23\cdots n1$, of length $n-1$; the result is $v_{2\cdots n\,y\,1\,2\cdots n}$.
+\item $\pb_{\wo[n+1,2n-1]}$ acts on positions $n+1..2n$, which hold $12\cdots n$; the identity arrangement has coefficient $+1$.
+\end{itemize}
+Hence $\langle z_y,v_{u_y}\rangle=(-1)^{n-1}\neq0$, for every $y\ge2$.
+
+\paragraph{Step 2 (the lockstep lemma).}
+\begin{lemma}\label{lem:lockstep}
+Let $n\ge3$, $y\ne y'$ in $\{2,\dots,n\}$, and $O$ the simultaneous-move orbit of $(w_y,w_{y'})$. The only pair in $O$ with first coordinate $u_y$ is $(u_y,u_{y'})$; by symmetry the only pair with second coordinate $u_{y'}$ is $(u_y,u_{y'})$.
+\end{lemma}
+\begin{proof}
+(i) \emph{The path $w_y\to u_y$ is forced.} Label equal letters as instances, left to right; a move swaps two \emph{distinct} letters, so the left-to-right order of the instances of each letter never changes.
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item A move adds exactly one (larger-before-smaller) instance pair to the inversion set and changes no other relative order. Inversion sets only grow.
+\item $\inv(u_y)=\inv(w_y)\sqcup\{(c,1): c \text{ an instance at positions }2..n+1\text{ of }w_y\}$: the unique $1$ has passed $2,\dots,n$ and $y$, and nothing else changed.
+\item So along any move path $w_y\to u_y$, every effective move swaps the $1$ with its right neighbour. The $1$ starts at position $1$ and ends at position $n+1$, so the effective moves are, in order, at positions $1,2,\dots,n$, with intermediate words
+\[a^{(k)}=2\cdots(k+1)\cdot1\cdot(k+2)\cdots n\cdot y\cdot2\cdots n\quad(0\le k\le n-1),\qquad a^{(n)}=u_y.\]
+\end{itemize}
+(ii) \emph{Equal ascent sets.} Let $b^{(k)}$ be $a^{(k)}$ with the instance $y$ replaced by $y'$. They differ in one position $p$ ($p=n+1$ for $k\le n-1$, $p=n$ for $k=n$), so the ascent status can differ only at $p-1$ and $p$.
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item $k\le n-2$: the neighbours of $p$ are $n$ (left) and $2$ (right). Since $2\le y,y'\le n$, both positions are non-ascents in both words.
+\item $k=n-1$: the neighbours are $1$ (left; $1<y,y'$, an ascent in both) and $2$ (right; a non-ascent in both).
+\item $k=n$ ($p=n$): the neighbours are $n$ (left, at position $n-1\ge1$; a non-ascent in both) and $1$ (right; a non-ascent in both). [This case is needed in (iii) for stutters after the first coordinate has reached $u_y$.]
+\end{itemize}
+So $\Asc(a^{(k)})=\Asc(b^{(k)})$ for $0\le k\le n$. This uses $y'\ge2$: for $y'=1$ position $p$ would be an ascent in $b$ but not in $a$.
+
+(iii) \emph{Induction along a common move sequence.} Take any sequence of simultaneous $\pi_i$'s from $(w_y,w_{y'})=(a^{(0)},b^{(0)})$ ending with first coordinate $u_y$. Its first coordinates form a move path $w_y\to u_y$ with stutters; by (i) each actual change is the next $1$-move. Suppose the current pair is $(a^{(k)},b^{(k)})$ and $\pi_i$ is applied. If $i\notin\Asc(a^{(k)})=\Asc(b^{(k)})$, both words are fixed. If $i\in\Asc$, both swap positions $i,i+1$; by (i) $i=k+1$, and since the words differ only by $y\leftrightarrow y'$ at a common position, the new pair is $(a^{(k+1)},b^{(k+1)})$. At the end the pair is $(a^{(n)},b^{(n)})=(u_y,u_{y'})$.
+
+The second claim is the same argument for the flipped orbit of $(w_{y'},w_y)$.
+\end{proof}
+
+\paragraph{Step 3 ($a_n\cdot1_{\mu_y}\notin A$).} Fix $y\in\{2,\dots,n\}$ and pick $y'\in\{2,\dots,n\}\setminus\{y\}$ (possible as $n\ge3$). Suppose $a_n\cdot1_{\mu_y}$ is the action of some $x\in H$. Since $\mu_{y'}\ne\mu_y$, $v_{w_{y'}}\cdot x=0$, so $(z_y,0)\in X=(v_{w_y},v_{w_{y'}})\cdot H$. Let $\lambda:=\delta_{(0,u_y)}-\delta_{(1,u_{y'})}$. By Lemma~\ref{lem:lockstep}, $\lambda$ vanishes on every spanning vector $e_{(0,a)}+e_{(1,b)}$, $(a,b)\in O$: either $(a,b)=(u_y,u_{y'})$, giving $1-1=0$, or neither coordinate is hit. So $\lambda(X)=0$, but $\lambda(z_y,0)=(-1)^{n-1}\ne0$ by Step~1. Contradiction. This proves (1).
+
+\paragraph{Step 4 (the lower bound).}
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item \emph{Mirror.} Let $\theta(v_w):=v_{w^*}$, $w^*_i:=n+1-w_{N+1-i}$. Then $\theta$ maps ascents at $i$ to ascents at $N-i$ and moves to moves, so $\theta(v\cdot\pi_i)=\theta(v)\cdot\pi_{N-i}$. As $\pi_i\mapsto\pi_{N-i}$ is an automorphism of $H$, $\theta A\theta^{-1}=A$, $\theta S\theta^{-1}=S$, $\theta B\theta^{-1}=B$. Put $\beta_y:=a_n\cdot1_{\mu_y}$ and $\beta^*_y:=\theta\beta_y\theta^{-1}$ ($y=2..n$). Then $\beta^*_y\in B\setminus A$, supported on the reversed weight $\mu_y^{\mathrm{rev}}$.
+\item \emph{Distinct weights.} $\mu_y^{\mathrm{rev}}$ has the letter $n$ exactly once, while $\mu_y$ has $n$ at least twice; so the $2(n-1)$ weights $\mu_y,\mu_y^{\mathrm{rev}}$ are pairwise distinct.
+\item \emph{Independence.} Each $\beta$ is nonzero (Step~1), so the $2(n-1)$ elements are linearly independent.
+\item \emph{Constancy.} Suppose $x:=\sum c_y\beta_y+\sum d_y\beta^*_y\in A$. For $y\ne y'$ in $[2,n]$, $x$ acts on $M_{\mu_y}$ as $c_y\beta_y$ and on $M_{\mu_{y'}}$ as $c_{y'}\beta_{y'}$, so $(c_yz_y,c_{y'}z_{y'})\in X$, and $\lambda$ gives $(-1)^{n-1}(c_y-c_{y'})=0$. So $c$ is constant; applying $\theta$, $d$ is constant too.
+\end{itemize}
+Hence $\operatorname{span}\{\beta_y,\beta^*_y\}\cap A$ has dimension $\le2$, and $\dim B/A\ge2(n-1)-2=2n-4$. This proves (2). \qed
+
+\begin{remark}[Why $n=2$ is different]
+For $n=2$ the only $y\ge2$ is $y=2$, so there is no partner $y'$; and $y'=1$ fails Step~2(ii) ($w_1$ has an ascent at $n+1$, $w_2$ does not). Consistent with $A=B$ at $(2,4)$.
+\end{remark}
+
+\begin{remark}[A reusable certificate]
+Step~0 certifies ``$\beta\notin A$'' for a single-weight witness by \emph{one} partner word $g$ plus the connected components of the bipartite simultaneous-move orbit graph of $(s,g)$; no rank computation. Picture: on the cyclic module generated by the two words (common ascent set $[1,n-1]\cup[n+2,2n-1]$) the vectors $u_y,u_{y'}$ are glued, so $A$ reaches them only together; $1_{\mu_y}\in S$ separates them, and $B$ can too once $a_n$ has killed every cross-weight image.
+\end{remark}
+
+\section{Computed evidence (exact; \texttt{proofs/prove296/})}
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item \texttt{single.py}: exhaustive single-partner search. At $(3,6)$, $y=2$, exactly one word certifies $(z,0)\notin(v_{w_y},v_g)H$, namely $g=w_3=123323$; $y=3\mapsto g=w_2$. At $(4,8)$ (same-$\Asc$ candidates), $y=2\mapsto\{w_3,w_4\}$, $y=3\mapsto\{w_2,w_4\}$. The lockstep partners are exactly the certificates.
+\item \texttt{comp.py}: at $(3,6)$ every one of the 12 words of $z$ is in its own bipartite component, with $z$-sum $\pm1$.
+\item \texttt{ucomp.py}: Lemma~\ref{lem:lockstep} (both directions) and $\langle z_y,u_y\rangle=(-1)^{n-1}$ for all ordered $y\ne y'\in[2,n]$, $n=3,4,5$: 20 cases, orbits up to 73440 pairs.
+\item Sharpness at $(3,6)$: $\dim A=513$, $\dim B=515$, defect $2=2n-4$.
+\end{itemize}
+
+\section{Beyond the theorem: the window $n+3\le N\le 2n-1$}
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+\item \gr{computed, exact}: $(4,7)$ fails. Witness $a=\pb_{\wo[1,3]}\,\pi_4\,\pb_{\wo[5,6]}\,\pb_3\pb_4\pb_5$ on $\mu=(1,1,2,3)$. $B$: every cross-image word is killed, over $\ZZ$. $\notin A$: Step~0 with partner $1234334$. So the hunch ``$A=B\iff N\le2n-1$'' from this morning's note is \textbf{dead}.
+\item \gr{computed, exact}: $(5,8)$ fails. At $(5,9)$ and $(6,9)$ the same family gives a witness with the ``$\notin A$'' half exact and the ``$\in B$'' half randomised mod $p$.
+\item \gr{hunch} H1: $A=B\iff N\le n+2$. Supporting data: $A=B$ computed at $(3,5)$, $(4,6)$ and smaller cases.
+\item \gr{conjecture} (computed on all tested cases): for $N=n+m$, $3\le m\le n$,
+$a_{n,m}=\pb_{\wo[1,n-1]}\,\pi_n\,\pb_{\wo[n+1,n+m-1]}\,\pb_x$, where $x$ has the reduced word of $m$ descending runs of length $n-m$; source $12\cdots n\cdot n\cdot(n-m+2\cdots n)$, partner $12\cdots n\cdot(n-1)\cdot(n-m+2\cdots n)$. $m=n$ is Theorem~\ref{thm:main}. It would give $A\subsetneq B$ for all $N\ge n+3$.
+\item \gr{open}: the lockstep half generalises (it needs exactly $m\ge3$), but the B-half needs a support lemma for the tail $\pb_x$, which is \textbf{open}. (Computed support: $\{12\cdots n\cdot T: T\text{ an increasing }m\text{-subset}\}\cup\{12\cdots n\cdot y\cdot H\}$, $H=(n-m+2,\dots,n)$, $y\in H$.)
+\item \gr{open}: the equality half of H1 ($N=n+1,n+2$); no proof idea yet.
+\end{itemize}
+
+\end{document}
