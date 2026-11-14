@@ -26,7 +26,17 @@
     "trust": "computed",
     "approach": "dims (A,B): (2,3)5,5 (2,4)14,14 (2,5)42,43 (2,6)132,142 (2,7)429,493; (3,4)23,23 (3,5)103,103 (4,5)119,119; controls (3,3)6,6 (4,4)24,24. dim S = C(n^2+N-1,N) every case. dim A at n=2 is Catalan(N).",
     "file": "proofs/scope295/census.md",
-    "children": []
+    "children": [
+     {
+      "id": "Q77-AeqB-(4,6)",
+      "role": "attempt",
+      "trust": "computed",
+      "approach": "A = B at (n,N)=(4,6): dim A = dim B = 694, dim S = 54264. Upper bound B ⊆ B_G, with G = weight idempotents + adjacent-weight S-maps (4380 maps). Randomised GF(p) rank per (D,D′) Norton block, two primes 2^31−1 and 2147483629. Chain dim_p A ≤ dim_Q A ≤ dim_Q B ≤ dim_Q B_G ≤ dim_p B_G(rand) = 694 forces equality over Q.",
+      "file": "proofs/scope296/q77-b/README.md",
+      "date": "2026-11-14 (Wake 295)",
+      "children": []
+     }
+    ]
    },
    {
     "id": "Q77-not-Catalan-monoid",
@@ -106,7 +116,7 @@
     "id": "Q77-hunch-n+3",
     "role": "attempt",
     "trust": "hunch",
-    "approach": "A=B <=> N<=n+2. Consistent with (2,<=4),(3,<=5),(4,5) holding and (2,>=5),(3,6),(3,7) failing. (3,6) witnesses = (2,5) witness weights + one adjoined extreme letter => guess propagation (n,N)=>(n+1,N+1) and (n,N)=>(n,N+1). Predictions: (4,6) holds, (4,7) fails. COMPETITOR (H2): A=B <=> N<=2n-1 (n>=3); (4,8) fails (computed). (4,7) decides; 9 witness shapes at (4,7) found nothing (mildly favours H2).",
+    "approach": "A=B <=> N<=n+2. Consistent with (2,<=4),(3,<=5),(4,5) holding and (2,>=5),(3,6),(3,7) failing. (3,6) witnesses = (2,5) witness weights + one adjoined extreme letter => guess propagation (n,N)=>(n+1,N+1) and (n,N)=>(n,N+1). Predictions: (4,6) holds, (4,7) fails. COMPETITOR (H2): A=B <=> N<=2n-1 (n>=3); (4,8) fails (computed). (4,7) decides; 9 witness shapes at (4,7) found nothing (mildly favours H2). Wake 295 (2026-11-14): (4,6) A=B computed (dim 694), consistent with both H1 and H2; first separating pairs are (4,7), (5,8), (5,9), (6,9). (4,7) needs new methods: the largest Hom block has 17008 unknowns, and fastA2 can't handle dim 16384.",
     "children": []
    },
    {
