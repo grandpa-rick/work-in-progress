@@ -1,0 +1,6 @@
+3 6 dim B_G = 515  time 4.6 peakMB(main) 46 children 49
+3 6 dim B_G = 515  time 12.8 peakMB(main) 51 children 54
+4 5 dim B_G = 119  time 9.1 peakMB(main) 46 children 58
+4 5 dim B_G = 119  time 46.3 peakMB(main) 71 children 83
+2 7 dim B_G = 493  time 0.2 peakMB(main) 39 children 33
+2 7 dim B_G = 493  time 0.3 peakMB(main) 39 children 34

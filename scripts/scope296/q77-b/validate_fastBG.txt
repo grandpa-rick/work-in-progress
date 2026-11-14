@@ -1,0 +1,9 @@
+3 6 P 2147483647 MODE gen #constraint S-maps 480
+bases done 1.140721082687378
+actions done 1.634032964706421
+3 6 dim B_G = 515  time 74.2 peakMB 119
+4 5 P 2147483647 MODE gen #constraint S-maps 1626
+bases done 0.7263362407684326
+actions done 1.7567403316497803
+
+[exited with code 0]
