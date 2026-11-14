@@ -1,0 +1,9 @@
+============================================================
+k = 6 Hilb [1, 1, 2, 2, 3, 3, 4, 3, 3, 2, 2, 1, 1]
+ #Schur bases per degree: [1, 1, 1, 2, 5, 13, 94, 292, 783, 257, 426, 37, 46]
+ #bases per degree appearing in some positive partial chain: [1, 1, 1, 2, 4, 4, 12, 4, 0, 0, 0, 0, 0]
+ # fully POSITIVE Schur-subset bases: 0  time 3.4s
+
+real	0m3.434s
+user	0m3.419s
+sys	0m0.014s

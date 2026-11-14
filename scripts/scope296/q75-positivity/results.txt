@@ -1,0 +1,27 @@
+# Q75 positivity scope (scope296) — Schur-image bases of G_(2^k) = Sym/Ann(r_(2^k))
+
+Definition used: Q75 Corollary (2026-11-12-q75-alternating-ribbon-gorenstein.md §6) / scripts/q75_ring.py:
+Hall pairing, f acts by f^perp, R = ribbon Schur r_(2^k) (rows of length 2), d = 2k. The image of f in G_i
+is the vector (<f s_nu, R>)_{nu |- d-i}. Engine: exact integer LR via h-basis + Kostka (engine.py).
+
+All grades: **computed**.
+
+| k | Hilb | Schur-subset basis with all constants >= 0? |
+|---|------|------|
+| 2 | 1,1,2,1,1 | YES (4 of 4 Schur-subset bases) |
+| 3 | 1,1,2,2,2,1,1 | YES (160 of 200) |
+| 4 | 1,1,2,2,3,2,2,1,1 | YES (19008 of 308880) |
+| 5 | 1,1,2,2,3,3,3,2,2,1,1 | YES (>= 10^6, capped) |
+| 6 | 1,1,2,2,3,3,4,3,3,2,2,1,1 | NO (exhaustive; dies in degree 8) |
+| 7 | 1,1,2,2,3,3,4,4,4,3,3,2,2,1,1 | NO (exhaustive; dies in degree 8) |
+
+- Integral AND positive Schur-subset bases (unscaled s_lambda): k=2 yes (2), k=3,4,5 none.
+- Cone of Schur images per degree (cone.py): simplicial in every degree for k<=4 (ray basis has every s_lambda >= 0);
+  k=5 degree 6 has 5 extreme rays in dim 3; k=6 degrees 6,7,8 non-simplicial.
+- k=6 certificate (cert_k6.py): every positive partial chain B_0..B_7 (128 of them) contains s_1, s_11, s_2, s_33, s_22111;
+  the three products s_11*s_33, s_1*s_22111, s_2*s_33 have a negative coefficient in every one of the 783 Schur bases of G_8.
+- Poincare-dual-of-Schur basis (dualbasis.py): negative already at k=2 (Gram in degree 2 is [[2,1],[1,1]]).
+- Controls (control.py): LR dimension identity 301/301; R = s_(k,k) reproduces H*Gr(2,k+2) (box Schur basis, constants = LR) k=2..5.
+
+Files: engine.py, survey.py, positivity.py (k<=4 incl. greedy-order negatives), fastsearch.py, fastsearch_int.py,
+cone.py, dualbasis.py, verify_k5.py, obstruction_k6.py, cert_k6.py, control.py; *.txt outputs.

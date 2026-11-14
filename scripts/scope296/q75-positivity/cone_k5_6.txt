@@ -1,0 +1,44 @@
+============================================================
+k = 5
+ n=0 r=1 #directions=1 #extreme rays=1 simplicial=True
+ n=1 r=1 #directions=1 #extreme rays=1 simplicial=True
+ n=2 r=2 #directions=2 #extreme rays=2 simplicial=True
+    rays: [[(2,)], [(1, 1)]]
+ n=3 r=2 #directions=2 #extreme rays=2 simplicial=True
+    rays: [[(3,), (2, 1)], [(1, 1, 1)]]
+ n=4 r=3 #directions=4 #extreme rays=3 simplicial=True
+    rays: [[(4,), (2, 1, 1)], [(2, 2)], [(1, 1, 1, 1)]]
+ n=5 r=3 #directions=5 #extreme rays=3 simplicial=True
+    rays: [[(5,), (2, 1, 1, 1)], [(3, 2)], [(1, 1, 1, 1, 1)]]
+ n=6 r=3 #directions=8 #extreme rays=5 simplicial=False
+    rays: [[(6,), (2, 1, 1, 1, 1)], [(4, 2)], [(3, 3)], [(2, 2, 2)], [(2, 2, 1, 1)]]
+ n=7 r=2 #directions=7 #extreme rays=2 simplicial=True
+    rays: [[(6, 1), (3, 1, 1, 1, 1), (2, 2, 1, 1, 1)], [(3, 2, 2)]]
+ n=8 r=2 #directions=8 #extreme rays=2 simplicial=True
+    rays: [[(6, 2), (6, 1, 1), (4, 1, 1, 1, 1), (3, 2, 1, 1, 1), (2, 2, 2, 1, 1)], [(2, 2, 2, 2)]]
+ n=9 r=1 #directions=1 #extreme rays=1 simplicial=True
+ n=10 r=1 #directions=1 #extreme rays=1 simplicial=True
+============================================================
+k = 6
+ n=0 r=1 #directions=1 #extreme rays=1 simplicial=True
+ n=1 r=1 #directions=1 #extreme rays=1 simplicial=True
+ n=2 r=2 #directions=2 #extreme rays=2 simplicial=True
+    rays: [[(2,)], [(1, 1)]]
+ n=3 r=2 #directions=2 #extreme rays=2 simplicial=True
+    rays: [[(3,), (2, 1)], [(1, 1, 1)]]
+ n=4 r=3 #directions=4 #extreme rays=3 simplicial=True
+    rays: [[(4,), (2, 1, 1)], [(2, 2)], [(1, 1, 1, 1)]]
+ n=5 r=3 #directions=5 #extreme rays=3 simplicial=True
+    rays: [[(5,), (2, 1, 1, 1)], [(3, 2)], [(1, 1, 1, 1, 1)]]
+ n=6 r=4 #directions=9 #extreme rays=6 simplicial=False
+    rays: [[(6,), (2, 1, 1, 1, 1)], [(4, 2)], [(3, 3)], [(2, 2, 2)], [(2, 2, 1, 1)], [(1, 1, 1, 1, 1, 1)]]
+ n=7 r=3 #directions=10 #extreme rays=5 simplicial=False
+    rays: [[(7,), (2, 1, 1, 1, 1, 1)], [(5, 2)], [(4, 3), (3, 3, 1)], [(3, 2, 2)], [(2, 2, 1, 1, 1)]]
+ n=8 r=3 #directions=13 #extreme rays=6 simplicial=False
+    rays: [[(7, 1), (3, 1, 1, 1, 1, 1), (2, 2, 1, 1, 1, 1)], [(5, 3), (3, 3, 1, 1)], [(4, 4), (3, 3, 2)], [(4, 2, 2)], [(2, 2, 2, 2)], [(2, 2, 2, 1, 1)]]
+ n=9 r=2 #directions=13 #extreme rays=2 simplicial=True
+    rays: [[(7, 2), (7, 1, 1), (4, 1, 1, 1, 1, 1), (3, 2, 1, 1, 1, 1), (2, 2, 2, 1, 1, 1)], [(3, 3, 3)]]
+ n=10 r=2 #directions=15 #extreme rays=2 simplicial=True
+    rays: [[(7, 3), (7, 2, 1), (7, 1, 1, 1), (5, 1, 1, 1, 1, 1), (4, 2, 1, 1, 1, 1), (3, 3, 1, 1, 1, 1), (3, 2, 2, 1, 1, 1), (2, 2, 2, 2, 1, 1)], [(2, 2, 2, 2, 2)]]
+ n=11 r=1 #directions=1 #extreme rays=1 simplicial=True
+ n=12 r=1 #directions=1 #extreme rays=1 simplicial=True

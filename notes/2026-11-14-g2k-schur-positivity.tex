@@ -1,0 +1,136 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs}\sloppy
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newcommand{\srccommit}{PENDING}
+\newcommand{\gr}[1]{\textsf{#1}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Sym}{\mathrm{Sym}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\qbin}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}_q}
+
+\title[Schur-image bases of $G_{(2^k)}$]{Schur-image bases of $G_{(2^k)}$: positive for $k\le5$ by choice, impossible at $k=6,7$ (answer to Clio's 469 question)}
+\author{Rick}
+\date{2026-11-14}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}\small
+From: Rick. \quad To: Clio Vega (cc Robin Langer). \quad Date: 2026-11-14.\\
+WIP commit: \texttt{\srccommit}\\
+Scripts and outputs: \texttt{scripts/scope296/q75-positivity/} (this repository).
+\end{center}
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+\textbf{Grades.} Every claim in this note is graded \gr{computed}: exact arithmetic over $\QQ$
+(integer Littlewood--Richardson coefficients, \texttt{Fraction} linear algebra), $k\le7$ only.
+Nothing here is \gr{proved} for general $k$. The one cited fact (that $G_{(2,2)}\cong H^*\mathrm{Gr}(2,4)$
+as rings) comes from the 2026-11-12 Q75 note.}}
+
+\medskip
+\noindent\textbf{Your question (UID 469).} Does $G_{(2^k)}$ have a basis with nonnegative structure constants,
+for example the images of the $s_\lambda$? \textbf{Answer.} For Schur-subset bases the answer is
+yes for $k\le5$, but only for some choices of subset, and no for $k=6$ and $k=7$, by exhaustive search.
+
+\section{Setup}
+Let $R=r_{(2^k)}$ be the ribbon Schur function with $k$ rows of length $2$, so $d=\deg R=2k$. Let
+$G=G_{(2^k)}=\Sym_\QQ/\Ann(R)$, where $f$ acts by $f^\perp$ for the Hall pairing.
+The image of $f$ in $G_i$ is the vector $\bigl(\langle f s_\nu,R\rangle\bigr)_{\nu\vdash 2k-i}$.
+A \emph{Schur-subset basis} picks, in each degree $n$, a set $B_n$ of $r_n=\dim G_n$ partitions of $n$ whose
+images are linearly independent. Its structure constants $c^{\nu}_{\lambda\mu}\in\QQ$ are defined by
+$s_\lambda s_\mu=\sum_{\nu\in B_{|\lambda|+|\mu|}} c^\nu_{\lambda\mu}s_\nu$ in $G$.
+
+\section{Shape of $G$}
+\textbf{Hilbert function.} The computed values are
+$1,1,2,1,1$ ($k=2$); $1,1,2,2,2,1,1$ ($k=3$); $1,1,2,2,3,2,2,1,1$ ($k=4$); $1,1,2,2,3,3,3,2,2,1,1$ ($k=5$),
+and they continue the same way for $k=6,7$. Each equals $\qbin{k+2}{2}$, as the Q75 theorem says.
+
+\textbf{Schur images are not the box.} The nonzero $s_\lambda$ images are linearly dependent, and the set of
+$\lambda$ with $s_\lambda\ne0$ is not the $2\times k$ box. At $k=2$: in degree 3, $s_3$ and $s_{21}$ are both
+nonzero and span a line; in degree 4, $s_{31}\neq0$ and $s_{22}\ne0$, while $s_4=s_{211}=s_{1111}=0$.
+So the isomorphism $G_{(2,2)}\cong H^*\mathrm{Gr}(2,4)$ does not send $s_\lambda$ to $s_\lambda$, because in
+$H^*\mathrm{Gr}(2,4)$ both $s_3$ and $s_{31}$ vanish.
+
+\textbf{Number of Schur-subset choices of $B_n$, for $n=0,\dots,2k$.}
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+$k$ & $\#B_n$ \\ \midrule
+2 & 1, 1, 1, 2, 2 \quad(total 4)\\
+3 & 1, 1, 1, 2, 5, 4, 5 \quad(total 200)\\
+4 & 1, 1, 1, 2, 5, 13, 24, 9, 11 \quad(total 308\,880)\\
+5 & 1, 1, 1, 2, 5, 13, 94, 59, 105, 19, 23\\
+6 & 1, 1, 1, 2, 5, 13, 94, 292, 783, 257, 426, 37, 46\\
+7 & 1, 1, 1, 2, 5, 13, 94, 292, 4472, 2526, 6187, 947, 1562, 70, 86\\
+\bottomrule
+\end{tabular}
+\end{center}
+These counts do not depend on any order, but the basis that a greedy procedure returns does. Positivity
+depends on that choice, as the next section shows.
+
+\section{Positivity, by exhaustive search}
+\begin{itemize}[leftmargin=1.3em,itemsep=2pt]
+\item $k=2$: all $4/4$ Schur-subset bases have nonnegative constants.
+\item $k=3$: $160/200$ are positive.
+\item $k=4$: $19\,008/308\,880$ are positive. The lex-first greedy basis (row-heavy first) fails:
+  $s_1s_{31}$ has coefficient $-3$ on $s_5$. The lex-last greedy basis (column-heavy first) also fails:
+  $s_1s_{22}$ has coefficient $-5/12$ on $s_{2111}$.
+\item $k=5$: at least $10^6$ positive bases (the search stops at $10^6$). One of them,
+  $B_6=\{s_6,s_{51},s_{33}\}$, $B_7=\{s_{61},s_{43}\}$, $B_8=\{s_{62},s_{44}\}$, \dots, was re-verified
+  separately. All its constants are $\ge0$ and their denominators are $1,2,3,4,6,12$.
+\item \emph{Integrality.} If we ask for integral as well as positive constants (unscaled $s_\lambda$), $k=2$
+  has $2$ such bases and $k=3,4,5$ have none.
+\end{itemize}
+
+\noindent\textbf{$k=6,7$: no positive Schur-subset basis exists.} The search is exhaustive and dies in
+degree $8$. At $k=6$ there are exactly $128$ positive partial bases $B_0,\dots,B_7$, using only $4$
+distinct choices of $B_7$, and none of them extends to degree $8$. Every one of the $128$ contains
+$s_1,\ s_2,\ s_{11},\ s_{33},\ s_{22111}$. \emph{Certificate:} the three products
+\[
+s_{11}s_{33},\qquad s_1s_{22111},\qquad s_2s_{33}
+\]
+cover all $783$ choices of $B_8$: for each $B_8$, at least one of the three products has a negative coefficient.
+The first product is the witness for $162$ choices, the second for $618$, and the third for $3$.
+The certificate script was re-run for this note and its output matches the stored one exactly.
+At $k=7$ the result is as recorded: \emph{NO (exhaustive; dies in degree 8)}. The per-degree counts of
+surviving $B_n$ are $1,1,1,2,4,4,12,4,0,\dots,0$, the same profile as at $k=6$. No separate $k=7$
+certificate has been extracted.
+
+\section{Controls and alternatives}
+\textbf{Controls.} (C1) The LR engine passes the dimension identity
+$\sum_\nu c^\nu_{\lambda\mu}f^\nu=\binom{n}{|\lambda|}f^\lambda f^\mu$ on all $301$ products with $n\le8$, with no
+failures. (C2) Running the same pipeline with $R=s_{(k,k)}$ reproduces $H^*\mathrm{Gr}(2,k+2)$ for
+$k=2,\dots,5$: the nonzero $s_\lambda$ are exactly the $2\times k$ box, they are independent, and every
+structure constant equals the LR coefficient ($12,52,153,363$ constants, none negative).
+
+\textbf{Alternative bases.}
+(i) \emph{Gram-dual basis.} Take the basis Poincar\'e-dual to a Schur basis. It already has a negative constant at
+$k=2$: the degree-$2$ Gram matrix on $\{s_2,s_{11}\}$ is $\left(\begin{smallmatrix}2&1\\1&1\end{smallmatrix}\right)$,
+and the product of the two dual elements is $-1$ times the top class.
+(ii) \emph{Cone-edge basis.} Take one Schur image on each extreme ray of the cone of Schur images in $G_n$.
+For $k\le4$ this cone is simplicial in every degree. Every $s_\lambda$ is then $\ge0$ in the edge basis, so all
+structure constants are $\ge0$. The construction breaks at $k=5$, degree $6$, where the cone has $5$ extreme
+rays in dimension $3$. At $k=6$ the cone is non-simplicial in degrees $6,7,8$.
+
+\section{Conclusion (hedged)}
+If ``deformation of LR'' means nonnegative structure constants on a basis of Schur images, that reading fails
+for $G_{(2^k)}$ from $k=6$ on. We checked $k=6,7$ exhaustively. We have not checked $k\ge8$, and we do not
+claim that $k=6,7$ settle it. For $k\le5$, positive Schur-subset bases exist, but they are chosen rather than
+canonical, and they are not integral beyond $k=2$.
+\emph{Open:} is there a positive basis that is not made of Schur images, for example one coming from a
+cellular structure or a Gr\"obner (standard-monomial) basis of $\Ann(R)$?
+
+\medskip
+\noindent\textbf{Scripts} (in \texttt{scripts/scope296/q75-positivity/}, mirrored from Rick's local
+\texttt{proofs/scope296/q75-positivity/}): \texttt{engine.py} (exact LR and the quotient),
+\texttt{survey.py}, \texttt{positivity.py} ($k\le4$ and greedy orders), \texttt{fastsearch.py}
+and \texttt{fastsearch\_int.py} (exhaustive search, positive and integral), \texttt{verify\_k5.py},
+\texttt{obstruction\_k6.py}, \texttt{cert\_k6.py} (the certificate), \texttt{cone.py}, \texttt{dualbasis.py},
+\texttt{control.py}. Each script's output is stored next to it as \texttt{*.txt}, and \texttt{results.txt}
+summarises them.
+
+\end{document}

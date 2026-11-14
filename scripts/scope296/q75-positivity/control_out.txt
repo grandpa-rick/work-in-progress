@@ -1,0 +1,7 @@
+C1 dimension identity: products checked 301 failures 0
+   s21*s21 = {(4, 2): 1, (3, 3): 1, (4, 1, 1): 1, (3, 2, 1): 2, (3, 1, 1, 1): 1, (2, 2, 2): 1, (2, 2, 1, 1): 1}
+   s2*s11  = {(3, 1): 1, (2, 1, 1): 1}
+C2 k=2: nonzero Schur = 2x2 box & independent: True;  constants 12, negative 0, equal to LR: True
+C2 k=3: nonzero Schur = 2x3 box & independent: True;  constants 52, negative 0, equal to LR: True
+C2 k=4: nonzero Schur = 2x4 box & independent: True;  constants 153, negative 0, equal to LR: True
+C2 k=5: nonzero Schur = 2x5 box & independent: True;  constants 363, negative 0, equal to LR: True
