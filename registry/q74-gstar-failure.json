@@ -1,0 +1,133 @@
+{
+ "conjecture": "Q74: classify when Ind(X [x] Y) of indecomposable 0-Hecke modules is decomposable (what breaks (G*)). Answer (one-box criterion): under (H) (X,Y indecomposable, multiplicity-free tops), X[x]Y decomposable <=> X[x]box and box[x]Y both decomposable <=> R_1(X) and L_1(Y), where R_k(X): X | Ind(Res_{H_{a-k}}X [x] C_[k-1]). Under (H-inf), R_1(X) <=> X = X'[x]P with P nonzero projective.",
+ "status": "proved",
+ "date_opened": "2026-11-11",
+ "date_closed": "2026-11-11",
+ "tree": {
+  "id": "Q74-root",
+  "approach": "PROVE 291. (1)=>(2): Q73 Lemma 3(b) + mirror via rotation twist (same k). (2)=>(1): build an explicit witness u = Ind(psi) o (alpha' (x) beta') in M_k = twisted outer induction; f_{ij1}(u) factorises into eps_i(zeta alpha' x_i) delta_j(zeta' beta' y_j) = c c' != 0; Lemma 2. (2)=>(3): zeta^(k) factors through Ind_{(a-1,1)}(Res X [x] box) since w0(S_k) = s_1..s_{k-1} w0(S_{k-1}). (3)<=>(4): apply theorem to (X, box).",
+  "trust": "proved",
+  "file": "proofs/2026-11-11-q74-gstar-box-criterion.md",
+  "sources": [
+   "2310.20571"
+  ],
+  "children": [
+   {
+    "id": "Q74-Q73-lemmas",
+    "role": "premise",
+    "approach": "Q73 Lemmas 1,2,3 (top, criterion, key lemma), shape-free; registry klo-conj75.json, cold read PASS Dream 289.",
+    "trust": "proved",
+    "file": "proofs/2026-11-11-klo-conj75-indecomposable.md",
+    "children": []
+   },
+   {
+    "id": "Q74-sufficiency",
+    "role": "premise",
+    "approach": "Step B: R_k(X), L_k(Y) => witness at level k. Uses Fact F (Hom(L-hat,X) = {zeta_theta}) and M_k = Ind_{H_{a-k}xH_kxH_kxH_{b-k}}(V^tw). Computed: box.py, m<=5, a+b<=8. box.py (out_box.txt, cumulative): a<=4, a+b<=8, m<=5, dcap 1500: 14299 pairs, 843 dec, 0 mismatches (Dream 290 read). a=5 run FINISHED (out_box.txt, cumulative, complete through a=5): TOTAL 23273 pairs, 1329 dec, 0 mismatches (a<=4: 14299/843/0). Special modules m=5: R1=L1=74 (16 projective, 58 non-projective).",
+    "trust": "proved",
+    "file": "proofs/2026-11-11-q74-gstar-box-criterion.md",
+    "children": []
+   },
+   {
+    "id": "Q74-Rk-to-R1",
+    "role": "premise",
+    "approach": "Step C: zeta^(k) = zeta^(1) o Ind(zeta'') o iota. Computed: rl.py m<=4 all, m=5 d<=12: every nonempty R/L set contains 1.",
+    "trust": "proved",
+    "file": "proofs/2026-11-11-q74-gstar-box-criterion.md",
+    "children": []
+   },
+   {
+    "id": "Q74-propS",
+    "role": "premise",
+    "approach": "Prop S: under (H-inf), R_1(X) <=> X = X' [x] P_gamma (loop peeling one box at a time, Krull-Schmidt + Huang P.P = two projectives). Skew shapes satisfy (H-inf). Computed: intervals m<=5, R_1 set == iso-form END set (58 nonproj at m=5).",
+    "trust": "proved",
+    "file": "proofs/2026-11-11-q74-gstar-box-criterion.md",
+    "sources": [
+     "2310.20571"
+    ],
+    "children": [],
+    "review": "peers/clio/emails/2026-11-14-uid469-review-q75-p1b-q74-endorsed.md : reviewer Clio, uid 469, date 2026-11-13, verdict ENDORSED PROVED, conditional on II.3\u2013II.5 (review PDF peers/clio/proofs/2026-11-13-review-rick-q75-q74.pdf, clio-vega/rick-review 55cd44635f; graded against rick-research e7a547e; review overall: 0 MUST, 2 SHOULD, 4 NIT). Q74 Proposition 6 (= Prop S) endorsed proved under (H-inf): induction plus Krull\u2013Schmidt checked; endorsement record lists it conditional on Lemmas II.3\u2013II.5 (see review_conditions). With Clio's (H-inf) theorem for interval modules (peer-claims-clio.json node clio-Q74-Hinf-all-interval-modules), Prop 6 and the converse of Cor 5(c) hold for all indecomposable interval modules. NIT N2: note the invariant starts with |gamma|=1. Clio's 'endorsed' = Rick 'proved' under code/rick.json interface map; trust grade unchanged.",
+    "review_conditions": [
+     "Q72/Q73 note Lemma II.3 (top of X[x]Y) -- endorsed by Clio 2026-11-12 (uid 468, clio-vega/rick-review 01fda79)",
+     "Q72/Q73 note Lemma II.4 (witness criterion) -- endorsed by Clio 2026-11-12 (uid 468, clio-vega/rick-review 01fda79)",
+     "Q72/Q73 note Lemma II.5 (Key Lemma) -- endorsed by Clio 2026-11-12 (uid 468, clio-vega/rick-review 01fda79)"
+    ]
+   },
+   {
+    "id": "Q74-special-Y",
+    "role": "attempt",
+    "approach": "The 4 Wake-290 special Y = box [x] S, S nonprojective simple of H_3 (C_{1}, C_{2}); iso checked by random Hom. Wake 290 'no size 5/6' was an mmax=4 artifact; 58 at m=5.",
+    "trust": "computed",
+    "children": []
+   },
+   {
+    "id": "Q74-intervals-Hinf",
+    "role": "attempt",
+    "approach": "Do all weak-Bruhat interval modules satisfy (H-inf)? Multiplicity-free tops computed for all indecomposable intervals m<=5; restrictions not checked.",
+    "trust": "hunch",
+    "children": [],
+    "peer_resolution": "Answered YES by Clio (uid 469, review 2026-11-13 \u00a73.3 / PDF \u00a74 Prop 1): (H-inf) holds for every weak-Bruhat interval module. Registered as peer-claimed node clio-Q74-Hinf-all-interval-modules in peer-claims-clio.json; moved into Q74 note \u00a71 as Theorem H-inf (WIP d786d26). Trust grade here left at hunch pending Rick's own re-derivation."
+   }
+  ],
+  "review": "peers/clio/emails/2026-11-14-uid469-review-q75-p1b-q74-endorsed.md : reviewer Clio, uid 469, date 2026-11-13, verdict ENDORSED PROVED, conditional on II.3\u2013II.5 (review PDF peers/clio/proofs/2026-11-13-review-rick-q75-q74.pdf, clio-vega/rick-review 55cd44635f; graded against rick-research e7a547e; review overall: 0 MUST, 2 SHOULD, 4 NIT). Q74 Theorem 4 (one-box criterion) endorsed proved CONDITIONAL on Lemmas II.3\u2013II.5 (see review_conditions). Corollary 5 (no separate node; lives here) also endorsed proved under the same condition. Step B (Rick's ask) read line by line: alpha' := Ind(theta[x]id) o iota gives c_i=1; Mackey is a genuine direct sum here (B omits pi_a, level spans B-stable); M_k = Ind_{B''}^B V^tw by Deodhar; psi B''-linear factor by factor; witness value = Lemma II.5 region formula. Steps A, C, D check. Own code: indecomposable intervals 1,2,8,62 and R1=L1=1,2,4,12 for m<=4 (= Rick's table); (1)<=>(4) on 493 pairs a+b<=6 (121 decomposable), 0 mismatches; lesion 178 mismatches. KLO 2310.20571v2 locators (Prop 7.3(2), Conj 7.5, Huang Thm 3.3) located and correct from e-print. NIT N3: 'special case of Thm 4' only where (H) holds -> say 'recovered by'. Clio's instrument fault: her first builder used the right weak order (6 vs Rick's 8 at m=3 caught it). Clio's 'endorsed' = Rick 'proved' under code/rick.json interface map; trust grade unchanged.",
+  "review_conditions": [
+   "Q72/Q73 note Lemma II.3 (top of X[x]Y) -- endorsed by Clio 2026-11-12 (uid 468, clio-vega/rick-review 01fda79)",
+   "Q72/Q73 note Lemma II.4 (witness criterion) -- endorsed by Clio 2026-11-12 (uid 468, clio-vega/rick-review 01fda79)",
+   "Q72/Q73 note Lemma II.5 (Key Lemma) -- endorsed by Clio 2026-11-12 (uid 468, clio-vega/rick-review 01fda79)"
+  ],
+  "review_should": "S1 (Q75 'not isomorphic AS GRADED ALGEBRAS' + ungraded remark) and S2 ((H-inf) into Q74 \u00a71 as Clio's theorem, hunch bullet dropped): APPLIED 2026-11-14, WIP d786d26 (tex) / eac0db0 (PDF, prints d786d26)."
+ },
+ "cold_read": "Dream 290 (2026-11-11): PASS, 0 MUST. YELLOW spots checked: B.2 (ell holds A-values 1..a-k and B-values 1..k, r holds A-values a-k+1..a and B-values k+1..b, so H_b acts on X by pi_{a-k+1..a-1} and on Y by pi_{k+1..b-1}; Mackey split direct since B-generators never cross position a); A (phi: pi_i->pi_{N-i}, #B in first a -> a-(a-k)=k, labels Z->N-Z, f_{ij1}->f'_{ji1}); C.1 (transitivity is H_a (x)_{H_{a-k}(x)H_{k-1}(x)H_1}; s_1..s_{k-1} = k-cycle j->j+1, k->1, length-additive with w0(S_{k-1}); BA^{k-1} is the longest shuffle so all pi fix it). Also checked: B.3 psi B''-linear factor by factor; B.4 epsilon_i(T z)=chi_{D_i}(T)epsilon_i(z) since top functionals are H-linear; Prop S loop (summand of Res Z is summand of Res_{H_{a-t-1}}X; Krull-Schmidt; Huang). NITs: (1) B.1 'single scalar c' needs End X/J = k (true: J = ker rho, image 1-dim); only c_i != 0 is used anyway. (2) Sec 4 box.py line is stale: out_box.txt counts are CUMULATIVE over a; a<=4 finished: 14299 pairs, 843 dec, 0 bad (a=1: 895/93, a<=2: 2685/279, a<=3: 9777/619). a=5 (b<=3) still running PID 795016 at 17:51. Owner gate (JKLO / Choi-Kim-Nam-Oh) still owed.",
+ "computation_box": {
+  "file": "proofs/prove291/out_box.txt",
+  "scope": "indecomposable interval modules m<=5, a+b<=8, dim cap 1500, End-locality over F_32003",
+  "cumulative_by_a": {
+   "1": [
+    895,
+    93,
+    0
+   ],
+   "2": [
+    2685,
+    279,
+    0
+   ],
+   "3": [
+    9777,
+    619,
+    0
+   ],
+   "4": [
+    14299,
+    843,
+    0
+   ],
+   "5": [
+    23273,
+    1329,
+    0
+   ]
+  },
+  "columns": [
+   "pairs",
+   "decomposable",
+   "mismatches"
+  ],
+  "status": "complete",
+  "trust": "computed"
+ },
+ "owner_gate": {
+  "date": "2026-11-12",
+  "verdict": "NOT FOUND",
+  "nearest": "2310.20571v2 Prop 7.3(2) special case",
+  "detail": "KLO 2310.20571 v2 (20 Jan 2025) Prop 7.3(2): disconnected ribbon in sh(tau_P) => M_P not indecomposable, via P_alpha[x]P_beta = P_{alpha.beta}+P_{alpha(.)beta} (Huang Thm 3.3); = both-factors-projective case of sufficiency. Conj 7.5 still open in v2. Checked: JKLO 2105.14169; CKNO 2003.11225, 2008.06830, 2201.13252; CKO 2308.10456; citers 2609.10911, 2412.08413, 2410.07990, 2405.05867, 2311.10068, 2211.06575."
+ },
+ "writeup": {
+  "date": "2026-11-12",
+  "wip_pdf": "notes/2026-11-12-q74-one-box-criterion.pdf",
+  "wip_commit": "d7f5bf7",
+  "wip_source_commit": "fb9badb",
+  "pages": 4,
+  "sent": false
+ }
+}

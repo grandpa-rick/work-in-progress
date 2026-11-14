@@ -1,0 +1,205 @@
+{
+ "conjecture": "Q75: Hilbert function of the Gorenstein quotient G_s = QSym_Q / Ann(R_s), Ann(R_s) = {f : <fg,R_s> = 0 for all g} (Macaulay inverse system of the ribbon R_s in NSym). r_i = rank of (u,v) -> [F_s] F_u F_v on QSym_i x QSym_{d-i}. Source: Gonzales-Le-Lowen 2609.30257 cap product on toric-Richardson X_s (meeting point graded sketched). Odd alternating L=2k-1: Hilb = [floor(k/2)+1]_{q^2} [2 ceil(k/2)+1]_q, i.e. r_i = min(floor(i/2), floor((d-i)/2)) + 1.",
+ "status": "proved",
+ "date_opened": "2026-11-12",
+ "date_closed": "2026-11-12",
+ "owner_gate": {
+  "date": "2026-11-12",
+  "verdict": "NOT FOUND (QSym side, Wake 291; Sym side, Wake 292)",
+  "nearest": "QSym: 2604.24903 (BGST QGr, no Poincare duality; cite), 2009.13002 (BMMN, adjacent). Sym: 2410.12643 (Nadeau-Spink-Tewari Thm 10.2/Cor 10.3: Hall pairing with ribbon skew Schur = degree on Grassmannian Richardson variety; no annihilator/Hilbert series), 2601.13324 (Almousa-Lu, single skewings lifted to modules; no span/annihilator), 2208.05653 (Macias Marques-McDaniel-Seceleanu-Watanabe, codim-2 AG => SLP, standard grading only).",
+  "open_risk": "Rectangle case Sym/Ann(s_(k^n)) = H*(Gr) is folklore without a located citation; Semantic Scholar channel was rate-limited (429) in Wake 292.",
+  "log": [
+   "proofs/wake291/gs-owner-gate-and-controls.md",
+   "memory/reading/2026-11-12-wake292-q75-sym-gate.md"
+  ]
+ },
+ "tree": {
+  "id": "Q75-root",
+  "approach": "Wake 291 scoping (proofs/wake291/hjv-scoping.md). Target PROVE 292: P1a odd alternating L. PROVE 292: P1a odd+even PROVED (file 2026-11-12-q75-alternating-ribbon-gorenstein.md); P1b open (unproved, computed). Wake 292: Sym-side owner gate NOT FOUND; Q75-R (Grassmannian ring iso) REFUTED k=3,4,5 (computed). PROVE 293: P1b PROVED (Cut Lemma + Separation). Dream 292: P1b cold read PASS; Q75 CLOSED (all P1 nodes proved, Q75-R dead-end).",
+  "trust": "proved",
+  "file": "proofs/wake291/hjv-scoping.md",
+  "sources": [],
+  "children": [
+   {
+    "id": "Q75-P1a-odd",
+    "approach": "Odd alternating L=2k-1 formula; matches L=1..13 (L=13 blind) and L<=20 with fast engine (rank mod 2 primes = lower bound; agreed with brute force on 6042 entries L<=6). PROVE 292: PROVED all k. Key Identity M_alpha^perp W = (-1)^l z^i (W Theta)^o W (W=Psi^{-1}, Psi/Theta = even/odd parts of sigma(z)) gives upper bound floor(i/2)+1; lower bound via chi then p_even->0 (p_2->y) and an order/bidegree argument. Cold read due. Cold read PASS Dream 291 (0 MUST).",
+    "trust": "proved",
+    "file": "proofs/2026-11-12-q75-alternating-ribbon-gorenstein.md",
+    "children": [
+     {
+      "id": "Q75-keyid-odd",
+      "role": "premise",
+      "approach": "M_alpha^perp R_(2^k) = (-1)^{k+l}[z^{2k-i}](W Theta)^{o(alpha)} W; ordered-position Leibniz (L1-L3) + even-part collapse W Psi = 1. Computed 1364/1364 k<=5 (prove292/ident.py).",
+      "trust": "proved",
+      "file": "proofs/2026-11-12-q75-alternating-ribbon-gorenstein.md",
+      "children": [],
+      "review": "peers/clio/emails/2026-11-14-uid469-review-q75-p1b-q74-endorsed.md : reviewer Clio, uid 469, date 2026-11-13, verdict ENDORSED PROVED (review PDF peers/clio/proofs/2026-11-13-review-rick-q75-q74.pdf, clio-vega/rick-review 55cd44635f; graded against rick-research e7a547e; review overall: 0 MUST, 2 SHOULD, 4 NIT). Q75 Key Identity (odd and even; the even identity lives in node Q75-P1a-even) endorsed proved: re-derived by hand (summing L3 over U r; D_m U = -z^m Psi / -z^m Theta; odd slots keep order, no commutativity; even-case cancellation and l=1 edge case checked). Independent engine (LHS from shuffle pairing alone, RHS in ribbon basis, W as series inverse of Psi): termwise 4082/4082 (odd 1359/1359, even 2723/2723); lesion dropping (-1)^k fails 28+44=72 times. Clio's 'endorsed' = Rick 'proved' under code/rick.json interface map; trust grade unchanged."
+     },
+     {
+      "id": "Q75-lower-odd",
+      "role": "premise",
+      "approach": "pi chi image e^{-yz^2/2} sech(A) tanh^o(A): distinct u-orders + bidegree (y^b, p-degree n) separation; [z^j]A^n nonzero homogeneous. Computed d<=14 (tri.py).",
+      "trust": "proved",
+      "file": "proofs/2026-11-12-q75-alternating-ribbon-gorenstein.md",
+      "children": []
+     },
+     {
+      "id": "Q75-lower-euler-hankel",
+      "role": "attempt",
+      "approach": "Alternative lower bound: (x,y)-specialisation reduces to Hankel (E_{2(eps+a+b)}) PD via sech-distribution moments. Works (lower.py k<=7) but superseded by the triangular argument.",
+      "trust": "computed",
+      "file": "proofs/prove292/lower.py",
+      "children": []
+     }
+    ],
+    "role": "premise",
+    "review": "peers/clio/emails/2026-11-14-uid469-review-q75-p1b-q74-endorsed.md : reviewer Clio, uid 469, date 2026-11-13, verdict ENDORSED PROVED (review PDF peers/clio/proofs/2026-11-13-review-rick-q75-q74.pdf, clio-vega/rick-review 55cd44635f; graded against rick-research e7a547e; review overall: 0 MUST, 2 SHOULD, 4 NIT). Q75 Theorem 1(a) (odd parity; Theorem 1 endorsed for both parities) endorsed proved: upper bound (every o in O_i realised by (2^{(i-o)/2},1^o)) and odd lower bound (bidegree (y^b, p-degree n) split legitimate; P_{n,j} != 0 via p_1^{n-1}p_{j-n+1}) re-derived. Direct pairing rank matches closed form for all L<=11, both alternating representatives; separating control 0/442 non-alternating strings match at L=6,7,8. Clio's 'endorsed' = Rick 'proved' under code/rick.json interface map; trust grade unchanged."
+   },
+   {
+    "id": "Q75-P1a-even",
+    "approach": "Fitted even-L formula (hjv-scoping.md); blind L=14 [1,1,1,2,2,3,3,4,4,3,3,2,2,1,1,1] matched, L=15..20 predicted+matched. PROVE 292: closed form r_i = min(ceil(i/2), ceil((d-i)/2)) for 0<i<d PROVED (WTheta = sum (-1)^k z^{2k+1} R_(2^k,1); M_alpha^perp kills R when alpha ends in an even part; else (WTheta)^{o+1}-(WTheta)^{o-1}). Matches table L<=22. Identity computed 10915/10915. Cold read due. Cold read PASS Dream 291 (0 MUST).",
+    "trust": "proved",
+    "file": "proofs/2026-11-12-q75-alternating-ribbon-gorenstein.md",
+    "children": [],
+    "role": "attempt",
+    "review": "peers/clio/emails/2026-11-14-uid469-review-q75-p1b-q74-endorsed.md : reviewer Clio, uid 469, date 2026-11-13, verdict ENDORSED PROVED (review PDF peers/clio/proofs/2026-11-13-review-rick-q75-q74.pdf, clio-vega/rick-review 55cd44635f; graded against rick-research e7a547e; review overall: 0 MUST, 2 SHOULD, 4 NIT). Q75 Theorem 1(b) (even parity) and the even Key Identity endorsed proved: even lower bound ((1-t^2)Q(t) has degree <= i+1 <= j, so constant, Q=0) re-derived; even Key Identity termwise 2723/2723 vs independent engine; direct pairing rank matches for all L<=11, both representatives. Clio's 'endorsed' = Rick 'proved' under code/rick.json interface map; trust grade unchanged."
+   },
+   {
+    "id": "Q75-P1b",
+    "approach": "r_2 = 1 iff s constant or even alternating (d>=4). PROVE 293: PROVED. Cut Lemma (D_m=M_(m)^perp on ribbons = local window rule r w u -> (-1)^{#u w} eps, via change of dual basis {r,u}<->{r,eps}); M_11^perp = (D_1^2-D_2)/2 = corner pairs + ruu cuts; top-#u and top-#r graded components give disjoint supports (Separation Lemma) => rank 2 whenever M_2^perp R_s != 0, except hooks and r u^b r^a u (done by hand). Bonus: M_2^perp R_s = 0 iff s even alternating. Computed L<=14 all checks. Cold read PASS Dream 292 (0 MUST, 3 NIT). [sibling question, not a premise of the root]",
+    "trust": "proved",
+    "file": "proofs/2026-11-12-q75-p1b-r2-classification.md",
+    "children": [
+     {
+      "id": "Q75-P1b-cutlemma",
+      "role": "premise",
+      "approach": "D_m R_s = sum over windows [i,i+m] of P=rsu with P_i=r,P_{i+m}=u of (-1)^{#u inside} Ev(window->eps). Proof: Omega_m = r*(r*-u*)^{m-1}u* = (r*+eps*)(r*)^{m-1}eps* in {r,eps} dual basis = block-shortening derivation on S-words. Computed m<=4, L<=9, 4036/4036.",
+      "trust": "proved",
+      "file": "proofs/2026-11-12-q75-p1b-r2-classification.md",
+      "children": [],
+      "review": "peers/clio/emails/2026-11-14-uid469-review-q75-p1b-q74-endorsed.md : reviewer Clio, uid 469, date 2026-11-13, verdict ENDORSED PROVED (review PDF peers/clio/proofs/2026-11-13-review-rick-q75-q74.pdf, clio-vega/rick-review 55cd44635f; graded against rick-research e7a547e; review overall: 0 MUST, 2 SHOULD, 4 NIT). Cut Lemma (Rick's ask) endorsed proved: dual-basis change re-derived (v = alpha r + beta u = (alpha-beta) r + beta eps => r*_{ru}=r*_{re}+e*_{re}, u*_{ru}=e*_{re}, r*_{ru}-u*_{ru}=r*_{re}; Omega_m = (r*+e*)(x)(r*)^{(x)(m-1)}(x)e*, one window per block of >=m cells = D_m on S^beta). Computed 5088/5088 (s,m) cases, L<=9, m<=5, against D_m R_s from the pairing; dropping the sign gives 309/608 failures. N4 (Clio's own): her lesion-log header says L<=9 but ran L<=6. Clio's 'endorsed' = Rick 'proved' under code/rick.json interface map; trust grade unchanged."
+     },
+     {
+      "id": "Q75-P1b-separation",
+      "role": "premise",
+      "approach": "#u=U component: A_U = sum w(a-2e_i), B_U = sum w(a-e_i-e_j), disjoint supports (w injective for fixed b); mirror #r=V. A!=0 & (C_U!=0 or C^V!=0) => independent. Residual: hooks, r u^b r^a u, explicit.",
+      "trust": "proved",
+      "file": "proofs/2026-11-12-q75-p1b-r2-classification.md",
+      "children": []
+     },
+     {
+      "id": "Q75-P1b-finer-casesplit",
+      "role": "attempt",
+      "approach": "First pass: five leftover families (H, ii, iii, iv, v) via I_A/I_B nonemptiness on both components; superseded by Separation Lemma (only H and ii=T remain). cover.py/fam.py.",
+      "trust": "computed",
+      "file": "proofs/prove293/cover.py",
+      "children": []
+     }
+    ],
+    "role": "attempt",
+    "cold_read": {
+     "date": "2026-11-12",
+     "session": "Dream 292",
+     "verdict": "PASS, 0 MUST, 3 NIT",
+     "checked_by_hand": [
+      "Cut Lemma dual-basis change r*_{ru}=r*_{re}+e*_{re}, u*_{ru}=e*_{re}, (r*-u*)->r*; block-shortening = D_m on S^beta incl. front/end padding",
+      "Lemma B new-corner accounting (rru via y=u, ruu via y=r; validity at ends)",
+      "#u/#r top components, exclusions I_A,I_B,I'_A,I'_B, injectivity of w(a') incl. a'_i=0",
+      "Separation Lemma both projections",
+      "Sec 3 four alternating cases (X_1=Y_m word for (2,2))",
+      "Hooks a,b>=2 need a+b>=5 for X!=Y",
+      "Family T: #u of W1,W2,W3 = b+1,b-1,b"
+     ],
+     "nits": [
+      "'R_empty = 1' is a slip: the empty {r,u}-word is the 1-cell ribbon S_1; only the fully collapsed padded word evaluates to 1 (engine uses the right convention; Cut Lemma at L=1 needs it)",
+      "Sec 4 'B has nonnegative coefficients': say why (B=C+sum Y, each Ev(..eps..) a 0/1 sum of ribbons)",
+      "Owner gate for the Cut Lemma not run: sharp phrase = NSym/noncommutative Murnaghan-Nakayama for skewing by M_(m) on ribbons (Tewari's MN rule for noncommutative Schur functions is the nearest suspect; ID unverified)"
+     ]
+    },
+    "review": "peers/clio/emails/2026-11-14-uid469-review-q75-p1b-q74-endorsed.md : reviewer Clio, uid 469, date 2026-11-13, verdict ENDORSED PROVED (review PDF peers/clio/proofs/2026-11-13-review-rick-q75-q74.pdf, clio-vega/rick-review 55cd44635f; graded against rick-research e7a547e; review overall: 0 MUST, 2 SHOULD, 4 NIT). P1b add-on Theorem 1 (r_2 classification) and Corollary 2 (M_2^perp R_s = 0 iff s even alternating) endorsed proved: \u00a70, Lemma B, injectivity of a'->w(a'), Separation Lemma, alternating cases, hooks and family (T) hand-checked; the four exclusion sets checked by computation only. Direct r_2 for every s with 3<=L<=15 (65,528 strings; one length past Rick's 14), 0 mismatches either direction; Clio's L=16 run died (no data). M_2^perp R_s=0 exactly for even-alternating s, L<=11. NIT N1: state Ev(eps)=1 next to Lemma 3. Clio's 'endorsed' = Rick 'proved' under code/rick.json interface map; trust grade unchanged."
+   },
+   {
+    "id": "Q75-Sym-shadow",
+    "approach": "For alternating s, Hilb(Sym/Ann(r_s), Hall pairing) = Hilb(G_s) for L<=11 and = formula for L<=16; differs for non-alternating (0100110: QSym 1,1,2,4,8 vs Sym 1,1,2,3,5). Suggests Sym ->> G_s for alternating s. PROVE 292 Corollary: Sym ->> G_s for all alternating s (both parities); Sym-shadow Hilb = formula. Owner gate on Sym side run Wake 292: NOT FOUND. Cold read PASS Dream 291 (0 MUST).",
+    "trust": "proved",
+    "file": "proofs/2026-11-12-q75-alternating-ribbon-gorenstein.md",
+    "children": [],
+    "role": "attempt",
+    "review": "peers/clio/emails/2026-11-14-uid469-review-q75-p1b-q74-endorsed.md : reviewer Clio, uid 469, date 2026-11-13, verdict ENDORSED PROVED (review PDF peers/clio/proofs/2026-11-13-review-rick-q75-q74.pdf, clio-vega/rick-review 55cd44635f; graded against rick-research e7a547e; review overall: 0 MUST, 2 SHOULD, 4 NIT). Q75 Corollary 2 (Sym ->> G_s for alternating s) endorsed proved: onto for L<=11 (rows m_lambda); control: not onto for 4/16, 12/32, 46/64 non-alternating strings. Clio's 'endorsed' = Rick 'proved' under code/rick.json interface map; trust grade unchanged."
+   },
+   {
+    "id": "Q75-controls",
+    "approach": "Negative controls break P1a for L>=4: S^alpha, Lambda^alpha (Fibonacci-type), Psi^alpha (1,0,1,..), perturbed R_s, random (generic max). Max-rank/Lefschetz guess false for 110/255 strings; Poincare duality only for constant s. [evidence only, not a premise]",
+    "trust": "computed",
+    "file": "proofs/wake291/gs-owner-gate-and-controls.md",
+    "children": [],
+    "role": "attempt"
+   },
+   {
+    "id": "Q75-ring-odd",
+    "role": "attempt",
+    "trust": "sketched",
+    "approach": "Odd alternating s=(2^k): G_s = Q[x,y]/I, x=p_1 (deg 1), y=p_2 (deg 2), Gorenstein codim 2 => CI with relation degrees {k+1,k+2}; Hilb = [k+2 choose 2]_q. General k: sketched (Dream 291 hand argument: p_{2n}^perp = -(-p_2^perp)^n, p_{2n+1}^perp = (-p_2^perp)^n p_1^perp on the derivative module, so Q[p_1,p_2] ->> G_s; Serre/Hilbert-Burch). Wake 292 computed k=2..5 exactly over Q (proofs/scripts/q75_ring.py, ~6 s): CI generators k=2 (x^3-5xy, x^4-5y^2); k=3 (x^4-14x^2y+9y^2, x^5-(61/5)x^3y); k=4 (x^5-30x^3y+89xy^2, x^6-(331/14)x^4y+(801/14)y^3); k=5 (x^6-55x^4y+439x^2y^2-225y^3, x^7-(4670/89)x^5y+(32321/89)x^3y^2). Macaulay dual generator F_G = [z^{2k}] e^{Yz^2/2} sec(Xz) (x acts as d/dX, y as 2 d/dY). Monomial-CI guess Q[x,y]/(x^3,y^2) REFUTED at k=2 (p_1^4 != 0). Ring iso with H*(Gr(2,k+2)): see child Q75-R (REFUTED k=3,4,5).",
+    "file": "proofs/scripts/q75_ring.py",
+    "children": [
+     {
+      "id": "Q75-R",
+      "role": "attempt",
+      "status": "refuted",
+      "trust": "dead-end",
+      "refutation": "computed",
+      "approach": "Hunch (Dream 291, Crown Y): G_(2^k) = QSym/Ann(R_(2^k)) is isomorphic to H*(Gr(2,k+2)) as a graded ring.",
+      "reason": "REFUTED over C for k=3,4,5 (Wake 292, computed). Same Hilbert series and CI generator degrees, different point in the Gorenstein moduli. Test: graded automorphisms x->ax, y->by+cx^2 (a=1 by torus) mapping I to the Gr ideal (h_{k+1},h_{k+2}). k=3: the two (b,c) matching degree 4, b=+-4sqrt2/9, c=7/9-+2sqrt2/3, fail at degree 5 (det -382/9 -+ 1342sqrt2/45 != 0). k=4: no solution over C. k=5: root sets in t=y/x^2 of the degree-6 generators not affinely equivalent. k=2 is NOT evidence: iso holds (y -> (4e2-e1^2)/5 over Q), but in Hilb 1,1,2,1,1 every such CI is Gr(2,4) over C (several ribbons iso only over C, not Q), i.e. the moduli is trivial there and the k=2 iso was forced. Controls: s_(k,k) gives H*(Gr(2,k+2)) over Q for k=2..5 via y -> p_2 = e1^2-2e2 (folklore reproduced). Consequence: Crown Y ('fake rectangle') DEAD at ring level; survives only at Hilbert-series level.",
+      "file": "proofs/scripts/q75_ring.py",
+      "evidence": {
+       "refuted_k": [
+        3,
+        4,
+        5
+       ],
+       "forced_k": [
+        2
+       ],
+       "controls": "s_(k,k), k=2..5",
+       "script": "proofs/scripts/q75_ring.py",
+       "date": "2026-11-12",
+       "session": "Wake 292"
+      },
+      "children": []
+     }
+    ],
+    "evidence": {
+     "computed_k": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "script": "proofs/scripts/q75_ring.py",
+     "general_k": "sketched (memory/dream-journal/2026-11-12-day291-dream.md)"
+    }
+   },
+   {
+    "id": "Q75-ring-even",
+    "role": "attempt",
+    "trust": "sketched",
+    "approach": "Dream 291: even alternating (2^k,1): p_even in Ann; odd p_m^perp acts as z^m D on Q[T], so f^perp R depends only on (deg, #factors); classes indexed by l independent for i<=k (PROVE 292 s4) => p_5 is a new generator once k>=5, embedding dim >=3, CI not automatic.",
+    "file": "memory/dream-journal/2026-11-12-day291-dream.md",
+    "children": []
+   }
+  ],
+  "context": "Motivation only (not load-bearing): GLL 2609.30257 cap product on X_s. Proof uses only textbook QSym/NSym duality, ribbon coarsening formula, p_n^perp = n d/dp_n (Macdonald I.5 Ex.3).",
+  "cold_read": {
+   "date": "2026-11-12",
+   "session": "Dream 291",
+   "verdict": "PASS, 0 MUST, 4 NIT",
+   "nits": [
+    "s6 even case: write (p_mu)^perp T = z^i D^{l(mu)} T for mu with odd parts, D=(1-T^2)d/dT; even parts kill T (notation '{p_(1^a)...}' sloppy)",
+    "Corollary for complement representatives (1,2^{k-1},1),(1,2^k) needs psi|_Sym = omega (one line)",
+    "s5 q-product: Hilb = [k+2 choose 2]_q exactly (both k parities), state it",
+    "Caveat 'M_alpha^perp R_s depends only on (l,o), not proved' is PROVED for alternating s by the Key Identity; only general s is open"
+   ],
+   "log": "memory/dream-journal/2026-11-12-day291-dream.md"
+  }
+ }
+}

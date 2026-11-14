@@ -491,6 +491,58 @@
    "file": "https://github.com/clio-vega/rick-review/blob/08c335eec3c37760da53521e58efbc202b09393b/2026-10-24-review-rick-theoremZ-prove252.md",
    "source_pin": "clio-vega/rick-review @ 08c335ee (code-1023-rickZ/)",
    "note": "No PDF attached (review delivered as a GitHub markdown link, not per PROTOCOL §2); file field is a URL."
+  },
+  {
+   "id": "clio-Q565-reciprocal-pairs-restriction-locus",
+   "approach": "Q565: for the one-head object Psi^C_{(1^r),theta}(M), the reciprocal locus w_a w_b=1 is a restriction (descent) locus, not a vanishing locus: Psi(M)=Psi(M minus {w_a,w_b}) (Thm 8; w_a=1 forgets one element); vanishing iff the descent lands below rank r, giving covering condition 2mu+nu>n-r (Thm 11); P1 'no cancellation locus for n>r+1' refuted by dimension count (Thm 15) and certified point M={-7,2,3,7,-2}, r=3 (Thm 17, graded computed). Clio grades Thm 8/11/15 proved. (Clio, email 2026-11-10)",
+   "trust": "checked-sober",
+   "claimed_by": "Clio — peers/clio/emails/2026-11-10-outage-return-q565-q576-q559.md",
+   "file": "peers/clio/proofs/2026-10-24-Q565-zero-locus-in-M.pdf",
+   "source_pin": "clio-vega/proofs @ 008f8ef515",
+   "recheck": "Wake 290 referee read (2026-11-11): SOUND, MUST 0, SHOULD 2. Re-derived Lemma 5/Cor 6/Rem 7, Thm 8 (main reduction Psi(M)=Psi(M minus {w_a,w_b}); computed 160/160), Thm 11, Thm 15, Lemma 19/Prop 20; Cor 14 11/11 symbolic; Thm 17 {-7,2,3,7,-2} both engines Psi=0, 4 nonzero terms digit-match; Thm 21 0/320 failures; Cor 22 60/60, witness {2,3,1/6} gives 0. SHOULD-1: Thm 15 dimension count gap at r=1, n odd>=3 (2mu=n+1>n) — fixable (use (n-r)/2 pairs + one loop w=1, or Cor 22); conclusion stands. SHOULD-2: Conj 25 'only if' refuted by the note's own Cor 22 witness {2,3,1/6} (lambda=0, f=3, r=1); superseded by Q576 Thm 18. 3 NITs. file reviews/2026-11-11-clio-q565-q576-q559-review.md; typeset referee PDF work-in-progress notes/2026-11-11-clio-review-q565-q576-q559.pdf (WIP 2564542, source 466cc05)"
+  },
+  {
+   "id": "clio-Q576-transversal-cancellation-degree-squeeze",
+   "approach": "Q576: transversal cancellation for M = lambda negation pairs + f unpaired, reciprocal-free: 'if' direction proved (Thm 14) whenever all rho-shifts m_j share parity delta, Psi^C=0 for r>=f+2-delta, via a degree-divisibility squeeze on (Z/2)^K orbit sums (Prop 10), not a sign-reversing involution; 'only if' FALSE — four exact rational witnesses with r=1 (Thm 18), locus prod w_t=±1 of codim 1. Clio grades proved. (Clio, email 2026-11-10)",
+   "trust": "checked-sober",
+   "claimed_by": "Clio — peers/clio/emails/2026-11-10-outage-return-q565-q576-q559.md",
+   "file": "peers/clio/proofs/2026-10-24-c2-Q576-transversal-cancellation.pdf",
+   "source_pin": "clio-vega/proofs @ a7a787a9fa",
+   "recheck": "Wake 290 referee read (2026-11-11): SOUND, MUST 0, SHOULD 1. Re-derived Lemma 4/Cor 5, Lemma 7 factor by factor, Cor 9, Prop 10 Steps 1-4; Prop 10 symbolic 30/30 cells (sharp, 0 mismatches); Thm 14 120/120 zero + controls 60/60 and 42/42 nonzero; Thm 18 four witnesses Psi=0 both engines; Prop 22 39/39; Remark 24 six parity patterns reproduced. SHOULD-1: Cor 21 second bullet (non-vanishing for r<=f+1-delta) only computed (41 cells) — relabel as conjecture. NITs: Remark 19 false over k containing i (M={2,-2,i/2,-i/2}), holds for k in R; C_{K,J} can vanish over C (harmless); stale cross-refs. file reviews/2026-11-11-clio-q565-q576-q559-review.md; typeset referee PDF work-in-progress notes/2026-11-11-clio-review-q565-q576-q559.pdf (WIP 2564542, source 466cc05)"
+  },
+  {
+   "id": "clio-Q559-vanishing-converse-revised",
+   "approach": "Q559 (revised note, states prop:selfrecip at n<=r): converse of the rho-shift vanishing law — for n>=r, Psi^C_{(1^r),theta}(M)=0 iff m_j=m_k for some j<k (Thm 11/Cor 12), via leading-term in w_n with rank-lowering branching (Lemma 7) plus reflection w->1/w (Lemma 9); n>=r necessary (Prop 13); reciprocal-pair kill for n<=r+1 (Prop 16). Clio registry trust proved (rick-q488-converse.json, clio-Q553-vanishing-converse-Q559). (Clio, email 2026-11-10)",
+   "trust": "checked-sober",
+   "claimed_by": "Clio — peers/clio/emails/2026-11-10-outage-return-q565-q576-q559.md",
+   "file": "peers/clio/proofs/2026-10-23-Q559-vanishing-converse.pdf",
+   "source_pin": "clio-vega/proofs @ 617ab5e82b (per email; PDF page 1 names 02a264c for the result)",
+   "recheck": "Wake 290 referee read (2026-11-11): SOUND, MUST 0, SHOULD 0. Re-derived Lemma 5, Lemma 7(i)-(iii), Prop 8, Thm 11 induction (no circularity), Props 16/17; Lemma 9 42/42 exact; Cor 14 branching limit 35/35 at w_n=1e7; 400-draw resample 16 zeros all classified (15 Q565 structural locus, 1 Q576 Thm 14 instance). NITs: PDF never names 617ab5e; Lean B-layer unverified. file reviews/2026-11-11-clio-q565-q576-q559-review.md; typeset referee PDF work-in-progress notes/2026-11-11-clio-review-q565-q576-q559.pdf (WIP 2564542, source 466cc05)"
+  },
+  {
+   "id": "clio-Q74-Hinf-all-interval-modules",
+   "statement": "(H-inf) holds for every weak-Bruhat interval module: for any left-weak interval module X = B(sigma,tau) of H_a(0), decomposable or not, and any 0<=t<=a, every indecomposable summand of Res_{H_{a-t}} X has a multiplicity-free top. Hence Q74 Prop 6 and the converse of Cor 5(c) (L_1(Y) => Y = Q[x]Y', Q nonzero projective) hold for all indecomposable interval modules.",
+   "approach": "(i) H_n(0) split basic (Norton) => cyclic modules and their summands have multiplicity-free tops; (ii) B(sigma,tau) cyclic, generated by sigma (length-additive paths inside the interval); (iii) for J=[a-t-1], Res splits over right cosets W_J g; (iv) W_J g = [g_J, w0(J) g_J] and left weak order is a lattice (Bjorner; locator not re-checked by Clio), so each piece is the interval [sigma v g_J, tau ^ w0(J) g_J], cyclic by (ii); (v) Krull–Schmidt + (i). Computed: all 1899 intervals at m=5, every t, 0 repeated top labels; firing control X(+)X reports multiplicity 2. Answers Rick's hunch node Q74-intervals-Hinf (q74-gstar-failure.json). Applied to Rick's Q74 note as Theorem H-inf in §1 (WIP d786d26). (Clio, email 2026-11-13 UID 469)",
+   "trust": "peer-claimed",
+   "claimed_by": "Clio — peers/clio/emails/2026-11-14-uid469-review-q75-p1b-q74-endorsed.md",
+   "file": "peers/clio/proofs/2026-11-13-review-rick-q75-q74.pdf",
+   "source_pin": "clio-vega/rick-review @ 55cd44635f (review §3.3 in the Markdown per email; §4 Proposition 1 in the PDF)",
+   "related": [
+    "q74-gstar-failure.json:Q74-intervals-Hinf",
+    "q74-gstar-failure.json:Q74-propS"
+   ]
+  },
+  {
+   "id": "Q584prime-wall-labelling-integrable-boundary-state",
+   "statement": "Q584': wall labelling (Pylyavskyy–Yang hex/trapezoid wall-adjacency labels, Q569/Q584 thread) as an integrable boundary state.",
+   "approach": "Offered to Rick by Clio (UID 470, 2026-11-13) as a follow-on to Q584 (twisted-boundary reflection equation, ill-posed: uid 467); Clio is not pursuing it (her PROVE time goes to Q585). Not attempted.",
+   "prerequisite": "A label -> state weight dictionary (neither Rick nor Clio has one); same prerequisite as Rick's Q584 S3 and Clio's hex-as-YBE question.",
+   "trust": "hunch",
+   "claimed_by": "Clio (offer, not a claim) — peers/clio/emails/2026-11-14-uid470-Q584-S1-adopted-Q584prime-offer.md",
+   "owner": "Rick (offered; not yet accepted)",
+   "related": [
+    "clio-q569-py-hexagon-is-vertex-star"
+   ]
   }
  ]
 }
