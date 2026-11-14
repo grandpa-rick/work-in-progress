@@ -3,7 +3,7 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools,xcolor,hyperref,enumitem,booktabs}\sloppy
 \hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
 
-\newcommand{\srccommit}{6479529}
+\newcommand{\srccommit}{PENDING}
 \newcommand{\gr}[1]{\textsf{#1}}
 \newcommand{\pb}{\bar\pi}
 \newcommand{\wo}{w_0}
@@ -38,6 +38,7 @@ registry \texttt{registry/q77-zero-schur-weyl-dc.json} (this repository).
 \item \gr{proved, written}: the Theorem ($A\subsetneq B$ for $n\ge2$, $N\ge2n+1$). Internal grade: one internal cold read (Dream 294): PASS, 0 must-fix, 4 nits, one typo fixed. Not peer-reviewed.
 \item \gr{proved}: for $N=2n$, the ``$a_n\cdot1_\mu\in B$'' half.
 \item \gr{computed} (exact $\ZZ$ certificates): failure at $(3,6)$ and $(4,8)$; the ``not in $A$'' half at $N=2n$ is checked exactly only at $n=3,4$.
+\item \gr{computed}: the $n=2$ values of $\dim A$ and $\dim B$ ($N\le10$).
 \item \gr{hunch}: the two live classifications in \S\ref{sec:surprise}.
 \end{itemize}}}
 
@@ -53,14 +54,14 @@ For $n\ge2$ and $N\ge2n+1$, $A\subsetneq B$.
 \item Let $h=\pb_{\wo[1,n-1]}\cdot\pb_{\wo[N-n+1,N-1]}$, where $\pb=1-\pi$. For any set $C$ of weights, $v\mapsto(v\cdot1_C)\cdot h$ commutes with $S$.
 \item It is not in $A$ whenever $C$ separates two weights all of whose parts are $\ge2$.
 \item For $n=2$ the witness is ``$(1-\pi_1)(1-\pi_{N-1})$ on the weight space with $N-2$ ones'', for every $N\ge5$.
-\item Proof idea: words that cannot reach prefix $=$ suffix $=12\cdots n$ under the $0$-Hecke moves span a submodule killed by $h$. Every cross-weight $S$-generator lands there. A local-idempotent argument shows the split operator is not in $A$.
+\item Proof idea: call a word \emph{bad} if some letter $1,\dots,n$ is missing, or the first occurrences of $1,\dots,n$ are not in increasing order of position, or the last occurrences are not. Bad words are closed under the $0$-Hecke moves, so they span a submodule $Y$. Being good is a necessary condition for reaching prefix $=$ suffix $=12\cdots n$ (no equivalence is claimed). $Y$ is killed by $h$. Every cross-weight $S$-generator lands in $Y$. A local-idempotent argument shows the split operator is not in $A$.
 \item The proof is short and needs only standard facts.
 \item One-line picture: $h$ maps $V^{\otimes N}$ into $\det\otimes V^{\otimes(N-2n)}\otimes\det$, where $\det$ is the $q=0$ antisymmetriser line on $n$ positions. $S_0$ cannot move weight through a $\det$ end, and $H$ cannot tell two middle weights apart.
 \end{itemize}
 
 \section{Surprise}\label{sec:surprise}
 The census hunch ``fails iff $N\ge2n+1$'' is wrong. $(3,6)$ also fails, by an exact $\ZZ$ certificate, and the mechanism there is different (non-split).
-The witness there is $a\cdot1_\mu$ with $a=\pb_{\wo[1,2]}\cdot\pi_3\cdot\pb_{\wo[4,5]}$ and $\mu=(1,3,2)$.
+The witness there is $a\cdot1_\mu$ with $a=\pb_{\wo[1,2]}\cdot\pi_3\cdot\pb_{\wo[4,5]}$ and $\mu=(1,2,3)$ or $\mu=(1,3,2)$.
 \begin{itemize}[leftmargin=1.2em,itemsep=2pt]
 \item $(4,8)$ also fails. In general, at $N=2n$ the element $a_n=\pb_{\wo[1,n-1]}\,\pi_n\,\pb_{\wo[n+1,2n-1]}$ gives $a_n\cdot1_\mu\in B$. That half is proved; the ``not in $A$'' half is checked exactly only at $n=3,4$.
 \item Open: is $A=B$ at $(4,7)$? That decides between ``$A=B\iff N\le n+2$'' and ``$A=B\iff N\le 2n-1$ ($n\ge3$)''.
@@ -68,7 +69,7 @@ The witness there is $a\cdot1_\mu$ with $a=\pb_{\wo[1,2]}\cdot\pi_3\cdot\pb_{\wo
 
 \section{The case $n=2$: numbers}
 \begin{itemize}[leftmargin=1.2em,itemsep=2pt]
-\item $\dim A=\mathrm{Catalan}(N)$.
+\item $\dim A=\mathrm{Catalan}(N)$ (\gr{computed} for $N\le10$; not proved).
 \item $\dim B=43,\,142,\,493,\,1768,\,6475,\,24052$ for $N=5,\dots,10$. No closed form yet.
 \end{itemize}
 \begin{center}
@@ -76,7 +77,7 @@ The witness there is $a\cdot1_\mu$ with $a=\pb_{\wo[1,2]}\cdot\pi_3\cdot\pb_{\wo
 \toprule
 $N$ & 5 & 6 & 7 & 8 & 9 & 10\\
 \midrule
-$\dim A=\mathrm{Catalan}(N)$ & 42 & 132 & 429 & 1430 & 4862 & 16796\\
+$\dim A$ ($=\mathrm{Catalan}(N)$, computed) & 42 & 132 & 429 & 1430 & 4862 & 16796\\
 $\dim B$ & 43 & 142 & 493 & 1768 & 6475 & 24052\\
 \bottomrule
 \end{tabular}
