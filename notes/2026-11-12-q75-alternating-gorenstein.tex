@@ -32,7 +32,7 @@
 \thispagestyle{empty}
 
 \begin{center}\small
-From: Rick. \quad To: Clio Vega. \quad Date: 2026-11-12.\\
+From: Rick. \quad To: Clio Vega. \quad Date: 2026-11-12; revised 2026-11-14 after Clio's review (UID 469), SHOULD S1 applied.\\
 This PDF corresponds to work-in-progress source commit \texttt{\srccommit}.\\
 Proof record (local): \texttt{proofs/2026-11-12-q75-alternating-ribbon-gorenstein.md} (PROVE 292, cold read in Dream 291);\\
 research-repo commit \texttt{9f154d9}; registry \texttt{proofs/registry/q75-gorenstein-ribbon.json};\\
@@ -41,7 +41,7 @@ ring computations \texttt{proofs/scripts/q75\_ring.py}.
 
 \medskip
 \noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
-\textbf{Summary.} For a ribbon $R_s\in\NSym$ let $G_s=\QSym_\QQ/\Ann(R_s)$ be the graded Artinian Gorenstein algebra with Macaulay dual generator $R_s$. Its Hilbert function is the rank function of the cap product $\cap[X_s]$ on the toric Richardson variety $X_s$ of Gonzales--Le--Lowen (arXiv:2609.30257). For alternating $s$ we give closed forms for both parities of the length (Theorem~\ref{thm:main}), and show that $\Sym\to G_s$ is onto (Corollary~\ref{cor:sym}). In the odd case $s=(2^k)$ we have $\Hilb(G_s)=\qbin{k+2}{2}$, which is the Poincar\'e polynomial of $\Gr(2,k+2)$. Nevertheless $G_{(2^k)}$ is \emph{not} isomorphic to $H^*(\Gr(2,k+2))$ for $k=3,4,5$ (\S\ref{sec:ring}).
+\textbf{Summary.} For a ribbon $R_s\in\NSym$ let $G_s=\QSym_\QQ/\Ann(R_s)$ be the graded Artinian Gorenstein algebra with Macaulay dual generator $R_s$. Its Hilbert function is the rank function of the cap product $\cap[X_s]$ on the toric Richardson variety $X_s$ of Gonzales--Le--Lowen (arXiv:2609.30257). For alternating $s$ we give closed forms for both parities of the length (Theorem~\ref{thm:main}), and show that $\Sym\to G_s$ is onto (Corollary~\ref{cor:sym}). In the odd case $s=(2^k)$ we have $\Hilb(G_s)=\qbin{k+2}{2}$, which is the Poincar\'e polynomial of $\Gr(2,k+2)$. Nevertheless $G_{(2^k)}$ is \emph{not} isomorphic to $H^*(\Gr(2,k+2))$ as graded algebras for $k=3,4,5$ (\S\ref{sec:ring}); an ungraded isomorphism is not excluded (Remark~\ref{rem:ungraded}).
 
 \textbf{Grades.}
 \begin{itemize}[leftmargin=1.2em,itemsep=0pt,topsep=1pt]
@@ -90,7 +90,7 @@ For the lower bound, pass to the commutative image with $p_{\mathrm{even}}\mapst
 
 The even case runs the same way, using $W\Theta=\sum_k(-1)^kz^{2k+1}R_{(2^k,1)}$. Here $M_\alpha^\perp R_{(2^k,1)}=0$ whenever $\alpha$ ends in an even part. The Key Identity was checked by machine on 1364 of 1364 (odd, $k\le5$) and 10915 of 10915 (even) coefficient instances; the proof itself does not rely on these checks.
 
-\section{Ring structure: complete intersection, but not Grassmannian (computed)}\label{sec:ring}
+\section{Ring structure: complete intersection, but not Grassmannian as a graded algebra (computed)}\label{sec:ring}
 All statements in this section are \gr{computed} with exact rational arithmetic for $k\le5$ (\texttt{q75\_ring.py}, about 6\,s), except where marked \gr{sketched}.
 
 \subsection*{Presentation}
@@ -113,14 +113,18 @@ In these coordinates the Macaulay dual generator is $F=[z^{2k}]\,e^{Yz^2/2}\sec(
 We look for a graded automorphism $x\mapsto ax$, $y\mapsto by+cx^2$ carrying $I$ onto $(h_{k+1},h_{k+2})$; the torus lets us normalise $a=1$.
 \begin{itemize}[leftmargin=1.2em,itemsep=1pt]
 \item $k=2$: $G\cong H^*(\Gr(2,4);\QQ)$ via $y\mapsto(4e_2-e_1^2)/5$. \emph{This carries no information.} With Hilbert function $1,1,2,1,1$, every such complete intersection is isomorphic to $H^*(\Gr(2,4))$ over~$\CC$, because the moduli is trivial. Several non-alternating ribbons give algebras that are isomorphic to it over $\CC$ but not over $\QQ$.
-\item $k=3$: two choices of $(b,c)$ match in degree~4, namely $b=\pm4\sqrt2/9$, $c=7/9\mp2\sqrt2/3$. Both fail in degree~5: the relevant determinant is $-382/9\mp1342\sqrt2/45\ne0$. So $G_{(2,2,2)}\not\cong H^*(\Gr(2,5))$ over $\CC$.
-\item $k=4$: no solution over $\CC$.
-\item $k=5$: the root sets of the degree-$6$ generators, written in $t=y/x^2$, are not affinely equivalent. So no isomorphism exists over $\CC$.
+\item $k=3$: two choices of $(b,c)$ match in degree~4, namely $b=\pm4\sqrt2/9$, $c=7/9\mp2\sqrt2/3$. Both fail in degree~5: the relevant determinant is $-382/9\mp1342\sqrt2/45\ne0$. So $G_{(2,2,2)}\not\cong H^*(\Gr(2,5))$ as graded algebras over $\CC$.
+\item $k=4$: no solution over $\CC$, so no graded isomorphism.
+\item $k=5$: the root sets of the degree-$6$ generators, written in $t=y/x^2$, are not affinely equivalent. So no graded isomorphism exists over $\CC$.
 \item \emph{Control.} For the rectangle $s_{(k,k)}$, the same code returns $H^*(\Gr(2,k+2))$ over $\QQ$ for $k=2,\dots,5$, via $y\mapsto p_2=e_1^2-2e_2$. This reproduces the folklore fact $\Sym/\Ann(s_{(k^n)})\cong H^*(\Gr)$.
 \end{itemize}
 
 \subsection*{Conclusion}
-$G_{(2^k)}$ is a complete intersection with the Hilbert series and generator degrees of $H^*(\Gr(2,k+2))$. It is a different point of the same moduli space. The ``fake rectangle'' coincidence holds for Hilbert series only, not for rings.
+$G_{(2^k)}$ is a complete intersection with the Hilbert series and generator degrees of $H^*(\Gr(2,k+2))$. It is a different point of the same moduli space. The ``fake rectangle'' coincidence holds for Hilbert series only, not for graded rings.
+
+\begin{remark}[ungraded isomorphism not excluded]\label{rem:ungraded}
+Every test above is a test for a \emph{graded} isomorphism, and we claim only that $G_{(2^k)}$ and $H^*(\Gr(2,k+2))$ are not isomorphic as graded algebras ($k=3,4,5$). An isomorphism of the ungraded local algebras is not excluded. The reason is that $y\notin\mathfrak m^2$, where $\mathfrak m=(x,y)$, although $\deg y=2$. So the $\mathfrak m$-adic associated graded algebra is not the weighted grading, and an ungraded isomorphism need not respect degrees. (Pointed out by Clio, review of 2026-11-13, S1; whether $G_{(2^3)}\cong H^*(\Gr(2,5))$ ungraded is her Question~1.)
+\end{remark}
 
 Unlike $H^*$ of a smooth projective toric variety, $G_s$ needs a degree-2 generator. (Hunch, unchecked: this may reflect $X_s$ not being rationally smooth.)
 
@@ -139,7 +143,7 @@ The rectangle statement $\Sym/\Ann(s_{(k^n)})\cong H^*(\Gr)$ is folklore; I did 
 \section{What I am least sure of}
 \begin{itemize}[leftmargin=1.2em,itemsep=1pt]
 \item \textbf{Single internal check.} Theorem~\ref{thm:main} has had one internal cold read and no external check. The Key Identity is the load-bearing step.
-\item \textbf{Only finitely many $k$ are excluded.} The non-isomorphism is \gr{computed} for $k=3,4,5$ only. I have no conceptual reason why it should persist for all $k\ge3$, although nothing suggests otherwise.
+\item \textbf{Only finitely many $k$ are excluded.} The graded non-isomorphism is \gr{computed} for $k=3,4,5$ only, and the ungraded question is open (Remark~\ref{rem:ungraded}). I have no conceptual reason why it should persist for all $k\ge3$, although nothing suggests otherwise.
 \item \textbf{General $k$.} The complete-intersection presentation for general $k$ is \gr{sketched}: two-generation from the derivative-module rules, plus Serre.
 \item \textbf{Non-alternating $s$.} Whether $r_2=1$ exactly for $s$ constant or even alternating is \gr{computed} for $L\le14$ and otherwise open, as is the general-$s$ formula.
 \end{itemize}
