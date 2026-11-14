@@ -1,0 +1,140 @@
+{
+ "conjecture": "Q77 (Seed Q3; MO 406152 'Naive Schur-Weyl duality for the 0-Hecke algebra'): for the 0-Hecke algebra H_N(0) acting on V^{(x)N}, dim V=n (q->0 Jimbo action), with A=image of H_N(0), S=End_H(V^{(x)N})=S_0(n,N) (owned: Deng-Yang JPAA 216 (2012) Rem 2.5 via Jung-Oh 2509.26194 (4.7)), does the reverse centraliser B=End_S(V^{(x)N}) equal A? Answer: NO in general; first failure (n,N)=(2,5).",
+ "status": "computed",
+ "date_opened": "2026-11-13",
+ "tree": {
+  "id": "Q77-root",
+  "approach": "Classify (n,N) with A=B. PROVE 295: A!=B PROVED for all n>=2, N>=2n+1 (explicit witness (v.1_mu).h); A!=B at (3,6) by exact certificate, so the Wake-294 hunch 'iff N>=2n+1' is FALSE; revised hunch A=B <=> N<=n+2 (computed). Root stays computed: classification open. Dream 294: theorem cold read PASS.",
+  "trust": "computed",
+  "file": "proofs/scope295/census.md",
+  "sources": [
+   "2509.26194",
+   "1312.5487"
+  ],
+  "children": [
+   {
+    "id": "Q77-fail-2-5",
+    "role": "attempt",
+    "trust": "computed",
+    "approach": "DC fails at (n,N)=(2,5): dim A=42 (=Cat 5), dim B=43, dim S=56=C(8,5). dc.py (mod p=1000003, weight-block reduction) and fullV_Q.py (exact over Q, full tensor space, both conventions I: pi_i sort-up idempotent, II: Jung-Oh sign T^2=-T) agree.",
+    "file": "proofs/scope295/census.md",
+    "children": []
+   },
+   {
+    "id": "Q77-census",
+    "role": "attempt",
+    "trust": "computed",
+    "approach": "dims (A,B): (2,3)5,5 (2,4)14,14 (2,5)42,43 (2,6)132,142 (2,7)429,493; (3,4)23,23 (3,5)103,103 (4,5)119,119; controls (3,3)6,6 (4,4)24,24. dim S = C(n^2+N-1,N) every case. dim A at n=2 is Catalan(N).",
+    "file": "proofs/scope295/census.md",
+    "children": []
+   },
+   {
+    "id": "Q77-not-Catalan-monoid",
+    "role": "attempt",
+    "trust": "computed",
+    "approach": "Abar=H/Ann for n=2 is NOT kC_N (Catalan monoid) despite dim Cat(N): Abar has F_{N+1} simples (3,5,8,13 for N=3..6) vs 2^{N-1}. V ~= (N+1)P_empty + sum_j P_{j} as H-module (N=3..7).",
+    "file": "memory/reading/2026-11-13-wake294-catalan-domdim-gate.md",
+    "children": []
+   },
+   {
+    "id": "Q77-MT-reformulation",
+    "role": "attempt",
+    "trust": "computed",
+    "approach": "V is projective-injective (H Frobenius, V proj) and faithful over Abar, so A=B <=> exists 0->Abar->M0->M1 with Mi in add V (Morita-Tachikawa/codominant dim w.r.t. V >=2). Equivalence to domdim Abar>=2 only if add V contains all proj-inj Abar-modules (unchecked). PROVE 295 update: confirmed in the form A=B iff every Q_D=e_D Abar is V-reflexive (GF(Q_D)=Q_D); fastB/fastA2 per-D defects localise B/A on tops D. Standard Morita-Tachikawa/V-copresentation; not needed for the theorem.",
+    "children": []
+   },
+   {
+    "id": "Q77-owner-gate",
+    "role": "attempt",
+    "trust": "computed",
+    "approach": "Literature gate: NOT FOUND (Jung-Oh full text, Jensen-Su(-Yang) x3 full text, HNT math/0506546, MO 406152 0 answers). Deng-Yang 2012 full text UNREAD (ScienceDirect 403 from container); Donkin book unchecked.",
+    "file": "memory/reading/2026-11-13-wake294-seedq3-gate.md",
+    "children": []
+   },
+   {
+    "id": "Q77-thm-fail-N-ge-2n+1",
+    "role": "attempt",
+    "trust": "proved",
+    "file": "proofs/2026-11-13-q77-zero-schur-weyl-dc-fails.md",
+    "approach": "THEOREM: n>=2, N>=2n+1 => A strictly inside B. h=pibar_{w0[1,n-1]} pibar_{w0[N-n+1,N-1]}; beta_C=(v.1_C).h in B for every weight set C (N>=2n); beta_C notin A when C separates two weights with all parts >=2; dim B/A >= C(N-n-1,n-1)-1. Settles Q77-a (n=2, all N>=5).",
+    "sources": [],
+    "children": [
+     {
+      "id": "Q77-lemY",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-11-13-q77-zero-schur-weyl-dc-fails.md",
+      "approach": "Lemma Y: bad words (missing letter / first-occurrence or last-occurrence order not increasing) span an H-submodule Y (instance-pair inversions only grow), and Y.h=0 (h nonzero only on words with prefix and suffix 12..n).",
+      "children": []
+     },
+     {
+      "id": "Q77-lemW",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-11-13-q77-zero-schur-weyl-dc-fails.md",
+      "approach": "Lemma W: w of weight nu != mu with Asc(w) in S(mu) is bad (weakly decreasing blocks + first/last-occurrence induction force w = sorted word). Pitfall recorded: reachability = instance weak order, NOT Bruhat.",
+      "children": []
+     },
+     {
+      "id": "Q77-part2-local",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-11-13-q77-zero-schur-weyl-dc-fails.md",
+      "approach": "Non-membership: primitive idempotent e_D, ehe unit in eHe, a'=eaec acts as (v.1_C).e; local module eH => e in rad, contradiction. Standard facts only (projective covers, Hom(eH,X)=Xe).",
+      "children": []
+     },
+     {
+      "id": "Q77-thm-verify",
+      "role": "attempt",
+      "trust": "computed",
+      "file": "proofs/prove295/cert.py",
+      "approach": "cert.py exact Z (n=2, N=4,5,6: beta_C in B for 5 choices of C, beta notin A for N>=5, in A at N=4); nonmem.py exact cyclic test at (2,5..9),(3,7),(3,8),(4,9); lemY.py 0 violations up to (4,9) (1.3M words), (5,8); hcross.py; split.py: the unique split D is D_n.",
+      "children": []
+     }
+    ],
+    "cold_read": "Dream 294 2026-11-13: PASS, 0 MUST, 4 NIT (Lemma Y(a) typo last(b)>last(a) fixed in place; Part 3 independence + 'c constant on supp D'; dim Xe=[X:S_D] basic; det-sandwich reading of h). Re-derived F2/F3/F5, Lemma Y, Lemma W, Parts 1-3 by hand."
+   },
+   {
+    "id": "Q77-fail-3-6",
+    "role": "attempt",
+    "trust": "computed",
+    "file": "proofs/2026-11-13-q77-zero-schur-weyl-dc-fails.md",
+    "approach": "A!=B at (3,6)=(n,2n): exact Z certificate cert36.py (rank-one b on weight (1,3,2), source 123223, commutes with all 348 word maps, cyclic test b notin A). fastA2/fastB: dim A 513, dim B 515 (mod p), defect at D={1,2,5},{1,4,5}. NON-split (split.py none). REFUTES the 'iff N>=2n+1' hunch. Grade computed: finite exact certificate, but the word-map spanning of S is cited rather than written out in a file. Explicit H-form: a=pibar_{w0[1,2]} pi_3 pibar_{w0[4,5]}; a.1_mu in B\\A for mu=(1,2,3),(1,3,2) (B by proved single-weight criterion, notA exact cyclic, shape.py). (4,7) shape extrapolations: no witness (undecided).",
+    "children": []
+   },
+   {
+    "id": "Q77-hunch-n+3",
+    "role": "attempt",
+    "trust": "hunch",
+    "approach": "A=B <=> N<=n+2. Consistent with (2,<=4),(3,<=5),(4,5) holding and (2,>=5),(3,6),(3,7) failing. (3,6) witnesses = (2,5) witness weights + one adjoined extreme letter => guess propagation (n,N)=>(n+1,N+1) and (n,N)=>(n,N+1). Predictions: (4,6) holds, (4,7) fails. COMPETITOR (H2): A=B <=> N<=2n-1 (n>=3); (4,8) fails (computed). (4,7) decides; 9 witness shapes at (4,7) found nothing (mildly favours H2).",
+    "children": []
+   },
+   {
+    "id": "Q77-n2-formula",
+    "role": "attempt",
+    "trust": "computed",
+    "file": "proofs/2026-11-13-q77-zero-schur-weyl-dc-fails.md",
+    "approach": "n=2 data dim A=Cat(N), dim B=1,2,5,14,43,142,493,1768,6475,24052 (N=1..10), defect 1,10,64,338,1613,7256 (N=5..10). No small P-recursive fit. Per-top: D={1,N-1}: dim e_D B=2^{N-2}-2, defect=sum_{j>=3}C(N-2,j) (predicted from N<=9, confirmed N=10); D={a,a+3}: defect a(N-a-3). Closed form OPEN.",
+    "children": []
+   },
+   {
+    "id": "Q77-N=2n-family",
+    "role": "attempt",
+    "trust": "computed",
+    "file": "proofs/2026-11-13-q77-zero-schur-weyl-dc-fails.md",
+    "approach": "N=2n: a_n=pibar_{w0[1,n-1]} pi_n pibar_{w0[n+1,2n-1]}. PROVED: a_n.1_C in B for all C (w.a_n!=0 => w=12..n y 23..n; weak-order + Lemma W on letters 2..n). COMPUTED (exact cyclic): a_n.1_mu notin A for mu=mu_y, y>=2 at (3,6),(4,8) => A!=B at (4,8). Non-membership proof OPEN (local-idempotent argument fails: a_n kills every S_D with |supp D|>=2).",
+    "children": [
+     {
+      "id": "Q77-N=2n-Bhalf",
+      "role": "premise",
+      "trust": "proved",
+      "file": "proofs/2026-11-13-q77-zero-schur-weyl-dc-fails.md",
+      "approach": "Proposition: a_n.1_C in B for every weight set C, N=2n.",
+      "children": [],
+      "cold_read": "Dream 294 2026-11-13: PASS. Needs only the necessity direction of the weak-order step: w<=w_y forces the 1 at position 1 (1 only moves right) and goodness on letters 2..n (Lemma Y(a) on that alphabet); then 1 in Asc(w) forces first block length 1 and Lemma W on 2..n gives mu'=nu."
+     }
+    ]
+   }
+  ]
+ }
+}
